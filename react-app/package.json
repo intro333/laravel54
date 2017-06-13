@@ -2,6 +2,7 @@
   "name": "react-app",
   "version": "0.1.0",
   "private": true,
+  "main": "webpack.config.js",
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
@@ -15,11 +16,13 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-scripts": "1.0.7",
-    "webpack": "^2.6.1"
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "dev": "webpack -d --watch",
+    "build": "webpack",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
