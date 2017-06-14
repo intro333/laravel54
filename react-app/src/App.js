@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import './theme/index.css';
+import './theme/css/index.css';
 
 class App extends Component {
   render() {
     return (
       <div className="hello-world">
-        Hello world!
+        <p>Hello world!</p>
+        <img src="/img/image_1.png"/>
+        <div className="image-div"></div>
       </div>
     );
   }
