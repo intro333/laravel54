@@ -17,3 +17,6 @@ Route::get('/', function () {
 Route::get('/react-app', function () {
     return view('react-app');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
