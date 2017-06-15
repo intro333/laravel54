@@ -12,7 +12,9 @@ var formChecking = {
     setObjects: function() {
         this.element = {};
         this.element.formRegister = $('#register-form');
+        this.element.formLogin = $('#login-form');
         this.element.goToLogin = $('#go-to-login');
+        this.element.goToRegister = $('#go-to-register');
         this.element.formChangePassword = $('#change-password-form');
         this.element.formFName = $('#fname');
         this.element.formSName = $('#sname');
@@ -40,9 +42,13 @@ var formChecking = {
         var validateFormCallback = Function.createCallback(this.validateForm, this);
 
         this.element.formRegister.on('submit', validateFormCallback);
+        this.element.formLogin.on('submit', validateFormCallback);
         this.element.formChangePassword.on('submit', validateFormCallback);
         this.element.goToLogin.on('click', function () {
             window.location.href = '/login';
+        });
+        this.element.goToRegister.on('click', function () {
+            window.location.href = '/register';
         })
     },
     datePicker: function() {
@@ -83,6 +89,11 @@ var formChecking = {
             if (!obj.isValid(obj, obj.element.formSName)) {
                 e.preventDefault();
             }
+            if (!obj.isValid(obj, obj.element.formEmail)) {
+                e.preventDefault();
+            }
+        }
+        if (obj.element.formLogin.length) {
             if (!obj.isValid(obj, obj.element.formEmail)) {
                 e.preventDefault();
             }

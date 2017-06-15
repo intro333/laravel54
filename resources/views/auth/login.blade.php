@@ -1,68 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+    <div class="container">
+        <div class="register-container-main">
+            <div class="register-container">
+                <div class="register-header">
+                    <div>
+                        <p class="main-text">Войти</p>
+                        <p class="explain-text">Для входа укажите адрес электронной почты</p>
+                    </div>
+                    <div id="go-to-register" class="middle-button"><p>Зарегистрироваться</p></div>
+                </div>
+                <div class="register-filds">
+                    <form action="{{ route('login') }}" method="POST" id="login-form">
                         {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="register-filds-label-input">
+                            <label class="register-filds-label" for="email">Email*</label>
+                            <input id="email" name="email" type="email" placeholder="Введите электронную почту">
+                        </div>
+                        <div class="register-filds-label-input">
+                            <label class="register-filds-label" for="password">Пароль*</label>
+                            <input id="password" name="password" type="password" placeholder="Введите пароль">
+                        </div>
+                        <div class="register-filds-elements">
+                            <label class="register-filds-label"></label>
+                            <div>
+                                <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }} />
+                                <label for="remember"><span></span>Запомнить меня</label>
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="register-filds-elements">
+                            <label class="register-filds-label"></label>
+                            <div>
+                                <!--<button class="login-button">Войти</button>-->
+                                {{--<div class="login-button"><p>Войти</p></div>--}}
+                                <input type="submit" id="login-submit" class="login-button" value="Войти">
+                                <a class="recover-password" href="{{ route('password.request') }}">Восстановить пароль</a>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
+                        <div class="register-filds-elements">
+                            <label class="register-filds-label"></label>
+                            <div style="color: red; display: none;" class="error_message">Заполните все поля помеченные звёздочкой.</div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
