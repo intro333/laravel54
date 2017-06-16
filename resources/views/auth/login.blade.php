@@ -12,7 +12,7 @@
                     <div id="go-to-register" class="middle-button"><p>Зарегистрироваться</p></div>
                 </div>
                 <div class="register-filds">
-                    <form action="{{ route('login') }}" method="POST" id="login-form">
+                    <form action="{{ route('login') }}" method="POST" id="login-form" autocomplete="on">
                         {{ csrf_field() }}
                         <div class="register-filds-label-input">
                             <label class="register-filds-label" for="email">Email</label>

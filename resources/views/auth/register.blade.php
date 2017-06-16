@@ -35,10 +35,10 @@
                             <label class="register-filds-label" for="password-confirm">Повтор*</label>
                             <input id="password-confirm" name="password_confirmation" type="password" placeholder="Повторите пароль">
                         </div>
-                        {{--<div class="register-filds-label-input">--}}
-                            {{--<label class="register-filds-label" for="password-confirm">Ключ*</label>--}}
-                            {{--<input id="electronic_key" name="electronic_key" type="password" placeholder="Введите электронный ключ">--}}
-                        {{--</div>--}}
+                        <div class="register-filds-label-input">
+                            <label class="register-filds-label" for="password-confirm">Ключ*</label>
+                            <input id="electronic_key" name="electronic_key" type="password" placeholder="Введите электронный ключ">
+                        </div>
                         <div class="register-filds-label-input">
                             <label class="register-filds-label" for="phone">Телефон</label>
                             <input id="phone" name="phone" type="text" placeholder="+7(___) ___ __ __">

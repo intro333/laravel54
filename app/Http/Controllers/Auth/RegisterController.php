@@ -6,6 +6,9 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use App\Models\Confidential;
 
 class RegisterController extends Controller
 {
@@ -61,6 +64,26 @@ class RegisterController extends Controller
         }
 
         return $validator;
+    }
+
+    public function register(Request $request)
+    {
+        $confidential = Confidential::first();
+
+        if ($request['electronic_key'] == $confidential->electronic_key) {
+
+            $this->validator($request->all())->validate();
+
+            event(new Registered($user = $this->create($request->all())));
+
+            $this->guard()->login($user);
+
+            return $this->registered($request, $user)
+                ?: redirect($this->redirectPath());
+        } else {
+            flash("Не верный электронный ключ")->error();
+            return redirect('register');
+        }
     }
 
     /**

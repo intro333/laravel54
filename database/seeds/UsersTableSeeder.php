@@ -24,8 +24,8 @@ class UsersTableSeeder extends Seeder
         $data = [
             [
                 "user_id" => "1",
-                "name"    => "Dima",
-                "email"   => "intro333@ya.ru",
+                "name"    => "user1",
+                "email"   => "email333@ya.ru",
                 "password"         => bcrypt('12345'),
                 "remember_token"   => "",
                 "created_at"       => Carbon::now(),
