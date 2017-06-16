@@ -40,7 +40,7 @@ var App = function (_Component) {
           null,
           'Hello world!'
         ),
-        _react2.default.createElement('img', { src: '/img/image_1.png' }),
+        _react2.default.createElement('img', { src: '/images/image_1.png' }),
         _react2.default.createElement('div', { className: 'image-div' })
       );
     }

@@ -1,13 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-//use Jenssegers\Mongodb\Eloquent\Models as Eloquent;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Auth\Authenticatable;
 
-class User extends Authenticatable
+class User extends Eloquent implements \Illuminate\Contracts\Auth\Authenticatable
 {
+    use Authenticatable;
     use Notifiable;
 
     /**

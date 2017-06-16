@@ -10,6 +10,12 @@
                 <div class="panel-body">
                     You are logged in!
                 </div>
+                <div class="panel-body">
+                    <form action="{{ route('logout') }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="submit" value="Logout">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

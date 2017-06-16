@@ -15,11 +15,11 @@
                     <form action="{{ route('login') }}" method="POST" id="login-form">
                         {{ csrf_field() }}
                         <div class="register-filds-label-input">
-                            <label class="register-filds-label" for="email">Email*</label>
+                            <label class="register-filds-label" for="email">Email</label>
                             <input id="email" name="email" type="email" placeholder="Введите электронную почту">
                         </div>
                         <div class="register-filds-label-input">
-                            <label class="register-filds-label" for="password">Пароль*</label>
+                            <label class="register-filds-label" for="password">Пароль</label>
                             <input id="password" name="password" type="password" placeholder="Введите пароль">
                         </div>
                         <div class="register-filds-elements">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="register-filds-elements">
                             <label class="register-filds-label"></label>
-                            <div style="color: red; display: none;" class="error_message">Заполните все поля помеченные звёздочкой.</div>
+                            <div style="color: red; display: none;" class="error_message">Введите Ваш email и пароль.</div>
                         </div>
                     </form>
                 </div>

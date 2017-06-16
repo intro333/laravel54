@@ -3,7 +3,7 @@ html, body {
     /*adaptive*/
     min-width: 320px;
     height: 100%;
-    letter-spacing: .07em;
+    /*letter-spacing: .07em;*/
     /*adaptive*/ }
 h1, h2, h3 {
     color: steelblue !important;

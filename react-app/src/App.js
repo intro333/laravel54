@@ -6,7 +6,7 @@ class App extends Component {
     return (
       <div className="hello-world">
         <p>Hello world!</p>
-        <img src="/img/image_1.png"/>
+        <img src="/images/image_1.png"/>
         <div className="image-div"></div>
       </div>
     );

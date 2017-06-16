@@ -9560,7 +9560,7 @@ var App = function (_Component) {
           null,
           'Hello world!'
         ),
-        _react2.default.createElement('img', { src: '/img/image_1.png' }),
+        _react2.default.createElement('img', { src: '/images/image_1.png' }),
         _react2.default.createElement('div', { className: 'image-div' })
       );
     }
@@ -9613,7 +9613,7 @@ exports = module.exports = __webpack_require__(85)(undefined);
 
 
 // module
-exports.push([module.i, ".hello-world p {\n    color: green;\n    font-size: 20px;\n}\n.image-div {\n    position: relative;\n    background-image: url(/img/image_1.png);\n    text-align: left;\n    background-repeat: no-repeat;\n    height: 250px;\n    margin-bottom: 40px;\n    margin-top: 25px;\n}", ""]);
+exports.push([module.i, ".hello-world p {\n    color: green;\n    font-size: 20px;\n}\n.image-div {\n    position: relative;\n    background-image: url(/images/image_1.png);\n    text-align: left;\n    background-repeat: no-repeat;\n    height: 250px;\n    margin-bottom: 40px;\n    margin-top: 25px;\n}", ""]);
 
 // exports
 
