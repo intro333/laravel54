@@ -11,12 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/react-app', function () {
-    return view('react-app');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//Route::get('/react-app', function () {
+//    return view('react-app');
+//});
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'CustomerController@index')->name('customer');
