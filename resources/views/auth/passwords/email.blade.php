@@ -1,46 +1,55 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
+    <div class="container">
+        <div class="register-container-main">
+            <div class="register-container">
+                <div class="register-header">
+                    <div>
+                        <p class="main-text">Смена пароля</p>
+                        <p class="explain-text">Отправьте ссылку для смены пароля на свой email.</p>
+                    </div>
+                    <div id="go-to-login" class="middle-button"><p>Назад</p></div>
+                </div>
+                <div class="register-filds">
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
+                    <form action="{{ route('password.email') }}" method="POST" id="email-for-reset-password-form">
                         {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="register-filds-label-input">
+                            <label class="register-filds-label" for="email">Email</label>
+                            <input {{ $errors->has('email') ? 'class=has-error' : '' }} id="email" name="email" type="email" placeholder="Введите электронную почту">
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
+                        @if ($errors->has('email'))
+                            <div class="register-filds-label-input show-help-block">
+                                <label class="register-filds-label" for="email"></label>
+                                <div class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </div>
                             </div>
+                        @endif
+                        <div class="register-filds-elements">
+                            <label class="register-filds-label"></label>
+                            <input type="submit" id="email-for-reset-password-submit" class="register-button" value="Отправить">
+                        </div>
+                        <div class="register-filds-elements">
+                            <label class="register-filds-label"></label>
+                            <div style="color: red; display: none;" class="error_message">Введите Ваш email.</div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <script>
+        $(document).on('click', '#email', function () {
+            if ($(this).hasClass('has-error')) {
+                $(this).removeClass('has-error');
+                $('.show-help-block').remove();
+            }
+        });
+    </script>
 @endsection

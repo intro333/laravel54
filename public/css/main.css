@@ -29,7 +29,18 @@ hr {
 a {
     text-decoration: none !important;
 }
+/*Хелп блоки и error блоки НАЧАЛО--------------------------------------*/
+.help-block {
+    width: 100%;
+    color: #cf4e4e;
+    font-size: 14px;
+    margin: 0;
 
+}
+.has-error {
+    border: 1px solid red !important;
+}
+/*Хелп блоки и error блоки КОНЕЦ---------------------------------------*/
 /*НАВИГАЦИОННАЯ ПАНЕЛЬ(МЕНЮ) НАЧАЛО------------------------------------------------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Lora);
 
