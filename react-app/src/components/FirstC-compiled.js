@@ -10,11 +10,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-require('./theme/css/index.css');
-
-var _FirstC = require('./components/FirstC');
-
-var _FirstC2 = _interopRequireDefault(_FirstC);
+require('../theme/css/index.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,29 +20,40 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_Component) {
-  _inherits(App, _Component);
+var FirstC = function (_React$Component) {
+  _inherits(FirstC, _React$Component);
 
-  function App() {
-    _classCallCheck(this, App);
+  function FirstC(props) {
+    _classCallCheck(this, FirstC);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (FirstC.__proto__ || Object.getPrototypeOf(FirstC)).call(this, props));
   }
 
-  _createClass(App, [{
+  _createClass(FirstC, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'hello-world' },
-        _react2.default.createElement(_FirstC2.default, null)
+        null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Hello world!'
+        ),
+        _react2.default.createElement('img', { src: '/images/image_1.png' }),
+        _react2.default.createElement('div', { className: 'image-div' }),
+        _react2.default.createElement(
+          'form',
+          { method: 'POST', action: '/logout' },
+          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+        )
       );
     }
   }]);
 
-  return App;
-}(_react.Component);
+  return FirstC;
+}(_react2.default.Component);
 
-exports.default = App;
+exports.default = FirstC;
 
-//# sourceMappingURL=App-compiled.js.map
+//# sourceMappingURL=FirstC-compiled.js.map

@@ -2,22 +2,48 @@
 
 namespace App\Models;
 
+//use Illuminate\Notifications\Notifiable;
+//use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+//use Illuminate\Auth\Authenticatable;
+//use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContracts;
+//use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContracts;
+//use Jenssegers\Mongodb\Eloquent\HybridRelations;
+//
+//class User extends Eloquent implements AuthenticatableContracts, CanResetPasswordContracts
+//{
 use Illuminate\Notifications\Notifiable;
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
-use Illuminate\Auth\Authenticatable;
-
-class User extends Eloquent implements \Illuminate\Contracts\Auth\Authenticatable
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class User extends Authenticatable
 {
-    use Authenticatable;
     use Notifiable;
+//    use Authenticatable;
+//    use Notifiable;
+//    use HybridRelations;
+
+    protected $connection = 'mysql';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
+     * @return string|void
      */
+//    public function getEmailForPasswordReset() {
+//
+//    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+//    public function sendPasswordResetNotification($token) {
+//
+//    }
+
     protected $fillable = [
-        'fname', 'sname', 'email', 'password', 'phone', 'electronic_key',
+        'name', 'sname', 'email', 'password', 'phone', 'electronic_key',
     ];
 
     /**

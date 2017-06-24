@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-class Confidential extends Eloquent
+class Confidential extends Model
 {
     protected $fillable = [
         'electronic_key',
@@ -13,4 +13,6 @@ class Confidential extends Eloquent
     protected $hidden = [
         'electronic_key'
     ];
+
+    public $timestamps = false;
 }

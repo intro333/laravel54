@@ -21,3 +21,4 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'CustomerController@index')->name('customer');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');

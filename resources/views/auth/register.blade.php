@@ -16,8 +16,8 @@
                     <form action="{{ route('register') }}" method="POST" id="register-form">
                         {{ csrf_field() }}
                         <div class="register-filds-label-input">
-                            <label class="register-filds-label" for="fname">Имя*</label>
-                            <input id="fname" name="fname" type="text" placeholder="Введите имя">
+                            <label class="register-filds-label" for="name">Имя*</label>
+                            <input id="fname" name="name" type="text" placeholder="Введите имя">
                         </div>
                         <div class="register-filds-label-input">
                             <label class="register-filds-label" for="sname">Фамилия*</label>
