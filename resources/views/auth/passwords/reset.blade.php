@@ -61,7 +61,7 @@
                         </div>
                         <div class="register-filds-elements">
                             <label class="register-filds-label"></label>
-                            <input type="submit" id="reset-password-submit" class="register-button" value="Зарегистрироваться">
+                            <input type="submit" id="reset-password-submit" class="register-button" value="Сменить пароль">
                         </div>
                         <div class="register-filds-elements">
                             <label class="register-filds-label"></label>

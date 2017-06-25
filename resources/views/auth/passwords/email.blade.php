@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
         <div class="register-container-main">
             <div class="register-container">
                 <div class="register-header">
@@ -12,11 +17,7 @@
                     <div id="go-to-login" class="middle-button"><p>Назад</p></div>
                 </div>
                 <div class="register-filds">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+
                     <form action="{{ route('password.email') }}" method="POST" id="email-for-reset-password-form">
                         {{ csrf_field() }}
                         <div class="register-filds-label-input">

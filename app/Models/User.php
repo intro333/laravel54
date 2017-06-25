@@ -11,8 +11,11 @@ namespace App\Models;
 //
 //class User extends Eloquent implements AuthenticatableContracts, CanResetPasswordContracts
 //{
+use App\Notifications\MyOwnResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -54,4 +57,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'electronic_key'
     ];
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new MyOwnResetPassword($token));
+    }
 }
