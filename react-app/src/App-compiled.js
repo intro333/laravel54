@@ -16,6 +16,16 @@ var _FirstC = require('./components/FirstC');
 
 var _FirstC2 = _interopRequireDefault(_FirstC);
 
+var _Roster = require('./components/Roster');
+
+var _Roster2 = _interopRequireDefault(_Roster);
+
+var _reactRouterDom = require('react-router-dom');
+
+var _createBrowserHistory = require('history/createBrowserHistory');
+
+var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37,9 +47,14 @@ var App = function (_Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { className: 'hello-world' },
-        _react2.default.createElement(_FirstC2.default, null)
+        _reactRouterDom.BrowserRouter,
+        { history: _createBrowserHistory2.default },
+        _react2.default.createElement(
+          _reactRouterDom.Switch,
+          null,
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _FirstC2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/roster', component: _Roster2.default })
+        )
       );
     }
   }]);

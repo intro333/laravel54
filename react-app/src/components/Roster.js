@@ -9,13 +9,10 @@ export default class FirstC extends React.Component {
   render() {
     return (
       <div>
-        <p>Hello world!</p>
-        <Link to={`/roster`}>roster</Link>
+        <p>Hi from  Roster!</p>
+        <Link to={'/'}>home</Link>
         <img src="/images/image_1.png"/>
         <div className="image-div"></div>
-        <form method="POST" action="/logout">
-          <input type="submit" value="Logout" />
-        </form>
       </div>
     );
   }

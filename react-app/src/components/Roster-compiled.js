@@ -40,20 +40,15 @@ var FirstC = function (_React$Component) {
         _react2.default.createElement(
           'p',
           null,
-          'Hello world!'
+          'Hi from  Roster!'
         ),
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/roster' },
-          'roster'
+          { to: '/' },
+          'home'
         ),
         _react2.default.createElement('img', { src: '/images/image_1.png' }),
-        _react2.default.createElement('div', { className: 'image-div' }),
-        _react2.default.createElement(
-          'form',
-          { method: 'POST', action: '/logout' },
-          _react2.default.createElement('input', { type: 'submit', value: 'Logout' })
-        )
+        _react2.default.createElement('div', { className: 'image-div' })
       );
     }
   }]);
@@ -63,4 +58,4 @@ var FirstC = function (_React$Component) {
 
 exports.default = FirstC;
 
-//# sourceMappingURL=FirstC-compiled.js.map
+//# sourceMappingURL=Roster-compiled.js.map
