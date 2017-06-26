@@ -12,19 +12,23 @@ var _react2 = _interopRequireDefault(_react);
 
 require('./theme/css/index.css');
 
-var _FirstC = require('./components/FirstC');
-
-var _FirstC2 = _interopRequireDefault(_FirstC);
-
-var _Roster = require('./components/Roster');
-
-var _Roster2 = _interopRequireDefault(_Roster);
-
 var _reactRouterDom = require('react-router-dom');
 
 var _createBrowserHistory = require('history/createBrowserHistory');
 
 var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+
+var _Home = require('./components/Home');
+
+var _Home2 = _interopRequireDefault(_Home);
+
+var _Categories = require('./components/Categories');
+
+var _Categories2 = _interopRequireDefault(_Categories);
+
+var _Products = require('./components/Products');
+
+var _Products2 = _interopRequireDefault(_Products);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52,8 +56,9 @@ var App = function (_Component) {
         _react2.default.createElement(
           _reactRouterDom.Switch,
           null,
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _FirstC2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/roster', component: _Roster2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/categories', component: _Categories2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/products', component: _Products2.default })
         )
       );
     }

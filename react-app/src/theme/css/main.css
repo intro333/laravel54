@@ -1,0 +1,556 @@
+html, body {
+    width: 100%;
+    /*adaptive*/
+    min-width: 320px;
+    height: 100%;
+    /*adaptive*/ }
+h1, h2, h3 {
+    color: steelblue !important;
+    margin: 0 !important;
+}
+hr {
+    border: none;
+    color: steelblue;
+    background-color: steelblue; /* Цвет линии для браузера Firefox и Opera */
+    height: 1px; /* Толщина линии */
+}
+/*Главный контейнер, который задаёт отступ для всех страниц*/
+.container {
+    background: #f2f2f2;
+    min-height: 100% !important;
+    padding: 20px;
+    -webkit-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);
+    -moz-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);
+    box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);
+
+}
+a {
+    text-decoration: none !important;
+}
+
+/*НАВИГАЦИОННАЯ ПАНЕЛЬ(МЕНЮ) НАЧАЛО------------------------------------------------------------------*/
+@import url(https://fonts.googleapis.com/css?family=Lora);
+
+/*h2 {*/
+    /*font-family: monospace;*/
+    /*color: #606060;*/
+/*}*/
+ul {
+    list-style: none;
+    margin: 0 auto;
+}
+
+i {
+    margin-right: 10px;
+}
+nav {
+    display: block;
+    width: 660px;
+    margin: 0 auto 30px;
+}
+.one ul {
+    padding: 1em 0;
+    background: #ECDAD6;
+}
+.one a {
+    padding: 1em;
+    background: rgba(177, 152, 145, .3);
+    border-right: 1px solid #b19891;
+    color: #695753;
+}
+.one a:hover {background: #b19891;}
+.one li {
+    display: inline;
+}
+/*НАВИГАЦИОННАЯ ПАНЕЛЬ(МЕНЮ) КОНЕЦ------------------------------------------------------------------*/
+
+/*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/
+/*Главный див для форм входа и регистрации*/
+.register-container-main {
+    display: flex;
+    justify-content: center;
+}
+.register-container {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+}
+/*Голова формы(верхняя часть формы с загруглёнными краями и синим фоном)*/
+.register-header {
+    border: 1px solid #808080;
+    background: steelblue;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/*Для тега <p>, который находится в голове формы, убираем внешние отступы*/
+.register-header p {
+    margin: 0;
+}
+.main-text {
+    font-size: 18px;
+}
+.explain-text {
+    font-size: 13px;
+}
+/*Тело формы, где поля ввода*/
+.register-filds {
+    padding: 30px 15px 0 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #808080;
+    border-top: 0;
+    justify-content: flex-start;
+    background: #fff;
+}
+/*Див для меток(label) и их инпутов*/
+.register-filds-label-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+/*Див для чекбокса и кнопки*/
+.register-filds-elements {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+.register-filds-label {
+    width: 120px;
+    padding-right: 10px;
+    text-align: right;
+    letter-spacing: 1px;
+}
+.register-filds-elements div {
+    width: 100%;
+}
+.customer-data-container input,.register-filds input {
+    width: 100%;
+    height: 30px;
+    padding-left: 5px;
+    border-radius: 4px;
+    border: 1px solid #a2a2a2;
+    /*font-style: italic;*/
+}
+.customer-data-container input:focus, .register-filds input:focus {
+    outline: none;
+    border: 1px solid #696969;
+}
+/*Кнопки*/
+.middle-button {
+    border-radius: 2px;
+    border: 0;
+    background: #fff;
+    color: #000;
+    text-align: center;
+    padding: 2px 15px 2px 15px;
+    margin-right: 15px;
+}
+.middle-button:hover {
+    cursor: pointer;
+    background-color: #f3f3f3;
+}
+.middle-button:active {
+    padding: 1px 14px 1px 14px;
+}
+.login-button {
+    margin-right: 15px;
+    border-radius: 2px;
+    /*border: 1px solid #a2a2a2;*/
+    background: steelblue;
+    color: white;
+    text-align: center;
+    padding: 4px 0 4px 0;
+    width: 120px !important;float: left;
+}
+.login-button:hover {
+    cursor: pointer;
+    background: #2b5372;
+}
+.login-button:active {
+    background: #1b3447;
+}
+.login-button p {
+    margin: 0;
+    letter-spacing: 1px;
+}
+.register-button {
+    position: relative;
+    border-radius: 2px;
+    border: none !important;
+    background: steelblue;
+    color: white;
+    text-align: center;
+    padding: 4px 0 4px 0;
+    letter-spacing: 1px;
+}
+.register-button:hover {
+    cursor: pointer;
+    background: #2b5372;
+}
+.register-button:active {
+    background: #1b3447;
+}
+.register-button p {
+    margin: 0;
+    letter-spacing: 1px;
+}
+.recover-password {
+    vertical-align: sub;
+}
+/*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/
+
+/*CHECKBOX НАЧАЛО------------------------------------------------------------------*/
+input[type=checkbox] + label {
+    float: left;
+}
+input[type="checkbox"] {
+    display:none;
+}
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background:url(../images/check_radio_sheet.png) left top no-repeat;
+    cursor:pointer;
+}
+input[type="checkbox"]:checked + label span {
+    background:url(../images/check_radio_sheet.png) -19px top no-repeat;
+}
+/*CHECKBOX КОНЕЦ------------------------------------------------------------------*/
+
+/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/
+.personal-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+.image-container {
+    width: 20%;
+    margin-top: 4px;
+}
+.customer-data-container {
+    width: 40%;
+    padding: 0 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /*background: #fff;*/
+}
+.customer-image {
+    margin-bottom: 15px;
+    width: 99%;
+    /*height: 250px;*/
+    border: 1px solid #808080;
+    background: #ffffff;
+}
+.customer-image img {
+    max-width:100%;
+    max-height:100%;
+}
+/*Див для меток(label) и их инпутов*/
+.personal-filds-label-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.personal-filds-label {
+    vertical-align: top;
+    letter-spacing: 1px;
+}
+.personal-explain-text {
+    font-size: 13px;
+    color: steelblue;
+}
+/*Инпут для вставки фото*/
+.customer-image-button {
+    position: relative;
+}
+.customer-image-button #personal-photo {
+    cursor: pointer;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    -moz-opacity: 0;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    z-index:1;
+}
+/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/
+
+/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. НАЧАЛО---------------------------------------------------*/
+.category-head {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.bread-crumbs-circle {
+    width: 10px;
+    height: 10px;
+    background: #555;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    margin: 0 10px;
+}
+.bread-crumbs-link {
+    color: #555 !important;
+}
+.bread-crumbs-link:hover {
+    color: #222 !important;
+    text-decoration: underline !important;
+}
+.bread-crumbs-on-page {
+
+}
+.category-all {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 5px -5px; }
+.category-item {
+    background: white;
+    border: 1px solid #a2a2a2;
+    width: calc(23% - 10px);
+    min-width: 200px;
+    margin: 10px 5px 10px; }
+.category-item:hover {
+    -webkit-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);
+    -moz-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);
+    box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);
+}
+.category-item:hover .category-item__name {
+    color: #000;
+}
+.category-item__img {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 20px;
+}
+.category-item__img img {
+    /*width: 100%;*/
+}
+.category-item__name {
+    padding: 10px;
+    display: table-cell;
+    margin-bottom: 14px;
+    line-height: 20px;
+    vertical-align: inherit;
+    color: #444;
+    font-size: 20px;
+}
+.add-to-cart-button {
+    width: 100%;
+    position: relative;
+    border-radius: 2px;
+    border: none !important;
+    background: steelblue;
+    color: white;
+    text-align: center;
+    padding: 4px 10px 4px 10px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.add-to-cart-button:hover {
+    cursor: pointer;
+    background: #2b5372;
+}
+.add-to-cart-button:active {
+    background: #1b3447;
+}
+.add-to-cart-button p {
+    margin: 0;
+}
+.category-item__price-measure {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 0 15px 0;
+}
+.category-item__price-measure span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3c763d;
+}
+.category-item__price-measure select {
+    outline: none;
+    color: #fff;
+    background-image: url(../images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);
+    background-color: #3c763d;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding-left: 8px;
+    -webkit-appearance: button;
+    -webkit-user-select: none;
+    background-position: 80% center;
+    background-repeat: no-repeat;
+    border: none;
+    font-size: inherit;
+    margin-right: 4px;
+    width: 50px;
+}
+.category-item__price-measure:hover select {
+    cursor: pointer;
+}
+
+/*.Количество продуктов */
+.order-number {
+    position: relative;
+    width: 100px;
+    height: 30px;
+    margin: 0 auto;
+    border: 2px solid #3c763d;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.order-number__field {
+    height: 100%;
+    padding: 0 26px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.order-number__field input {
+    font-weight: 900;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #3c763d;
+    font-size: 13px;
+    font-family: Arial Bold, 'sans-serif';
+    text-align: center;
+    -moz-appearance: textfield;
+    /*background: #fff;*/
+    background-color: transparent;
+    outline: none;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+.order-number__field input::-webkit-inner-spin-button, .order-number__field input::-webkit-outer-spin-button {
+    margin: 0;
+    /* в каких-то браузерах присутствует отступ */
+    -webkit-appearance: none; }
+.order-number__spin.minus {
+    left: 8px;
+}
+.order-number__spin {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+.order-number__spin.minus:after {
+    background-position: 0 0;
+}
+.order-number__spin:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: url(../images/meatorchicken/product-count.png) no-repeat;
+}
+.order-number__spin.plus {
+    right: 8px;
+}
+.order-number__spin {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+.order-number__spin.plus:after {
+    background-position: 0 -10px;
+}
+
+.order-number__spin:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: url(../images/meatorchicken/product-count.png) no-repeat;
+}
+
+/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/
+
+/*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/
+#cart-products-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+}
+.table-30-procent {
+    width: 30%;
+}
+.table-25-procent {
+    width: 25%;
+}
+.table-10-procent {
+    width: 10%;
+}
+
+td {
+    text-align: center;
+    padding: 9px;
+    color: #555;
+    font-weight: 600;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    text-align: center;
+    padding: 18px;
+    background-color: #4CAF50;
+    color: white;
+}
+.table-40-procent-td {
+    text-align: left;
+}
+.remove-product {
+    color: indianred;
+}
+.remove-product:hover {
+    cursor: pointer;
+    color: firebrick;
+}
+.remove-product:active {
+    color: darkred;
+}
+.cart-product-image {
+    border: 1px solid #999;
+}
+.cart-order__total {
+    color: #999;
+    font-size: 24px;
+    font-family: Arial-Bold, 'sans-serif';
+    line-height: 36px;
+    letter-spacing: 6.24px;
+    text-transform: uppercase;
+    text-align: right;
+    margin: 35px 20px; }
+.cart-order__total span {
+    color: #444; }
+/*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/

@@ -22,16 +22,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FirstC = function (_React$Component) {
-  _inherits(FirstC, _React$Component);
+var Products = function (_Component) {
+  _inherits(Products, _Component);
 
-  function FirstC(props) {
-    _classCallCheck(this, FirstC);
+  function Products(props) {
+    _classCallCheck(this, Products);
 
-    return _possibleConstructorReturn(this, (FirstC.__proto__ || Object.getPrototypeOf(FirstC)).call(this, props));
+    return _possibleConstructorReturn(this, (Products.__proto__ || Object.getPrototypeOf(Products)).call(this, props));
   }
 
-  _createClass(FirstC, [{
+  _createClass(Products, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -40,27 +40,28 @@ var FirstC = function (_React$Component) {
         _react2.default.createElement(
           'p',
           null,
-          'Hello world!'
+          '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
         ),
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/roster' },
-          'roster'
+          { to: '/' },
+          'home'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/categories' },
+          '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438'
         ),
         _react2.default.createElement('img', { src: '/images/image_1.png' }),
-        _react2.default.createElement('div', { className: 'image-div' }),
-        _react2.default.createElement(
-          'form',
-          { method: 'POST', action: '/logout' },
-          _react2.default.createElement('input', { type: 'submit', value: 'Logout' })
-        )
+        _react2.default.createElement('div', { className: 'image-div' })
       );
     }
   }]);
 
-  return FirstC;
-}(_react2.default.Component);
+  return Products;
+}(_react.Component);
 
-exports.default = FirstC;
+exports.default = Products;
 
-//# sourceMappingURL=FirstC-compiled.js.map
+//# sourceMappingURL=Products-compiled.js.map
