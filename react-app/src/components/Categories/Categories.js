@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import '../theme/css/main.css';
-import '../theme/css/bootstrap-datepicker3.min.css';
+import '../../theme/css/main.css';
+import '../../theme/css/adaptive.css';
+import '../../theme/css/bootstrap-datepicker3.min.css';
 import { Link } from 'react-router-dom';
-import Navigation from './Navigation/Navigation'
+import Navigation from '../Navigation/Navigation'
 
 export default class Categories extends Component {
   constructor(props) {

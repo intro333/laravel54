@@ -3,7 +3,7 @@ import './theme/css/index.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import Home from './components/Home';
-import Categories from './components/Categories';
+import Categories from './components/Categories/Categories';
 import Products from './components/Products';
 
 class App extends Component {

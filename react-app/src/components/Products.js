@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../theme/css/index.css';
+import '../theme/css/adaptive.css';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation/Navigation'
 
@@ -10,7 +11,7 @@ export default class Products extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
+      <div className="container">
         <Navigation />
         <p>Продукты</p>
         <Link to={'/'}>home</Link><br/>

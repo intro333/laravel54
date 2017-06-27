@@ -15,5 +15,7 @@
 <body>
     <div id="root"></div>
     <script src="/react-public/customer/bundle.js"></script>
+    <script src="/js/other/app.js"></script>
+    <script src="/js/other/popup.js"></script>
 </body>
 </html>

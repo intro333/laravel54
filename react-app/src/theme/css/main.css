@@ -4,6 +4,9 @@ html, body {
     min-width: 320px;
     height: 100%;
     /*adaptive*/ }
+.container {
+    margin-top: 25px;
+}
 h1, h2, h3 {
     color: steelblue !important;
     margin: 0 !important;
@@ -27,42 +30,6 @@ hr {
 a {
     text-decoration: none !important;
 }
-
-/*НАВИГАЦИОННАЯ ПАНЕЛЬ(МЕНЮ) НАЧАЛО------------------------------------------------------------------*/
-@import url(https://fonts.googleapis.com/css?family=Lora);
-
-/*h2 {*/
-    /*font-family: monospace;*/
-    /*color: #606060;*/
-/*}*/
-ul {
-    list-style: none;
-    margin: 0 auto;
-}
-
-i {
-    margin-right: 10px;
-}
-nav {
-    display: block;
-    width: 660px;
-    margin: 0 auto 30px;
-}
-.one ul {
-    padding: 1em 0;
-    background: #ECDAD6;
-}
-.one a {
-    padding: 1em;
-    background: rgba(177, 152, 145, .3);
-    border-right: 1px solid #b19891;
-    color: #695753;
-}
-.one a:hover {background: #b19891;}
-.one li {
-    display: inline;
-}
-/*НАВИГАЦИОННАЯ ПАНЕЛЬ(МЕНЮ) КОНЕЦ------------------------------------------------------------------*/
 
 /*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/
 /*Главный див для форм входа и регистрации*/
@@ -554,3 +521,18 @@ th {
 .cart-order__total span {
     color: #444; }
 /*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/
+/*
+* Меню,навигация
+*/
+.navbar-nav > li:hover {
+    background: #2e6da4;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: #fff;
+}
+.mob-nav-text {
+    margin-left: 2px;
+}
+.mobile-nav-bar-1 {
+    display: none;
+}

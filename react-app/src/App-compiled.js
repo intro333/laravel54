@@ -22,7 +22,7 @@ var _Home = require('./components/Home');
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Categories = require('./components/Categories');
+var _Categories = require('./components/Categories/Categories');
 
 var _Categories2 = _interopRequireDefault(_Categories);
 

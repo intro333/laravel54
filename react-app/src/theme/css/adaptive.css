@@ -1,0 +1,219 @@
+/*****ADAPTIVE for footer******/
+@media (min-width: 1025px) {
+    .footer__social__item:hover {
+        opacity: 0.8; } }
+
+@media (max-width: 1023px) {
+    .menu--footer {
+        bottom: 70px;
+        padding: 45px 0 0 0; }
+    .b-footer .b-search {
+        bottom: 0; }
+    .footer__copy {
+        margin-left: 35px; }
+    .footer__social {
+        margin-right: 35px; } }
+
+@media (max-width: 767px) {
+    .for-main-desc-block {
+        width: 140px;
+    }
+    #blok_one {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+    #blok_one div {
+        font-size: 14px;
+    }
+    .b-menu {
+        height: auto;
+    }
+
+    .menu_footer {
+        flex-wrap: wrap;
+        padding: 15px 0 15px 15px;
+    }
+
+    .footer__copy {
+        padding-left: 15px;
+        margin-left: 10px !important;
+        float: none;
+    }
+
+    .footer__social {
+        float: none;
+        padding: 10px 0 10px 25px;
+    }
+
+    .menu__item_footer {
+        height: auto;
+    }
+
+    .menu__item__link_footer {
+        line-height: 1.2;
+        font-family: ToyotaText-Reg;
+        text-decoration: underline;
+        font-size: 13px;
+        padding: 5px 0;
+
+    }
+    .b-footer__bottom {
+        line-height: 1 !important;
+        height: 100px
+    }
+    #blok1 {
+        font-size: 13px;
+    }
+    #blok2 {
+        font-size: 13px;
+        padding: 7px;
+    }
+    #blok3 {
+       padding-top: 4px;
+        padding-bottom: 4px;
+    }
+    .close-button {
+        font-size: 11px;
+    }
+}
+/***** END! ADAPTIVE for footer END!******/
+/*.app-container {*/
+    /*display: block;*/
+/*}*/
+/*адаптив для меню,навигации*/
+@media (max-width: 900px) {
+    .mob-nav-text {
+        display: none;
+    }
+}
+/*@media (max-width: 1767px) {*/
+    /*#mob-www-logo {*/
+        /*display: none;*/
+    /*}*/
+/*}*/
+@media (max-width: 767px) {
+    .navbar-header {
+    display: none;
+    }
+    .mob-nav-text {
+        display: inline;
+    }
+    #mob-www-logo {
+        display: inline;
+    }
+    .mobile-nav-bar-1 {
+        display: block;
+     }
+
+    .mobile-nav-bar-2 {
+        display: none;
+    }
+    .navbar-default {
+        /*background: #DCDCDC;*/
+        border-radius: 0;
+    }
+    .mobile-nav-head {
+        height: 30px;
+        margin-top: 11px;
+        padding: 3px;
+    }
+    .mob-right {
+        float: right;
+    }
+    .mob-nav-elem {
+        display: inline-block;
+        padding: 3px;
+    }
+    .mob-nav-elem:hover {
+        cursor: pointer;
+    }
+    .mob-rectangle {
+        width: 20px;
+        height: 3px;
+        background: #696969;
+        margin-bottom: 3px;
+    }
+    .mob-menu-right {
+        margin-top: 1px;
+        font-size: 17px;
+        float: right;
+        margin-right: 20px;
+        color: #696969;
+    }
+    .mob-menu-right:hover {
+        cursor: pointer;
+        color: #333;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    .lesson-theme {
+        font-size: 12px;
+    }
+    .block-console-inside {
+        font-size: 13px;
+    }
+    .descrption-text {
+        font-size: 14px;
+    }
+    .btn-lg {
+        font-size: 17px;
+    }
+    .block-lesson-child {
+        padding-top: 5px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .lesson-theme {
+        max-width: 60%;
+    }
+}
+@media (max-width: 340px) {
+    .lesson-theme {
+        max-width: 55%;
+    }
+}
+/*Блок с заданиями*/
+@media (max-width: 900px) {
+    .block-lesson {
+        width: 47%;
+    }
+}
+@media (max-width: 767px) {
+    .block-lesson {
+        width: 95%;
+        margin-left: 7px;
+        margin-top: 5px;
+    }
+    .tool-panel {
+        font-size: 18px;
+    }
+    .lesson-description:active {
+        font-size: 17px;
+    }
+}
+@media (max-width: 405px) {
+    .block-lesson {
+        width: 93%;
+        margin-left: 7px;
+    }
+    .mob-menu-right {
+        float: right;
+        margin-right: 15px;
+        color: #696969;
+    }
+    .container-for-nextOrPrev {
+        width: 100%;
+    }
+    .for-three-block {
+        margin-left: 12px;
+    }
+}
+
+/*nextOrPrev*/
+/*@media (min-width: 1200px) {*/
+    /*.container-for-nextOrPrev {*/
+        /*width: 90%;*/
+    /*}*/
+/*}*/

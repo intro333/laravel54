@@ -10,11 +10,17 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-require('../theme/css/main.css');
+require('../../theme/css/main.css');
 
-require('../theme/css/bootstrap-datepicker3.min.css');
+require('../../theme/css/adaptive.css');
+
+require('../../theme/css/bootstrap-datepicker3.min.css');
 
 var _reactRouterDom = require('react-router-dom');
+
+var _Navigation = require('../Navigation/Navigation');
+
+var _Navigation2 = _interopRequireDefault(_Navigation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39,68 +45,73 @@ var Categories = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'container' },
+        _react2.default.createElement(_Navigation2.default, null),
         _react2.default.createElement(
           'div',
-          { className: 'category-head' },
-          _react2.default.createElement(
-            'h3',
-            { className: 'bread-crumbs-on-page' },
-            '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'category-all' },
+          { className: 'main-container' },
           _react2.default.createElement(
             'div',
-            { className: 'category-item' },
+            { className: 'category-head' },
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/products' },
-              _react2.default.createElement(
-                'div',
-                { className: 'category-item__img' },
-                _react2.default.createElement('img', { src: '/images/category/meat-or-chicken.jpg', width: '170' }),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'category-item__name' },
-                  ' \u041C\u044F\u0441\u043E \u0438 \u043A\u0443\u0440\u0438\u0446\u0430 '
-                )
-              )
+              'h3',
+              { className: 'bread-crumbs-on-page' },
+              '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438'
             )
           ),
           _react2.default.createElement(
             'div',
-            { className: 'category-item' },
+            { className: 'category-all' },
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/products' },
+              'div',
+              { className: 'category-item' },
               _react2.default.createElement(
-                'div',
-                { className: 'category-item__img' },
-                _react2.default.createElement('img', { src: '/images/category/fruits-and-vegetables.jpg', width: '170' }),
+                _reactRouterDom.Link,
+                { to: '/products' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'category-item__name' },
-                  ' \u0424\u0440\u0443\u043A\u0442\u044B, \u043E\u0432\u043E\u0449\u0438 '
+                  { className: 'category-item__img' },
+                  _react2.default.createElement('img', { src: '/images/category/meat-or-chicken.jpg', width: '170' }),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'category-item__name' },
+                    ' \u041C\u044F\u0441\u043E \u0438 \u043A\u0443\u0440\u0438\u0446\u0430 '
+                  )
                 )
               )
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'category-item' },
+            ),
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/products' },
+              'div',
+              { className: 'category-item' },
               _react2.default.createElement(
-                'div',
-                { className: 'category-item__img' },
-                _react2.default.createElement('img', { src: '/images/category/dairy.jpg', width: '170' }),
+                _reactRouterDom.Link,
+                { to: '/products' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'category-item__name' },
-                  ' \u041C\u043E\u043B\u043E\u0447\u043D\u044B\u0435 \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u044B '
+                  { className: 'category-item__img' },
+                  _react2.default.createElement('img', { src: '/images/category/fruits-and-vegetables.jpg', width: '170' }),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'category-item__name' },
+                    ' \u0424\u0440\u0443\u043A\u0442\u044B, \u043E\u0432\u043E\u0449\u0438 '
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'category-item' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/products' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'category-item__img' },
+                  _react2.default.createElement('img', { src: '/images/category/dairy.jpg', width: '170' }),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'category-item__name' },
+                    ' \u041C\u043E\u043B\u043E\u0447\u043D\u044B\u0435 \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u044B '
+                  )
                 )
               )
             )

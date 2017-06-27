@@ -11,27 +11,21 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = require('react-router-dom');
 
+var _Navigation = require('./Navigation/Navigation');
+
+var _Navigation2 = _interopRequireDefault(_Navigation);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Home() {
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'container' },
+    _react2.default.createElement(_Navigation2.default, null),
     _react2.default.createElement(
       'h1',
       null,
-      '\u0417\u0434\u0435\u0441\u044C \u0431\u0443\u0434\u0435\u0442 \u043F\u0430\u043D\u0435\u043B\u044C \u043D\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u0438!'
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/categories' },
-      '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438'
-    ),
-    _react2.default.createElement('br', null),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/products' },
-      '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+      '\u0413\u043B\u0430\u0432\u043D\u0430\u044F \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430.'
     )
   );
 }
