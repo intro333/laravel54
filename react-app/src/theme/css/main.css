@@ -15,7 +15,7 @@ hr {
     height: 1px; /* Толщина линии */
 }
 /*Главный контейнер, который задаёт отступ для всех страниц*/
-.container {
+.main-container {
     background: #f2f2f2;
     min-height: 100% !important;
     padding: 20px;
@@ -342,7 +342,7 @@ input[type="checkbox"]:checked + label span {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px 0 20px;
+    padding-bottom: 20px;
 }
 .category-item__img img {
     /*width: 100%;*/
