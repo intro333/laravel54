@@ -22,6 +22,10 @@ var _Navigation = require('../Navigation/Navigation');
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
+var _MenuMobile = require('../Popups/MenuMobile');
+
+var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46,6 +50,7 @@ var Categories = function (_Component) {
         'div',
         { className: 'container' },
         _react2.default.createElement(_Navigation2.default, null),
+        _react2.default.createElement(_MenuMobile2.default, null),
         _react2.default.createElement(
           'div',
           { className: 'main-container' },
