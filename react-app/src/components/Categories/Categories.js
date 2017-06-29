@@ -4,6 +4,7 @@ import '../../theme/css/adaptive.css';
 import '../../theme/css/bootstrap-datepicker3.min.css';
 import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation'
+import MenuMobile from '../Popups/MenuMobile'
 
 export default class Categories extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class Categories extends Component {
     return (
       <div className="container">
         <Navigation />
+        <MenuMobile />
         <div className="main-container">
           <div className="category-head">
             <h3 className="bread-crumbs-on-page">Продукты</h3>
