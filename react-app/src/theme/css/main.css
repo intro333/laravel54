@@ -17,6 +17,9 @@ hr {
     background-color: steelblue; /* Цвет линии для браузера Firefox и Opera */
     height: 1px; /* Толщина линии */
 }
+.show-hide {
+    display: none;
+}
 /*Главный контейнер, который задаёт отступ для всех страниц*/
 .main-container {
     background: #f2f2f2;
@@ -550,14 +553,13 @@ th {
     z-index:200000;
     top: 52px;
     left: 0;
-    display:none;
 }
 .popup_mob-nav-elem_bg {
     background: transparent;
     /*background:rgba(0,0,0,0.5);*/
     position:fixed;
     z-index:1;
-    top:0;
+    top:75px;
     left:0;
     height:100%;
     width:100%;

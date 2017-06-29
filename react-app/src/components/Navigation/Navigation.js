@@ -1,21 +1,30 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import '../../theme/css/bootstrap-datepicker3.min.css';
 import {Link} from 'react-router-dom';
+import * as modelActions from '../../actions';
 
-export default class Categories extends Component {
+class Navigation extends Component {
+
   constructor(props) {
     super(props);
   }
 
-  render() {
+  mobileMenuClick() {
+    const { dispatch, session } = this.props;
+    dispatch(modelActions.setMobNavElement(!session.get('mobNavElement')));
+  }
 
+  render() {
     const logoImg = {
       width: '65px',
       height: '40px',
       margin: '5px'
     };
+
+    const { session } = this.props;
 
     return (
       <div>
@@ -23,11 +32,18 @@ export default class Categories extends Component {
           <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="mobile-nav-head">
-                <div className="mob-nav-elem">
-                  <div className="mob-rectangle"></div>
-                  <div className="mob-rectangle"></div>
+                  {session.get('mobNavElement') &&
+                    <div className="mob-nav-elem" onClick={this.mobileMenuClick.bind(this)}>
+                      <div className="mob-rectangle"></div>
+                      <div className="mob-rectangle"></div>
+                      <div className="mob-rectangle"></div>
+                    </div>
+                  }
+                {!session.get('mobNavElement') &&
+                <div className="mob-nav-elem" onClick={this.mobileMenuClick.bind(this)}>
                   <div className="mob-rectangle"></div>
                 </div>
+                }
                 <span className="glyphicon glyphicon-log-in  mob-menu-right"></span>
                 <span className="glyphicon glyphicon-user  mob-menu-right"></span>
                 <span id="mobile-menu-option" className="glyphicon glyphicon-cog  mob-menu-right"></span>
@@ -77,3 +93,9 @@ export default class Categories extends Component {
     );
   }
 }
+
+export default connect(store => ({
+  dispatch: store.dispatch,
+  session: store.session,
+  // dealer: store.dealer,
+}))(Navigation);
