@@ -15,7 +15,7 @@ export default class Categories extends Component {
         <Navigation />
         <div className="main-container">
           <div className="category-head">
-            <h3 className="bread-crumbs-on-page">Категории</h3>
+            <h3 className="bread-crumbs-on-page">Продукты</h3>
           </div>
           <div className="category-all">
             <div className="category-item">
