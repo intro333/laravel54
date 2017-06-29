@@ -41,11 +41,10 @@ class Navigation extends Component {
                   }
                 {!session.get('mobNavElement') &&
                 <div className="mob-nav-elem" onClick={this.mobileMenuClick.bind(this)}>
-                  <div className="mob-rectangle"></div>
+                  <div className="close-mobile-elem"></div>
                 </div>
                 }
-                <span className="glyphicon glyphicon-log-in  mob-menu-right"></span>
-                <span className="glyphicon glyphicon-user  mob-menu-right"></span>
+                <span className="glyphicon glyphicon-log-out mob-menu-right"></span>
                 <span id="mobile-menu-option" className="glyphicon glyphicon-cog  mob-menu-right"></span>
                 <span className="glyphicon glyphicon-search  mob-menu-right"></span>
               </div>

@@ -548,7 +548,6 @@ th {
     margin-left: auto;
     margin-top: 25px;
     position: absolute;
-    height:100%;
     width:100%;
     z-index:200000;
     top: 52px;
@@ -604,3 +603,29 @@ th {
     /*height:100%;*/
     cursor: pointer;
 }/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/
+
+/*Крестик для мобильного меню*/
+.close-mobile-elem {
+    position: absolute;
+    left: 30px;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+}
+.close-mobile-elem:hover {
+    opacity: 1;
+}
+.close-mobile-elem:before, .close-mobile-elem:after {
+    position: absolute;
+    content: ' ';
+    height: 25px;
+    width: 3px;
+    background-color: #696969;;
+}
+.close-mobile-elem:before {
+    transform: rotate(45deg);
+}
+.close-mobile-elem:after {
+    transform: rotate(-45deg);
+}

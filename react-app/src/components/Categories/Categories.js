@@ -7,9 +7,11 @@ import Navigation from '../Navigation/Navigation'
 import MenuMobile from '../Popups/MenuMobile'
 
 export default class Categories extends Component {
+
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <div className="container">

@@ -91,6 +91,11 @@
         /*display: none;*/
     /*}*/
 /*}*/
+@media (min-width: 767px) {
+    .popup_mob-nav-elem {
+        display: none;
+    }
+}
 @media (max-width: 767px) {
     .navbar-header {
     display: none;
@@ -123,9 +128,13 @@
     .mob-nav-elem {
         display: inline-block;
         padding: 3px;
+        transition: all .3s ease-in;
     }
     .mob-nav-elem:hover {
         cursor: pointer;
+    }
+    .mob-nav-elem-active {
+        transform: rotate(180deg);
     }
     .mob-rectangle {
         width: 20px;

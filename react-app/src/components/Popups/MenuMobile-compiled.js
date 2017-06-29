@@ -10,9 +10,21 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 require('../../theme/css/main.css');
 
 var _reactRouterDom = require('react-router-dom');
+
+var _reactRedux = require('react-redux');
+
+var _actions = require('../../actions');
+
+var modelActions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,11 +44,28 @@ var MenuMobile = function (_Component) {
   }
 
   _createClass(MenuMobile, [{
+    key: 'closeMobNavElem',
+    value: function closeMobNavElem() {
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          session = _props.session;
+
+      dispatch(modelActions.setMobNavElement(true));
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var session = this.props.session;
+
+
+      var showPopupMonNavElement = (0, _classnames2.default)({
+        'popup_mob-nav-elem': true,
+        'show-hide': session.get('mobNavElement')
+      });
+
       return _react2.default.createElement(
         'div',
-        { className: 'popup_mob-nav-elem' },
+        { className: showPopupMonNavElement },
         _react2.default.createElement('div', { className: 'popup_mob-nav-elem_bg' }),
         _react2.default.createElement(
           'div',
@@ -46,7 +75,7 @@ var MenuMobile = function (_Component) {
             { id: 'blok_mob-nav-elem' },
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: '/' },
+              { onClick: this.closeMobNavElem.bind(this), to: '/' },
               _react2.default.createElement(
                 'div',
                 { className: 'on-off-nmob-nav-elem' },
@@ -59,7 +88,7 @@ var MenuMobile = function (_Component) {
             ),
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: '/categories' },
+              { onClick: this.closeMobNavElem.bind(this), to: '/categories' },
               _react2.default.createElement(
                 'div',
                 { className: 'on-off-nmob-nav-elem' },
@@ -72,7 +101,7 @@ var MenuMobile = function (_Component) {
             ),
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: '/products' },
+              { onClick: this.closeMobNavElem.bind(this), to: '/products' },
               _react2.default.createElement(
                 'div',
                 { className: 'on-off-nmob-nav-elem' },
@@ -92,6 +121,11 @@ var MenuMobile = function (_Component) {
   return MenuMobile;
 }(_react.Component);
 
-exports.default = MenuMobile;
+exports.default = (0, _reactRedux.connect)(function (store) {
+  return {
+    dispatch: store.dispatch,
+    session: store.session
+  };
+})(MenuMobile);
 
 //# sourceMappingURL=MenuMobile-compiled.js.map

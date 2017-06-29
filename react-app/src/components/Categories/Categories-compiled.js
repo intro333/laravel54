@@ -60,7 +60,7 @@ var Categories = function (_Component) {
             _react2.default.createElement(
               'h3',
               { className: 'bread-crumbs-on-page' },
-              '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438'
+              '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
             )
           ),
           _react2.default.createElement(
