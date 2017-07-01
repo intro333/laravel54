@@ -13,12 +13,12 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    const { dispatch, token } = this.props;
+    const { dispatch } = this.props;
     getUserToken(dispatch);
   }
 
   render() {
-    const { dispatch, token } = this.props;
+    const { token } = this.props;
 
     console.log('tokenn', token)
 

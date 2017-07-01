@@ -3,7 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getUserToken = exports.fetch = exports.makeRequest = undefined;
+exports.logOut = exports.getUserToken = exports.fetch = exports.makeRequest = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = require('react-router-dom');
 
 var _axios = require('axios');
 
@@ -46,6 +52,24 @@ var getUserToken = exports.getUserToken = function getUserToken(dispatcher) {
   };
 
   makeRequest(dispatcher, params, then, error);
+};
+
+var logOut = exports.logOut = function logOut(token) {
+  var params = {
+    method: 'post',
+    url: '/logout',
+    data: token
+  };
+
+  var then = function then(response) {
+    window.location.href = '/';
+  };
+
+  var error = function error(_error2) {
+    console.log("error", _error2);
+  };
+
+  makeRequest('', params, then, error);
 };
 
 //# sourceMappingURL=api-compiled.js.map

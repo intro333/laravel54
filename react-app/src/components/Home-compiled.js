@@ -42,18 +42,14 @@ var Home = function (_Component) {
   _createClass(Home, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      var _props = this.props,
-          dispatch = _props.dispatch,
-          token = _props.token;
+      var dispatch = this.props.dispatch;
 
       (0, _api.getUserToken)(dispatch);
     }
   }, {
     key: 'render',
     value: function render() {
-      var _props2 = this.props,
-          dispatch = _props2.dispatch,
-          token = _props2.token;
+      var token = this.props.token;
 
 
       console.log('tokenn', token);

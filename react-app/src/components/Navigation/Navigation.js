@@ -5,6 +5,9 @@ import '../../theme/css/adaptive.css';
 import '../../theme/css/bootstrap-datepicker3.min.css';
 import {Link} from 'react-router-dom';
 import * as modelActions from '../../actions';
+import {
+  logOut,
+} from '../../api';
 
 class Navigation extends Component {
 
@@ -15,6 +18,11 @@ class Navigation extends Component {
   mobileMenuClick() {
     const { dispatch, session } = this.props;
     dispatch(modelActions.setMobNavElement(!session.get('mobNavElement')));
+  }
+
+  logOut() {
+    const { token } = this.props;
+    logOut(token);
   }
 
   render() {
@@ -44,8 +52,11 @@ class Navigation extends Component {
                   <div className="close-mobile-elem"></div>
                 </div>
                 }
-                <span className="glyphicon glyphicon-log-out mob-menu-right"></span>
-                <span id="mobile-menu-option" className="glyphicon glyphicon-cog  mob-menu-right"></span>
+                <span
+                  onClick={this.logOut.bind(this)}
+                  className="glyphicon glyphicon-log-out mob-menu-right"
+                ></span>
+                <span className="glyphicon glyphicon-cog  mob-menu-right"></span>
                 <span className="glyphicon glyphicon-search  mob-menu-right"></span>
               </div>
             </div>
@@ -68,21 +79,21 @@ class Navigation extends Component {
                 <li><Link to={'/categories'}>Контакты</Link></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                <li><Link to={'/categories'}><span className="glyphicon glyphicon-search"></span>
+                <li><a><span className="glyphicon glyphicon-search"></span>
                   <span className="mob-nav-text">Поиск</span>
-                </Link>
+                </a>
                 </li>
                 <li id="menu-option">
-                  <Link to={'/categories'}>
+                  <a>
                     <span className="glyphicon glyphicon-cog"></span>
                     <span className="mob-nav-text">Настройки</span>
-                  </Link>
+                  </a>
                 </li>
-                <li>
-                  <Link to={'/categories'}>
+                <li onClick={this.logOut.bind(this)}>
+                  <a>
                     <span className="glyphicon glyphicon-log-out"></span>
                     <span className="mob-nav-text">Выход</span>
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -96,5 +107,5 @@ class Navigation extends Component {
 export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
-  // dealer: store.dealer,
+  token: store.api.get('userToken'),
 }))(Navigation);

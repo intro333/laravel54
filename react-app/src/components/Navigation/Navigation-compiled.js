@@ -24,6 +24,8 @@ var _actions = require('../../actions');
 
 var modelActions = _interopRequireWildcard(_actions);
 
+var _api = require('../../api');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -51,6 +53,13 @@ var Navigation = function (_Component) {
           session = _props.session;
 
       dispatch(modelActions.setMobNavElement(!session.get('mobNavElement')));
+    }
+  }, {
+    key: 'logOut',
+    value: function logOut() {
+      var token = this.props.token;
+
+      (0, _api.logOut)(token);
     }
   }, {
     key: 'render',
@@ -91,8 +100,11 @@ var Navigation = function (_Component) {
                   { className: 'mob-nav-elem', onClick: this.mobileMenuClick.bind(this) },
                   _react2.default.createElement('div', { className: 'close-mobile-elem' })
                 ),
-                _react2.default.createElement('span', { className: 'glyphicon glyphicon-log-out mob-menu-right' }),
-                _react2.default.createElement('span', { id: 'mobile-menu-option', className: 'glyphicon glyphicon-cog  mob-menu-right' }),
+                _react2.default.createElement('span', {
+                  onClick: this.logOut.bind(this),
+                  className: 'glyphicon glyphicon-log-out mob-menu-right'
+                }),
+                _react2.default.createElement('span', { className: 'glyphicon glyphicon-cog  mob-menu-right' }),
                 _react2.default.createElement('span', { className: 'glyphicon glyphicon-search  mob-menu-right' })
               )
             )
@@ -149,8 +161,8 @@ var Navigation = function (_Component) {
                   'li',
                   null,
                   _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/categories' },
+                    'a',
+                    null,
                     _react2.default.createElement('span', { className: 'glyphicon glyphicon-search' }),
                     _react2.default.createElement(
                       'span',
@@ -163,8 +175,8 @@ var Navigation = function (_Component) {
                   'li',
                   { id: 'menu-option' },
                   _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/categories' },
+                    'a',
+                    null,
                     _react2.default.createElement('span', { className: 'glyphicon glyphicon-cog' }),
                     _react2.default.createElement(
                       'span',
@@ -175,10 +187,10 @@ var Navigation = function (_Component) {
                 ),
                 _react2.default.createElement(
                   'li',
-                  null,
+                  { onClick: this.logOut.bind(this) },
                   _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/categories' },
+                    'a',
+                    null,
                     _react2.default.createElement('span', { className: 'glyphicon glyphicon-log-out' }),
                     _react2.default.createElement(
                       'span',
@@ -201,7 +213,8 @@ var Navigation = function (_Component) {
 exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
-    session: store.session
+    session: store.session,
+    token: store.api.get('userToken')
   };
 })(Navigation);
 

@@ -539,6 +539,9 @@ th {
 .mobile-nav-bar-1 {
     display: none;
 }
+.mobile-nav-bar-2 .navbar-nav li {
+    cursor: pointer;
+}
 
 /*mob-nav-elem---------------------------------------------------------------------------------------------------*/
 .popup_mob-nav-elem {

@@ -1,5 +1,14 @@
+import React, {Component} from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom';
 import axios from 'axios';
 import * as modelActions from './actions';
+
 
 export const makeRequest = (dispatcher, params, then, error) => {
   axios(params).then((result) => {
@@ -35,4 +44,22 @@ export const getUserToken = dispatcher => {
   };
 
   makeRequest(dispatcher, params, then, error);
+};
+
+export const logOut = token => {
+  const params = {
+    method:'post',
+    url:'/logout',
+    data: token
+  };
+
+  const then = response => {
+    window.location.href = '/';
+  };
+
+  const error = (error) => {
+    console.log("error", error);
+  };
+
+  makeRequest('', params, then, error);
 };
