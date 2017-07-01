@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/getUserToken', 'Api\SessionController@getUserToken')->name('getUserToken');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/get-categories', 'Api\CustomerConstoller@getCategories')->name('getCategories');

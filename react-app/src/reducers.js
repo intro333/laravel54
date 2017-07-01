@@ -10,11 +10,15 @@ const list = List;
 
 export const api = (state = map({
   userToken: null,
+  categories: map(),
 
 }), action) => {
   switch (action.type) {
-    case 'GET_USER_TOKEN':
+    case 'SET_USER_TOKEN':
       return state.set('userToken', action.userToken);
+
+    case 'SET_CATEGORIES':
+      return state.set('categories', action.categories);
 
     default:
       return state;

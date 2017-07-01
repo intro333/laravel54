@@ -18,14 +18,18 @@ var list = _immutable.List;
 
 var api = exports.api = function api() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : map({
-    userToken: null
+    userToken: null,
+    categories: map()
 
   });
   var action = arguments[1];
 
   switch (action.type) {
-    case 'GET_USER_TOKEN':
+    case 'SET_USER_TOKEN':
       return state.set('userToken', action.userToken);
+
+    case 'SET_CATEGORIES':
+      return state.set('categories', action.categories);
 
     default:
       return state;

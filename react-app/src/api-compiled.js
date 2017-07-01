@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logOut = exports.getUserToken = exports.fetch = exports.makeRequest = undefined;
+exports.setCategories = exports.logOut = exports.setUserToken = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -31,20 +31,22 @@ var makeRequest = exports.makeRequest = function makeRequest(dispatcher, params,
   });
 };
 
+//Примерс параметрами
 var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
   makeRequest(dispatcher, options, function (r) {
     if (then) then(r.data);
   }, error);
 };
 
-var getUserToken = exports.getUserToken = function getUserToken(dispatcher) {
+//Получить токен
+var setUserToken = exports.setUserToken = function setUserToken(dispatcher) {
   var params = {
     method: 'post',
     url: '/api/getUserToken'
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.getUserToken(response.data));
+    dispatcher(modelActions.setUserToken(response.data));
   };
 
   var error = function error(_error) {
@@ -54,6 +56,7 @@ var getUserToken = exports.getUserToken = function getUserToken(dispatcher) {
   makeRequest(dispatcher, params, then, error);
 };
 
+//Выход, разлогиниться.
 var logOut = exports.logOut = function logOut(token) {
   var params = {
     method: 'post',
@@ -70,6 +73,24 @@ var logOut = exports.logOut = function logOut(token) {
   };
 
   makeRequest('', params, then, error);
+};
+
+//Получить все категории продуктов.
+var setCategories = exports.setCategories = function setCategories(dispatcher) {
+  var params = {
+    method: 'post',
+    url: '/api/get-categories'
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setCategories(response.data));
+  };
+
+  var error = function error(_error3) {
+    console.log(_error3);
+  };
+
+  makeRequest(dispatcher, params, then, error);
 };
 
 //# sourceMappingURL=api-compiled.js.map

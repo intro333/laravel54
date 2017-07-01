@@ -10,29 +10,13 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = require('react-redux');
+var _reactRouterDom = require('react-router-dom');
 
 require('../../theme/css/bootstrap-datepicker3.min.css');
 
 require('../../theme/css/adaptive.css');
 
 require('../../theme/css/main.css');
-
-var _reactRouterDom = require('react-router-dom');
-
-var _Navigation = require('../Navigation/Navigation');
-
-var _Navigation2 = _interopRequireDefault(_Navigation);
-
-var _MenuMobile = require('../Popups/MenuMobile');
-
-var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
-
-var _CategoryItem = require('./CategoryItem');
-
-var _CategoryItem2 = _interopRequireDefault(_CategoryItem);
-
-var _api = require('../../api');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52,47 +36,24 @@ var Categories = function (_Component) {
   }
 
   _createClass(Categories, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      var dispatch = this.props.dispatch;
-
-      (0, _api.setCategories)(dispatch);
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var api = this.props.api;
-
-      var categories = api.get('categories');
-      var categoryItems = categories.map(function (number) {
-        return _react2.default.createElement(_CategoryItem2.default, {
-          key: number.category_id,
-          imgSrc: number.image_path,
-          itemName: number.description
-        });
-      });
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
+        { className: 'category-item' },
         _react2.default.createElement(
-          'div',
-          { className: 'main-container' },
+          _reactRouterDom.Link,
+          { to: '/products' },
           _react2.default.createElement(
             'div',
-            { className: 'category-head' },
+            { className: 'category-item__img' },
+            _react2.default.createElement('img', { src: this.props.imgSrc, width: '170' }),
             _react2.default.createElement(
-              'h3',
-              { className: 'bread-crumbs-on-page' },
-              '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+              'div',
+              { className: 'category-item__name' },
+              this.props.itemName
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'category-all' },
-            categoryItems
           )
         )
       );
@@ -102,12 +63,6 @@ var Categories = function (_Component) {
   return Categories;
 }(_react.Component);
 
-exports.default = (0, _reactRedux.connect)(function (store) {
-  return {
-    dispatch: store.dispatch,
-    session: store.session,
-    api: store.api
-  };
-})(Categories);
+exports.default = Categories;
 
-//# sourceMappingURL=Categories-compiled.js.map
+//# sourceMappingURL=CategoryItem-compiled.js.map

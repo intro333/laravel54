@@ -18,6 +18,7 @@ export const makeRequest = (dispatcher, params, then, error) => {
   });
 };
 
+//Примерс параметрами
 export const fetch = (dispatcher, options, then, error) => {
   makeRequest(
     dispatcher,
@@ -29,14 +30,15 @@ export const fetch = (dispatcher, options, then, error) => {
   );
 };
 
-export const getUserToken = dispatcher => {
+//Получить токен
+export const setUserToken = dispatcher => {
   const params = {
     method:'post',
     url:'/api/getUserToken',
   };
 
   const then = response => {
-    dispatcher(modelActions.getUserToken(response.data))
+    dispatcher(modelActions.setUserToken(response.data))
   };
 
   const error = (error) => {
@@ -46,6 +48,7 @@ export const getUserToken = dispatcher => {
   makeRequest(dispatcher, params, then, error);
 };
 
+//Выход, разлогиниться.
 export const logOut = token => {
   const params = {
     method:'post',
@@ -62,4 +65,22 @@ export const logOut = token => {
   };
 
   makeRequest('', params, then, error);
+};
+
+//Получить все категории продуктов.
+export const setCategories = dispatcher => {
+  const params = {
+    method:'post',
+    url:'/api/get-categories',
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setCategories(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
 };

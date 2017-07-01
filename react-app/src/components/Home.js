@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Navigation from './Navigation/Navigation';
 import MenuMobile from './Popups/MenuMobile';
 import {
-  getUserToken,
+  setUserToken,
 } from '../api';
 
 class Home extends Component {
@@ -14,7 +14,7 @@ class Home extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props;
-    getUserToken(dispatch);
+    setUserToken(dispatch);
   }
 
   render() {

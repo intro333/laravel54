@@ -44,7 +44,7 @@ var Home = function (_Component) {
     value: function componentWillMount() {
       var dispatch = this.props.dispatch;
 
-      (0, _api.getUserToken)(dispatch);
+      (0, _api.setUserToken)(dispatch);
     }
   }, {
     key: 'render',
