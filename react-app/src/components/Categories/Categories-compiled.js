@@ -10,11 +10,11 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-require('../../theme/css/main.css');
+require('../../theme/css/bootstrap-datepicker3.min.css');
 
 require('../../theme/css/adaptive.css');
 
-require('../../theme/css/bootstrap-datepicker3.min.css');
+require('../../theme/css/main.css');
 
 var _reactRouterDom = require('react-router-dom');
 

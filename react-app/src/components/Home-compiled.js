@@ -51,8 +51,7 @@ var Home = function (_Component) {
     value: function render() {
       var token = this.props.token;
 
-
-      console.log('tokenn', token);
+      // console.log('tokenn', token)
 
       return _react2.default.createElement(
         'div',

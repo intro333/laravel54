@@ -26,7 +26,7 @@ var _Categories = require('./components/Categories/Categories');
 
 var _Categories2 = _interopRequireDefault(_Categories);
 
-var _Products = require('./components/Products');
+var _Products = require('./components/Products/Products');
 
 var _Products2 = _interopRequireDefault(_Products);
 

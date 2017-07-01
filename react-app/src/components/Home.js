@@ -20,7 +20,7 @@ class Home extends Component {
   render() {
     const { token } = this.props;
 
-    console.log('tokenn', token)
+    // console.log('tokenn', token)
 
     return (
       <div className="container">
