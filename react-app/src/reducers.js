@@ -9,12 +9,12 @@ const orderedMap = OrderedMap;
 const list = List;
 
 export const api = (state = map({
-  spinner: false,
+  userToken: null,
 
 }), action) => {
   switch (action.type) {
-    case 'START_SPINNER':
-      return state.set('spinner', true);
+    case 'GET_USER_TOKEN':
+      return state.set('userToken', action.userToken);
 
     default:
       return state;

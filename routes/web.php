@@ -13,4 +13,4 @@
 
 Auth::routes();
 Route::get('/', 'CustomerController@index')->name('customer');
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+//Route::get('/logout', 'Auth\LoginController@logout')->name('logout');

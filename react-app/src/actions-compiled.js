@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.startSpinner = startSpinner;
+exports.getUserToken = getUserToken;
 exports.setMobNavElement = setMobNavElement;
-function startSpinner() {
-  return { type: 'START_SPINNER' };
+function getUserToken(userToken) {
+  return { type: 'GET_USER_TOKEN', userToken: userToken };
 }
 
 function setMobNavElement(mobNavElement) {

@@ -18,14 +18,14 @@ var list = _immutable.List;
 
 var api = exports.api = function api() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : map({
-    spinner: false
+    userToken: null
 
   });
   var action = arguments[1];
 
   switch (action.type) {
-    case 'START_SPINNER':
-      return state.set('spinner', true);
+    case 'GET_USER_TOKEN':
+      return state.set('userToken', action.userToken);
 
     default:
       return state;

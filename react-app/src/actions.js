@@ -1,5 +1,5 @@
-export function startSpinner() {
-  return { type: 'START_SPINNER' };
+export function getUserToken(userToken) {
+  return { type: 'GET_USER_TOKEN', userToken };
 }
 
 export function setMobNavElement(mobNavElement) {
