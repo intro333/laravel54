@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setCategories = exports.logOut = exports.setUserToken = exports.fetch = exports.makeRequest = undefined;
+exports.setProducts = exports.setCategories = exports.logOut = exports.setUserToken = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -75,7 +75,7 @@ var logOut = exports.logOut = function logOut(token) {
   makeRequest('', params, then, error);
 };
 
-//Получить все категории продуктов.
+//Получить все категории.
 var setCategories = exports.setCategories = function setCategories(dispatcher) {
   var params = {
     method: 'post',
@@ -88,6 +88,24 @@ var setCategories = exports.setCategories = function setCategories(dispatcher) {
 
   var error = function error(_error3) {
     console.log(_error3);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Получить продукты нужной категории.
+var setProducts = exports.setProducts = function setProducts(dispatcher, productId) {
+  var params = {
+    method: 'post',
+    url: '/api/get-products/' + productId
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setProducts(response.data));
+  };
+
+  var error = function error(_error4) {
+    console.log(_error4);
   };
 
   makeRequest(dispatcher, params, then, error);

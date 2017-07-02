@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
-    protected $collection = 'categories';
+    protected $table = 'categories';
 
     protected $fillable = [
-        "category_id",
         "name",
         "description",
         "image_path",
@@ -18,4 +17,18 @@ class Categories extends Model
         "created_at",
         "updated_at",
     ];
+
+    protected $primaryKey = 'category_id';
+
+    protected $softDelete = true;// <-- Используем этот свойство для мягкого удаления.
+
+//    protected $guarded = ['category_id']; // Нельзя изменять category_id, а остальные можно.
+
+    /*
+     * Связь с продуктами
+     */
+    public function products()
+    {
+        return $this->hasMany('App\Models\Products', 'product_category_id', 'category_id');
+    }
 }

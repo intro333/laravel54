@@ -13,8 +13,9 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $categories = new Categories();
-        $categories->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        DB::table('categories')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         foreach ($this->getData() as $item) {
             Categories::create($item);
@@ -25,7 +26,8 @@ class CategoriesTableSeeder extends Seeder
     {
         $data = [
             [
-                "name"          => "meat-or-chicken",
+                "name"          => "Мясо и курица",
+                "route"          => "meat-or-chicken",
                 "description"   => "Мясо и курица.",
                 "image_path"    => '/storage/images/categories/meat-or-chicken.jpg',
                 "is_active"     => "1",
@@ -34,7 +36,8 @@ class CategoriesTableSeeder extends Seeder
                 "updated_at"    => null,
             ],
             [
-                "name"          => "fruits-and-vegetables",
+                "name"          => "Фрукты и овощи",
+                "route"          => "meat-or-chicken",
                 "description"   => "Фрукты и овощи.",
                 "image_path"    => 'storage/images/categories/fruits-and-vegetables.jpg',
                 "is_active"     => "1",
@@ -43,7 +46,8 @@ class CategoriesTableSeeder extends Seeder
                 "updated_at"    => null,
             ],
             [
-                "name"          => "dairy",
+                "name"          => "Молочные продукты",
+                "route"          => "meat-or-chicken",
                 "description"   => "Молочные продукты.",
                 "image_path"    => '/storage/images/categories/dairy.jpg',
                 "is_active"     => "1",

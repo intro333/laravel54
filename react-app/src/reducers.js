@@ -11,6 +11,7 @@ const list = List;
 export const api = (state = map({
   userToken: null,
   categories: map(),
+  products: map(),
 
 }), action) => {
   switch (action.type) {
@@ -20,6 +21,9 @@ export const api = (state = map({
     case 'SET_CATEGORIES':
       return state.set('categories', action.categories);
 
+    case 'SET_PRODUCTS':
+      return state.set('products', action.products);
+
     default:
       return state;
   }
@@ -27,12 +31,20 @@ export const api = (state = map({
 
 let defaultSessionState = map({
   mobNavElement: true,
+  categoryId: null,
+  categoryName: null,
 });
 
 const session = (state = defaultSessionState, action) => {
   switch (action.type) {
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);
+
+    case 'SET_CATEGORY_ID':
+      return state.set('categoryId', action.categoryId);
+
+    case 'SET_CATEGORY_NAME':
+      return state.set('categoryName', action.categoryName);
 
     default:
       return state;

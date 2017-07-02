@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import CategoryItem from './CategoryItem';
+import * as modelActions from '../../actions';
 import {
   setCategories,
 } from '../../api';
@@ -22,14 +23,17 @@ class Categories extends Component {
     setCategories(dispatch);
   }
 
+
+
   render() {
     const { api } = this.props;
     const categories = api.get('categories');
-    const categoryItems = categories.map((number) =>
+    const categoryItems = categories.map((item) =>
       <CategoryItem
-        key={number.category_id}
-        imgSrc={ number.image_path }
-        itemName={ number.description }
+        key={item.category_id}
+        categoryId={item.category_id}
+        imgSrc={ item.image_path }
+        itemName={ item.name }
       />
     );
 

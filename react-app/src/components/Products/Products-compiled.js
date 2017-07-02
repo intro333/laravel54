@@ -10,6 +10,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = require('react-redux');
+
 require('../../theme/css/index.css');
 
 require('../../theme/css/adaptive.css');
@@ -25,6 +27,12 @@ var _Navigation2 = _interopRequireDefault(_Navigation);
 var _MenuMobile = require('../Popups/MenuMobile');
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
+
+var _ProductItem = require('./ProductItem');
+
+var _ProductItem2 = _interopRequireDefault(_ProductItem);
+
+var _api = require('../../api');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44,12 +52,32 @@ var Products = function (_Component) {
   }
 
   _createClass(Products, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          session = _props.session;
+
+      (0, _api.setProducts)(dispatch, session.get('categoryId'));
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _props2 = this.props,
+          api = _props2.api,
+          session = _props2.session;
 
-      var categoryItemImg = {
-        padding: '0 20px 0 20px'
-      };
+      var products = api.get('products');
+
+      var productItem = products.map(function (item) {
+        return _react2.default.createElement(_ProductItem2.default, {
+          key: item.product_id,
+          productId: item.product_id,
+          imgSrc: item.image_path,
+          itemName: item.name,
+          price: item.price
+        });
+      });
 
       return _react2.default.createElement(
         'div',
@@ -75,168 +103,13 @@ var Products = function (_Component) {
             _react2.default.createElement(
               'h3',
               { className: 'bread-crumbs-on-page' },
-              '\u041C\u044F\u0441\u043E \u0438 \u043A\u0443\u0440\u0438\u0446\u0430'
+              session.get('categoryName')
             )
           ),
           _react2.default.createElement(
             'div',
             { className: 'category-all' },
-            _react2.default.createElement(
-              'div',
-              { className: 'category-item' },
-              _react2.default.createElement(
-                'div',
-                { className: 'category-item__img', style: categoryItemImg },
-                _react2.default.createElement('img', { src: '/images/meatorchicken/beef.jpg', width: '190' }),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'category-item__name' },
-                  ' \u0413\u043E\u0432\u044F\u0434\u0438\u043D\u0430'
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'category-item__price-measure' },
-                  _react2.default.createElement(
-                    'span',
-                    null,
-                    '800 \u20BD / \u043A\u0433.'
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'order-table__cell' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'b-number' },
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'order-number' },
-                        _react2.default.createElement(
-                          'div',
-                          { className: 'order-number__field' },
-                          _react2.default.createElement('input', { type: 'number', max: '99', min: '0', value: '1', className: 'order-number-inp',
-                            'data-product-id': '1' })
-                        ),
-                        _react2.default.createElement('div', { className: 'order-number__spin minus order-spin-minus' }),
-                        _react2.default.createElement('div', { className: 'order-number__spin plus order-spin-plus' })
-                      )
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'add-to-cart-button' },
-                  _react2.default.createElement(
-                    'p',
-                    null,
-                    '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
-                  )
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'category-item' },
-              _react2.default.createElement(
-                'div',
-                { className: 'category-item__img', style: categoryItemImg },
-                _react2.default.createElement('img', { src: '/images/meatorchicken/pork.jpg', width: '190' }),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'category-item__name' },
-                  ' \u0421\u0432\u0438\u043D\u0438\u043D\u0430'
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'category-item__price-measure' },
-                  _react2.default.createElement(
-                    'span',
-                    null,
-                    '650 \u20BD / \u043A\u0433.'
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'order-table__cell' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'b-number' },
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'order-number' },
-                        _react2.default.createElement(
-                          'div',
-                          { className: 'order-number__field' },
-                          _react2.default.createElement('input', { type: 'number', max: '99', min: '0', value: '1', className: 'order-number-inp',
-                            'data-product-id': '2' })
-                        ),
-                        _react2.default.createElement('div', { className: 'order-number__spin minus order-spin-minus' }),
-                        _react2.default.createElement('div', { className: 'order-number__spin plus order-spin-plus' })
-                      )
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'add-to-cart-button' },
-                  _react2.default.createElement(
-                    'p',
-                    null,
-                    '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
-                  )
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'category-item' },
-              _react2.default.createElement(
-                'div',
-                { className: 'category-item__img', style: categoryItemImg },
-                _react2.default.createElement('img', { src: '/images/meatorchicken/veal.jpg', width: '190' }),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'category-item__name' },
-                  ' \u0422\u0435\u043B\u044F\u0442\u0438\u043D\u0430'
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'category-item__price-measure' },
-                  _react2.default.createElement(
-                    'span',
-                    null,
-                    '545 \u20BD / \u0448\u0442.'
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'order-table__cell' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'b-number' },
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'order-number' },
-                        _react2.default.createElement(
-                          'div',
-                          { className: 'order-number__field' },
-                          _react2.default.createElement('input', { type: 'number', max: '99', min: '0', value: '1', className: 'order-number-inp',
-                            'data-product-id': '3' })
-                        ),
-                        _react2.default.createElement('div', { className: 'order-number__spin minus' }),
-                        _react2.default.createElement('div', { className: 'order-number__spin plus' })
-                      )
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'add-to-cart-button' },
-                  _react2.default.createElement(
-                    'p',
-                    null,
-                    '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
-                  )
-                )
-              )
-            )
+            productItem
           )
         )
       );
@@ -246,6 +119,12 @@ var Products = function (_Component) {
   return Products;
 }(_react.Component);
 
-exports.default = Products;
+exports.default = (0, _reactRedux.connect)(function (store) {
+  return {
+    dispatch: store.dispatch,
+    session: store.session,
+    api: store.api
+  };
+})(Products);
 
 //# sourceMappingURL=Products-compiled.js.map

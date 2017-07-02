@@ -10,6 +10,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = require('react-redux');
+
 var _reactRouterDom = require('react-router-dom');
 
 require('../../theme/css/bootstrap-datepicker3.min.css');
@@ -17,6 +19,14 @@ require('../../theme/css/bootstrap-datepicker3.min.css');
 require('../../theme/css/adaptive.css');
 
 require('../../theme/css/main.css');
+
+var _actions = require('../../actions');
+
+var modelActions = _interopRequireWildcard(_actions);
+
+var _api = require('../../api');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26,22 +36,33 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Categories = function (_Component) {
-  _inherits(Categories, _Component);
+var CategoryItem = function (_Component) {
+  _inherits(CategoryItem, _Component);
 
-  function Categories(props) {
-    _classCallCheck(this, Categories);
+  function CategoryItem(props) {
+    _classCallCheck(this, CategoryItem);
 
-    return _possibleConstructorReturn(this, (Categories.__proto__ || Object.getPrototypeOf(Categories)).call(this, props));
+    return _possibleConstructorReturn(this, (CategoryItem.__proto__ || Object.getPrototypeOf(CategoryItem)).call(this, props));
   }
 
-  _createClass(Categories, [{
+  // componentWillUnmount() {
+
+
+  _createClass(CategoryItem, [{
+    key: 'setCategoryId',
+    value: function setCategoryId() {
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setCategoryId(this.props.categoryId));
+      dispatch(modelActions.setCategoryName(this.props.itemName));
+    }
+  }, {
     key: 'render',
     value: function render() {
 
       return _react2.default.createElement(
         'div',
-        { className: 'category-item' },
+        { className: 'category-item', onClick: this.setCategoryId.bind(this) },
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: '/products' },
@@ -60,9 +81,15 @@ var Categories = function (_Component) {
     }
   }]);
 
-  return Categories;
+  return CategoryItem;
 }(_react.Component);
 
-exports.default = Categories;
+exports.default = (0, _reactRedux.connect)(function (store) {
+  return {
+    dispatch: store.dispatch,
+    session: store.session,
+    api: store.api
+  };
+})(CategoryItem);
 
 //# sourceMappingURL=CategoryItem-compiled.js.map

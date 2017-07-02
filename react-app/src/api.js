@@ -67,7 +67,7 @@ export const logOut = token => {
   makeRequest('', params, then, error);
 };
 
-//Получить все категории продуктов.
+//Получить все категории.
 export const setCategories = dispatcher => {
   const params = {
     method:'post',
@@ -76,6 +76,24 @@ export const setCategories = dispatcher => {
 
   const then = response => {
     dispatcher(modelActions.setCategories(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Получить продукты нужной категории.
+export const setProducts = (dispatcher, productId) => {
+  const params = {
+    method:'post',
+    url:'/api/get-products/' + productId,
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setProducts(response.data))
   };
 
   const error = (error) => {

@@ -32,7 +32,13 @@ var _CategoryItem = require('./CategoryItem');
 
 var _CategoryItem2 = _interopRequireDefault(_CategoryItem);
 
+var _actions = require('../../actions');
+
+var modelActions = _interopRequireWildcard(_actions);
+
 var _api = require('../../api');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -64,11 +70,12 @@ var Categories = function (_Component) {
       var api = this.props.api;
 
       var categories = api.get('categories');
-      var categoryItems = categories.map(function (number) {
+      var categoryItems = categories.map(function (item) {
         return _react2.default.createElement(_CategoryItem2.default, {
-          key: number.category_id,
-          imgSrc: number.image_path,
-          itemName: number.description
+          key: item.category_id,
+          categoryId: item.category_id,
+          imgSrc: item.image_path,
+          itemName: item.name
         });
       });
 
