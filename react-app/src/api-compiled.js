@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setProducts = exports.setCategories = exports.logOut = exports.setUserToken = exports.fetch = exports.makeRequest = undefined;
+exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.setUserToken = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -106,6 +106,25 @@ var setProducts = exports.setProducts = function setProducts(dispatcher, product
 
   var error = function error(_error4) {
     console.log(_error4);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Добавить товар в корзину.
+var addProductToCart = exports.addProductToCart = function addProductToCart(dispatcher, data) {
+  var params = {
+    method: 'post',
+    url: '/api/add-product-to-cart',
+    data: data
+  };
+
+  var then = function then(response) {
+    console.log(response.data);
+  };
+
+  var error = function error(_error5) {
+    console.log(_error5);
   };
 
   makeRequest(dispatcher, params, then, error);

@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/adaptive.css';
 import '../../theme/css/main.css';
+import {
+  addProductToCart,
+} from '../../api';
 import * as modelActions from './actions';
 
 class ProductItem extends Component {
 
   constructor(props) {
-    super(props);
 
+    super(props);
     this.state = {
       orderNumberInp: 1,
     }
@@ -49,6 +52,17 @@ class ProductItem extends Component {
         orderNumberInp: parseInt(targetValue)
       });
     }
+  }
+
+  addProductToCart() {
+    const { dispatch } = this.props;
+    const data = {
+      barCode: this.props.barCode,
+      productId: this.props.productId,
+      productCounts: this.state.orderNumberInp,
+    };
+
+    addProductToCart(dispatch, data);
   }
 
   render() {
@@ -91,7 +105,10 @@ class ProductItem extends Component {
               </div>
             </div>
           </div>
-          <div className="add-to-cart-button">
+          <div
+            className="add-to-cart-button"
+            onClick={this.addProductToCart.bind(this)}
+          >
             <p>Добавить в корзину</p>
           </div>
         </div>

@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/getUserToken', 'Api\SessionController@getUserToken')->name('getUserToken');
 Route::post('/get-categories', 'Api\CustomerConstoller@getCategories')->name('getCategories');
 Route::post('/get-products/{id}', 'Api\CustomerConstoller@getProducts')->name('getProducts');
+Route::post('/add-product-to-cart', 'Api\SessionController@addProductToCart')->name('addProductToCart');

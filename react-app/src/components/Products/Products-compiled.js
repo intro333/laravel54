@@ -73,6 +73,7 @@ var Products = function (_Component) {
         return _react2.default.createElement(_ProductItem2.default, {
           key: item.product_id,
           productId: item.product_id,
+          barCode: item.bar_code,
           imgSrc: item.image_path,
           itemName: item.name,
           price: item.price

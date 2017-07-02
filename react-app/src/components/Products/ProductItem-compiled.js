@@ -20,6 +20,8 @@ require('../../theme/css/adaptive.css');
 
 require('../../theme/css/main.css');
 
+var _api = require('../../api');
+
 var _actions = require('./actions');
 
 var modelActions = _interopRequireWildcard(_actions);
@@ -85,6 +87,19 @@ var ProductItem = function (_Component) {
           orderNumberInp: parseInt(targetValue)
         });
       }
+    }
+  }, {
+    key: 'addProductToCart',
+    value: function addProductToCart() {
+      var dispatch = this.props.dispatch;
+
+      var data = {
+        barCode: this.props.barCode,
+        productId: this.props.productId,
+        productCounts: this.state.orderNumberInp
+      };
+
+      (0, _api.addProductToCart)(dispatch, data);
     }
   }, {
     key: 'render',
@@ -153,7 +168,10 @@ var ProductItem = function (_Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'add-to-cart-button' },
+            {
+              className: 'add-to-cart-button',
+              onClick: this.addProductToCart.bind(this)
+            },
             _react2.default.createElement(
               'p',
               null,

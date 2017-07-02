@@ -29,6 +29,7 @@ class Products extends Component {
       <ProductItem
         key={item.product_id}
         productId={item.product_id}
+        barCode={item.bar_code}
         imgSrc={ item.image_path }
         itemName={ item.name }
         price={ item.price }

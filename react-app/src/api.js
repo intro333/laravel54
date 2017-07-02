@@ -102,3 +102,22 @@ export const setProducts = (dispatcher, productId) => {
 
   makeRequest(dispatcher, params, then, error);
 };
+
+//Добавить товар в корзину.
+export const addProductToCart = (dispatcher, data) => {
+  const params = {
+    method:'post',
+    url:'/api/add-product-to-cart',
+    data: data
+  };
+
+  const then = response => {
+    console.log(response.data);
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
