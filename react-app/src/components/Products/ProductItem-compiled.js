@@ -12,11 +12,19 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = require('react-router-dom');
 
+var _reactRedux = require('react-redux');
+
 require('../../theme/css/bootstrap-datepicker3.min.css');
 
 require('../../theme/css/adaptive.css');
 
 require('../../theme/css/main.css');
+
+var _actions = require('./actions');
+
+var modelActions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,16 +40,61 @@ var ProductItem = function (_Component) {
   function ProductItem(props) {
     _classCallCheck(this, ProductItem);
 
-    return _possibleConstructorReturn(this, (ProductItem.__proto__ || Object.getPrototypeOf(ProductItem)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (ProductItem.__proto__ || Object.getPrototypeOf(ProductItem)).call(this, props));
+
+    _this.state = {
+      orderNumberInp: 1
+    };
+    return _this;
   }
 
   _createClass(ProductItem, [{
+    key: 'setPlusNumber',
+    value: function setPlusNumber() {
+      var inputVal = this.state.orderNumberInp;
+      if (inputVal < 99) {
+        this.setState({
+          orderNumberInp: parseInt(inputVal) + 1
+        });
+      } else if (isNaN(inputVal)) {
+        this.setState({
+          orderNumberInp: 1
+        });
+      }
+    }
+  }, {
+    key: 'setMinusNumber',
+    value: function setMinusNumber() {
+      var inputVal = parseInt(this.state.orderNumberInp);
+      if (inputVal > 1) {
+        this.setState({
+          orderNumberInp: parseInt(inputVal) - 1
+        });
+      } else if (isNaN(inputVal)) {
+        this.setState({
+          orderNumberInp: 1
+        });
+      }
+    }
+  }, {
+    key: 'setChangeNumber',
+    value: function setChangeNumber(e) {
+      var targetValue = e.target.value;
+      if (targetValue <= 99 && targetValue > 0 || targetValue === '') {
+        this.setState({
+          orderNumberInp: parseInt(targetValue)
+        });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
 
       var categoryItemImg = {
         padding: '0 20px 0 20px'
       };
+
+      var inputVal = this.state.orderNumberInp;
 
       return _react2.default.createElement(
         'div',
@@ -77,10 +130,23 @@ var ProductItem = function (_Component) {
                   _react2.default.createElement(
                     'div',
                     { className: 'order-number__field' },
-                    _react2.default.createElement('input', { type: 'number', max: '99', min: '0', value: '1', className: 'order-number-inp' })
+                    _react2.default.createElement('input', {
+                      className: 'order-number-inp',
+                      type: 'number',
+                      max: '99',
+                      min: '0',
+                      value: inputVal,
+                      onChange: this.setChangeNumber.bind(this)
+                    })
                   ),
-                  _react2.default.createElement('div', { className: 'order-number__spin minus order-spin-minus' }),
-                  _react2.default.createElement('div', { className: 'order-number__spin plus order-spin-plus' })
+                  _react2.default.createElement('div', {
+                    className: 'order-number__spin minus order-spin-minus',
+                    onClick: this.setMinusNumber.bind(this)
+                  }),
+                  _react2.default.createElement('div', {
+                    className: 'order-number__spin plus order-spin-plus',
+                    onClick: this.setPlusNumber.bind(this)
+                  })
                 )
               )
             )
@@ -102,6 +168,13 @@ var ProductItem = function (_Component) {
   return ProductItem;
 }(_react.Component);
 
-exports.default = ProductItem;
+exports.default = (0, _reactRedux.connect)(function (store) {
+  return {
+    dispatch: store.dispatch,
+    session: store.session,
+    api: store.api,
+    products: store.products
+  };
+})(ProductItem);
 
 //# sourceMappingURL=ProductItem-compiled.js.map

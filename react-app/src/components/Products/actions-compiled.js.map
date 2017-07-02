@@ -1,0 +1,1 @@
+{"version":3,"sources":["actions.js"],"names":[],"mappings":";;;;;QAAgB,oB,GAAA,oB;AAAT,SAAS,oBAAT,CAA8B,cAA9B,EAA8C;AACnD,SAAO,EAAE,MAAM,yBAAR,EAAmC,8BAAnC,EAAP;AACD","file":"actions-compiled.js","sourcesContent":["export function changeOrderNumberInp(orderNumberInp) {\n  return { type: 'CHANGE_ORDER_NUMBER_INP', orderNumberInp };\n}\n"]}

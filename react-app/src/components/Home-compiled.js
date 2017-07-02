@@ -49,9 +49,9 @@ var Home = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var token = this.props.token;
+      var api = this.props.api;
 
-      // console.log('tokenn', token)
+      // console.log('tokenn', api.get('userToken'))
 
       return _react2.default.createElement(
         'div',
@@ -74,7 +74,7 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
     session: store.session,
-    token: store.api.get('userToken')
+    api: store.api
   };
 })(Home);
 

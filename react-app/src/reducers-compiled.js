@@ -9,10 +9,15 @@ var _redux = require('redux');
 
 var _immutable = require('immutable');
 
-// Just ease ESLint rule
-/* global NODE_ENV */
+var _redusers = require('./components/Products/redusers');
 
-var map = _immutable.Map;
+var _redusers2 = _interopRequireDefault(_redusers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Just ease ESLint rule
+var map = _immutable.Map; /* global NODE_ENV */
+
 var orderedMap = _immutable.OrderedMap;
 var list = _immutable.List;
 
@@ -67,7 +72,8 @@ var session = function session() {
 
 exports.default = (0, _redux.combineReducers)({
   api: api,
-  session: session
+  session: session,
+  products: _redusers2.default
 });
 
 //# sourceMappingURL=reducers-compiled.js.map

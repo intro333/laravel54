@@ -2,6 +2,7 @@
 
 import { combineReducers } from 'redux';
 import { List, Map, OrderedMap } from 'immutable';
+import products from './components/Products/redusers';
 
 // Just ease ESLint rule
 const map = Map;
@@ -54,4 +55,5 @@ const session = (state = defaultSessionState, action) => {
 export default combineReducers({
   api,
   session,
+  products,
 });

@@ -18,9 +18,9 @@ class Home extends Component {
   }
 
   render() {
-    const { token } = this.props;
+    const { api } = this.props;
 
-    // console.log('tokenn', token)
+    // console.log('tokenn', api.get('userToken'))
 
     return (
       <div className="container">
@@ -35,5 +35,5 @@ class Home extends Component {
 export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
-  token: store.api.get('userToken'),
+  api: store.api,
 }))(Home);
