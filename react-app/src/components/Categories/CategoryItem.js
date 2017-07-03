@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../../theme/css/bootstrap-datepicker3.min.css';
-import '../../theme/css/adaptive.css';
 import '../../theme/css/main.css';
+import '../../theme/css/adaptive.css';
 import * as modelActions from '../../actions';
 import {
   setCategories,

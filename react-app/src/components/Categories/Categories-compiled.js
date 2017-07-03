@@ -14,9 +14,9 @@ var _reactRedux = require('react-redux');
 
 require('../../theme/css/bootstrap-datepicker3.min.css');
 
-require('../../theme/css/adaptive.css');
-
 require('../../theme/css/main.css');
+
+require('../../theme/css/adaptive.css');
 
 var _reactRouterDom = require('react-router-dom');
 

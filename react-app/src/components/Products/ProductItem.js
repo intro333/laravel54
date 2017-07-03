@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import '../../theme/css/bootstrap-datepicker3.min.css';
-import '../../theme/css/adaptive.css';
 import '../../theme/css/main.css';
+import '../../theme/css/adaptive.css';
 import {
   addProductToCart,
 } from '../../api';
@@ -100,7 +100,7 @@ class ProductItem extends Component {
           <img src={this.props.imgSrc} width="190" />
           <div className="category-item__name"> {this.props.itemName}</div>
           <div className="category-item__price-measure">
-            <span>{this.props.price} ₽ / кг.</span>
+            <span>{this.props.price} ₽ / {this.props.unit}</span>
             <div className="order-table__cell">
               <div className="b-number">
                 <div className="order-number">

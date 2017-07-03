@@ -31,6 +31,7 @@ class ProductsTableSeeder extends Seeder
                 'name'          => 'Говядина',
                 'description'   => 'Говядина.',
                 'price'         => '800',
+                'unit'         => 'кг.',
                 'features'      => null,//json поле
                 'image_path'    => '/storage/images/products/beef.jpg',
                 'is_active'     => 1,
@@ -44,6 +45,7 @@ class ProductsTableSeeder extends Seeder
                 'name'          => 'Свинина',
                 'description'   => 'Свинина.',
                 'price'         => '650',
+                'unit'         => 'кг.',
                 'features'      => null,//json поле
                 'image_path'    => '/storage/images/products/pork.jpg',
                 'is_active'     => 1,
@@ -57,6 +59,7 @@ class ProductsTableSeeder extends Seeder
                 'name'          => 'Телятина',
                 'description'   => 'Телятина.',
                 'price'         => '545',
+                'unit'         => 'кг.',
                 'features'      => null,//json поле
                 'image_path'    => '/storage/images/products/veal.jpg',
                 'is_active'     => 1,
@@ -67,9 +70,10 @@ class ProductsTableSeeder extends Seeder
             [
                 'product_category_id'   => 3,
                 'bar_code'      => 'MP3001',
-                'name'          => 'Творог',
+                'name'          => 'Творог 250 гр.',
                 'description'   => 'Творог.',
                 'price'         => '200',
+                'unit'         => 'шт.',
                 'features'      => null,//json поле
                 'image_path'    => '/storage/images/products/tvorog.jpg',
                 'is_active'     => 1,
@@ -80,9 +84,10 @@ class ProductsTableSeeder extends Seeder
             [
                 'product_category_id'   => 3,
                 'bar_code'      => 'MP3002',
-                'name'          => 'Масло',
+                'name'          => 'Масло 200 гр.',
                 'description'   => 'Масло.',
                 'price'         => '250',
+                'unit'         => 'шт.',
                 'features'      => null,//json поле
                 'image_path'    => '/storage/images/products/maslo.jpg',
                 'is_active'     => 1,
@@ -93,9 +98,10 @@ class ProductsTableSeeder extends Seeder
             [
                 'product_category_id'   => 2,
                 'bar_code'      => 'MP2001',
-                'name'          => 'Брокколи',
+                'name'          => 'Брокколи 900 гр.',
                 'description'   => 'Брокколи.',
                 'price'         => '230',
+                'unit'         => 'шт.',
                 'features'      => null,//json поле
                 'image_path'    => '/storage/images/products/kapusta.jpg',
                 'is_active'     => 1,
@@ -106,9 +112,10 @@ class ProductsTableSeeder extends Seeder
             [
                 'product_category_id'   => 2,
                 'bar_code'      => 'MP2002',
-                'name'          => 'Брокколи2',
+                'name'          => 'Брокколи2 750 гр.',
                 'description'   => 'Брокколи2.',
                 'price'         => '260',
+                'unit'         => 'шт.',
                 'features'      => null,//json поле
                 'image_path'    => '/storage/images/products/kapusta2.jpg',
                 'is_active'     => 1,

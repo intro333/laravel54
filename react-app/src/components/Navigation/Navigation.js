@@ -76,7 +76,7 @@ class Navigation extends Component {
                   </Link>
                 </li>
                 <li><Link to={'/categories'}>Продукты</Link></li>
-                <li><Link to={'/categories'}>Контакты</Link></li>
+                <li><Link to={'/cart'}>Корзина</Link></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
                 <li><a><span className="glyphicon glyphicon-search"></span>

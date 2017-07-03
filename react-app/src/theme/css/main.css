@@ -533,6 +533,8 @@ th {
 }
 .cart-product-image {
     border: 1px solid #999;
+    margin-right: 30px;
+    height: 70px;
 }
 .cart-order__total {
     color: #999;

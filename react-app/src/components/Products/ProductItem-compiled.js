@@ -14,11 +14,15 @@ var _reactRouterDom = require('react-router-dom');
 
 var _reactRedux = require('react-redux');
 
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 require('../../theme/css/bootstrap-datepicker3.min.css');
 
-require('../../theme/css/adaptive.css');
-
 require('../../theme/css/main.css');
+
+require('../../theme/css/adaptive.css');
 
 var _api = require('../../api');
 
@@ -45,7 +49,9 @@ var ProductItem = function (_Component) {
     var _this = _possibleConstructorReturn(this, (ProductItem.__proto__ || Object.getPrototypeOf(ProductItem)).call(this, props));
 
     _this.state = {
-      orderNumberInp: 1
+      orderNumberInp: 1,
+      errorBorderRed: false,
+      inputPlaceHolder: ''
     };
     return _this;
   }
@@ -60,7 +66,8 @@ var ProductItem = function (_Component) {
         });
       } else if (isNaN(inputVal)) {
         this.setState({
-          orderNumberInp: 1
+          orderNumberInp: 1,
+          errorBorderRed: false
         });
       }
     }
@@ -74,7 +81,8 @@ var ProductItem = function (_Component) {
         });
       } else if (isNaN(inputVal)) {
         this.setState({
-          orderNumberInp: 1
+          orderNumberInp: 1,
+          errorBorderRed: false
         });
       }
     }
@@ -84,22 +92,32 @@ var ProductItem = function (_Component) {
       var targetValue = e.target.value;
       if (targetValue <= 99 && targetValue > 0 || targetValue === '') {
         this.setState({
-          orderNumberInp: parseInt(targetValue)
+          orderNumberInp: parseInt(targetValue),
+          errorBorderRed: false,
+          inputPlaceHolder: ''
         });
       }
     }
   }, {
     key: 'addProductToCart',
     value: function addProductToCart() {
-      var dispatch = this.props.dispatch;
+      var productCounts = this.state.orderNumberInp;
 
-      var data = {
-        barCode: this.props.barCode,
-        productId: this.props.productId,
-        productCounts: this.state.orderNumberInp
-      };
+      if (productCounts) {
+        var dispatch = this.props.dispatch;
 
-      (0, _api.addProductToCart)(dispatch, data);
+        var data = {
+          barCode: this.props.barCode,
+          productId: this.props.productId,
+          productCounts: productCounts
+        };
+        (0, _api.addProductToCart)(dispatch, data);
+      } else {
+        this.setState({
+          errorBorderRed: true,
+          inputPlaceHolder: '?'
+        });
+      }
     }
   }, {
     key: 'render',
@@ -109,7 +127,13 @@ var ProductItem = function (_Component) {
         padding: '0 20px 0 20px'
       };
 
+      var orderNumberInp = (0, _classnames2.default)({
+        'order-number-inp': true,
+        'error-border-red': this.state.errorBorderRed
+      });
+
       var inputVal = this.state.orderNumberInp;
+      var inputPlaceHolder = this.state.inputPlaceHolder;
 
       return _react2.default.createElement(
         'div',
@@ -131,7 +155,8 @@ var ProductItem = function (_Component) {
               'span',
               null,
               this.props.price,
-              ' \u20BD / \u043A\u0433.'
+              ' \u20BD / ',
+              this.props.unit
             ),
             _react2.default.createElement(
               'div',
@@ -146,11 +171,12 @@ var ProductItem = function (_Component) {
                     'div',
                     { className: 'order-number__field' },
                     _react2.default.createElement('input', {
-                      className: 'order-number-inp',
+                      className: orderNumberInp,
                       type: 'number',
                       max: '99',
                       min: '0',
                       value: inputVal,
+                      placeholder: inputPlaceHolder,
                       onChange: this.setChangeNumber.bind(this)
                     })
                   ),

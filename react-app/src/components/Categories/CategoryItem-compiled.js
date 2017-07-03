@@ -16,9 +16,9 @@ var _reactRouterDom = require('react-router-dom');
 
 require('../../theme/css/bootstrap-datepicker3.min.css');
 
-require('../../theme/css/adaptive.css');
-
 require('../../theme/css/main.css');
+
+require('../../theme/css/adaptive.css');
 
 var _actions = require('../../actions');
 

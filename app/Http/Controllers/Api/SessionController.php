@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 //use Illuminate\Support\Facades\Session;
@@ -36,5 +37,21 @@ class SessionController extends Controller
 //        }
 
         return session()->all();
+    }
+
+    public function showProductsInCart()
+    {
+        $products = [];
+        foreach (session()->get('productFromCart') as $item) {
+            $product = Products::where('product_id', $item['productId'])->get()->first();
+            $products[] = [
+                'imagePath' => $product->image_path,
+                'name'      => $product->name,
+                'price'      => $product->price,
+                'count'     => $item['productCounts']
+            ];
+        }
+
+        return $products;
     }
 }

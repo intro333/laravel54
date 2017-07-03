@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('description', 255)->nullable();
             $table->string('image_path', 255);
             $table->string('price', 20);
+            $table->string('unit', 20);
             $table->json('features')->nullable();
             $table->tinyInteger('is_active')->unsigned();
             $table->softDeletes(); //Для мягкого удаления.Создаёт колонку deleted_at.

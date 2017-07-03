@@ -149,8 +149,8 @@ var Navigation = function (_Component) {
                   null,
                   _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: '/categories' },
-                    '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B'
+                    { to: '/cart' },
+                    '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
                   )
                 )
               ),

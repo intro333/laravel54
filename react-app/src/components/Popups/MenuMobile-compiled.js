@@ -16,6 +16,8 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 require('../../theme/css/main.css');
 
+require('../../theme/css/adaptive.css');
+
 var _reactRouterDom = require('react-router-dom');
 
 var _reactRedux = require('react-redux');

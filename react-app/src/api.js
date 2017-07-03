@@ -112,6 +112,24 @@ export const addProductToCart = (dispatcher, data) => {
   };
 
   const then = response => {
+    // console.log(response.data);
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Показать товар в корзине.
+export const showProductsInCart = (dispatcher) => {
+  const params = {
+    method:'post',
+    url:'/api/get-products-in-cart'
+  };
+
+  const then = response => {
     console.log(response.data);
   };
 

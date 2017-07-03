@@ -20,3 +20,4 @@ Route::post('/getUserToken', 'Api\SessionController@getUserToken')->name('getUse
 Route::post('/get-categories', 'Api\CustomerConstoller@getCategories')->name('getCategories');
 Route::post('/get-products/{id}', 'Api\CustomerConstoller@getProducts')->name('getProducts');
 Route::post('/add-product-to-cart', 'Api\SessionController@addProductToCart')->name('addProductToCart');
+Route::post('/get-products-in-cart', 'Api\SessionController@showProductsInCart')->name('showProductsInCart');
