@@ -13,4 +13,7 @@
 
 Auth::routes();
 Route::get('/', 'CustomerController@index')->name('customer');
-//Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::prefix('test')->group(function () {
+    Route::get('/layout_test', 'TestController@layoutTest')->name('layoutTest');
+});
