@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/adaptive.css';
 import '../../theme/css/main.css';
@@ -16,6 +17,8 @@ class ProductItem extends Component {
     super(props);
     this.state = {
       orderNumberInp: 1,
+      errorBorderRed: false,
+      inputPlaceHolder: ''
     }
   }
 
@@ -27,7 +30,8 @@ class ProductItem extends Component {
       });
     } else if (isNaN(inputVal)) {
       this.setState({
-        orderNumberInp: 1
+        orderNumberInp: 1,
+        errorBorderRed: false
       });
     }
   }
@@ -40,7 +44,8 @@ class ProductItem extends Component {
       });
     } else if (isNaN(inputVal)) {
       this.setState({
-        orderNumberInp: 1
+        orderNumberInp: 1,
+        errorBorderRed: false
       });
     }
   }
@@ -49,20 +54,30 @@ class ProductItem extends Component {
     var targetValue = e.target.value;
     if(targetValue <= 99 && targetValue > 0 || targetValue === '') {
       this.setState({
-        orderNumberInp: parseInt(targetValue)
+        orderNumberInp: parseInt(targetValue),
+        errorBorderRed: false,
+        inputPlaceHolder: ''
       });
     }
   }
 
   addProductToCart() {
-    const { dispatch } = this.props;
-    const data = {
-      barCode: this.props.barCode,
-      productId: this.props.productId,
-      productCounts: this.state.orderNumberInp,
-    };
+    let productCounts = this.state.orderNumberInp;
 
-    addProductToCart(dispatch, data);
+    if (productCounts) {
+      const { dispatch } = this.props;
+      const data = {
+        barCode: this.props.barCode,
+        productId: this.props.productId,
+        productCounts: productCounts,
+      };
+      addProductToCart(dispatch, data);
+    } else {
+      this.setState({
+        errorBorderRed: true,
+        inputPlaceHolder: '?'
+      });
+    }
   }
 
   render() {
@@ -71,7 +86,13 @@ class ProductItem extends Component {
       padding: '0 20px 0 20px'
     };
 
+    const orderNumberInp = classNames({
+      'order-number-inp': true,
+      'error-border-red': this.state.errorBorderRed
+    });
+
     var inputVal = this.state.orderNumberInp;
+    var inputPlaceHolder = this.state.inputPlaceHolder;
 
     return (
       <div className="category-item">
@@ -85,11 +106,12 @@ class ProductItem extends Component {
                 <div className="order-number">
                   <div className="order-number__field">
                     <input
-                      className="order-number-inp"
+                      className={orderNumberInp}
                       type="number"
                       max="99"
                       min="0"
                       value={inputVal}
+                      placeholder={inputPlaceHolder}
                       onChange={this.setChangeNumber.bind(this)}
                     />
                   </div>
