@@ -130,7 +130,8 @@ export const showProductsInCart = (dispatcher) => {
   };
 
   const then = response => {
-    console.log(response.data);
+    // console.log(response.data);
+    dispatcher(modelActions.setProductsForCart(response.data))
   };
 
   const error = (error) => {

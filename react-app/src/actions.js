@@ -21,3 +21,7 @@ export function setCategoryId(categoryId) {
 export function setCategoryName(categoryName) {
   return { type: 'SET_CATEGORY_NAME', categoryName };
 }
+
+export function setProductsForCart(productsForCart) {
+  return { type: 'SET_PRODUCTS_FOR_CART', productsForCart };
+}

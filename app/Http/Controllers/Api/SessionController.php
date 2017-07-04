@@ -45,9 +45,11 @@ class SessionController extends Controller
         foreach (session()->get('productFromCart') as $item) {
             $product = Products::where('product_id', $item['productId'])->get()->first();
             $products[] = [
+                'productId' => $product->product_id,
                 'imagePath' => $product->image_path,
                 'name'      => $product->name,
                 'price'      => $product->price,
+                'unit'      => $product->unit,
                 'count'     => $item['productCounts']
             ];
         }

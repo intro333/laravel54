@@ -13,6 +13,7 @@ export const api = (state = map({
   userToken: null,
   categories: map(),
   products: map(),
+  productsForCart: map(),
 
 }), action) => {
   switch (action.type) {
@@ -24,6 +25,9 @@ export const api = (state = map({
 
     case 'SET_PRODUCTS':
       return state.set('products', action.products);
+
+    case 'SET_PRODUCTS_FOR_CART':
+      return state.set('productsForCart', action.productsForCart);
 
     default:
       return state;

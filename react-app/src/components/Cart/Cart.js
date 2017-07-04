@@ -6,6 +6,7 @@ import '../../theme/css/adaptive.css';
 import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
+import CartItem from '../Cart/CartItem';
 import {
   showProductsInCart,
 } from '../../api';
@@ -21,6 +22,22 @@ class Cart extends Component {
   }
 
   render() {
+
+    const { api } = this.props;
+    const productsForCart = api.get('productsForCart');
+
+    console.log('productsForCart', productsForCart)
+    const productsTd = productsForCart.map((item) =>
+      <CartItem
+        key={item.productId}
+        productId={item.productId}
+        count={item.count}
+        imagePath={item.imagePath}
+        name={item.name}
+        price={item.price}
+        unit={item.unit}
+      />
+    );
     return (
       <div className="container">
         <Navigation />
@@ -36,78 +53,7 @@ class Cart extends Component {
               <th className="table-10-procent">Стоимость</th>
               <th className="table-10-procent"></th>
             </tr>
-            <tr>
-              <td className="table-40-procent-td">
-                <img className="cart-product-image" src="/storage/images/products/beef.jpg"/>
-                <span>Говядина</span>
-              </td>
-              <td>800 ₽ / кг.</td>
-              <td style={{textAlign: 'start'}}>
-                <div className="order-table__cell">
-                  <div className="b-number">
-                    <div className="order-number">
-                      <div className="order-number__field">
-                        <input type="number" max="99" min="0" value="2" className="order-number-inp"/>
-                      </div>
-                      <div className="order-number__spin minus"></div>
-                      <div className="order-number__spin plus"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>1600 ₽</td>
-              <td style={{color: 'firebrick'}}>
-                <span className="remove-product glyphicon glyphicon-trash" aria-hidden="true"></span>
-              </td>
-            </tr>
-            <tr>
-              <td className="table-40-procent-td">
-                <img className="cart-product-image" src="/storage/images/products/pork.jpg"/>
-                <span>Свинина</span>
-              </td>
-              <td>650 ₽ / кг.</td>
-              <td style={{textAlign: 'start'}}>
-                <div className="order-table__cell">
-                  <div className="b-number">
-                    <div className="order-number">
-                      <div className="order-number__field">
-                        <input type="number" max="99" min="0" value="2" className="order-number-inp"/>
-                      </div>
-                      <div className="order-number__spin minus"></div>
-                      <div className="order-number__spin plus"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>1300 ₽</td>
-              <td>
-                <span className="remove-product glyphicon glyphicon-trash" aria-hidden="true"></span>
-              </td>
-            </tr>
-            <tr>
-              <td className="table-40-procent-td">
-                <img className="cart-product-image" src="/storage/images/products/veal.jpg"/>
-                <span>Телятина</span>
-              </td>
-              <td>545 ₽ / шт.</td>
-              <td style={{textAlign: 'start'}}>
-                <div className="order-table__cell">
-                  <div className="b-number">
-                    <div className="order-number">
-                      <div className="order-number__field">
-                        <input type="number" max="99" min="0" value="3" className="order-number-inp"/>
-                      </div>
-                      <div className="order-number__spin minus"></div>
-                      <div className="order-number__spin plus"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>1635 ₽</td>
-              <td style={{color: 'firebrick'}}>
-                <span className="remove-product glyphicon glyphicon-trash" aria-hidden="true"></span>
-              </td>
-            </tr>
+            { productsTd }
           </table>
           <div className="cart-order__total">Итог:&nbsp;<span>4535</span></div>
         </div>
