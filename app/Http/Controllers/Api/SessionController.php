@@ -48,8 +48,9 @@ class SessionController extends Controller
                 'productId' => $product->product_id,
                 'imagePath' => $product->image_path,
                 'name'      => $product->name,
-                'price'      => $product->price,
+                'price'     => $product->price,
                 'unit'      => $product->unit,
+                'barCode'   => $product->bar_code,
                 'count'     => $item['productCounts']
             ];
         }

@@ -28,6 +28,10 @@ var _MenuMobile = require('../Popups/MenuMobile');
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
+var _CartItem = require('../Cart/CartItem');
+
+var _CartItem2 = _interopRequireDefault(_CartItem);
+
 var _api = require('../../api');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -44,7 +48,12 @@ var Cart = function (_Component) {
   function Cart(props) {
     _classCallCheck(this, Cart);
 
-    return _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
+
+    _this.state = {
+      productsForCart: null
+    };
+    return _this;
   }
 
   _createClass(Cart, [{
@@ -57,6 +66,23 @@ var Cart = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var api = this.props.api;
+
+      var productsForCart = api.get('productsForCart');
+
+      console.log('productsForCart', productsForCart);
+      var productsTd = productsForCart.map(function (item) {
+        return _react2.default.createElement(_CartItem2.default, {
+          key: item.productId,
+          productId: item.productId,
+          count: item.count,
+          imagePath: item.imagePath,
+          name: item.name,
+          barCode: item.barCode,
+          price: item.price,
+          unit: item.unit
+        });
+      });
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -98,162 +124,7 @@ var Cart = function (_Component) {
               ),
               _react2.default.createElement('th', { className: 'table-10-procent' })
             ),
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
-                { className: 'table-40-procent-td' },
-                _react2.default.createElement('img', { className: 'cart-product-image', src: '/storage/images/products/beef.jpg' }),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  '\u0413\u043E\u0432\u044F\u0434\u0438\u043D\u0430'
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                '800 \u20BD / \u043A\u0433.'
-              ),
-              _react2.default.createElement(
-                'td',
-                { style: { textAlign: 'start' } },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'order-table__cell' },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'b-number' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'order-number' },
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'order-number__field' },
-                        _react2.default.createElement('input', { type: 'number', max: '99', min: '0', value: '2', className: 'order-number-inp' })
-                      ),
-                      _react2.default.createElement('div', { className: 'order-number__spin minus' }),
-                      _react2.default.createElement('div', { className: 'order-number__spin plus' })
-                    )
-                  )
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                '1600 \u20BD'
-              ),
-              _react2.default.createElement(
-                'td',
-                { style: { color: 'firebrick' } },
-                _react2.default.createElement('span', { className: 'remove-product glyphicon glyphicon-trash', 'aria-hidden': 'true' })
-              )
-            ),
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
-                { className: 'table-40-procent-td' },
-                _react2.default.createElement('img', { className: 'cart-product-image', src: '/storage/images/products/pork.jpg' }),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  '\u0421\u0432\u0438\u043D\u0438\u043D\u0430'
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                '650 \u20BD / \u043A\u0433.'
-              ),
-              _react2.default.createElement(
-                'td',
-                { style: { textAlign: 'start' } },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'order-table__cell' },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'b-number' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'order-number' },
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'order-number__field' },
-                        _react2.default.createElement('input', { type: 'number', max: '99', min: '0', value: '2', className: 'order-number-inp' })
-                      ),
-                      _react2.default.createElement('div', { className: 'order-number__spin minus' }),
-                      _react2.default.createElement('div', { className: 'order-number__spin plus' })
-                    )
-                  )
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                '1300 \u20BD'
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                _react2.default.createElement('span', { className: 'remove-product glyphicon glyphicon-trash', 'aria-hidden': 'true' })
-              )
-            ),
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
-                { className: 'table-40-procent-td' },
-                _react2.default.createElement('img', { className: 'cart-product-image', src: '/storage/images/products/veal.jpg' }),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  '\u0422\u0435\u043B\u044F\u0442\u0438\u043D\u0430'
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                '545 \u20BD / \u0448\u0442.'
-              ),
-              _react2.default.createElement(
-                'td',
-                { style: { textAlign: 'start' } },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'order-table__cell' },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'b-number' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'order-number' },
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'order-number__field' },
-                        _react2.default.createElement('input', { type: 'number', max: '99', min: '0', value: '3', className: 'order-number-inp' })
-                      ),
-                      _react2.default.createElement('div', { className: 'order-number__spin minus' }),
-                      _react2.default.createElement('div', { className: 'order-number__spin plus' })
-                    )
-                  )
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                '1635 \u20BD'
-              ),
-              _react2.default.createElement(
-                'td',
-                { style: { color: 'firebrick' } },
-                _react2.default.createElement('span', { className: 'remove-product glyphicon glyphicon-trash', 'aria-hidden': 'true' })
-              )
-            )
+            productsTd
           ),
           _react2.default.createElement(
             'div',

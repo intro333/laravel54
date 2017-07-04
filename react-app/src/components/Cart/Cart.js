@@ -14,6 +14,10 @@ import {
 class Cart extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      productsForCart: null
+    }
   }
 
   componentWillMount() {
@@ -22,7 +26,6 @@ class Cart extends Component {
   }
 
   render() {
-
     const { api } = this.props;
     const productsForCart = api.get('productsForCart');
 
@@ -34,6 +37,7 @@ class Cart extends Component {
         count={item.count}
         imagePath={item.imagePath}
         name={item.name}
+        barCode={item.barCode}
         price={item.price}
         unit={item.unit}
       />

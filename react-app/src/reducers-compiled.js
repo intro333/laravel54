@@ -25,7 +25,8 @@ var api = exports.api = function api() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : map({
     userToken: null,
     categories: map(),
-    products: map()
+    products: map(),
+    productsForCart: map()
 
   });
   var action = arguments[1];
@@ -39,6 +40,9 @@ var api = exports.api = function api() {
 
     case 'SET_PRODUCTS':
       return state.set('products', action.products);
+
+    case 'SET_PRODUCTS_FOR_CART':
+      return state.set('productsForCart', action.productsForCart);
 
     default:
       return state;
