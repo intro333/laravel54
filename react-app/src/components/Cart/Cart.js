@@ -14,10 +14,6 @@ import {
 class Cart extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      productsForCart: null
-    }
   }
 
   componentWillMount() {
@@ -33,6 +29,7 @@ class Cart extends Component {
     const productsTd = productsForCart.map((item) =>
       <CartItem
         key={item.productId}
+        item={item}
         productId={item.productId}
         count={item.count}
         imagePath={item.imagePath}

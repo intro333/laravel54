@@ -122,6 +122,11 @@ var ProductItem = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _props = this.props,
+          api = _props.api,
+          session = _props.session;
+      // const products = api.get('products');
+      // console.log('products get: ', products);
 
       var categoryItemImg = {
         padding: '0 20px 0 20px'

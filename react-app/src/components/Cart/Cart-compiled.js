@@ -48,12 +48,7 @@ var Cart = function (_Component) {
   function Cart(props) {
     _classCallCheck(this, Cart);
 
-    var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
-
-    _this.state = {
-      productsForCart: null
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
   }
 
   _createClass(Cart, [{
@@ -70,10 +65,11 @@ var Cart = function (_Component) {
 
       var productsForCart = api.get('productsForCart');
 
-      console.log('productsForCart', productsForCart);
+      // console.log('productsForCart', productsForCart)
       var productsTd = productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
           key: item.productId,
+          item: item,
           productId: item.productId,
           count: item.count,
           imagePath: item.imagePath,

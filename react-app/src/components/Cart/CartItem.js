@@ -23,11 +23,11 @@ class CartItem extends Component {
   }
 
   addProductToCart(productCounts) {
+    const { dispatch } = this.props;
     if (productCounts) {
-      const { dispatch } = this.props;
       const data = {
-        barCode: this.props.barCode,
-        productId: this.props.productId,
+        barCode: this.props.item.barCode,
+        productId: this.props.item.productId,
         productCounts: productCounts,
       };
       addProductToCart(dispatch, data);
@@ -35,6 +35,12 @@ class CartItem extends Component {
       console.log("datadata", data);
       console.log("datadata", productCounts)
     } else {
+      const data = {
+        barCode: this.props.item.barCode,
+        productId: this.props.item.productId,
+        productCounts: null,
+      };
+      addProductToCart(dispatch, data);
       this.setState({
         errorBorderRed: true,
         inputPlaceHolder: '?'
@@ -43,32 +49,40 @@ class CartItem extends Component {
   }
 
   setPlusNumber() {
-    var inputVal = this.state.orderNumberInp;
+    var inputVal = this.props.item.count;
+    console.log("inputVal+", inputVal)
     if (inputVal < 99) {
-      this.setState({
-        orderNumberInp: (parseInt(inputVal) + 1)
-      });
       this.addProductToCart(parseInt(inputVal) + 1)
-    } else if (isNaN(inputVal)) {
+    } else if (!inputVal) {
       this.setState({
-        orderNumberInp: 1,
         errorBorderRed: false
       });
+      this.addProductToCart('1')
     }
   }
 
   setMinusNumber() {
-    var inputVal = parseInt(this.state.orderNumberInp);
+    var inputVal = parseInt(this.props.item.count);
+    console.log("inputVal-", inputVal)
     if (inputVal > 1) {
-      this.setState({
-        orderNumberInp: (parseInt(inputVal) - 1)
-      });
       this.addProductToCart(parseInt(inputVal) - 1)
-    } else if (isNaN(inputVal)) {
+    } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
       this.setState({
-        orderNumberInp: 1,
         errorBorderRed: false
       });
+      this.addProductToCart('1')
+    }
+  }
+
+  setChangeNumber(e) {
+    var targetValue = e.target.value;
+    if(targetValue <= 99 && targetValue > 0 || targetValue === '') {
+      this.setState({
+        errorBorderRed: false,
+        inputPlaceHolder: ''
+      });
+      this.addProductToCart(targetValue)
+      console.log("targetValue", targetValue)
     }
   }
 
@@ -77,17 +91,17 @@ class CartItem extends Component {
       'order-number-inp': true,
       'error-border-red': this.state.errorBorderRed
     });
-    var inputVal = this.state.orderNumberInp;
+    var inputVal = this.props.item.count;
     var inputPlaceHolder = this.state.inputPlaceHolder;
-    var cost = this.props.price * inputVal;
+    var cost = this.props.item.price * inputVal;
 
     return (
       <tr>
         <td className="table-40-procent-td">
-          <img className="cart-product-image" src={this.props.imagePath} />
-          <span>{this.props.name}</span>
+          <img className="cart-product-image" src={this.props.item.imagePath} />
+          <span>{this.props.item.name}</span>
         </td>
-        <td>{this.props.price} ₽ / {this.props.unit}</td>
+        <td>{this.props.item.price} ₽ / {this.props.item.unit}</td>
         <td style={{textAlign: 'start'}}>
           <div className="order-table__cell">
             <div className="b-number">
@@ -98,8 +112,9 @@ class CartItem extends Component {
                     type="number"
                     max="99"
                     min="0"
-                    value={inputVal}
+                    value={inputVal ? inputVal : ''}
                     placeholder={inputPlaceHolder}
+                    onChange={this.setChangeNumber.bind(this)}
                   />
                 </div>
                 <div

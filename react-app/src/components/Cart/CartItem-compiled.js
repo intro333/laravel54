@@ -55,19 +55,25 @@ var CartItem = function (_Component) {
   _createClass(CartItem, [{
     key: 'addProductToCart',
     value: function addProductToCart(productCounts) {
-      if (productCounts) {
-        var dispatch = this.props.dispatch;
+      var dispatch = this.props.dispatch;
 
+      if (productCounts) {
         var data = {
-          barCode: this.props.barCode,
-          productId: this.props.productId,
+          barCode: this.props.item.barCode,
+          productId: this.props.item.productId,
           productCounts: productCounts
         };
         (0, _api.addProductToCart)(dispatch, data);
-        (0, _api.showProductsInCart)(dispatch);
+        // showProductsInCart(dispatch);
         console.log("datadata", data);
         console.log("datadata", productCounts);
       } else {
+        var _data = {
+          barCode: this.props.item.barCode,
+          productId: this.props.item.productId,
+          productCounts: null
+        };
+        (0, _api.addProductToCart)(dispatch, _data);
         this.setState({
           errorBorderRed: true,
           inputPlaceHolder: '?'
@@ -77,33 +83,42 @@ var CartItem = function (_Component) {
   }, {
     key: 'setPlusNumber',
     value: function setPlusNumber() {
-      var inputVal = this.state.orderNumberInp;
+      var inputVal = this.props.item.count;
+      console.log("inputVal+", inputVal);
       if (inputVal < 99) {
-        this.setState({
-          orderNumberInp: parseInt(inputVal) + 1
-        });
         this.addProductToCart(parseInt(inputVal) + 1);
-      } else if (isNaN(inputVal)) {
+      } else if (!inputVal) {
         this.setState({
-          orderNumberInp: 1,
           errorBorderRed: false
         });
+        this.addProductToCart('1');
       }
     }
   }, {
     key: 'setMinusNumber',
     value: function setMinusNumber() {
-      var inputVal = parseInt(this.state.orderNumberInp);
+      var inputVal = parseInt(this.props.item.count);
+      console.log("inputVal-", inputVal);
       if (inputVal > 1) {
-        this.setState({
-          orderNumberInp: parseInt(inputVal) - 1
-        });
         this.addProductToCart(parseInt(inputVal) - 1);
-      } else if (isNaN(inputVal)) {
+      } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
         this.setState({
-          orderNumberInp: 1,
           errorBorderRed: false
         });
+        this.addProductToCart('1');
+      }
+    }
+  }, {
+    key: 'setChangeNumber',
+    value: function setChangeNumber(e) {
+      var targetValue = e.target.value;
+      if (targetValue <= 99 && targetValue > 0 || targetValue === '') {
+        this.setState({
+          errorBorderRed: false,
+          inputPlaceHolder: ''
+        });
+        this.addProductToCart(targetValue);
+        console.log("targetValue", targetValue);
       }
     }
   }, {
@@ -113,9 +128,9 @@ var CartItem = function (_Component) {
         'order-number-inp': true,
         'error-border-red': this.state.errorBorderRed
       });
-      var inputVal = this.state.orderNumberInp;
+      var inputVal = this.props.item.count;
       var inputPlaceHolder = this.state.inputPlaceHolder;
-      var cost = this.props.price * inputVal;
+      var cost = this.props.item.price * inputVal;
 
       return _react2.default.createElement(
         'tr',
@@ -123,19 +138,19 @@ var CartItem = function (_Component) {
         _react2.default.createElement(
           'td',
           { className: 'table-40-procent-td' },
-          _react2.default.createElement('img', { className: 'cart-product-image', src: this.props.imagePath }),
+          _react2.default.createElement('img', { className: 'cart-product-image', src: this.props.item.imagePath }),
           _react2.default.createElement(
             'span',
             null,
-            this.props.name
+            this.props.item.name
           )
         ),
         _react2.default.createElement(
           'td',
           null,
-          this.props.price,
+          this.props.item.price,
           ' \u20BD / ',
-          this.props.unit
+          this.props.item.unit
         ),
         _react2.default.createElement(
           'td',
@@ -157,8 +172,9 @@ var CartItem = function (_Component) {
                     type: 'number',
                     max: '99',
                     min: '0',
-                    value: inputVal,
-                    placeholder: inputPlaceHolder
+                    value: inputVal ? inputVal : '',
+                    placeholder: inputPlaceHolder,
+                    onChange: this.setChangeNumber.bind(this)
                   })
                 ),
                 _react2.default.createElement('div', {

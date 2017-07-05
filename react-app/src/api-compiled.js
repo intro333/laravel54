@@ -120,7 +120,8 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
   };
 
   var then = function then(response) {
-    // console.log(response.data);
+    console.log("FROM addProductToCart", response.data);
+    dispatcher(modelActions.setProductsForCart(response.data));
   };
 
   var error = function error(_error5) {
@@ -138,7 +139,8 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
   };
 
   var then = function then(response) {
-    console.log(response.data);
+    // console.log(response.data);
+    dispatcher(modelActions.setProductsForCart(response.data));
   };
 
   var error = function error(_error6) {
