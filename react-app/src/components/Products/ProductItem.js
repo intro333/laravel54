@@ -81,7 +81,9 @@ class ProductItem extends Component {
   }
 
   render() {
-
+    const { api, session } = this.props;
+    // const products = api.get('products');
+    // console.log('products get: ', products);
     const categoryItemImg = {
       padding: '0 20px 0 20px'
     };

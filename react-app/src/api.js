@@ -112,7 +112,8 @@ export const addProductToCart = (dispatcher, data) => {
   };
 
   const then = response => {
-    // console.log(response.data);
+    console.log("FROM addProductToCart", response.data);
+    dispatcher(modelActions.setProductsForCart(response.data))
   };
 
   const error = (error) => {

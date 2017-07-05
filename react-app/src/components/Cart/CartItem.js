@@ -31,7 +31,7 @@ class CartItem extends Component {
         productCounts: productCounts,
       };
       addProductToCart(dispatch, data);
-      showProductsInCart(dispatch);
+      // showProductsInCart(dispatch);
       console.log("datadata", data);
       console.log("datadata", productCounts)
     } else {
