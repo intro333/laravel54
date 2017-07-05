@@ -28,18 +28,29 @@ class SessionController extends Controller
             'productCounts' => $request->input('productCounts'),
         ];
 
-//        if (session()->has('productFromCart')) {
-//            session()->push($sessionName, $productCartInfo);
-//            session()->save();
-//        } else {
-            session()->put($sessionName, $productCartInfo);
-            session()->save();
-//        }
+        session()->put($sessionName, $productCartInfo);
+        session()->save();
 
-        return session()->all();
+        $session = session()->get('productFromCart');
+        //Дублирование функциии showProductsInCart
+        $products = [];
+        foreach ($session as $item) {
+            $product = Products::where('product_id', $item['productId'])->get()->first();
+            $products[] = [
+                'productId' => $product->product_id,
+                'imagePath' => $product->image_path,
+                'name'      => $product->name,
+                'price'     => $product->price,
+                'unit'      => $product->unit,
+                'barCode'   => $product->bar_code,
+                'count'     => $item['productCounts']
+            ];
+        }
+
+        return $products;
     }
 
-    public function showProductsInCart()
+    function showProductsInCart()
     {
         $products = [];
         foreach (session()->get('productFromCart') as $item) {
