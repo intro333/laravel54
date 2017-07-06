@@ -64,14 +64,11 @@ var CartItem = function (_Component) {
           productCounts: productCounts
         };
         (0, _api.addProductToCart)(dispatch, data);
-        // showProductsInCart(dispatch);
-        console.log("datadata", data);
-        console.log("datadata", productCounts);
       } else {
         var _data = {
           barCode: this.props.item.barCode,
           productId: this.props.item.productId,
-          productCounts: null
+          productCounts: ''
         };
         (0, _api.addProductToCart)(dispatch, _data);
         this.setState({
@@ -83,11 +80,10 @@ var CartItem = function (_Component) {
   }, {
     key: 'setPlusNumber',
     value: function setPlusNumber() {
-      var inputVal = this.props.item.count;
-      console.log("inputVal+", inputVal);
+      var inputVal = parseInt(this.props.item.count);
       if (inputVal < 99) {
         this.addProductToCart(parseInt(inputVal) + 1);
-      } else if (!inputVal) {
+      } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
         this.setState({
           errorBorderRed: false
         });
@@ -98,7 +94,6 @@ var CartItem = function (_Component) {
     key: 'setMinusNumber',
     value: function setMinusNumber() {
       var inputVal = parseInt(this.props.item.count);
-      console.log("inputVal-", inputVal);
       if (inputVal > 1) {
         this.addProductToCart(parseInt(inputVal) - 1);
       } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
@@ -118,8 +113,18 @@ var CartItem = function (_Component) {
           inputPlaceHolder: ''
         });
         this.addProductToCart(targetValue);
-        console.log("targetValue", targetValue);
       }
+    }
+  }, {
+    key: 'deleteProductFromCart',
+    value: function deleteProductFromCart() {
+      var dispatch = this.props.dispatch;
+
+      var data = {
+        barCode: this.props.item.barCode,
+        productId: this.props.item.productId
+      };
+      (0, _api.deleteProductFromCart)(dispatch, data);
     }
   }, {
     key: 'render',
@@ -198,7 +203,11 @@ var CartItem = function (_Component) {
         _react2.default.createElement(
           'td',
           { style: { color: 'firebrick' } },
-          _react2.default.createElement('span', { className: 'remove-product glyphicon glyphicon-trash', 'aria-hidden': 'true' })
+          _react2.default.createElement('span', {
+            className: 'remove-product glyphicon glyphicon-trash',
+            'aria-hidden': 'true',
+            onClick: this.deleteProductFromCart.bind(this)
+          })
         )
       );
     }

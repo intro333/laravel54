@@ -141,3 +141,23 @@ export const showProductsInCart = (dispatcher) => {
 
   makeRequest(dispatcher, params, then, error);
 };
+
+//Показать товар в корзине.
+export const deleteProductFromCart = (dispatcher, data) => {
+  const params = {
+    method:'post',
+    url:'/api/delete-product-from-cart',
+    data: data
+  };
+
+  const then = response => {
+    // console.log(response.data);
+    dispatcher(modelActions.setProductsForCart(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};

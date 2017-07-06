@@ -64,21 +64,22 @@ var Cart = function (_Component) {
       var api = this.props.api;
 
       var productsForCart = api.get('productsForCart');
+      var total = null;
 
       // console.log('productsForCart', productsForCart)
       var productsTd = productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
           key: item.productId,
-          item: item,
-          productId: item.productId,
-          count: item.count,
-          imagePath: item.imagePath,
-          name: item.name,
-          barCode: item.barCode,
-          price: item.price,
-          unit: item.unit
+          item: item
+
         });
       });
+
+      total = productsForCart.reduce(function (total, item) {
+
+        return total + parseInt(item.price) * parseInt(item.count);
+      }, 0);
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -129,7 +130,7 @@ var Cart = function (_Component) {
             _react2.default.createElement(
               'span',
               null,
-              '4535'
+              total
             )
           )
         )
@@ -147,5 +148,13 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     api: store.api
   };
 })(Cart);
+
+// productId={item.productId}
+// count={item.count}
+// imagePath={item.imagePath}
+// name={item.name}
+// barCode={item.barCode}
+// price={item.price}
+// unit={item.unit}
 
 //# sourceMappingURL=Cart-compiled.js.map

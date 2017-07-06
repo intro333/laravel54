@@ -32,28 +32,29 @@ class SessionController extends Controller
         session()->save();
 
         $session = session()->get('productFromCart');
-        //Дублирование функциии showProductsInCart
-        $products = [];
-        foreach ($session as $item) {
-            $product = Products::where('product_id', $item['productId'])->get()->first();
-            $products[] = [
-                'productId' => $product->product_id,
-                'imagePath' => $product->image_path,
-                'name'      => $product->name,
-                'price'     => $product->price,
-                'unit'      => $product->unit,
-                'barCode'   => $product->bar_code,
-                'count'     => $item['productCounts']
-            ];
-        }
 
-        return $products;
+        return $this->localShowProductsInCart($session);
     }
 
-    function showProductsInCart()
+    public function showProductsInCart()
     {
+        return $this->localShowProductsInCart(false);
+    }
+
+    public function deleteProductFromCart(Request $request)
+    {
+        //Удалить продукт из сессии.
+        session()->forget('productFromCart.' . $request->input('barCode'));
+
+        return $this->localShowProductsInCart(false);
+    }
+
+    //Локальная функция (чтобы не дублировать код)
+    function localShowProductsInCart($session)
+    {
+        $session = $session ? $session : session()->get('productFromCart');
         $products = [];
-        foreach (session()->get('productFromCart') as $item) {
+        foreach ($session as $item) {
             $product = Products::where('product_id', $item['productId'])->get()->first();
             $products[] = [
                 'productId' => $product->product_id,

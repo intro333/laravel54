@@ -24,21 +24,23 @@ class Cart extends Component {
   render() {
     const { api } = this.props;
     const productsForCart = api.get('productsForCart');
+    var total = null;
 
     // console.log('productsForCart', productsForCart)
     const productsTd = productsForCart.map((item) =>
       <CartItem
         key={item.productId}
         item={item}
-        productId={item.productId}
-        count={item.count}
-        imagePath={item.imagePath}
-        name={item.name}
-        barCode={item.barCode}
-        price={item.price}
-        unit={item.unit}
+
       />
     );
+
+    total = productsForCart.reduce((total, item) => {
+
+        return total + parseInt(item.price) * parseInt(item.count);
+      }, 0
+    );
+
     return (
       <div className="container">
         <Navigation />
@@ -56,7 +58,7 @@ class Cart extends Component {
             </tr>
             { productsTd }
           </table>
-          <div className="cart-order__total">Итог:&nbsp;<span>4535</span></div>
+          <div className="cart-order__total">Итог:&nbsp;<span>{ total }</span></div>
         </div>
       </div>
     );
@@ -68,3 +70,11 @@ export default connect(store => ({
   session: store.session,
   api: store.api,
 }))(Cart);
+
+// productId={item.productId}
+// count={item.count}
+// imagePath={item.imagePath}
+// name={item.name}
+// barCode={item.barCode}
+// price={item.price}
+// unit={item.unit}

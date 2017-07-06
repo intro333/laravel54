@@ -7,7 +7,7 @@ import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import {
   addProductToCart,
-  showProductsInCart
+  deleteProductFromCart
 } from '../../api';
 // import * as modelActions from './actions';
 
@@ -49,7 +49,7 @@ class CartItem extends Component {
     var inputVal = parseInt(this.props.item.count);
     if (inputVal < 99) {
       this.addProductToCart(parseInt(inputVal) + 1)
-    } else if (isNaN(inputVal)) {
+    } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
       this.setState({
         errorBorderRed: false
       });
@@ -78,6 +78,15 @@ class CartItem extends Component {
       });
       this.addProductToCart(targetValue)
     }
+  }
+
+  deleteProductFromCart() {
+    const { dispatch } = this.props;
+    const data = {
+      barCode: this.props.item.barCode,
+      productId: this.props.item.productId
+    };
+    deleteProductFromCart(dispatch, data);
   }
 
   render() {
@@ -125,7 +134,12 @@ class CartItem extends Component {
         </td>
         <td>{cost} ₽</td>
         <td style={{color: 'firebrick'}}>
-          <span className="remove-product glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <span
+            className="remove-product glyphicon glyphicon-trash"
+            aria-hidden="true"
+            onClick={this.deleteProductFromCart.bind(this)}
+          >
+          </span>
         </td>
       </tr>
     );

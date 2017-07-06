@@ -21,3 +21,4 @@ Route::post('/get-categories', 'Api\CustomerConstoller@getCategories')->name('ge
 Route::post('/get-products/{id}', 'Api\CustomerConstoller@getProducts')->name('getProducts');
 Route::post('/add-product-to-cart', 'Api\SessionController@addProductToCart')->name('addProductToCart');
 Route::post('/get-products-in-cart', 'Api\SessionController@showProductsInCart')->name('showProductsInCart');
+Route::post('/delete-product-from-cart', 'Api\SessionController@deleteProductFromCart')->name('deleteProductFromCart');

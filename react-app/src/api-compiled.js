@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.setUserToken = exports.fetch = exports.makeRequest = undefined;
+exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.setUserToken = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -145,6 +145,26 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
 
   var error = function error(_error6) {
     console.log(_error6);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Показать товар в корзине.
+var deleteProductFromCart = exports.deleteProductFromCart = function deleteProductFromCart(dispatcher, data) {
+  var params = {
+    method: 'post',
+    url: '/api/delete-product-from-cart',
+    data: data
+  };
+
+  var then = function then(response) {
+    // console.log(response.data);
+    dispatcher(modelActions.setProductsForCart(response.data));
+  };
+
+  var error = function error(_error7) {
+    console.log(_error7);
   };
 
   makeRequest(dispatcher, params, then, error);
