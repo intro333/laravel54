@@ -31,14 +31,11 @@ class CartItem extends Component {
         productCounts: productCounts,
       };
       addProductToCart(dispatch, data);
-      // showProductsInCart(dispatch);
-      console.log("datadata", data);
-      console.log("datadata", productCounts)
     } else {
       const data = {
         barCode: this.props.item.barCode,
         productId: this.props.item.productId,
-        productCounts: null,
+        productCounts: '',
       };
       addProductToCart(dispatch, data);
       this.setState({
@@ -49,11 +46,10 @@ class CartItem extends Component {
   }
 
   setPlusNumber() {
-    var inputVal = this.props.item.count;
-    console.log("inputVal+", inputVal)
+    var inputVal = parseInt(this.props.item.count);
     if (inputVal < 99) {
       this.addProductToCart(parseInt(inputVal) + 1)
-    } else if (!inputVal) {
+    } else if (isNaN(inputVal)) {
       this.setState({
         errorBorderRed: false
       });
@@ -63,7 +59,6 @@ class CartItem extends Component {
 
   setMinusNumber() {
     var inputVal = parseInt(this.props.item.count);
-    console.log("inputVal-", inputVal)
     if (inputVal > 1) {
       this.addProductToCart(parseInt(inputVal) - 1)
     } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
@@ -82,7 +77,6 @@ class CartItem extends Component {
         inputPlaceHolder: ''
       });
       this.addProductToCart(targetValue)
-      console.log("targetValue", targetValue)
     }
   }
 
