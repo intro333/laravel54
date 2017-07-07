@@ -24,11 +24,19 @@ class CartItem extends Component {
 
   addProductToCart(productCounts) {
     const { dispatch } = this.props;
-    if (productCounts) {
+
+    if (Number.isInteger(productCounts)) {
       const data = {
         barCode: this.props.item.barCode,
         productId: this.props.item.productId,
         productCounts: productCounts,
+      };
+      addProductToCart(dispatch, data);
+    } else if (typeof productCounts === 'string' && productCounts !== '') {
+      const data = {
+        barCode: this.props.item.barCode,
+        productId: this.props.item.productId,
+        productCounts: parseInt(productCounts),
       };
       addProductToCart(dispatch, data);
     } else {
@@ -46,32 +54,42 @@ class CartItem extends Component {
   }
 
   setPlusNumber() {
-    var inputVal = parseInt(this.props.item.count);
-    if (inputVal < 99) {
+    var inputVal = this.props.item.count;
+    if (Number.isInteger(inputVal) && (inputVal < 99)) {
       this.addProductToCart(parseInt(inputVal) + 1)
-    } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
+    } else if (inputVal === "") {
       this.setState({
         errorBorderRed: false
       });
-      this.addProductToCart('1')
+      this.addProductToCart(1)
+    } else {
+      this.setState({
+        errorBorderRed: false
+      });
+      this.addProductToCart(1)
     }
   }
 
   setMinusNumber() {
-    var inputVal = parseInt(this.props.item.count);
-    if (inputVal > 1) {
+    var inputVal = this.props.item.count;
+    if (Number.isInteger(inputVal) && (inputVal > 1)) {
       this.addProductToCart(parseInt(inputVal) - 1)
-    } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
+    } else if (inputVal === "") {
       this.setState({
         errorBorderRed: false
       });
-      this.addProductToCart('1')
+      this.addProductToCart(1)
+    } else {
+      this.setState({
+        errorBorderRed: false
+      });
+      this.addProductToCart(1)
     }
   }
 
   setChangeNumber(e) {
     var targetValue = e.target.value;
-    console.log("targetValue", typeof targetValue)
+
     if(targetValue <= 99 && targetValue > 0 || targetValue === '') {
       this.setState({
         errorBorderRed: false,
@@ -96,7 +114,6 @@ class CartItem extends Component {
       'error-border-red': this.state.errorBorderRed
     });
     var inputVal = (this.props.item.count === '' ? '' : parseInt(this.props.item.count));
-    console.log("inputVal type: ", inputVal)
     var inputPlaceHolder = this.state.inputPlaceHolder;
     var cost = this.props.item.price * (inputVal === '' ? 1 : parseInt(this.props.item.count));
 

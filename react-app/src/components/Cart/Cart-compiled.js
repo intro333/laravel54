@@ -76,8 +76,7 @@ var Cart = function (_Component) {
       });
 
       total = productsForCart.reduce(function (total, item) {
-
-        return total + parseInt(item.price) * parseInt(item.count);
+        return total + (item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10);
       }, 0);
 
       return _react2.default.createElement(

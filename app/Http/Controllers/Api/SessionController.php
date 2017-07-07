@@ -63,7 +63,8 @@ class SessionController extends Controller
                 'price'     => $product->price,
                 'unit'      => $product->unit,
                 'barCode'   => $product->bar_code,
-                'count'     => $item['productCounts']
+                'count'     => $item['productCounts'] ? $item['productCounts'] : ""
+//                'count'     => $item['productCounts']
             ];
         }
 

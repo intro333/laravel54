@@ -113,6 +113,7 @@ var setProducts = exports.setProducts = function setProducts(dispatcher, product
 
 //Добавить товар в корзину.
 var addProductToCart = exports.addProductToCart = function addProductToCart(dispatcher, data) {
+  console.log("FROM addProductToCart count type", data);
   var params = {
     method: 'post',
     url: '/api/add-product-to-cart',
@@ -150,7 +151,7 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
   makeRequest(dispatcher, params, then, error);
 };
 
-//Показать товар в корзине.
+//Удалить товар из корзины.
 var deleteProductFromCart = exports.deleteProductFromCart = function deleteProductFromCart(dispatcher, data) {
   var params = {
     method: 'post',

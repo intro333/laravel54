@@ -57,20 +57,28 @@ var CartItem = function (_Component) {
     value: function addProductToCart(productCounts) {
       var dispatch = this.props.dispatch;
 
-      if (productCounts) {
+
+      if (Number.isInteger(productCounts)) {
         var data = {
           barCode: this.props.item.barCode,
           productId: this.props.item.productId,
           productCounts: productCounts
         };
         (0, _api.addProductToCart)(dispatch, data);
-      } else {
+      } else if (typeof productCounts === 'string' && productCounts !== '') {
         var _data = {
+          barCode: this.props.item.barCode,
+          productId: this.props.item.productId,
+          productCounts: parseInt(productCounts)
+        };
+        (0, _api.addProductToCart)(dispatch, _data);
+      } else {
+        var _data2 = {
           barCode: this.props.item.barCode,
           productId: this.props.item.productId,
           productCounts: ''
         };
-        (0, _api.addProductToCart)(dispatch, _data);
+        (0, _api.addProductToCart)(dispatch, _data2);
         this.setState({
           errorBorderRed: true,
           inputPlaceHolder: '?'
@@ -80,33 +88,44 @@ var CartItem = function (_Component) {
   }, {
     key: 'setPlusNumber',
     value: function setPlusNumber() {
-      var inputVal = parseInt(this.props.item.count);
-      if (inputVal < 99) {
+      var inputVal = this.props.item.count;
+      if (Number.isInteger(inputVal) && inputVal < 99) {
         this.addProductToCart(parseInt(inputVal) + 1);
-      } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
+      } else if (inputVal === "") {
         this.setState({
           errorBorderRed: false
         });
-        this.addProductToCart('1');
+        this.addProductToCart(1);
+      } else {
+        this.setState({
+          errorBorderRed: false
+        });
+        this.addProductToCart(1);
       }
     }
   }, {
     key: 'setMinusNumber',
     value: function setMinusNumber() {
-      var inputVal = parseInt(this.props.item.count);
-      if (inputVal > 1) {
+      var inputVal = this.props.item.count;
+      if (Number.isInteger(inputVal) && inputVal > 1) {
         this.addProductToCart(parseInt(inputVal) - 1);
-      } else if (inputVal === null || inputVal == 'undefined' || isNaN(inputVal)) {
+      } else if (inputVal === "") {
         this.setState({
           errorBorderRed: false
         });
-        this.addProductToCart('1');
+        this.addProductToCart(1);
+      } else {
+        this.setState({
+          errorBorderRed: false
+        });
+        this.addProductToCart(1);
       }
     }
   }, {
     key: 'setChangeNumber',
     value: function setChangeNumber(e) {
       var targetValue = e.target.value;
+
       if (targetValue <= 99 && targetValue > 0 || targetValue === '') {
         this.setState({
           errorBorderRed: false,
@@ -133,9 +152,9 @@ var CartItem = function (_Component) {
         'order-number-inp': true,
         'error-border-red': this.state.errorBorderRed
       });
-      var inputVal = this.props.item.count;
+      var inputVal = this.props.item.count === '' ? '' : parseInt(this.props.item.count);
       var inputPlaceHolder = this.state.inputPlaceHolder;
-      var cost = this.props.item.price * inputVal;
+      var cost = this.props.item.price * (inputVal === '' ? 1 : parseInt(this.props.item.count));
 
       return _react2.default.createElement(
         'tr',
