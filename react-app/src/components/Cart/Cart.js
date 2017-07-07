@@ -36,8 +36,7 @@ class Cart extends Component {
     );
 
     total = productsForCart.reduce((total, item) => {
-
-        return total + parseInt(item.price) * parseInt(item.count);
+        return total + ((item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10));
       }, 0
     );
 

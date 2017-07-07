@@ -71,6 +71,7 @@ class CartItem extends Component {
 
   setChangeNumber(e) {
     var targetValue = e.target.value;
+    console.log("targetValue", typeof targetValue)
     if(targetValue <= 99 && targetValue > 0 || targetValue === '') {
       this.setState({
         errorBorderRed: false,
@@ -94,9 +95,10 @@ class CartItem extends Component {
       'order-number-inp': true,
       'error-border-red': this.state.errorBorderRed
     });
-    var inputVal = this.props.item.count;
+    var inputVal = (this.props.item.count === '' ? '' : parseInt(this.props.item.count));
+    console.log("inputVal type: ", inputVal)
     var inputPlaceHolder = this.state.inputPlaceHolder;
-    var cost = this.props.item.price * inputVal;
+    var cost = this.props.item.price * (inputVal === '' ? 1 : parseInt(this.props.item.count));
 
     return (
       <tr>

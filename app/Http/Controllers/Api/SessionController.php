@@ -25,7 +25,7 @@ class SessionController extends Controller
         $productCartInfo = [
             'productId'     => $request->input('productId'),
             'barCode'       => $request->input('barCode'),
-            'productCounts' => $request->input('productCounts'),
+            'productCounts' => $request->input('productCounts') ? $request->input('productCounts') : "",
         ];
 
         session()->put($sessionName, $productCartInfo);
