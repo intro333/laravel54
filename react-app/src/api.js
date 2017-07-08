@@ -105,7 +105,6 @@ export const setProducts = (dispatcher, productId) => {
 
 //Добавить товар в корзину.
 export const addProductToCart = (dispatcher, data) => {
-  console.log("FROM addProductToCart count type", data);
   const params = {
     method:'post',
     url:'/api/add-product-to-cart',
@@ -113,7 +112,6 @@ export const addProductToCart = (dispatcher, data) => {
   };
 
   const then = response => {
-    console.log("FROM addProductToCart", response.data);
     dispatcher(modelActions.setProductsForCart(response.data))
   };
 
@@ -132,7 +130,6 @@ export const showProductsInCart = (dispatcher) => {
   };
 
   const then = response => {
-    // console.log(response.data);
     dispatcher(modelActions.setProductsForCart(response.data))
   };
 
@@ -152,7 +149,6 @@ export const deleteProductFromCart = (dispatcher, data) => {
   };
 
   const then = response => {
-    // console.log(response.data);
     dispatcher(modelActions.setProductsForCart(response.data))
   };
 

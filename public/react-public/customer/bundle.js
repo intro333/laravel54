@@ -2352,7 +2352,6 @@ var setProducts = exports.setProducts = function setProducts(dispatcher, product
 
 //Добавить товар в корзину.
 var addProductToCart = exports.addProductToCart = function addProductToCart(dispatcher, data) {
-  console.log("FROM addProductToCart count type", data);
   var params = {
     method: 'post',
     url: '/api/add-product-to-cart',
@@ -2360,7 +2359,6 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
   };
 
   var then = function then(response) {
-    console.log("FROM addProductToCart", response.data);
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
@@ -2379,7 +2377,6 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
   };
 
   var then = function then(response) {
-    // console.log(response.data);
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
@@ -2399,7 +2396,6 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
   };
 
   var then = function then(response) {
-    // console.log(response.data);
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
@@ -20314,7 +20310,6 @@ var Cart = function (_Component) {
       var productsForCart = api.get('productsForCart');
       var total = null;
 
-      // console.log('productsForCart', productsForCart)
       var productsTd = productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
           key: item.productId,

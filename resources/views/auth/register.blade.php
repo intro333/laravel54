@@ -9,7 +9,7 @@
                         <p class="main-text">Регистрация</p>
                         <p class="explain-text">Если Вы впервые на нашем сайте, вам необходимо зарегистрироваться</p>
                     </div>
-                    <div id="go-to-login" class="middle-button"><p>Войти</p></div>
+                    <div id="go-to-login" class="middle-button"><p>Вход</p></div>
                 </div>
                 <div class="register-filds">
                     {{--<form action="{{ route('register') }}" method="POST" id="register-form" autocomplete="off">--}}

@@ -26,7 +26,6 @@ class Cart extends Component {
     const productsForCart = api.get('productsForCart');
     var total = null;
 
-    // console.log('productsForCart', productsForCart)
     const productsTd = productsForCart.map((item) =>
       <CartItem
         key={item.productId}

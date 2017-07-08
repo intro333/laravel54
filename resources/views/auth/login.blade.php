@@ -9,7 +9,7 @@
                         <p class="main-text">Войти</p>
                         <p class="explain-text">Для входа укажите адрес электронной почты</p>
                     </div>
-                    <div id="go-to-register" class="middle-button"><p>Зарегистрироваться</p></div>
+                    <div id="go-to-register" class="middle-button"><p>Регистрация</p></div>
                 </div>
                 <div class="register-filds">
                     <form action="{{ route('login') }}" method="POST" id="login-form" autocomplete="on">
