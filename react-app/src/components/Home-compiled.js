@@ -44,14 +44,14 @@ var Home = function (_Component) {
     value: function componentWillMount() {
       var dispatch = this.props.dispatch;
 
-      (0, _api.setUserToken)(dispatch);
+      (0, _api.setUserInfo)(dispatch);
     }
   }, {
     key: 'render',
     value: function render() {
-      var api = this.props.api;
-
-      // console.log('tokenn', api.get('userToken'))
+      // const { session } = this.props;
+      // const sessionUserName = session.get('userInfo');
+      // console.log('tokenn', sessionUserName)
 
       return _react2.default.createElement(
         'div',

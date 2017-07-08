@@ -13,6 +13,7 @@ class CustomerController extends Controller
 
     public function index()
     {
+//        dd(session()->all());
 //        dd(session()->get('_token'));//TODO передавать через axious в redux токен сессии(только не здесь, а через API)
         return view('customer');
     }

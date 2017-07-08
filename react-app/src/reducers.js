@@ -10,15 +10,13 @@ const orderedMap = OrderedMap;
 const list = List;
 
 export const api = (state = map({
-  userToken: null,
   categories: map(),
   products: map(),
   productsForCart: map(),
+  dataOfPersonalAccount: map()
 
 }), action) => {
   switch (action.type) {
-    case 'SET_USER_TOKEN':
-      return state.set('userToken', action.userToken);
 
     case 'SET_CATEGORIES':
       return state.set('categories', action.categories);
@@ -29,12 +27,16 @@ export const api = (state = map({
     case 'SET_PRODUCTS_FOR_CART':
       return state.set('productsForCart', action.productsForCart);
 
+    case 'SET_DATA_OF_PERSONAL_ACCOUNT':
+      return state.set('dataOfPersonalAccount', action.dataOfPersonalAccount);
+
     default:
       return state;
   }
 };
 
 let defaultSessionState = map({
+  userInfo: map(),
   mobNavElement: true,
   categoryId: null,
   categoryName: null,
@@ -42,6 +44,9 @@ let defaultSessionState = map({
 
 const session = (state = defaultSessionState, action) => {
   switch (action.type) {
+    case 'SET_USER_INFO':
+      return state.set('userInfo', action.userInfo);
+
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);
 

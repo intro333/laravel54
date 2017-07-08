@@ -2150,7 +2150,7 @@ module.exports = ReactCurrentOwner;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.setUserToken = exports.fetch = exports.makeRequest = undefined;
+exports.getDataOfPersonalAccount = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.setUserInfo = exports.fetch = exports.makeRequest = undefined;
 
 var _react = __webpack_require__(1);
 
@@ -2186,14 +2186,14 @@ var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
 };
 
 //Получить токен
-var setUserToken = exports.setUserToken = function setUserToken(dispatcher) {
+var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
   var params = {
     method: 'post',
-    url: '/api/getUserToken'
+    url: '/api/getUserInfo'
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setUserToken(response.data));
+    dispatcher(modelActions.setUserInfo(response.data));
   };
 
   var error = function error(_error) {
@@ -2309,6 +2309,25 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
 
   var error = function error(_error7) {
     console.log(_error7);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Получить данные для личного кабинета
+var getDataOfPersonalAccount = exports.getDataOfPersonalAccount = function getDataOfPersonalAccount(dispatcher, data) {
+  var params = {
+    method: 'post',
+    url: '/api/get-data-of-personal-account',
+    data: data
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setDataOfPersonalAccount(response.data));
+  };
+
+  var error = function error(_error8) {
+    console.log(_error8);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -4362,15 +4381,16 @@ module.exports = React;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setUserToken = setUserToken;
+exports.setUserInfo = setUserInfo;
 exports.setMobNavElement = setMobNavElement;
 exports.setCategories = setCategories;
 exports.setProducts = setProducts;
 exports.setCategoryId = setCategoryId;
 exports.setCategoryName = setCategoryName;
 exports.setProductsForCart = setProductsForCart;
-function setUserToken(userToken) {
-  return { type: 'SET_USER_TOKEN', userToken: userToken };
+exports.setDataOfPersonalAccount = setDataOfPersonalAccount;
+function setUserInfo(userInfo) {
+  return { type: 'SET_USER_INFO', userInfo: userInfo };
 }
 
 function setMobNavElement(mobNavElement) {
@@ -4395,6 +4415,10 @@ function setCategoryName(categoryName) {
 
 function setProductsForCart(productsForCart) {
   return { type: 'SET_PRODUCTS_FOR_CART', productsForCart: productsForCart };
+}
+
+function setDataOfPersonalAccount(dataOfPersonalAccount) {
+  return { type: 'SET_DATA_OF_PERSONAL_ACCOUNT', dataOfPersonalAccount: dataOfPersonalAccount };
 }
 
 /***/ }),
@@ -20984,17 +21008,15 @@ var list = _immutable.List;
 
 var api = exports.api = function api() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : map({
-    userToken: null,
     categories: map(),
     products: map(),
-    productsForCart: map()
+    productsForCart: map(),
+    dataOfPersonalAccount: map()
 
   });
   var action = arguments[1];
 
   switch (action.type) {
-    case 'SET_USER_TOKEN':
-      return state.set('userToken', action.userToken);
 
     case 'SET_CATEGORIES':
       return state.set('categories', action.categories);
@@ -21005,12 +21027,16 @@ var api = exports.api = function api() {
     case 'SET_PRODUCTS_FOR_CART':
       return state.set('productsForCart', action.productsForCart);
 
+    case 'SET_DATA_OF_PERSONAL_ACCOUNT':
+      return state.set('dataOfPersonalAccount', action.dataOfPersonalAccount);
+
     default:
       return state;
   }
 };
 
 var defaultSessionState = map({
+  userInfo: map(),
   mobNavElement: true,
   categoryId: null,
   categoryName: null
@@ -21021,6 +21047,9 @@ var session = function session() {
   var action = arguments[1];
 
   switch (action.type) {
+    case 'SET_USER_INFO':
+      return state.set('userInfo', action.userInfo);
+
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);
 
@@ -22575,14 +22604,14 @@ var Home = function (_Component) {
     value: function componentWillMount() {
       var dispatch = this.props.dispatch;
 
-      (0, _api.setUserToken)(dispatch);
+      (0, _api.setUserInfo)(dispatch);
     }
   }, {
     key: 'render',
     value: function render() {
-      var api = this.props.api;
-
-      // console.log('tokenn', api.get('userToken'))
+      // const { session } = this.props;
+      // const sessionUserName = session.get('userInfo');
+      // console.log('tokenn', sessionUserName)
 
       return _react2.default.createElement(
         'div',
@@ -22672,11 +22701,12 @@ var PersonalAccount = function (_Component) {
 
     _this.state = {
       date: new Date().toISOString(),
-      previousDate: null,
-      minDate: null,
-      maxDate: null,
-      focused: false,
-      invalid: false
+      name: '',
+      sname: '',
+      mname: '',
+      email: '',
+      phone: '',
+      birthdate: ''
     };
     return _this;
   }
@@ -22687,21 +22717,77 @@ var PersonalAccount = function (_Component) {
       var _props = this.props,
           dispatch = _props.dispatch,
           session = _props.session;
+
+      (0, _api.setUserInfo)(dispatch);
+      var userInfo = session.get('userInfo');
+      this.setState({
+        name: userInfo['name'],
+        sname: userInfo['sname'],
+        mname: userInfo['mname'],
+        email: userInfo['email'],
+        phone: userInfo['phone'],
+        birthdate: userInfo['birthdate']
+      });
     }
   }, {
-    key: 'handleChangeDate',
-    value: function handleChangeDate(value) {
+    key: 'handlerChangeDate',
+    value: function handlerChangeDate(value) {
       this.setState({
-        date: value
+        birthdate: value
+      });
+    }
+  }, {
+    key: 'handlerChangeName',
+    value: function handlerChangeName(e) {
+      this.setState({
+        name: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangeSName',
+    value: function handlerChangeSName(e) {
+      this.setState({
+        sname: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangeMName',
+    value: function handlerChangeMName(e) {
+      this.setState({
+        mname: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangeEmail',
+    value: function handlerChangeEmail(e) {
+      this.setState({
+        email: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangePhone',
+    value: function handlerChangePhone(e) {
+      this.setState({
+        phone: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangeBirthdate',
+    value: function handlerChangeBirthdate(e) {
+      this.setState({
+        birthdate: e.target.value
       });
     }
   }, {
     key: 'render',
     value: function render() {
       var _props2 = this.props,
-          api = _props2.api,
+          dispatch = _props2.dispatch,
           session = _props2.session;
-      // const products = api.get('products');
+
+      var userInfo = session.get('userInfo');
+
+      console.log(userInfo);
 
       return _react2.default.createElement(
         'div',
@@ -22761,7 +22847,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'fname' },
                     '\u0418\u043C\u044F'
                   ),
-                  _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text' })
+                  _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text', value: this.state.name, onChange: this.handlerChangeName.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -22771,7 +22857,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'sname' },
                     '\u0424\u0430\u043C\u0438\u043B\u0438\u044F'
                   ),
-                  _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text' })
+                  _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname, onChange: this.handlerChangeSName.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -22781,7 +22867,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'mname' },
                     '\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E'
                   ),
-                  _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text' })
+                  _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -22819,7 +22905,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'email' },
                     'Email'
                   ),
-                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email' })
+                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, onChange: this.handlerChangeEmail.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -22829,7 +22915,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'phone' },
                     '\u0422\u0435\u043B\u0435\u0444\u043E\u043D'
                   ),
-                  _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/, { mask: '+7\\(999\\) 999 99 99', maskChar: ' ', name: 'phone', placeholder: '+7(___) ___ __ __' })
+                  _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/, { value: this.state.phone ? this.state.phone : '', mask: '+7\\(999\\) 999 99 99', maskChar: ' ', onChange: this.handlerChangePhone.bind(this), name: 'phone', placeholder: '+7(___) ___ __ __' })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -22841,9 +22927,9 @@ var PersonalAccount = function (_Component) {
                   ),
                   _react2.default.createElement(_reactBootstrapDatePicker2.default, {
                     id: 'birthdate',
-                    value: this.state.date,
-                    onChange: this.handleChangeDate,
-                    dateFormat: 'MM-DD-YYYY',
+                    value: this.state.birthdate,
+                    onChange: this.handlerChangeDate.bind(this),
+                    dateFormat: 'MM DD YYYY',
                     calendarPlacement: 'top'
                   })
                 ),

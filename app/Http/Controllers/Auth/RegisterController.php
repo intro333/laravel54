@@ -111,9 +111,11 @@ class RegisterController extends Controller
             'user_details_user_id' => $userDetailsKey,
             'name'      => $data['name'],
             'sname'     => $data['sname'],
-            'mname'     => null,
             'phone'     => $data['phone'],
+            'mname'     => null,
             'address'   => null,
+            'birthdate' => null,
+            'gender'    => null,
         ]);
     }
 }

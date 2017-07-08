@@ -56,11 +56,12 @@ var PersonalAccount = function (_Component) {
 
     _this.state = {
       date: new Date().toISOString(),
-      previousDate: null,
-      minDate: null,
-      maxDate: null,
-      focused: false,
-      invalid: false
+      name: '',
+      sname: '',
+      mname: '',
+      email: '',
+      phone: '',
+      birthdate: ''
     };
     return _this;
   }
@@ -71,21 +72,77 @@ var PersonalAccount = function (_Component) {
       var _props = this.props,
           dispatch = _props.dispatch,
           session = _props.session;
+
+      (0, _api.setUserInfo)(dispatch);
+      var userInfo = session.get('userInfo');
+      this.setState({
+        name: userInfo['name'],
+        sname: userInfo['sname'],
+        mname: userInfo['mname'],
+        email: userInfo['email'],
+        phone: userInfo['phone'],
+        birthdate: userInfo['birthdate']
+      });
     }
   }, {
-    key: 'handleChangeDate',
-    value: function handleChangeDate(value) {
+    key: 'handlerChangeDate',
+    value: function handlerChangeDate(value) {
       this.setState({
-        date: value
+        birthdate: value
+      });
+    }
+  }, {
+    key: 'handlerChangeName',
+    value: function handlerChangeName(e) {
+      this.setState({
+        name: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangeSName',
+    value: function handlerChangeSName(e) {
+      this.setState({
+        sname: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangeMName',
+    value: function handlerChangeMName(e) {
+      this.setState({
+        mname: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangeEmail',
+    value: function handlerChangeEmail(e) {
+      this.setState({
+        email: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangePhone',
+    value: function handlerChangePhone(e) {
+      this.setState({
+        phone: e.target.value
+      });
+    }
+  }, {
+    key: 'handlerChangeBirthdate',
+    value: function handlerChangeBirthdate(e) {
+      this.setState({
+        birthdate: e.target.value
       });
     }
   }, {
     key: 'render',
     value: function render() {
       var _props2 = this.props,
-          api = _props2.api,
+          dispatch = _props2.dispatch,
           session = _props2.session;
-      // const products = api.get('products');
+
+      var userInfo = session.get('userInfo');
+
+      console.log(userInfo);
 
       return _react2.default.createElement(
         'div',
@@ -145,7 +202,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'fname' },
                     '\u0418\u043C\u044F'
                   ),
-                  _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text' })
+                  _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text', value: this.state.name, onChange: this.handlerChangeName.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -155,7 +212,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'sname' },
                     '\u0424\u0430\u043C\u0438\u043B\u0438\u044F'
                   ),
-                  _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text' })
+                  _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname, onChange: this.handlerChangeSName.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -165,7 +222,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'mname' },
                     '\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E'
                   ),
-                  _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text' })
+                  _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -203,7 +260,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'email' },
                     'Email'
                   ),
-                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email' })
+                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, onChange: this.handlerChangeEmail.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -213,7 +270,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'phone' },
                     '\u0422\u0435\u043B\u0435\u0444\u043E\u043D'
                   ),
-                  _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/, { mask: '+7\\(999\\) 999 99 99', maskChar: ' ', name: 'phone', placeholder: '+7(___) ___ __ __' })
+                  _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/, { value: this.state.phone ? this.state.phone : '', mask: '+7\\(999\\) 999 99 99', maskChar: ' ', onChange: this.handlerChangePhone.bind(this), name: 'phone', placeholder: '+7(___) ___ __ __' })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -225,9 +282,9 @@ var PersonalAccount = function (_Component) {
                   ),
                   _react2.default.createElement(_reactBootstrapDatePicker2.default, {
                     id: 'birthdate',
-                    value: this.state.date,
-                    onChange: this.handleChangeDate,
-                    dateFormat: 'MM-DD-YYYY',
+                    value: this.state.birthdate,
+                    onChange: this.handlerChangeDate.bind(this),
+                    dateFormat: 'MM DD YYYY',
                     calendarPlacement: 'top'
                   })
                 ),

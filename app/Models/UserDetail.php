@@ -11,7 +11,7 @@ class UserDetail extends Model
     protected $primaryKey = 'user_detail_id';
 
     protected $fillable = [
-        'name', 'sname', 'mname', 'phone', 'address', 'user_details_user_id'
+        'name', 'sname', 'mname', 'phone', 'address', 'user_details_user_id', 'gender', 'birthdate'
     ];
 
     /**

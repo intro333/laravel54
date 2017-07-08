@@ -9,7 +9,7 @@ import MenuMobile from '../Popups/MenuMobile';
 import InputMask from 'react-input-mask';
 import DatePicker from 'react-bootstrap-date-picker';
 import {
-  setProducts,
+  setUserInfo,
 } from '../../api';
 
 class PersonalAccount extends Component {
@@ -18,27 +18,76 @@ class PersonalAccount extends Component {
 
     this.state = {
       date: new Date().toISOString(),
-      previousDate: null,
-      minDate: null,
-      maxDate: null,
-      focused: false,
-      invalid: false
+      name: '',
+      sname: '',
+      mname: '',
+      email: '',
+      phone: '',
+      birthdate: ''
     }
   }
 
   componentWillMount() {
     const { dispatch, session } = this.props;
+    setUserInfo(dispatch);
+    const userInfo = session.get('userInfo');
+    this.setState({
+      name: userInfo['name'],
+      sname: userInfo['sname'],
+      mname: userInfo['mname'],
+      email: userInfo['email'],
+      phone: userInfo['phone'],
+      birthdate: userInfo['birthdate']
+    });
   }
 
-  handleChangeDate(value) {
+  handlerChangeDate(value) {
     this.setState({
-      date: value
+      birthdate: value
+    });
+  }
+
+  handlerChangeName(e) {
+    this.setState({
+      name: e.target.value
+    });
+  }
+
+  handlerChangeSName(e) {
+    this.setState({
+      sname: e.target.value
+    });
+  }
+
+  handlerChangeMName(e) {
+    this.setState({
+      mname: e.target.value
+    });
+  }
+
+  handlerChangeEmail(e) {
+    this.setState({
+      email: e.target.value
+    });
+  }
+
+  handlerChangePhone(e) {
+    this.setState({
+      phone: e.target.value
+    });
+  }
+
+  handlerChangeBirthdate(e) {
+    this.setState({
+      birthdate: e.target.value
     });
   }
 
   render() {
-    const { api, session } = this.props;
-    // const products = api.get('products');
+    const { dispatch, session } = this.props;
+    const userInfo = session.get('userInfo');
+
+    console.log(userInfo)
 
     return (
       <div className="container">
@@ -64,15 +113,15 @@ class PersonalAccount extends Component {
               <form action="/personal" method="POST" id="personal-data-form">
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="fname">Имя</label>
-                  <input id="fname" name="fname" type="text" />
+                  <input id="fname" name="fname" type="text" value={this.state.name} onChange={this.handlerChangeName.bind(this)} />
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="sname">Фамилия</label>
-                  <input id="sname" name="sname" type="text" />
+                  <input id="sname" name="sname" type="text" value={this.state.sname} onChange={this.handlerChangeSName.bind(this)} />
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="mname">Отчество</label>
-                  <input id="mname" name="mname" type="text" />
+                  <input id="mname" name="mname" type="text" value={this.state.mname ? this.state.mname : ''} onChange={this.handlerChangeMName.bind(this)}  />
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="gender">Пол</label>
@@ -84,19 +133,19 @@ class PersonalAccount extends Component {
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="email">Email</label>
-                  <input id="email" name="email" type="email" />
+                  <input id="email" name="email" type="email" value={this.state.email} onChange={this.handlerChangeEmail.bind(this)}  />
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="phone">Телефон</label>
-                  <InputMask /*{...this.props}*/ mask="+7\(999\) 999 99 99" maskChar=" " name="phone" placeholder="+7(___) ___ __ __" />
+                  <InputMask /*{...this.props}*/ value={this.state.phone ? this.state.phone : ''} mask="+7\(999\) 999 99 99" maskChar=" " onChange={this.handlerChangePhone.bind(this)}   name="phone" placeholder="+7(___) ___ __ __" />
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
                   <DatePicker
                     id="birthdate"
-                    value={this.state.date}
-                    onChange={this.handleChangeDate}
-                    dateFormat="MM-DD-YYYY"
+                    value={this.state.birthdate}
+                    onChange={this.handlerChangeDate.bind(this)}
+                    dateFormat="MM DD YYYY"
                     calendarPlacement="top"
                   />
                 </div>

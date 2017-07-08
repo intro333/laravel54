@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Products;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 //use Illuminate\Support\Facades\Session;
@@ -14,9 +15,29 @@ class SessionController extends Controller
 //        $this->middleware('api');
 //    }
 
-    public function getUserToken()
+    public function getUserInfo()
     {
-        return session()->get('_token');
+//        $email = session()->get('sessionUserName') ? '' : "qwe2@mail.ru";
+//        $email = session()->get('sessionUserName');
+        $email = \Auth::user()->email;
+        $user = User::with('details')
+            ->where('email', $email)
+            ->get()
+            ->first();
+        $details = $user->details()->first();
+        $userInfo = [
+            'email'     => $user['email'],
+            'name'      => $details->name,
+            'sname'     => $details->sname,
+            'mname'     => $details->mname,
+            'phone'     => $details->phone,
+            'address'   => $details->address,
+            'gender'    => $details->gender,
+            'birthdate' => $details->birthdate,
+        ];
+//        dd($userInfo);
+
+        return $userInfo;
     }
 
     public function addProductToCart(Request $request)

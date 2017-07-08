@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.setUserToken = exports.fetch = exports.makeRequest = undefined;
+exports.getDataOfPersonalAccount = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.setUserInfo = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -39,14 +39,14 @@ var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
 };
 
 //Получить токен
-var setUserToken = exports.setUserToken = function setUserToken(dispatcher) {
+var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
   var params = {
     method: 'post',
-    url: '/api/getUserToken'
+    url: '/api/getUserInfo'
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setUserToken(response.data));
+    dispatcher(modelActions.setUserInfo(response.data));
   };
 
   var error = function error(_error) {
@@ -162,6 +162,25 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
 
   var error = function error(_error7) {
     console.log(_error7);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Получить данные для личного кабинета
+var getDataOfPersonalAccount = exports.getDataOfPersonalAccount = function getDataOfPersonalAccount(dispatcher, data) {
+  var params = {
+    method: 'post',
+    url: '/api/get-data-of-personal-account',
+    data: data
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setDataOfPersonalAccount(response.data));
+  };
+
+  var error = function error(_error8) {
+    console.log(_error8);
   };
 
   makeRequest(dispatcher, params, then, error);

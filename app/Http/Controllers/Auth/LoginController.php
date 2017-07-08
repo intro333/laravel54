@@ -35,6 +35,7 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
+            session()->put('sessionUserName', $request->input('email'));
             return $this->sendLoginResponse($request);
         }
 

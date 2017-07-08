@@ -1,5 +1,5 @@
-export function setUserToken(userToken) {
-  return { type: 'SET_USER_TOKEN', userToken };
+export function setUserInfo(userInfo) {
+  return { type: 'SET_USER_INFO', userInfo };
 }
 
 export function setMobNavElement(mobNavElement) {
@@ -24,4 +24,8 @@ export function setCategoryName(categoryName) {
 
 export function setProductsForCart(productsForCart) {
   return { type: 'SET_PRODUCTS_FOR_CART', productsForCart };
+}
+
+export function setDataOfPersonalAccount(dataOfPersonalAccount) {
+  return { type: 'SET_DATA_OF_PERSONAL_ACCOUNT', dataOfPersonalAccount };
 }

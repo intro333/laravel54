@@ -31,14 +31,14 @@ export const fetch = (dispatcher, options, then, error) => {
 };
 
 //Получить токен
-export const setUserToken = dispatcher => {
+export const setUserInfo = dispatcher => {
   const params = {
     method:'post',
-    url:'/api/getUserToken',
+    url:'/api/getUserInfo',
   };
 
   const then = response => {
-    dispatcher(modelActions.setUserToken(response.data))
+    dispatcher(modelActions.setUserInfo(response.data))
   };
 
   const error = (error) => {
@@ -150,6 +150,25 @@ export const deleteProductFromCart = (dispatcher, data) => {
 
   const then = response => {
     dispatcher(modelActions.setProductsForCart(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Получить данные для личного кабинета
+export const getDataOfPersonalAccount = (dispatcher, data) => {
+  const params = {
+    method:'post',
+    url:'/api/get-data-of-personal-account',
+    data: data
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setDataOfPersonalAccount(response.data))
   };
 
   const error = (error) => {

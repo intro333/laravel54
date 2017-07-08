@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Navigation from './Navigation/Navigation';
 import MenuMobile from './Popups/MenuMobile';
 import {
-  setUserToken,
+  setUserInfo,
 } from '../api';
 
 class Home extends Component {
@@ -14,13 +14,13 @@ class Home extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props;
-    setUserToken(dispatch);
+    setUserInfo(dispatch);
   }
 
   render() {
-    const { api } = this.props;
-
-    // console.log('tokenn', api.get('userToken'))
+    // const { session } = this.props;
+    // const sessionUserName = session.get('userInfo');
+    // console.log('tokenn', sessionUserName)
 
     return (
       <div className="container">

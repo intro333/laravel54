@@ -23,17 +23,15 @@ var list = _immutable.List;
 
 var api = exports.api = function api() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : map({
-    userToken: null,
     categories: map(),
     products: map(),
-    productsForCart: map()
+    productsForCart: map(),
+    dataOfPersonalAccount: map()
 
   });
   var action = arguments[1];
 
   switch (action.type) {
-    case 'SET_USER_TOKEN':
-      return state.set('userToken', action.userToken);
 
     case 'SET_CATEGORIES':
       return state.set('categories', action.categories);
@@ -44,12 +42,16 @@ var api = exports.api = function api() {
     case 'SET_PRODUCTS_FOR_CART':
       return state.set('productsForCart', action.productsForCart);
 
+    case 'SET_DATA_OF_PERSONAL_ACCOUNT':
+      return state.set('dataOfPersonalAccount', action.dataOfPersonalAccount);
+
     default:
       return state;
   }
 };
 
 var defaultSessionState = map({
+  userInfo: map(),
   mobNavElement: true,
   categoryId: null,
   categoryName: null
@@ -60,6 +62,9 @@ var session = function session() {
   var action = arguments[1];
 
   switch (action.type) {
+    case 'SET_USER_INFO':
+      return state.set('userInfo', action.userInfo);
+
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);
 
