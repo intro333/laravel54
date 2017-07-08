@@ -23,8 +23,6 @@ class User extends Authenticatable
 //    use Notifiable;
 //    use HybridRelations;
 
-    protected $connection = 'mysql';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -44,9 +42,21 @@ class User extends Authenticatable
 //    public function sendPasswordResetNotification($token) {
 //
 //    }
+    protected $softDelete = true;// <-- Используем этот свойство для мягкого удаления.
 
     protected $fillable = [
-        'name', 'sname', 'email', 'password', 'phone', 'electronic_key',
+        'email', 'password', 'is_active', 'role',
+    ];
+
+    /**
+     * Атрибуты, которые должны быть преобразованы в даты.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     /**
@@ -55,7 +65,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'electronic_key'
+        'password', 'remember_token'
     ];
 
     /**
@@ -67,5 +77,13 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new MyOwnResetPassword($token));
+    }
+
+    /*
+     * Связь с деталями пользователя
+     */
+    public function details()
+    {
+        return $this->hasMany('App\Models\UserDetail', 'user_details_user_id', 'id');
     }
 }

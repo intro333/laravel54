@@ -16,4 +16,5 @@ Route::get('/', 'CustomerController@index')->name('customer');
 
 Route::prefix('test')->group(function () {
     Route::get('/layout_test', 'TestController@layoutTest')->name('layoutTest');
+    Route::get('/get_user', 'TestController@getUser')->name('getUser');
 });

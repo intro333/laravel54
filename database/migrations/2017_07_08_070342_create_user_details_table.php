@@ -14,7 +14,13 @@ class CreateUserDetailsTable extends Migration
     public function up()
     {
         Schema::create('user_details', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('user_detail_id');
+            $table->integer('user_details_user_id')->unsigned();//Поле для foreign key должно быть integer и ->unsigned()
+            $table->string('name', 40);
+            $table->string('sname', 40);
+            $table->string('mname', 40)->nullable();
+            $table->string('phone', 20)->nullable();
+            $table->json('address')->nullable();
             $table->timestamps();
         });
     }

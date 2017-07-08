@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\UserDetail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -68,6 +69,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+//        dd($request->all());
         $confidential = Confidential::first();
 
         if ($request['electronic_key'] == $confidential->electronic_key) {
@@ -75,6 +77,7 @@ class RegisterController extends Controller
             $this->validator($request->all())->validate();
 
             event(new Registered($user = $this->create($request->all())));
+            event(new Registered($userDetails = $this->userDetails($request->all(), $user->id)));
 
             $this->guard()->login($user);
 
@@ -95,11 +98,22 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'sname' => $data['sname'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'phone' => $data['phone'],
+            'email'     => $data['email'],
+            'password'  => bcrypt($data['password']),
+            'role'      => 'person',
+            'is_active' => 1,
+        ]);
+    }
+
+    protected function userDetails(array $data,$userDetailsKey)
+    {
+        return UserDetail::create([
+            'user_details_user_id' => $userDetailsKey,
+            'name'      => $data['name'],
+            'sname'     => $data['sname'],
+            'mname'     => null,
+            'phone'     => $data['phone'],
+            'address'   => null,
         ]);
     }
 }

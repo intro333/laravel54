@@ -18,6 +18,17 @@ class Categories extends Model
         "updated_at",
     ];
 
+    /**
+     * Атрибуты, которые должны быть преобразованы в даты.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     protected $primaryKey = 'category_id';
 
     protected $softDelete = true;// <-- Используем этот свойство для мягкого удаления.

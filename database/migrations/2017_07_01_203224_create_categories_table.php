@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('route', 40);
             $table->string('description', 255)->nullable();
             $table->string('image_path', 255);
-            $table->tinyInteger('is_active');
+            $table->tinyInteger('is_active')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

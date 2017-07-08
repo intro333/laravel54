@@ -187,6 +187,20 @@ var Navigation = function (_Component) {
                 ),
                 _react2.default.createElement(
                   'li',
+                  null,
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/personal-account' },
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-user' }),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'mob-nav-text' },
+                      '\u0410\u043A\u0430\u0443\u043D\u0442'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
                   { onClick: this.logOut.bind(this) },
                   _react2.default.createElement(
                     'a',

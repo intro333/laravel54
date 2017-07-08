@@ -89,6 +89,11 @@ class Navigation extends Component {
                     <span className="mob-nav-text">Настройки</span>
                   </a>
                 </li>
+                <li><Link to={'/personal-account'}>
+                  <span className="glyphicon glyphicon-user"></span>
+                  <span className="mob-nav-text">Акаунт</span>
+                </Link>
+                </li>
                 <li onClick={this.logOut.bind(this)}>
                   <a>
                     <span className="glyphicon glyphicon-log-out"></span>
