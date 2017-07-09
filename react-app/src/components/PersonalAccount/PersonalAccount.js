@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Select from 'react-select';
+// Be sure to include styles at some point, probably during your bootstrapping
+import 'react-select/dist/react-select.css';
 import '../../theme/css/index.css';
 import '../../theme/css/adaptive.css';
 import '../../theme/css/main.css';
@@ -23,7 +26,8 @@ class PersonalAccount extends Component {
       mname: '',
       email: '',
       phone: '',
-      birthdate: ''
+      birthdate: '',
+      gender: ''
     }
   }
 
@@ -31,13 +35,15 @@ class PersonalAccount extends Component {
     const { dispatch, session } = this.props;
     setUserInfo(dispatch);
     const userInfo = session.get('userInfo');
+
     this.setState({
       name: userInfo['name'],
       sname: userInfo['sname'],
       mname: userInfo['mname'],
       email: userInfo['email'],
       phone: userInfo['phone'],
-      birthdate: userInfo['birthdate']
+      gender: userInfo['gender'],
+      birthdate: userInfo['birthdate'],
     });
   }
 
@@ -77,6 +83,11 @@ class PersonalAccount extends Component {
     });
   }
 
+  handleChangeGender(e) {
+    // console.log(e)
+    this.setState({gender: e.value});
+  }
+
   handlerChangeBirthdate(e) {
     this.setState({
       birthdate: e.target.value
@@ -86,8 +97,11 @@ class PersonalAccount extends Component {
   render() {
     const { dispatch, session } = this.props;
     const userInfo = session.get('userInfo');
-
-    console.log(userInfo)
+    var genderOptions = [
+      { value: 0, label: 'Не выбран' },
+      { value: 1, label: 'Мужской' },
+      { value: 2, label: 'Женский' }
+    ];
 
     return (
       <div className="container">
@@ -125,11 +139,12 @@ class PersonalAccount extends Component {
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="gender">Пол</label>
-                  <select className="form-control" id="gender" name="gender">
-                    <option value="NO">Не выбран</option>
-                    <option value="M">Мужской</option>
-                    <option value="F">Женский</option>
-                  </select>
+                  <Select
+                    name="gender"
+                    value={this.state.gender}
+                    options={genderOptions}
+                    onChange={this.handleChangeGender.bind(this)}
+                  />
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="email">Email</label>

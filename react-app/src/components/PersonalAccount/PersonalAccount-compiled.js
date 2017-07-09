@@ -12,6 +12,12 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
 
+var _reactSelect = require('react-select');
+
+var _reactSelect2 = _interopRequireDefault(_reactSelect);
+
+require('react-select/dist/react-select.css');
+
 require('../../theme/css/index.css');
 
 require('../../theme/css/adaptive.css');
@@ -45,6 +51,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// Be sure to include styles at some point, probably during your bootstrapping
+
 
 var PersonalAccount = function (_Component) {
   _inherits(PersonalAccount, _Component);
@@ -61,7 +69,8 @@ var PersonalAccount = function (_Component) {
       mname: '',
       email: '',
       phone: '',
-      birthdate: ''
+      birthdate: '',
+      gender: ''
     };
     return _this;
   }
@@ -75,12 +84,14 @@ var PersonalAccount = function (_Component) {
 
       (0, _api.setUserInfo)(dispatch);
       var userInfo = session.get('userInfo');
+
       this.setState({
         name: userInfo['name'],
         sname: userInfo['sname'],
         mname: userInfo['mname'],
         email: userInfo['email'],
         phone: userInfo['phone'],
+        gender: userInfo['gender'],
         birthdate: userInfo['birthdate']
       });
     }
@@ -127,6 +138,12 @@ var PersonalAccount = function (_Component) {
       });
     }
   }, {
+    key: 'handleChangeGender',
+    value: function handleChangeGender(e) {
+      // console.log(e)
+      this.setState({ gender: e.value });
+    }
+  }, {
     key: 'handlerChangeBirthdate',
     value: function handlerChangeBirthdate(e) {
       this.setState({
@@ -141,8 +158,7 @@ var PersonalAccount = function (_Component) {
           session = _props2.session;
 
       var userInfo = session.get('userInfo');
-
-      console.log(userInfo);
+      var genderOptions = [{ value: 0, label: 'Не выбран' }, { value: 1, label: 'Мужской' }, { value: 2, label: 'Женский' }];
 
       return _react2.default.createElement(
         'div',
@@ -232,25 +248,12 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'gender' },
                     '\u041F\u043E\u043B'
                   ),
-                  _react2.default.createElement(
-                    'select',
-                    { className: 'form-control', id: 'gender', name: 'gender' },
-                    _react2.default.createElement(
-                      'option',
-                      { value: 'NO' },
-                      '\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D'
-                    ),
-                    _react2.default.createElement(
-                      'option',
-                      { value: 'M' },
-                      '\u041C\u0443\u0436\u0441\u043A\u043E\u0439'
-                    ),
-                    _react2.default.createElement(
-                      'option',
-                      { value: 'F' },
-                      '\u0416\u0435\u043D\u0441\u043A\u0438\u0439'
-                    )
-                  )
+                  _react2.default.createElement(_reactSelect2.default, {
+                    name: 'gender',
+                    value: this.state.gender,
+                    options: genderOptions,
+                    onChange: this.handleChangeGender.bind(this)
+                  })
                 ),
                 _react2.default.createElement(
                   'div',
