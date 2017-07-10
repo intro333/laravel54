@@ -13,6 +13,7 @@ import InputMask from 'react-input-mask';
 import DatePicker from 'react-bootstrap-date-picker';
 import {
   setUserInfo,
+  updatePersonalData
 } from '../../api';
 
 class PersonalAccount extends Component {
@@ -71,12 +72,6 @@ class PersonalAccount extends Component {
     });
   }
 
-  handlerChangeEmail(e) {
-    this.setState({
-      email: e.target.value
-    });
-  }
-
   handlerChangePhone(e) {
     this.setState({
       phone: e.target.value
@@ -92,6 +87,26 @@ class PersonalAccount extends Component {
     this.setState({
       birthdate: e.target.value
     });
+  }
+
+  handlerUpdatePersonalData() {
+    const { dispatch } = this.props;
+
+    const data = {
+      name: this.state.name,
+      sname: this.state.sname,
+      mname: this.state.mname,
+      email: this.state.email,
+      phone: this.state.phone,
+      gender: this.state.gender,
+      birthdate: this.state.birthdate,
+    };
+
+    updatePersonalData(dispatch, data);
+  }
+
+  handlerChangePhoto() {
+    console.log('PHOTO')
   }
 
   render() {
@@ -120,7 +135,7 @@ class PersonalAccount extends Component {
                 <div className="register-button" id="add-avatar">
                   <p>Добавить фото</p>
                 </div>
-                <input name="personal-photo" id="personal-photo" required="" type="file" />
+                <input name="personal-photo" id="personal-photo" required="" type="file" onChange={this.handlerChangePhoto.bind(this)} />
               </div>
             </div>
             <div className="customer-data-container">
@@ -151,7 +166,7 @@ class PersonalAccount extends Component {
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="email">Email</label>
-                  <input id="email" name="email" type="email" value={this.state.email} onChange={this.handlerChangeEmail.bind(this)}  />
+                  <input id="email" name="email" type="email" value={this.state.email} disabled  />
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="phone">Телефон</label>
@@ -170,17 +185,16 @@ class PersonalAccount extends Component {
                       name="birthdate"
                       value={this.state.birthdate}
                       onChange={this.handlerChangeDate.bind(this)}
-                      dateFormat="MM DD YYYY"
+                      dateFormat="DD MM YYYY"
                       calendarPlacement="top"
                       placeholder="Выберите дату"
                       showClearButton={false}
                     />
                     <span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>
                   </div>
-
                 </div>
                 <p style={{color: 'red', display: 'none'}} className="error_message_for_create">Заполните все поля помеченные звёздочкой.</p>
-                <input id="personal-submit" className="register-button" value="Сохранить данные" type="submit" />
+                <input id="personal-submit" className="register-button" value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
               </form>
             </div>
             <div className="customer-data-container">
@@ -197,7 +211,7 @@ class PersonalAccount extends Component {
                   <label className="personal-filds-label" htmlFor="password-again">Повтор</label>
                   <input id="password-again" name="password-again" type="password" placeholder="Повторите пароль" />
                 </div>
-                <input id="change-password-submit" className="register-button" value="Изменить пароль" type="submit" />
+                <input id="change-password-submit" className="register-button" value="Изменить пароль" />
                   <div style={{color: 'red', display: 'none', marginTop: '5px'}} className="error_message">Заполните все 3 поля с паролями.</div>
               </form>
             </div>

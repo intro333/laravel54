@@ -2203,7 +2203,7 @@ module.exports = __webpack_require__(347);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getDataOfPersonalAccount = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.setUserInfo = exports.fetch = exports.makeRequest = undefined;
+exports.updatePersonalData = exports.setUserInfo = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = __webpack_require__(1);
 
@@ -2238,24 +2238,6 @@ var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
   }, error);
 };
 
-//Получить токен
-var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
-  var params = {
-    method: 'post',
-    url: '/api/getUserInfo'
-  };
-
-  var then = function then(response) {
-    dispatcher(modelActions.setUserInfo(response.data));
-  };
-
-  var error = function error(_error) {
-    console.log(_error);
-  };
-
-  makeRequest(dispatcher, params, then, error);
-};
-
 //Выход, разлогиниться.
 var logOut = exports.logOut = function logOut(token) {
   var params = {
@@ -2268,8 +2250,8 @@ var logOut = exports.logOut = function logOut(token) {
     window.location.href = '/';
   };
 
-  var error = function error(_error2) {
-    console.log("error", _error2);
+  var error = function error(_error) {
+    console.log("error", _error);
   };
 
   makeRequest('', params, then, error);
@@ -2286,8 +2268,8 @@ var setCategories = exports.setCategories = function setCategories(dispatcher) {
     dispatcher(modelActions.setCategories(response.data));
   };
 
-  var error = function error(_error3) {
-    console.log(_error3);
+  var error = function error(_error2) {
+    console.log(_error2);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -2304,8 +2286,8 @@ var setProducts = exports.setProducts = function setProducts(dispatcher, product
     dispatcher(modelActions.setProducts(response.data));
   };
 
-  var error = function error(_error4) {
-    console.log(_error4);
+  var error = function error(_error3) {
+    console.log(_error3);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -2323,8 +2305,8 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
-  var error = function error(_error5) {
-    console.log(_error5);
+  var error = function error(_error4) {
+    console.log(_error4);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -2341,8 +2323,8 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
-  var error = function error(_error6) {
-    console.log(_error6);
+  var error = function error(_error5) {
+    console.log(_error5);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -2360,6 +2342,24 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
+  var error = function error(_error6) {
+    console.log(_error6);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Получить данные для личного кабинета
+var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
+  var params = {
+    method: 'post',
+    url: '/api/getUserInfo'
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setUserInfo(response.data));
+  };
+
   var error = function error(_error7) {
     console.log(_error7);
   };
@@ -2367,16 +2367,16 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
   makeRequest(dispatcher, params, then, error);
 };
 
-//Получить данные для личного кабинета
-var getDataOfPersonalAccount = exports.getDataOfPersonalAccount = function getDataOfPersonalAccount(dispatcher, data) {
+//Сохранить данные личного кабинета
+var updatePersonalData = exports.updatePersonalData = function updatePersonalData(dispatcher, data) {
   var params = {
     method: 'post',
-    url: '/api/get-data-of-personal-account',
+    url: '/api/update-data-of-personal-account',
     data: data
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setDataOfPersonalAccount(response.data));
+    dispatcher(modelActions.setUserInfo(response.data));
   };
 
   var error = function error(_error8) {
@@ -4491,7 +4491,6 @@ exports.setProducts = setProducts;
 exports.setCategoryId = setCategoryId;
 exports.setCategoryName = setCategoryName;
 exports.setProductsForCart = setProductsForCart;
-exports.setDataOfPersonalAccount = setDataOfPersonalAccount;
 function setUserInfo(userInfo) {
   return { type: 'SET_USER_INFO', userInfo: userInfo };
 }
@@ -4518,10 +4517,6 @@ function setCategoryName(categoryName) {
 
 function setProductsForCart(productsForCart) {
   return { type: 'SET_PRODUCTS_FOR_CART', productsForCart: productsForCart };
-}
-
-function setDataOfPersonalAccount(dataOfPersonalAccount) {
-  return { type: 'SET_DATA_OF_PERSONAL_ACCOUNT', dataOfPersonalAccount: dataOfPersonalAccount };
 }
 
 /***/ }),
@@ -9167,9 +9162,9 @@ exports.default = createTransitionManager;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(310);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(312);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(316);
 
 
 
@@ -11145,7 +11140,7 @@ Router.childContextTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(317);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path_to_regexp__);
 
 
@@ -18654,7 +18649,7 @@ module.exports = function hoistNonReactStatics(targetComponent, sourceComponent,
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(316);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(315);
 
 
 /** Built-in value references. */
@@ -25307,13 +25302,6 @@ var PersonalAccount = function (_Component) {
       });
     }
   }, {
-    key: 'handlerChangeEmail',
-    value: function handlerChangeEmail(e) {
-      this.setState({
-        email: e.target.value
-      });
-    }
-  }, {
     key: 'handlerChangePhone',
     value: function handlerChangePhone(e) {
       this.setState({
@@ -25332,6 +25320,29 @@ var PersonalAccount = function (_Component) {
       this.setState({
         birthdate: e.target.value
       });
+    }
+  }, {
+    key: 'handlerUpdatePersonalData',
+    value: function handlerUpdatePersonalData() {
+      var dispatch = this.props.dispatch;
+
+
+      var data = {
+        name: this.state.name,
+        sname: this.state.sname,
+        mname: this.state.mname,
+        email: this.state.email,
+        phone: this.state.phone,
+        gender: this.state.gender,
+        birthdate: this.state.birthdate
+      };
+
+      (0, _api.updatePersonalData)(dispatch, data);
+    }
+  }, {
+    key: 'handlerChangePhoto',
+    value: function handlerChangePhoto() {
+      console.log('PHOTO');
     }
   }, {
     key: 'render',
@@ -25384,7 +25395,7 @@ var PersonalAccount = function (_Component) {
                     '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0442\u043E'
                   )
                 ),
-                _react2.default.createElement('input', { name: 'personal-photo', id: 'personal-photo', required: '', type: 'file' })
+                _react2.default.createElement('input', { name: 'personal-photo', id: 'personal-photo', required: '', type: 'file', onChange: this.handlerChangePhoto.bind(this) })
               )
             ),
             _react2.default.createElement(
@@ -25449,7 +25460,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'email' },
                     'Email'
                   ),
-                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, onChange: this.handlerChangeEmail.bind(this) })
+                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, disabled: true })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -25482,7 +25493,7 @@ var PersonalAccount = function (_Component) {
                       name: 'birthdate',
                       value: this.state.birthdate,
                       onChange: this.handlerChangeDate.bind(this),
-                      dateFormat: 'MM DD YYYY',
+                      dateFormat: 'DD MM YYYY',
                       calendarPlacement: 'top',
                       placeholder: '\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0434\u0430\u0442\u0443',
                       showClearButton: false
@@ -25499,7 +25510,7 @@ var PersonalAccount = function (_Component) {
                   { style: { color: 'red', display: 'none' }, className: 'error_message_for_create' },
                   '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
                 ),
-                _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', type: 'submit' })
+                _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
               )
             ),
             _react2.default.createElement(
@@ -25538,7 +25549,7 @@ var PersonalAccount = function (_Component) {
                   ),
                   _react2.default.createElement('input', { id: 'password-again', name: 'password-again', type: 'password', placeholder: '\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C' })
                 ),
-                _react2.default.createElement('input', { id: 'change-password-submit', className: 'register-button', value: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C', type: 'submit' }),
+                _react2.default.createElement('input', { id: 'change-password-submit', className: 'register-button', value: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C' }),
                 _react2.default.createElement(
                   'div',
                   { style: { color: 'red', display: 'none', marginTop: '5px' }, className: 'error_message' },
@@ -28535,21 +28546,12 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 /* 309 */
-/***/ (function(module, exports) {
-
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-/* 310 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(313);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(313);
 
 
 
@@ -28581,7 +28583,7 @@ function baseGetTag(value) {
 
 
 /***/ }),
-/* 311 */
+/* 310 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28593,11 +28595,11 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(201)))
 
 /***/ }),
-/* 312 */
+/* 311 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(314);
 
 
 /** Built-in value references. */
@@ -28607,7 +28609,7 @@ var getPrototype = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__overArg_js
 
 
 /***/ }),
-/* 313 */
+/* 312 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28661,7 +28663,7 @@ function getRawTag(value) {
 
 
 /***/ }),
-/* 314 */
+/* 313 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28690,7 +28692,7 @@ function objectToString(value) {
 
 
 /***/ }),
-/* 315 */
+/* 314 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28712,11 +28714,11 @@ function overArg(func, transform) {
 
 
 /***/ }),
-/* 316 */
+/* 315 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(310);
 
 
 /** Detect free variable `self`. */
@@ -28729,7 +28731,7 @@ var root = __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__["a" /* default */] || fr
 
 
 /***/ }),
-/* 317 */
+/* 316 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28765,10 +28767,10 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 318 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(309)
+var isarray = __webpack_require__(318)
 
 /**
  * Expose `pathToRegexp`.
@@ -29194,6 +29196,15 @@ function pathToRegexp (path, keys, options) {
 
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
+
+
+/***/ }),
+/* 318 */
+/***/ (function(module, exports) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
 
 
 /***/ }),

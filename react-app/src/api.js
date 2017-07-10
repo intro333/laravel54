@@ -30,24 +30,6 @@ export const fetch = (dispatcher, options, then, error) => {
   );
 };
 
-//Получить токен
-export const setUserInfo = dispatcher => {
-  const params = {
-    method:'post',
-    url:'/api/getUserInfo',
-  };
-
-  const then = response => {
-    dispatcher(modelActions.setUserInfo(response.data))
-  };
-
-  const error = (error) => {
-    console.log(error);
-  };
-
-  makeRequest(dispatcher, params, then, error);
-};
-
 //Выход, разлогиниться.
 export const logOut = token => {
   const params = {
@@ -160,15 +142,33 @@ export const deleteProductFromCart = (dispatcher, data) => {
 };
 
 //Получить данные для личного кабинета
-export const getDataOfPersonalAccount = (dispatcher, data) => {
+export const setUserInfo = dispatcher => {
   const params = {
     method:'post',
-    url:'/api/get-data-of-personal-account',
+    url:'/api/getUserInfo',
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setUserInfo(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Сохранить данные личного кабинета
+export const updatePersonalData = (dispatcher, data) => {
+  const params = {
+    method:'post',
+    url:'/api/update-data-of-personal-account',
     data: data
   };
 
   const then = response => {
-    dispatcher(modelActions.setDataOfPersonalAccount(response.data))
+    dispatcher(modelActions.setUserInfo(response.data))
   };
 
   const error = (error) => {

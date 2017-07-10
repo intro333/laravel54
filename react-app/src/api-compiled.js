@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getDataOfPersonalAccount = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.setUserInfo = exports.fetch = exports.makeRequest = undefined;
+exports.updatePersonalData = exports.setUserInfo = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -38,24 +38,6 @@ var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
   }, error);
 };
 
-//Получить токен
-var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
-  var params = {
-    method: 'post',
-    url: '/api/getUserInfo'
-  };
-
-  var then = function then(response) {
-    dispatcher(modelActions.setUserInfo(response.data));
-  };
-
-  var error = function error(_error) {
-    console.log(_error);
-  };
-
-  makeRequest(dispatcher, params, then, error);
-};
-
 //Выход, разлогиниться.
 var logOut = exports.logOut = function logOut(token) {
   var params = {
@@ -68,8 +50,8 @@ var logOut = exports.logOut = function logOut(token) {
     window.location.href = '/';
   };
 
-  var error = function error(_error2) {
-    console.log("error", _error2);
+  var error = function error(_error) {
+    console.log("error", _error);
   };
 
   makeRequest('', params, then, error);
@@ -86,8 +68,8 @@ var setCategories = exports.setCategories = function setCategories(dispatcher) {
     dispatcher(modelActions.setCategories(response.data));
   };
 
-  var error = function error(_error3) {
-    console.log(_error3);
+  var error = function error(_error2) {
+    console.log(_error2);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -104,8 +86,8 @@ var setProducts = exports.setProducts = function setProducts(dispatcher, product
     dispatcher(modelActions.setProducts(response.data));
   };
 
-  var error = function error(_error4) {
-    console.log(_error4);
+  var error = function error(_error3) {
+    console.log(_error3);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -123,8 +105,8 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
-  var error = function error(_error5) {
-    console.log(_error5);
+  var error = function error(_error4) {
+    console.log(_error4);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -141,8 +123,8 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
-  var error = function error(_error6) {
-    console.log(_error6);
+  var error = function error(_error5) {
+    console.log(_error5);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -160,6 +142,24 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
+  var error = function error(_error6) {
+    console.log(_error6);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Получить данные для личного кабинета
+var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
+  var params = {
+    method: 'post',
+    url: '/api/getUserInfo'
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setUserInfo(response.data));
+  };
+
   var error = function error(_error7) {
     console.log(_error7);
   };
@@ -167,16 +167,16 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
   makeRequest(dispatcher, params, then, error);
 };
 
-//Получить данные для личного кабинета
-var getDataOfPersonalAccount = exports.getDataOfPersonalAccount = function getDataOfPersonalAccount(dispatcher, data) {
+//Сохранить данные личного кабинета
+var updatePersonalData = exports.updatePersonalData = function updatePersonalData(dispatcher, data) {
   var params = {
     method: 'post',
-    url: '/api/get-data-of-personal-account',
+    url: '/api/update-data-of-personal-account',
     data: data
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setDataOfPersonalAccount(response.data));
+    dispatcher(modelActions.setUserInfo(response.data));
   };
 
   var error = function error(_error8) {

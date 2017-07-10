@@ -10,7 +10,6 @@ exports.setProducts = setProducts;
 exports.setCategoryId = setCategoryId;
 exports.setCategoryName = setCategoryName;
 exports.setProductsForCart = setProductsForCart;
-exports.setDataOfPersonalAccount = setDataOfPersonalAccount;
 function setUserInfo(userInfo) {
   return { type: 'SET_USER_INFO', userInfo: userInfo };
 }
@@ -37,10 +36,6 @@ function setCategoryName(categoryName) {
 
 function setProductsForCart(productsForCart) {
   return { type: 'SET_PRODUCTS_FOR_CART', productsForCart: productsForCart };
-}
-
-function setDataOfPersonalAccount(dataOfPersonalAccount) {
-  return { type: 'SET_DATA_OF_PERSONAL_ACCOUNT', dataOfPersonalAccount: dataOfPersonalAccount };
 }
 
 //# sourceMappingURL=actions-compiled.js.map

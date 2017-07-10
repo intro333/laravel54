@@ -124,13 +124,6 @@ var PersonalAccount = function (_Component) {
       });
     }
   }, {
-    key: 'handlerChangeEmail',
-    value: function handlerChangeEmail(e) {
-      this.setState({
-        email: e.target.value
-      });
-    }
-  }, {
     key: 'handlerChangePhone',
     value: function handlerChangePhone(e) {
       this.setState({
@@ -149,6 +142,29 @@ var PersonalAccount = function (_Component) {
       this.setState({
         birthdate: e.target.value
       });
+    }
+  }, {
+    key: 'handlerUpdatePersonalData',
+    value: function handlerUpdatePersonalData() {
+      var dispatch = this.props.dispatch;
+
+
+      var data = {
+        name: this.state.name,
+        sname: this.state.sname,
+        mname: this.state.mname,
+        email: this.state.email,
+        phone: this.state.phone,
+        gender: this.state.gender,
+        birthdate: this.state.birthdate
+      };
+
+      (0, _api.updatePersonalData)(dispatch, data);
+    }
+  }, {
+    key: 'handlerChangePhoto',
+    value: function handlerChangePhoto() {
+      console.log('PHOTO');
     }
   }, {
     key: 'render',
@@ -201,7 +217,7 @@ var PersonalAccount = function (_Component) {
                     '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0442\u043E'
                   )
                 ),
-                _react2.default.createElement('input', { name: 'personal-photo', id: 'personal-photo', required: '', type: 'file' })
+                _react2.default.createElement('input', { name: 'personal-photo', id: 'personal-photo', required: '', type: 'file', onChange: this.handlerChangePhoto.bind(this) })
               )
             ),
             _react2.default.createElement(
@@ -252,7 +268,10 @@ var PersonalAccount = function (_Component) {
                     name: 'gender',
                     value: this.state.gender,
                     options: genderOptions,
-                    onChange: this.handleChangeGender.bind(this)
+                    onChange: this.handleChangeGender.bind(this),
+                    placeholder: '\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D',
+                    clearable: false,
+                    searchable: false
                   })
                 ),
                 _react2.default.createElement(
@@ -263,7 +282,7 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'email' },
                     'Email'
                   ),
-                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, onChange: this.handlerChangeEmail.bind(this) })
+                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, disabled: true })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -273,7 +292,12 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'phone' },
                     '\u0422\u0435\u043B\u0435\u0444\u043E\u043D'
                   ),
-                  _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/, { value: this.state.phone ? this.state.phone : '', mask: '+7\\(999\\) 999 99 99', maskChar: ' ', onChange: this.handlerChangePhone.bind(this), name: 'phone', placeholder: '+7(___) ___ __ __' })
+                  _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/
+                  , { value: this.state.phone ? this.state.phone : '',
+                    mask: '+7\\(999\\) 999 99 99', maskChar: ' ',
+                    onChange: this.handlerChangePhone.bind(this),
+                    name: 'phone',
+                    placeholder: '+7(___) ___ __ __' })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -283,20 +307,32 @@ var PersonalAccount = function (_Component) {
                     { className: 'personal-filds-label', htmlFor: 'birthdate' },
                     '\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F'
                   ),
-                  _react2.default.createElement(_reactBootstrapDatePicker2.default, {
-                    id: 'birthdate',
-                    value: this.state.birthdate,
-                    onChange: this.handlerChangeDate.bind(this),
-                    dateFormat: 'MM DD YYYY',
-                    calendarPlacement: 'top'
-                  })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group' },
+                    _react2.default.createElement(_reactBootstrapDatePicker2.default, {
+                      id: 'birthdate',
+                      name: 'birthdate',
+                      value: this.state.birthdate,
+                      onChange: this.handlerChangeDate.bind(this),
+                      dateFormat: 'DD MM YYYY',
+                      calendarPlacement: 'top',
+                      placeholder: '\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0434\u0430\u0442\u0443',
+                      showClearButton: false
+                    }),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon', id: 'basic-addon1' },
+                      _react2.default.createElement('i', { className: 'glyphicon glyphicon-calendar' })
+                    )
+                  )
                 ),
                 _react2.default.createElement(
                   'p',
                   { style: { color: 'red', display: 'none' }, className: 'error_message_for_create' },
                   '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
                 ),
-                _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', type: 'submit' })
+                _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
               )
             ),
             _react2.default.createElement(
@@ -335,7 +371,7 @@ var PersonalAccount = function (_Component) {
                   ),
                   _react2.default.createElement('input', { id: 'password-again', name: 'password-again', type: 'password', placeholder: '\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C' })
                 ),
-                _react2.default.createElement('input', { id: 'change-password-submit', className: 'register-button', value: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C', type: 'submit' }),
+                _react2.default.createElement('input', { id: 'change-password-submit', className: 'register-button', value: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C' }),
                 _react2.default.createElement(
                   'div',
                   { style: { color: 'red', display: 'none', marginTop: '5px' }, className: 'error_message' },

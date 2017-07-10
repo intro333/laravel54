@@ -25,7 +25,3 @@ export function setCategoryName(categoryName) {
 export function setProductsForCart(productsForCart) {
   return { type: 'SET_PRODUCTS_FOR_CART', productsForCart };
 }
-
-export function setDataOfPersonalAccount(dataOfPersonalAccount) {
-  return { type: 'SET_DATA_OF_PERSONAL_ACCOUNT', dataOfPersonalAccount };
-}
