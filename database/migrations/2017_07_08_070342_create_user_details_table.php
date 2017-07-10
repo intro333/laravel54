@@ -20,7 +20,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('sname', 40);
             $table->string('mname', 40)->nullable();
             $table->string('phone', 20)->nullable();
-            $table->tinyInteger('gender')->unsigned()->nullable();
+            $table->tinyInteger('gender')->unsigned()->default(0);
             $table->date('birthdate')->nullable();
             $table->json('address')->nullable();
             $table->timestamps();

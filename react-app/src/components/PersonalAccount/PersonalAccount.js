@@ -144,6 +144,9 @@ class PersonalAccount extends Component {
                     value={this.state.gender}
                     options={genderOptions}
                     onChange={this.handleChangeGender.bind(this)}
+                    placeholder="Не выбран"
+                    clearable={false}
+                    searchable={false}
                   />
                 </div>
                 <div className="personal-filds-label-input">
@@ -152,17 +155,29 @@ class PersonalAccount extends Component {
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="phone">Телефон</label>
-                  <InputMask /*{...this.props}*/ value={this.state.phone ? this.state.phone : ''} mask="+7\(999\) 999 99 99" maskChar=" " onChange={this.handlerChangePhone.bind(this)}   name="phone" placeholder="+7(___) ___ __ __" />
+                  <InputMask /*{...this.props}*/
+                    value={this.state.phone ? this.state.phone : ''}
+                    mask="+7\(999\) 999 99 99" maskChar=" "
+                    onChange={this.handlerChangePhone.bind(this)}
+                    name="phone"
+                    placeholder="+7(___) ___ __ __" />
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
-                  <DatePicker
-                    id="birthdate"
-                    value={this.state.birthdate}
-                    onChange={this.handlerChangeDate.bind(this)}
-                    dateFormat="MM DD YYYY"
-                    calendarPlacement="top"
-                  />
+                  <div className="input-group">
+                    <DatePicker
+                      id="birthdate"
+                      name="birthdate"
+                      value={this.state.birthdate}
+                      onChange={this.handlerChangeDate.bind(this)}
+                      dateFormat="MM DD YYYY"
+                      calendarPlacement="top"
+                      placeholder="Выберите дату"
+                      showClearButton={false}
+                    />
+                    <span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>
+                  </div>
+
                 </div>
                 <p style={{color: 'red', display: 'none'}} className="error_message_for_create">Заполните все поля помеченные звёздочкой.</p>
                 <input id="personal-submit" className="register-button" value="Сохранить данные" type="submit" />

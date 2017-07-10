@@ -115,7 +115,7 @@ class RegisterController extends Controller
             'mname'     => null,
             'address'   => null,
             'birthdate' => null,
-            'gender'    => null,
+            'gender'    => 0,
         ]);
     }
 }
