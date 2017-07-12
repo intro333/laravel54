@@ -10,11 +10,22 @@ import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import InputMask from 'react-input-mask';
-import DatePicker from 'react-bootstrap-date-picker';
+// import DatePicker from 'react-bootstrap-date-picker';
+import Calendar from 'rc-calendar';
+import DatePicker from 'rc-calendar/lib/Picker';
+import zhCN from 'rc-calendar/lib/locale/zh_CN';
+import enUS from 'rc-calendar/lib/locale/en_US';
+import 'rc-time-picker/assets/index.css';
+import TimePickerPanel from 'rc-time-picker/lib/Panel';
 import {
   setUserInfo,
   updatePersonalData
 } from '../../api';
+/*Сalendar*/
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+import 'moment/locale/en-gb';
+/*Calendar END ----------------------------------------*/
 
 class PersonalAccount extends Component {
   constructor(props) {
@@ -109,6 +120,9 @@ class PersonalAccount extends Component {
     console.log('PHOTO')
   }
 
+  /*Calendar ----------------------------------------*/
+
+  /*Calendar END ----------------------------------------*/
   render() {
     const { dispatch, session } = this.props;
     const userInfo = session.get('userInfo');
@@ -179,19 +193,28 @@ class PersonalAccount extends Component {
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
-                  <div className="input-group">
-                    <DatePicker
-                      id="birthdate"
-                      name="birthdate"
-                      value={this.state.birthdate}
-                      onChange={this.handlerChangeDate.bind(this)}
-                      dateFormat="DD MM YYYY"
-                      calendarPlacement="top"
-                      placeholder="Выберите дату"
-                      showClearButton={false}
-                    />
-                    <span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>
-                  </div>
+                  {/*<div className="input-group">*/}
+                    {/*<DatePicker*/}
+                      {/*id="birthdate"*/}
+                      {/*name="birthdate"*/}
+                      {/*value={this.state.birthdate}*/}
+                      {/*onChange={this.handlerChangeDate.bind(this)}*/}
+                      {/*dateFormat="DD MM YYYY"*/}
+                      {/*calendarPlacement="top"*/}
+                      {/*placeholder="Выберите дату"*/}
+                      {/*showClearButton={false}*/}
+                    {/*/>*/}
+                    {/*<span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>*/}
+                  {/*</div>*/}
+                  <Calendar
+                    onChange={this.handlerChangePhoto.bind(this)}
+                    displayDate='09-12-2017'
+                    dayLabels='Дата'
+                    cellPadding='1'
+                    showWeekNumber={false}
+                    showToday
+                    showOk={false}
+                  />
                 </div>
                 <p style={{color: 'red', display: 'none'}} className="error_message_for_create">Заполните все поля помеченные звёздочкой.</p>
                 <input id="personal-submit" className="register-button" value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
