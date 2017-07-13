@@ -38,7 +38,13 @@ var _reactInputMask = require('react-input-mask');
 
 var _reactInputMask2 = _interopRequireDefault(_reactInputMask);
 
+var _helpers = require('../../helpers');
+
+var helpers = _interopRequireWildcard(_helpers);
+
 var _api = require('../../api');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -136,60 +142,11 @@ var PersonalAccount = function (_Component) {
   }, {
     key: 'handlerChangeBirthdate',
     value: function handlerChangeBirthdate(e) {
-      var result = null;
       var value = e.target.value;
       var length = e.target.value.trim().length;
       var date = this.state.date;
 
-      if (length == 1) {
-        if (value < 4) {
-          result = value;
-        } else {
-          result = '0';
-        }
-      }
-
-      if (length == 2) {
-        if (value < 32 && value.slice(0, 2) != '00') {
-          result = value;
-        } else {
-          result = '31';
-        }
-      }
-
-      if (length == 4) {
-        if (value.slice(3, 4) < 2) {
-          result = value;
-        } else {
-          result = value.slice(0, 3) + '0';
-        }
-      }
-
-      if (length == 5) {
-        if (value.slice(3, 5) < 13 && value.slice(3, 5) != '00') {
-          result = value;
-        } else {
-          result = value.slice(0, 3) + '12';
-        }
-      }
-
-      if (length > 5 && length < 10) {
-        result = value;
-      }
-
-      if (length == 10) {
-        if (value.slice(6, 10) > 1900 && value.slice(6, 10) < date.getFullYear() + 1) {
-          result = value;
-        } else {
-          result = value.slice(0, 6) + (date.getFullYear() - 18);
-        }
-        if (value.slice(0, 2) > 31) {
-          result = '31' + value.slice(2, 10);
-        }
-        if (value.slice(3, 5) > 12) {
-          result = value.slice(0, 3) + '12' + value.slice(6, 10);
-        }
-      }
+      var result = helpers.checkBirthDate(value, length, date);
 
       this.setState({
         birthdate: result
@@ -345,7 +302,8 @@ var PersonalAccount = function (_Component) {
                     '\u0422\u0435\u043B\u0435\u0444\u043E\u043D'
                   ),
                   _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/
-                  , { value: this.state.phone ? this.state.phone : '',
+                  , { id: 'phone',
+                    value: this.state.phone ? this.state.phone : '',
                     mask: '+7\\(999\\) 999 99 99', maskChar: ' ',
                     onChange: this.handlerChangePhone.bind(this),
                     name: 'phone',
@@ -363,10 +321,11 @@ var PersonalAccount = function (_Component) {
                     'div',
                     { className: 'input-group' },
                     _react2.default.createElement(_reactInputMask2.default, {
+                      id: 'birthdate',
                       value: this.state.birthdate ? this.state.birthdate : '',
                       mask: '99 99 9999', maskChar: ' ',
                       onChange: this.handlerChangeBirthdate.bind(this),
-                      name: 'phone',
+                      name: 'birthdate',
                       placeholder: '09-12-1986' }),
                     _react2.default.createElement(
                       'span',

@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import InputMask from 'react-input-mask';
+import * as helpers from '../../helpers';
 
 import {
   setUserInfo,
@@ -85,60 +86,11 @@ class PersonalAccount extends Component {
   }
 
   handlerChangeBirthdate(e) {
-    var result = null;
     var value = e.target.value;
     var length = e.target.value.trim().length;
     var date = this.state.date;
 
-    if (length == 1) {
-      if (value < 4) {
-        result = value
-      } else {
-        result = '0'
-      }
-    }
-
-    if (length == 2) {
-      if (value < 32 && value.slice(0,2) != '00') {
-        result = value
-      } else {
-        result = '31'
-      }
-    }
-
-    if (length == 4) {
-      if (value.slice(3,4) < 2) {
-        result = value
-      } else {
-        result = value.slice(0,3) + '0'
-      }
-    }
-
-    if (length == 5) {
-      if (value.slice(3,5) < 13 && value.slice(3,5) != '00') {
-        result = value
-      } else {
-        result = value.slice(0,3) + '12'
-      }
-    }
-
-    if (length > 5 && length < 10) {
-        result = value
-    }
-
-    if (length == 10) {
-      if (value.slice(6,10) > 1900 && value.slice(6,10) < (date.getFullYear() + 1)) {
-        result = value
-      } else {
-        result = value.slice(0,6) + (date.getFullYear() - 18)
-      }
-      if (value.slice(0,2) > 31) {
-        result = '31' + value.slice(2,10)
-      }
-      if (value.slice(3,5) > 12) {
-        result = value.slice(0,3) + '12' + value.slice(6,10)
-      }
-    }
+    var result = helpers.checkBirthDate(value, length, date);
 
     this.setState({
       birthdate: result
@@ -227,6 +179,7 @@ class PersonalAccount extends Component {
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="phone">Телефон</label>
                   <InputMask /*{...this.props}*/
+                    id="phone"
                     value={this.state.phone ? this.state.phone : ''}
                     mask="+7\(999\) 999 99 99" maskChar=" "
                     onChange={this.handlerChangePhone.bind(this)}
@@ -237,10 +190,11 @@ class PersonalAccount extends Component {
                   <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
                   <div className="input-group">
                     <InputMask
+                      id="birthdate"
                       value={this.state.birthdate ? this.state.birthdate : ''}
                       mask="99 99 9999" maskChar=" "
                       onChange={this.handlerChangeBirthdate.bind(this)}
-                      name="phone"
+                      name="birthdate"
                       placeholder="09-12-1986" />
                     <span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>
                   </div>
