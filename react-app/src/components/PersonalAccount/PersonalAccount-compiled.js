@@ -38,10 +38,6 @@ var _reactInputMask = require('react-input-mask');
 
 var _reactInputMask2 = _interopRequireDefault(_reactInputMask);
 
-var _reactBootstrapDatePicker = require('react-bootstrap-date-picker');
-
-var _reactBootstrapDatePicker2 = _interopRequireDefault(_reactBootstrapDatePicker);
-
 var _api = require('../../api');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -63,7 +59,7 @@ var PersonalAccount = function (_Component) {
     var _this = _possibleConstructorReturn(this, (PersonalAccount.__proto__ || Object.getPrototypeOf(PersonalAccount)).call(this, props));
 
     _this.state = {
-      date: new Date().toISOString(),
+      date: new Date(),
       name: '',
       sname: '',
       mname: '',
@@ -71,6 +67,7 @@ var PersonalAccount = function (_Component) {
       phone: '',
       birthdate: '',
       gender: ''
+
     };
     return _this;
   }
@@ -139,8 +136,63 @@ var PersonalAccount = function (_Component) {
   }, {
     key: 'handlerChangeBirthdate',
     value: function handlerChangeBirthdate(e) {
+      var result = null;
+      var value = e.target.value;
+      var length = e.target.value.trim().length;
+      var date = this.state.date;
+
+      if (length == 1) {
+        if (value < 4) {
+          result = value;
+        } else {
+          result = '0';
+        }
+      }
+
+      if (length == 2) {
+        if (value < 32 && value.slice(0, 2) != '00') {
+          result = value;
+        } else {
+          result = '31';
+        }
+      }
+
+      if (length == 4) {
+        if (value.slice(3, 4) < 2) {
+          result = value;
+        } else {
+          result = value.slice(0, 3) + '0';
+        }
+      }
+
+      if (length == 5) {
+        if (value.slice(3, 5) < 13 && value.slice(3, 5) != '00') {
+          result = value;
+        } else {
+          result = value.slice(0, 3) + '12';
+        }
+      }
+
+      if (length > 5 && length < 10) {
+        result = value;
+      }
+
+      if (length == 10) {
+        if (value.slice(6, 10) > 1900 && value.slice(6, 10) < date.getFullYear() + 1) {
+          result = value;
+        } else {
+          result = value.slice(0, 6) + (date.getFullYear() - 18);
+        }
+        if (value.slice(0, 2) > 31) {
+          result = '31' + value.slice(2, 10);
+        }
+        if (value.slice(3, 5) > 12) {
+          result = value.slice(0, 3) + '12' + value.slice(6, 10);
+        }
+      }
+
       this.setState({
-        birthdate: e.target.value
+        birthdate: result
       });
     }
   }, {
@@ -310,16 +362,12 @@ var PersonalAccount = function (_Component) {
                   _react2.default.createElement(
                     'div',
                     { className: 'input-group' },
-                    _react2.default.createElement(_reactBootstrapDatePicker2.default, {
-                      id: 'birthdate',
-                      name: 'birthdate',
-                      value: this.state.birthdate,
-                      onChange: this.handlerChangeDate.bind(this),
-                      dateFormat: 'DD MM YYYY',
-                      calendarPlacement: 'top',
-                      placeholder: '\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0434\u0430\u0442\u0443',
-                      showClearButton: false
-                    }),
+                    _react2.default.createElement(_reactInputMask2.default, {
+                      value: this.state.birthdate ? this.state.birthdate : '',
+                      mask: '99 99 9999', maskChar: ' ',
+                      onChange: this.handlerChangeBirthdate.bind(this),
+                      name: 'phone',
+                      placeholder: '09-12-1986' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'input-group-addon', id: 'basic-addon1' },

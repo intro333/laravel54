@@ -10,29 +10,18 @@ import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import InputMask from 'react-input-mask';
-// import DatePicker from 'react-bootstrap-date-picker';
-import Calendar from 'rc-calendar';
-import DatePicker from 'rc-calendar/lib/Picker';
-import zhCN from 'rc-calendar/lib/locale/zh_CN';
-import enUS from 'rc-calendar/lib/locale/en_US';
-import 'rc-time-picker/assets/index.css';
-import TimePickerPanel from 'rc-time-picker/lib/Panel';
+
 import {
   setUserInfo,
   updatePersonalData
 } from '../../api';
-/*Сalendar*/
-import moment from 'moment';
-import 'moment/locale/zh-cn';
-import 'moment/locale/en-gb';
-/*Calendar END ----------------------------------------*/
 
 class PersonalAccount extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      date: new Date().toISOString(),
+      date: new Date(),
       name: '',
       sname: '',
       mname: '',
@@ -40,6 +29,7 @@ class PersonalAccount extends Component {
       phone: '',
       birthdate: '',
       gender: ''
+
     }
   }
 
@@ -95,8 +85,63 @@ class PersonalAccount extends Component {
   }
 
   handlerChangeBirthdate(e) {
+    var result = null;
+    var value = e.target.value;
+    var length = e.target.value.trim().length;
+    var date = this.state.date;
+
+    if (length == 1) {
+      if (value < 4) {
+        result = value
+      } else {
+        result = '0'
+      }
+    }
+
+    if (length == 2) {
+      if (value < 32 && value.slice(0,2) != '00') {
+        result = value
+      } else {
+        result = '31'
+      }
+    }
+
+    if (length == 4) {
+      if (value.slice(3,4) < 2) {
+        result = value
+      } else {
+        result = value.slice(0,3) + '0'
+      }
+    }
+
+    if (length == 5) {
+      if (value.slice(3,5) < 13 && value.slice(3,5) != '00') {
+        result = value
+      } else {
+        result = value.slice(0,3) + '12'
+      }
+    }
+
+    if (length > 5 && length < 10) {
+        result = value
+    }
+
+    if (length == 10) {
+      if (value.slice(6,10) > 1900 && value.slice(6,10) < (date.getFullYear() + 1)) {
+        result = value
+      } else {
+        result = value.slice(0,6) + (date.getFullYear() - 18)
+      }
+      if (value.slice(0,2) > 31) {
+        result = '31' + value.slice(2,10)
+      }
+      if (value.slice(3,5) > 12) {
+        result = value.slice(0,3) + '12' + value.slice(6,10)
+      }
+    }
+
     this.setState({
-      birthdate: e.target.value
+      birthdate: result
     });
   }
 
@@ -120,9 +165,6 @@ class PersonalAccount extends Component {
     console.log('PHOTO')
   }
 
-  /*Calendar ----------------------------------------*/
-
-  /*Calendar END ----------------------------------------*/
   render() {
     const { dispatch, session } = this.props;
     const userInfo = session.get('userInfo');
@@ -193,6 +235,15 @@ class PersonalAccount extends Component {
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
+                  <div className="input-group">
+                    <InputMask
+                      value={this.state.birthdate ? this.state.birthdate : ''}
+                      mask="99 99 9999" maskChar=" "
+                      onChange={this.handlerChangeBirthdate.bind(this)}
+                      name="phone"
+                      placeholder="09-12-1986" />
+                    <span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>
+                  </div>
                   {/*<div className="input-group">*/}
                     {/*<DatePicker*/}
                       {/*id="birthdate"*/}
@@ -206,15 +257,7 @@ class PersonalAccount extends Component {
                     {/*/>*/}
                     {/*<span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>*/}
                   {/*</div>*/}
-                  <Calendar
-                    onChange={this.handlerChangePhoto.bind(this)}
-                    displayDate='09-12-2017'
-                    dayLabels='Дата'
-                    cellPadding='1'
-                    showWeekNumber={false}
-                    showToday
-                    showOk={false}
-                  />
+
                 </div>
                 <p style={{color: 'red', display: 'none'}} className="error_message_for_create">Заполните все поля помеченные звёздочкой.</p>
                 <input id="personal-submit" className="register-button" value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />

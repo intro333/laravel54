@@ -46,7 +46,7 @@ class CustomerConstoller extends Controller
 
         $user = User::with('details')->where('email', $request->input('email'))->get()->first();
         $details = $user->details()->first();
-        $date = new \DateTime($request->input('birthdate'));
+        $date = new \DateTime(str_replace(" ","-",$request->input('birthdate')));
 
         $details->update([
             "name"  => $request->input('name'),
@@ -70,6 +70,7 @@ class CustomerConstoller extends Controller
             ->get()
             ->first();
         $details = $user->details()->first();
+        $date = $details->birthdate ? new \DateTime($details->birthdate) : '';
         $userInfo = [
             'email'     => $user['email'],
             'name'      => $details->name,
@@ -78,7 +79,7 @@ class CustomerConstoller extends Controller
             'phone'     => $details->phone,
             'address'   => $details->address,
             'gender'    => $details->gender,
-            'birthdate' => $details->birthdate,
+            'birthdate' => $date ? $date->format('d-m-Y') : '',
         ];
 
         return $userInfo;
