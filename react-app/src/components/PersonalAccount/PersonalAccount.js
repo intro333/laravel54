@@ -14,7 +14,8 @@ import * as helpers from '../../helpers';
 
 import {
   setUserInfo,
-  updatePersonalData
+  updatePersonalData,
+  changePhotoPersonalData
 } from '../../api';
 
 class PersonalAccount extends Component {
@@ -90,7 +91,7 @@ class PersonalAccount extends Component {
     var length = e.target.value.trim().length;
     var date = this.state.date;
 
-    var result = helpers.checkBirthDate(value, length, date);
+    var result = helpers.inputmaskBirthDate(value, length, date);
 
     this.setState({
       birthdate: result
@@ -113,8 +114,15 @@ class PersonalAccount extends Component {
     updatePersonalData(dispatch, data);
   }
 
-  handlerChangePhoto() {
-    console.log('PHOTO')
+  handlerChangePhoto(e) {
+    // console.log(e.target.value)
+    console.log("file", e.target.files[0])
+    const file = e.target.files[0];
+    var data = {
+      image: file
+    };
+    const { dispatch } = this.props;
+    changePhotoPersonalData(dispatch, data);
   }
 
   render() {

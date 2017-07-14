@@ -23,3 +23,4 @@ Route::post('/get-products-in-cart', 'Api\SessionController@showProductsInCart')
 Route::post('/delete-product-from-cart', 'Api\SessionController@deleteProductFromCart')->name('deleteProductFromCart');
 Route::post('/getUserInfo', 'Api\CustomerConstoller@getUserInfo')->name('getUserInfo');
 Route::post('/update-data-of-personal-account', 'Api\CustomerConstoller@updateDataOfPersonalAccount')->name('updateDataOfPersonalAccount');
+Route::post('/change-photo-in-personal-account', 'Api\CustomerConstoller@changePhotoPersonalData')->name('changePhotoPersonalData');

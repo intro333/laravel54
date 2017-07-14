@@ -177,3 +177,26 @@ export const updatePersonalData = (dispatcher, data) => {
 
   makeRequest(dispatcher, params, then, error);
 };
+
+//Изменить фото в личном аккаунте
+export const changePhotoPersonalData = (dispatcher, data) => {
+  console.log("dataOfFile", data)
+  let form = new FormData();
+  form.append('image', data['image']);
+  // form.append('name', name);
+  const params = {
+    method:'post',
+    url:'/api/change-photo-in-personal-account',
+    data: form
+  };
+
+  const then = response => {
+    // dispatcher(modelActions.setUserInfo(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};

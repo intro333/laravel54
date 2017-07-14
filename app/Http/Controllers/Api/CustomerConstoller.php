@@ -61,6 +61,24 @@ class CustomerConstoller extends Controller
         return $this->localDataOfPersonalAccount();
     }
 
+    public function changePhotoPersonalData(Request $request)
+    {
+        $email = \Auth::user()->email;
+
+        //Формируем дерикторию.
+        $uploads_dir = storage_path('app/public/customers/');
+        $directory = $email;
+        $image = $request->file('image');
+        $image1Name = $image->getClientOriginalName();
+        $path_to_image = $uploads_dir . '/' . $directory;
+
+        if (!is_dir($path_to_image)) {
+            mkdir($path_to_image, 0777, true);
+            //Сохраняем фото
+            $this->moveFile($image, $path_to_image, $image1Name);
+        }
+    }
+
     //Локальная функция для формирования данных для личного кабинета
     private function localDataOfPersonalAccount()
     {
@@ -83,5 +101,9 @@ class CustomerConstoller extends Controller
         ];
 
         return $userInfo;
+    }
+
+    private function moveFile($file, $pathToComplect, $fileName) {
+        move_uploaded_file($file, $pathToComplect . '/' . $fileName);
     }
 }
