@@ -24091,17 +24091,26 @@ var Avatar = function (_Component) {
           }),
           _react2.default.createElement(
             'div',
-            { className: 'customer-image-button' },
+            { className: 'image-container' },
             _react2.default.createElement(
               'div',
-              { className: 'register-button', id: 'add-avatar' },
-              _react2.default.createElement(
-                'p',
-                null,
-                '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0442\u043E'
-              )
+              { className: 'customer-image' },
+              _react2.default.createElement('img', { src: '/images/no-image.png' })
             ),
-            _react2.default.createElement('input', { name: 'personal-photo', id: 'personal-photo', onClick: this.handlerUploadPhoto.bind(this) })
+            _react2.default.createElement(
+              'div',
+              { className: 'customer-image-button' },
+              _react2.default.createElement(
+                'div',
+                { className: 'register-button', id: 'add-avatar' },
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0442\u043E'
+                )
+              ),
+              _react2.default.createElement('input', { name: 'personal-photo', id: 'personal-photo', required: '', type: 'file', onChange: this.handlerUploadPhoto.bind(this) })
+            )
           )
         )
       );

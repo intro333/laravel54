@@ -48,11 +48,16 @@ class Avatar extends Component {
               border={50}
               scale={1.2}
             />
-            <div className="customer-image-button">
-              <div className="register-button" id="add-avatar">
-                <p>Добавить фото</p>
+            <div className="image-container">
+              <div className="customer-image">
+                <img src="/images/no-image.png" />
               </div>
-              <input name="personal-photo" id="personal-photo" onClick={this.handlerUploadPhoto.bind(this)} />
+              <div className="customer-image-button">
+                <div className="register-button" id="add-avatar">
+                  <p>Добавить фото</p>
+                </div>
+                <input name="personal-photo" id="personal-photo" required="" type="file" onChange={this.handlerUploadPhoto.bind(this)} />
+              </div>
             </div>
             {/*<input value="Загрузить фото" id="upload-photo" type="file" className="register-button" onChange={this.handlerUploadPhoto.bind(this)} />*/}
 
