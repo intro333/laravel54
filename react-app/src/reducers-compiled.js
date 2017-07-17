@@ -26,7 +26,8 @@ var api = exports.api = function api() {
     categories: map(),
     products: map(),
     productsForCart: map(),
-    dataOfPersonalAccount: map()
+    dataOfPersonalAccount: map(),
+    imagePath: false
 
   });
   var action = arguments[1];
@@ -45,6 +46,9 @@ var api = exports.api = function api() {
     case 'SET_DATA_OF_PERSONAL_ACCOUNT':
       return state.set('dataOfPersonalAccount', action.dataOfPersonalAccount);
 
+    case 'SET_USER_IMAGE':
+      return state.set('imagePath', action.imagePath);
+
     default:
       return state;
   }
@@ -62,6 +66,7 @@ var session = function session() {
   var action = arguments[1];
 
   switch (action.type) {
+
     case 'SET_USER_INFO':
       return state.set('userInfo', action.userInfo);
 

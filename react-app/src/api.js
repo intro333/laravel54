@@ -191,7 +191,8 @@ export const changePhotoPersonalData = (dispatcher, data) => {
   };
 
   const then = response => {
-    // dispatcher(modelActions.setUserInfo(response.data))
+    console.log('image data', response.data)
+    dispatcher(modelActions.setUserImage(response.data))
   };
 
   const error = (error) => {

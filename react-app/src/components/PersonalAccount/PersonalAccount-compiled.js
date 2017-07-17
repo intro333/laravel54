@@ -16,6 +16,10 @@ var _reactSelect = require('react-select');
 
 var _reactSelect2 = _interopRequireDefault(_reactSelect);
 
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 require('react-select/dist/react-select.css');
 
 require('../../theme/css/index.css');
@@ -34,6 +38,10 @@ var _MenuMobile = require('../Popups/MenuMobile');
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
+var _Avatar = require('../Popups/Avatar');
+
+var _Avatar2 = _interopRequireDefault(_Avatar);
+
 var _reactInputMask = require('react-input-mask');
 
 var _reactInputMask2 = _interopRequireDefault(_reactInputMask);
@@ -41,6 +49,10 @@ var _reactInputMask2 = _interopRequireDefault(_reactInputMask);
 var _helpers = require('../../helpers');
 
 var helpers = _interopRequireWildcard(_helpers);
+
+var _actions = require('../../actions');
+
+var modelActions = _interopRequireWildcard(_actions);
 
 var _api = require('../../api');
 
@@ -72,7 +84,8 @@ var PersonalAccount = function (_Component) {
       email: '',
       phone: '',
       birthdate: '',
-      gender: ''
+      gender: '',
+      avatar: true
 
     };
     return _this;
@@ -146,7 +159,7 @@ var PersonalAccount = function (_Component) {
       var length = e.target.value.trim().length;
       var date = this.state.date;
 
-      var result = helpers.checkBirthDate(value, length, date);
+      var result = helpers.inputmaskBirthDate(value, length, date);
 
       this.setState({
         birthdate: result
@@ -173,16 +186,20 @@ var PersonalAccount = function (_Component) {
   }, {
     key: 'handlerChangePhoto',
     value: function handlerChangePhoto() {
-      console.log('PHOTO');
+      this.setState({
+        avatar: false
+      });
     }
   }, {
     key: 'render',
     value: function render() {
       var _props2 = this.props,
           dispatch = _props2.dispatch,
-          session = _props2.session;
+          session = _props2.session,
+          api = _props2.api;
 
       var userInfo = session.get('userInfo');
+      var userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
       var genderOptions = [{ value: 0, label: 'Не выбран' }, { value: 1, label: 'Мужской' }, { value: 2, label: 'Женский' }];
 
       return _react2.default.createElement(
@@ -190,6 +207,9 @@ var PersonalAccount = function (_Component) {
         { className: 'container' },
         _react2.default.createElement(_Navigation2.default, null),
         _react2.default.createElement(_MenuMobile2.default, null),
+        _react2.default.createElement(_Avatar2.default, {
+          avatar: this.state.avatar
+        }),
         _react2.default.createElement(
           'div',
           { className: 'main-container' },
@@ -212,22 +232,9 @@ var PersonalAccount = function (_Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'customer-image' },
-                _react2.default.createElement('img', { src: '/images/no-image.png' })
+                _react2.default.createElement('img', { src: userImage })
               ),
-              _react2.default.createElement(
-                'div',
-                { className: 'customer-image-button' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'register-button', id: 'add-avatar' },
-                  _react2.default.createElement(
-                    'p',
-                    null,
-                    '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0442\u043E'
-                  )
-                ),
-                _react2.default.createElement('input', { name: 'personal-photo', id: 'personal-photo', required: '', type: 'file', onChange: this.handlerChangePhoto.bind(this) })
-              )
+              _react2.default.createElement('input', { value: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0442\u043E', id: 'personal-photo', className: 'register-button', onClick: this.handlerChangePhoto.bind(this) })
             ),
             _react2.default.createElement(
               'div',

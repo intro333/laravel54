@@ -49,6 +49,7 @@
     "rc-time-picker": "^2.4.1",
     "rc-trigger": "^1.11.2",
     "react": "^15.6.1",
+    "react-avatar-editor": "^10.0.1",
     "react-bootstrap": "^0.31.0",
     "react-bootstrap-date-picker": "^5.0.1",
     "react-dom": "^15.6.1",

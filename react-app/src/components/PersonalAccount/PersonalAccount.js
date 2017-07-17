@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
+import classNames from 'classnames';
 // Be sure to include styles at some point, probably during your bootstrapping
 import 'react-select/dist/react-select.css';
 import '../../theme/css/index.css';
@@ -9,8 +10,11 @@ import '../../theme/css/main.css';
 import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
+import Avatar from '../Popups/Avatar';
 import InputMask from 'react-input-mask';
 import * as helpers from '../../helpers';
+
+import * as modelActions from '../../actions';
 
 import {
   setUserInfo,
@@ -30,7 +34,8 @@ class PersonalAccount extends Component {
       email: '',
       phone: '',
       birthdate: '',
-      gender: ''
+      gender: '',
+      avatar: true
 
     }
   }
@@ -114,20 +119,16 @@ class PersonalAccount extends Component {
     updatePersonalData(dispatch, data);
   }
 
-  handlerChangePhoto(e) {
-    // console.log(e.target.value)
-    console.log("file", e.target.files[0])
-    const file = e.target.files[0];
-    var data = {
-      image: file
-    };
-    const { dispatch } = this.props;
-    changePhotoPersonalData(dispatch, data);
+  handlerChangePhoto() {
+    this.setState({
+      avatar: false
+    });
   }
 
   render() {
-    const { dispatch, session } = this.props;
+    const { dispatch, session, api } = this.props;
     const userInfo = session.get('userInfo');
+    const userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
     var genderOptions = [
       { value: 0, label: 'Не выбран' },
       { value: 1, label: 'Мужской' },
@@ -138,6 +139,9 @@ class PersonalAccount extends Component {
       <div className="container">
         <Navigation />
         <MenuMobile />
+        <Avatar
+          avatar={this.state.avatar}
+        />
         <div className="main-container">
           <h1>Редактирование личных данных</h1>
           <p className="personal-explain-text">Здесь вы можете отредактировать личные данные, изменить пароль и добавить своё фото.</p>
@@ -145,14 +149,9 @@ class PersonalAccount extends Component {
           <div className="personal-container">
             <div className="image-container">
               <div className="customer-image">
-                <img src="/images/no-image.png" />
+                <img src={userImage} />
               </div>
-              <div className="customer-image-button">
-                <div className="register-button" id="add-avatar">
-                  <p>Добавить фото</p>
-                </div>
-                <input name="personal-photo" id="personal-photo" required="" type="file" onChange={this.handlerChangePhoto.bind(this)} />
-              </div>
+                <input value="Добавить фото" id="personal-photo" className="register-button" onClick={this.handlerChangePhoto.bind(this)} />
             </div>
             <div className="customer-data-container">
               <form action="/personal" method="POST" id="personal-data-form">

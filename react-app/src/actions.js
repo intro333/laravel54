@@ -25,3 +25,7 @@ export function setCategoryName(categoryName) {
 export function setProductsForCart(productsForCart) {
   return { type: 'SET_PRODUCTS_FOR_CART', productsForCart };
 }
+
+export function setUserImage(imagePath) {
+  return { type: 'SET_USER_IMAGE', imagePath };
+}

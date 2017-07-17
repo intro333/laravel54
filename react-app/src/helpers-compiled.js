@@ -3,8 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.checkBirthDate = checkBirthDate;
-function checkBirthDate(value, length, date) {
+exports.inputmaskBirthDate = inputmaskBirthDate;
+//Маска для даты
+function inputmaskBirthDate(value, length, date) {
 
   var result = null;
 
@@ -50,10 +51,10 @@ function checkBirthDate(value, length, date) {
     } else {
       result = value.slice(0, 6) + (date.getFullYear() - 18);
     }
-    if (value.slice(0, 2) > 31) {
+    if (value.slice(0, 2) > 31 || value.slice(0, 2) == '00') {
       result = '31' + value.slice(2, 10);
     }
-    if (value.slice(3, 5) > 12) {
+    if (value.slice(3, 5) > 12 || value.slice(3, 5) == '00') {
       result = value.slice(0, 3) + '12' + value.slice(6, 10);
     }
   }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updatePersonalData = exports.setUserInfo = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -181,6 +181,30 @@ var updatePersonalData = exports.updatePersonalData = function updatePersonalDat
 
   var error = function error(_error8) {
     console.log(_error8);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Изменить фото в личном аккаунте
+var changePhotoPersonalData = exports.changePhotoPersonalData = function changePhotoPersonalData(dispatcher, data) {
+  console.log("dataOfFile", data);
+  var form = new FormData();
+  form.append('image', data['image']);
+  // form.append('name', name);
+  var params = {
+    method: 'post',
+    url: '/api/change-photo-in-personal-account',
+    data: form
+  };
+
+  var then = function then(response) {
+    console.log('image data', response.data);
+    dispatcher(modelActions.setUserImage(response.data));
+  };
+
+  var error = function error(_error9) {
+    console.log(_error9);
   };
 
   makeRequest(dispatcher, params, then, error);

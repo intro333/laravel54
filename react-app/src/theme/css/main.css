@@ -26,6 +26,9 @@ hr {
 .show-hide {
     display: none;
 }
+.show-hide-flex {
+    display: flex;
+}
 .error-border-red {
     border: 2px solid indianred !important;
 }
@@ -174,6 +177,7 @@ a {
     letter-spacing: 1px;
 }
 .register-button {
+    width: 100%;
     position: relative;
     border-radius: 2px;
     border: none !important;
@@ -189,6 +193,11 @@ a {
 }
 .register-button:active {
     background: #1b3447;
+}
+.register-button:focus {
+    color: transparent;
+    text-shadow: 0 0 0 white;
+    outline: none;
 }
 .register-button p {
     margin: 0;
@@ -569,15 +578,12 @@ th {
 
 /*mob-nav-elem---------------------------------------------------------------------------------------------------*/
 .popup_mob-nav-elem {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 25px;
+    padding: 15px;
+    margin: auto;
     position: absolute;
     width:100%;
     z-index:200000;
-    top: 52px;
+    top: 62px;
     left: 0;
 }
 .popup_mob-nav-elem_bg {
@@ -630,7 +636,37 @@ th {
     /*height:100%;*/
     cursor: pointer;
 }/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/
-
+/*avatar-elem---------------------------------------------------------------------------------------------------*/
+.popup_avatar-elem {
+    position: absolute;
+    width:100%;
+    min-height: 80%;
+    left: 0;
+    top: 26px;
+}
+.popup_avatar-elem_bg {
+    background:rgba(0,0,0,0.5);
+    position:fixed;
+    z-index:1;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    padding: 0;
+}
+#blok-avatar-elem {
+    position: relative;
+    z-index:2;
+    width: 80%;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    background:#fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+/*END avatar-elem---------------------------------------------------------------------------------------------------*/
 /*Крестик для мобильного меню*/
 .close-mobile-elem {
     position: absolute;

@@ -69,14 +69,18 @@ class CustomerConstoller extends Controller
         $uploads_dir = storage_path('app/public/customers/');
         $directory = $email;
         $image = $request->file('image');
-        $image1Name = $image->getClientOriginalName();
+        $imageName = $image->getClientOriginalName();
         $path_to_image = $uploads_dir . '/' . $directory;
 
         if (!is_dir($path_to_image)) {
             mkdir($path_to_image, 0777, true);
             //Сохраняем фото
-            $this->moveFile($image, $path_to_image, $image1Name);
+            $this->moveFile($image, $path_to_image, $imageName);
         }
+
+        $imagePath = '/storage/customers/' . $email . '/' . $imageName;
+
+        return $imagePath;
     }
 
     //Локальная функция для формирования данных для личного кабинета

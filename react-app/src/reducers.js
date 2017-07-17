@@ -13,7 +13,8 @@ export const api = (state = map({
   categories: map(),
   products: map(),
   productsForCart: map(),
-  dataOfPersonalAccount: map()
+  dataOfPersonalAccount: map(),
+  imagePath: false
 
 }), action) => {
   switch (action.type) {
@@ -30,6 +31,9 @@ export const api = (state = map({
     case 'SET_DATA_OF_PERSONAL_ACCOUNT':
       return state.set('dataOfPersonalAccount', action.dataOfPersonalAccount);
 
+    case 'SET_USER_IMAGE':
+      return state.set('imagePath', action.imagePath);
+
     default:
       return state;
   }
@@ -39,11 +43,12 @@ let defaultSessionState = map({
   userInfo: map(),
   mobNavElement: true,
   categoryId: null,
-  categoryName: null,
+  categoryName: null
 });
 
 const session = (state = defaultSessionState, action) => {
   switch (action.type) {
+
     case 'SET_USER_INFO':
       return state.set('userInfo', action.userInfo);
 
