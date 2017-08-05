@@ -55,3 +55,21 @@ export function inputmaskBirthDate(value, length, date) {
 
   return result;
 }
+
+//Маска для даты
+export function getNumberSelectOptions(start, end) {
+  const nums = [];
+  const arrayOptions = [{ value: 0, label: '' }];
+
+  for (var i = start; i < end; i++) {
+    nums.push(i)
+  }
+
+  nums.forEach(function(item, i) {
+    arrayOptions.push({
+      value: item, label: item
+    })
+  });
+
+  return arrayOptions;
+}

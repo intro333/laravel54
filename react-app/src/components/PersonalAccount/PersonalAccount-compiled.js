@@ -83,7 +83,10 @@ var PersonalAccount = function (_Component) {
       mname: '',
       email: '',
       phone: '',
-      birthdate: '',
+      birthdate: false,
+      birthdateDay: false,
+      birthdateMonth: false,
+      birthdateYear: false,
       gender: '',
       avatar: true
 
@@ -107,16 +110,56 @@ var PersonalAccount = function (_Component) {
         mname: userInfo['mname'],
         email: userInfo['email'],
         phone: userInfo['phone'],
-        gender: userInfo['gender'],
-        birthdate: userInfo['birthdate']
+        gender: userInfo['gender']
       });
+
+      if (userInfo['birthdate']) {
+        this.setState({
+          birthdate: userInfo['birthdate'],
+          birthdateDay: new Date(userInfo['birthdate']).getUTCDate(),
+          birthdateMonth: new Date(userInfo['birthdate']).getUTCMonth() + 1,
+          birthdateYear: new Date(userInfo['birthdate']).getUTCFullYear()
+        });
+      }
     }
   }, {
-    key: 'handlerChangeDate',
-    value: function handlerChangeDate(value) {
+    key: 'handlerChangeDateDay',
+    value: function handlerChangeDateDay(e) {
       this.setState({
-        birthdate: value
+        birthdateDay: e.value
       });
+
+      if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateYear) {
+        this.setState({
+          birthdate: this.state.birthdateYear + '-' + this.state.birthdateMonth + '-' + e.value
+        });
+      }
+    }
+  }, {
+    key: 'handlerChangeDateMonth',
+    value: function handlerChangeDateMonth(e) {
+      this.setState({
+        birthdateMonth: e.value
+      });
+
+      if (e.value !== '' && this.state.birthdateDay && this.state.birthdateYear) {
+        this.setState({
+          birthdate: this.state.birthdateYear + '-' + e.value + '-' + this.state.birthdateDay
+        });
+      }
+    }
+  }, {
+    key: 'handlerChangeDateYear',
+    value: function handlerChangeDateYear(e) {
+      this.setState({
+        birthdateYear: e.value
+      });
+
+      if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateDay) {
+        this.setState({
+          birthdate: e.value + '-' + this.state.birthdateMonth + '-' + this.state.birthdateDay
+        });
+      }
     }
   }, {
     key: 'handlerChangeName',
@@ -149,22 +192,21 @@ var PersonalAccount = function (_Component) {
   }, {
     key: 'handleChangeGender',
     value: function handleChangeGender(e) {
-      // console.log(e)
       this.setState({ gender: e.value });
     }
-  }, {
-    key: 'handlerChangeBirthdate',
-    value: function handlerChangeBirthdate(e) {
-      var value = e.target.value;
-      var length = e.target.value.trim().length;
-      var date = this.state.date;
 
-      var result = helpers.inputmaskBirthDate(value, length, date);
+    // handlerChangeBirthdate(e) {
+    //   var value = e.target.value;
+    //   var length = e.target.value.trim().length;
+    //   var date = this.state.date;
+    //
+    //   var result = helpers.inputmaskBirthDate(value, length, date);
+    //
+    //   this.setState({
+    //     birthdate: result
+    //   });
+    // }
 
-      this.setState({
-        birthdate: result
-      });
-    }
   }, {
     key: 'handlerUpdatePersonalData',
     value: function handlerUpdatePersonalData() {
@@ -201,6 +243,9 @@ var PersonalAccount = function (_Component) {
       var userInfo = session.get('userInfo');
       var userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
       var genderOptions = [{ value: 0, label: 'Не выбран' }, { value: 1, label: 'Мужской' }, { value: 2, label: 'Женский' }];
+      var monthOptions = [{ value: 0, label: '' }, { value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }];
+      var dayOptions = helpers.getNumberSelectOptions(1, 32);
+      var yearOptions = helpers.getNumberSelectOptions(1900, new Date().getUTCFullYear() - 10);
 
       return _react2.default.createElement(
         'div',
@@ -221,7 +266,7 @@ var PersonalAccount = function (_Component) {
           _react2.default.createElement(
             'p',
             { className: 'personal-explain-text' },
-            '\u0417\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043B\u0438\u0447\u043D\u044B\u0435 \u0434\u0430\u043D\u043D\u044B\u0435, \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C \u0438 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0432\u043E\u0451 \u0444\u043E\u0442\u043E.'
+            '\u0417\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043B\u0438\u0447\u043D\u044B\u0435 \u0434\u0430\u043D\u043D\u044B\u0435 \u0438 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0432\u043E\u0451 \u0444\u043E\u0442\u043E.'
           ),
           _react2.default.createElement(
             'div',
@@ -272,6 +317,52 @@ var PersonalAccount = function (_Component) {
                   ),
                   _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
                 ),
+                _react2.default.createElement('input', { type: 'hidden', name: 'birthdate', value: this.state.birthdate }),
+                _react2.default.createElement(
+                  'label',
+                  { className: 'personal-filds-label', htmlFor: 'birthdate' },
+                  '\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'personal-filds-label-input' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'personal-select-birdthdate-group' },
+                    _react2.default.createElement(_reactSelect2.default, {
+                      name: 'birthdate',
+                      className: 'margin-right-10',
+                      value: this.state.birthdateDay ? this.state.birthdateDay : '',
+                      options: dayOptions,
+                      onChange: this.handlerChangeDateDay.bind(this),
+                      placeholder: '',
+                      clearable: false,
+                      searchable: false,
+                      scrollMenuIntoView: false
+                    }),
+                    _react2.default.createElement(_reactSelect2.default, {
+                      className: 'margin-right-10',
+                      name: 'birthdate',
+                      value: this.state.birthdateMonth ? this.state.birthdateMonth : '',
+                      options: monthOptions,
+                      onChange: this.handlerChangeDateMonth.bind(this),
+                      placeholder: '',
+                      clearable: false,
+                      searchable: false,
+                      scrollMenuIntoView: false
+                    }),
+                    _react2.default.createElement(_reactSelect2.default, {
+                      name: 'birthdate',
+                      value: this.state.birthdateYear ? this.state.birthdateYear : '',
+                      options: yearOptions,
+                      onChange: this.handlerChangeDateYear.bind(this),
+                      placeholder: '',
+                      clearable: false,
+                      searchable: false,
+                      scrollMenuIntoView: false
+                    })
+                  )
+                ),
                 _react2.default.createElement(
                   'div',
                   { className: 'personal-filds-label-input' },
@@ -315,31 +406,6 @@ var PersonalAccount = function (_Component) {
                     onChange: this.handlerChangePhone.bind(this),
                     name: 'phone',
                     placeholder: '+7(___) ___ __ __' })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'birthdate' },
-                    '\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F'
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'input-group' },
-                    _react2.default.createElement(_reactInputMask2.default, {
-                      id: 'birthdate',
-                      value: this.state.birthdate ? this.state.birthdate : '',
-                      mask: '99 99 9999', maskChar: ' ',
-                      onChange: this.handlerChangeBirthdate.bind(this),
-                      name: 'birthdate',
-                      placeholder: '09-12-1986' }),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'input-group-addon', id: 'basic-addon1' },
-                      _react2.default.createElement('i', { className: 'glyphicon glyphicon-calendar' })
-                    )
-                  )
                 ),
                 _react2.default.createElement(
                   'p',

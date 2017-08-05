@@ -101,7 +101,7 @@ class CustomerConstoller extends Controller
             'phone'     => $details->phone,
             'address'   => $details->address,
             'gender'    => $details->gender,
-            'birthdate' => $date ? $date->format('d-m-Y') : '',
+            'birthdate' => $date ? $date->format('Y-m-d') : '',
         ];
 
         return $userInfo;

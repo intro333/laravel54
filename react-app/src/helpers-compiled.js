@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.inputmaskBirthDate = inputmaskBirthDate;
+exports.getNumberSelectOptions = getNumberSelectOptions;
 //Маска для даты
 function inputmaskBirthDate(value, length, date) {
 
@@ -60,6 +61,24 @@ function inputmaskBirthDate(value, length, date) {
   }
 
   return result;
+}
+
+//Маска для даты
+function getNumberSelectOptions(start, end) {
+  var nums = [];
+  var arrayOptions = [{ value: 0, label: '' }];
+
+  for (var i = start; i < end; i++) {
+    nums.push(i);
+  }
+
+  nums.forEach(function (item, i) {
+    arrayOptions.push({
+      value: item, label: item
+    });
+  });
+
+  return arrayOptions;
 }
 
 //# sourceMappingURL=helpers-compiled.js.map

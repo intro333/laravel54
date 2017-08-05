@@ -35,6 +35,9 @@ hr {
 .error-border-red:focus {
     border: none !important;
 }
+.margin-right-10 {
+    margin-right: 10px;
+}
 .error-border-red::-webkit-input-placeholder {color: indianred !important;}
 .error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */
 .error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */
@@ -290,6 +293,19 @@ input[type="checkbox"]:checked + label span {
     filter: alpha(opacity=0);
     opacity: 0;
     z-index:1;
+}
+.personal-select-birdthdate-group {
+    display: flex;
+    justify-content: flex-start;
+}
+.personal-select-birdthdate-group .Select:nth-child(1) {
+    width: 20%;
+}
+.personal-select-birdthdate-group .Select:nth-child(2) {
+    width: 50%;
+}
+.personal-select-birdthdate-group .Select:nth-child(3) {
+    width: 30%;
 }
 /*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/
 
@@ -692,3 +708,4 @@ th {
 .close-mobile-elem:after {
     transform: rotate(-45deg);
 }
+/*END Крестик для мобильного меню*/

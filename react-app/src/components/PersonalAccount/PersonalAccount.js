@@ -33,7 +33,10 @@ class PersonalAccount extends Component {
       mname: '',
       email: '',
       phone: '',
-      birthdate: '',
+      birthdate: false,
+      birthdateDay: false,
+      birthdateMonth: false,
+      birthdateYear: false,
       gender: '',
       avatar: true
 
@@ -52,14 +55,52 @@ class PersonalAccount extends Component {
       email: userInfo['email'],
       phone: userInfo['phone'],
       gender: userInfo['gender'],
-      birthdate: userInfo['birthdate'],
     });
+
+    if (userInfo['birthdate']) {
+      this.setState({
+        birthdate: userInfo['birthdate'],
+        birthdateDay: new Date(userInfo['birthdate']).getUTCDate(),
+        birthdateMonth: (new Date(userInfo['birthdate']).getUTCMonth() + 1),
+        birthdateYear: new Date(userInfo['birthdate']).getUTCFullYear(),
+      });
+    }
   }
 
-  handlerChangeDate(value) {
+  handlerChangeDateDay(e) {
     this.setState({
-      birthdate: value
+      birthdateDay: e.value
     });
+
+    if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateYear) {
+      this.setState({
+        birthdate: this.state.birthdateYear + '-' + this.state.birthdateMonth + '-' + e.value
+      });
+    }
+  }
+
+  handlerChangeDateMonth(e) {
+    this.setState({
+      birthdateMonth: e.value
+    });
+
+    if (e.value !== '' && this.state.birthdateDay && this.state.birthdateYear) {
+      this.setState({
+        birthdate: this.state.birthdateYear + '-' + e.value + '-' + this.state.birthdateDay
+      });
+    }
+  }
+
+  handlerChangeDateYear(e) {
+    this.setState({
+      birthdateYear: e.value
+    });
+
+    if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateDay) {
+      this.setState({
+        birthdate: e.value + '-' + this.state.birthdateMonth + '-' + this.state.birthdateDay
+      });
+    }
   }
 
   handlerChangeName(e) {
@@ -87,21 +128,20 @@ class PersonalAccount extends Component {
   }
 
   handleChangeGender(e) {
-    // console.log(e)
     this.setState({gender: e.value});
   }
 
-  handlerChangeBirthdate(e) {
-    var value = e.target.value;
-    var length = e.target.value.trim().length;
-    var date = this.state.date;
-
-    var result = helpers.inputmaskBirthDate(value, length, date);
-
-    this.setState({
-      birthdate: result
-    });
-  }
+  // handlerChangeBirthdate(e) {
+  //   var value = e.target.value;
+  //   var length = e.target.value.trim().length;
+  //   var date = this.state.date;
+  //
+  //   var result = helpers.inputmaskBirthDate(value, length, date);
+  //
+  //   this.setState({
+  //     birthdate: result
+  //   });
+  // }
 
   handlerUpdatePersonalData() {
     const { dispatch } = this.props;
@@ -126,14 +166,21 @@ class PersonalAccount extends Component {
   }
 
   render() {
+
     const { dispatch, session, api } = this.props;
     const userInfo = session.get('userInfo');
     const userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
-    var genderOptions = [
+    const genderOptions = [
       { value: 0, label: 'Не выбран' },
       { value: 1, label: 'Мужской' },
       { value: 2, label: 'Женский' }
     ];
+    const monthOptions = [
+      { value: 0, label: '' },
+      { value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }
+    ];
+    const dayOptions = helpers.getNumberSelectOptions(1, 32);
+    const yearOptions = helpers.getNumberSelectOptions(1900, (new Date().getUTCFullYear() - 10));
 
     return (
       <div className="container">
@@ -144,7 +191,7 @@ class PersonalAccount extends Component {
         />
         <div className="main-container">
           <h1>Редактирование личных данных</h1>
-          <p className="personal-explain-text">Здесь вы можете отредактировать личные данные, изменить пароль и добавить своё фото.</p>
+          <p className="personal-explain-text">Здесь вы можете отредактировать личные данные и добавить своё фото.</p>
 
           <div className="personal-container">
             <div className="image-container">
@@ -166,6 +213,52 @@ class PersonalAccount extends Component {
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="mname">Отчество</label>
                   <input id="mname" name="mname" type="text" value={this.state.mname ? this.state.mname : ''} onChange={this.handlerChangeMName.bind(this)}  />
+                </div>
+                <input type="hidden" name="birthdate" value={this.state.birthdate} />
+                <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
+                <div className="personal-filds-label-input">
+                  <div className="personal-select-birdthdate-group">
+                    <Select
+                      name="birthdate"
+                      className="margin-right-10"
+                      value={this.state.birthdateDay ? this.state.birthdateDay : ''}
+                      options={dayOptions}
+                      onChange={this.handlerChangeDateDay.bind(this)}
+                      placeholder=""
+                      clearable={false}
+                      searchable={false}
+                      scrollMenuIntoView={false}
+                    />
+                    <Select
+                      className="margin-right-10"
+                      name="birthdate"
+                      value={this.state.birthdateMonth ? this.state.birthdateMonth : ''}
+                      options={monthOptions}
+                      onChange={this.handlerChangeDateMonth.bind(this)}
+                      placeholder=""
+                      clearable={false}
+                      searchable={false}
+                      scrollMenuIntoView={false}
+                    />
+                    <Select
+                      name="birthdate"
+                      value={this.state.birthdateYear ? this.state.birthdateYear : ''}
+                      options={yearOptions}
+                      onChange={this.handlerChangeDateYear.bind(this)}
+                      placeholder=""
+                      clearable={false}
+                      searchable={false}
+                      scrollMenuIntoView={false}
+                    />
+                    {/*<InputMask*/}
+                    {/*id="birthdate"*/}
+                    {/*value={this.state.birthdate ? this.state.birthdate : ''}*/}
+                    {/*mask="99 99 9999" maskChar=" "*/}
+                    {/*onChange={this.handlerChangeBirthdate.bind(this)}*/}
+                    {/*name="birthdate"*/}
+                    {/*placeholder="09-12-1986" />*/}
+                    {/*<span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>*/}
+                  </div>
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="gender">Пол</label>
@@ -192,33 +285,6 @@ class PersonalAccount extends Component {
                     onChange={this.handlerChangePhone.bind(this)}
                     name="phone"
                     placeholder="+7(___) ___ __ __" />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
-                  <div className="input-group">
-                    <InputMask
-                      id="birthdate"
-                      value={this.state.birthdate ? this.state.birthdate : ''}
-                      mask="99 99 9999" maskChar=" "
-                      onChange={this.handlerChangeBirthdate.bind(this)}
-                      name="birthdate"
-                      placeholder="09-12-1986" />
-                    <span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>
-                  </div>
-                  {/*<div className="input-group">*/}
-                    {/*<DatePicker*/}
-                      {/*id="birthdate"*/}
-                      {/*name="birthdate"*/}
-                      {/*value={this.state.birthdate}*/}
-                      {/*onChange={this.handlerChangeDate.bind(this)}*/}
-                      {/*dateFormat="DD MM YYYY"*/}
-                      {/*calendarPlacement="top"*/}
-                      {/*placeholder="Выберите дату"*/}
-                      {/*showClearButton={false}*/}
-                    {/*/>*/}
-                    {/*<span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>*/}
-                  {/*</div>*/}
-
                 </div>
                 <p style={{color: 'red', display: 'none'}} className="error_message_for_create">Заполните все поля помеченные звёздочкой.</p>
                 <input id="personal-submit" className="register-button" value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />

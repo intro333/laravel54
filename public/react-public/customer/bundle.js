@@ -23663,7 +23663,10 @@ var PersonalAccount = function (_Component) {
       mname: '',
       email: '',
       phone: '',
-      birthdate: '',
+      birthdate: false,
+      birthdateDay: false,
+      birthdateMonth: false,
+      birthdateYear: false,
       gender: '',
       avatar: true
 
@@ -23687,16 +23690,56 @@ var PersonalAccount = function (_Component) {
         mname: userInfo['mname'],
         email: userInfo['email'],
         phone: userInfo['phone'],
-        gender: userInfo['gender'],
-        birthdate: userInfo['birthdate']
+        gender: userInfo['gender']
       });
+
+      if (userInfo['birthdate']) {
+        this.setState({
+          birthdate: userInfo['birthdate'],
+          birthdateDay: new Date(userInfo['birthdate']).getUTCDate(),
+          birthdateMonth: new Date(userInfo['birthdate']).getUTCMonth() + 1,
+          birthdateYear: new Date(userInfo['birthdate']).getUTCFullYear()
+        });
+      }
     }
   }, {
-    key: 'handlerChangeDate',
-    value: function handlerChangeDate(value) {
+    key: 'handlerChangeDateDay',
+    value: function handlerChangeDateDay(e) {
       this.setState({
-        birthdate: value
+        birthdateDay: e.value
       });
+
+      if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateYear) {
+        this.setState({
+          birthdate: this.state.birthdateYear + '-' + this.state.birthdateMonth + '-' + e.value
+        });
+      }
+    }
+  }, {
+    key: 'handlerChangeDateMonth',
+    value: function handlerChangeDateMonth(e) {
+      this.setState({
+        birthdateMonth: e.value
+      });
+
+      if (e.value !== '' && this.state.birthdateDay && this.state.birthdateYear) {
+        this.setState({
+          birthdate: this.state.birthdateYear + '-' + e.value + '-' + this.state.birthdateDay
+        });
+      }
+    }
+  }, {
+    key: 'handlerChangeDateYear',
+    value: function handlerChangeDateYear(e) {
+      this.setState({
+        birthdateYear: e.value
+      });
+
+      if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateDay) {
+        this.setState({
+          birthdate: e.value + '-' + this.state.birthdateMonth + '-' + this.state.birthdateDay
+        });
+      }
     }
   }, {
     key: 'handlerChangeName',
@@ -23729,22 +23772,21 @@ var PersonalAccount = function (_Component) {
   }, {
     key: 'handleChangeGender',
     value: function handleChangeGender(e) {
-      // console.log(e)
       this.setState({ gender: e.value });
     }
-  }, {
-    key: 'handlerChangeBirthdate',
-    value: function handlerChangeBirthdate(e) {
-      var value = e.target.value;
-      var length = e.target.value.trim().length;
-      var date = this.state.date;
 
-      var result = helpers.inputmaskBirthDate(value, length, date);
+    // handlerChangeBirthdate(e) {
+    //   var value = e.target.value;
+    //   var length = e.target.value.trim().length;
+    //   var date = this.state.date;
+    //
+    //   var result = helpers.inputmaskBirthDate(value, length, date);
+    //
+    //   this.setState({
+    //     birthdate: result
+    //   });
+    // }
 
-      this.setState({
-        birthdate: result
-      });
-    }
   }, {
     key: 'handlerUpdatePersonalData',
     value: function handlerUpdatePersonalData() {
@@ -23781,6 +23823,9 @@ var PersonalAccount = function (_Component) {
       var userInfo = session.get('userInfo');
       var userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
       var genderOptions = [{ value: 0, label: 'Не выбран' }, { value: 1, label: 'Мужской' }, { value: 2, label: 'Женский' }];
+      var monthOptions = [{ value: 0, label: '' }, { value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }];
+      var dayOptions = helpers.getNumberSelectOptions(1, 32);
+      var yearOptions = helpers.getNumberSelectOptions(1900, new Date().getUTCFullYear() - 10);
 
       return _react2.default.createElement(
         'div',
@@ -23801,7 +23846,7 @@ var PersonalAccount = function (_Component) {
           _react2.default.createElement(
             'p',
             { className: 'personal-explain-text' },
-            '\u0417\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043B\u0438\u0447\u043D\u044B\u0435 \u0434\u0430\u043D\u043D\u044B\u0435, \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C \u0438 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0432\u043E\u0451 \u0444\u043E\u0442\u043E.'
+            '\u0417\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043B\u0438\u0447\u043D\u044B\u0435 \u0434\u0430\u043D\u043D\u044B\u0435 \u0438 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0432\u043E\u0451 \u0444\u043E\u0442\u043E.'
           ),
           _react2.default.createElement(
             'div',
@@ -23852,6 +23897,52 @@ var PersonalAccount = function (_Component) {
                   ),
                   _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
                 ),
+                _react2.default.createElement('input', { type: 'hidden', name: 'birthdate', value: this.state.birthdate }),
+                _react2.default.createElement(
+                  'label',
+                  { className: 'personal-filds-label', htmlFor: 'birthdate' },
+                  '\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'personal-filds-label-input' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'personal-select-birdthdate-group' },
+                    _react2.default.createElement(_reactSelect2.default, {
+                      name: 'birthdate',
+                      className: 'margin-right-10',
+                      value: this.state.birthdateDay ? this.state.birthdateDay : '',
+                      options: dayOptions,
+                      onChange: this.handlerChangeDateDay.bind(this),
+                      placeholder: '',
+                      clearable: false,
+                      searchable: false,
+                      scrollMenuIntoView: false
+                    }),
+                    _react2.default.createElement(_reactSelect2.default, {
+                      className: 'margin-right-10',
+                      name: 'birthdate',
+                      value: this.state.birthdateMonth ? this.state.birthdateMonth : '',
+                      options: monthOptions,
+                      onChange: this.handlerChangeDateMonth.bind(this),
+                      placeholder: '',
+                      clearable: false,
+                      searchable: false,
+                      scrollMenuIntoView: false
+                    }),
+                    _react2.default.createElement(_reactSelect2.default, {
+                      name: 'birthdate',
+                      value: this.state.birthdateYear ? this.state.birthdateYear : '',
+                      options: yearOptions,
+                      onChange: this.handlerChangeDateYear.bind(this),
+                      placeholder: '',
+                      clearable: false,
+                      searchable: false,
+                      scrollMenuIntoView: false
+                    })
+                  )
+                ),
                 _react2.default.createElement(
                   'div',
                   { className: 'personal-filds-label-input' },
@@ -23895,31 +23986,6 @@ var PersonalAccount = function (_Component) {
                     onChange: this.handlerChangePhone.bind(this),
                     name: 'phone',
                     placeholder: '+7(___) ___ __ __' })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'birthdate' },
-                    '\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F'
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'input-group' },
-                    _react2.default.createElement(_reactInputMask2.default, {
-                      id: 'birthdate',
-                      value: this.state.birthdate ? this.state.birthdate : '',
-                      mask: '99 99 9999', maskChar: ' ',
-                      onChange: this.handlerChangeBirthdate.bind(this),
-                      name: 'birthdate',
-                      placeholder: '09-12-1986' }),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'input-group-addon', id: 'basic-addon1' },
-                      _react2.default.createElement('i', { className: 'glyphicon glyphicon-calendar' })
-                    )
-                  )
                 ),
                 _react2.default.createElement(
                   'p',
@@ -24557,6 +24623,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.inputmaskBirthDate = inputmaskBirthDate;
+exports.getNumberSelectOptions = getNumberSelectOptions;
 //Маска для даты
 function inputmaskBirthDate(value, length, date) {
 
@@ -24613,6 +24680,24 @@ function inputmaskBirthDate(value, length, date) {
   }
 
   return result;
+}
+
+//Маска для даты
+function getNumberSelectOptions(start, end) {
+  var nums = [];
+  var arrayOptions = [{ value: 0, label: '' }];
+
+  for (var i = start; i < end; i++) {
+    nums.push(i);
+  }
+
+  nums.forEach(function (item, i) {
+    arrayOptions.push({
+      value: item, label: item
+    });
+  });
+
+  return arrayOptions;
 }
 
 /***/ }),
@@ -24720,7 +24805,7 @@ exports = module.exports = __webpack_require__(35)(undefined);
 
 
 // module
-exports.push([module.i, "html, body {\n    background: #f8f8f8;\n    background-color: #f8f8f8;\n    width: 100%;\n    /*adaptive*/\n    min-width: 320px;\n    height: 100%;\n    /*adaptive*/ }\n.container {\n    margin-top: 25px;\n}\nh1, h2, h3 {\n    color: steelblue !important;\n    margin: 0 !important;\n}\nhr {\n    border: none;\n    color: steelblue;\n    background-color: steelblue; /* Цвет линии для браузера Firefox и Opera */\n    height: 1px; /* Толщина линии */\n}\n.navbar-default {\n    background: #fff !important;\n    background-color: #fff !important;\n}\n.show-hide {\n    display: none;\n}\n.show-hide-flex {\n    display: flex;\n}\n.error-border-red {\n    border: 2px solid indianred !important;\n}\n.error-border-red:focus {\n    border: none !important;\n}\n.error-border-red::-webkit-input-placeholder {color: indianred !important;}\n.error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */\n.error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */\n.error-border-red:-ms-input-placeholder      {color: indianred !important;}\n/*Главный контейнер*/\n.main-container {\n    /*background: #f2f2f2;*/\n    background: #fff;\n    /*min-height: 100% !important;*/\n    padding: 20px;\n    /*background-image: linear-gradient(to bottom left,#fff 0,#f4f4f4 100%);*/\n    box-shadow: inset 0 2px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.095);\n    background-repeat: repeat-x;\n    border-radius: 4px;\n\n    /*-webkit-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*-moz-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n\n}\na {\n    text-decoration: none !important;\n}\n\n/*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/\n/*Главный див для форм входа и регистрации*/\n.register-container-main {\n    display: flex;\n    justify-content: center;\n}\n.register-container {\n    display: flex;\n    width: 50%;\n    flex-direction: column;\n}\n/*Голова формы(верхняя часть формы с загруглёнными краями и синим фоном)*/\n.register-header {\n    border: 1px solid #808080;\n    background: steelblue;\n    color: white;\n    border-radius: 8px 8px 0 0;\n    padding: 10px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n/*Для тега <p>, который находится в голове формы, убираем внешние отступы*/\n.register-header p {\n    margin: 0;\n}\n.main-text {\n    font-size: 18px;\n}\n.explain-text {\n    font-size: 13px;\n}\n/*Тело формы, где поля ввода*/\n.register-filds {\n    padding: 30px 15px 0 15px;\n    display: flex;\n    flex-direction: column;\n    border: 1px solid #808080;\n    border-top: 0;\n    justify-content: flex-start;\n    background: #fff;\n}\n/*Див для меток(label) и их инпутов*/\n.register-filds-label-input {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n/*Див для чекбокса и кнопки*/\n.register-filds-elements {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: flex-start;\n    margin-bottom: 10px;\n}\n.register-filds-label {\n    width: 120px;\n    padding-right: 10px;\n    text-align: right;\n    letter-spacing: 1px;\n}\n.register-filds-elements div {\n    width: 100%;\n}\n.customer-data-container input,.register-filds input {\n    width: 100%;\n    height: 30px;\n    padding-left: 5px;\n    border-radius: 4px;\n    border: 1px solid #a2a2a2;\n    /*font-style: italic;*/\n}\n.customer-data-container input:focus, .register-filds input:focus {\n    outline: none;\n    border: 1px solid #696969;\n}\n/*Кнопки*/\n.middle-button {\n    border-radius: 2px;\n    border: 0;\n    background: #fff;\n    color: #000;\n    text-align: center;\n    padding: 2px 15px 2px 15px;\n    margin-right: 15px;\n}\n.middle-button:hover {\n    cursor: pointer;\n    background-color: #f3f3f3;\n}\n.middle-button:active {\n    padding: 1px 14px 1px 14px;\n}\n.login-button {\n    margin-right: 15px;\n    border-radius: 2px;\n    /*border: 1px solid #a2a2a2;*/\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    width: 120px !important;float: left;\n}\n.login-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.login-button:active {\n    background: #1b3447;\n}\n.login-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.register-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    letter-spacing: 1px;\n}\n.register-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.register-button:active {\n    background: #1b3447;\n}\n.register-button:focus {\n    color: transparent;\n    text-shadow: 0 0 0 white;\n    outline: none;\n}\n.register-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.recover-password {\n    vertical-align: sub;\n}\n/*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/\n\n/*CHECKBOX НАЧАЛО------------------------------------------------------------------*/\ninput[type=checkbox] + label {\n    float: left;\n}\ninput[type=\"checkbox\"] {\n    display:none;\n}\ninput[type=\"checkbox\"] + label span {\n    display:inline-block;\n    width:19px;\n    height:19px;\n    margin:-1px 4px 0 0;\n    vertical-align:middle;\n    background:url(" + __webpack_require__(90) + ") left top no-repeat;\n    cursor:pointer;\n}\ninput[type=\"checkbox\"]:checked + label span {\n    background:url(" + __webpack_require__(90) + ") -19px top no-repeat;\n}\n/*CHECKBOX КОНЕЦ------------------------------------------------------------------*/\n\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/\n.personal-container {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    width: 100%;\n}\n.image-container {\n    width: 20%;\n    margin-top: 4px;\n}\n.customer-data-container {\n    width: 40%;\n    padding: 0 20px 0 20px;\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*background: #fff;*/\n}\n.customer-image {\n    margin-bottom: 15px;\n    width: 99%;\n    /*height: 250px;*/\n    border: 1px solid #808080;\n    background: #ffffff;\n}\n.customer-image img {\n    max-width:100%;\n    max-height:100%;\n}\n/*Див для меток(label) и их инпутов*/\n.personal-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.personal-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.personal-explain-text {\n    font-size: 13px;\n    color: steelblue;\n}\n/*Инпут для вставки фото*/\n.customer-image-button {\n    position: relative;\n}\n.customer-image-button #personal-photo {\n    cursor: pointer;\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    height: 100%;\n    -moz-opacity: 0;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    z-index:1;\n}\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. НАЧАЛО---------------------------------------------------*/\n.category-head {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.bread-crumbs-circle {\n    width: 10px;\n    height: 10px;\n    background: #555;\n    -moz-border-radius: 50px;\n    -webkit-border-radius: 50px;\n    border-radius: 50px;\n    margin: 0 10px;\n}\n.bread-crumbs-link {\n    color: #555 !important;\n}\n.bread-crumbs-link:hover {\n    color: #222 !important;\n    text-decoration: underline !important;\n}\n.bread-crumbs-on-page {\n\n}\n.category-all {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n    flex-wrap: wrap;\n    margin: 5px -5px; }\n.category-item {\n    background: white;\n    border: 1px solid #d8d8d8;\n    width: calc(23% - 10px);\n    min-width: 200px;\n    margin: 10px 5px 10px; }\n.category-item:hover {\n    -webkit-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    -moz-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n}\n.category-item:hover .category-item__name {\n    color: #000;\n}\n.category-item__img {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 20px;\n}\n.category-item__img img {\n    /*width: 100%;*/\n}\n.category-item__name {\n    padding: 10px;\n    display: table-cell;\n    margin-bottom: 14px;\n    line-height: 20px;\n    vertical-align: inherit;\n    color: #444;\n    font-size: 20px;\n}\n.add-to-cart-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 10px 4px 10px;\n    font-weight: 700;\n    margin-bottom: 20px;\n}\n.add-to-cart-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.add-to-cart-button:active {\n    background: #1b3447;\n}\n.add-to-cart-button p {\n    margin: 0;\n}\n.category-item__price-measure {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 100%;\n    padding: 5px 0 15px 0;\n}\n.category-item__price-measure span {\n    font-size: 16px;\n    font-weight: bold;\n    color: #3c763d;\n}\n.category-item__price-measure select {\n    outline: none;\n    color: #fff;\n    background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);\n    background-color: #3c763d;\n    -moz-border-radius: 20px;\n    border-radius: 20px;\n    padding-left: 8px;\n    -webkit-appearance: button;\n    -webkit-user-select: none;\n    background-position: 80% center;\n    background-repeat: no-repeat;\n    border: none;\n    font-size: inherit;\n    margin-right: 4px;\n    width: 50px;\n}\n.category-item__price-measure:hover select {\n    cursor: pointer;\n}\n\n/*.Количество продуктов */\n.order-number {\n    position: relative;\n    width: 100px;\n    height: 30px;\n    margin: 0 auto;\n    border: 2px solid #3c763d;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field {\n    height: 100%;\n    padding: 0 26px;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field input {\n    font-weight: 900;\n    display: block;\n    width: 100%;\n    height: 100%;\n    color: #3c763d;\n    font-size: 13px;\n    font-family: Arial Bold, 'sans-serif';\n    text-align: center;\n    -moz-appearance: textfield;\n    /*background: #fff;*/\n    background-color: transparent;\n    outline: none;\n    border: 0;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box; }\n.order-number__field input::-webkit-inner-spin-button, .order-number__field input::-webkit-outer-spin-button {\n    margin: 0;\n    /* в каких-то браузерах присутствует отступ */\n    -webkit-appearance: none; }\n.order-number__spin.minus {\n    left: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.minus:after {\n    background-position: 0 0;\n}\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n.order-number__spin.plus {\n    right: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.plus:after {\n    background-position: 0 -10px;\n}\n\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/\n\n/*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/\n#cart-products-table {\n    margin-top: 20px;\n    border-collapse: collapse;\n    width: 100%;\n}\n.table-30-procent {\n    width: 30%;\n}\n.table-25-procent {\n    width: 25%;\n}\n.table-10-procent {\n    width: 10%;\n}\n\ntd {\n    text-align: center;\n    padding: 9px;\n    color: #555;\n    font-weight: 600;\n}\n\ntr:nth-child(even){background-color: #f2f2f2}\n\nth {\n    text-align: center;\n    padding: 18px;\n    background-color: #4CAF50;\n    color: white;\n}\n.table-40-procent-td {\n    text-align: left;\n}\n.remove-product {\n    color: indianred;\n}\n.remove-product:hover {\n    cursor: pointer;\n    color: firebrick;\n}\n.remove-product:active {\n    color: darkred;\n}\n.cart-product-image {\n    border: 1px solid #999;\n    margin-right: 30px;\n    height: 70px;\n}\n.cart-order__total {\n    color: #999;\n    font-size: 24px;\n    font-family: Arial-Bold, 'sans-serif';\n    line-height: 36px;\n    letter-spacing: 6.24px;\n    text-transform: uppercase;\n    text-align: right;\n    margin: 35px 20px; }\n.cart-order__total span {\n    color: #444; }\n/*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/\n/*\n* Меню,навигация\n*/\n.navbar-nav > li:hover {\n    background: #2e6da4;\n}\n.navbar-default .navbar-nav > li > a:hover {\n    color: #fff;\n}\n.mob-nav-text {\n    margin-left: 2px;\n}\n.mobile-nav-bar-1 {\n    display: none;\n}\n.mobile-nav-bar-2 .navbar-nav li {\n    cursor: pointer;\n}\n\n/*mob-nav-elem---------------------------------------------------------------------------------------------------*/\n.popup_mob-nav-elem {\n    padding: 15px;\n    margin: auto;\n    position: absolute;\n    width:100%;\n    z-index:200000;\n    top: 62px;\n    left: 0;\n}\n.popup_mob-nav-elem_bg {\n    background: transparent;\n    /*background:rgba(0,0,0,0.5);*/\n    position:fixed;\n    z-index:1;\n    top:75px;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n.for-mob-nav-elem {\n    position: relative;\n    margin:0;\n    width: 100%;\n}\n#blok_mob-nav-elem {\n    position: relative;\n    z-index:2;\n    width: 100%;\n    padding-top:5px;\n    padding-bottom:5px;\n    background:#fff;\n    background-color:#fff;\n    /*border:1px solid #f5f5f5;*/\n    border-bottom:1px solid #f5f5f5;\n    -webkit-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    -moz-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n}\n#blok_mob-nav-elem a div {\n    padding-left: 10px;\n    margin: 5px;\n}\n#blok_mob-nav-elem a div p {\n    margin: 0;\n    padding: 5px;\n}\n#blok_mob-nav-elem a {\n    color: #696969;\n    text-decoration: none;\n}\n#blok_mob-nav-elem a:hover {\n    color: #fff;\n}\n#blok_mob-nav-elem div:hover {\n    background: #2e6da4;\n    /*height:100%;*/\n    cursor: pointer;\n}/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/\n/*avatar-elem---------------------------------------------------------------------------------------------------*/\n.popup_avatar-elem {\n    position: absolute;\n    width:100%;\n    min-height: 80%;\n    left: 0;\n    top: 26px;\n}\n.popup_avatar-elem_bg {\n    background:rgba(0,0,0,0.5);\n    position:fixed;\n    z-index:1;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n#blok-avatar-elem {\n    position: relative;\n    z-index:2;\n    width: 80%;\n    min-height: 100%;\n    margin: 0 auto;\n    padding: 15px;\n    background:#fff;\n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    border-radius: 5px;\n}\n/*END avatar-elem---------------------------------------------------------------------------------------------------*/\n/*Крестик для мобильного меню*/\n.close-mobile-elem {\n    position: absolute;\n    left: 30px;\n    top: 12px;\n    width: 32px;\n    height: 32px;\n    opacity: 1;\n}\n.close-mobile-elem:hover {\n    opacity: 1;\n}\n.close-mobile-elem:before, .close-mobile-elem:after {\n    position: absolute;\n    content: ' ';\n    height: 25px;\n    width: 3px;\n    background-color: #696969;;\n}\n.close-mobile-elem:before {\n    transform: rotate(45deg);\n}\n.close-mobile-elem:after {\n    transform: rotate(-45deg);\n}\n", ""]);
+exports.push([module.i, "html, body {\n    background: #f8f8f8;\n    background-color: #f8f8f8;\n    width: 100%;\n    /*adaptive*/\n    min-width: 320px;\n    height: 100%;\n    /*adaptive*/ }\n.container {\n    margin-top: 25px;\n}\nh1, h2, h3 {\n    color: steelblue !important;\n    margin: 0 !important;\n}\nhr {\n    border: none;\n    color: steelblue;\n    background-color: steelblue; /* Цвет линии для браузера Firefox и Opera */\n    height: 1px; /* Толщина линии */\n}\n.navbar-default {\n    background: #fff !important;\n    background-color: #fff !important;\n}\n.show-hide {\n    display: none;\n}\n.show-hide-flex {\n    display: flex;\n}\n.error-border-red {\n    border: 2px solid indianred !important;\n}\n.error-border-red:focus {\n    border: none !important;\n}\n.margin-right-10 {\n    margin-right: 10px;\n}\n.error-border-red::-webkit-input-placeholder {color: indianred !important;}\n.error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */\n.error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */\n.error-border-red:-ms-input-placeholder      {color: indianred !important;}\n/*Главный контейнер*/\n.main-container {\n    /*background: #f2f2f2;*/\n    background: #fff;\n    /*min-height: 100% !important;*/\n    padding: 20px;\n    /*background-image: linear-gradient(to bottom left,#fff 0,#f4f4f4 100%);*/\n    box-shadow: inset 0 2px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.095);\n    background-repeat: repeat-x;\n    border-radius: 4px;\n\n    /*-webkit-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*-moz-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n\n}\na {\n    text-decoration: none !important;\n}\n\n/*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/\n/*Главный див для форм входа и регистрации*/\n.register-container-main {\n    display: flex;\n    justify-content: center;\n}\n.register-container {\n    display: flex;\n    width: 50%;\n    flex-direction: column;\n}\n/*Голова формы(верхняя часть формы с загруглёнными краями и синим фоном)*/\n.register-header {\n    border: 1px solid #808080;\n    background: steelblue;\n    color: white;\n    border-radius: 8px 8px 0 0;\n    padding: 10px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n/*Для тега <p>, который находится в голове формы, убираем внешние отступы*/\n.register-header p {\n    margin: 0;\n}\n.main-text {\n    font-size: 18px;\n}\n.explain-text {\n    font-size: 13px;\n}\n/*Тело формы, где поля ввода*/\n.register-filds {\n    padding: 30px 15px 0 15px;\n    display: flex;\n    flex-direction: column;\n    border: 1px solid #808080;\n    border-top: 0;\n    justify-content: flex-start;\n    background: #fff;\n}\n/*Див для меток(label) и их инпутов*/\n.register-filds-label-input {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n/*Див для чекбокса и кнопки*/\n.register-filds-elements {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: flex-start;\n    margin-bottom: 10px;\n}\n.register-filds-label {\n    width: 120px;\n    padding-right: 10px;\n    text-align: right;\n    letter-spacing: 1px;\n}\n.register-filds-elements div {\n    width: 100%;\n}\n.customer-data-container input,.register-filds input {\n    width: 100%;\n    height: 30px;\n    padding-left: 5px;\n    border-radius: 4px;\n    border: 1px solid #a2a2a2;\n    /*font-style: italic;*/\n}\n.customer-data-container input:focus, .register-filds input:focus {\n    outline: none;\n    border: 1px solid #696969;\n}\n/*Кнопки*/\n.middle-button {\n    border-radius: 2px;\n    border: 0;\n    background: #fff;\n    color: #000;\n    text-align: center;\n    padding: 2px 15px 2px 15px;\n    margin-right: 15px;\n}\n.middle-button:hover {\n    cursor: pointer;\n    background-color: #f3f3f3;\n}\n.middle-button:active {\n    padding: 1px 14px 1px 14px;\n}\n.login-button {\n    margin-right: 15px;\n    border-radius: 2px;\n    /*border: 1px solid #a2a2a2;*/\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    width: 120px !important;float: left;\n}\n.login-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.login-button:active {\n    background: #1b3447;\n}\n.login-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.register-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    letter-spacing: 1px;\n}\n.register-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.register-button:active {\n    background: #1b3447;\n}\n.register-button:focus {\n    color: transparent;\n    text-shadow: 0 0 0 white;\n    outline: none;\n}\n.register-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.recover-password {\n    vertical-align: sub;\n}\n/*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/\n\n/*CHECKBOX НАЧАЛО------------------------------------------------------------------*/\ninput[type=checkbox] + label {\n    float: left;\n}\ninput[type=\"checkbox\"] {\n    display:none;\n}\ninput[type=\"checkbox\"] + label span {\n    display:inline-block;\n    width:19px;\n    height:19px;\n    margin:-1px 4px 0 0;\n    vertical-align:middle;\n    background:url(" + __webpack_require__(90) + ") left top no-repeat;\n    cursor:pointer;\n}\ninput[type=\"checkbox\"]:checked + label span {\n    background:url(" + __webpack_require__(90) + ") -19px top no-repeat;\n}\n/*CHECKBOX КОНЕЦ------------------------------------------------------------------*/\n\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/\n.personal-container {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    width: 100%;\n}\n.image-container {\n    width: 20%;\n    margin-top: 4px;\n}\n.customer-data-container {\n    width: 40%;\n    padding: 0 20px 0 20px;\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*background: #fff;*/\n}\n.customer-image {\n    margin-bottom: 15px;\n    width: 99%;\n    /*height: 250px;*/\n    border: 1px solid #808080;\n    background: #ffffff;\n}\n.customer-image img {\n    max-width:100%;\n    max-height:100%;\n}\n/*Див для меток(label) и их инпутов*/\n.personal-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.personal-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.personal-explain-text {\n    font-size: 13px;\n    color: steelblue;\n}\n/*Инпут для вставки фото*/\n.customer-image-button {\n    position: relative;\n}\n.customer-image-button #personal-photo {\n    cursor: pointer;\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    height: 100%;\n    -moz-opacity: 0;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    z-index:1;\n}\n.personal-select-birdthdate-group {\n    display: flex;\n    justify-content: flex-start;\n}\n.personal-select-birdthdate-group .Select:nth-child(1) {\n    width: 20%;\n}\n.personal-select-birdthdate-group .Select:nth-child(2) {\n    width: 50%;\n}\n.personal-select-birdthdate-group .Select:nth-child(3) {\n    width: 30%;\n}\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. НАЧАЛО---------------------------------------------------*/\n.category-head {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.bread-crumbs-circle {\n    width: 10px;\n    height: 10px;\n    background: #555;\n    -moz-border-radius: 50px;\n    -webkit-border-radius: 50px;\n    border-radius: 50px;\n    margin: 0 10px;\n}\n.bread-crumbs-link {\n    color: #555 !important;\n}\n.bread-crumbs-link:hover {\n    color: #222 !important;\n    text-decoration: underline !important;\n}\n.bread-crumbs-on-page {\n\n}\n.category-all {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n    flex-wrap: wrap;\n    margin: 5px -5px; }\n.category-item {\n    background: white;\n    border: 1px solid #d8d8d8;\n    width: calc(23% - 10px);\n    min-width: 200px;\n    margin: 10px 5px 10px; }\n.category-item:hover {\n    -webkit-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    -moz-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n}\n.category-item:hover .category-item__name {\n    color: #000;\n}\n.category-item__img {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 20px;\n}\n.category-item__img img {\n    /*width: 100%;*/\n}\n.category-item__name {\n    padding: 10px;\n    display: table-cell;\n    margin-bottom: 14px;\n    line-height: 20px;\n    vertical-align: inherit;\n    color: #444;\n    font-size: 20px;\n}\n.add-to-cart-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 10px 4px 10px;\n    font-weight: 700;\n    margin-bottom: 20px;\n}\n.add-to-cart-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.add-to-cart-button:active {\n    background: #1b3447;\n}\n.add-to-cart-button p {\n    margin: 0;\n}\n.category-item__price-measure {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 100%;\n    padding: 5px 0 15px 0;\n}\n.category-item__price-measure span {\n    font-size: 16px;\n    font-weight: bold;\n    color: #3c763d;\n}\n.category-item__price-measure select {\n    outline: none;\n    color: #fff;\n    background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);\n    background-color: #3c763d;\n    -moz-border-radius: 20px;\n    border-radius: 20px;\n    padding-left: 8px;\n    -webkit-appearance: button;\n    -webkit-user-select: none;\n    background-position: 80% center;\n    background-repeat: no-repeat;\n    border: none;\n    font-size: inherit;\n    margin-right: 4px;\n    width: 50px;\n}\n.category-item__price-measure:hover select {\n    cursor: pointer;\n}\n\n/*.Количество продуктов */\n.order-number {\n    position: relative;\n    width: 100px;\n    height: 30px;\n    margin: 0 auto;\n    border: 2px solid #3c763d;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field {\n    height: 100%;\n    padding: 0 26px;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field input {\n    font-weight: 900;\n    display: block;\n    width: 100%;\n    height: 100%;\n    color: #3c763d;\n    font-size: 13px;\n    font-family: Arial Bold, 'sans-serif';\n    text-align: center;\n    -moz-appearance: textfield;\n    /*background: #fff;*/\n    background-color: transparent;\n    outline: none;\n    border: 0;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box; }\n.order-number__field input::-webkit-inner-spin-button, .order-number__field input::-webkit-outer-spin-button {\n    margin: 0;\n    /* в каких-то браузерах присутствует отступ */\n    -webkit-appearance: none; }\n.order-number__spin.minus {\n    left: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.minus:after {\n    background-position: 0 0;\n}\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n.order-number__spin.plus {\n    right: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.plus:after {\n    background-position: 0 -10px;\n}\n\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/\n\n/*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/\n#cart-products-table {\n    margin-top: 20px;\n    border-collapse: collapse;\n    width: 100%;\n}\n.table-30-procent {\n    width: 30%;\n}\n.table-25-procent {\n    width: 25%;\n}\n.table-10-procent {\n    width: 10%;\n}\n\ntd {\n    text-align: center;\n    padding: 9px;\n    color: #555;\n    font-weight: 600;\n}\n\ntr:nth-child(even){background-color: #f2f2f2}\n\nth {\n    text-align: center;\n    padding: 18px;\n    background-color: #4CAF50;\n    color: white;\n}\n.table-40-procent-td {\n    text-align: left;\n}\n.remove-product {\n    color: indianred;\n}\n.remove-product:hover {\n    cursor: pointer;\n    color: firebrick;\n}\n.remove-product:active {\n    color: darkred;\n}\n.cart-product-image {\n    border: 1px solid #999;\n    margin-right: 30px;\n    height: 70px;\n}\n.cart-order__total {\n    color: #999;\n    font-size: 24px;\n    font-family: Arial-Bold, 'sans-serif';\n    line-height: 36px;\n    letter-spacing: 6.24px;\n    text-transform: uppercase;\n    text-align: right;\n    margin: 35px 20px; }\n.cart-order__total span {\n    color: #444; }\n/*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/\n/*\n* Меню,навигация\n*/\n.navbar-nav > li:hover {\n    background: #2e6da4;\n}\n.navbar-default .navbar-nav > li > a:hover {\n    color: #fff;\n}\n.mob-nav-text {\n    margin-left: 2px;\n}\n.mobile-nav-bar-1 {\n    display: none;\n}\n.mobile-nav-bar-2 .navbar-nav li {\n    cursor: pointer;\n}\n\n/*mob-nav-elem---------------------------------------------------------------------------------------------------*/\n.popup_mob-nav-elem {\n    padding: 15px;\n    margin: auto;\n    position: absolute;\n    width:100%;\n    z-index:200000;\n    top: 62px;\n    left: 0;\n}\n.popup_mob-nav-elem_bg {\n    background: transparent;\n    /*background:rgba(0,0,0,0.5);*/\n    position:fixed;\n    z-index:1;\n    top:75px;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n.for-mob-nav-elem {\n    position: relative;\n    margin:0;\n    width: 100%;\n}\n#blok_mob-nav-elem {\n    position: relative;\n    z-index:2;\n    width: 100%;\n    padding-top:5px;\n    padding-bottom:5px;\n    background:#fff;\n    background-color:#fff;\n    /*border:1px solid #f5f5f5;*/\n    border-bottom:1px solid #f5f5f5;\n    -webkit-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    -moz-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n}\n#blok_mob-nav-elem a div {\n    padding-left: 10px;\n    margin: 5px;\n}\n#blok_mob-nav-elem a div p {\n    margin: 0;\n    padding: 5px;\n}\n#blok_mob-nav-elem a {\n    color: #696969;\n    text-decoration: none;\n}\n#blok_mob-nav-elem a:hover {\n    color: #fff;\n}\n#blok_mob-nav-elem div:hover {\n    background: #2e6da4;\n    /*height:100%;*/\n    cursor: pointer;\n}/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/\n/*avatar-elem---------------------------------------------------------------------------------------------------*/\n.popup_avatar-elem {\n    position: absolute;\n    width:100%;\n    min-height: 80%;\n    left: 0;\n    top: 26px;\n}\n.popup_avatar-elem_bg {\n    background:rgba(0,0,0,0.5);\n    position:fixed;\n    z-index:1;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n#blok-avatar-elem {\n    position: relative;\n    z-index:2;\n    width: 80%;\n    min-height: 100%;\n    margin: 0 auto;\n    padding: 15px;\n    background:#fff;\n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    border-radius: 5px;\n}\n/*END avatar-elem---------------------------------------------------------------------------------------------------*/\n/*Крестик для мобильного меню*/\n.close-mobile-elem {\n    position: absolute;\n    left: 30px;\n    top: 12px;\n    width: 32px;\n    height: 32px;\n    opacity: 1;\n}\n.close-mobile-elem:hover {\n    opacity: 1;\n}\n.close-mobile-elem:before, .close-mobile-elem:after {\n    position: absolute;\n    content: ' ';\n    height: 25px;\n    width: 3px;\n    background-color: #696969;;\n}\n.close-mobile-elem:before {\n    transform: rotate(45deg);\n}\n.close-mobile-elem:after {\n    transform: rotate(-45deg);\n}\n/*END Крестик для мобильного меню*/\n", ""]);
 
 // exports
 
