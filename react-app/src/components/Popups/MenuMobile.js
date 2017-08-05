@@ -32,7 +32,7 @@ class MenuMobile extends Component {
           <div id="blok_mob-nav-elem">
             <Link onClick={this.closeMobNavElem.bind(this)} to={'/'}><div className="on-off-nmob-nav-elem"><p>Главная</p></div></Link>
             <Link onClick={this.closeMobNavElem.bind(this)} to={'/categories'}><div className="on-off-nmob-nav-elem"><p>Продукты</p></div></Link>
-            <Link onClick={this.closeMobNavElem.bind(this)} to={'/products'}><div className="on-off-nmob-nav-elem"><p>Контакты</p></div></Link>
+            {/*<Link onClick={this.closeMobNavElem.bind(this)} to={'/products'}><div className="on-off-nmob-nav-elem"><p>Контакты</p></div></Link>*/}
           </div>
         </div>
       </div>

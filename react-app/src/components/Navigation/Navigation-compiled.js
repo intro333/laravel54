@@ -104,8 +104,16 @@ var Navigation = function (_Component) {
                   onClick: this.logOut.bind(this),
                   className: 'glyphicon glyphicon-log-out mob-menu-right'
                 }),
-                _react2.default.createElement('span', { className: 'glyphicon glyphicon-cog  mob-menu-right' }),
-                _react2.default.createElement('span', { className: 'glyphicon glyphicon-search  mob-menu-right' })
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/personal-account' },
+                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-user  mob-menu-right' })
+                ),
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/cart' },
+                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart  mob-menu-right' })
+                )
               )
             )
           )
@@ -143,15 +151,6 @@ var Navigation = function (_Component) {
                     { to: '/categories' },
                     '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
                   )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/cart' },
-                    '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
-                  )
                 )
               ),
               _react2.default.createElement(
@@ -161,27 +160,13 @@ var Navigation = function (_Component) {
                   'li',
                   null,
                   _react2.default.createElement(
-                    'a',
-                    null,
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-search' }),
+                    _reactRouterDom.Link,
+                    { to: '/cart' },
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\u041F\u043E\u0438\u0441\u043A'
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { id: 'menu-option' },
-                  _react2.default.createElement(
-                    'a',
-                    null,
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-cog' }),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'mob-nav-text' },
-                      '\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438'
+                      '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
                     )
                   )
                 ),

@@ -87,9 +87,18 @@ var Cart = function (_Component) {
           'div',
           { className: 'main-container' },
           _react2.default.createElement(
-            'h2',
-            null,
-            '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
+            'div',
+            { className: 'flex-box-between' },
+            _react2.default.createElement(
+              'h3',
+              null,
+              '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'cart-button' },
+              '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+            )
           ),
           _react2.default.createElement(
             'table',
@@ -128,8 +137,14 @@ var Cart = function (_Component) {
             _react2.default.createElement(
               'span',
               null,
-              total
+              total,
+              ' \u20BD'
             )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'cart-button' },
+            '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           )
         )
       );

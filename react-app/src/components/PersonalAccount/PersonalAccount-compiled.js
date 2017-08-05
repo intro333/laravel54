@@ -126,40 +126,25 @@ var PersonalAccount = function (_Component) {
     key: 'handlerChangeDateDay',
     value: function handlerChangeDateDay(e) {
       this.setState({
-        birthdateDay: e.value
+        birthdateDay: e.value,
+        birthdate: this.state.birthdateYear + '-' + this.state.birthdateMonth + '-' + e.value
       });
-
-      if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateYear) {
-        this.setState({
-          birthdate: this.state.birthdateYear + '-' + this.state.birthdateMonth + '-' + e.value
-        });
-      }
     }
   }, {
     key: 'handlerChangeDateMonth',
     value: function handlerChangeDateMonth(e) {
       this.setState({
-        birthdateMonth: e.value
+        birthdateMonth: e.value,
+        birthdate: this.state.birthdateYear + '-' + e.value + '-' + this.state.birthdateDay
       });
-
-      if (e.value !== '' && this.state.birthdateDay && this.state.birthdateYear) {
-        this.setState({
-          birthdate: this.state.birthdateYear + '-' + e.value + '-' + this.state.birthdateDay
-        });
-      }
     }
   }, {
     key: 'handlerChangeDateYear',
     value: function handlerChangeDateYear(e) {
       this.setState({
-        birthdateYear: e.value
+        birthdateYear: e.value,
+        birthdate: e.value + '-' + this.state.birthdateMonth + '-' + this.state.birthdateDay
       });
-
-      if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateDay) {
-        this.setState({
-          birthdate: e.value + '-' + this.state.birthdateMonth + '-' + this.state.birthdateDay
-        });
-      }
     }
   }, {
     key: 'handlerChangeName',
@@ -252,9 +237,6 @@ var PersonalAccount = function (_Component) {
         { className: 'container' },
         _react2.default.createElement(_Navigation2.default, null),
         _react2.default.createElement(_MenuMobile2.default, null),
-        _react2.default.createElement(_Avatar2.default, {
-          avatar: this.state.avatar
-        }),
         _react2.default.createElement(
           'div',
           { className: 'main-container' },
@@ -271,16 +253,6 @@ var PersonalAccount = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'personal-container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'image-container' },
-              _react2.default.createElement(
-                'div',
-                { className: 'customer-image' },
-                _react2.default.createElement('img', { src: userImage })
-              ),
-              _react2.default.createElement('input', { value: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0442\u043E', id: 'personal-photo', className: 'register-button', onClick: this.handlerChangePhoto.bind(this) })
-            ),
             _react2.default.createElement(
               'div',
               { className: 'customer-data-container' },
@@ -413,50 +385,6 @@ var PersonalAccount = function (_Component) {
                   '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
                 ),
                 _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'customer-data-container' },
-              _react2.default.createElement(
-                'form',
-                { action: '/change-password', method: 'POST', id: 'change-password-form' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'password-old' },
-                    '\u0421\u0442\u0430\u0440\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C'
-                  ),
-                  _react2.default.createElement('input', { id: 'password-old', name: 'password-old', type: 'password', placeholder: '\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C' })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'password' },
-                    '\u041D\u043E\u0432\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C'
-                  ),
-                  _react2.default.createElement('input', { id: 'password', name: 'password', type: 'password', placeholder: '\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C' })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'password-again' },
-                    '\u041F\u043E\u0432\u0442\u043E\u0440'
-                  ),
-                  _react2.default.createElement('input', { id: 'password-again', name: 'password-again', type: 'password', placeholder: '\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C' })
-                ),
-                _react2.default.createElement('input', { id: 'change-password-submit', className: 'register-button', value: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C' }),
-                _react2.default.createElement(
-                  'div',
-                  { style: { color: 'red', display: 'none', marginTop: '5px' }, className: 'error_message' },
-                  '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 3 \u043F\u043E\u043B\u044F \u0441 \u043F\u0430\u0440\u043E\u043B\u044F\u043C\u0438.'
-                )
               )
             )
           )

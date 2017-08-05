@@ -56,8 +56,10 @@ class Navigation extends Component {
                   onClick={this.logOut.bind(this)}
                   className="glyphicon glyphicon-log-out mob-menu-right"
                 ></span>
-                <span className="glyphicon glyphicon-cog  mob-menu-right"></span>
-                <span className="glyphicon glyphicon-search  mob-menu-right"></span>
+                {/*<span className="glyphicon glyphicon-cog  mob-menu-right"></span>*/}
+                {/*<span className="glyphicon glyphicon-search  mob-menu-right"></span>*/}
+                <Link to={'/personal-account'}><span className="glyphicon glyphicon-user  mob-menu-right"></span></Link>
+                <Link to={'/cart'}><span className="glyphicon glyphicon-shopping-cart  mob-menu-right"></span></Link>
               </div>
             </div>
           </nav>
@@ -76,18 +78,23 @@ class Navigation extends Component {
                   </Link>
                 </li>
                 <li><Link to={'/categories'}>Продукты</Link></li>
-                <li><Link to={'/cart'}>Корзина</Link></li>
+                {/*<li><Link to={'/cart'}>Корзина</Link></li>*/}
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                <li><a><span className="glyphicon glyphicon-search"></span>
-                  <span className="mob-nav-text">Поиск</span>
-                </a>
-                </li>
-                <li id="menu-option">
-                  <a>
-                    <span className="glyphicon glyphicon-cog"></span>
-                    <span className="mob-nav-text">Настройки</span>
-                  </a>
+                {/*<li><a><span className="glyphicon glyphicon-search"></span>*/}
+                  {/*<span className="mob-nav-text">Поиск</span>*/}
+                {/*</a>*/}
+                {/*</li>*/}
+                {/*<li id="menu-option">*/}
+                  {/*<a>*/}
+                    {/*<span className="glyphicon glyphicon-cog"></span>*/}
+                    {/*<span className="mob-nav-text">Настройки</span>*/}
+                  {/*</a>*/}
+                {/*</li>*/}
+                <li><Link to={'/cart'}>
+                  <span className="glyphicon glyphicon-shopping-cart"></span>
+                  <span className="mob-nav-text">Корзина</span>
+                </Link>
                 </li>
                 <li><Link to={'/personal-account'}>
                   <span className="glyphicon glyphicon-user"></span>

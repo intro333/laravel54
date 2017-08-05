@@ -69,38 +69,23 @@ class PersonalAccount extends Component {
 
   handlerChangeDateDay(e) {
     this.setState({
-      birthdateDay: e.value
+      birthdateDay: e.value,
+      birthdate: this.state.birthdateYear + '-' + this.state.birthdateMonth + '-' + e.value
     });
-
-    if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateYear) {
-      this.setState({
-        birthdate: this.state.birthdateYear + '-' + this.state.birthdateMonth + '-' + e.value
-      });
-    }
   }
 
   handlerChangeDateMonth(e) {
     this.setState({
-      birthdateMonth: e.value
+      birthdateMonth: e.value,
+      birthdate: this.state.birthdateYear + '-' + e.value + '-' + this.state.birthdateDay
     });
-
-    if (e.value !== '' && this.state.birthdateDay && this.state.birthdateYear) {
-      this.setState({
-        birthdate: this.state.birthdateYear + '-' + e.value + '-' + this.state.birthdateDay
-      });
-    }
   }
 
   handlerChangeDateYear(e) {
     this.setState({
-      birthdateYear: e.value
+      birthdateYear: e.value,
+      birthdate: e.value + '-' + this.state.birthdateMonth + '-' + this.state.birthdateDay
     });
-
-    if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateDay) {
-      this.setState({
-        birthdate: e.value + '-' + this.state.birthdateMonth + '-' + this.state.birthdateDay
-      });
-    }
   }
 
   handlerChangeName(e) {
@@ -186,20 +171,20 @@ class PersonalAccount extends Component {
       <div className="container">
         <Navigation />
         <MenuMobile />
-        <Avatar
-          avatar={this.state.avatar}
-        />
+        {/*<Avatar*/}
+          {/*avatar={this.state.avatar}*/}
+        {/*/>*/}
         <div className="main-container">
           <h1>Редактирование личных данных</h1>
           <p className="personal-explain-text">Здесь вы можете отредактировать личные данные и добавить своё фото.</p>
 
           <div className="personal-container">
-            <div className="image-container">
-              <div className="customer-image">
-                <img src={userImage} />
-              </div>
-                <input value="Добавить фото" id="personal-photo" className="register-button" onClick={this.handlerChangePhoto.bind(this)} />
-            </div>
+            {/*<div className="image-container">*/}
+              {/*<div className="customer-image">*/}
+                {/*<img src={userImage} />*/}
+              {/*</div>*/}
+                {/*<input value="Добавить фото" id="personal-photo" className="register-button" onClick={this.handlerChangePhoto.bind(this)} />*/}
+            {/*</div>*/}
             <div className="customer-data-container">
               <form action="/personal" method="POST" id="personal-data-form">
                 <div className="personal-filds-label-input">
@@ -288,24 +273,6 @@ class PersonalAccount extends Component {
                 </div>
                 <p style={{color: 'red', display: 'none'}} className="error_message_for_create">Заполните все поля помеченные звёздочкой.</p>
                 <input id="personal-submit" className="register-button" value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
-              </form>
-            </div>
-            <div className="customer-data-container">
-              <form action="/change-password" method="POST" id="change-password-form">
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="password-old">Старый пароль</label>
-                  <input id="password-old" name="password-old" type="password" placeholder="Введите пароль" />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="password">Новый пароль</label>
-                  <input id="password" name="password" type="password" placeholder="Введите пароль" />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="password-again">Повтор</label>
-                  <input id="password-again" name="password-again" type="password" placeholder="Повторите пароль" />
-                </div>
-                <input id="change-password-submit" className="register-button" value="Изменить пароль" />
-                  <div style={{color: 'red', display: 'none', marginTop: '5px'}} className="error_message">Заполните все 3 поля с паролями.</div>
               </form>
             </div>
           </div>

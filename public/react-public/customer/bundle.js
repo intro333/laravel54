@@ -4030,8 +4030,16 @@ var Navigation = function (_Component) {
                   onClick: this.logOut.bind(this),
                   className: 'glyphicon glyphicon-log-out mob-menu-right'
                 }),
-                _react2.default.createElement('span', { className: 'glyphicon glyphicon-cog  mob-menu-right' }),
-                _react2.default.createElement('span', { className: 'glyphicon glyphicon-search  mob-menu-right' })
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/personal-account' },
+                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-user  mob-menu-right' })
+                ),
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/cart' },
+                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart  mob-menu-right' })
+                )
               )
             )
           )
@@ -4069,15 +4077,6 @@ var Navigation = function (_Component) {
                     { to: '/categories' },
                     '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
                   )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/cart' },
-                    '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
-                  )
                 )
               ),
               _react2.default.createElement(
@@ -4087,27 +4086,13 @@ var Navigation = function (_Component) {
                   'li',
                   null,
                   _react2.default.createElement(
-                    'a',
-                    null,
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-search' }),
+                    _reactRouterDom.Link,
+                    { to: '/cart' },
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\u041F\u043E\u0438\u0441\u043A'
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { id: 'menu-option' },
-                  _react2.default.createElement(
-                    'a',
-                    null,
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-cog' }),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'mob-nav-text' },
-                      '\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438'
+                      '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
                     )
                   )
                 ),
@@ -4263,19 +4248,6 @@ var MenuMobile = function (_Component) {
                   'p',
                   null,
                   '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
-                )
-              )
-            ),
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { onClick: this.closeMobNavElem.bind(this), to: '/products' },
-              _react2.default.createElement(
-                'div',
-                { className: 'on-off-nmob-nav-elem' },
-                _react2.default.createElement(
-                  'p',
-                  null,
-                  '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B'
                 )
               )
             )
@@ -22946,9 +22918,18 @@ var Cart = function (_Component) {
           'div',
           { className: 'main-container' },
           _react2.default.createElement(
-            'h2',
-            null,
-            '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
+            'div',
+            { className: 'flex-box-between' },
+            _react2.default.createElement(
+              'h3',
+              null,
+              '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'cart-button' },
+              '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+            )
           ),
           _react2.default.createElement(
             'table',
@@ -22987,8 +22968,14 @@ var Cart = function (_Component) {
             _react2.default.createElement(
               'span',
               null,
-              total
+              total,
+              ' \u20BD'
             )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'cart-button' },
+            '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           )
         )
       );
@@ -23706,40 +23693,25 @@ var PersonalAccount = function (_Component) {
     key: 'handlerChangeDateDay',
     value: function handlerChangeDateDay(e) {
       this.setState({
-        birthdateDay: e.value
+        birthdateDay: e.value,
+        birthdate: this.state.birthdateYear + '-' + this.state.birthdateMonth + '-' + e.value
       });
-
-      if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateYear) {
-        this.setState({
-          birthdate: this.state.birthdateYear + '-' + this.state.birthdateMonth + '-' + e.value
-        });
-      }
     }
   }, {
     key: 'handlerChangeDateMonth',
     value: function handlerChangeDateMonth(e) {
       this.setState({
-        birthdateMonth: e.value
+        birthdateMonth: e.value,
+        birthdate: this.state.birthdateYear + '-' + e.value + '-' + this.state.birthdateDay
       });
-
-      if (e.value !== '' && this.state.birthdateDay && this.state.birthdateYear) {
-        this.setState({
-          birthdate: this.state.birthdateYear + '-' + e.value + '-' + this.state.birthdateDay
-        });
-      }
     }
   }, {
     key: 'handlerChangeDateYear',
     value: function handlerChangeDateYear(e) {
       this.setState({
-        birthdateYear: e.value
+        birthdateYear: e.value,
+        birthdate: e.value + '-' + this.state.birthdateMonth + '-' + this.state.birthdateDay
       });
-
-      if (e.value !== '' && this.state.birthdateMonth && this.state.birthdateDay) {
-        this.setState({
-          birthdate: e.value + '-' + this.state.birthdateMonth + '-' + this.state.birthdateDay
-        });
-      }
     }
   }, {
     key: 'handlerChangeName',
@@ -23832,9 +23804,6 @@ var PersonalAccount = function (_Component) {
         { className: 'container' },
         _react2.default.createElement(_Navigation2.default, null),
         _react2.default.createElement(_MenuMobile2.default, null),
-        _react2.default.createElement(_Avatar2.default, {
-          avatar: this.state.avatar
-        }),
         _react2.default.createElement(
           'div',
           { className: 'main-container' },
@@ -23851,16 +23820,6 @@ var PersonalAccount = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'personal-container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'image-container' },
-              _react2.default.createElement(
-                'div',
-                { className: 'customer-image' },
-                _react2.default.createElement('img', { src: userImage })
-              ),
-              _react2.default.createElement('input', { value: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0442\u043E', id: 'personal-photo', className: 'register-button', onClick: this.handlerChangePhoto.bind(this) })
-            ),
             _react2.default.createElement(
               'div',
               { className: 'customer-data-container' },
@@ -23994,50 +23953,6 @@ var PersonalAccount = function (_Component) {
                 ),
                 _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
               )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'customer-data-container' },
-              _react2.default.createElement(
-                'form',
-                { action: '/change-password', method: 'POST', id: 'change-password-form' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'password-old' },
-                    '\u0421\u0442\u0430\u0440\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C'
-                  ),
-                  _react2.default.createElement('input', { id: 'password-old', name: 'password-old', type: 'password', placeholder: '\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C' })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'password' },
-                    '\u041D\u043E\u0432\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C'
-                  ),
-                  _react2.default.createElement('input', { id: 'password', name: 'password', type: 'password', placeholder: '\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C' })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'password-again' },
-                    '\u041F\u043E\u0432\u0442\u043E\u0440'
-                  ),
-                  _react2.default.createElement('input', { id: 'password-again', name: 'password-again', type: 'password', placeholder: '\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C' })
-                ),
-                _react2.default.createElement('input', { id: 'change-password-submit', className: 'register-button', value: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C' }),
-                _react2.default.createElement(
-                  'div',
-                  { style: { color: 'red', display: 'none', marginTop: '5px' }, className: 'error_message' },
-                  '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 3 \u043F\u043E\u043B\u044F \u0441 \u043F\u0430\u0440\u043E\u043B\u044F\u043C\u0438.'
-                )
-              )
             )
           )
         )
@@ -24150,8 +24065,8 @@ var Avatar = function (_Component) {
           { id: 'blok-avatar-elem' },
           _react2.default.createElement(_reactAvatarEditor2.default, {
             image: 'https://content.foto.my.mail.ru/vk/330806631/_musicplaylistcover/i-1.jpg',
-            width: 250,
-            height: 250,
+            width: 350,
+            height: 350,
             border: 50,
             scale: 1.2
           }),
@@ -24763,7 +24678,7 @@ exports = module.exports = __webpack_require__(35)(undefined);
 
 
 // module
-exports.push([module.i, "/*****ADAPTIVE for footer******/\n@media (min-width: 1025px) {\n    .footer__social__item:hover {\n        opacity: 0.8; } }\n\n@media (max-width: 1023px) {\n    .menu--footer {\n        bottom: 70px;\n        padding: 45px 0 0 0; }\n    .b-footer .b-search {\n        bottom: 0; }\n    .footer__copy {\n        margin-left: 35px; }\n    .footer__social {\n        margin-right: 35px; } }\n\n@media (max-width: 767px) {\n    .for-main-desc-block {\n        width: 140px;\n    }\n    #blok_one {\n        padding-top: 3px;\n        padding-bottom: 3px;\n    }\n    #blok_one div {\n        font-size: 14px;\n    }\n    .b-menu {\n        height: auto;\n    }\n\n    .menu_footer {\n        flex-wrap: wrap;\n        padding: 15px 0 15px 15px;\n    }\n\n    .footer__copy {\n        padding-left: 15px;\n        margin-left: 10px !important;\n        float: none;\n    }\n\n    .footer__social {\n        float: none;\n        padding: 10px 0 10px 25px;\n    }\n\n    .menu__item_footer {\n        height: auto;\n    }\n\n    .menu__item__link_footer {\n        line-height: 1.2;\n        font-family: ToyotaText-Reg;\n        text-decoration: underline;\n        font-size: 13px;\n        padding: 5px 0;\n\n    }\n    .b-footer__bottom {\n        line-height: 1 !important;\n        height: 100px\n    }\n    #blok1 {\n        font-size: 13px;\n    }\n    #blok2 {\n        font-size: 13px;\n        padding: 7px;\n    }\n    #blok3 {\n       padding-top: 4px;\n        padding-bottom: 4px;\n    }\n    .close-button {\n        font-size: 11px;\n    }\n}\n/***** END! ADAPTIVE for footer END!******/\n/*.app-container {*/\n    /*display: block;*/\n/*}*/\n/*адаптив для меню,навигации*/\n@media (max-width: 900px) {\n    .mob-nav-text {\n        display: none;\n    }\n}\n/*@media (max-width: 1767px) {*/\n    /*#mob-www-logo {*/\n        /*display: none;*/\n    /*}*/\n/*}*/\n@media (min-width: 767px) {\n    .popup_mob-nav-elem {\n        display: none;\n    }\n}\n@media (max-width: 767px) {\n    .navbar-header {\n    display: none;\n    }\n    .mob-nav-text {\n        display: inline;\n    }\n    #mob-www-logo {\n        display: inline;\n    }\n    .mobile-nav-bar-1 {\n        display: block;\n     }\n\n    .mobile-nav-bar-2 {\n        display: none;\n    }\n    .navbar-default {\n        /*background: #DCDCDC;*/\n        border-radius: 0;\n    }\n    .mobile-nav-head {\n        height: 30px;\n        margin-top: 11px;\n        padding: 3px;\n    }\n    .mob-right {\n        float: right;\n    }\n    .mob-nav-elem {\n        display: inline-block;\n        padding: 3px;\n        transition: all .3s ease-in;\n    }\n    .mob-nav-elem:hover {\n        cursor: pointer;\n    }\n    .mob-nav-elem-active {\n        transform: rotate(180deg);\n    }\n    .mob-rectangle {\n        width: 20px;\n        height: 3px;\n        background: #696969;\n        margin-bottom: 3px;\n    }\n    .mob-menu-right {\n        margin-top: 1px;\n        font-size: 17px;\n        float: right;\n        margin-right: 20px;\n        color: #696969;\n    }\n    .mob-menu-right:hover {\n        cursor: pointer;\n        color: #333;\n    }\n    h2 {\n        font-size: 20px;\n    }\n    .lesson-theme {\n        font-size: 12px;\n    }\n    .block-console-inside {\n        font-size: 13px;\n    }\n    .descrption-text {\n        font-size: 14px;\n    }\n    .btn-lg {\n        font-size: 17px;\n    }\n    .block-lesson-child {\n        padding-top: 5px !important;\n    }\n}\n\n@media (max-width: 600px) {\n    .lesson-theme {\n        max-width: 60%;\n    }\n}\n@media (max-width: 340px) {\n    .lesson-theme {\n        max-width: 55%;\n    }\n}\n/*Блок с заданиями*/\n@media (max-width: 900px) {\n    .block-lesson {\n        width: 47%;\n    }\n}\n@media (max-width: 767px) {\n    .block-lesson {\n        width: 95%;\n        margin-left: 7px;\n        margin-top: 5px;\n    }\n    .tool-panel {\n        font-size: 18px;\n    }\n    .lesson-description:active {\n        font-size: 17px;\n    }\n}\n@media (max-width: 405px) {\n    .block-lesson {\n        width: 93%;\n        margin-left: 7px;\n    }\n    .mob-menu-right {\n        float: right;\n        margin-right: 15px;\n        color: #696969;\n    }\n    .container-for-nextOrPrev {\n        width: 100%;\n    }\n    .for-three-block {\n        margin-left: 12px;\n    }\n}\n\n/*nextOrPrev*/\n/*@media (min-width: 1200px) {*/\n    /*.container-for-nextOrPrev {*/\n        /*width: 90%;*/\n    /*}*/\n/*}*/", ""]);
+exports.push([module.i, "/*****ADAPTIVE for footer******/\n@media (min-width: 1025px) {\n    .footer__social__item:hover {\n        opacity: 0.8; } }\n\n@media (max-width: 1023px) {\n    .menu--footer {\n        bottom: 70px;\n        padding: 45px 0 0 0; }\n    .b-footer .b-search {\n        bottom: 0; }\n    .footer__copy {\n        margin-left: 35px; }\n    .footer__social {\n        margin-right: 35px; } }\n\n@media (max-width: 767px) {\n    .for-main-desc-block {\n        width: 140px;\n    }\n    #blok_one {\n        padding-top: 3px;\n        padding-bottom: 3px;\n    }\n    #blok_one div {\n        font-size: 14px;\n    }\n    .b-menu {\n        height: auto;\n    }\n\n    .menu_footer {\n        flex-wrap: wrap;\n        padding: 15px 0 15px 15px;\n    }\n\n    .footer__copy {\n        padding-left: 15px;\n        margin-left: 10px !important;\n        float: none;\n    }\n\n    .footer__social {\n        float: none;\n        padding: 10px 0 10px 25px;\n    }\n\n    .menu__item_footer {\n        height: auto;\n    }\n\n    .menu__item__link_footer {\n        line-height: 1.2;\n        font-family: ToyotaText-Reg;\n        text-decoration: underline;\n        font-size: 13px;\n        padding: 5px 0;\n\n    }\n    .b-footer__bottom {\n        line-height: 1 !important;\n        height: 100px\n    }\n    #blok1 {\n        font-size: 13px;\n    }\n    #blok2 {\n        font-size: 13px;\n        padding: 7px;\n    }\n    #blok3 {\n       padding-top: 4px;\n        padding-bottom: 4px;\n    }\n    .close-button {\n        font-size: 11px;\n    }\n}\n/***** END! ADAPTIVE for footer END!******/\n/*.app-container {*/\n    /*display: block;*/\n/*}*/\n/*адаптив для меню,навигации*/\n@media (max-width: 767px) {\n    .mob-nav-text {\n        display: none;\n    }\n}\n/*@media (max-width: 1767px) {*/\n    /*#mob-www-logo {*/\n        /*display: none;*/\n    /*}*/\n/*}*/\n@media (min-width: 767px) {\n    .popup_mob-nav-elem {\n        display: none;\n    }\n}\n@media (max-width: 767px) {\n    .navbar-header {\n    display: none;\n    }\n    .mob-nav-text {\n        display: inline;\n    }\n    #mob-www-logo {\n        display: inline;\n    }\n    .mobile-nav-bar-1 {\n        display: block;\n     }\n\n    .mobile-nav-bar-2 {\n        display: none;\n    }\n    .navbar-default {\n        /*background: #DCDCDC;*/\n        border-radius: 0;\n    }\n    .mobile-nav-head {\n        height: 30px;\n        margin-top: 11px;\n        padding: 3px;\n    }\n    .mob-right {\n        float: right;\n    }\n    .mob-nav-elem {\n        display: inline-block;\n        padding: 3px;\n        transition: all .3s ease-in;\n    }\n    .mob-nav-elem:hover {\n        cursor: pointer;\n    }\n    .mob-nav-elem-active {\n        transform: rotate(180deg);\n    }\n    .mob-rectangle {\n        width: 20px;\n        height: 3px;\n        background: #696969;\n        margin-bottom: 3px;\n    }\n    .mob-menu-right {\n        margin-top: 1px;\n        font-size: 17px;\n        float: right;\n        margin-right: 20px;\n        color: #696969;\n    }\n    .mob-menu-right:hover {\n        cursor: pointer;\n        color: #333;\n    }\n    h2 {\n        font-size: 20px;\n    }\n    .lesson-theme {\n        font-size: 12px;\n    }\n    .block-console-inside {\n        font-size: 13px;\n    }\n    .descrption-text {\n        font-size: 14px;\n    }\n    .btn-lg {\n        font-size: 17px;\n    }\n    .block-lesson-child {\n        padding-top: 5px !important;\n    }\n}\n\n@media (max-width: 600px) {\n    .lesson-theme {\n        max-width: 60%;\n    }\n}\n@media (max-width: 340px) {\n    .lesson-theme {\n        max-width: 55%;\n    }\n}\n/*Блок с заданиями*/\n@media (max-width: 900px) {\n    .block-lesson {\n        width: 47%;\n    }\n}\n@media (max-width: 767px) {\n    .block-lesson {\n        width: 95%;\n        margin-left: 7px;\n        margin-top: 5px;\n    }\n    .tool-panel {\n        font-size: 18px;\n    }\n    .lesson-description:active {\n        font-size: 17px;\n    }\n}\n@media (max-width: 405px) {\n    .block-lesson {\n        width: 93%;\n        margin-left: 7px;\n    }\n    .mob-menu-right {\n        float: right;\n        margin-right: 15px;\n        color: #696969;\n    }\n    .container-for-nextOrPrev {\n        width: 100%;\n    }\n    .for-three-block {\n        margin-left: 12px;\n    }\n}\n\n/*nextOrPrev*/\n/*@media (min-width: 1200px) {*/\n    /*.container-for-nextOrPrev {*/\n        /*width: 90%;*/\n    /*}*/\n/*}*/", ""]);
 
 // exports
 
@@ -24805,7 +24720,7 @@ exports = module.exports = __webpack_require__(35)(undefined);
 
 
 // module
-exports.push([module.i, "html, body {\n    background: #f8f8f8;\n    background-color: #f8f8f8;\n    width: 100%;\n    /*adaptive*/\n    min-width: 320px;\n    height: 100%;\n    /*adaptive*/ }\n.container {\n    margin-top: 25px;\n}\nh1, h2, h3 {\n    color: steelblue !important;\n    margin: 0 !important;\n}\nhr {\n    border: none;\n    color: steelblue;\n    background-color: steelblue; /* Цвет линии для браузера Firefox и Opera */\n    height: 1px; /* Толщина линии */\n}\n.navbar-default {\n    background: #fff !important;\n    background-color: #fff !important;\n}\n.show-hide {\n    display: none;\n}\n.show-hide-flex {\n    display: flex;\n}\n.error-border-red {\n    border: 2px solid indianred !important;\n}\n.error-border-red:focus {\n    border: none !important;\n}\n.margin-right-10 {\n    margin-right: 10px;\n}\n.error-border-red::-webkit-input-placeholder {color: indianred !important;}\n.error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */\n.error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */\n.error-border-red:-ms-input-placeholder      {color: indianred !important;}\n/*Главный контейнер*/\n.main-container {\n    /*background: #f2f2f2;*/\n    background: #fff;\n    /*min-height: 100% !important;*/\n    padding: 20px;\n    /*background-image: linear-gradient(to bottom left,#fff 0,#f4f4f4 100%);*/\n    box-shadow: inset 0 2px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.095);\n    background-repeat: repeat-x;\n    border-radius: 4px;\n\n    /*-webkit-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*-moz-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n\n}\na {\n    text-decoration: none !important;\n}\n\n/*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/\n/*Главный див для форм входа и регистрации*/\n.register-container-main {\n    display: flex;\n    justify-content: center;\n}\n.register-container {\n    display: flex;\n    width: 50%;\n    flex-direction: column;\n}\n/*Голова формы(верхняя часть формы с загруглёнными краями и синим фоном)*/\n.register-header {\n    border: 1px solid #808080;\n    background: steelblue;\n    color: white;\n    border-radius: 8px 8px 0 0;\n    padding: 10px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n/*Для тега <p>, который находится в голове формы, убираем внешние отступы*/\n.register-header p {\n    margin: 0;\n}\n.main-text {\n    font-size: 18px;\n}\n.explain-text {\n    font-size: 13px;\n}\n/*Тело формы, где поля ввода*/\n.register-filds {\n    padding: 30px 15px 0 15px;\n    display: flex;\n    flex-direction: column;\n    border: 1px solid #808080;\n    border-top: 0;\n    justify-content: flex-start;\n    background: #fff;\n}\n/*Див для меток(label) и их инпутов*/\n.register-filds-label-input {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n/*Див для чекбокса и кнопки*/\n.register-filds-elements {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: flex-start;\n    margin-bottom: 10px;\n}\n.register-filds-label {\n    width: 120px;\n    padding-right: 10px;\n    text-align: right;\n    letter-spacing: 1px;\n}\n.register-filds-elements div {\n    width: 100%;\n}\n.customer-data-container input,.register-filds input {\n    width: 100%;\n    height: 30px;\n    padding-left: 5px;\n    border-radius: 4px;\n    border: 1px solid #a2a2a2;\n    /*font-style: italic;*/\n}\n.customer-data-container input:focus, .register-filds input:focus {\n    outline: none;\n    border: 1px solid #696969;\n}\n/*Кнопки*/\n.middle-button {\n    border-radius: 2px;\n    border: 0;\n    background: #fff;\n    color: #000;\n    text-align: center;\n    padding: 2px 15px 2px 15px;\n    margin-right: 15px;\n}\n.middle-button:hover {\n    cursor: pointer;\n    background-color: #f3f3f3;\n}\n.middle-button:active {\n    padding: 1px 14px 1px 14px;\n}\n.login-button {\n    margin-right: 15px;\n    border-radius: 2px;\n    /*border: 1px solid #a2a2a2;*/\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    width: 120px !important;float: left;\n}\n.login-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.login-button:active {\n    background: #1b3447;\n}\n.login-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.register-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    letter-spacing: 1px;\n}\n.register-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.register-button:active {\n    background: #1b3447;\n}\n.register-button:focus {\n    color: transparent;\n    text-shadow: 0 0 0 white;\n    outline: none;\n}\n.register-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.recover-password {\n    vertical-align: sub;\n}\n/*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/\n\n/*CHECKBOX НАЧАЛО------------------------------------------------------------------*/\ninput[type=checkbox] + label {\n    float: left;\n}\ninput[type=\"checkbox\"] {\n    display:none;\n}\ninput[type=\"checkbox\"] + label span {\n    display:inline-block;\n    width:19px;\n    height:19px;\n    margin:-1px 4px 0 0;\n    vertical-align:middle;\n    background:url(" + __webpack_require__(90) + ") left top no-repeat;\n    cursor:pointer;\n}\ninput[type=\"checkbox\"]:checked + label span {\n    background:url(" + __webpack_require__(90) + ") -19px top no-repeat;\n}\n/*CHECKBOX КОНЕЦ------------------------------------------------------------------*/\n\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/\n.personal-container {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    width: 100%;\n}\n.image-container {\n    width: 20%;\n    margin-top: 4px;\n}\n.customer-data-container {\n    width: 40%;\n    padding: 0 20px 0 20px;\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*background: #fff;*/\n}\n.customer-image {\n    margin-bottom: 15px;\n    width: 99%;\n    /*height: 250px;*/\n    border: 1px solid #808080;\n    background: #ffffff;\n}\n.customer-image img {\n    max-width:100%;\n    max-height:100%;\n}\n/*Див для меток(label) и их инпутов*/\n.personal-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.personal-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.personal-explain-text {\n    font-size: 13px;\n    color: steelblue;\n}\n/*Инпут для вставки фото*/\n.customer-image-button {\n    position: relative;\n}\n.customer-image-button #personal-photo {\n    cursor: pointer;\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    height: 100%;\n    -moz-opacity: 0;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    z-index:1;\n}\n.personal-select-birdthdate-group {\n    display: flex;\n    justify-content: flex-start;\n}\n.personal-select-birdthdate-group .Select:nth-child(1) {\n    width: 20%;\n}\n.personal-select-birdthdate-group .Select:nth-child(2) {\n    width: 50%;\n}\n.personal-select-birdthdate-group .Select:nth-child(3) {\n    width: 30%;\n}\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. НАЧАЛО---------------------------------------------------*/\n.category-head {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.bread-crumbs-circle {\n    width: 10px;\n    height: 10px;\n    background: #555;\n    -moz-border-radius: 50px;\n    -webkit-border-radius: 50px;\n    border-radius: 50px;\n    margin: 0 10px;\n}\n.bread-crumbs-link {\n    color: #555 !important;\n}\n.bread-crumbs-link:hover {\n    color: #222 !important;\n    text-decoration: underline !important;\n}\n.bread-crumbs-on-page {\n\n}\n.category-all {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n    flex-wrap: wrap;\n    margin: 5px -5px; }\n.category-item {\n    background: white;\n    border: 1px solid #d8d8d8;\n    width: calc(23% - 10px);\n    min-width: 200px;\n    margin: 10px 5px 10px; }\n.category-item:hover {\n    -webkit-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    -moz-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n}\n.category-item:hover .category-item__name {\n    color: #000;\n}\n.category-item__img {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 20px;\n}\n.category-item__img img {\n    /*width: 100%;*/\n}\n.category-item__name {\n    padding: 10px;\n    display: table-cell;\n    margin-bottom: 14px;\n    line-height: 20px;\n    vertical-align: inherit;\n    color: #444;\n    font-size: 20px;\n}\n.add-to-cart-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 10px 4px 10px;\n    font-weight: 700;\n    margin-bottom: 20px;\n}\n.add-to-cart-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.add-to-cart-button:active {\n    background: #1b3447;\n}\n.add-to-cart-button p {\n    margin: 0;\n}\n.category-item__price-measure {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 100%;\n    padding: 5px 0 15px 0;\n}\n.category-item__price-measure span {\n    font-size: 16px;\n    font-weight: bold;\n    color: #3c763d;\n}\n.category-item__price-measure select {\n    outline: none;\n    color: #fff;\n    background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);\n    background-color: #3c763d;\n    -moz-border-radius: 20px;\n    border-radius: 20px;\n    padding-left: 8px;\n    -webkit-appearance: button;\n    -webkit-user-select: none;\n    background-position: 80% center;\n    background-repeat: no-repeat;\n    border: none;\n    font-size: inherit;\n    margin-right: 4px;\n    width: 50px;\n}\n.category-item__price-measure:hover select {\n    cursor: pointer;\n}\n\n/*.Количество продуктов */\n.order-number {\n    position: relative;\n    width: 100px;\n    height: 30px;\n    margin: 0 auto;\n    border: 2px solid #3c763d;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field {\n    height: 100%;\n    padding: 0 26px;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field input {\n    font-weight: 900;\n    display: block;\n    width: 100%;\n    height: 100%;\n    color: #3c763d;\n    font-size: 13px;\n    font-family: Arial Bold, 'sans-serif';\n    text-align: center;\n    -moz-appearance: textfield;\n    /*background: #fff;*/\n    background-color: transparent;\n    outline: none;\n    border: 0;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box; }\n.order-number__field input::-webkit-inner-spin-button, .order-number__field input::-webkit-outer-spin-button {\n    margin: 0;\n    /* в каких-то браузерах присутствует отступ */\n    -webkit-appearance: none; }\n.order-number__spin.minus {\n    left: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.minus:after {\n    background-position: 0 0;\n}\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n.order-number__spin.plus {\n    right: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.plus:after {\n    background-position: 0 -10px;\n}\n\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/\n\n/*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/\n#cart-products-table {\n    margin-top: 20px;\n    border-collapse: collapse;\n    width: 100%;\n}\n.table-30-procent {\n    width: 30%;\n}\n.table-25-procent {\n    width: 25%;\n}\n.table-10-procent {\n    width: 10%;\n}\n\ntd {\n    text-align: center;\n    padding: 9px;\n    color: #555;\n    font-weight: 600;\n}\n\ntr:nth-child(even){background-color: #f2f2f2}\n\nth {\n    text-align: center;\n    padding: 18px;\n    background-color: #4CAF50;\n    color: white;\n}\n.table-40-procent-td {\n    text-align: left;\n}\n.remove-product {\n    color: indianred;\n}\n.remove-product:hover {\n    cursor: pointer;\n    color: firebrick;\n}\n.remove-product:active {\n    color: darkred;\n}\n.cart-product-image {\n    border: 1px solid #999;\n    margin-right: 30px;\n    height: 70px;\n}\n.cart-order__total {\n    color: #999;\n    font-size: 24px;\n    font-family: Arial-Bold, 'sans-serif';\n    line-height: 36px;\n    letter-spacing: 6.24px;\n    text-transform: uppercase;\n    text-align: right;\n    margin: 35px 20px; }\n.cart-order__total span {\n    color: #444; }\n/*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/\n/*\n* Меню,навигация\n*/\n.navbar-nav > li:hover {\n    background: #2e6da4;\n}\n.navbar-default .navbar-nav > li > a:hover {\n    color: #fff;\n}\n.mob-nav-text {\n    margin-left: 2px;\n}\n.mobile-nav-bar-1 {\n    display: none;\n}\n.mobile-nav-bar-2 .navbar-nav li {\n    cursor: pointer;\n}\n\n/*mob-nav-elem---------------------------------------------------------------------------------------------------*/\n.popup_mob-nav-elem {\n    padding: 15px;\n    margin: auto;\n    position: absolute;\n    width:100%;\n    z-index:200000;\n    top: 62px;\n    left: 0;\n}\n.popup_mob-nav-elem_bg {\n    background: transparent;\n    /*background:rgba(0,0,0,0.5);*/\n    position:fixed;\n    z-index:1;\n    top:75px;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n.for-mob-nav-elem {\n    position: relative;\n    margin:0;\n    width: 100%;\n}\n#blok_mob-nav-elem {\n    position: relative;\n    z-index:2;\n    width: 100%;\n    padding-top:5px;\n    padding-bottom:5px;\n    background:#fff;\n    background-color:#fff;\n    /*border:1px solid #f5f5f5;*/\n    border-bottom:1px solid #f5f5f5;\n    -webkit-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    -moz-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n}\n#blok_mob-nav-elem a div {\n    padding-left: 10px;\n    margin: 5px;\n}\n#blok_mob-nav-elem a div p {\n    margin: 0;\n    padding: 5px;\n}\n#blok_mob-nav-elem a {\n    color: #696969;\n    text-decoration: none;\n}\n#blok_mob-nav-elem a:hover {\n    color: #fff;\n}\n#blok_mob-nav-elem div:hover {\n    background: #2e6da4;\n    /*height:100%;*/\n    cursor: pointer;\n}/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/\n/*avatar-elem---------------------------------------------------------------------------------------------------*/\n.popup_avatar-elem {\n    position: absolute;\n    width:100%;\n    min-height: 80%;\n    left: 0;\n    top: 26px;\n}\n.popup_avatar-elem_bg {\n    background:rgba(0,0,0,0.5);\n    position:fixed;\n    z-index:1;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n#blok-avatar-elem {\n    position: relative;\n    z-index:2;\n    width: 80%;\n    min-height: 100%;\n    margin: 0 auto;\n    padding: 15px;\n    background:#fff;\n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    border-radius: 5px;\n}\n/*END avatar-elem---------------------------------------------------------------------------------------------------*/\n/*Крестик для мобильного меню*/\n.close-mobile-elem {\n    position: absolute;\n    left: 30px;\n    top: 12px;\n    width: 32px;\n    height: 32px;\n    opacity: 1;\n}\n.close-mobile-elem:hover {\n    opacity: 1;\n}\n.close-mobile-elem:before, .close-mobile-elem:after {\n    position: absolute;\n    content: ' ';\n    height: 25px;\n    width: 3px;\n    background-color: #696969;;\n}\n.close-mobile-elem:before {\n    transform: rotate(45deg);\n}\n.close-mobile-elem:after {\n    transform: rotate(-45deg);\n}\n/*END Крестик для мобильного меню*/\n", ""]);
+exports.push([module.i, "html, body {\n    background: #f8f8f8;\n    width: 100%;\n    /*adaptive*/\n    min-width: 320px;\n    height: 100%;\n    /*adaptive*/ }\n.container {\n    margin-top: 25px;\n}\nh1, h2, h3 {\n    color: steelblue !important;\n    margin: 0 !important;\n}\nhr {\n    border: none;\n    color: steelblue;\n    background-color: steelblue; /* Цвет линии для браузера Firefox и Opera */\n    height: 1px; /* Толщина линии */\n}\n.navbar-default {\n    background: #fff !important;\n    background-color: #fff !important;\n}\n.show-hide {\n    display: none;\n}\n.show-hide-flex {\n    display: flex;\n}\n.error-border-red {\n    border: 2px solid indianred !important;\n}\n.error-border-red:focus {\n    border: none !important;\n}\n.margin-right-10 {\n    margin-right: 10px;\n}\n.flex-box-between {\n    display: flex;\n    justify-content: space-between;\n}\n.error-border-red::-webkit-input-placeholder {color: indianred !important;}\n.error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */\n.error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */\n.error-border-red:-ms-input-placeholder      {color: indianred !important;}\n/*Главный контейнер*/\n.main-container {\n    /*background: #f2f2f2;*/\n    background: #fff;\n    /*min-height: 100% !important;*/\n    padding: 20px;\n    /*background-image: linear-gradient(to bottom left,#fff 0,#f4f4f4 100%);*/\n    box-shadow: inset 0 2px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.095);\n    background-repeat: repeat-x;\n    border-radius: 4px;\n    margin-bottom: 20px;\n    /*-webkit-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*-moz-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n\n}\na {\n    text-decoration: none !important;\n}\n\n/*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/\n/*Главный див для форм входа и регистрации*/\n.register-container-main {\n    display: flex;\n    justify-content: center;\n}\n.register-container {\n    display: flex;\n    width: 50%;\n    flex-direction: column;\n}\n/*Голова формы(верхняя часть формы с загруглёнными краями и синим фоном)*/\n.register-header {\n    border: 1px solid #808080;\n    background: steelblue;\n    color: white;\n    border-radius: 8px 8px 0 0;\n    padding: 10px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n/*Для тега <p>, который находится в голове формы, убираем внешние отступы*/\n.register-header p {\n    margin: 0;\n}\n.main-text {\n    font-size: 18px;\n}\n.explain-text {\n    font-size: 13px;\n}\n/*Тело формы, где поля ввода*/\n.register-filds {\n    padding: 30px 15px 0 15px;\n    display: flex;\n    flex-direction: column;\n    border: 1px solid #808080;\n    border-top: 0;\n    justify-content: flex-start;\n    background: #fff;\n}\n/*Див для меток(label) и их инпутов*/\n.register-filds-label-input {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n/*Див для чекбокса и кнопки*/\n.register-filds-elements {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: flex-start;\n    margin-bottom: 10px;\n}\n.register-filds-label {\n    width: 120px;\n    padding-right: 10px;\n    text-align: right;\n    letter-spacing: 1px;\n}\n.register-filds-elements div {\n    width: 100%;\n}\n.customer-data-container input,.register-filds input {\n    width: 100%;\n    height: 30px;\n    padding-left: 5px;\n    border-radius: 4px;\n    border: 1px solid #a2a2a2;\n    /*font-style: italic;*/\n}\n.customer-data-container input:focus, .register-filds input:focus {\n    outline: none;\n    border: 1px solid #696969;\n}\n/*Кнопки*/\n.middle-button {\n    border-radius: 2px;\n    border: 0;\n    background: #fff;\n    color: #000;\n    text-align: center;\n    padding: 2px 15px 2px 15px;\n    margin-right: 15px;\n}\n.middle-button:hover {\n    cursor: pointer;\n    background-color: #f3f3f3;\n}\n.middle-button:active {\n    padding: 1px 14px 1px 14px;\n}\n.login-button {\n    margin-right: 15px;\n    border-radius: 2px;\n    /*border: 1px solid #a2a2a2;*/\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    width: 120px !important;float: left;\n}\n.login-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.login-button:active {\n    background: #1b3447;\n}\n.login-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.register-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    letter-spacing: 1px;\n}\n.register-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.register-button:active {\n    background: #1b3447;\n}\n.register-button:focus {\n    color: transparent;\n    text-shadow: 0 0 0 white;\n    outline: none;\n}\n.register-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.recover-password {\n    vertical-align: sub;\n}\n.cart-button {\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid #4CAF50;\n    background: #4CAF50;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    font-weight: bold;\n}\n.cart-button:hover {\n    cursor: pointer;\n    background: #fff;\n    color: #4CAF50;\n}\n.cart-button:active {\n    background: #368e39;\n    color: #fff\n}\n/*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/\n\n/*CHECKBOX НАЧАЛО------------------------------------------------------------------*/\ninput[type=checkbox] + label {\n    float: left;\n}\ninput[type=\"checkbox\"] {\n    display:none;\n}\ninput[type=\"checkbox\"] + label span {\n    display:inline-block;\n    width:19px;\n    height:19px;\n    margin:-1px 4px 0 0;\n    vertical-align:middle;\n    background:url(" + __webpack_require__(90) + ") left top no-repeat;\n    cursor:pointer;\n}\ninput[type=\"checkbox\"]:checked + label span {\n    background:url(" + __webpack_require__(90) + ") -19px top no-repeat;\n}\n/*CHECKBOX КОНЕЦ------------------------------------------------------------------*/\n\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/\n.personal-container {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    width: 100%;\n}\n.image-container {\n    width: 20%;\n    margin-top: 4px;\n}\n.customer-data-container {\n    width: 40%;\n    /*padding: 0 20px 0 20px;*/\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*background: #fff;*/\n}\n.customer-image {\n    margin-bottom: 15px;\n    width: 99%;\n    /*height: 250px;*/\n    border: 1px solid #808080;\n    background: #ffffff;\n}\n.customer-image img {\n    max-width:100%;\n    max-height:100%;\n}\n/*Див для меток(label) и их инпутов*/\n.personal-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.personal-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.personal-explain-text {\n    font-size: 13px;\n    color: steelblue;\n}\n/*Инпут для вставки фото*/\n.customer-image-button {\n    position: relative;\n}\n.customer-image-button #personal-photo {\n    cursor: pointer;\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    height: 100%;\n    -moz-opacity: 0;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    z-index:1;\n}\n.personal-select-birdthdate-group {\n    display: flex;\n    justify-content: flex-start;\n}\n.personal-select-birdthdate-group .Select:nth-child(1) {\n    width: 20%;\n}\n.personal-select-birdthdate-group .Select:nth-child(2) {\n    width: 50%;\n}\n.personal-select-birdthdate-group .Select:nth-child(3) {\n    width: 30%;\n}\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. НАЧАЛО---------------------------------------------------*/\n.category-head {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.bread-crumbs-circle {\n    width: 10px;\n    height: 10px;\n    background: #555;\n    -moz-border-radius: 50px;\n    -webkit-border-radius: 50px;\n    border-radius: 50px;\n    margin: 0 10px;\n}\n.bread-crumbs-link {\n    color: #555 !important;\n}\n.bread-crumbs-link:hover {\n    color: #222 !important;\n    text-decoration: underline !important;\n}\n.bread-crumbs-on-page {\n\n}\n.category-all {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n    flex-wrap: wrap;\n    margin: 5px -5px; }\n.category-item {\n    background: white;\n    border: 1px solid #d8d8d8;\n    width: calc(23% - 10px);\n    min-width: 200px;\n    margin: 10px 5px 10px; }\n.category-item:hover {\n    -webkit-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    -moz-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n}\n.category-item:hover .category-item__name {\n    color: #000;\n}\n.category-item__img {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 20px;\n}\n.category-item__img img {\n    /*width: 100%;*/\n}\n.category-item__name {\n    padding: 10px;\n    display: table-cell;\n    margin-bottom: 14px;\n    line-height: 20px;\n    vertical-align: inherit;\n    color: #444;\n    font-size: 20px;\n}\n.add-to-cart-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 10px 4px 10px;\n    font-weight: 700;\n    margin-bottom: 20px;\n}\n.add-to-cart-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.add-to-cart-button:active {\n    background: #1b3447;\n}\n.add-to-cart-button p {\n    margin: 0;\n}\n.category-item__price-measure {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 100%;\n    padding: 5px 0 15px 0;\n}\n.category-item__price-measure span {\n    font-size: 16px;\n    font-weight: bold;\n    color: #3c763d;\n}\n.category-item__price-measure select {\n    outline: none;\n    color: #fff;\n    background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);\n    background-color: #3c763d;\n    -moz-border-radius: 20px;\n    border-radius: 20px;\n    padding-left: 8px;\n    -webkit-appearance: button;\n    -webkit-user-select: none;\n    background-position: 80% center;\n    background-repeat: no-repeat;\n    border: none;\n    font-size: inherit;\n    margin-right: 4px;\n    width: 50px;\n}\n.category-item__price-measure:hover select {\n    cursor: pointer;\n}\n\n/*.Количество продуктов */\n.order-number {\n    position: relative;\n    width: 100px;\n    height: 30px;\n    margin: 0 auto;\n    border: 2px solid #3c763d;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field {\n    height: 100%;\n    padding: 0 26px;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field input {\n    font-weight: 900;\n    display: block;\n    width: 100%;\n    height: 100%;\n    color: #3c763d;\n    font-size: 13px;\n    font-family: Arial Bold, 'sans-serif';\n    text-align: center;\n    -moz-appearance: textfield;\n    /*background: #fff;*/\n    background-color: transparent;\n    outline: none;\n    border: 0;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box; }\n.order-number__field input::-webkit-inner-spin-button, .order-number__field input::-webkit-outer-spin-button {\n    margin: 0;\n    /* в каких-то браузерах присутствует отступ */\n    -webkit-appearance: none; }\n.order-number__spin.minus {\n    left: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.minus:after {\n    background-position: 0 0;\n}\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n.order-number__spin.plus {\n    right: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.plus:after {\n    background-position: 0 -10px;\n}\n\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/\n\n/*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/\n#cart-products-table {\n    margin-top: 20px;\n    border-collapse: collapse;\n    width: 100%;\n}\n.table-30-procent {\n    width: 30%;\n}\n.table-25-procent {\n    width: 25%;\n}\n.table-10-procent {\n    width: 10%;\n}\n\ntd {\n    text-align: center;\n    padding: 9px;\n    color: #555;\n    font-weight: 600;\n}\n\ntr:nth-child(even){background-color: #f2f2f2}\n\nth {\n    text-align: center;\n    padding: 18px;\n    background-color: #4CAF50;\n    color: white;\n}\n.table-40-procent-td {\n    text-align: left;\n}\n.remove-product {\n    color: indianred;\n}\n.remove-product:hover {\n    cursor: pointer;\n    color: firebrick;\n}\n.remove-product:active {\n    color: darkred;\n}\n.cart-product-image {\n    border: 1px solid #999;\n    margin-right: 30px;\n    height: 70px;\n}\n.cart-order__total {\n    color: #999;\n    font-size: 24px;\n    font-family: Arial-Bold, 'sans-serif';\n    line-height: 36px;\n    letter-spacing: 6.24px;\n    text-transform: uppercase;\n    text-align: right;\n    margin: 35px 20px; }\n.cart-order__total span {\n    color: #444; }\n/*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/\n/*\n* Меню,навигация\n*/\n.navbar-nav > li:hover {\n    background: #2e6da4;\n}\n.navbar-default .navbar-nav > li > a:hover {\n    color: #fff;\n}\n.mob-nav-text {\n    margin-left: 2px;\n}\n.mobile-nav-bar-1 {\n    display: none;\n}\n.mobile-nav-bar-2 .navbar-nav li {\n    cursor: pointer;\n}\n\n/*mob-nav-elem---------------------------------------------------------------------------------------------------*/\n.popup_mob-nav-elem {\n    padding: 15px;\n    margin: auto;\n    position: absolute;\n    width:100%;\n    z-index:200000;\n    top: 62px;\n    left: 0;\n}\n.popup_mob-nav-elem_bg {\n    background: transparent;\n    /*background:rgba(0,0,0,0.5);*/\n    position:fixed;\n    z-index:1;\n    top:75px;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n.for-mob-nav-elem {\n    position: relative;\n    margin:0;\n    width: 100%;\n}\n#blok_mob-nav-elem {\n    position: relative;\n    z-index:2;\n    width: 100%;\n    padding-top:5px;\n    padding-bottom:5px;\n    background:#fff;\n    background-color:#fff;\n    /*border:1px solid #f5f5f5;*/\n    border-bottom:1px solid #f5f5f5;\n    -webkit-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    -moz-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n}\n#blok_mob-nav-elem a div {\n    padding-left: 10px;\n    margin: 5px;\n}\n#blok_mob-nav-elem a div p {\n    margin: 0;\n    padding: 5px;\n}\n#blok_mob-nav-elem a {\n    color: #696969;\n    text-decoration: none;\n}\n#blok_mob-nav-elem a:hover {\n    color: #fff;\n}\n#blok_mob-nav-elem div:hover {\n    background: #2e6da4;\n    /*height:100%;*/\n    cursor: pointer;\n}/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/\n/*avatar-elem---------------------------------------------------------------------------------------------------*/\n.popup_avatar-elem {\n    position: absolute;\n    width:100%;\n    min-height: 80%;\n    left: 0;\n    top: 26px;\n}\n.popup_avatar-elem_bg {\n    background:rgba(0,0,0,0.5);\n    position:fixed;\n    z-index:1;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n#blok-avatar-elem {\n    position: relative;\n    z-index:2;\n    width: 80%;\n    min-height: 100%;\n    margin: 0 auto;\n    padding: 15px;\n    background:#fff;\n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    border-radius: 5px;\n}\n/*END avatar-elem---------------------------------------------------------------------------------------------------*/\n/*Крестик для мобильного меню*/\n.close-mobile-elem {\n    position: absolute;\n    left: 30px;\n    top: 12px;\n    width: 32px;\n    height: 32px;\n    opacity: 1;\n}\n.close-mobile-elem:hover {\n    opacity: 1;\n}\n.close-mobile-elem:before, .close-mobile-elem:after {\n    position: absolute;\n    content: ' ';\n    height: 25px;\n    width: 3px;\n    background-color: #696969;;\n}\n.close-mobile-elem:before {\n    transform: rotate(45deg);\n}\n.close-mobile-elem:after {\n    transform: rotate(-45deg);\n}\n/*END Крестик для мобильного меню*/\n", ""]);
 
 // exports
 

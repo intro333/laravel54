@@ -100,19 +100,6 @@ var MenuMobile = function (_Component) {
                   '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
                 )
               )
-            ),
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { onClick: this.closeMobNavElem.bind(this), to: '/products' },
-              _react2.default.createElement(
-                'div',
-                { className: 'on-off-nmob-nav-elem' },
-                _react2.default.createElement(
-                  'p',
-                  null,
-                  '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B'
-                )
-              )
             )
           )
         )

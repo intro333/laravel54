@@ -44,7 +44,10 @@ class Cart extends Component {
         <Navigation />
         <MenuMobile />
         <div className="main-container">
-          <h2>Корзина</h2>
+          <div className="flex-box-between">
+            <h3>Корзина</h3>
+            <div className="cart-button">Отправить заказ</div>
+          </div>
 
           <table id="cart-products-table">
             <tr>
@@ -56,7 +59,8 @@ class Cart extends Component {
             </tr>
             { productsTd }
           </table>
-          <div className="cart-order__total">Итог:&nbsp;<span>{ total }</span></div>
+          <div className="cart-order__total">Итог:&nbsp;<span>{ total } ₽</span></div>
+          <div className="cart-button">Отправить заказ</div>
         </div>
       </div>
     );

@@ -87,8 +87,8 @@ var Avatar = function (_Component) {
           { id: 'blok-avatar-elem' },
           _react2.default.createElement(_reactAvatarEditor2.default, {
             image: 'https://content.foto.my.mail.ru/vk/330806631/_musicplaylistcover/i-1.jpg',
-            width: 250,
-            height: 250,
+            width: 350,
+            height: 350,
             border: 50,
             scale: 1.2
           }),
