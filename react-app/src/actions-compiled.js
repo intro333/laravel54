@@ -11,6 +11,7 @@ exports.setCategoryId = setCategoryId;
 exports.setCategoryName = setCategoryName;
 exports.setProductsForCart = setProductsForCart;
 exports.setUserImage = setUserImage;
+exports.setProductCounts = setProductCounts;
 function setUserInfo(userInfo) {
   return { type: 'SET_USER_INFO', userInfo: userInfo };
 }
@@ -41,6 +42,10 @@ function setProductsForCart(productsForCart) {
 
 function setUserImage(imagePath) {
   return { type: 'SET_USER_IMAGE', imagePath: imagePath };
+}
+
+function setProductCounts(productCounts) {
+  return { type: 'SET_PRODUCT_COUNTS', productCounts: productCounts };
 }
 
 //# sourceMappingURL=actions-compiled.js.map

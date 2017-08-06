@@ -7,7 +7,8 @@ import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import {
   addProductToCart,
-  deleteProductFromCart
+  deleteProductFromCart,
+  getProductCounts,
 } from '../../api';
 // import * as modelActions from './actions';
 
@@ -106,6 +107,7 @@ class CartItem extends Component {
       productId: this.props.item.productId
     };
     deleteProductFromCart(dispatch, data);
+    // getProductCounts(dispatch);
   }
 
   render() {

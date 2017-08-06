@@ -86,4 +86,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\UserDetail', 'user_details_user_id', 'id');
     }
+
+    /*
+     * Связь с заказом
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order', 'order_id', 'id');
+    }
 }

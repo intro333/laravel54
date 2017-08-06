@@ -1,14 +1,6 @@
 import React, {Component} from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from 'react-router-dom';
 import axios from 'axios';
 import * as modelActions from './actions';
-
 
 export const makeRequest = (dispatcher, params, then, error) => {
   axios(params).then((result) => {
@@ -18,7 +10,7 @@ export const makeRequest = (dispatcher, params, then, error) => {
   });
 };
 
-//Примерс параметрами
+//Пример с параметрами
 export const fetch = (dispatcher, options, then, error) => {
   makeRequest(
     dispatcher,
@@ -85,6 +77,24 @@ export const setProducts = (dispatcher, productId) => {
   makeRequest(dispatcher, params, then, error);
 };
 
+//Получить количество товаров, которые уже в заказе.
+export const getProductCounts = (dispatcher) => {
+  const params = {
+    method:'post',
+    url:'/api/get-product-counts'
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setProductCounts(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
 //Добавить товар в корзину.
 export const addProductToCart = (dispatcher, data) => {
   const params = {
@@ -127,6 +137,25 @@ export const deleteProductFromCart = (dispatcher, data) => {
   const params = {
     method:'post',
     url:'/api/delete-product-from-cart',
+    data: data
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setProductsForCart(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Отправить заказ.
+export const sendOrder = (dispatcher, data) => {
+  const params = {
+    method:'post',
+    url:'/api/send-order',
     data: data
   };
 

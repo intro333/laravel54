@@ -43,7 +43,8 @@ let defaultSessionState = map({
   userInfo: map(),
   mobNavElement: true,
   categoryId: null,
-  categoryName: null
+  categoryName: null,
+  productCounts: 0
 });
 
 const session = (state = defaultSessionState, action) => {
@@ -60,6 +61,9 @@ const session = (state = defaultSessionState, action) => {
 
     case 'SET_CATEGORY_NAME':
       return state.set('categoryName', action.categoryName);
+
+    case 'SET_PRODUCT_COUNTS':
+      return state.set('productCounts', action.productCounts);
 
     default:
       return state;

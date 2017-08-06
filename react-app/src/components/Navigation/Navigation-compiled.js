@@ -70,8 +70,18 @@ var Navigation = function (_Component) {
         margin: '5px'
       };
 
-      var session = this.props.session;
+      var _props2 = this.props,
+          dispatch = _props2.dispatch,
+          session = _props2.session,
+          api = _props2.api;
+      //Заполнить количество продуктов в корзине в меню
 
+      (0, _api.getProductCounts)(dispatch);
+
+      var productsCounts = session.get('productCounts');
+      var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
+      var productsCount = productsCounts && productsCounts !== 0 ? productsCounts : 0;
+      console.log('productsCounts', productsCounts);
 
       return _react2.default.createElement(
         'div',
@@ -112,7 +122,12 @@ var Navigation = function (_Component) {
                 _react2.default.createElement(
                   _reactRouterDom.Link,
                   { to: '/cart' },
-                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart  mob-menu-right' })
+                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart mob-menu-right' }),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'menu__item--basket__amount' },
+                    productsCount
+                  )
                 )
               )
             )
@@ -161,12 +176,17 @@ var Navigation = function (_Component) {
                   null,
                   _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: '/cart' },
+                    { to: cartUrl },
                     _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
                       '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'menu__item--basket__amount' },
+                      productsCount
                     )
                   )
                 ),
@@ -213,7 +233,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
     session: store.session,
-    token: store.api.get('userToken')
+    token: store.api.get('userToken'),
+    api: store.api
   };
 })(Navigation);
 

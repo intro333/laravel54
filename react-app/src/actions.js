@@ -29,3 +29,7 @@ export function setProductsForCart(productsForCart) {
 export function setUserImage(imagePath) {
   return { type: 'SET_USER_IMAGE', imagePath };
 }
+
+export function setProductCounts(productCounts) {
+  return { type: 'SET_PRODUCT_COUNTS', productCounts };
+}

@@ -65,7 +65,7 @@ class CustomerConstoller extends Controller
     {
         $email = \Auth::user()->email;
 
-        //Формируем дерикторию.
+        //Формируем директорию.
         $uploads_dir = storage_path('app/public/customers/');
         $directory = $email;
         $image = $request->file('image');

@@ -21,6 +21,8 @@ Route::post('/get-products/{id}', 'Api\CustomerConstoller@getProducts')->name('g
 Route::post('/add-product-to-cart', 'Api\SessionController@addProductToCart')->name('addProductToCart');
 Route::post('/get-products-in-cart', 'Api\SessionController@showProductsInCart')->name('showProductsInCart');
 Route::post('/delete-product-from-cart', 'Api\SessionController@deleteProductFromCart')->name('deleteProductFromCart');
+Route::post('/send-order', 'Api\SessionController@sendOrder')->name('sendOrder');
+Route::post('/get-product-counts', 'Api\SessionController@getProductCounts')->name('getProductCounts');
 Route::post('/getUserInfo', 'Api\CustomerConstoller@getUserInfo')->name('getUserInfo');
 Route::post('/update-data-of-personal-account', 'Api\CustomerConstoller@updateDataOfPersonalAccount')->name('updateDataOfPersonalAccount');
 Route::post('/change-photo-in-personal-account', 'Api\CustomerConstoller@changePhotoPersonalData')->name('changePhotoPersonalData');

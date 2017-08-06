@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom';
 import * as modelActions from '../../actions';
 import {
   logOut,
+  getProductCounts,
 } from '../../api';
 
 class Navigation extends Component {
@@ -32,7 +33,14 @@ class Navigation extends Component {
       margin: '5px'
     };
 
-    const { session } = this.props;
+    const { dispatch, session, api } = this.props;
+    //Заполнить количество продуктов в корзине в меню
+    getProductCounts(dispatch);
+
+    const productsCounts = session.get('productCounts');
+    var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
+    var productsCount = productsCounts && productsCounts !== 0 ? productsCounts : 0;
+    console.log('productsCounts', productsCounts)
 
     return (
       <div>
@@ -59,7 +67,13 @@ class Navigation extends Component {
                 {/*<span className="glyphicon glyphicon-cog  mob-menu-right"></span>*/}
                 {/*<span className="glyphicon glyphicon-search  mob-menu-right"></span>*/}
                 <Link to={'/personal-account'}><span className="glyphicon glyphicon-user  mob-menu-right"></span></Link>
-                <Link to={'/cart'}><span className="glyphicon glyphicon-shopping-cart  mob-menu-right"></span></Link>
+                {/*<div>*/}
+                  <Link to={'/cart'}>
+                    <span className="glyphicon glyphicon-shopping-cart mob-menu-right"></span>
+                    <div className="menu__item--basket__amount">{productsCount}</div>
+                  </Link>
+
+                {/*</div>*/}
               </div>
             </div>
           </nav>
@@ -91,9 +105,10 @@ class Navigation extends Component {
                     {/*<span className="mob-nav-text">Настройки</span>*/}
                   {/*</a>*/}
                 {/*</li>*/}
-                <li><Link to={'/cart'}>
+                <li><Link to={cartUrl}>
                   <span className="glyphicon glyphicon-shopping-cart"></span>
                   <span className="mob-nav-text">Корзина</span>
+                  <div className="menu__item--basket__amount">{productsCount}</div>
                 </Link>
                 </li>
                 <li><Link to={'/personal-account'}>
@@ -120,4 +135,5 @@ export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
   token: store.api.get('userToken'),
+  api: store.api,
 }))(Navigation);

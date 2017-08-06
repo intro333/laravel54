@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Order;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -44,6 +45,40 @@ class SessionController extends Controller
         session()->forget('productFromCart.' . $request->input('barCode'));
 
         return $this->localShowProductsInCart(false);
+    }
+
+    public function sendOrder(Request $request)
+    {
+        $user = \Auth::user();
+        $session = session()->get('productFromCart');
+        $comment = $request->input('comment');
+        $products = [];
+
+        foreach ($session as $item) {
+            $products[] = [
+                'productId' => $item['productId'],
+                'count'     => $item['productCounts']
+            ];
+        }
+
+        Order::create([
+            'user_order_id' => $user->id,
+            'comment'       => $comment ? $comment : '',
+            'status'        => 'in-progress', //Ожидает обработки
+            'features'      => $products,
+        ]);
+
+        //Удалить все продукты из сессии.
+        session()->forget('productFromCart');
+
+        return [];
+    }
+
+    public function getProductCounts()
+    {
+        $productCount = session()->get('productFromCart') ? count(session()->get('productFromCart')) : 0;
+
+        return $productCount;
     }
 
     //Локальная функция (чтобы не дублировать код)

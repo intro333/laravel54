@@ -58,7 +58,8 @@ var defaultSessionState = map({
   userInfo: map(),
   mobNavElement: true,
   categoryId: null,
-  categoryName: null
+  categoryName: null,
+  productCounts: 0
 });
 
 var session = function session() {
@@ -78,6 +79,9 @@ var session = function session() {
 
     case 'SET_CATEGORY_NAME':
       return state.set('categoryName', action.categoryName);
+
+    case 'SET_PRODUCT_COUNTS':
+      return state.set('productCounts', action.productCounts);
 
     default:
       return state;

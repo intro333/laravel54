@@ -48,7 +48,13 @@ var Cart = function (_Component) {
   function Cart(props) {
     _classCallCheck(this, Cart);
 
-    return _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
+
+    _this.state = {
+      comment: ''
+    };
+
+    return _this;
   }
 
   _createClass(Cart, [{
@@ -57,6 +63,21 @@ var Cart = function (_Component) {
       var dispatch = this.props.dispatch;
 
       (0, _api.showProductsInCart)(dispatch);
+    }
+  }, {
+    key: 'handleChangeComment',
+    value: function handleChangeComment(event) {
+      this.setState({ comment: event.target.value });
+    }
+  }, {
+    key: 'handlerSendOrder',
+    value: function handlerSendOrder() {
+      var dispatch = this.props.dispatch;
+
+      var data = {
+        comment: this.state.comment
+      };
+      (0, _api.sendOrder)(dispatch, data);
     }
   }, {
     key: 'render',
@@ -96,7 +117,7 @@ var Cart = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { className: 'cart-button' },
+              { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
               '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
             )
           ),
@@ -141,9 +162,16 @@ var Cart = function (_Component) {
               ' \u20BD'
             )
           ),
+          _react2.default.createElement('textarea', {
+            name: 'comment',
+            className: 'cart-comment',
+            value: this.state.comment,
+            onChange: this.handleChangeComment.bind(this),
+            placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
+          }),
           _react2.default.createElement(
             'div',
-            { className: 'cart-button' },
+            { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
             '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           )
         )

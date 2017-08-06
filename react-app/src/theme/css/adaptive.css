@@ -97,6 +97,10 @@
     }
 }
 @media (max-width: 767px) {
+    .menu__item--basket__amount {
+        top: 4px;
+        right: 99px;
+    }
     .navbar-header {
     display: none;
     }

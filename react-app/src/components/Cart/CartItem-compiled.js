@@ -144,6 +144,7 @@ var CartItem = function (_Component) {
         productId: this.props.item.productId
       };
       (0, _api.deleteProductFromCart)(dispatch, data);
+      // getProductCounts(dispatch);
     }
   }, {
     key: 'render',

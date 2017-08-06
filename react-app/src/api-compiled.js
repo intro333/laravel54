@@ -3,13 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = require('react-router-dom');
 
 var _axios = require('axios');
 
@@ -31,7 +29,7 @@ var makeRequest = exports.makeRequest = function makeRequest(dispatcher, params,
   });
 };
 
-//Примерс параметрами
+//Пример с параметрами
 var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
   makeRequest(dispatcher, options, function (r) {
     if (then) then(r.data);
@@ -93,6 +91,24 @@ var setProducts = exports.setProducts = function setProducts(dispatcher, product
   makeRequest(dispatcher, params, then, error);
 };
 
+//Получить количество товаров, которые уже в заказе.
+var getProductCounts = exports.getProductCounts = function getProductCounts(dispatcher) {
+  var params = {
+    method: 'post',
+    url: '/api/get-product-counts'
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setProductCounts(response.data));
+  };
+
+  var error = function error(_error4) {
+    console.log(_error4);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
 //Добавить товар в корзину.
 var addProductToCart = exports.addProductToCart = function addProductToCart(dispatcher, data) {
   var params = {
@@ -105,8 +121,8 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
-  var error = function error(_error4) {
-    console.log(_error4);
+  var error = function error(_error5) {
+    console.log(_error5);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -123,8 +139,8 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
-  var error = function error(_error5) {
-    console.log(_error5);
+  var error = function error(_error6) {
+    console.log(_error6);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -142,8 +158,27 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
     dispatcher(modelActions.setProductsForCart(response.data));
   };
 
-  var error = function error(_error6) {
-    console.log(_error6);
+  var error = function error(_error7) {
+    console.log(_error7);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Отправить заказ.
+var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data) {
+  var params = {
+    method: 'post',
+    url: '/api/send-order',
+    data: data
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setProductsForCart(response.data));
+  };
+
+  var error = function error(_error8) {
+    console.log(_error8);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -160,8 +195,8 @@ var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
     dispatcher(modelActions.setUserInfo(response.data));
   };
 
-  var error = function error(_error7) {
-    console.log(_error7);
+  var error = function error(_error9) {
+    console.log(_error9);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -179,8 +214,8 @@ var updatePersonalData = exports.updatePersonalData = function updatePersonalDat
     dispatcher(modelActions.setUserInfo(response.data));
   };
 
-  var error = function error(_error8) {
-    console.log(_error8);
+  var error = function error(_error10) {
+    console.log(_error10);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -203,8 +238,8 @@ var changePhotoPersonalData = exports.changePhotoPersonalData = function changeP
     dispatcher(modelActions.setUserImage(response.data));
   };
 
-  var error = function error(_error9) {
-    console.log(_error9);
+  var error = function error(_error11) {
+    console.log(_error11);
   };
 
   makeRequest(dispatcher, params, then, error);

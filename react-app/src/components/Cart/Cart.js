@@ -9,16 +9,33 @@ import MenuMobile from '../Popups/MenuMobile';
 import CartItem from '../Cart/CartItem';
 import {
   showProductsInCart,
+  sendOrder,
 } from '../../api';
 
 class Cart extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      comment: ''
+    };
+
   }
 
   componentWillMount() {
     const { dispatch } = this.props;
     showProductsInCart(dispatch);
+  }
+
+  handleChangeComment(event) {
+    this.setState({comment: event.target.value});
+  }
+
+  handlerSendOrder() {
+    const { dispatch } = this.props;
+    const data = {
+      comment: this.state.comment
+    };
+    sendOrder(dispatch, data);
   }
 
   render() {
@@ -46,7 +63,7 @@ class Cart extends Component {
         <div className="main-container">
           <div className="flex-box-between">
             <h3>Корзина</h3>
-            <div className="cart-button">Отправить заказ</div>
+            <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
           </div>
 
           <table id="cart-products-table">
@@ -60,7 +77,14 @@ class Cart extends Component {
             { productsTd }
           </table>
           <div className="cart-order__total">Итог:&nbsp;<span>{ total } ₽</span></div>
-          <div className="cart-button">Отправить заказ</div>
+          <textarea
+            name="comment"
+            className="cart-comment"
+            value={this.state.comment}
+            onChange={this.handleChangeComment.bind(this)}
+            placeholder="Оставьте комментарий к заказу..."
+          />
+          <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
         </div>
       </div>
     );

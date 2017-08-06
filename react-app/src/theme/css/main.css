@@ -231,6 +231,16 @@ a {
     background: #368e39;
     color: #fff
 }
+.cart-comment {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+}
+.cart-comment:hover {
+    border: 1px solid #a1a1a1;
+}
 /*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/
 
 /*CHECKBOX НАЧАЛО------------------------------------------------------------------*/
@@ -673,7 +683,25 @@ th {
     background: #2e6da4;
     /*height:100%;*/
     cursor: pointer;
-}/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/
+}
+.menu__item--basket__amount {
+    position: absolute;
+    top: 9px;
+    right: 2px;
+    width: 16px;
+    height: 15px;
+    color: #fff;
+    font-size: 11px;
+    text-align: center;
+    line-height: 15px;
+    background: #777;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/
 /*avatar-elem---------------------------------------------------------------------------------------------------*/
 .popup_avatar-elem {
     position: absolute;
