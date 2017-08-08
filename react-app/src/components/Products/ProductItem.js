@@ -18,7 +18,11 @@ class ProductItem extends Component {
     this.state = {
       orderNumberInp: 1,
       errorBorderRed: false,
-      inputPlaceHolder: ''
+      inputPlaceHolder: '',
+      addButtonText: 'Добавить в корзину',
+      addToCartButtonStyle: {
+        background: 'steelblue'
+      }
     }
   }
 
@@ -72,6 +76,12 @@ class ProductItem extends Component {
         productCounts: productCounts,
       };
       addProductToCart(dispatch, data);
+      this.setState({
+        addButtonText: 'Товар в корзине',
+        addToCartButtonStyle: {
+          background: '#3c763d'
+        }
+      })
     } else {
       this.setState({
         errorBorderRed: true,
@@ -95,6 +105,7 @@ class ProductItem extends Component {
 
     var inputVal = this.state.orderNumberInp;
     var inputPlaceHolder = this.state.inputPlaceHolder;
+    var addToCartButtonStyle = this.state.addToCartButtonStyle;
 
     return (
       <div className="category-item">
@@ -131,9 +142,10 @@ class ProductItem extends Component {
           </div>
           <div
             className="add-to-cart-button"
+            style={addToCartButtonStyle}
             onClick={this.addProductToCart.bind(this)}
           >
-            <p>Добавить в корзину</p>
+            <p>{this.state.addButtonText}</p>
           </div>
         </div>
       </div>

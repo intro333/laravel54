@@ -36,6 +36,7 @@ class Cart extends Component {
       comment: this.state.comment
     };
     sendOrder(dispatch, data);
+    this.props.history.push('/');//TODO сделать редирект на страницу успешного завершения отправления заказа
   }
 
   render() {

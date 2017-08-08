@@ -78,6 +78,7 @@ var Cart = function (_Component) {
         comment: this.state.comment
       };
       (0, _api.sendOrder)(dispatch, data);
+      this.props.history.push('/'); //TODO сделать редирект на страницу успешного завершения отправления заказа
     }
   }, {
     key: 'render',

@@ -51,7 +51,11 @@ var ProductItem = function (_Component) {
     _this.state = {
       orderNumberInp: 1,
       errorBorderRed: false,
-      inputPlaceHolder: ''
+      inputPlaceHolder: '',
+      addButtonText: 'Добавить в корзину',
+      addToCartButtonStyle: {
+        background: 'steelblue'
+      }
     };
     return _this;
   }
@@ -112,6 +116,12 @@ var ProductItem = function (_Component) {
           productCounts: productCounts
         };
         (0, _api.addProductToCart)(dispatch, data);
+        this.setState({
+          addButtonText: 'Товар в корзине',
+          addToCartButtonStyle: {
+            background: '#3c763d'
+          }
+        });
       } else {
         this.setState({
           errorBorderRed: true,
@@ -139,6 +149,7 @@ var ProductItem = function (_Component) {
 
       var inputVal = this.state.orderNumberInp;
       var inputPlaceHolder = this.state.inputPlaceHolder;
+      var addToCartButtonStyle = this.state.addToCartButtonStyle;
 
       return _react2.default.createElement(
         'div',
@@ -201,12 +212,13 @@ var ProductItem = function (_Component) {
             'div',
             {
               className: 'add-to-cart-button',
+              style: addToCartButtonStyle,
               onClick: this.addProductToCart.bind(this)
             },
             _react2.default.createElement(
               'p',
               null,
-              '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+              this.state.addButtonText
             )
           )
         )

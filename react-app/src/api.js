@@ -160,7 +160,7 @@ export const sendOrder = (dispatcher, data) => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setProductsForCart(response.data))
+    dispatcher(modelActions.setProductsForCart(response.data));
   };
 
   const error = (error) => {
@@ -178,7 +178,7 @@ export const setUserInfo = dispatcher => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setUserInfo(response.data))
+    dispatcher(modelActions.setUserInfo(response.data));
   };
 
   const error = (error) => {
