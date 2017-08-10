@@ -34,6 +34,10 @@ var _Cart = require('./components/Cart/Cart');
 
 var _Cart2 = _interopRequireDefault(_Cart);
 
+var _SuccessPage = require('./components/Cart/SuccessPage');
+
+var _SuccessPage2 = _interopRequireDefault(_SuccessPage);
+
 var _PersonalAccount = require('./components/PersonalAccount/PersonalAccount');
 
 var _PersonalAccount2 = _interopRequireDefault(_PersonalAccount);
@@ -68,6 +72,7 @@ var App = function (_Component) {
           _react2.default.createElement(_reactRouterDom.Route, { path: '/categories', component: _Categories2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/products', component: _Products2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/cart', component: _Cart2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/sussess-page', component: _SuccessPage2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/personal-account', component: _PersonalAccount2.default })
         )
       );

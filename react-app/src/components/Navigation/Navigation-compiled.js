@@ -195,6 +195,20 @@ var Navigation = function (_Component) {
                   null,
                   _react2.default.createElement(
                     _reactRouterDom.Link,
+                    { to: 'sussess-page' },
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'mob-nav-text' },
+                      'A'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
                     { to: '/personal-account' },
                     _react2.default.createElement('span', { className: 'glyphicon glyphicon-user' }),
                     _react2.default.createElement(

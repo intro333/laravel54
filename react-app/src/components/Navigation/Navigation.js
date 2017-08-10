@@ -111,6 +111,12 @@ class Navigation extends Component {
                   <div className="menu__item--basket__amount">{productsCount}</div>
                 </Link>
                 </li>
+                <li>
+                  <Link to="sussess-page">
+                  <span className="glyphicon glyphicon-shopping-cart"></span>
+                  <span className="mob-nav-text">A</span>
+                  </Link>
+                </li>
                 <li><Link to={'/personal-account'}>
                   <span className="glyphicon glyphicon-user"></span>
                   <span className="mob-nav-text">Акаунт</span>

@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Categories from './components/Categories/Categories';
 import Products from './components/Products/Products';
 import Cart from './components/Cart/Cart';
+import SussessPage from './components/Cart/SuccessPage';
 import PersonalAccount from './components/PersonalAccount/PersonalAccount';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route path='/categories' component={Categories}/>
           <Route path='/products' component={Products}/>
           <Route path='/cart' component={Cart}/>
+          <Route path='/sussess-page' component={SussessPage}/>
           <Route path='/personal-account' component={PersonalAccount}/>
         </Switch>
       </Router>
