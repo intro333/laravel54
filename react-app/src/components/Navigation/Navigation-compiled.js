@@ -176,6 +176,19 @@ var Navigation = function (_Component) {
                   null,
                   _react2.default.createElement(
                     _reactRouterDom.Link,
+                    { to: '/orders' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'mob-nav-text' },
+                      '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
                     { to: cartUrl },
                     _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
                     _react2.default.createElement(
@@ -196,11 +209,10 @@ var Navigation = function (_Component) {
                   _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: 'sussess-page' },
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      'A'
+                      'Success'
                     )
                   )
                 ),

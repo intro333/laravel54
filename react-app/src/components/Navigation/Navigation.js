@@ -105,6 +105,10 @@ class Navigation extends Component {
                     {/*<span className="mob-nav-text">Настройки</span>*/}
                   {/*</a>*/}
                 {/*</li>*/}
+                <li><Link to="/orders">
+                  <span className="mob-nav-text">Мои заказы</span>
+                </Link>
+                </li>
                 <li><Link to={cartUrl}>
                   <span className="glyphicon glyphicon-shopping-cart"></span>
                   <span className="mob-nav-text">Корзина</span>
@@ -113,8 +117,7 @@ class Navigation extends Component {
                 </li>
                 <li>
                   <Link to="sussess-page">
-                  <span className="glyphicon glyphicon-shopping-cart"></span>
-                  <span className="mob-nav-text">A</span>
+                  <span className="mob-nav-text">Success</span>
                   </Link>
                 </li>
                 <li><Link to={'/personal-account'}>

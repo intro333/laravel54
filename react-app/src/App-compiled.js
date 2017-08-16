@@ -42,6 +42,10 @@ var _PersonalAccount = require('./components/PersonalAccount/PersonalAccount');
 
 var _PersonalAccount2 = _interopRequireDefault(_PersonalAccount);
 
+var _Orders = require('./components/Orders/Orders');
+
+var _Orders2 = _interopRequireDefault(_Orders);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73,7 +77,8 @@ var App = function (_Component) {
           _react2.default.createElement(_reactRouterDom.Route, { path: '/products', component: _Products2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/cart', component: _Cart2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/sussess-page', component: _SuccessPage2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/personal-account', component: _PersonalAccount2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/personal-account', component: _PersonalAccount2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/orders', component: _Orders2.default })
         )
       );
     }

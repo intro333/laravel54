@@ -41,6 +41,9 @@ hr {
     display: flex;
     justify-content: space-between;
 }
+.margin-off {
+    margin: 0 !important;
+}
 .error-border-red::-webkit-input-placeholder {color: indianred !important;}
 .error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */
 .error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */
@@ -801,5 +804,45 @@ th {
     max-width: 400px;
     margin: auto;
 }
-
 /*END Success Page*/
+
+/* Мои заказы*/
+.order-tr-head:hover {
+    cursor: pointer;
+    background: #3A923E;
+}
+.orders-all {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /*flex-wrap: wrap;*/
+    margin: 15px 0;
+}
+.orders-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid #ddd;
+}
+.orders-item__head {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border-radius: 2px;
+}
+.orders-item__head:hover {
+    cursor: pointer;
+    background-color: #3A923E;
+}
+.orders-item__head:active {
+    background-color: #4CAF50;
+}
+.orders-item__body {
+    background-color: #f9f9f9;
+    padding: 10px;
+    color: #999;
+
+
+}
+/* END Мои заказы*/
