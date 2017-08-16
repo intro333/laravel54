@@ -44,89 +44,174 @@ var OrderItem = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (OrderItem.__proto__ || Object.getPrototypeOf(OrderItem)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      orderNum: false,
+      tdBotyVisible: false
+    };
     return _this;
   }
 
   _createClass(OrderItem, [{
+    key: 'handleClickOrder',
+    value: function handleClickOrder() {
+      var orderNum = this.state.orderNum;
+      var isVisible = this.state.tdBotyVisible;
+
+      this.setState({
+        orderNum: !orderNum,
+        tdBotyVisible: !isVisible
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var items = this.props.item;
+      var total = null;
+
       var orderNumberInp = (0, _classnames2.default)({
         'order-number-inp': true
       });
-      var inputVal = this.props.item.count === '' ? '' : parseInt(this.props.item.count);
-      var cost = this.props.item.price * (inputVal === '' ? 1 : parseInt(this.props.item.count));
-
-      // console.log('this.props.visible', this.props.visible)
-      var trStyle = {
-        display: this.props.visible
+      var totalStyle = {
+        margin: '10px'
       };
-      return _react2.default.createElement(
-        'tr',
-        { style: trStyle },
+
+      var productsTr = items.map(function (item, index) {
         _react2.default.createElement(
-          'td',
-          { className: 'table-40-procent-td' },
-          _react2.default.createElement('img', { className: 'cart-product-image', src: this.props.item.imagePath }),
+          'tr',
+          null,
+          _react2.default.createElement(
+            'td',
+            { className: 'table-40-procent-td' },
+            _react2.default.createElement('img', { className: 'cart-product-image', src: item.image_path }),
+            _react2.default.createElement(
+              'span',
+              null,
+              item.name
+            )
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            item.price,
+            ' \u20BD / ',
+            item.unit
+          ),
+          _react2.default.createElement(
+            'td',
+            { style: { textAlign: 'start' } },
+            _react2.default.createElement(
+              'div',
+              { className: 'order-table__cell' },
+              _react2.default.createElement(
+                'div',
+                { className: 'b-number' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'order-number' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'order-number__field' },
+                    _react2.default.createElement('input', {
+                      className: orderNumberInp,
+                      type: 'number',
+                      max: '99',
+                      min: '0',
+                      value: item.counts
+                    })
+                  ),
+                  _react2.default.createElement('div', {
+                    className: 'order-number__spin minus'
+                  }),
+                  _react2.default.createElement('div', {
+                    className: 'order-number__spin plus'
+                  })
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            cost,
+            ' \u20BD'
+          ),
+          _react2.default.createElement(
+            'td',
+            { style: { color: 'firebrick' } },
+            _react2.default.createElement('span', {
+              className: 'remove-product',
+              'aria-hidden': 'true'
+            })
+          )
+        );
+      });
+
+      var headTd = null;
+      var thStyle = {
+        textAlign: 'left',
+        width: '100%'
+      };
+
+      if (!this.state.orderNum) {
+        headTd = _react2.default.createElement(
+          'tr',
+          { className: 'order-tr-head', onClick: this.handleClickOrder.bind(this) },
+          _react2.default.createElement(
+            'th',
+            { style: thStyle },
+            '\u041D\u043E\u043C\u0435\u0440 \u0437\u0430\u043A\u0430\u0437\u0430 172034'
+          ),
+          _react2.default.createElement('th', { className: 'table-25-procent' }),
+          _react2.default.createElement('th', { className: 'table-25-procent' }),
+          _react2.default.createElement('th', { className: 'table-10-procent' }),
+          _react2.default.createElement('th', { className: 'table-10-procent' })
+        );
+      } else {
+        headTd = _react2.default.createElement(
+          'tr',
+          { className: 'order-tr-head', onClick: this.handleClickOrder.bind(this) },
+          _react2.default.createElement(
+            'th',
+            { className: 'table-30-procent' },
+            '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
+          ),
+          _react2.default.createElement(
+            'th',
+            { className: 'table-25-procent' },
+            '\u0426\u0435\u043D\u0430'
+          ),
+          _react2.default.createElement(
+            'th',
+            { className: 'table-25-procent' },
+            '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
+          ),
+          _react2.default.createElement(
+            'th',
+            { className: 'table-10-procent' },
+            '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+          ),
+          _react2.default.createElement('th', { className: 'table-10-procent' })
+        );
+      }
+
+      total = items.reduce(function (total, item) {
+        return total + item.cost;
+      }, 0);
+      return _react2.default.createElement(
+        'table',
+        { id: 'cart-products-table', className: 'margin-off' },
+        headTd,
+        this.state.tdBotyVisible && productsTr,
+        this.state.tdBotyVisible && _react2.default.createElement(
+          'div',
+          { className: 'cart-order__total', style: totalStyle },
+          '\u0418\u0442\u043E\u0433:\xA0',
           _react2.default.createElement(
             'span',
             null,
-            this.props.item.name
+            total,
+            ' \u20BD'
           )
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          this.props.item.price,
-          ' \u20BD / ',
-          this.props.item.unit
-        ),
-        _react2.default.createElement(
-          'td',
-          { style: { textAlign: 'start' } },
-          _react2.default.createElement(
-            'div',
-            { className: 'order-table__cell' },
-            _react2.default.createElement(
-              'div',
-              { className: 'b-number' },
-              _react2.default.createElement(
-                'div',
-                { className: 'order-number' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'order-number__field' },
-                  _react2.default.createElement('input', {
-                    className: orderNumberInp,
-                    type: 'number',
-                    max: '99',
-                    min: '0',
-                    value: inputVal ? inputVal : ''
-                  })
-                ),
-                _react2.default.createElement('div', {
-                  className: 'order-number__spin minus'
-                }),
-                _react2.default.createElement('div', {
-                  className: 'order-number__spin plus'
-                })
-              )
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          cost,
-          ' \u20BD'
-        ),
-        _react2.default.createElement(
-          'td',
-          { style: { color: 'firebrick' } },
-          _react2.default.createElement('span', {
-            className: 'remove-product',
-            'aria-hidden': 'true'
-          })
         )
       );
     }

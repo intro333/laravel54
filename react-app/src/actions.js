@@ -33,3 +33,7 @@ export function setUserImage(imagePath) {
 export function setProductCounts(productCounts) {
   return { type: 'SET_PRODUCT_COUNTS', productCounts };
 }
+
+export function setOrders(orders) {
+  return { type: 'SET_ORDERS', orders };
+}

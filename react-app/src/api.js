@@ -230,3 +230,21 @@ export const changePhotoPersonalData = (dispatcher, data) => {
 
   makeRequest(dispatcher, params, then, error);
 };
+
+//Получить все заказы пользователя
+export const ordersGetAll = dispatcher => {
+  const params = {
+    method:'post',
+    url:'/api/orders-get-all',
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setOrders(response.data));
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};

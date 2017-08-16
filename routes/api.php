@@ -26,3 +26,4 @@ Route::post('/get-product-counts', 'Api\SessionController@getProductCounts')->na
 Route::post('/getUserInfo', 'Api\CustomerConstoller@getUserInfo')->name('getUserInfo');
 Route::post('/update-data-of-personal-account', 'Api\CustomerConstoller@updateDataOfPersonalAccount')->name('updateDataOfPersonalAccount');
 Route::post('/change-photo-in-personal-account', 'Api\CustomerConstoller@changePhotoPersonalData')->name('changePhotoPersonalData');
+Route::post('/orders-get-all', 'Api\CustomerConstoller@ordersGetAll')->name('ordersGetAll');

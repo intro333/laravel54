@@ -27,7 +27,8 @@ var api = exports.api = function api() {
     products: map(),
     productsForCart: map(),
     dataOfPersonalAccount: map(),
-    imagePath: false
+    imagePath: false,
+    orders: map()
 
   });
   var action = arguments[1];
@@ -48,6 +49,9 @@ var api = exports.api = function api() {
 
     case 'SET_USER_IMAGE':
       return state.set('imagePath', action.imagePath);
+
+    case 'SET_ORDERS':
+      return state.set('orders', action.orders);
 
     default:
       return state;

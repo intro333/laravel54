@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -240,6 +240,24 @@ var changePhotoPersonalData = exports.changePhotoPersonalData = function changeP
 
   var error = function error(_error11) {
     console.log(_error11);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Получить все заказы пользователя
+var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher) {
+  var params = {
+    method: 'post',
+    url: '/api/orders-get-all'
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setOrders(response.data));
+  };
+
+  var error = function error(_error12) {
+    console.log(_error12);
   };
 
   makeRequest(dispatcher, params, then, error);

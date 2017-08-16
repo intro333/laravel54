@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Categories;
+use App\Models\Order;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -81,6 +82,30 @@ class CustomerConstoller extends Controller
         $imagePath = '/storage/customers/' . $email . '/' . $imageName;
 
         return $imagePath;
+    }
+
+    public function ordersGetAll()
+    {
+        $result = [];
+        $userId = \Auth::user()->id;
+        $orders = Order::where('user_order_id', $userId)->get();
+
+        foreach ($orders as $key => $order) {
+            foreach ($order->features as $feature) {
+                $product = Products::find($feature['productId']);
+                $result[$order->order_id][] = [
+                    'name'       => $product->name,
+                    'image_path' => $product->image_path,
+                    'price'      => $product->price,
+                    'unit'       => $product->unit,
+                    'counts'     => $feature['count'],
+                    'cost'       => ($product->price * $feature['count']),
+                ];
+            }
+        }
+
+//        dd($result);
+        return $result;
     }
 
     //Локальная функция для формирования данных для личного кабинета

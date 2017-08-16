@@ -14,7 +14,8 @@ export const api = (state = map({
   products: map(),
   productsForCart: map(),
   dataOfPersonalAccount: map(),
-  imagePath: false
+  imagePath: false,
+  orders: map(),
 
 }), action) => {
   switch (action.type) {
@@ -33,6 +34,9 @@ export const api = (state = map({
 
     case 'SET_USER_IMAGE':
       return state.set('imagePath', action.imagePath);
+
+    case 'SET_ORDERS':
+      return state.set('orders', action.orders);
 
     default:
       return state;
