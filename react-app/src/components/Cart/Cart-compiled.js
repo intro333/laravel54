@@ -87,7 +87,7 @@ var Cart = function (_Component) {
 
       var productsForCart = api.get('productsForCart');
       var total = null;
-
+      console.log('productsForCart', productsForCart);
       var productsTd = productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
           key: item.productId,

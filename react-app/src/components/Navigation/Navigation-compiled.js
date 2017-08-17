@@ -81,7 +81,7 @@ var Navigation = function (_Component) {
       var productsCounts = session.get('productCounts');
       var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
       var productsCount = productsCounts && productsCounts !== 0 ? productsCounts : 0;
-      console.log('productsCounts', productsCounts);
+      // console.log('productsCounts', productsCounts)
 
       return _react2.default.createElement(
         'div',

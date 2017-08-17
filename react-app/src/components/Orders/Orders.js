@@ -25,10 +25,9 @@ class Orders extends Component {
 
     const { api } = this.props;
     const orders = api.get('orders');
-    console.log(orders.size)
     var tables = null;
-    if(orders.size !== 0) {
-      tables = orders.map((item, index) =>
+    if(orders.size === 0) {} else {
+      tables = Object.values(orders).map((item, index) =>
         <OrderItem
           key={index}
           item={item}
@@ -45,9 +44,7 @@ class Orders extends Component {
             <h3 className="bread-crumbs-on-page">Мои заказы</h3>
           </div>
           <div className="orders-all">
-            <div className="orders-item">
               {tables}
-            </div>
           </div>
         </div>
       </div>

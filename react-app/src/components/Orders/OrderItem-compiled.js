@@ -76,9 +76,9 @@ var OrderItem = function (_Component) {
       };
 
       var productsTr = items.map(function (item, index) {
-        _react2.default.createElement(
+        return _react2.default.createElement(
           'tr',
-          null,
+          { key: index },
           _react2.default.createElement(
             'td',
             { className: 'table-40-procent-td' },
@@ -107,7 +107,7 @@ var OrderItem = function (_Component) {
                 { className: 'b-number' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'order-number' },
+                  { className: 'order-number', style: { width: '70px' } },
                   _react2.default.createElement(
                     'div',
                     { className: 'order-number__field' },
@@ -118,13 +118,7 @@ var OrderItem = function (_Component) {
                       min: '0',
                       value: item.counts
                     })
-                  ),
-                  _react2.default.createElement('div', {
-                    className: 'order-number__spin minus'
-                  }),
-                  _react2.default.createElement('div', {
-                    className: 'order-number__spin plus'
-                  })
+                  )
                 )
               )
             )
@@ -132,7 +126,7 @@ var OrderItem = function (_Component) {
           _react2.default.createElement(
             'td',
             null,
-            cost,
+            item.cost,
             ' \u20BD'
           ),
           _react2.default.createElement(
@@ -197,11 +191,16 @@ var OrderItem = function (_Component) {
       total = items.reduce(function (total, item) {
         return total + item.cost;
       }, 0);
+
       return _react2.default.createElement(
-        'table',
-        { id: 'cart-products-table', className: 'margin-off' },
-        headTd,
-        this.state.tdBotyVisible && productsTr,
+        'div',
+        { className: 'orders-item' },
+        _react2.default.createElement(
+          'table',
+          { id: 'cart-products-table', className: 'margin-off' },
+          headTd,
+          this.state.tdBotyVisible && productsTr
+        ),
         this.state.tdBotyVisible && _react2.default.createElement(
           'div',
           { className: 'cart-order__total', style: totalStyle },

@@ -64,10 +64,9 @@ var Orders = function (_Component) {
       var api = this.props.api;
 
       var orders = api.get('orders');
-      console.log(orders.size);
       var tables = null;
-      if (orders.size !== 0) {
-        tables = orders.map(function (item, index) {
+      if (orders.size === 0) {} else {
+        tables = Object.values(orders).map(function (item, index) {
           return _react2.default.createElement(_OrderItem2.default, {
             key: index,
             item: item
@@ -95,11 +94,7 @@ var Orders = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'orders-all' },
-            _react2.default.createElement(
-              'div',
-              { className: 'orders-item' },
-              tables
-            )
+            tables
           )
         )
       );

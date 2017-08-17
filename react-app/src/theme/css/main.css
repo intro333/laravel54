@@ -823,6 +823,7 @@ th {
     flex-direction: column;
     justify-content: flex-start;
     border: 1px solid #ddd;
+    margin-bottom: 10px;
 }
 .orders-item__head {
     padding: 10px;

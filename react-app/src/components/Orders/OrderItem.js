@@ -44,46 +44,39 @@ class OrderItem extends Component {
     }
 
     var productsTr = items.map((item, index) =>
-      {
-        <tr>
-          <td className="table-40-procent-td">
-            <img className="cart-product-image" src={item.image_path} />
-            <span>{item.name}</span>
-          </td>
-          <td>{item.price} ₽ / {item.unit}</td>
-          <td style={{textAlign: 'start'}}>
-            <div className="order-table__cell">
-              <div className="b-number">
-                <div className="order-number">
-                  <div className="order-number__field">
-                    <input
-                      className={orderNumberInp}
-                      type="number"
-                      max="99"
-                      min="0"
-                      value={item.counts}
-                    />
-                  </div>
-                  <div
-                    className="order-number__spin minus"
-                  ></div>
-                  <div
-                    className="order-number__spin plus"
-                  ></div>
+      <tr key={index}>
+        <td className="table-40-procent-td">
+          <img className="cart-product-image" src={item.image_path} />
+          <span>{item.name}</span>
+        </td>
+        <td>{item.price} ₽ / {item.unit}</td>
+        <td style={{textAlign: 'start'}}>
+          <div className="order-table__cell">
+            <div className="b-number">
+              <div className="order-number" style={{width: '70px'}}>
+                <div className="order-number__field">
+                  <input
+                    className={orderNumberInp}
+                    type="number"
+                    max="99"
+                    min="0"
+                    value={item.counts}
+                  />
                 </div>
               </div>
             </div>
-          </td>
-          <td>{cost} ₽</td>
-          <td style={{color: 'firebrick'}}>
-            <span
-              className="remove-product"
-              aria-hidden="true"
-            >
-            </span>
-          </td>
-        </tr>
-      });
+          </div>
+        </td>
+        <td>{item.cost} ₽</td>
+        <td style={{color: 'firebrick'}}>
+          <span
+            className="remove-product"
+            aria-hidden="true"
+          >
+          </span>
+        </td>
+      </tr>
+    );
 
     var headTd = null;
     const thStyle = {
@@ -113,15 +106,18 @@ class OrderItem extends Component {
         return total + item.cost;
       }, 0
     );
+
     return (
-    <table id="cart-products-table" className="margin-off">
-      { headTd }
-      { this.state.tdBotyVisible && productsTr }
-      {
-        this.state.tdBotyVisible &&
-        <div className="cart-order__total" style={totalStyle}>Итог:&nbsp;<span>{ total } ₽</span></div>
-      }
-    </table>
+      <div className="orders-item">
+        <table id="cart-products-table" className="margin-off">
+          { headTd }
+          { this.state.tdBotyVisible && productsTr }
+        </table>
+        {
+          this.state.tdBotyVisible &&
+          <div className="cart-order__total" style={totalStyle}>Итог:&nbsp;<span>{ total } ₽</span></div>
+        }
+      </div>
     );
   }
 }
