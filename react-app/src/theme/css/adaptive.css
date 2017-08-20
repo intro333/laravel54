@@ -97,6 +97,9 @@
     }
 }
 @media (max-width: 767px) {
+    .customer-data-container {
+        width: 100%;
+    }
     .menu__item--basket__amount {
         top: 4px;
         right: 99px;
@@ -158,22 +161,7 @@
         color: #333;
     }
     h2 {
-        font-size: 20px;
-    }
-    .lesson-theme {
-        font-size: 12px;
-    }
-    .block-console-inside {
-        font-size: 13px;
-    }
-    .descrption-text {
-        font-size: 14px;
-    }
-    .btn-lg {
-        font-size: 17px;
-    }
-    .block-lesson-child {
-        padding-top: 5px !important;
+        font-size: 24px;
     }
 }
 
@@ -193,35 +181,21 @@
         width: 47%;
     }
 }
-@media (max-width: 767px) {
-    .block-lesson {
-        width: 95%;
-        margin-left: 7px;
-        margin-top: 5px;
+@media (max-width: 571px) {
+    .order-filter-main {
+        flex-direction: column;
     }
-    .tool-panel {
-        font-size: 18px;
-    }
-    .lesson-description:active {
-        font-size: 17px;
-    }
-}
-@media (max-width: 405px) {
-    .block-lesson {
-        width: 93%;
-        margin-left: 7px;
-    }
-    .mob-menu-right {
-        float: right;
-        margin-right: 15px;
-        color: #696969;
-    }
-    .container-for-nextOrPrev {
+    .order-filds-label-input {
         width: 100%;
     }
-    .for-three-block {
-        margin-left: 12px;
+    .order-filds-label-input:nth-child(2) {
+        width: 100%;
     }
+}
+@media (max-width: 500px) {
+    /*.h1 {*/
+        /*font-size: 14px !important;*/
+    /*}*/
 }
 
 /*nextOrPrev*/

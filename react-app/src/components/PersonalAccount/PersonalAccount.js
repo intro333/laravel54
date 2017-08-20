@@ -164,7 +164,7 @@ class PersonalAccount extends Component {
       { value: 0, label: '' },
       { value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }
     ];
-    const dayOptions = helpers.getNumberSelectOptions(1, 32);
+    const dayOptions = helpers.getNumberSelectOptions(1, 31);
     const yearOptions = helpers.getNumberSelectOptions(1900, (new Date().getUTCFullYear() - 10));
 
     return (
@@ -175,8 +175,8 @@ class PersonalAccount extends Component {
           {/*avatar={this.state.avatar}*/}
         {/*/>*/}
         <div className="main-container">
-          <h1>Редактирование личных данных</h1>
-          <p className="personal-explain-text">Здесь вы можете отредактировать личные данные и добавить своё фото.</p>
+          <h2>Личный кабинет</h2>
+          <p className="personal-explain-text">Здесь вы можете отредактировать свои данные.</p>
 
           <div className="personal-container">
             {/*<div className="image-container">*/}

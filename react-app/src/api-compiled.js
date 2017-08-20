@@ -246,14 +246,16 @@ var changePhotoPersonalData = exports.changePhotoPersonalData = function changeP
 };
 
 //Получить все заказы пользователя
-var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher) {
+var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data) {
   var params = {
     method: 'post',
-    url: '/api/orders-get-all'
+    url: '/api/orders-get-all',
+    data: data
   };
 
   var then = function then(response) {
     dispatcher(modelActions.setOrders(response.data));
+    // console.log('ordersGetAll response.data', response.data);
   };
 
   var error = function error(_error12) {

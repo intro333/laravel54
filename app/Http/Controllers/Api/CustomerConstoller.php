@@ -84,13 +84,24 @@ class CustomerConstoller extends Controller
         return $imagePath;
     }
 
-    public function ordersGetAll()
+    public function ordersGetAll(Request $request)
     {
         $result = [];
         $userId = \Auth::user()->id;
-        $orders = Order::where('user_order_id', $userId)->get();
+        $emailHash = hash('md5', \Auth::user()->email);
+        $emailHash = preg_replace('/[^0-9]/', '', $emailHash);
+        $emailHash = substr($emailHash, 0, 9);
+//        dd($emailHash);
+        $orders = Order::where('user_order_id', $userId)
+            ->status($request->input('status'))
+            ->year($request->input('year'))
+            ->get();
 
         foreach ($orders as $key => $order) {
+            $result[$order->order_id][] = [
+                'orderId'   => $emailHash . '-' . $order->order_id,
+                'orderDate' => $order->created_at->format('d-m-Y'),
+            ];
             foreach ($order->features as $feature) {
                 $product = Products::find($feature['productId']);
                 $result[$order->order_id][] = [

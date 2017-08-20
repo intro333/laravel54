@@ -128,6 +128,11 @@ var Navigation = function (_Component) {
                     { className: 'menu__item--basket__amount' },
                     productsCount
                   )
+                ),
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/orders' },
+                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-list-alt mob-menu-right' })
                 )
               )
             )
@@ -177,6 +182,7 @@ var Navigation = function (_Component) {
                   _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: '/orders' },
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-list-alt' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },

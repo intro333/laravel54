@@ -67,13 +67,13 @@ class Navigation extends Component {
                 {/*<span className="glyphicon glyphicon-cog  mob-menu-right"></span>*/}
                 {/*<span className="glyphicon glyphicon-search  mob-menu-right"></span>*/}
                 <Link to={'/personal-account'}><span className="glyphicon glyphicon-user  mob-menu-right"></span></Link>
-                {/*<div>*/}
-                  <Link to={'/cart'}>
-                    <span className="glyphicon glyphicon-shopping-cart mob-menu-right"></span>
-                    <div className="menu__item--basket__amount">{productsCount}</div>
+                <Link to={'/cart'}>
+                  <span className="glyphicon glyphicon-shopping-cart mob-menu-right"></span>
+                  <div className="menu__item--basket__amount">{productsCount}</div>
+                </Link>
+                  <Link to={'/orders'}>
+                    <span className="glyphicon glyphicon-list-alt mob-menu-right"></span>
                   </Link>
-
-                {/*</div>*/}
               </div>
             </div>
           </nav>
@@ -106,6 +106,7 @@ class Navigation extends Component {
                   {/*</a>*/}
                 {/*</li>*/}
                 <li><Link to="/orders">
+                  <span className="glyphicon glyphicon-list-alt"></span>
                   <span className="mob-nav-text">Мои заказы</span>
                 </Link>
                 </li>

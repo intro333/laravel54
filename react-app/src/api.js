@@ -232,14 +232,16 @@ export const changePhotoPersonalData = (dispatcher, data) => {
 };
 
 //Получить все заказы пользователя
-export const ordersGetAll = dispatcher => {
+export const ordersGetAll = (dispatcher, data) => {
   const params = {
     method:'post',
     url:'/api/orders-get-all',
+    data: data
   };
 
   const then = response => {
     dispatcher(modelActions.setOrders(response.data));
+    // console.log('ordersGetAll response.data', response.data);
   };
 
   const error = (error) => {

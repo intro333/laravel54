@@ -234,6 +234,30 @@ a {
     background: #368e39;
     color: #fff
 }
+.success-button {
+    margin-top: 40px;
+    display: inline-block;
+    width: 150px;
+    border-radius: 2px;
+    border: 1px solid #4CAF50;
+    background: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
+.success-button p {
+    margin: 0;
+}
+.success-button:hover {
+    cursor: pointer;
+    background: #fff;
+    color: #4CAF50;
+}
+.success-button:active {
+    background: #368e39;
+    color: #fff
+}
 .cart-comment {
     width: 100%;
     margin-bottom: 20px;
@@ -548,10 +572,13 @@ input[type="checkbox"]:checked + label span {
 /*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/
 
 /*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/
-#cart-products-table {
+.cart-products-table {
     margin-top: 20px;
     border-collapse: collapse;
     width: 100%;
+}
+.cart-tr-head {
+    background-color: #4CAF50;
 }
 .table-30-procent {
     width: 30%;
@@ -575,7 +602,6 @@ tr:nth-child(even){background-color: #f2f2f2}
 th {
     text-align: center;
     padding: 18px;
-    background-color: #4CAF50;
     color: white;
 }
 .table-40-procent-td {
@@ -736,7 +762,7 @@ th {
     border-radius: 5px;
 }
 /*END avatar-elem---------------------------------------------------------------------------------------------------*/
-/*Крестик для мобильного меню*/
+/*Крестик для мобильного меню -------------------------------------------------------------------------------------*/
 .close-mobile-elem {
     position: absolute;
     left: 30px;
@@ -761,9 +787,9 @@ th {
 .close-mobile-elem:after {
     transform: rotate(-45deg);
 }
-/*END Крестик для мобильного меню*/
+/*END Крестик для мобильного меню ----------------------------------------------------------------------------------------*/
 
-/*Success Page*/
+/*Success Page -------------------------------------------------------------------------------------------------------------*/
 .success-page {
     display: flex;
     justify-content: center;
@@ -804,9 +830,12 @@ th {
     max-width: 400px;
     margin: auto;
 }
-/*END Success Page*/
+/*END Success Page -------------------------------------------------------------------------------------------------------------*/
 
-/* Мои заказы*/
+/* Мои заказы -------------------------------------------------------------------------------------------------------------*/
+.order-tr-head {
+    background: #4CAF50;
+}
 .order-tr-head:hover {
     cursor: pointer;
     background: #3A923E;
@@ -843,7 +872,24 @@ th {
     background-color: #f9f9f9;
     padding: 10px;
     color: #999;
-
-
 }
-/* END Мои заказы*/
+.order-filter-main {
+    display: flex;
+    padding: 10px;
+}
+.order-filds-label-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 150px;
+    margin-right: 10px;
+}
+.order-filds-label-input:nth-child(2) {
+    width: 90px;
+}
+.order-filds-label {
+    vertical-align: top;
+    letter-spacing: 1px;
+}
+/* END Мои заказы -------------------------------------------------------------------------------------------------------------*/

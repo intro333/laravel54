@@ -124,10 +124,10 @@ var Cart = function (_Component) {
           ),
           _react2.default.createElement(
             'table',
-            { id: 'cart-products-table' },
+            { className: 'cart-products-table' },
             _react2.default.createElement(
               'tr',
-              null,
+              { className: 'cart-tr-head' },
               _react2.default.createElement(
                 'th',
                 { className: 'table-30-procent' },

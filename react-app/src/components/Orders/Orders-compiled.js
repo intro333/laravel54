@@ -12,6 +12,14 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
 
+var _reactSelect = require('react-select');
+
+var _reactSelect2 = _interopRequireDefault(_reactSelect);
+
+var _helpers = require('../../helpers');
+
+var helpers = _interopRequireWildcard(_helpers);
+
 require('../../theme/css/index.css');
 
 require('../../theme/css/main.css');
@@ -34,6 +42,8 @@ var _OrderItem2 = _interopRequireDefault(_OrderItem);
 
 var _api = require('../../api');
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48,15 +58,45 @@ var Orders = function (_Component) {
   function Orders(props) {
     _classCallCheck(this, Orders);
 
-    return _possibleConstructorReturn(this, (Orders.__proto__ || Object.getPrototypeOf(Orders)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Orders.__proto__ || Object.getPrototypeOf(Orders)).call(this, props));
+
+    _this.state = {
+      orderStatus: 1,
+      orderYear: new Date().getUTCFullYear()
+    };
+    return _this;
   }
 
   _createClass(Orders, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
+    key: 'ordersGetAll',
+    value: function ordersGetAll(status) {
+      var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '2017';
       var dispatch = this.props.dispatch;
 
-      (0, _api.ordersGetAll)(dispatch);
+      var data = {
+        status: status,
+        year: year
+      };
+      (0, _api.ordersGetAll)(dispatch, data);
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.ordersGetAll(this.state.orderStatus, this.state.orderYear);
+    }
+  }, {
+    key: 'handleChangeOrderStatus',
+    value: function handleChangeOrderStatus(e) {
+      this.setState({ orderStatus: e.value });
+      this.ordersGetAll(e.value, this.state.orderYear);
+    }
+  }, {
+    key: 'handlerChangeOrderYear',
+    value: function handlerChangeOrderYear(e) {
+      this.setState({
+        orderYear: e.value
+      });
+      this.ordersGetAll(this.state.orderStatus, e.value);
     }
   }, {
     key: 'render',
@@ -64,15 +104,28 @@ var Orders = function (_Component) {
       var api = this.props.api;
 
       var orders = api.get('orders');
+      // console.log('orders', orders)
       var tables = null;
       if (orders.size === 0) {} else {
-        tables = Object.values(orders).map(function (item, index) {
-          return _react2.default.createElement(_OrderItem2.default, {
-            key: index,
-            item: item
-          });
+        tables = Object.entries(orders).map(function (item, index) {
+          return (
+            // console.log('item', item[1][0]['orderData'])
+            _react2.default.createElement(_OrderItem2.default, {
+              orderId: item[1][0]['orderId'],
+              orderDate: item[1][0]['orderDate'],
+              key: item[1][0]['orderId'],
+              item: item[1]
+            })
+          );
         });
       }
+
+      var OrderStatusOptions = [{ value: 1, label: 'Обрабатывается' },
+      // { value: 2, label: 'Собран' },
+      // { value: 3, label: 'Отправлен' },
+      { value: 2, label: 'Выполнен' }];
+
+      var yearOptions = helpers.getNumberSelectOptions(2012, new Date().getUTCFullYear(), false);
 
       return _react2.default.createElement(
         'div',
@@ -89,6 +142,45 @@ var Orders = function (_Component) {
               'h3',
               { className: 'bread-crumbs-on-page' },
               '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'order-filter-main' },
+            _react2.default.createElement(
+              'div',
+              { className: 'order-filds-label-input' },
+              _react2.default.createElement(
+                'label',
+                { className: 'order-filds-label', htmlFor: 'status' },
+                '\u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u043A\u0430\u0437\u0430'
+              ),
+              _react2.default.createElement(_reactSelect2.default, {
+                name: 'status',
+                value: this.state.orderStatus,
+                options: OrderStatusOptions,
+                onChange: this.handleChangeOrderStatus.bind(this),
+                clearable: false,
+                searchable: false
+              })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'order-filds-label-input' },
+              _react2.default.createElement(
+                'label',
+                { className: 'order-filds-label', htmlFor: 'status' },
+                '\u0413\u043E\u0434'
+              ),
+              _react2.default.createElement(_reactSelect2.default, {
+                name: 'birthdate',
+                value: this.state.orderYear,
+                options: yearOptions,
+                onChange: this.handlerChangeOrderYear.bind(this),
+                clearable: false,
+                searchable: false,
+                scrollMenuIntoView: false
+              })
             )
           ),
           _react2.default.createElement(

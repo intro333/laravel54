@@ -64,7 +64,7 @@ class SessionController extends Controller
         Order::create([
             'user_order_id' => $user->id,
             'comment'       => $comment ? $comment : '',
-            'status'        => 'in-progress', //Ожидает обработки
+            'status'        => 1, //Обрабатывается
             'features'      => $products,
         ]);
 

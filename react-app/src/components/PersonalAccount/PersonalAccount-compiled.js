@@ -229,7 +229,7 @@ var PersonalAccount = function (_Component) {
       var userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
       var genderOptions = [{ value: 0, label: 'Не выбран' }, { value: 1, label: 'Мужской' }, { value: 2, label: 'Женский' }];
       var monthOptions = [{ value: 0, label: '' }, { value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }];
-      var dayOptions = helpers.getNumberSelectOptions(1, 32);
+      var dayOptions = helpers.getNumberSelectOptions(1, 31);
       var yearOptions = helpers.getNumberSelectOptions(1900, new Date().getUTCFullYear() - 10);
 
       return _react2.default.createElement(
@@ -241,14 +241,14 @@ var PersonalAccount = function (_Component) {
           'div',
           { className: 'main-container' },
           _react2.default.createElement(
-            'h1',
+            'h2',
             null,
-            '\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u043B\u0438\u0447\u043D\u044B\u0445 \u0434\u0430\u043D\u043D\u044B\u0445'
+            '\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442'
           ),
           _react2.default.createElement(
             'p',
             { className: 'personal-explain-text' },
-            '\u0417\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043B\u0438\u0447\u043D\u044B\u0435 \u0434\u0430\u043D\u043D\u044B\u0435 \u0438 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0432\u043E\u0451 \u0444\u043E\u0442\u043E.'
+            '\u0417\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0441\u0432\u043E\u0438 \u0434\u0430\u043D\u043D\u044B\u0435.'
           ),
           _react2.default.createElement(
             'div',

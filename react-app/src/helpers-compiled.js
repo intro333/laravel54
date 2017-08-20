@@ -65,10 +65,13 @@ function inputmaskBirthDate(value, length, date) {
 
 //Маска для даты
 function getNumberSelectOptions(start, end) {
-  var nums = [];
-  var arrayOptions = [{ value: 0, label: '' }];
+  var filter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-  for (var i = start; i < end; i++) {
+  var nums = [];
+  var arrayOptions = [];
+  if (filter) arrayOptions.push({ value: 0, label: '' });
+
+  for (var i = start; i <= end; i++) {
     nums.push(i);
   }
 

@@ -57,11 +57,13 @@ export function inputmaskBirthDate(value, length, date) {
 }
 
 //Маска для даты
-export function getNumberSelectOptions(start, end) {
+export function getNumberSelectOptions(start, end, filter=true) {
   const nums = [];
-  const arrayOptions = [{ value: 0, label: '' }];
+  const arrayOptions = [];
+  if (filter)
+    arrayOptions.push({ value: 0, label: '' });
 
-  for (var i = start; i < end; i++) {
+  for (var i = start; i <= end; i++) {
     nums.push(i)
   }
 

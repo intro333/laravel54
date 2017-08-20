@@ -86,16 +86,26 @@ var SuccessPage = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'success-page__text' },
-              '\u0412 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F \u0412\u0430\u0448 \u0437\u0430\u043A\u0430\u0437 \u0431\u0443\u0434\u0435\u0442 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u0430\u043D. \u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u043A\u0430\u0437\u0430 \u043C\u043E\u0436\u043D\u043E \u043E\u0442\u0441\u043B\u0435\u0434\u0438\u0442\u044C \u0437\u0434\u0435\u0441\u044C.',
+              '\u0412 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F \u0412\u0430\u0448 \u0437\u0430\u043A\u0430\u0437 \u0431\u0443\u0434\u0435\u0442 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u0430\u043D. \u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u043A\u0430\u0437\u0430 \u043C\u043E\u0436\u043D\u043E \u043E\u0442\u0441\u043B\u0435\u0434\u0438\u0442\u044C ',
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: "/orders" },
+                _react2.default.createElement(
+                  'b',
+                  null,
+                  '\u0437\u0434\u0435\u0441\u044C'
+                )
+              ),
+              '.',
               _react2.default.createElement('br', null),
               '\u0421\u043F\u0430\u0441\u0438\u0431\u043E!'
             ),
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: '/' },
+              { to: "/" },
               _react2.default.createElement(
                 'div',
-                { className: 'add-to-cart-button', style: toHome },
+                { className: 'success-button' },
                 _react2.default.createElement(
                   'p',
                   null,

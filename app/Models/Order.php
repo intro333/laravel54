@@ -37,4 +37,24 @@ class Order extends Model
     {
         return $this->belongsTo('App\Models\User', 'order_id', 'id');
     }
+
+    /**
+     * Выборка по статусу заказа.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
+
+    /**
+     * Выборка по году заказа.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeYear($query, $year)
+    {
+        return $query->where('created_at', 'like', '%' . $year . '%');
+    }
 }

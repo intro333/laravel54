@@ -67,8 +67,8 @@ class Cart extends Component {
             <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
           </div>
 
-          <table id="cart-products-table">
-            <tr>
+          <table className="cart-products-table">
+            <tr className="cart-tr-head">
               <th className="table-30-procent">Продукт</th>
               <th className="table-25-procent">Цена</th>
               <th className="table-25-procent">Количество</th>
