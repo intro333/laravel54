@@ -580,6 +580,9 @@ input[type="checkbox"]:checked + label span {
 .cart-tr-head {
     background-color: #4CAF50;
 }
+.table-100-procent {
+    width: 100%;
+}
 .table-30-procent {
     width: 30%;
 }

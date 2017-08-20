@@ -34,8 +34,6 @@ class OrderItem extends Component {
 
   render() {
     var items = this.props.item;
-    console.log('items', items)
-    var total = null;
 
     const orderNumberInp = classNames({
       'order-number-inp': true,
@@ -78,6 +76,14 @@ class OrderItem extends Component {
             </span>
             </td>
           </tr>
+        } else {
+          return <tr key={index}>
+            <td className="table-40-procent-td" style={{color: 'black'}}>Заказ № ST-{this.props.orderId} от {this.props.orderDate}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
         }
       }
     );
@@ -108,10 +114,8 @@ class OrderItem extends Component {
       </tr>
     }
 
-    total = items.reduce((total, item) => {
-        return total + item.cost;
-      }, 0
-    );
+    var itemsForTotal = items.filter((number, index) => index !== 0);
+    var total = itemsForTotal.reduce((total, item) => total + item.cost, 0);
 
     return (
       <div className="orders-item">

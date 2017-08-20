@@ -65,9 +65,9 @@ var OrderItem = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var items = this.props.item;
-      console.log('items', items);
-      var total = null;
 
       var orderNumberInp = (0, _classnames2.default)({
         'order-number-inp': true
@@ -140,6 +140,23 @@ var OrderItem = function (_Component) {
               })
             )
           );
+        } else {
+          return _react2.default.createElement(
+            'tr',
+            { key: index },
+            _react2.default.createElement(
+              'td',
+              { className: 'table-40-procent-td', style: { color: 'black' } },
+              '\u0417\u0430\u043A\u0430\u0437 \u2116 ST-',
+              _this2.props.orderId,
+              ' \u043E\u0442 ',
+              _this2.props.orderDate
+            ),
+            _react2.default.createElement('td', null),
+            _react2.default.createElement('td', null),
+            _react2.default.createElement('td', null),
+            _react2.default.createElement('td', null)
+          );
         }
       });
 
@@ -196,7 +213,10 @@ var OrderItem = function (_Component) {
         );
       }
 
-      total = items.reduce(function (total, item) {
+      var itemsForTotal = items.filter(function (number, index) {
+        return index !== 0;
+      });
+      var total = itemsForTotal.reduce(function (total, item) {
         return total + item.cost;
       }, 0);
 

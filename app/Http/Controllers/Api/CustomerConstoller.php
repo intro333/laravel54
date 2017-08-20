@@ -90,7 +90,7 @@ class CustomerConstoller extends Controller
         $userId = \Auth::user()->id;
         $emailHash = hash('md5', \Auth::user()->email);
         $emailHash = preg_replace('/[^0-9]/', '', $emailHash);
-        $emailHash = substr($emailHash, 0, 9);
+        $emailHash = substr($emailHash, 0, 7);
 //        dd($emailHash);
         $orders = Order::where('user_order_id', $userId)
             ->status($request->input('status'))
