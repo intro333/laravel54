@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConfidentialsTable extends Migration
+class CreateOrdersQuotaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateConfidentialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('confidentials', function (Blueprint $table) {
+        Schema::create('orders_quota', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('electronic_key', 100);
+            $table->string('time_quota', 40);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateConfidentialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('confidentials');
+        Schema::dropIfExists('orders_quota');
     }
 }

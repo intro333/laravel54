@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('bar_code', 255)->unique();
             $table->string('name', 40);
             $table->string('description', 255)->nullable();
-            $table->string('image_path', 255);
+            $table->string('image_path', 500);
             $table->string('price', 20);
             $table->string('unit', 20);
             $table->json('features')->nullable();

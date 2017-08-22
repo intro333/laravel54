@@ -24124,7 +24124,9 @@ var OrderItem = function (_Component) {
       var headTd = null;
       var thStyle = {
         textAlign: 'left',
-        width: '100%'
+        width: '100%',
+        letterSpacing: '0.05em',
+        fontWeight: '400 !important'
 
         // console.log('order number', this.props)
 
