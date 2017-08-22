@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Select from 'react-select';
 import '../../theme/css/index.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
@@ -16,7 +17,8 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comment: ''
+      comment: '',
+      time_quota: 0,
     };
 
   }
@@ -39,6 +41,10 @@ class Cart extends Component {
     this.props.history.push('/sussess-page');//TODO сделать редирект на страницу успешного завершения отправления заказа
   }
 
+  handleChangeTimeQuota(e) {
+    this.setState({time_quota: e.value});
+  }
+
   render() {
     const { api } = this.props;
     const productsForCart = api.get('productsForCart');
@@ -56,6 +62,17 @@ class Cart extends Component {
         return total + ((item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10));
       }, 0
     );
+
+    const timeQuotaOptions = [
+      { value: 0, label: '' },
+      { value: 1, label: '9:00-9:30' },
+      { value: 2, label: '9:30-10:00' },
+    ];
+
+    const quotaStyle = {
+      width: '100%',
+      display: 'flex',
+    }
 
     return (
       <div className="container">
@@ -85,6 +102,19 @@ class Cart extends Component {
             onChange={this.handleChangeComment.bind(this)}
             placeholder="Оставьте комментарий к заказу..."
           />
+          <div style={quotaStyle}>
+            <label className="order-filds-label" htmlFor="time_quota">Я смогу забрать свой заказ в период с</label>
+            <div style={{width: '100px'}}>
+              <Select
+                name="time_quota"
+                value={this.state.time_quota}
+                options={timeQuotaOptions}
+                onChange={this.handleChangeTimeQuota.bind(this)}
+                clearable={false}
+                searchable={false}
+              />
+            </div>
+          </div>
           <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
         </div>
       </div>

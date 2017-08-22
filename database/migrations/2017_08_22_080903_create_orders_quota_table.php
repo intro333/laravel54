@@ -14,8 +14,11 @@ class CreateOrdersQuotaTable extends Migration
     public function up()
     {
         Schema::create('orders_quota', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('orders_quota_id');
             $table->string('time_quota', 40);
+            $table->tinyInteger('counts_quota')->unsigned();
+            $table->dateTime('delivery_date');
+            $table->timestamps();
         });
     }
 

@@ -12,6 +12,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
 
+var _reactSelect = require('react-select');
+
+var _reactSelect2 = _interopRequireDefault(_reactSelect);
+
 require('../../theme/css/index.css');
 
 require('../../theme/css/main.css');
@@ -51,7 +55,8 @@ var Cart = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
 
     _this.state = {
-      comment: ''
+      comment: '',
+      time_quota: 0
     };
 
     return _this;
@@ -81,6 +86,11 @@ var Cart = function (_Component) {
       this.props.history.push('/sussess-page'); //TODO сделать редирект на страницу успешного завершения отправления заказа
     }
   }, {
+    key: 'handleChangeTimeQuota',
+    value: function handleChangeTimeQuota(e) {
+      this.setState({ time_quota: e.value });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var api = this.props.api;
@@ -99,6 +109,13 @@ var Cart = function (_Component) {
       total = productsForCart.reduce(function (total, item) {
         return total + (item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10);
       }, 0);
+
+      var timeQuotaOptions = [{ value: 0, label: '' }, { value: 1, label: '9:00-9:30' }, { value: 2, label: '9:30-10:00' }];
+
+      var quotaStyle = {
+        width: '100%',
+        display: 'flex'
+      };
 
       return _react2.default.createElement(
         'div',
@@ -170,6 +187,27 @@ var Cart = function (_Component) {
             onChange: this.handleChangeComment.bind(this),
             placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
           }),
+          _react2.default.createElement(
+            'div',
+            { style: quotaStyle },
+            _react2.default.createElement(
+              'label',
+              { className: 'order-filds-label', htmlFor: 'time_quota' },
+              '\u042F \u0441\u043C\u043E\u0433\u0443 \u0437\u0430\u0431\u0440\u0430\u0442\u044C \u0441\u0432\u043E\u0439 \u0437\u0430\u043A\u0430\u0437 \u0432 \u043F\u0435\u0440\u0438\u043E\u0434 \u0441'
+            ),
+            _react2.default.createElement(
+              'div',
+              { style: { width: '100px' } },
+              _react2.default.createElement(_reactSelect2.default, {
+                name: 'time_quota',
+                value: this.state.time_quota,
+                options: timeQuotaOptions,
+                onChange: this.handleChangeTimeQuota.bind(this),
+                clearable: false,
+                searchable: false
+              })
+            )
+          ),
           _react2.default.createElement(
             'div',
             { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
