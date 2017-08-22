@@ -164,7 +164,8 @@ var OrderItem = function (_Component) {
       var thStyle = {
         textAlign: 'left',
         width: '100%',
-        letterSpacing: '0.5em'
+        letterSpacing: '0.05em',
+        fontWeight: '400 !important'
       };
 
       // console.log('order number', this.props)
