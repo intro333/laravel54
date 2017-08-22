@@ -78,7 +78,7 @@ class OrderItem extends Component {
           </tr>
         } else {
           return <tr key={index}>
-            <td className="table-40-procent-td" style={{color: 'black'}}>Заказ № ST-{this.props.orderId} от {this.props.orderDate}</td>
+            <td className="table-40-procent-td order-td-first">Заказ № ST-{this.props.orderId} от {this.props.orderDate}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -92,13 +92,14 @@ class OrderItem extends Component {
     const thStyle = {
       textAlign: 'left',
       width: '100%',
+      letterSpacing: '0.5em'
     }
 
     // console.log('order number', this.props)
 
     if (!this.state.orderNum) {
       headTd = <tr className="order-tr-head" onClick={this.handleClickOrder.bind(this)}>
-        <th style={thStyle}>Заказ № ST-{this.props.orderId} от {this.props.orderDate}</th>
+        <th className="order-th-head">Заказ № ST-{this.props.orderId} от {this.props.orderDate}</th>
         <th className="table-25-procent"></th>
         <th className="table-25-procent"></th>
         <th className="table-10-procent"></th>

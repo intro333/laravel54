@@ -146,7 +146,7 @@ var OrderItem = function (_Component) {
             { key: index },
             _react2.default.createElement(
               'td',
-              { className: 'table-40-procent-td', style: { color: 'black' } },
+              { className: 'table-40-procent-td order-td-first' },
               '\u0417\u0430\u043A\u0430\u0437 \u2116 ST-',
               _this2.props.orderId,
               ' \u043E\u0442 ',
@@ -163,7 +163,8 @@ var OrderItem = function (_Component) {
       var headTd = null;
       var thStyle = {
         textAlign: 'left',
-        width: '100%'
+        width: '100%',
+        letterSpacing: '0.5em'
       };
 
       // console.log('order number', this.props)
@@ -174,7 +175,7 @@ var OrderItem = function (_Component) {
           { className: 'order-tr-head', onClick: this.handleClickOrder.bind(this) },
           _react2.default.createElement(
             'th',
-            { style: thStyle },
+            { className: 'order-th-head' },
             '\u0417\u0430\u043A\u0430\u0437 \u2116 ST-',
             this.props.orderId,
             ' \u043E\u0442 ',

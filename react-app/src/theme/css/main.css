@@ -895,4 +895,16 @@ th {
     vertical-align: top;
     letter-spacing: 1px;
 }
+.order-th-head {
+    text-align: left;
+    width: 100%;
+    font-weight: normal !important;
+}
+.order-td-first {
+    font-weight: normal !important;
+    color: #757575;
+}
+.order-td-first:hover {
+    color: #000;
+}
 /* END Мои заказы -------------------------------------------------------------------------------------------------------------*/
