@@ -10,6 +10,7 @@ exports.setProducts = setProducts;
 exports.setCategoryId = setCategoryId;
 exports.setCategoryName = setCategoryName;
 exports.setProductsForCart = setProductsForCart;
+exports.setOrdersQuotaForCart = setOrdersQuotaForCart;
 exports.setUserImage = setUserImage;
 exports.setProductCounts = setProductCounts;
 exports.setOrders = setOrders;
@@ -39,6 +40,10 @@ function setCategoryName(categoryName) {
 
 function setProductsForCart(productsForCart) {
   return { type: 'SET_PRODUCTS_FOR_CART', productsForCart: productsForCart };
+}
+
+function setOrdersQuotaForCart(ordersQuota) {
+  return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota: ordersQuota };
 }
 
 function setUserImage(imagePath) {

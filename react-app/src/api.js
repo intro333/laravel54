@@ -170,6 +170,24 @@ export const sendOrder = (dispatcher, data) => {
   makeRequest(dispatcher, params, then, error);
 };
 
+//Показать квоты в корзине.
+export const showOrdersQuotaInCart = (dispatcher) => {
+  const params = {
+    method:'post',
+    url:'/api/get-orders-quota-in-cart'
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setOrdersQuotaForCart(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
 //Получить данные для личного кабинета
 export const setUserInfo = dispatcher => {
   const params = {

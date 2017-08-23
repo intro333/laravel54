@@ -10,6 +10,7 @@ import MenuMobile from '../Popups/MenuMobile';
 import CartItem from '../Cart/CartItem';
 import {
   showProductsInCart,
+  showOrdersQuotaInCart,
   sendOrder,
 } from '../../api';
 
@@ -26,6 +27,7 @@ class Cart extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
     showProductsInCart(dispatch);
+    showOrdersQuotaInCart(dispatch);
   }
 
   handleChangeComment(event) {
@@ -48,13 +50,13 @@ class Cart extends Component {
   render() {
     const { api } = this.props;
     const productsForCart = api.get('productsForCart');
+    const ordersQuota = api.get('ordersQuota');
     var total = null;
-    console.log('productsForCart', productsForCart)
+
     const productsTd = productsForCart.map((item) =>
       <CartItem
         key={item.productId}
         item={item}
-
       />
     );
 
@@ -63,15 +65,16 @@ class Cart extends Component {
       }, 0
     );
 
-    const timeQuotaOptions = [
-      { value: 0, label: '' },
-      { value: 1, label: '9:00-9:30' },
-      { value: 2, label: '9:30-10:00' },
-    ];
+    var timeQuotaOptions = [{value: 0, label: ''}];
+    var delivery = null;
+    if (ordersQuota.ordersQuota) {
+      ordersQuota.ordersQuota.map(q => timeQuotaOptions.push({value: q.orders_quota_id, label: q.time_quota}));
+    }
 
     const quotaStyle = {
       width: '100%',
       display: 'flex',
+      alignItems: 'center'
     }
 
     return (
@@ -102,9 +105,10 @@ class Cart extends Component {
             onChange={this.handleChangeComment.bind(this)}
             placeholder="Оставьте комментарий к заказу..."
           />
+          <label className="order-filds-label" htmlFor="time_quota">Дата доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</label>
           <div style={quotaStyle}>
             <label className="order-filds-label" htmlFor="time_quota">Я смогу забрать свой заказ в период с</label>
-            <div style={{width: '100px'}}>
+            <div style={{width: '120px', marginLeft: '10px'}}>
               <Select
                 name="time_quota"
                 value={this.state.time_quota}

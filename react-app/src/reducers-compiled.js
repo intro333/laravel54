@@ -26,6 +26,7 @@ var api = exports.api = function api() {
     categories: map(),
     products: map(),
     productsForCart: map(),
+    ordersQuota: map(),
     dataOfPersonalAccount: map(),
     imagePath: false,
     orders: map()
@@ -43,6 +44,9 @@ var api = exports.api = function api() {
 
     case 'SET_PRODUCTS_FOR_CART':
       return state.set('productsForCart', action.productsForCart);
+
+    case 'SET_ORDERS_QUOTA_FOR_CART':
+      return state.set('ordersQuota', action.ordersQuota);
 
     case 'SET_DATA_OF_PERSONAL_ACCOUNT':
       return state.set('dataOfPersonalAccount', action.dataOfPersonalAccount);

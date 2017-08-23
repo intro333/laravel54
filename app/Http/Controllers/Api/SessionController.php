@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Delivery;
 use App\Models\Order;
+use App\Models\OrdersQuota;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -72,6 +74,23 @@ class SessionController extends Controller
         session()->forget('productFromCart');
 
         return [];
+    }
+
+    public function showOrdersQuotaInCart()
+    {
+        $ordersQuota = OrdersQuota::all();
+        $delivery = Delivery::all()->first();
+
+        $delivery = [
+            'delivery_date' => $delivery['delivery_date']->format('d-m-Y'),
+            'status' => $delivery['status'],
+            'delivery_message' => $delivery['delivery_message'],
+        ];
+
+        return [
+            'delivery'      =>  $delivery,
+            'ordersQuota'   =>  $ordersQuota
+        ];
     }
 
     public function getProductCounts()

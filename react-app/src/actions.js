@@ -26,6 +26,10 @@ export function setProductsForCart(productsForCart) {
   return { type: 'SET_PRODUCTS_FOR_CART', productsForCart };
 }
 
+export function setOrdersQuotaForCart(ordersQuota) {
+  return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota };
+}
+
 export function setUserImage(imagePath) {
   return { type: 'SET_USER_IMAGE', imagePath };
 }
