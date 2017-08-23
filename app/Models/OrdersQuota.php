@@ -15,7 +15,6 @@ class OrdersQuota extends Model
     ];
 
     protected $dates = [
-        'delivery_date',
         'created_at',
         'updated_at'
     ];

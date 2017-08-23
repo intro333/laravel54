@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\UserDetail;
 use Carbon\Carbon;
 
 class UsersTableSeeder extends Seeder
@@ -12,24 +14,45 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::collection('users')->truncate();
+        DB::table('user_details')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
-        foreach ($this->getData() as $item) {
-            DB::collection('users')->insert($item);
+        foreach ($this->getUserData() as $item) {
+            User::create($item);
+        }
+        foreach ($this->getUserDetailsData() as $item) {
+            UserDetail::create($item);
         }
     }
 
-    public function getData()
+    public function getUserData()
     {
         $data = [
             [
-                "user_id" => "1",
-                "name"    => "user1",
-                "email"   => "email333@ya.ru",
-                "password"         => bcrypt('12345'),
+                "id"        => 1,
+                "email"     => "qwe@mail.ru",
+                "password"  => bcrypt('123456'),
+                "role"      => 'person',
+                "is_active" => 1,
                 "remember_token"   => "",
-                "created_at"       => Carbon::now(),
-                "updated_at"       => "",
+            ]
+        ];
+
+        return $data;
+    }
+
+    public function getUserDetailsData()
+    {
+        $data = [
+            [
+                "user_details_user_id"  => 1,
+                "name"   => 'Дмитрий',
+                "sname"  => 'Держаев',
+                "mname"  => '',
+                "phone"  => '+7 (926) 851 20 86',
+                "gender"    => 1,
             ]
         ];
 

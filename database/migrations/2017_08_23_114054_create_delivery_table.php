@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersQuotaTable extends Migration
+class CreateDeliveryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateOrdersQuotaTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders_quota', function (Blueprint $table) {
-            $table->increments('orders_quota_id');
-            $table->string('time_quota', 40);
-            $table->tinyInteger('counts_quota')->unsigned();
+        Schema::create('delivery', function (Blueprint $table) {
+            $table->increments('delivery_date_id');
+            $table->dateTime('delivery_date');
+            $table->tinyInteger('status')->unsigned();
+            $table->string('delivery_message', 1000);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateOrdersQuotaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders_quota');
+        Schema::dropIfExists('delivery');
     }
 }

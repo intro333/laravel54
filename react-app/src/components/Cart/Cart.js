@@ -38,7 +38,7 @@ class Cart extends Component {
       comment: this.state.comment
     };
     sendOrder(dispatch, data);
-    this.props.history.push('/sussess-page');//TODO сделать редирект на страницу успешного завершения отправления заказа
+    this.props.history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
   }
 
   handleChangeTimeQuota(e) {
