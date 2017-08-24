@@ -14,6 +14,7 @@ export const api = (state = map({
   products: map(),
   productsForCart: map(),
   ordersQuota: map(),
+  checkTimeQuota: null,
   dataOfPersonalAccount: map(),
   imagePath: false,
   orders: map(),
@@ -33,6 +34,9 @@ export const api = (state = map({
     case 'SET_ORDERS_QUOTA_FOR_CART':
       return state.set('ordersQuota', action.ordersQuota);
 
+    case 'SET_CHECK_TIME_QUOTA_FOR_CART':
+      return state.set('checkTimeQuota', action.checkTimeQuota);
+
     case 'SET_DATA_OF_PERSONAL_ACCOUNT':
       return state.set('dataOfPersonalAccount', action.dataOfPersonalAccount);
 
@@ -49,6 +53,7 @@ export const api = (state = map({
 
 let defaultSessionState = map({
   userInfo: map(),
+  errors: null,
   mobNavElement: true,
   categoryId: null,
   categoryName: null,
@@ -60,6 +65,9 @@ const session = (state = defaultSessionState, action) => {
 
     case 'SET_USER_INFO':
       return state.set('userInfo', action.userInfo);
+
+    case 'SET_ERRORS':
+      return state.set('errors', action.errors);
 
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);

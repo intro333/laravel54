@@ -12,6 +12,7 @@ import {
   showProductsInCart,
   showOrdersQuotaInCart,
   sendOrder,
+  checkTimeQuota,
 } from '../../api';
 
 class Cart extends Component {
@@ -35,7 +36,7 @@ class Cart extends Component {
   }
 
   handlerSendOrder() {
-    const { dispatch } = this.props;
+    const { api, dispatch } = this.props;
     if (this.state.time_quota !== 0) {
       const data = {
         comment: this.state.comment,
@@ -50,9 +51,14 @@ class Cart extends Component {
   }
 
   render() {
-    const { api } = this.props;
+    const { api, session } = this.props;
+    if (session.get('errors')) {
+      console.log('errorS', session.get('errors'))
+    }
     const productsForCart = api.get('productsForCart');
     const ordersQuota = api.get('ordersQuota');
+    // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
+    // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
     var total = null;
 
     const productsTd = productsForCart.map((item) =>
@@ -133,11 +139,3 @@ export default connect(store => ({
   session: store.session,
   api: store.api,
 }))(Cart);
-
-// productId={item.productId}
-// count={item.count}
-// imagePath={item.imagePath}
-// name={item.name}
-// barCode={item.barCode}
-// price={item.price}
-// unit={item.unit}

@@ -909,7 +909,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = __webpack_require__(1);
 
@@ -1080,8 +1080,8 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data) {
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setProductsForCart(response.data));
-    undefined.props.history.push('/sussess-page'); //TODO редирект на страницу успешного завершения отправления заказа
+    if (response.data.successTime) dispatcher(modelActions.setProductsForCart(response.data));else if (response.data.errorTime) dispatcher(modelActions.setErrors(response.data));
+    // this.props.history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
   };
 
   var error = function error(_error8) {
@@ -1109,6 +1109,25 @@ var showOrdersQuotaInCart = exports.showOrdersQuotaInCart = function showOrdersQ
   makeRequest(dispatcher, params, then, error);
 };
 
+//Прочекать квоты в корзине на наличие 0.
+var checkTimeQuota = exports.checkTimeQuota = function checkTimeQuota(dispatcher, data) {
+  var params = {
+    method: 'post',
+    url: '/api/check-time-quota-in-cart',
+    data: data
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setCheckTimeQuotaForCart(response.data));
+  };
+
+  var error = function error(_error10) {
+    console.log(_error10);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
 //Получить данные для личного кабинета
 var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
   var params = {
@@ -1120,8 +1139,8 @@ var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
     dispatcher(modelActions.setUserInfo(response.data));
   };
 
-  var error = function error(_error10) {
-    console.log(_error10);
+  var error = function error(_error11) {
+    console.log(_error11);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -1139,8 +1158,8 @@ var updatePersonalData = exports.updatePersonalData = function updatePersonalDat
     dispatcher(modelActions.setUserInfo(response.data));
   };
 
-  var error = function error(_error11) {
-    console.log(_error11);
+  var error = function error(_error12) {
+    console.log(_error12);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -1163,8 +1182,8 @@ var changePhotoPersonalData = exports.changePhotoPersonalData = function changeP
     dispatcher(modelActions.setUserImage(response.data));
   };
 
-  var error = function error(_error12) {
-    console.log(_error12);
+  var error = function error(_error13) {
+    console.log(_error13);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -1183,8 +1202,8 @@ var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data
     // console.log('ordersGetAll response.data', response.data);
   };
 
-  var error = function error(_error13) {
-    console.log(_error13);
+  var error = function error(_error14) {
+    console.log(_error14);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -2907,6 +2926,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.setUserInfo = setUserInfo;
+exports.setErrors = setErrors;
 exports.setMobNavElement = setMobNavElement;
 exports.setCategories = setCategories;
 exports.setProducts = setProducts;
@@ -2914,11 +2934,16 @@ exports.setCategoryId = setCategoryId;
 exports.setCategoryName = setCategoryName;
 exports.setProductsForCart = setProductsForCart;
 exports.setOrdersQuotaForCart = setOrdersQuotaForCart;
+exports.setCheckTimeQuotaForCart = setCheckTimeQuotaForCart;
 exports.setUserImage = setUserImage;
 exports.setProductCounts = setProductCounts;
 exports.setOrders = setOrders;
 function setUserInfo(userInfo) {
   return { type: 'SET_USER_INFO', userInfo: userInfo };
+}
+
+function setErrors(errors) {
+  return { type: 'SET_ERRORS', errors: errors };
 }
 
 function setMobNavElement(mobNavElement) {
@@ -2947,6 +2972,10 @@ function setProductsForCart(productsForCart) {
 
 function setOrdersQuotaForCart(ordersQuota) {
   return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota: ordersQuota };
+}
+
+function setCheckTimeQuotaForCart(checkTimeQuota) {
+  return { type: 'SET_CHECK_TIME_QUOTA_FOR_CART', checkTimeQuota: checkTimeQuota };
 }
 
 function setUserImage(imagePath) {
@@ -22409,6 +22438,7 @@ var api = exports.api = function api() {
     products: map(),
     productsForCart: map(),
     ordersQuota: map(),
+    checkTimeQuota: null,
     dataOfPersonalAccount: map(),
     imagePath: false,
     orders: map()
@@ -22430,6 +22460,9 @@ var api = exports.api = function api() {
     case 'SET_ORDERS_QUOTA_FOR_CART':
       return state.set('ordersQuota', action.ordersQuota);
 
+    case 'SET_CHECK_TIME_QUOTA_FOR_CART':
+      return state.set('checkTimeQuota', action.checkTimeQuota);
+
     case 'SET_DATA_OF_PERSONAL_ACCOUNT':
       return state.set('dataOfPersonalAccount', action.dataOfPersonalAccount);
 
@@ -22446,6 +22479,7 @@ var api = exports.api = function api() {
 
 var defaultSessionState = map({
   userInfo: map(),
+  errors: null,
   mobNavElement: true,
   categoryId: null,
   categoryName: null,
@@ -22460,6 +22494,9 @@ var session = function session() {
 
     case 'SET_USER_INFO':
       return state.set('userInfo', action.userInfo);
+
+    case 'SET_ERRORS':
+      return state.set('errors', action.errors);
 
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);
@@ -23416,7 +23453,9 @@ var Cart = function (_Component) {
   }, {
     key: 'handlerSendOrder',
     value: function handlerSendOrder() {
-      var dispatch = this.props.dispatch;
+      var _props = this.props,
+          api = _props.api,
+          dispatch = _props.dispatch;
 
       if (this.state.time_quota !== 0) {
         var data = {
@@ -23434,10 +23473,17 @@ var Cart = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var api = this.props.api;
+      var _props2 = this.props,
+          api = _props2.api,
+          session = _props2.session;
 
+      if (session.get('errors')) {
+        console.log('errorS', session.get('errors'));
+      }
       var productsForCart = api.get('productsForCart');
       var ordersQuota = api.get('ordersQuota');
+      // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
+      // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
       var total = null;
 
       var productsTd = productsForCart.map(function (item) {
@@ -23582,14 +23628,6 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     api: store.api
   };
 })(Cart);
-
-// productId={item.productId}
-// count={item.count}
-// imagePath={item.imagePath}
-// name={item.name}
-// barCode={item.barCode}
-// price={item.price}
-// unit={item.unit}
 
 /***/ }),
 /* 161 */

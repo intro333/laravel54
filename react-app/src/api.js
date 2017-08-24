@@ -160,8 +160,11 @@ export const sendOrder = (dispatcher, data) => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setProductsForCart(response.data));
-    this.props.history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
+    if (response.data.successTime)
+      dispatcher(modelActions.setProductsForCart(response.data));
+    else if (response.data.errorTime)
+      dispatcher(modelActions.setErrors(response.data));
+    // this.props.history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
   };
 
   const error = (error) => {
@@ -180,6 +183,25 @@ export const showOrdersQuotaInCart = (dispatcher) => {
 
   const then = response => {
     dispatcher(modelActions.setOrdersQuotaForCart(response.data))
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Прочекать квоты в корзине на наличие 0.
+export const checkTimeQuota = (dispatcher, data) => {
+  const params = {
+    method:'post',
+    url:'/api/check-time-quota-in-cart',
+    data: data
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setCheckTimeQuotaForCart(response.data))
   };
 
   const error = (error) => {

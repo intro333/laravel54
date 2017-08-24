@@ -57,27 +57,31 @@ class SessionController extends Controller
         $timeQuotaId = $request->input('time_quota');
         $products = [];
 
-        OrdersQuota::updateCountsQuota($timeQuotaId);
+        $updateResult = OrdersQuota::updateCountsQuota($timeQuotaId);
 
-        foreach ($session as $item) {
-            $products[] = [
-                'productId' => $item['productId'],
-                'count'     => $item['productCounts']
-            ];
+        if($updateResult === 'no free quota') {
+            return ['errorTime' => 'no free quota'];
+        } else {
+            foreach ($session as $item) {
+                $products[] = [
+                    'productId' => $item['productId'],
+                    'count'     => $item['productCounts']
+                ];
+            }
+
+            Order::create([
+                'user_order_id' => $user->id,
+                'comment'       => $comment ? $comment : '',
+                'status'        => 1, //Обрабатывается
+                'time_quota_id' => $timeQuotaId,
+                'features'      => $products,
+            ]);
+
+            //Удалить все продукты из сессии.
+            session()->forget('productFromCart');
+
+            return ['successTime' => 'success'];
         }
-
-        Order::create([
-            'user_order_id' => $user->id,
-            'comment'       => $comment ? $comment : '',
-            'status'        => 1, //Обрабатывается
-            'time_quota_id' => $timeQuotaId,
-            'features'      => $products,
-        ]);
-
-        //Удалить все продукты из сессии.
-        session()->forget('productFromCart');
-
-        return [];
     }
 
     //Дата доставки и квоты для корзины
@@ -98,6 +102,14 @@ class SessionController extends Controller
             'delivery'      =>  $delivery,
             'ordersQuota'   =>  $ordersQuota
         ];
+    }
+
+    //Прочекать квоты в корзине на наличие 0
+    public function checkTimeQuotaInCart(Request $request)
+    {
+        $ordersQuota = OrdersQuota::quotaOnId($request->input('time_quota'))->first();
+//        dd($ordersQuota->counts_quota);
+        return ['counts_quota' => $ordersQuota->counts_quota];
     }
 
     public function getProductCounts()

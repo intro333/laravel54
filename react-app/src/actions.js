@@ -2,6 +2,10 @@ export function setUserInfo(userInfo) {
   return { type: 'SET_USER_INFO', userInfo };
 }
 
+export function setErrors(errors) {
+  return { type: 'SET_ERRORS', errors };
+}
+
 export function setMobNavElement(mobNavElement) {
   return { type: 'SET_MOB_NAV_ELEMENT', mobNavElement };
 }
@@ -28,6 +32,10 @@ export function setProductsForCart(productsForCart) {
 
 export function setOrdersQuotaForCart(ordersQuota) {
   return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota };
+}
+
+export function setCheckTimeQuotaForCart(checkTimeQuota) {
+  return { type: 'SET_CHECK_TIME_QUOTA_FOR_CART', checkTimeQuota };
 }
 
 export function setUserImage(imagePath) {
