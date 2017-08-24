@@ -152,7 +152,7 @@ export const deleteProductFromCart = (dispatcher, data) => {
 };
 
 //Отправить заказ.
-export const sendOrder = (dispatcher, data) => {
+export const sendOrder = (dispatcher, data, history) => {
   const params = {
     method:'post',
     url:'/api/send-order',
@@ -160,11 +160,11 @@ export const sendOrder = (dispatcher, data) => {
   };
 
   const then = response => {
-    if (response.data.successTime)
+    if (response.data.successTime) {
       dispatcher(modelActions.setProductsForCart(response.data));
-    else if (response.data.errorTime)
+      history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
+    } else if (response.data.errorTime)
       dispatcher(modelActions.setErrors(response.data));
-    // this.props.history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
   };
 
   const error = (error) => {

@@ -1072,7 +1072,7 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
 };
 
 //Отправить заказ.
-var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data) {
+var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history) {
   var params = {
     method: 'post',
     url: '/api/send-order',
@@ -1080,8 +1080,10 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data) {
   };
 
   var then = function then(response) {
-    if (response.data.successTime) dispatcher(modelActions.setProductsForCart(response.data));else if (response.data.errorTime) dispatcher(modelActions.setErrors(response.data));
-    // this.props.history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
+    if (response.data.successTime) {
+      dispatcher(modelActions.setProductsForCart(response.data));
+      history.push('/sussess-page'); //TODO редирект на страницу успешного завершения отправления заказа
+    } else if (response.data.errorTime) dispatcher(modelActions.setErrors(response.data));
   };
 
   var error = function error(_error8) {
@@ -23431,7 +23433,8 @@ var Cart = function (_Component) {
 
     _this.state = {
       comment: '',
-      time_quota: 0
+      time_quota: 0,
+      errorMessageCountQuota: ''
     };
 
     return _this;
@@ -23446,6 +23449,22 @@ var Cart = function (_Component) {
       (0, _api.showOrdersQuotaInCart)(dispatch);
     }
   }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(props) {
+      var _ref = props || this.props,
+          dispatch = _ref.dispatch,
+          session = _ref.session;
+
+      if (session.get('errors')) {
+        var errorMessageCountQuota = session.get('errors').errorTime;
+        this.setState({
+          errorMessageCountQuota: errorMessageCountQuota,
+          time_quota: 0
+        });
+        (0, _api.showOrdersQuotaInCart)(dispatch);
+      }
+    }
+  }, {
     key: 'handleChangeComment',
     value: function handleChangeComment(event) {
       this.setState({ comment: event.target.value });
@@ -23454,7 +23473,7 @@ var Cart = function (_Component) {
     key: 'handlerSendOrder',
     value: function handlerSendOrder() {
       var _props = this.props,
-          api = _props.api,
+          history = _props.history,
           dispatch = _props.dispatch;
 
       if (this.state.time_quota !== 0) {
@@ -23462,7 +23481,7 @@ var Cart = function (_Component) {
           comment: this.state.comment,
           time_quota: this.state.time_quota
         };
-        (0, _api.sendOrder)(dispatch, data);
+        (0, _api.sendOrder)(dispatch, data, history);
       }
     }
   }, {
@@ -23473,13 +23492,8 @@ var Cart = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props2 = this.props,
-          api = _props2.api,
-          session = _props2.session;
+      var api = this.props.api;
 
-      if (session.get('errors')) {
-        console.log('errorS', session.get('errors'));
-      }
       var productsForCart = api.get('productsForCart');
       var ordersQuota = api.get('ordersQuota');
       // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
@@ -23583,7 +23597,7 @@ var Cart = function (_Component) {
           }),
           _react2.default.createElement(
             'label',
-            { className: 'order-filds-label', htmlFor: 'time_quota' },
+            { className: 'order-filds-label' },
             '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
             ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
           ),
@@ -23603,10 +23617,16 @@ var Cart = function (_Component) {
                 value: this.state.time_quota,
                 options: timeQuotaOptions,
                 onChange: this.handleChangeTimeQuota.bind(this),
+                placeholder: '',
                 clearable: false,
                 searchable: false
               })
             )
+          ),
+          _react2.default.createElement(
+            'label',
+            { className: 'order-filds-label', style: { color: 'red', fontSize: '12px' } },
+            this.state.errorMessageCountQuota
           ),
           _react2.default.createElement(
             'div',

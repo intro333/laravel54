@@ -21,6 +21,7 @@ class Cart extends Component {
     this.state = {
       comment: '',
       time_quota: 0,
+      errorMessageCountQuota: ''
     };
 
   }
@@ -31,18 +32,30 @@ class Cart extends Component {
     showOrdersQuotaInCart(dispatch);
   }
 
+  componentWillReceiveProps(props) {
+    const { dispatch, session } = props || this.props;
+    if (session.get('errors')) {
+      const errorMessageCountQuota = session.get('errors').errorTime;
+      this.setState({
+        errorMessageCountQuota: errorMessageCountQuota,
+        time_quota: 0
+      });
+      showOrdersQuotaInCart(dispatch);
+    }
+  }
+
   handleChangeComment(event) {
     this.setState({comment: event.target.value});
   }
 
   handlerSendOrder() {
-    const { api, dispatch } = this.props;
+    const { history, dispatch } = this.props;
     if (this.state.time_quota !== 0) {
       const data = {
         comment: this.state.comment,
         time_quota: this.state.time_quota
       };
-      sendOrder(dispatch, data);
+      sendOrder(dispatch, data, history);
     }
   }
 
@@ -51,10 +64,7 @@ class Cart extends Component {
   }
 
   render() {
-    const { api, session } = this.props;
-    if (session.get('errors')) {
-      console.log('errorS', session.get('errors'))
-    }
+    const { api } = this.props;
     const productsForCart = api.get('productsForCart');
     const ordersQuota = api.get('ordersQuota');
     // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
@@ -113,7 +123,7 @@ class Cart extends Component {
             onChange={this.handleChangeComment.bind(this)}
             placeholder="Оставьте комментарий к заказу..."
           />
-          <label className="order-filds-label" htmlFor="time_quota">Дата доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</label>
+          <label className="order-filds-label">Дата доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</label>
           <div style={quotaStyle}>
             <label className="order-filds-label" htmlFor="time_quota">Я смогу забрать свой заказ в период с</label>
             <div style={{width: '120px', marginLeft: '10px'}}>
@@ -122,11 +132,13 @@ class Cart extends Component {
                 value={this.state.time_quota}
                 options={timeQuotaOptions}
                 onChange={this.handleChangeTimeQuota.bind(this)}
+                placeholder=''
                 clearable={false}
                 searchable={false}
               />
             </div>
           </div>
+          <label className="order-filds-label" style={{color: 'red', fontSize: '12px'}}>{this.state.errorMessageCountQuota}</label>
           <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
         </div>
       </div>

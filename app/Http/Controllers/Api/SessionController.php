@@ -60,7 +60,7 @@ class SessionController extends Controller
         $updateResult = OrdersQuota::updateCountsQuota($timeQuotaId);
 
         if($updateResult === 'no free quota') {
-            return ['errorTime' => 'no free quota'];
+            return ['errorTime' => 'К сожалению, в этот период уже всё занято.Пожалуйста выберите другой.'];
         } else {
             foreach ($session as $item) {
                 $products[] = [
