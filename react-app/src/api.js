@@ -161,10 +161,11 @@ export const sendOrder = (dispatcher, data, history) => {
 
   const then = response => {
     if (response.data.successTime) {
-      dispatcher(modelActions.setProductsForCart(response.data));
       history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
-    } else if (response.data.errorTime)
+    } else if (response.data.errorTime) {
       dispatcher(modelActions.setErrors(response.data));
+      showOrdersQuotaInCart(dispatcher);
+    }
   };
 
   const error = (error) => {

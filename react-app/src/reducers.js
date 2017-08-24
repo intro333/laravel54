@@ -53,7 +53,7 @@ export const api = (state = map({
 
 let defaultSessionState = map({
   userInfo: map(),
-  errors: null,
+  errors: '',
   mobNavElement: true,
   categoryId: null,
   categoryName: null,

@@ -598,7 +598,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 var _prodInvariant = __webpack_require__(4);
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var ReactDOMComponentFlags = __webpack_require__(103);
 
 var invariant = __webpack_require__(2);
@@ -919,7 +919,7 @@ var _axios = __webpack_require__(142);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _actions = __webpack_require__(24);
+var _actions = __webpack_require__(23);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -1081,9 +1081,11 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history
 
   var then = function then(response) {
     if (response.data.successTime) {
-      dispatcher(modelActions.setProductsForCart(response.data));
       history.push('/sussess-page'); //TODO редирект на страницу успешного завершения отправления заказа
-    } else if (response.data.errorTime) dispatcher(modelActions.setErrors(response.data));
+    } else if (response.data.errorTime) {
+      dispatcher(modelActions.setErrors(response.data));
+      showOrdersQuotaInCart(dispatcher);
+    }
   };
 
   var error = function error(_error8) {
@@ -2707,6 +2709,81 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setUserInfo = setUserInfo;
+exports.setErrors = setErrors;
+exports.setMobNavElement = setMobNavElement;
+exports.setCategories = setCategories;
+exports.setProducts = setProducts;
+exports.setCategoryId = setCategoryId;
+exports.setCategoryName = setCategoryName;
+exports.setProductsForCart = setProductsForCart;
+exports.setOrdersQuotaForCart = setOrdersQuotaForCart;
+exports.setCheckTimeQuotaForCart = setCheckTimeQuotaForCart;
+exports.setUserImage = setUserImage;
+exports.setProductCounts = setProductCounts;
+exports.setOrders = setOrders;
+function setUserInfo(userInfo) {
+  return { type: 'SET_USER_INFO', userInfo: userInfo };
+}
+
+function setErrors(errors) {
+  return { type: 'SET_ERRORS', errors: errors };
+}
+
+function setMobNavElement(mobNavElement) {
+  return { type: 'SET_MOB_NAV_ELEMENT', mobNavElement: mobNavElement };
+}
+
+function setCategories(categories) {
+  return { type: 'SET_CATEGORIES', categories: categories };
+}
+
+function setProducts(products) {
+  return { type: 'SET_PRODUCTS', products: products };
+}
+
+function setCategoryId(categoryId) {
+  return { type: 'SET_CATEGORY_ID', categoryId: categoryId };
+}
+
+function setCategoryName(categoryName) {
+  return { type: 'SET_CATEGORY_NAME', categoryName: categoryName };
+}
+
+function setProductsForCart(productsForCart) {
+  return { type: 'SET_PRODUCTS_FOR_CART', productsForCart: productsForCart };
+}
+
+function setOrdersQuotaForCart(ordersQuota) {
+  return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota: ordersQuota };
+}
+
+function setCheckTimeQuotaForCart(checkTimeQuota) {
+  return { type: 'SET_CHECK_TIME_QUOTA_FOR_CART', checkTimeQuota: checkTimeQuota };
+}
+
+function setUserImage(imagePath) {
+  return { type: 'SET_USER_IMAGE', imagePath: imagePath };
+}
+
+function setProductCounts(productCounts) {
+  return { type: 'SET_PRODUCT_COUNTS', productCounts: productCounts };
+}
+
+function setOrders(orders) {
+  return { type: 'SET_ORDERS', orders: orders };
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2918,81 +2995,6 @@ module.exports = DOMProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setUserInfo = setUserInfo;
-exports.setErrors = setErrors;
-exports.setMobNavElement = setMobNavElement;
-exports.setCategories = setCategories;
-exports.setProducts = setProducts;
-exports.setCategoryId = setCategoryId;
-exports.setCategoryName = setCategoryName;
-exports.setProductsForCart = setProductsForCart;
-exports.setOrdersQuotaForCart = setOrdersQuotaForCart;
-exports.setCheckTimeQuotaForCart = setCheckTimeQuotaForCart;
-exports.setUserImage = setUserImage;
-exports.setProductCounts = setProductCounts;
-exports.setOrders = setOrders;
-function setUserInfo(userInfo) {
-  return { type: 'SET_USER_INFO', userInfo: userInfo };
-}
-
-function setErrors(errors) {
-  return { type: 'SET_ERRORS', errors: errors };
-}
-
-function setMobNavElement(mobNavElement) {
-  return { type: 'SET_MOB_NAV_ELEMENT', mobNavElement: mobNavElement };
-}
-
-function setCategories(categories) {
-  return { type: 'SET_CATEGORIES', categories: categories };
-}
-
-function setProducts(products) {
-  return { type: 'SET_PRODUCTS', products: products };
-}
-
-function setCategoryId(categoryId) {
-  return { type: 'SET_CATEGORY_ID', categoryId: categoryId };
-}
-
-function setCategoryName(categoryName) {
-  return { type: 'SET_CATEGORY_NAME', categoryName: categoryName };
-}
-
-function setProductsForCart(productsForCart) {
-  return { type: 'SET_PRODUCTS_FOR_CART', productsForCart: productsForCart };
-}
-
-function setOrdersQuotaForCart(ordersQuota) {
-  return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota: ordersQuota };
-}
-
-function setCheckTimeQuotaForCart(checkTimeQuota) {
-  return { type: 'SET_CHECK_TIME_QUOTA_FOR_CART', checkTimeQuota: checkTimeQuota };
-}
-
-function setUserImage(imagePath) {
-  return { type: 'SET_USER_IMAGE', imagePath: imagePath };
-}
-
-function setProductCounts(productCounts) {
-  return { type: 'SET_PRODUCT_COUNTS', productCounts: productCounts };
-}
-
-function setOrders(orders) {
-  return { type: 'SET_ORDERS', orders: orders };
-}
-
-/***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3019,7 +3021,7 @@ __webpack_require__(36);
 
 var _reactRouterDom = __webpack_require__(10);
 
-var _actions = __webpack_require__(24);
+var _actions = __webpack_require__(23);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -3298,7 +3300,7 @@ var _reactRouterDom = __webpack_require__(10);
 
 var _reactRedux = __webpack_require__(9);
 
-var _actions = __webpack_require__(24);
+var _actions = __webpack_require__(23);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -18500,7 +18502,7 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var ReactDOMComponentTree = __webpack_require__(7);
 var ReactInstrumentation = __webpack_require__(17);
 
@@ -19237,7 +19239,7 @@ module.exports = ReactInputSelection;
 var _prodInvariant = __webpack_require__(4);
 
 var DOMLazyTree = __webpack_require__(31);
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var React = __webpack_require__(34);
 var ReactBrowserEventEmitter = __webpack_require__(48);
 var ReactCurrentOwner = __webpack_require__(21);
@@ -22481,7 +22483,7 @@ var api = exports.api = function api() {
 
 var defaultSessionState = map({
   userInfo: map(),
-  errors: null,
+  errors: '',
   mobNavElement: true,
   categoryId: null,
   categoryName: null,
@@ -23413,7 +23415,13 @@ var _CartItem = __webpack_require__(86);
 
 var _CartItem2 = _interopRequireDefault(_CartItem);
 
+var _actions = __webpack_require__(23);
+
+var modelActions = _interopRequireWildcard(_actions);
+
 var _api = __webpack_require__(11);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23433,8 +23441,7 @@ var Cart = function (_Component) {
 
     _this.state = {
       comment: '',
-      time_quota: 0,
-      errorMessageCountQuota: ''
+      time_quota: 0
     };
 
     return _this;
@@ -23449,22 +23456,6 @@ var Cart = function (_Component) {
       (0, _api.showOrdersQuotaInCart)(dispatch);
     }
   }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(props) {
-      var _ref = props || this.props,
-          dispatch = _ref.dispatch,
-          session = _ref.session;
-
-      if (session.get('errors')) {
-        var errorMessageCountQuota = session.get('errors').errorTime;
-        this.setState({
-          errorMessageCountQuota: errorMessageCountQuota,
-          time_quota: 0
-        });
-        (0, _api.showOrdersQuotaInCart)(dispatch);
-      }
-    }
-  }, {
     key: 'handleChangeComment',
     value: function handleChangeComment(event) {
       this.setState({ comment: event.target.value });
@@ -23473,8 +23464,8 @@ var Cart = function (_Component) {
     key: 'handlerSendOrder',
     value: function handlerSendOrder() {
       var _props = this.props,
-          history = _props.history,
-          dispatch = _props.dispatch;
+          dispatch = _props.dispatch,
+          history = _props.history;
 
       if (this.state.time_quota !== 0) {
         var data = {
@@ -23487,18 +23478,26 @@ var Cart = function (_Component) {
   }, {
     key: 'handleChangeTimeQuota',
     value: function handleChangeTimeQuota(e) {
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setErrors(''));
       this.setState({ time_quota: e.value });
     }
   }, {
     key: 'render',
     value: function render() {
-      var api = this.props.api;
+      var _props2 = this.props,
+          dispatch = _props2.dispatch,
+          api = _props2.api,
+          session = _props2.session;
 
       var productsForCart = api.get('productsForCart');
       var ordersQuota = api.get('ordersQuota');
       // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
       // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
       var total = null;
+
+      var errorMessageCountQuota = session.get('errors').errorTime;
 
       var productsTd = productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
@@ -23626,7 +23625,7 @@ var Cart = function (_Component) {
           _react2.default.createElement(
             'label',
             { className: 'order-filds-label', style: { color: 'red', fontSize: '12px' } },
-            this.state.errorMessageCountQuota
+            errorMessageCountQuota
           ),
           _react2.default.createElement(
             'div',
@@ -23825,7 +23824,7 @@ var _CategoryItem = __webpack_require__(163);
 
 var _CategoryItem2 = _interopRequireDefault(_CategoryItem);
 
-var _actions = __webpack_require__(24);
+var _actions = __webpack_require__(23);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -23937,7 +23936,7 @@ __webpack_require__(14);
 
 __webpack_require__(13);
 
-var _actions = __webpack_require__(24);
+var _actions = __webpack_require__(23);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -24626,7 +24625,7 @@ var _helpers = __webpack_require__(87);
 
 var helpers = _interopRequireWildcard(_helpers);
 
-var _actions = __webpack_require__(24);
+var _actions = __webpack_require__(23);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -25009,7 +25008,7 @@ var _reactRouterDom = __webpack_require__(10);
 
 var _reactRedux = __webpack_require__(9);
 
-var _actions = __webpack_require__(24);
+var _actions = __webpack_require__(23);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -29073,7 +29072,7 @@ module.exports = FallbackCompositionState;
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -30538,7 +30537,7 @@ var AutoFocusUtils = __webpack_require__(210);
 var CSSPropertyOperations = __webpack_require__(212);
 var DOMLazyTree = __webpack_require__(31);
 var DOMNamespaces = __webpack_require__(63);
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var DOMPropertyOperations = __webpack_require__(102);
 var EventPluginHub = __webpack_require__(41);
 var EventPluginRegistry = __webpack_require__(47);
@@ -32004,7 +32003,7 @@ module.exports = ReactDOMInput;
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var ReactComponentTreeHook = __webpack_require__(12);
 
 var warning = __webpack_require__(3);
@@ -32973,7 +32972,7 @@ module.exports = {
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var EventPluginRegistry = __webpack_require__(47);
 var ReactComponentTreeHook = __webpack_require__(12);
 
@@ -33883,7 +33882,7 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var EventPluginHub = __webpack_require__(41);
 var EventPluginUtils = __webpack_require__(64);
 var ReactComponentEnvironment = __webpack_require__(67);

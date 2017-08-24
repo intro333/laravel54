@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import CartItem from '../Cart/CartItem';
+import * as modelActions from '../../actions';
 import {
   showProductsInCart,
   showOrdersQuotaInCart,
@@ -21,7 +22,6 @@ class Cart extends Component {
     this.state = {
       comment: '',
       time_quota: 0,
-      errorMessageCountQuota: ''
     };
 
   }
@@ -32,24 +32,12 @@ class Cart extends Component {
     showOrdersQuotaInCart(dispatch);
   }
 
-  componentWillReceiveProps(props) {
-    const { dispatch, session } = props || this.props;
-    if (session.get('errors')) {
-      const errorMessageCountQuota = session.get('errors').errorTime;
-      this.setState({
-        errorMessageCountQuota: errorMessageCountQuota,
-        time_quota: 0
-      });
-      showOrdersQuotaInCart(dispatch);
-    }
-  }
-
   handleChangeComment(event) {
     this.setState({comment: event.target.value});
   }
 
   handlerSendOrder() {
-    const { history, dispatch } = this.props;
+    const { dispatch, history } = this.props;
     if (this.state.time_quota !== 0) {
       const data = {
         comment: this.state.comment,
@@ -60,16 +48,20 @@ class Cart extends Component {
   }
 
   handleChangeTimeQuota(e) {
+    const { dispatch } = this.props;
+    dispatch(modelActions.setErrors(''));
     this.setState({time_quota: e.value});
   }
 
   render() {
-    const { api } = this.props;
+    const { dispatch, api, session } = this.props;
     const productsForCart = api.get('productsForCart');
     const ordersQuota = api.get('ordersQuota');
     // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
     // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
     var total = null;
+
+    var errorMessageCountQuota = session.get('errors').errorTime;
 
     const productsTd = productsForCart.map((item) =>
       <CartItem
@@ -138,7 +130,7 @@ class Cart extends Component {
               />
             </div>
           </div>
-          <label className="order-filds-label" style={{color: 'red', fontSize: '12px'}}>{this.state.errorMessageCountQuota}</label>
+          <label className="order-filds-label" style={{color: 'red', fontSize: '12px'}}>{errorMessageCountQuota}</label>
           <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
         </div>
       </div>

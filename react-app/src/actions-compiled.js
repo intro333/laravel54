@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.setUserInfo = setUserInfo;
+exports.setErrors = setErrors;
 exports.setMobNavElement = setMobNavElement;
 exports.setCategories = setCategories;
 exports.setProducts = setProducts;
@@ -11,11 +12,16 @@ exports.setCategoryId = setCategoryId;
 exports.setCategoryName = setCategoryName;
 exports.setProductsForCart = setProductsForCart;
 exports.setOrdersQuotaForCart = setOrdersQuotaForCart;
+exports.setCheckTimeQuotaForCart = setCheckTimeQuotaForCart;
 exports.setUserImage = setUserImage;
 exports.setProductCounts = setProductCounts;
 exports.setOrders = setOrders;
 function setUserInfo(userInfo) {
   return { type: 'SET_USER_INFO', userInfo: userInfo };
+}
+
+function setErrors(errors) {
+  return { type: 'SET_ERRORS', errors: errors };
 }
 
 function setMobNavElement(mobNavElement) {
@@ -44,6 +50,10 @@ function setProductsForCart(productsForCart) {
 
 function setOrdersQuotaForCart(ordersQuota) {
   return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota: ordersQuota };
+}
+
+function setCheckTimeQuotaForCart(checkTimeQuota) {
+  return { type: 'SET_CHECK_TIME_QUOTA_FOR_CART', checkTimeQuota: checkTimeQuota };
 }
 
 function setUserImage(imagePath) {

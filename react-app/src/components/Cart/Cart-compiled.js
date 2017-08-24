@@ -36,7 +36,13 @@ var _CartItem = require('../Cart/CartItem');
 
 var _CartItem2 = _interopRequireDefault(_CartItem);
 
+var _actions = require('../../actions');
+
+var modelActions = _interopRequireWildcard(_actions);
+
 var _api = require('../../api');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -78,27 +84,41 @@ var Cart = function (_Component) {
   }, {
     key: 'handlerSendOrder',
     value: function handlerSendOrder() {
-      var dispatch = this.props.dispatch;
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          history = _props.history;
 
-      var data = {
-        comment: this.state.comment
-      };
-      (0, _api.sendOrder)(dispatch, data);
-      this.props.history.push('/sussess-page'); //TODO редирект на страницу успешного завершения отправления заказа
+      if (this.state.time_quota !== 0) {
+        var data = {
+          comment: this.state.comment,
+          time_quota: this.state.time_quota
+        };
+        (0, _api.sendOrder)(dispatch, data, history);
+      }
     }
   }, {
     key: 'handleChangeTimeQuota',
     value: function handleChangeTimeQuota(e) {
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setErrors(''));
       this.setState({ time_quota: e.value });
     }
   }, {
     key: 'render',
     value: function render() {
-      var api = this.props.api;
+      var _props2 = this.props,
+          dispatch = _props2.dispatch,
+          api = _props2.api,
+          session = _props2.session;
 
       var productsForCart = api.get('productsForCart');
       var ordersQuota = api.get('ordersQuota');
+      // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
+      // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
       var total = null;
+
+      var errorMessageCountQuota = session.get('errors').errorTime;
 
       var productsTd = productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
@@ -197,7 +217,7 @@ var Cart = function (_Component) {
           }),
           _react2.default.createElement(
             'label',
-            { className: 'order-filds-label', htmlFor: 'time_quota' },
+            { className: 'order-filds-label' },
             '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
             ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
           ),
@@ -217,10 +237,16 @@ var Cart = function (_Component) {
                 value: this.state.time_quota,
                 options: timeQuotaOptions,
                 onChange: this.handleChangeTimeQuota.bind(this),
+                placeholder: '',
                 clearable: false,
                 searchable: false
               })
             )
+          ),
+          _react2.default.createElement(
+            'label',
+            { className: 'order-filds-label', style: { color: 'red', fontSize: '12px' } },
+            errorMessageCountQuota
           ),
           _react2.default.createElement(
             'div',
@@ -242,13 +268,5 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     api: store.api
   };
 })(Cart);
-
-// productId={item.productId}
-// count={item.count}
-// imagePath={item.imagePath}
-// name={item.name}
-// barCode={item.barCode}
-// price={item.price}
-// unit={item.unit}
 
 //# sourceMappingURL=Cart-compiled.js.map

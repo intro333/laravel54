@@ -27,6 +27,7 @@ var api = exports.api = function api() {
     products: map(),
     productsForCart: map(),
     ordersQuota: map(),
+    checkTimeQuota: null,
     dataOfPersonalAccount: map(),
     imagePath: false,
     orders: map()
@@ -48,6 +49,9 @@ var api = exports.api = function api() {
     case 'SET_ORDERS_QUOTA_FOR_CART':
       return state.set('ordersQuota', action.ordersQuota);
 
+    case 'SET_CHECK_TIME_QUOTA_FOR_CART':
+      return state.set('checkTimeQuota', action.checkTimeQuota);
+
     case 'SET_DATA_OF_PERSONAL_ACCOUNT':
       return state.set('dataOfPersonalAccount', action.dataOfPersonalAccount);
 
@@ -64,6 +68,7 @@ var api = exports.api = function api() {
 
 var defaultSessionState = map({
   userInfo: map(),
+  errors: '',
   mobNavElement: true,
   categoryId: null,
   categoryName: null,
@@ -78,6 +83,9 @@ var session = function session() {
 
     case 'SET_USER_INFO':
       return state.set('userInfo', action.userInfo);
+
+    case 'SET_ERRORS':
+      return state.set('errors', action.errors);
 
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);

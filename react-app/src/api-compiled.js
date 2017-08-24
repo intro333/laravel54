@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -166,7 +166,7 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
 };
 
 //Отправить заказ.
-var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data) {
+var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history) {
   var params = {
     method: 'post',
     url: '/api/send-order',
@@ -174,7 +174,12 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data) {
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setProductsForCart(response.data));
+    if (response.data.successTime) {
+      history.push('/sussess-page'); //TODO редирект на страницу успешного завершения отправления заказа
+    } else if (response.data.errorTime) {
+      dispatcher(modelActions.setErrors(response.data));
+      showOrdersQuotaInCart(dispatcher);
+    }
   };
 
   var error = function error(_error8) {
@@ -202,6 +207,25 @@ var showOrdersQuotaInCart = exports.showOrdersQuotaInCart = function showOrdersQ
   makeRequest(dispatcher, params, then, error);
 };
 
+//Прочекать квоты в корзине на наличие 0.
+var checkTimeQuota = exports.checkTimeQuota = function checkTimeQuota(dispatcher, data) {
+  var params = {
+    method: 'post',
+    url: '/api/check-time-quota-in-cart',
+    data: data
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setCheckTimeQuotaForCart(response.data));
+  };
+
+  var error = function error(_error10) {
+    console.log(_error10);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
 //Получить данные для личного кабинета
 var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
   var params = {
@@ -213,8 +237,8 @@ var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
     dispatcher(modelActions.setUserInfo(response.data));
   };
 
-  var error = function error(_error10) {
-    console.log(_error10);
+  var error = function error(_error11) {
+    console.log(_error11);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -232,8 +256,8 @@ var updatePersonalData = exports.updatePersonalData = function updatePersonalDat
     dispatcher(modelActions.setUserInfo(response.data));
   };
 
-  var error = function error(_error11) {
-    console.log(_error11);
+  var error = function error(_error12) {
+    console.log(_error12);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -256,8 +280,8 @@ var changePhotoPersonalData = exports.changePhotoPersonalData = function changeP
     dispatcher(modelActions.setUserImage(response.data));
   };
 
-  var error = function error(_error12) {
-    console.log(_error12);
+  var error = function error(_error13) {
+    console.log(_error13);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -276,8 +300,8 @@ var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data
     // console.log('ordersGetAll response.data', response.data);
   };
 
-  var error = function error(_error13) {
-    console.log(_error13);
+  var error = function error(_error14) {
+    console.log(_error14);
   };
 
   makeRequest(dispatcher, params, then, error);
