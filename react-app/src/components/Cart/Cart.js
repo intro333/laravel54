@@ -36,11 +36,13 @@ class Cart extends Component {
 
   handlerSendOrder() {
     const { dispatch } = this.props;
-    const data = {
-      comment: this.state.comment
-    };
-    sendOrder(dispatch, data);
-    this.props.history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
+    if (this.state.time_quota !== 0) {
+      const data = {
+        comment: this.state.comment,
+        time_quota: this.state.time_quota
+      };
+      sendOrder(dispatch, data);
+    }
   }
 
   handleChangeTimeQuota(e) {

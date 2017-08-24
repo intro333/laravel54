@@ -161,6 +161,7 @@ export const sendOrder = (dispatcher, data) => {
 
   const then = response => {
     dispatcher(modelActions.setProductsForCart(response.data));
+    this.props.history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
   };
 
   const error = (error) => {

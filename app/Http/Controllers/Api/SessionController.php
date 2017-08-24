@@ -54,7 +54,10 @@ class SessionController extends Controller
         $user = \Auth::user();
         $session = session()->get('productFromCart');
         $comment = $request->input('comment');
+        $timeQuotaId = $request->input('time_quota');
         $products = [];
+
+        OrdersQuota::updateCountsQuota($timeQuotaId);
 
         foreach ($session as $item) {
             $products[] = [
@@ -67,6 +70,7 @@ class SessionController extends Controller
             'user_order_id' => $user->id,
             'comment'       => $comment ? $comment : '',
             'status'        => 1, //Обрабатывается
+            'time_quota_id' => $timeQuotaId,
             'features'      => $products,
         ]);
 
@@ -76,11 +80,14 @@ class SessionController extends Controller
         return [];
     }
 
+    //Дата доставки и квоты для корзины
     public function showOrdersQuotaInCart()
     {
-        $ordersQuota = OrdersQuota::all();
+        $ordersQuota = OrdersQuota::quotaCounts()->get();
+//        dd($ordersQuota);
         $delivery = Delivery::all()->first();
 
+        //В таблице дата доставки всего одна запись, приводим массив к нужному виду(так же форматируем дату)
         $delivery = [
             'delivery_date' => $delivery['delivery_date']->format('d-m-Y'),
             'status' => $delivery['status'],

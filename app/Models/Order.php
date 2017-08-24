@@ -11,7 +11,7 @@ class Order extends Model
     protected $primaryKey = 'order_id';
 
     protected $fillable = [
-        'user_order_id', 'comment', 'status', 'features', 'delivery_date', 'time_quota'
+        'user_order_id', 'comment', 'status', 'features', 'delivery_date', 'time_quota_id'
     ];
 
     protected $dates = [
