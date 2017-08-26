@@ -33,6 +33,7 @@ class OrderQuotaTableSeeder extends Seeder
     public function getData()
     {
         $data = [
+            ['time_quota'   => '',          'counts_quota'  =>  0,],
             ['time_quota'   => '9:00-9:30', 'counts_quota'  =>  15,],
             ['time_quota'   => '9:30-10:00', 'counts_quota'  =>  15,],
             ['time_quota'   => '10:00-10:30', 'counts_quota'  =>  15,],

@@ -38,13 +38,15 @@ class Cart extends Component {
   }
 
   handlerSendOrder() {
-    const { dispatch, history } = this.props;
+    const { dispatch, history, ordersQuota } = this.props;
+    const data = {
+      comment: this.state.comment,
+      time_quota: this.state.time_quota
+    };
     if (this.state.time_quota !== 0) {
-      const data = {
-        comment: this.state.comment,
-        time_quota: this.state.time_quota
-      };
       sendOrder(dispatch, data, history);
+    } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
+      sendOrder(dispatch, data, history)
     } else {
       this.setState({
         cart_error: 'Выберите удобный период получения заказа.'
@@ -62,15 +64,13 @@ class Cart extends Component {
   }
 
   render() {
-    const { dispatch, api, session } = this.props;
-    const productsForCart = api.get('productsForCart');
-    const ordersQuota = api.get('ordersQuota');
+    const { session, ordersQuota,productsForCart } = this.props;
     // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
     // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
     var total = null;
-
     var errorMessageCountQuota = session.get('errors').errorTime;
 
+    console.log('errorMessageCountQuota', errorMessageCountQuota)
     const productsTd = productsForCart.map((item) =>
       <CartItem
         key={item.productId}
@@ -85,9 +85,8 @@ class Cart extends Component {
 
     var timeQuotaOptions = [{value: 0, label: ''}];
     var delivery = null;
-    if (ordersQuota.ordersQuota) {
-      ordersQuota.ordersQuota.map(q => timeQuotaOptions.push({value: q.orders_quota_id, label: q.time_quota}));
-    }
+    ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 && ordersQuota.ordersQuota.forEach(q => q.orders_quota_id !== 1 &&
+      timeQuotaOptions.push({value: q.orders_quota_id, label: q.time_quota}));
 
     const quotaStyle = {
       width: '100%',
@@ -95,6 +94,24 @@ class Cart extends Component {
       alignItems: 'center'
     }
 
+    var ordersQoutaDiv = <div style={quotaStyle}>
+      <label className="order-filds-label" htmlFor="time_quota">Я смогу забрать свой заказ в период с</label>
+      <div style={{width: '120px', marginLeft: '10px'}}>
+        <Select
+          name="time_quota"
+          value={this.state.time_quota}
+          options={timeQuotaOptions}
+          onChange={this.handleChangeTimeQuota.bind(this)}
+          placeholder=''
+          clearable={false}
+          searchable={false}
+        />
+      </div>
+    </div>;
+
+    var OrderNonQuota = <label className="order-filds-label" htmlFor="time_quota" style={{marginBottom: '15px'}}>
+      Заказ можно получить в любое удобное время в указанный день доставки.Периоды получения заказа закончились.
+    </label>;
     return (
       <div className="container">
         <Navigation />
@@ -124,21 +141,12 @@ class Cart extends Component {
             placeholder="Оставьте комментарий к заказу..."
           />
           <label className="order-filds-label">Дата доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</label>
-          <div style={quotaStyle}>
-            <label className="order-filds-label" htmlFor="time_quota">Я смогу забрать свой заказ в период с</label>
-            <div style={{width: '120px', marginLeft: '10px'}}>
-              <Select
-                name="time_quota"
-                value={this.state.time_quota}
-                options={timeQuotaOptions}
-                onChange={this.handleChangeTimeQuota.bind(this)}
-                placeholder=''
-                clearable={false}
-                searchable={false}
-              />
-            </div>
-          </div>
-          <label className="order-filds-label" style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>{this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota}</label>
+          {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
+          <label className="order-filds-label" style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>
+            {
+              this.state.cart_error !== '' ? this.state.cart_error : (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? errorMessageCountQuota : '')
+            }
+            </label>
           <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
         </div>
       </div>
@@ -150,4 +158,6 @@ export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
   api: store.api,
+  ordersQuota: store.api.get('ordersQuota'),
+  productsForCart: store.api.get('productsForCart'),
 }))(Cart);

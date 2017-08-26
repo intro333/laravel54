@@ -152,7 +152,7 @@ export const deleteProductFromCart = (dispatcher, data) => {
 };
 
 //Отправить заказ.
-export const sendOrder = (dispatcher, data, history) => {
+export const sendOrder = (dispatcher, data, history) => {console.log(3, data)
   const params = {
     method:'post',
     url:'/api/send-order',

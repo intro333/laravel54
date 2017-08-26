@@ -1073,6 +1073,7 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
 
 //Отправить заказ.
 var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history) {
+  console.log(3, data);
   var params = {
     method: 'post',
     url: '/api/send-order',
@@ -23466,13 +23467,16 @@ var Cart = function (_Component) {
     value: function handlerSendOrder() {
       var _props = this.props,
           dispatch = _props.dispatch,
-          history = _props.history;
+          history = _props.history,
+          ordersQuota = _props.ordersQuota;
 
+      var data = {
+        comment: this.state.comment,
+        time_quota: this.state.time_quota
+      };
       if (this.state.time_quota !== 0) {
-        var data = {
-          comment: this.state.comment,
-          time_quota: this.state.time_quota
-        };
+        (0, _api.sendOrder)(dispatch, data, history);
+      } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
         (0, _api.sendOrder)(dispatch, data, history);
       } else {
         this.setState({
@@ -23495,18 +23499,16 @@ var Cart = function (_Component) {
     key: 'render',
     value: function render() {
       var _props2 = this.props,
-          dispatch = _props2.dispatch,
-          api = _props2.api,
-          session = _props2.session;
-
-      var productsForCart = api.get('productsForCart');
-      var ordersQuota = api.get('ordersQuota');
+          session = _props2.session,
+          ordersQuota = _props2.ordersQuota,
+          productsForCart = _props2.productsForCart;
       // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
       // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
-      var total = null;
 
+      var total = null;
       var errorMessageCountQuota = session.get('errors').errorTime;
 
+      console.log('errorMessageCountQuota', errorMessageCountQuota);
       var productsTd = productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
           key: item.productId,
@@ -23520,11 +23522,9 @@ var Cart = function (_Component) {
 
       var timeQuotaOptions = [{ value: 0, label: '' }];
       var delivery = null;
-      if (ordersQuota.ordersQuota) {
-        ordersQuota.ordersQuota.map(function (q) {
-          return timeQuotaOptions.push({ value: q.orders_quota_id, label: q.time_quota });
-        });
-      }
+      ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 && ordersQuota.ordersQuota.forEach(function (q) {
+        return q.orders_quota_id !== 1 && timeQuotaOptions.push({ value: q.orders_quota_id, label: q.time_quota });
+      });
 
       var quotaStyle = {
         width: '100%',
@@ -23532,6 +23532,34 @@ var Cart = function (_Component) {
         alignItems: 'center'
       };
 
+      var ordersQoutaDiv = _react2.default.createElement(
+        'div',
+        { style: quotaStyle },
+        _react2.default.createElement(
+          'label',
+          { className: 'order-filds-label', htmlFor: 'time_quota' },
+          '\u042F \u0441\u043C\u043E\u0433\u0443 \u0437\u0430\u0431\u0440\u0430\u0442\u044C \u0441\u0432\u043E\u0439 \u0437\u0430\u043A\u0430\u0437 \u0432 \u043F\u0435\u0440\u0438\u043E\u0434 \u0441'
+        ),
+        _react2.default.createElement(
+          'div',
+          { style: { width: '120px', marginLeft: '10px' } },
+          _react2.default.createElement(_reactSelect2.default, {
+            name: 'time_quota',
+            value: this.state.time_quota,
+            options: timeQuotaOptions,
+            onChange: this.handleChangeTimeQuota.bind(this),
+            placeholder: '',
+            clearable: false,
+            searchable: false
+          })
+        )
+      );
+
+      var OrderNonQuota = _react2.default.createElement(
+        'label',
+        { className: 'order-filds-label', htmlFor: 'time_quota', style: { marginBottom: '15px' } },
+        '\u0417\u0430\u043A\u0430\u0437 \u043C\u043E\u0436\u043D\u043E \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0432 \u043B\u044E\u0431\u043E\u0435 \u0443\u0434\u043E\u0431\u043D\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0432 \u0443\u043A\u0430\u0437\u0430\u043D\u043D\u044B\u0439 \u0434\u0435\u043D\u044C \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438.\u041F\u0435\u0440\u0438\u043E\u0434\u044B \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u0430 \u0437\u0430\u043A\u043E\u043D\u0447\u0438\u043B\u0438\u0441\u044C.'
+      );
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -23608,32 +23636,11 @@ var Cart = function (_Component) {
             '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
             ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
           ),
-          _react2.default.createElement(
-            'div',
-            { style: quotaStyle },
-            _react2.default.createElement(
-              'label',
-              { className: 'order-filds-label', htmlFor: 'time_quota' },
-              '\u042F \u0441\u043C\u043E\u0433\u0443 \u0437\u0430\u0431\u0440\u0430\u0442\u044C \u0441\u0432\u043E\u0439 \u0437\u0430\u043A\u0430\u0437 \u0432 \u043F\u0435\u0440\u0438\u043E\u0434 \u0441'
-            ),
-            _react2.default.createElement(
-              'div',
-              { style: { width: '120px', marginLeft: '10px' } },
-              _react2.default.createElement(_reactSelect2.default, {
-                name: 'time_quota',
-                value: this.state.time_quota,
-                options: timeQuotaOptions,
-                onChange: this.handleChangeTimeQuota.bind(this),
-                placeholder: '',
-                clearable: false,
-                searchable: false
-              })
-            )
-          ),
+          ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
           _react2.default.createElement(
             'label',
             { className: 'order-filds-label', style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
-            this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
+            this.state.cart_error !== '' ? this.state.cart_error : ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? errorMessageCountQuota : ''
           ),
           _react2.default.createElement(
             'div',
@@ -23652,7 +23659,9 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
     session: store.session,
-    api: store.api
+    api: store.api,
+    ordersQuota: store.api.get('ordersQuota'),
+    productsForCart: store.api.get('productsForCart')
   };
 })(Cart);
 

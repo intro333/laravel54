@@ -167,6 +167,7 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
 
 //Отправить заказ.
 var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history) {
+  console.log(3, data);
   var params = {
     method: 'post',
     url: '/api/send-order',

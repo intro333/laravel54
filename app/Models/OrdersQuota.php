@@ -40,14 +40,17 @@ class OrdersQuota extends Model
     //Обновить количество квот
     public function scopeUpdateCountsQuota($query, $id)
     {
-        $ordersQuota = OrdersQuota::where('orders_quota_id', $id)->get()->first();
+        if ($id) {
+            $ordersQuota = OrdersQuota::where('orders_quota_id', $id)->get()->first();
 
-        if ($ordersQuota->counts_quota !== 0) {
-            return $query->where('orders_quota_id', $id)
-                ->update(['counts_quota' => ($ordersQuota->counts_quota - 1)]);
-        } else {
-            return 'no free quota';
-        }
+            if ($ordersQuota->counts_quota !== 0) {
+                return $query->where('orders_quota_id', $id)
+                    ->update(['counts_quota' => ($ordersQuota->counts_quota - 1)]);
+            } else {
+                return 'no free quota';
+            }
+        } else return 1;
+
     }
 
     //Выбрать квоту по id
