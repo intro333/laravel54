@@ -59,6 +59,7 @@ class Orders extends Component {
           <OrderItem
             orderId={item[1][0]['orderId']}
             orderDate={item[1][0]['orderDate']}
+            timeQuota={item[1][0]['timeQuota']}
             key={item[1][0]['orderId']}
             item={item[1]}
           />

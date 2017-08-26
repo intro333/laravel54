@@ -62,7 +62,8 @@ var Cart = function (_Component) {
 
     _this.state = {
       comment: '',
-      time_quota: 0
+      time_quota: 0,
+      cart_error: ''
     };
 
     return _this;
@@ -94,6 +95,10 @@ var Cart = function (_Component) {
           time_quota: this.state.time_quota
         };
         (0, _api.sendOrder)(dispatch, data, history);
+      } else {
+        this.setState({
+          cart_error: 'Выберите удобный период получения заказа.'
+        });
       }
     }
   }, {
@@ -102,6 +107,9 @@ var Cart = function (_Component) {
       var dispatch = this.props.dispatch;
 
       dispatch(modelActions.setErrors(''));
+      this.setState({
+        cart_error: ''
+      });
       this.setState({ time_quota: e.value });
     }
   }, {
@@ -245,8 +253,8 @@ var Cart = function (_Component) {
           ),
           _react2.default.createElement(
             'label',
-            { className: 'order-filds-label', style: { color: 'red', fontSize: '12px' } },
-            errorMessageCountQuota
+            { className: 'order-filds-label', style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
+            this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
           ),
           _react2.default.createElement(
             'div',

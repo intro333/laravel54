@@ -22,6 +22,7 @@ class Cart extends Component {
     this.state = {
       comment: '',
       time_quota: 0,
+      cart_error: '',
     };
 
   }
@@ -44,12 +45,19 @@ class Cart extends Component {
         time_quota: this.state.time_quota
       };
       sendOrder(dispatch, data, history);
+    } else {
+      this.setState({
+        cart_error: 'Выберите удобный период получения заказа.'
+      });
     }
   }
 
   handleChangeTimeQuota(e) {
     const { dispatch } = this.props;
     dispatch(modelActions.setErrors(''));
+    this.setState({
+      cart_error: ''
+    });
     this.setState({time_quota: e.value});
   }
 
@@ -130,7 +138,7 @@ class Cart extends Component {
               />
             </div>
           </div>
-          <label className="order-filds-label" style={{color: 'red', fontSize: '12px'}}>{errorMessageCountQuota}</label>
+          <label className="order-filds-label" style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>{this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota}</label>
           <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
         </div>
       </div>

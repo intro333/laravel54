@@ -29,6 +29,14 @@ class OrdersQuota extends Model
         return $query->where('counts_quota', '>', '0');
     }
 
+    /*
+     * Связь с заказом
+     */
+    public function order()
+    {
+        return $this->hasMany('App\Models\Order', 'time_quota_id', 'orders_quota_id');
+    }
+
     //Обновить количество квот
     public function scopeUpdateCountsQuota($query, $id)
     {

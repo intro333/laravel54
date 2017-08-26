@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Categories;
 use App\Models\Order;
+use App\Models\OrdersQuota;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -91,8 +92,8 @@ class CustomerConstoller extends Controller
         $emailHash = hash('md5', \Auth::user()->email);
         $emailHash = preg_replace('/[^0-9]/', '', $emailHash);
         $emailHash = substr($emailHash, 0, 7);
-//        dd($emailHash);
-        $orders = Order::where('user_order_id', $userId)
+        $orders = Order::with('timeQuota')
+            ->where('user_order_id', $userId)
             ->status($request->input('status'))
             ->year($request->input('year'))
             ->get();
@@ -101,6 +102,7 @@ class CustomerConstoller extends Controller
             $result[$order->order_id][] = [
                 'orderId'   => $emailHash . '-' . $order->order_id,
                 'orderDate' => $order->created_at->format('d-m-Y'),
+                'timeQuota' => $order->timeQuota->time_quota,
             ];
             foreach ($order->features as $feature) {
                 $product = Products::find($feature['productId']);

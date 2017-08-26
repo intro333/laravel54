@@ -6,9 +6,7 @@ import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import {
-  addProductToCart,
-  deleteProductFromCart,
-  getProductCounts,
+  showOrdersQuotaInCart
 } from '../../api';
 // import * as modelActions from './actions';
 
@@ -22,6 +20,11 @@ class OrderItem extends Component {
     };
   }
 
+  componentWillMount() {
+    const { dispatch } = this.props;
+    showOrdersQuotaInCart(dispatch);
+  }
+
   handleClickOrder() {
     var orderNum = this.state.orderNum;
     var isVisible = this.state.tdBotyVisible;
@@ -33,6 +36,7 @@ class OrderItem extends Component {
   }
 
   render() {
+    const { ordersQuota } = this.props;
     var items = this.props.item;
 
     const orderNumberInp = classNames({
@@ -40,6 +44,12 @@ class OrderItem extends Component {
     });
     const totalStyle = {
       margin: '10px'
+    }
+
+    var deliveryDate = '';
+    if (ordersQuota.delivery) {
+      deliveryDate = ordersQuota.delivery.delivery_date;
+      console.log(1, deliveryDate)
     }
 
     var productsTr = items.map((item, index) => {
@@ -53,7 +63,7 @@ class OrderItem extends Component {
             <td style={{textAlign: 'start'}}>
               <div className="order-table__cell">
                 <div className="b-number">
-                  <div className="order-number" style={{width: '70px'}}>
+                  <div className="order-number" style={{width: '70px', border: '2px solid #f9f9f9'}}>
                     <div className="order-number__field">
                       <input
                         className={orderNumberInp}
@@ -76,14 +86,6 @@ class OrderItem extends Component {
             </span>
             </td>
           </tr>
-        } else {
-          return <tr key={index}>
-            <td className="table-40-procent-td order-td-first">Заказ № ST-{this.props.orderId} от {this.props.orderDate}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
         }
       }
     );
@@ -95,8 +97,6 @@ class OrderItem extends Component {
       letterSpacing: '0.05em',
       fontWeight: '400 !important'
     }
-
-    // console.log('order number', this.props)
 
     if (!this.state.orderNum) {
       headTd = <tr className="order-tr-head" onClick={this.handleClickOrder.bind(this)}>
@@ -119,8 +119,15 @@ class OrderItem extends Component {
     var itemsForTotal = items.filter((number, index) => index !== 0);
     var total = itemsForTotal.reduce((total, item) => total + item.cost, 0);
 
+    var orderInfo = <div className="order-info">
+      <span>Заказ № ST-{this.props.orderId} от {this.props.orderDate}</span>
+      <span>Дата доставки {deliveryDate}</span>
+      <span>Период получения заказа {this.props.timeQuota}</span>
+    </div>
+
     return (
       <div className="orders-item">
+        { this.state.tdBotyVisible &&  orderInfo }
         <table className="cart-products-table margin-off">
           { headTd }
           { this.state.tdBotyVisible && productsTr }
@@ -138,5 +145,6 @@ export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
   api: store.api,
+  ordersQuota: store.api.get('ordersQuota'),
   products: store.products,
 }))(OrderItem);

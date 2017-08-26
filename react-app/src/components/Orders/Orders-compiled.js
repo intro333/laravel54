@@ -113,6 +113,7 @@ var Orders = function (_Component) {
             _react2.default.createElement(_OrderItem2.default, {
               orderId: item[1][0]['orderId'],
               orderDate: item[1][0]['orderDate'],
+              timeQuota: item[1][0]['timeQuota'],
               key: item[1][0]['orderId'],
               item: item[1]
             })

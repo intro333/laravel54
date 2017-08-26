@@ -907,4 +907,14 @@ th {
 .order-td-first:hover {
     color: #000;
 }
+.order-info {
+    display: flex;
+    flex-direction: column;
+    background: beige;
+    color: #111;
+    padding: 10px;
+}
+.order-info:not(:first-child) {
+    margin-top: 5px;
+}
 /* END Мои заказы -------------------------------------------------------------------------------------------------------------*/

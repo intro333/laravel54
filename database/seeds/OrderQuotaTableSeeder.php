@@ -15,7 +15,9 @@ class OrderQuotaTableSeeder extends Seeder
     public function run()
     {
         DB::table('delivery')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table('orders_quota')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         Delivery::create([
             'delivery_date' => Carbon::now(),

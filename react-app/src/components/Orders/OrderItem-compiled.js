@@ -52,6 +52,13 @@ var OrderItem = function (_Component) {
   }
 
   _createClass(OrderItem, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var dispatch = this.props.dispatch;
+
+      (0, _api.showOrdersQuotaInCart)(dispatch);
+    }
+  }, {
     key: 'handleClickOrder',
     value: function handleClickOrder() {
       var orderNum = this.state.orderNum;
@@ -65,7 +72,7 @@ var OrderItem = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var ordersQuota = this.props.ordersQuota;
 
       var items = this.props.item;
 
@@ -75,6 +82,12 @@ var OrderItem = function (_Component) {
       var totalStyle = {
         margin: '10px'
       };
+
+      var deliveryDate = '';
+      if (ordersQuota.delivery) {
+        deliveryDate = ordersQuota.delivery.delivery_date;
+        console.log(1, deliveryDate);
+      }
 
       var productsTr = items.map(function (item, index) {
         if (index !== 0) {
@@ -109,7 +122,7 @@ var OrderItem = function (_Component) {
                   { className: 'b-number' },
                   _react2.default.createElement(
                     'div',
-                    { className: 'order-number', style: { width: '70px' } },
+                    { className: 'order-number', style: { width: '70px', border: '2px solid #f9f9f9' } },
                     _react2.default.createElement(
                       'div',
                       { className: 'order-number__field' },
@@ -140,23 +153,6 @@ var OrderItem = function (_Component) {
               })
             )
           );
-        } else {
-          return _react2.default.createElement(
-            'tr',
-            { key: index },
-            _react2.default.createElement(
-              'td',
-              { className: 'table-40-procent-td order-td-first' },
-              '\u0417\u0430\u043A\u0430\u0437 \u2116 ST-',
-              _this2.props.orderId,
-              ' \u043E\u0442 ',
-              _this2.props.orderDate
-            ),
-            _react2.default.createElement('td', null),
-            _react2.default.createElement('td', null),
-            _react2.default.createElement('td', null),
-            _react2.default.createElement('td', null)
-          );
         }
       });
 
@@ -167,8 +163,6 @@ var OrderItem = function (_Component) {
         letterSpacing: '0.05em',
         fontWeight: '400 !important'
       };
-
-      // console.log('order number', this.props)
 
       if (!this.state.orderNum) {
         headTd = _react2.default.createElement(
@@ -222,9 +216,35 @@ var OrderItem = function (_Component) {
         return total + item.cost;
       }, 0);
 
+      var orderInfo = _react2.default.createElement(
+        'div',
+        { className: 'order-info' },
+        _react2.default.createElement(
+          'span',
+          null,
+          '\u0417\u0430\u043A\u0430\u0437 \u2116 ST-',
+          this.props.orderId,
+          ' \u043E\u0442 ',
+          this.props.orderDate
+        ),
+        _react2.default.createElement(
+          'span',
+          null,
+          '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
+          deliveryDate
+        ),
+        _react2.default.createElement(
+          'span',
+          null,
+          '\u041F\u0435\u0440\u0438\u043E\u0434 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u0430 ',
+          this.props.timeQuota
+        )
+      );
+
       return _react2.default.createElement(
         'div',
         { className: 'orders-item' },
+        this.state.tdBotyVisible && orderInfo,
         _react2.default.createElement(
           'table',
           { className: 'cart-products-table margin-off' },
@@ -254,6 +274,7 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     dispatch: store.dispatch,
     session: store.session,
     api: store.api,
+    ordersQuota: store.api.get('ordersQuota'),
     products: store.products
   };
 })(OrderItem);

@@ -38,6 +38,14 @@ class Order extends Model
         return $this->belongsTo('App\Models\User', 'order_id', 'id');
     }
 
+    /*
+     * Связь с квотами
+     */
+    public function timeQuota()
+    {
+        return $this->belongsTo('App\Models\OrdersQuota', 'time_quota_id', 'orders_quota_id');
+    }
+
     /**
      * Выборка по статусу заказа.
      *
