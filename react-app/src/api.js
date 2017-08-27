@@ -314,3 +314,23 @@ export const cancelOrDeleteOrder = (dispatcher, data, history) => {
 
   makeRequest(dispatcher, params, then, error);
 };
+
+//Повторить заказ
+export const repeatOrDeleteOrder = (dispatcher, data, history) => {
+  const params = {
+    method:'post',
+    url:'/api/order-repeat',
+    data: data
+  };
+
+  const then = response => {
+    dispatcher(modelActions.setProductsForCart(response.data));
+    history.push('/cart');
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};

@@ -909,7 +909,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.repeatOrDeleteOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = __webpack_require__(1);
 
@@ -1229,6 +1229,26 @@ var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteO
 
   var error = function error(_error15) {
     console.log(_error15);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Повторить заказ
+var repeatOrDeleteOrder = exports.repeatOrDeleteOrder = function repeatOrDeleteOrder(dispatcher, data, history) {
+  var params = {
+    method: 'post',
+    url: '/api/order-repeat',
+    data: data
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setProductsForCart(response.data));
+    history.push('/cart');
+  };
+
+  var error = function error(_error16) {
+    console.log(_error16);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -24262,6 +24282,19 @@ var OrderItem = function (_Component) {
       (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
     }
   }, {
+    key: 'handlerRepeatOrder',
+    value: function handlerRepeatOrder() {
+      var _props3 = this.props,
+          dispatch = _props3.dispatch,
+          history = _props3.history;
+
+      var data = {
+        orderId: this.props.orderId
+      };
+
+      (0, _api.repeatOrDeleteOrder)(dispatch, data, history);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var ordersQuota = this.props.ordersQuota;
@@ -24469,10 +24502,10 @@ var OrderItem = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'order-config' },
-          this.props.orderStatus === 1 && _react2.default.createElement(
+          this.props.orderStatus !== 1 && _react2.default.createElement(
             'span',
-            null,
-            '\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+            { onClick: this.handlerRepeatOrder.bind(this) },
+            '\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           ),
           orderConfogCancel
         )

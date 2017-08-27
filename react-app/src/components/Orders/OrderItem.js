@@ -7,7 +7,8 @@ import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import {
   showOrdersQuotaInCart,
-  cancelOrDeleteOrder
+  cancelOrDeleteOrder,
+  repeatOrDeleteOrder
 } from '../../api';
 // import * as modelActions from './actions';
 
@@ -54,6 +55,15 @@ class OrderItem extends Component {
     }
 
     cancelOrDeleteOrder(dispatch, data, history)
+  }
+
+  handlerRepeatOrder() {
+    const { dispatch, history } = this.props;
+    const data = {
+      orderId: this.props.orderId,
+    }
+
+    repeatOrDeleteOrder(dispatch, data, history)
   }
 
   render() {
@@ -160,7 +170,8 @@ class OrderItem extends Component {
           }
         </div>
         <div className="order-config">
-          {this.props.orderStatus === 1 && <span>Редактировать заказ</span>}
+          {/*{this.props.orderStatus === 1 && <span>Редактировать заказ</span>}*/}
+          {this.props.orderStatus !== 1 && <span onClick={this.handlerRepeatOrder.bind(this)}>Повторить заказ</span>}
           {orderConfogCancel}
         </div>
       </div>

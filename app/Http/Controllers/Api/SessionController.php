@@ -65,7 +65,8 @@ class SessionController extends Controller
             foreach ($session as $item) {
                 $products[] = [
                     'productId' => $item['productId'],
-                    'count'     => $item['productCounts']
+                    'count'     => $item['productCounts'],
+                    'barCode'   => $item['barCode'],
                 ];
             }
             Order::create([
@@ -78,6 +79,7 @@ class SessionController extends Controller
 
             //Удалить все продукты из сессии.
             session()->forget('productFromCart');
+            session()->save();
 
             return ['successTime' => 'success'];
         }
@@ -118,7 +120,7 @@ class SessionController extends Controller
         return $productCount;
     }
 
-    //Локальная функция (чтобы не дублировать код)
+    //Локальная функция формирования заказа в корзине
     private function localShowProductsInCart($session)
     {
         $session = $session ? $session : session()->get('productFromCart');

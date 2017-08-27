@@ -98,6 +98,19 @@ var OrderItem = function (_Component) {
       (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
     }
   }, {
+    key: 'handlerRepeatOrder',
+    value: function handlerRepeatOrder() {
+      var _props3 = this.props,
+          dispatch = _props3.dispatch,
+          history = _props3.history;
+
+      var data = {
+        orderId: this.props.orderId
+      };
+
+      (0, _api.repeatOrDeleteOrder)(dispatch, data, history);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var ordersQuota = this.props.ordersQuota;
@@ -305,10 +318,10 @@ var OrderItem = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'order-config' },
-          this.props.orderStatus === 1 && _react2.default.createElement(
+          this.props.orderStatus !== 1 && _react2.default.createElement(
             'span',
-            null,
-            '\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+            { onClick: this.handlerRepeatOrder.bind(this) },
+            '\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           ),
           orderConfogCancel
         )

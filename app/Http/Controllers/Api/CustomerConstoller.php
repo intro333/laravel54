@@ -36,6 +36,7 @@ class CustomerConstoller extends Controller
 ////        $userDetails = $user->details()->first();
 //        return $user;
 //    }
+
     public function getUserInfo()
     {
         return $this->localDataOfPersonalAccount();
@@ -112,6 +113,52 @@ class CustomerConstoller extends Controller
         }
 
         return $result;
+    }
+
+    public function orderRepeat(Request $request)
+    {
+        $order = Order::find($request->input('orderId'));
+        //Удалить все текущие продукты из сессии.
+        session()->forget('productFromCart');
+        session()->save();
+
+        foreach ($order->features as $item) {
+            $sessionName = 'productFromCart.' . $item['barCode'];
+            $productCartInfo = [
+                'productId'     => $item['productId'],
+                'barCode'       => $item['barCode'],
+                'productCounts' => $item['count'] ? $item['count'] : "",
+            ];
+
+            session()->put($sessionName, $productCartInfo);
+            session()->save();
+        }
+
+        $session = session()->get('productFromCart');
+
+        return $this->localShowProductsInCart($session);
+    }
+
+    //Локальная функция формирования заказа в корзине
+    private function localShowProductsInCart($session)
+    {
+        $session = $session ? $session : session()->get('productFromCart');
+        $products = [];
+        foreach ($session as $item) {
+            $product = Products::where('product_id', $item['productId'])->get()->first();
+            $products[] = [
+                'productId' => $product->product_id,
+                'imagePath' => $product->image_path,
+                'name'      => $product->name,
+                'price'     => $product->price,
+                'unit'      => $product->unit,
+                'barCode'   => $product->bar_code,
+                'count'     => $item['productCounts'] ? $item['productCounts'] : ""
+//                'count'     => $item['productCounts']
+            ];
+        }
+
+        return $products;
     }
 
     //Локальная функция для формирования данных для личного кабинета

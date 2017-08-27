@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.repeatOrDeleteOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -323,6 +323,26 @@ var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteO
 
   var error = function error(_error15) {
     console.log(_error15);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Повторить заказ
+var repeatOrDeleteOrder = exports.repeatOrDeleteOrder = function repeatOrDeleteOrder(dispatcher, data, history) {
+  var params = {
+    method: 'post',
+    url: '/api/order-repeat',
+    data: data
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setProductsForCart(response.data));
+    history.push('/cart');
+  };
+
+  var error = function error(_error16) {
+    console.log(_error16);
   };
 
   makeRequest(dispatcher, params, then, error);
