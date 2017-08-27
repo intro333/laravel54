@@ -77,7 +77,22 @@ var OrderItem = function (_Component) {
           history = _props.history;
 
       var data = {
-        orderId: this.props.orderId
+        orderId: this.props.orderId,
+        orderRemove: false
+      };
+
+      (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
+    }
+  }, {
+    key: 'handlerDeleteOrder',
+    value: function handlerDeleteOrder() {
+      var _props2 = this.props,
+          dispatch = _props2.dispatch,
+          history = _props2.history;
+
+      var data = {
+        orderId: this.props.orderId,
+        orderRemove: true
       };
 
       (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
@@ -248,8 +263,8 @@ var OrderItem = function (_Component) {
           // Если заказ удален
           orderConfogCancel = _react2.default.createElement(
             'span',
-            { onClick: this.handlerCancelOrder.bind(this) },
-            '\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+            { onClick: this.handlerDeleteOrder.bind(this) },
+            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
           );
           break;
       }
@@ -290,7 +305,7 @@ var OrderItem = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'order-config' },
-          _react2.default.createElement(
+          this.props.orderStatus === 1 && _react2.default.createElement(
             'span',
             null,
             '\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0437\u0430\u043A\u0430\u0437'

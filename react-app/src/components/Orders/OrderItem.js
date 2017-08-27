@@ -39,7 +39,18 @@ class OrderItem extends Component {
   handlerCancelOrder() {
     const { dispatch, history } = this.props;
     const data = {
-      orderId: this.props.orderId
+      orderId: this.props.orderId,
+      orderRemove: false,
+    }
+
+    cancelOrDeleteOrder(dispatch, data, history)
+  }
+
+  handlerDeleteOrder() {
+    const { dispatch, history } = this.props;
+    const data = {
+      orderId: this.props.orderId,
+      orderRemove: true,
     }
 
     cancelOrDeleteOrder(dispatch, data, history)
@@ -133,7 +144,7 @@ class OrderItem extends Component {
           orderConfogCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Удалить</span>
           break;
         case 3:  // Если заказ удален
-          orderConfogCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Восстановить заказ</span>
+          orderConfogCancel = <span onClick={this.handlerDeleteOrder.bind(this)}>Удалить</span>
           break;
       }
 
@@ -149,7 +160,7 @@ class OrderItem extends Component {
           }
         </div>
         <div className="order-config">
-          <span>Редактировать заказ</span>
+          {this.props.orderStatus === 1 && <span>Редактировать заказ</span>}
           {orderConfogCancel}
         </div>
       </div>

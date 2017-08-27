@@ -106,7 +106,7 @@ class CustomerConstoller extends Controller
         try {
             $order = Order::find($request->input('orderId'));
             $order->update(['status' => 3]);
-//            $order->delete(); //Если удалить(даже мягкое удаление) объект не выводится.
+            $request->input('orderRemove') && $order->delete();
         } catch (\Exception $e) {
             $result = 'Error: ' . $e;
         }
