@@ -38,6 +38,8 @@ var modelActions = _interopRequireWildcard(_actions);
 
 var _api = require('../../api');
 
+var _helpers = require('../../helpers');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -70,7 +72,7 @@ var Categories = function (_Component) {
       var api = this.props.api;
 
       var categories = api.get('categories');
-      var categoryItems = categories.map(function (item) {
+      var categoryItems = (0, _helpers.isEmptyMap)(categories) && categories.map(function (item) {
         return _react2.default.createElement(_CategoryItem2.default, {
           key: item.category_id,
           categoryId: item.category_id,

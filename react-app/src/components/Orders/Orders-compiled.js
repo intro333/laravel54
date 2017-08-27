@@ -104,9 +104,9 @@ var Orders = function (_Component) {
       var api = this.props.api;
 
       var orders = api.get('orders');
-      // console.log('orders', orders)
       var tables = null;
-      if (orders.size === 0) {} else {
+
+      if (helpers.isEmptyMap(orders)) {
         tables = Object.entries(orders).map(function (item, index) {
           return (
             // console.log('item', item[1][0]['orderData'])

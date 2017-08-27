@@ -120,7 +120,7 @@ class CartItem extends Component {
     var cost = this.props.item.price * (inputVal === '' ? 1 : parseInt(this.props.item.count));
 
     return (
-      <tr>
+      <tr key={this.props.keyProductId}>
         <td className="table-40-procent-td">
           <img className="cart-product-image" src={this.props.item.imagePath} />
           <span>{this.props.item.name}</span>

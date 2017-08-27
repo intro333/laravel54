@@ -121,6 +121,7 @@ var OrderItem = function (_Component) {
                       'div',
                       { className: 'order-number__field' },
                       _react2.default.createElement('input', {
+                        disabled: true,
                         className: orderNumberInp,
                         type: 'number',
                         max: '99',
@@ -246,8 +247,16 @@ var OrderItem = function (_Component) {
         _react2.default.createElement(
           'table',
           { className: 'cart-products-table margin-off' },
-          headTd,
-          this.state.tdBotyVisible && productsTr
+          _react2.default.createElement(
+            'thead',
+            null,
+            headTd
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            this.state.tdBotyVisible && productsTr
+          )
         ),
         this.state.tdBotyVisible && _react2.default.createElement(
           'div',

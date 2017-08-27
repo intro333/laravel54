@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.inputmaskBirthDate = inputmaskBirthDate;
 exports.getNumberSelectOptions = getNumberSelectOptions;
+exports.isEmptyMap = isEmptyMap;
 //Маска для даты
 function inputmaskBirthDate(value, length, date) {
 
@@ -82,6 +83,11 @@ function getNumberSelectOptions(start, end) {
   });
 
   return arrayOptions;
+}
+
+//Проверка на пустой Map
+function isEmptyMap(map) {
+  return !!(map && map.size !== 0);
 }
 
 //# sourceMappingURL=helpers-compiled.js.map

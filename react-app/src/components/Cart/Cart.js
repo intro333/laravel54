@@ -15,6 +15,7 @@ import {
   sendOrder,
   checkTimeQuota,
 } from '../../api';
+import {isEmptyMap} from '../../helpers';
 
 class Cart extends Component {
   constructor(props) {
@@ -69,8 +70,9 @@ class Cart extends Component {
     // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
     var total = null;
 
-    const productsTd = productsForCart.map((item) =>
+    const productsTd = isEmptyMap(productsForCart) && productsForCart.map((item) =>
       <CartItem
+        keyProductId={item.productId}
         key={item.productId}
         item={item}
       />
@@ -121,14 +123,18 @@ class Cart extends Component {
           </div>
 
           <table className="cart-products-table">
-            <tr className="cart-tr-head">
-              <th className="table-30-procent">Продукт</th>
-              <th className="table-25-procent">Цена</th>
-              <th className="table-25-procent">Количество</th>
-              <th className="table-10-procent">Стоимость</th>
-              <th className="table-10-procent"></th>
-            </tr>
-            { productsTd }
+            <thead>
+              <tr className="cart-tr-head">
+                <th className="table-30-procent">Продукт</th>
+                <th className="table-25-procent">Цена</th>
+                <th className="table-25-procent">Количество</th>
+                <th className="table-10-procent">Стоимость</th>
+                <th className="table-10-procent"></th>
+              </tr>
+            </thead>
+            <tbody>
+              { productsTd }
+            </tbody>
           </table>
           <div className="cart-order__total">Итог:&nbsp;<span>{ total } ₽</span></div>
           <textarea

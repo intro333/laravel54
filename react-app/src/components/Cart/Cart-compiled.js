@@ -42,6 +42,8 @@ var modelActions = _interopRequireWildcard(_actions);
 
 var _api = require('../../api');
 
+var _helpers = require('../../helpers');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -127,8 +129,9 @@ var Cart = function (_Component) {
 
       var total = null;
 
-      var productsTd = productsForCart.map(function (item) {
+      var productsTd = (0, _helpers.isEmptyMap)(productsForCart) && productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
+          keyProductId: item.productId,
           key: item.productId,
           item: item
         });
@@ -204,31 +207,39 @@ var Cart = function (_Component) {
             'table',
             { className: 'cart-products-table' },
             _react2.default.createElement(
-              'tr',
-              { className: 'cart-tr-head' },
+              'thead',
+              null,
               _react2.default.createElement(
-                'th',
-                { className: 'table-30-procent' },
-                '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
-              ),
-              _react2.default.createElement(
-                'th',
-                { className: 'table-25-procent' },
-                '\u0426\u0435\u043D\u0430'
-              ),
-              _react2.default.createElement(
-                'th',
-                { className: 'table-25-procent' },
-                '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
-              ),
-              _react2.default.createElement(
-                'th',
-                { className: 'table-10-procent' },
-                '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
-              ),
-              _react2.default.createElement('th', { className: 'table-10-procent' })
+                'tr',
+                { className: 'cart-tr-head' },
+                _react2.default.createElement(
+                  'th',
+                  { className: 'table-30-procent' },
+                  '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
+                ),
+                _react2.default.createElement(
+                  'th',
+                  { className: 'table-25-procent' },
+                  '\u0426\u0435\u043D\u0430'
+                ),
+                _react2.default.createElement(
+                  'th',
+                  { className: 'table-25-procent' },
+                  '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
+                ),
+                _react2.default.createElement(
+                  'th',
+                  { className: 'table-10-procent' },
+                  '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+                ),
+                _react2.default.createElement('th', { className: 'table-10-procent' })
+              )
             ),
-            productsTd
+            _react2.default.createElement(
+              'tbody',
+              null,
+              productsTd
+            )
           ),
           _react2.default.createElement(
             'div',

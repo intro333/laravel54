@@ -10995,7 +10995,7 @@ var CartItem = function (_Component) {
 
       return _react2.default.createElement(
         'tr',
-        null,
+        { key: this.props.keyProductId },
         _react2.default.createElement(
           'td',
           { className: 'table-40-procent-td' },
@@ -11093,6 +11093,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.inputmaskBirthDate = inputmaskBirthDate;
 exports.getNumberSelectOptions = getNumberSelectOptions;
+exports.isEmptyMap = isEmptyMap;
 //Маска для даты
 function inputmaskBirthDate(value, length, date) {
 
@@ -11170,6 +11171,11 @@ function getNumberSelectOptions(start, end) {
   });
 
   return arrayOptions;
+}
+
+//Проверка на пустой Map
+function isEmptyMap(map) {
+  return !!(map && map.size !== 0);
 }
 
 /***/ }),
@@ -23421,6 +23427,8 @@ var modelActions = _interopRequireWildcard(_actions);
 
 var _api = __webpack_require__(11);
 
+var _helpers = __webpack_require__(87);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -23506,8 +23514,9 @@ var Cart = function (_Component) {
 
       var total = null;
 
-      var productsTd = productsForCart.map(function (item) {
+      var productsTd = (0, _helpers.isEmptyMap)(productsForCart) && productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
+          keyProductId: item.productId,
           key: item.productId,
           item: item
         });
@@ -23583,31 +23592,39 @@ var Cart = function (_Component) {
             'table',
             { className: 'cart-products-table' },
             _react2.default.createElement(
-              'tr',
-              { className: 'cart-tr-head' },
+              'thead',
+              null,
               _react2.default.createElement(
-                'th',
-                { className: 'table-30-procent' },
-                '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
-              ),
-              _react2.default.createElement(
-                'th',
-                { className: 'table-25-procent' },
-                '\u0426\u0435\u043D\u0430'
-              ),
-              _react2.default.createElement(
-                'th',
-                { className: 'table-25-procent' },
-                '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
-              ),
-              _react2.default.createElement(
-                'th',
-                { className: 'table-10-procent' },
-                '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
-              ),
-              _react2.default.createElement('th', { className: 'table-10-procent' })
+                'tr',
+                { className: 'cart-tr-head' },
+                _react2.default.createElement(
+                  'th',
+                  { className: 'table-30-procent' },
+                  '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
+                ),
+                _react2.default.createElement(
+                  'th',
+                  { className: 'table-25-procent' },
+                  '\u0426\u0435\u043D\u0430'
+                ),
+                _react2.default.createElement(
+                  'th',
+                  { className: 'table-25-procent' },
+                  '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
+                ),
+                _react2.default.createElement(
+                  'th',
+                  { className: 'table-10-procent' },
+                  '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+                ),
+                _react2.default.createElement('th', { className: 'table-10-procent' })
+              )
             ),
-            productsTd
+            _react2.default.createElement(
+              'tbody',
+              null,
+              productsTd
+            )
           ),
           _react2.default.createElement(
             'div',
@@ -23845,6 +23862,8 @@ var modelActions = _interopRequireWildcard(_actions);
 
 var _api = __webpack_require__(11);
 
+var _helpers = __webpack_require__(87);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -23877,7 +23896,7 @@ var Categories = function (_Component) {
       var api = this.props.api;
 
       var categories = api.get('categories');
-      var categoryItems = categories.map(function (item) {
+      var categoryItems = (0, _helpers.isEmptyMap)(categories) && categories.map(function (item) {
         return _react2.default.createElement(_CategoryItem2.default, {
           key: item.category_id,
           categoryId: item.category_id,
@@ -24236,6 +24255,7 @@ var OrderItem = function (_Component) {
                       'div',
                       { className: 'order-number__field' },
                       _react2.default.createElement('input', {
+                        disabled: true,
                         className: orderNumberInp,
                         type: 'number',
                         max: '99',
@@ -24361,8 +24381,16 @@ var OrderItem = function (_Component) {
         _react2.default.createElement(
           'table',
           { className: 'cart-products-table margin-off' },
-          headTd,
-          this.state.tdBotyVisible && productsTr
+          _react2.default.createElement(
+            'thead',
+            null,
+            headTd
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            this.state.tdBotyVisible && productsTr
+          )
         ),
         this.state.tdBotyVisible && _react2.default.createElement(
           'div',
@@ -24503,9 +24531,9 @@ var Orders = function (_Component) {
       var api = this.props.api;
 
       var orders = api.get('orders');
-      // console.log('orders', orders)
       var tables = null;
-      if (orders.size === 0) {} else {
+
+      if (helpers.isEmptyMap(orders)) {
         tables = Object.entries(orders).map(function (item, index) {
           return (
             // console.log('item', item[1][0]['orderData'])
@@ -25438,6 +25466,8 @@ var _ProductItem2 = _interopRequireDefault(_ProductItem);
 
 var _api = __webpack_require__(11);
 
+var _helpers = __webpack_require__(87);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25473,7 +25503,7 @@ var Products = function (_Component) {
 
       var products = api.get('products');
 
-      var productItem = products.map(function (item) {
+      var productItem = (0, _helpers.isEmptyMap)(products) && products.map(function (item) {
         return _react2.default.createElement(_ProductItem2.default, {
           key: item.product_id,
           productId: item.product_id,

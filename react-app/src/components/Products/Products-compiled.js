@@ -34,6 +34,8 @@ var _ProductItem2 = _interopRequireDefault(_ProductItem);
 
 var _api = require('../../api');
 
+var _helpers = require('../../helpers');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69,7 +71,7 @@ var Products = function (_Component) {
 
       var products = api.get('products');
 
-      var productItem = products.map(function (item) {
+      var productItem = (0, _helpers.isEmptyMap)(products) && products.map(function (item) {
         return _react2.default.createElement(_ProductItem2.default, {
           key: item.product_id,
           productId: item.product_id,

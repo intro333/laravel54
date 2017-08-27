@@ -60,6 +60,7 @@ class OrderItem extends Component {
                   <div className="order-number" style={{width: '70px', border: '2px solid #f9f9f9'}}>
                     <div className="order-number__field">
                       <input
+                        disabled
                         className={orderNumberInp}
                         type="number"
                         max="99"
@@ -127,8 +128,12 @@ class OrderItem extends Component {
       <div className="orders-item">
         { this.state.tdBotyVisible &&  orderInfo }
         <table className="cart-products-table margin-off">
-          { headTd }
-          { this.state.tdBotyVisible && productsTr }
+          <thead>
+            { headTd }
+          </thead>
+          <tbody>
+            { this.state.tdBotyVisible && productsTr }
+          </tbody>
         </table>
         {
           this.state.tdBotyVisible &&

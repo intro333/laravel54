@@ -51,9 +51,9 @@ class Orders extends Component {
 
     const { api } = this.props;
     const orders = api.get('orders');
-    // console.log('orders', orders)
     var tables = null;
-    if(orders.size === 0) {} else {
+    
+    if(helpers.isEmptyMap(orders)) {
       tables = Object.entries(orders).map((item, index) =>
       // console.log('item', item[1][0]['orderData'])
           <OrderItem

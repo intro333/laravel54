@@ -10,6 +10,7 @@ import ProductItem from './ProductItem';
 import {
   setProducts,
 } from '../../api';
+import {isEmptyMap} from '../../helpers';
 
 class Products extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Products extends Component {
     const { api, session } = this.props;
     const products = api.get('products');
 
-    const productItem = products.map((item) =>
+    const productItem = isEmptyMap(products) && products.map((item) =>
       <ProductItem
         key={item.product_id}
         productId={item.product_id}

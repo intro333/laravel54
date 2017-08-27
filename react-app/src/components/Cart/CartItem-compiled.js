@@ -159,7 +159,7 @@ var CartItem = function (_Component) {
 
       return _react2.default.createElement(
         'tr',
-        null,
+        { key: this.props.keyProductId },
         _react2.default.createElement(
           'td',
           { className: 'table-40-procent-td' },

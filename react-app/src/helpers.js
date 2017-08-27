@@ -75,3 +75,8 @@ export function getNumberSelectOptions(start, end, filter=true) {
 
   return arrayOptions;
 }
+
+//Проверка на пустой Map
+export function isEmptyMap(map) {
+  return !!(map && map.size !== 0);
+}
