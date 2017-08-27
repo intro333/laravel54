@@ -19,41 +19,51 @@ class Orders extends Component {
     super(props);
     this.state = {
       orderStatus: 1,
-      orderYear: new Date().getUTCFullYear()
+      orderYear: new Date().getUTCFullYear(),
+      orderMonth: (new Date().getUTCMonth() + 1)
     }
   }
 
-  ordersGetAll(status, year) {
+  ordersGetAll(status, year, month) {
     const { dispatch } = this.props;
     const data = {
       status: status,
       year: year,
+      month: month,
     };
     ordersGetAll(dispatch, data);
   }
 
   componentWillMount() {
-    this.ordersGetAll(this.state.orderStatus, this.state.orderYear);
+    this.ordersGetAll(this.state.orderStatus, this.state.orderYear, this.state.orderMonth);
   }
 
   componentWillReceiveProps(props) {
     const { dispatch, api } = props || this.props;
     if(props.api.get('componentWillReceivePropsChange')) {
-      this.ordersGetAll(this.state.orderStatus, this.state.orderYear);
+      this.ordersGetAll(this.state.orderStatus, this.state.orderYear, this.state.orderMonth);
       dispatch(modelActions.componentWillReceivePropsChange(false));
     }
   }
 
   handleChangeOrderStatus(e) {
     this.setState({orderStatus: e.value});
-    this.ordersGetAll(e.value, this.state.orderYear);
+    this.ordersGetAll(e.value, this.state.orderYear, this.state.orderMonth);
+  }
+
+  handlerChangeOrderMonth(e) {
+    console.log(e.value)
+    this.setState({
+      orderMonth: e.value,
+    });
+    this.ordersGetAll(this.state.orderStatus, e.value, this.state.orderMonth);
   }
 
   handlerChangeOrderYear(e) {
     this.setState({
       orderYear: e.value,
     });
-    this.ordersGetAll(this.state.orderStatus, e.value);
+    this.ordersGetAll(this.state.orderYear,this.state.orderStatus, e.value);
   }
 
   render() {
@@ -86,6 +96,9 @@ class Orders extends Component {
     ];
 
     const yearOptions = helpers.getNumberSelectOptions(2012, (new Date().getUTCFullYear()), false);
+    const monthOptions = [
+      { value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }
+    ];
 
     return (
       <div className="container">
@@ -105,6 +118,20 @@ class Orders extends Component {
                 onChange={this.handleChangeOrderStatus.bind(this)}
                 clearable={false}
                 searchable={false}
+              />
+            </div>
+            <div className="order-filds-label-input">
+              <label className="order-filds-label" htmlFor="status">Месяц</label>
+              <Select
+                className="margin-right-10"
+                name="birthdate"
+                value={this.state.orderMonth}
+                options={monthOptions}
+                onChange={this.handlerChangeOrderMonth.bind(this)}
+                placeholder=""
+                clearable={false}
+                searchable={false}
+                scrollMenuIntoView={false}
               />
             </div>
             <div className="order-filds-label-input">

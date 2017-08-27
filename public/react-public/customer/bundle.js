@@ -24255,7 +24255,8 @@ var OrderItem = function (_Component) {
     }
   }, {
     key: 'handlerCancelOrder',
-    value: function handlerCancelOrder() {
+    value: function handlerCancelOrder(e) {
+      var text = e.target.innerText;
       var _props = this.props,
           dispatch = _props.dispatch,
           history = _props.history;
@@ -24265,7 +24266,8 @@ var OrderItem = function (_Component) {
         orderRemove: false
       };
 
-      (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
+      var result = confirm('Вы уверены, что хотите ' + text.toLowerCase() + '?');
+      result && (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
     }
   }, {
     key: 'handlerDeleteOrder',
@@ -24292,7 +24294,8 @@ var OrderItem = function (_Component) {
         orderId: this.props.orderId
       };
 
-      (0, _api.repeatOrDeleteOrder)(dispatch, data, history);
+      var result = confirm('Все товары из корзины заменятся на товары из этого заказы.');
+      result && (0, _api.repeatOrDeleteOrder)(dispatch, data, history);
     }
   }, {
     key: 'render',
@@ -24630,26 +24633,28 @@ var Orders = function (_Component) {
 
     _this.state = {
       orderStatus: 1,
-      orderYear: new Date().getUTCFullYear()
+      orderYear: new Date().getUTCFullYear(),
+      orderMonth: new Date().getUTCMonth() + 1
     };
     return _this;
   }
 
   _createClass(Orders, [{
     key: 'ordersGetAll',
-    value: function ordersGetAll(status, year) {
+    value: function ordersGetAll(status, year, month) {
       var dispatch = this.props.dispatch;
 
       var data = {
         status: status,
-        year: year
+        year: year,
+        month: month
       };
       (0, _api.ordersGetAll)(dispatch, data);
     }
   }, {
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.ordersGetAll(this.state.orderStatus, this.state.orderYear);
+      this.ordersGetAll(this.state.orderStatus, this.state.orderYear, this.state.orderMonth);
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -24659,7 +24664,7 @@ var Orders = function (_Component) {
           api = _ref.api;
 
       if (props.api.get('componentWillReceivePropsChange')) {
-        this.ordersGetAll(this.state.orderStatus, this.state.orderYear);
+        this.ordersGetAll(this.state.orderStatus, this.state.orderYear, this.state.orderMonth);
         dispatch(modelActions.componentWillReceivePropsChange(false));
       }
     }
@@ -24667,7 +24672,16 @@ var Orders = function (_Component) {
     key: 'handleChangeOrderStatus',
     value: function handleChangeOrderStatus(e) {
       this.setState({ orderStatus: e.value });
-      this.ordersGetAll(e.value, this.state.orderYear);
+      this.ordersGetAll(e.value, this.state.orderYear, this.state.orderMonth);
+    }
+  }, {
+    key: 'handlerChangeOrderMonth',
+    value: function handlerChangeOrderMonth(e) {
+      console.log(e.value);
+      this.setState({
+        orderMonth: e.value
+      });
+      this.ordersGetAll(this.state.orderStatus, e.value, this.state.orderMonth);
     }
   }, {
     key: 'handlerChangeOrderYear',
@@ -24675,7 +24689,7 @@ var Orders = function (_Component) {
       this.setState({
         orderYear: e.value
       });
-      this.ordersGetAll(this.state.orderStatus, e.value);
+      this.ordersGetAll(this.state.orderYear, this.state.orderStatus, e.value);
     }
   }, {
     key: 'render',
@@ -24710,6 +24724,7 @@ var Orders = function (_Component) {
       var OrderStatusOptions = [{ value: 1, label: 'Обрабатывается' }, { value: 2, label: 'Выполнен' }, { value: 3, label: 'Удален/Отменен' }];
 
       var yearOptions = helpers.getNumberSelectOptions(2012, new Date().getUTCFullYear(), false);
+      var monthOptions = [{ value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }];
 
       return _react2.default.createElement(
         'div',
@@ -24746,6 +24761,26 @@ var Orders = function (_Component) {
                 onChange: this.handleChangeOrderStatus.bind(this),
                 clearable: false,
                 searchable: false
+              })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'order-filds-label-input' },
+              _react2.default.createElement(
+                'label',
+                { className: 'order-filds-label', htmlFor: 'status' },
+                '\u041C\u0435\u0441\u044F\u0446'
+              ),
+              _react2.default.createElement(_reactSelect2.default, {
+                className: 'margin-right-10',
+                name: 'birthdate',
+                value: this.state.orderMonth,
+                options: monthOptions,
+                onChange: this.handlerChangeOrderMonth.bind(this),
+                placeholder: '',
+                clearable: false,
+                searchable: false,
+                scrollMenuIntoView: false
               })
             ),
             _react2.default.createElement(

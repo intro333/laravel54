@@ -75,6 +75,7 @@ class CustomerConstoller extends Controller
             ->where('user_order_id', $userId)
             ->status($request->input('status'))
             ->year($request->input('year'))
+            ->month($request->input('month'))
             ->get();
 
         foreach ($orders as $key => $order) {

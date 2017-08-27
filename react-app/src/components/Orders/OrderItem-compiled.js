@@ -71,7 +71,8 @@ var OrderItem = function (_Component) {
     }
   }, {
     key: 'handlerCancelOrder',
-    value: function handlerCancelOrder() {
+    value: function handlerCancelOrder(e) {
+      var text = e.target.innerText;
       var _props = this.props,
           dispatch = _props.dispatch,
           history = _props.history;
@@ -81,7 +82,8 @@ var OrderItem = function (_Component) {
         orderRemove: false
       };
 
-      (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
+      var result = confirm('Вы уверены, что хотите ' + text.toLowerCase() + '?');
+      result && (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
     }
   }, {
     key: 'handlerDeleteOrder',
@@ -108,7 +110,8 @@ var OrderItem = function (_Component) {
         orderId: this.props.orderId
       };
 
-      (0, _api.repeatOrDeleteOrder)(dispatch, data, history);
+      var result = confirm('Все товары из корзины заменятся на товары из этого заказы.');
+      result && (0, _api.repeatOrDeleteOrder)(dispatch, data, history);
     }
   }, {
     key: 'render',

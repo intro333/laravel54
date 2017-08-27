@@ -37,14 +37,16 @@ class OrderItem extends Component {
     })
   }
 
-  handlerCancelOrder() {
+  handlerCancelOrder(e) {
+    var text = e.target.innerText
     const { dispatch, history } = this.props;
     const data = {
       orderId: this.props.orderId,
       orderRemove: false,
     }
 
-    cancelOrDeleteOrder(dispatch, data, history)
+    let result = confirm('Вы уверены, что хотите ' + text.toLowerCase() + '?');
+    result && cancelOrDeleteOrder(dispatch, data, history)
   }
 
   handlerDeleteOrder() {
@@ -63,7 +65,8 @@ class OrderItem extends Component {
       orderId: this.props.orderId,
     }
 
-    repeatOrDeleteOrder(dispatch, data, history)
+    let result = confirm('Все товары из корзины заменятся на товары из этого заказы.');
+    result && repeatOrDeleteOrder(dispatch, data, history)
   }
 
   render() {

@@ -72,6 +72,18 @@ class Order extends Model
      */
     public function scopeYear($query, $year)
     {
-        return $query->where('created_at', 'like', '%' . $year . '%');
+//        return $query->where(\DB::raw('YEAR(created_at)', '=',  $year ));
+        return $query->whereYear('created_at', '=', 2017);
+    }
+
+    /**
+     * Выборка по месяцу заказа.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeMonth($query, $month)
+    {
+        return $query->whereMonth('created_at', '=', $month );
+//        return $query->where(created_at', 'like', '%' . $month . '%');
     }
 }
