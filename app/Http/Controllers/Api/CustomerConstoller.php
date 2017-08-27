@@ -63,28 +63,6 @@ class CustomerConstoller extends Controller
         return $this->localDataOfPersonalAccount();
     }
 
-    public function changePhotoPersonalData(Request $request)
-    {
-        $email = \Auth::user()->email;
-
-        //Формируем директорию.
-        $uploads_dir = storage_path('app/public/customers/');
-        $directory = $email;
-        $image = $request->file('image');
-        $imageName = $image->getClientOriginalName();
-        $path_to_image = $uploads_dir . '/' . $directory;
-
-        if (!is_dir($path_to_image)) {
-            mkdir($path_to_image, 0777, true);
-            //Сохраняем фото
-            $this->moveFile($image, $path_to_image, $imageName);
-        }
-
-        $imagePath = '/storage/customers/' . $email . '/' . $imageName;
-
-        return $imagePath;
-    }
-
     public function ordersGetAll(Request $request)
     {
         $result = [];
@@ -147,5 +125,28 @@ class CustomerConstoller extends Controller
 
     private function moveFile($file, $pathToComplect, $fileName) {
         move_uploaded_file($file, $pathToComplect . '/' . $fileName);
+    }
+
+    //Методы, которые скорее всего будут удалены__________________________________
+    public function changePhotoPersonalData(Request $request)
+    {
+        $email = \Auth::user()->email;
+
+        //Формируем директорию.
+        $uploads_dir = storage_path('app/public/customers/');
+        $directory = $email;
+        $image = $request->file('image');
+        $imageName = $image->getClientOriginalName();
+        $path_to_image = $uploads_dir . '/' . $directory;
+
+        if (!is_dir($path_to_image)) {
+            mkdir($path_to_image, 0777, true);
+            //Сохраняем фото
+            $this->moveFile($image, $path_to_image, $imageName);
+        }
+
+        $imagePath = '/storage/customers/' . $email . '/' . $imageName;
+
+        return $imagePath;
     }
 }

@@ -46,12 +46,6 @@ class OrderItem extends Component {
       margin: '10px'
     }
 
-    var deliveryDate = '';
-    if (ordersQuota.delivery) {
-      deliveryDate = ordersQuota.delivery.delivery_date;
-      console.log(1, deliveryDate)
-    }
-
     var productsTr = items.map((item, index) => {
         if(index !== 0) {
           return <tr key={index}>
@@ -121,8 +115,12 @@ class OrderItem extends Component {
 
     var orderInfo = <div className="order-info">
       <span>Заказ № ST-{this.props.orderId} от {this.props.orderDate}</span>
-      <span>Дата доставки {deliveryDate}</span>
-      <span>Период получения заказа {this.props.timeQuota}</span>
+      <span>Дата доставки {ordersQuota.delivery && ordersQuota.delivery.delivery_date}</span>
+      {
+        this.props.timeQuota !== '' ?
+        <span>Период получения заказа {this.props.timeQuota}</span> :
+          <span>Заказ можно получить в любое удобное время в указанный день доставки.</span>
+      }
     </div>
 
     return (
