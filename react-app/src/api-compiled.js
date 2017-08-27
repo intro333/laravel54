@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -302,6 +302,27 @@ var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data
 
   var error = function error(_error14) {
     console.log(_error14);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Отменить или удалить заказ
+var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteOrder(dispatcher, data, history) {
+  var params = {
+    method: 'post',
+    url: '/api/order-cancel-or-delete',
+    data: data
+  };
+
+  var then = function then(response) {
+    // history.push('/orders');
+    if (response.data === 1) dispatcher(modelActions.componentWillReceivePropsChange(true));
+    // console.log('ordersGetAll response.data', response.data);
+  };
+
+  var error = function error(_error15) {
+    console.log(_error15);
   };
 
   makeRequest(dispatcher, params, then, error);

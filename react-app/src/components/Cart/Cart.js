@@ -136,7 +136,7 @@ class Cart extends Component {
               { productsTd }
             </tbody>
           </table>
-          <div className="cart-order__total">Итог:&nbsp;<span>{ total } ₽</span></div>
+          <div className="cart-order__total">Сумма:&nbsp;<span>{ total } ₽</span></div>
           <textarea
             name="comment"
             className="cart-comment"

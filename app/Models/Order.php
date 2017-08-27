@@ -3,9 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    /*Статусы заказа*/
+    const IN_PROGRESS = 1;//Обрабатывается
+    const DONE = 2;//Выполнен
+    const CANCELLED = 3;//Удалён/Отменён
+
+    //Трейт для мягкого удаления
+    use SoftDeletes;
+
     protected $table = 'orders';
 
     protected $primaryKey = 'order_id';

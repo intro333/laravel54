@@ -29,3 +29,4 @@ Route::post('/getUserInfo', 'Api\CustomerConstoller@getUserInfo')->name('getUser
 Route::post('/update-data-of-personal-account', 'Api\CustomerConstoller@updateDataOfPersonalAccount')->name('updateDataOfPersonalAccount');
 Route::post('/change-photo-in-personal-account', 'Api\CustomerConstoller@changePhotoPersonalData')->name('changePhotoPersonalData');
 Route::post('/orders-get-all', 'Api\CustomerConstoller@ordersGetAll')->name('ordersGetAll');
+Route::post('/order-cancel-or-delete', 'Api\CustomerConstoller@orderCancelOrDelete')->name('orderCancelOrDelete');

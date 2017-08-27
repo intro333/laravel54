@@ -42,6 +42,10 @@ var _OrderItem2 = _interopRequireDefault(_OrderItem);
 
 var _api = require('../../api');
 
+var _actions = require('../../actions');
+
+var modelActions = _interopRequireWildcard(_actions);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -69,8 +73,7 @@ var Orders = function (_Component) {
 
   _createClass(Orders, [{
     key: 'ordersGetAll',
-    value: function ordersGetAll(status) {
-      var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '2017';
+    value: function ordersGetAll(status, year) {
       var dispatch = this.props.dispatch;
 
       var data = {
@@ -83,6 +86,18 @@ var Orders = function (_Component) {
     key: 'componentWillMount',
     value: function componentWillMount() {
       this.ordersGetAll(this.state.orderStatus, this.state.orderYear);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(props) {
+      var _ref = props || this.props,
+          dispatch = _ref.dispatch,
+          api = _ref.api;
+
+      if (props.api.get('componentWillReceivePropsChange')) {
+        this.ordersGetAll(this.state.orderStatus, this.state.orderYear);
+        dispatch(modelActions.componentWillReceivePropsChange(false));
+      }
     }
   }, {
     key: 'handleChangeOrderStatus',
@@ -101,7 +116,11 @@ var Orders = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var api = this.props.api;
+      var _this2 = this;
+
+      var _props = this.props,
+          api = _props.api,
+          history = _props.history;
 
       var orders = api.get('orders');
       var tables = null;
@@ -112,19 +131,19 @@ var Orders = function (_Component) {
             // console.log('item', item[1][0]['orderData'])
             _react2.default.createElement(_OrderItem2.default, {
               orderId: item[1][0]['orderId'],
+              emailHash: item[1][0]['emailHash'],
               orderDate: item[1][0]['orderDate'],
               timeQuota: item[1][0]['timeQuota'],
               key: item[1][0]['orderId'],
-              item: item[1]
+              item: item[1],
+              history: history,
+              orderStatus: _this2.state.orderStatus
             })
           );
         });
       }
 
-      var OrderStatusOptions = [{ value: 1, label: 'Обрабатывается' },
-      // { value: 2, label: 'Собран' },
-      // { value: 3, label: 'Отправлен' },
-      { value: 2, label: 'Выполнен' }];
+      var OrderStatusOptions = [{ value: 1, label: 'Обрабатывается' }, { value: 2, label: 'Выполнен' }, { value: 3, label: 'Удален/Отменен' }];
 
       var yearOptions = helpers.getNumberSelectOptions(2012, new Date().getUTCFullYear(), false);
 

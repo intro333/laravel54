@@ -30,6 +30,7 @@ var api = exports.api = function api() {
     checkTimeQuota: null,
     dataOfPersonalAccount: map(),
     imagePath: false,
+    componentWillReceivePropsChange: false,
     orders: map()
 
   });
@@ -60,6 +61,9 @@ var api = exports.api = function api() {
 
     case 'SET_ORDERS':
       return state.set('orders', action.orders);
+
+    case 'SET_COMPONENT_WILL_RECEIVE_PROPS':
+      return state.set('componentWillReceivePropsChange', action.componentWillReceivePropsChange);
 
     default:
       return state;

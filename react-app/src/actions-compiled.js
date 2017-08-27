@@ -16,6 +16,7 @@ exports.setCheckTimeQuotaForCart = setCheckTimeQuotaForCart;
 exports.setUserImage = setUserImage;
 exports.setProductCounts = setProductCounts;
 exports.setOrders = setOrders;
+exports.componentWillReceivePropsChange = componentWillReceivePropsChange;
 function setUserInfo(userInfo) {
   return { type: 'SET_USER_INFO', userInfo: userInfo };
 }
@@ -66,6 +67,10 @@ function setProductCounts(productCounts) {
 
 function setOrders(orders) {
   return { type: 'SET_ORDERS', orders: orders };
+}
+
+function componentWillReceivePropsChange(componentWillReceivePropsChange) {
+  return { type: 'SET_COMPONENT_WILL_RECEIVE_PROPS', componentWillReceivePropsChange: componentWillReceivePropsChange };
 }
 
 //# sourceMappingURL=actions-compiled.js.map

@@ -292,3 +292,25 @@ export const ordersGetAll = (dispatcher, data) => {
 
   makeRequest(dispatcher, params, then, error);
 };
+
+//Отменить или удалить заказ
+export const cancelOrDeleteOrder = (dispatcher, data, history) => {
+  const params = {
+    method:'post',
+    url:'/api/order-cancel-or-delete',
+    data: data
+  };
+
+  const then = response => {
+    // history.push('/orders');
+    if(response.data === 1)
+      dispatcher(modelActions.componentWillReceivePropsChange(true));
+    // console.log('ordersGetAll response.data', response.data);
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};

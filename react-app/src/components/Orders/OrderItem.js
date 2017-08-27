@@ -6,7 +6,8 @@ import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import {
-  showOrdersQuotaInCart
+  showOrdersQuotaInCart,
+  cancelOrDeleteOrder
 } from '../../api';
 // import * as modelActions from './actions';
 
@@ -33,6 +34,15 @@ class OrderItem extends Component {
       orderNum: !orderNum,
       tdBotyVisible: !isVisible
     })
+  }
+
+  handlerCancelOrder() {
+    const { dispatch, history } = this.props;
+    const data = {
+      orderId: this.props.orderId
+    }
+
+    cancelOrDeleteOrder(dispatch, data, history)
   }
 
   render() {
@@ -95,7 +105,7 @@ class OrderItem extends Component {
 
     if (!this.state.orderNum) {
       headTd = <tr className="order-tr-head" onClick={this.handleClickOrder.bind(this)}>
-        <th className="order-th-head">Заказ № ST-{this.props.orderId} от {this.props.orderDate}</th>
+        <th className="order-th-head">Заказ № ST-{this.props.emailHash}-{this.props.orderId} от {this.props.orderDate}</th>
         <th className="table-25-procent"></th>
         <th className="table-25-procent"></th>
         <th className="table-10-procent"></th>
@@ -113,16 +123,36 @@ class OrderItem extends Component {
 
     var itemsForTotal = items.filter((number, index) => index !== 0);
     var total = itemsForTotal.reduce((total, item) => total + item.cost, 0);
+    var orderConfogCancel = '';
 
-    var orderInfo = <div className="order-info">
-      <span>Заказ № ST-{this.props.orderId} от {this.props.orderDate}</span>
-      <span>Дата доставки {ordersQuota.delivery && ordersQuota.delivery.delivery_date}</span>
-      {
-        this.props.timeQuota !== '' ?
-        <span>Период получения заказа {this.props.timeQuota}</span> :
-          <span>Заказ можно получить в любое удобное время в указанный день доставки.</span>
+      switch(this.props.orderStatus) {
+        case 1:  // Если заказ обрабатывается
+          orderConfogCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Отменить заказ</span>
+          break;
+        case 2:  // Если заказ выполнен
+          orderConfogCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Удалить</span>
+          break;
+        case 3:  // Если заказ удален
+          orderConfogCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Восстановить заказ</span>
+          break;
       }
-    </div>
+
+    var orderInfo =
+      <div className="order-instruments">
+        <div className="order-info">
+          <span>Заказ № ST-{this.props.emailHash}-{this.props.orderId} от {this.props.orderDate}</span>
+          <span>Дата доставки {ordersQuota.delivery && ordersQuota.delivery.delivery_date}</span>
+          {
+            this.props.timeQuota !== '' ?
+            <span>Период получения заказа {this.props.timeQuota}</span> :
+              <span>Заказ можно получить в любое удобное время в указанный день доставки.</span>
+          }
+        </div>
+        <div className="order-config">
+          <span>Редактировать заказ</span>
+          {orderConfogCancel}
+        </div>
+      </div>
 
     return (
       <div className="orders-item">
@@ -137,7 +167,7 @@ class OrderItem extends Component {
         </table>
         {
           this.state.tdBotyVisible &&
-          <div className="cart-order__total" style={totalStyle}>Итог:&nbsp;<span>{ total } ₽</span></div>
+          <div className="cart-order__total" style={totalStyle}>Сумма:&nbsp;<span>{ total } ₽</span></div>
         }
       </div>
     );

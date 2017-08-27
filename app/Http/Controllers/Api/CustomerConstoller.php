@@ -78,7 +78,8 @@ class CustomerConstoller extends Controller
 
         foreach ($orders as $key => $order) {
             $result[$order->order_id][] = [
-                'orderId'   => $emailHash . '-' . $order->order_id,
+                'orderId'     => $order->order_id,
+                'emailHash'   => $emailHash,
                 'orderDate' => $order->created_at->format('d-m-Y'),
                 'timeQuota' => $order->timeQuota->time_quota,
             ];
@@ -96,6 +97,20 @@ class CustomerConstoller extends Controller
         }
 
 //        dd($result);
+        return $result;
+    }
+
+    public function orderCancelOrDelete(Request $request)
+    {
+        $result = 1;
+        try {
+            $order = Order::find($request->input('orderId'));
+            $order->update(['status' => 3]);
+//            $order->delete(); //Если удалить(даже мягкое удаление) объект не выводится.
+        } catch (\Exception $e) {
+            $result = 'Error: ' . $e;
+        }
+
         return $result;
     }
 

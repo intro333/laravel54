@@ -244,7 +244,7 @@ var Cart = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'cart-order__total' },
-            '\u0418\u0442\u043E\u0433:\xA0',
+            '\u0421\u0443\u043C\u043C\u0430:\xA0',
             _react2.default.createElement(
               'span',
               null,

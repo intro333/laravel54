@@ -49,3 +49,7 @@ export function setProductCounts(productCounts) {
 export function setOrders(orders) {
   return { type: 'SET_ORDERS', orders };
 }
+
+export function componentWillReceivePropsChange(componentWillReceivePropsChange) {
+  return { type: 'SET_COMPONENT_WILL_RECEIVE_PROPS', componentWillReceivePropsChange };
+}

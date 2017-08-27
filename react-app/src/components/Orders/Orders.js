@@ -12,6 +12,7 @@ import OrderItem from '../Orders/OrderItem';
 import {
   ordersGetAll,
 } from '../../api';
+import * as modelActions from '../../actions';
 
 class Orders extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Orders extends Component {
     }
   }
 
-  ordersGetAll(status, year='2017') {
+  ordersGetAll(status, year) {
     const { dispatch } = this.props;
     const data = {
       status: status,
@@ -35,6 +36,14 @@ class Orders extends Component {
     this.ordersGetAll(this.state.orderStatus, this.state.orderYear);
   }
 
+  componentWillReceiveProps(props) {
+    const { dispatch, api } = props || this.props;
+    if(props.api.get('componentWillReceivePropsChange')) {
+      this.ordersGetAll(this.state.orderStatus, this.state.orderYear);
+      dispatch(modelActions.componentWillReceivePropsChange(false));
+    }
+  }
+
   handleChangeOrderStatus(e) {
     this.setState({orderStatus: e.value});
     this.ordersGetAll(e.value, this.state.orderYear);
@@ -44,12 +53,12 @@ class Orders extends Component {
     this.setState({
       orderYear: e.value,
     });
-    this.ordersGetAll(this.state.orderStatus,e.value);
+    this.ordersGetAll(this.state.orderStatus, e.value);
   }
 
   render() {
 
-    const { api } = this.props;
+    const { api, history } = this.props;
     const orders = api.get('orders');
     var tables = null;
 
@@ -58,19 +67,22 @@ class Orders extends Component {
       // console.log('item', item[1][0]['orderData'])
           <OrderItem
             orderId={item[1][0]['orderId']}
+            emailHash={item[1][0]['emailHash']}
             orderDate={item[1][0]['orderDate']}
             timeQuota={item[1][0]['timeQuota']}
             key={item[1][0]['orderId']}
             item={item[1]}
+            history={history}
+            orderStatus={this.state.orderStatus}
           />
       );
     }
 
     const OrderStatusOptions = [
       { value: 1, label: 'Обрабатывается' },
-      // { value: 2, label: 'Собран' },
-      // { value: 3, label: 'Отправлен' },
-      { value: 2, label: 'Выполнен' }
+      { value: 2, label: 'Выполнен' },
+      { value: 3, label: 'Удален/Отменен' },
+      // { value: 3, label: 'Отправлен' }
     ];
 
     const yearOptions = helpers.getNumberSelectOptions(2012, (new Date().getUTCFullYear()), false);

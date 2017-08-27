@@ -70,6 +70,19 @@ var OrderItem = function (_Component) {
       });
     }
   }, {
+    key: 'handlerCancelOrder',
+    value: function handlerCancelOrder() {
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          history = _props.history;
+
+      var data = {
+        orderId: this.props.orderId
+      };
+
+      (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var ordersQuota = this.props.ordersQuota;
@@ -167,6 +180,8 @@ var OrderItem = function (_Component) {
             'th',
             { className: 'order-th-head' },
             '\u0417\u0430\u043A\u0430\u0437 \u2116 ST-',
+            this.props.emailHash,
+            '-',
             this.props.orderId,
             ' \u043E\u0442 ',
             this.props.orderDate
@@ -210,33 +225,77 @@ var OrderItem = function (_Component) {
       var total = itemsForTotal.reduce(function (total, item) {
         return total + item.cost;
       }, 0);
+      var orderConfogCancel = '';
+
+      switch (this.props.orderStatus) {
+        case 1:
+          // Если заказ обрабатывается
+          orderConfogCancel = _react2.default.createElement(
+            'span',
+            { onClick: this.handlerCancelOrder.bind(this) },
+            '\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+          );
+          break;
+        case 2:
+          // Если заказ выполнен
+          orderConfogCancel = _react2.default.createElement(
+            'span',
+            { onClick: this.handlerCancelOrder.bind(this) },
+            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+          );
+          break;
+        case 3:
+          // Если заказ удален
+          orderConfogCancel = _react2.default.createElement(
+            'span',
+            { onClick: this.handlerCancelOrder.bind(this) },
+            '\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+          );
+          break;
+      }
 
       var orderInfo = _react2.default.createElement(
         'div',
-        { className: 'order-info' },
+        { className: 'order-instruments' },
         _react2.default.createElement(
-          'span',
-          null,
-          '\u0417\u0430\u043A\u0430\u0437 \u2116 ST-',
-          this.props.orderId,
-          ' \u043E\u0442 ',
-          this.props.orderDate
+          'div',
+          { className: 'order-info' },
+          _react2.default.createElement(
+            'span',
+            null,
+            '\u0417\u0430\u043A\u0430\u0437 \u2116 ST-',
+            this.props.emailHash,
+            '-',
+            this.props.orderId,
+            ' \u043E\u0442 ',
+            this.props.orderDate
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
+            ordersQuota.delivery && ordersQuota.delivery.delivery_date
+          ),
+          this.props.timeQuota !== '' ? _react2.default.createElement(
+            'span',
+            null,
+            '\u041F\u0435\u0440\u0438\u043E\u0434 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u0430 ',
+            this.props.timeQuota
+          ) : _react2.default.createElement(
+            'span',
+            null,
+            '\u0417\u0430\u043A\u0430\u0437 \u043C\u043E\u0436\u043D\u043E \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0432 \u043B\u044E\u0431\u043E\u0435 \u0443\u0434\u043E\u0431\u043D\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0432 \u0443\u043A\u0430\u0437\u0430\u043D\u043D\u044B\u0439 \u0434\u0435\u043D\u044C \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438.'
+          )
         ),
         _react2.default.createElement(
-          'span',
-          null,
-          '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
-          ordersQuota.delivery && ordersQuota.delivery.delivery_date
-        ),
-        this.props.timeQuota !== '' ? _react2.default.createElement(
-          'span',
-          null,
-          '\u041F\u0435\u0440\u0438\u043E\u0434 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u0430 ',
-          this.props.timeQuota
-        ) : _react2.default.createElement(
-          'span',
-          null,
-          '\u0417\u0430\u043A\u0430\u0437 \u043C\u043E\u0436\u043D\u043E \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0432 \u043B\u044E\u0431\u043E\u0435 \u0443\u0434\u043E\u0431\u043D\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0432 \u0443\u043A\u0430\u0437\u0430\u043D\u043D\u044B\u0439 \u0434\u0435\u043D\u044C \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438.'
+          'div',
+          { className: 'order-config' },
+          _react2.default.createElement(
+            'span',
+            null,
+            '\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+          ),
+          orderConfogCancel
         )
       );
 
@@ -261,7 +320,7 @@ var OrderItem = function (_Component) {
         this.state.tdBotyVisible && _react2.default.createElement(
           'div',
           { className: 'cart-order__total', style: totalStyle },
-          '\u0418\u0442\u043E\u0433:\xA0',
+          '\u0421\u0443\u043C\u043C\u0430:\xA0',
           _react2.default.createElement(
             'span',
             null,
