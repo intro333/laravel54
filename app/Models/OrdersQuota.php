@@ -41,13 +41,16 @@ class OrdersQuota extends Model
     public function scopeUpdateCountsQuota($query, $id)
     {
         if ($id) {
+            $countsAllQuota = OrdersQuota::where('counts_quota', '<>', 0)->get();
             $ordersQuota = OrdersQuota::where('orders_quota_id', $id)->get()->first();
-
-            if ($ordersQuota->counts_quota !== 0) {
+//            dd($countsAllQuota->isEmpty());
+            if ($countsAllQuota->isEmpty()) {
+                return 2;
+            } elseif ($ordersQuota->counts_quota === 0) {
+                return 'no free quota';
+            } else {
                 return $query->where('orders_quota_id', $id)
                     ->update(['counts_quota' => ($ordersQuota->counts_quota - 1)]);
-            } else {
-                return 'no free quota';
             }
         } else return 1;
 

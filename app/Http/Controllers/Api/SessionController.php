@@ -72,7 +72,7 @@ class SessionController extends Controller
                 'user_order_id' => $user->id,
                 'comment'       => $comment ? $comment : '',
                 'status'        => 1, //Обрабатывается
-                'time_quota_id' => $timeQuotaId ? $timeQuotaId : 1,
+                'time_quota_id' => $timeQuotaId && $updateResult !== 2 ? $timeQuotaId : 1,
                 'features'      => $products,
             ]);
 

@@ -37,6 +37,15 @@ class Cart extends Component {
     this.setState({comment: event.target.value});
   }
 
+  handleChangeTimeQuota(e) {
+    const { dispatch } = this.props;
+    dispatch(modelActions.setErrors(''));
+    this.setState({
+      cart_error: ''
+    });
+    this.setState({time_quota: e.value});
+  }
+
   handlerSendOrder() {
     const { dispatch, history, ordersQuota } = this.props;
     const data = {
@@ -54,23 +63,12 @@ class Cart extends Component {
     }
   }
 
-  handleChangeTimeQuota(e) {
-    const { dispatch } = this.props;
-    dispatch(modelActions.setErrors(''));
-    this.setState({
-      cart_error: ''
-    });
-    this.setState({time_quota: e.value});
-  }
-
   render() {
-    const { session, ordersQuota,productsForCart } = this.props;
+    const { ordersQuota, productsForCart, errorMessageCountQuota } = this.props;
     // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
     // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
     var total = null;
-    var errorMessageCountQuota = session.get('errors').errorTime;
 
-    console.log('errorMessageCountQuota', errorMessageCountQuota)
     const productsTd = productsForCart.map((item) =>
       <CartItem
         key={item.productId}
@@ -144,7 +142,7 @@ class Cart extends Component {
           {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
           <label className="order-filds-label" style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>
             {
-              this.state.cart_error !== '' ? this.state.cart_error : (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? errorMessageCountQuota : '')
+              this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
             }
             </label>
           <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
@@ -160,4 +158,5 @@ export default connect(store => ({
   api: store.api,
   ordersQuota: store.api.get('ordersQuota'),
   productsForCart: store.api.get('productsForCart'),
+  errorMessageCountQuota: store.session.get('errors').errorTime,
 }))(Cart);

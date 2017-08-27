@@ -1073,7 +1073,6 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
 
 //Отправить заказ.
 var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history) {
-  console.log(3, data);
   var params = {
     method: 'post',
     url: '/api/send-order',
@@ -23463,6 +23462,17 @@ var Cart = function (_Component) {
       this.setState({ comment: event.target.value });
     }
   }, {
+    key: 'handleChangeTimeQuota',
+    value: function handleChangeTimeQuota(e) {
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setErrors(''));
+      this.setState({
+        cart_error: ''
+      });
+      this.setState({ time_quota: e.value });
+    }
+  }, {
     key: 'handlerSendOrder',
     value: function handlerSendOrder() {
       var _props = this.props,
@@ -23485,30 +23495,17 @@ var Cart = function (_Component) {
       }
     }
   }, {
-    key: 'handleChangeTimeQuota',
-    value: function handleChangeTimeQuota(e) {
-      var dispatch = this.props.dispatch;
-
-      dispatch(modelActions.setErrors(''));
-      this.setState({
-        cart_error: ''
-      });
-      this.setState({ time_quota: e.value });
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _props2 = this.props,
-          session = _props2.session,
           ordersQuota = _props2.ordersQuota,
-          productsForCart = _props2.productsForCart;
+          productsForCart = _props2.productsForCart,
+          errorMessageCountQuota = _props2.errorMessageCountQuota;
       // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
       // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
 
       var total = null;
-      var errorMessageCountQuota = session.get('errors').errorTime;
 
-      console.log('errorMessageCountQuota', errorMessageCountQuota);
       var productsTd = productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
           key: item.productId,
@@ -23640,7 +23637,7 @@ var Cart = function (_Component) {
           _react2.default.createElement(
             'label',
             { className: 'order-filds-label', style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
-            this.state.cart_error !== '' ? this.state.cart_error : ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? errorMessageCountQuota : ''
+            this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
           ),
           _react2.default.createElement(
             'div',
@@ -23661,7 +23658,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     session: store.session,
     api: store.api,
     ordersQuota: store.api.get('ordersQuota'),
-    productsForCart: store.api.get('productsForCart')
+    productsForCart: store.api.get('productsForCart'),
+    errorMessageCountQuota: store.session.get('errors').errorTime
   };
 })(Cart);
 
