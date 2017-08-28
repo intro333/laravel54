@@ -31,6 +31,7 @@ class Orders extends Component {
       year: year,
       month: month,
     };
+
     ordersGetAll(dispatch, data);
   }
 
@@ -52,18 +53,17 @@ class Orders extends Component {
   }
 
   handlerChangeOrderMonth(e) {
-    console.log(e.value)
     this.setState({
       orderMonth: e.value,
     });
-    this.ordersGetAll(this.state.orderStatus, e.value, this.state.orderMonth);
+    this.ordersGetAll(this.state.orderStatus, this.state.orderYear, e.value);
   }
 
   handlerChangeOrderYear(e) {
     this.setState({
       orderYear: e.value,
     });
-    this.ordersGetAll(this.state.orderYear,this.state.orderStatus, e.value);
+    this.ordersGetAll(this.state.orderStatus, this.state.orderYear, e.value);
   }
 
   render() {
@@ -74,7 +74,6 @@ class Orders extends Component {
 
     if(helpers.isEmptyMap(orders)) {
       tables = Object.entries(orders).map((item, index) =>
-      // console.log('item', item[1][0]['orderData'])
           <OrderItem
             orderId={item[1][0]['orderId']}
             emailHash={item[1][0]['emailHash']}
