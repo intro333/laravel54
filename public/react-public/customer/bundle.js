@@ -24678,18 +24678,14 @@ var Orders = function (_Component) {
   }, {
     key: 'handlerChangeOrderMonth',
     value: function handlerChangeOrderMonth(e) {
-      this.setState({
-        orderMonth: e.value
-      });
+      this.setState({ orderMonth: e.value });
       this.ordersGetAll(this.state.orderStatus, this.state.orderYear, e.value);
     }
   }, {
     key: 'handlerChangeOrderYear',
     value: function handlerChangeOrderYear(e) {
-      this.setState({
-        orderYear: e.value
-      });
-      this.ordersGetAll(this.state.orderStatus, this.state.orderYear, e.value);
+      this.setState({ orderYear: e.value });
+      this.ordersGetAll(this.state.orderStatus, e.value, this.state.orderMonth);
     }
   }, {
     key: 'render',

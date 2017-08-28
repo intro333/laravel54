@@ -73,7 +73,7 @@ class Order extends Model
     public function scopeYear($query, $year)
     {
 //        return $query->where(\DB::raw('YEAR(created_at)', '=',  $year ));
-        return $query->whereYear('created_at', '=', 2017);
+        return $query->whereYear('created_at', '=', $year);
     }
 
     /**

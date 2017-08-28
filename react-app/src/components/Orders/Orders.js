@@ -53,17 +53,13 @@ class Orders extends Component {
   }
 
   handlerChangeOrderMonth(e) {
-    this.setState({
-      orderMonth: e.value,
-    });
+    this.setState({orderMonth: e.value});
     this.ordersGetAll(this.state.orderStatus, this.state.orderYear, e.value);
   }
 
   handlerChangeOrderYear(e) {
-    this.setState({
-      orderYear: e.value,
-    });
-    this.ordersGetAll(this.state.orderStatus, this.state.orderYear, e.value);
+    this.setState({orderYear: e.value});
+    this.ordersGetAll(this.state.orderStatus, e.value, this.state.orderMonth);
   }
 
   render() {

@@ -82,6 +82,7 @@ var Orders = function (_Component) {
         year: year,
         month: month
       };
+
       (0, _api.ordersGetAll)(dispatch, data);
     }
   }, {
@@ -110,19 +111,14 @@ var Orders = function (_Component) {
   }, {
     key: 'handlerChangeOrderMonth',
     value: function handlerChangeOrderMonth(e) {
-      console.log(e.value);
-      this.setState({
-        orderMonth: e.value
-      });
-      this.ordersGetAll(this.state.orderStatus, e.value, this.state.orderMonth);
+      this.setState({ orderMonth: e.value });
+      this.ordersGetAll(this.state.orderStatus, this.state.orderYear, e.value);
     }
   }, {
     key: 'handlerChangeOrderYear',
     value: function handlerChangeOrderYear(e) {
-      this.setState({
-        orderYear: e.value
-      });
-      this.ordersGetAll(this.state.orderYear, this.state.orderStatus, e.value);
+      this.setState({ orderYear: e.value });
+      this.ordersGetAll(this.state.orderStatus, e.value, this.state.orderMonth);
     }
   }, {
     key: 'render',
@@ -138,19 +134,16 @@ var Orders = function (_Component) {
 
       if (helpers.isEmptyMap(orders)) {
         tables = Object.entries(orders).map(function (item, index) {
-          return (
-            // console.log('item', item[1][0]['orderData'])
-            _react2.default.createElement(_OrderItem2.default, {
-              orderId: item[1][0]['orderId'],
-              emailHash: item[1][0]['emailHash'],
-              orderDate: item[1][0]['orderDate'],
-              timeQuota: item[1][0]['timeQuota'],
-              key: item[1][0]['orderId'],
-              item: item[1],
-              history: history,
-              orderStatus: _this2.state.orderStatus
-            })
-          );
+          return _react2.default.createElement(_OrderItem2.default, {
+            orderId: item[1][0]['orderId'],
+            emailHash: item[1][0]['emailHash'],
+            orderDate: item[1][0]['orderDate'],
+            timeQuota: item[1][0]['timeQuota'],
+            key: item[1][0]['orderId'],
+            item: item[1],
+            history: history,
+            orderStatus: _this2.state.orderStatus
+          });
         });
       }
 
