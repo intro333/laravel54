@@ -27,10 +27,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
-    protected function guard()
-    {
-        return Auth::guard('admin');
-    }
+//    protected function guard()
+//    {
+//        return Auth::guard('admin');
+//    }
 
     /**
      * Show the application's login form.
@@ -42,23 +42,17 @@ class LoginController extends Controller
         return view('admin.login');
     }
 
-    /**
-     * Validate the user login request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     */
-    protected function validateLoginAdmin(Request $request)
-    {
-        $this->validate($request, [
-            $this->username() => 'required|string|unique:auth_admins',
-            'password' => 'required|string',
-        ]);
-    }
+//    protected function validateLoginAdmin(Request $request)
+//    {
+//        $this->validate($request, [
+//            $this->username() => 'required|string|unique:auth_admins',
+//            'password' => 'required|string',
+//        ]);
+//    }
 
     public function login(Request $request)
     {
-        $this->validateLoginAdmin($request);
+        $this->validateLogin($request);
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.

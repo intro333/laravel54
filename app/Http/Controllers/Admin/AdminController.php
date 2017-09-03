@@ -15,6 +15,16 @@ class AdminController extends Controller
 
     public function index()
     {
-        return 'Success Auth by Admin!';
+        if($this->role()) {
+            return view('admin.dashboard');
+        }
+        return 'Error page.';
+    }
+
+    private function role()
+    {
+        if(\Auth::user()->role === 'admin') {
+            return true;
+        } else return false;
     }
 }

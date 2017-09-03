@@ -13,8 +13,16 @@ class CustomerController extends Controller
 
     public function index()
     {
-//        dd(session()->all());
-//        dd(session()->get('_token'));//TODO передавать через axious в redux токен сессии(только не здесь, а через API)
-        return view('customer');
+        if($this->role()) {
+            return view('customer');
+        }
+        return 'Error page.';
+    }
+
+    private function role()
+    {
+        if(\Auth::user()->role === 'person') {
+            return true;
+        } else return false;
     }
 }

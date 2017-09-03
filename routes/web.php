@@ -15,10 +15,10 @@ Auth::routes();
 Route::get('/', 'CustomerController@index')->name('customer');
 
 Route::prefix('admin')->group(function () {
+    Route::get('/', 'Admin\AdminController@index')->name('adminIndex');
     Route::get('/login', 'Admin\LoginController@showLoginForm')->name('viewAdminLogin');
     Route::post('/login', 'Admin\LoginController@login')->name('adminLogin');
     Route::get('/logout', 'Admin\LoginController@logout')->name('adminLogout');
-    Route::get('/', 'Admin\AdminController@index')->name('adminIndex');
 });
 
 Route::prefix('test')->group(function () {
