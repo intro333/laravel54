@@ -2,6 +2,6 @@
 
 @section('content')
 
-    {{ trans('quickadmin::admin.dashboard-title') }}
+    Редактирование
 
 @endsection

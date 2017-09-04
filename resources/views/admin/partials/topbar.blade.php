@@ -3,7 +3,7 @@
         <div class="page-header-inner">
             <div class="navbar-header">
                 <a href="{{ url(config('quickadmin.homeRoute')) }}" class="navbar-brand">
-                    {{ trans('quickadmin::admin.partials-topbar-title') }}
+                    <i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;Администрирование сайта
                 </a>
             </div>
             <a href="javascript:;"

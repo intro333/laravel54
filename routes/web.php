@@ -19,6 +19,16 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', 'Admin\LoginController@showLoginForm')->name('viewAdminLogin');
     Route::post('/login', 'Admin\LoginController@login')->name('adminLogin');
     Route::get('/logout', 'Admin\LoginController@logout')->name('adminLogout');
+
+    Route::get('/orders', 'Admin\AdminController@index')->name('adminIndex');
+
+    Route::get('/categories/add', 'Admin\AdminController@index')->name('adminIndex');
+    Route::get('/categories/edit', 'Admin\AdminController@index')->name('adminIndex');
+    Route::get('/categories/del', 'Admin\AdminController@index')->name('adminIndex');
+
+    Route::get('/products/add', 'Admin\AdminController@index')->name('adminIndex');
+    Route::get('/products/edit', 'Admin\AdminController@index')->name('adminIndex');
+    Route::get('/products/del', 'Admin\AdminController@index')->name('adminIndex');
 });
 
 Route::prefix('test')->group(function () {
