@@ -22,7 +22,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/orders', 'Admin\AdminController@index')->name('adminIndex');
 
-    Route::get('/categories/add', 'Admin\AdminController@index')->name('adminIndex');
+    Route::get('/categories/add', 'Admin\AdminController@categoriesAdd')->name('categoriesAdd');
     Route::get('/categories/edit', 'Admin\AdminController@index')->name('adminIndex');
     Route::get('/categories/del', 'Admin\AdminController@index')->name('adminIndex');
 

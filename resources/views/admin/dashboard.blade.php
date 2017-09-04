@@ -2,6 +2,6 @@
 
 @section('content')
 
-    Редактирование
+    <h3>Главная</h3>
 
 @endsection

@@ -1,3 +1,8 @@
+<style>
+    .logout:hover {
+        color: #a0a0a0;
+    }
+</style>
 <div class="page-sidebar-wrapper">
     <div class="page-sidebar navbar-collapse collapse">
         {{--{{ dd(Request::path()) }}--}}

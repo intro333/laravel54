@@ -21,6 +21,16 @@ class AdminController extends Controller
         return 'Error page.';
     }
 
+    public function categoriesAdd()
+    {
+        if($this->role()) {
+            return view('admin.categories.add');
+        }
+        return 'Error page.';
+    }
+
+
+
     private function role()
     {
         if(\Auth::user()->role === 'admin') {
