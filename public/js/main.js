@@ -17,6 +17,7 @@ var formChecking = {
     this.element.formResetPassword = $('#reset-password-form');
     this.element.goToLogin = $('#go-to-login');
     this.element.goToRegister = $('#go-to-register');
+    this.element.goToSite = $('#go-to-site');
     this.element.formChangePassword = $('#change-password-form');
     this.element.formFName = $('#fname');
     this.element.formSName = $('#sname');
@@ -53,7 +54,10 @@ var formChecking = {
     });
     this.element.goToRegister.on('click', function () {
       window.location.href = '/register';
-    })
+    });
+    this.element.goToSite.on('click', function () {
+      window.location.href = '/';
+    });
   },
   datePicker: function () {
     this.element.formBirthdate.datepicker({

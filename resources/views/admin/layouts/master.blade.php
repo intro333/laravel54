@@ -20,7 +20,7 @@
                             <p>{{ Session::get('message') }}</p>
                         </div>
                     @endif
-
+                    @include('flash::message')
                     @yield('content')
 
                 </div>
@@ -37,6 +37,9 @@
 @include('admin.partials.javascripts')
 
 @yield('javascript')
+<script>
+    $('div.alert').not('.alert-important').delay(5000).slideUp(350);
+</script>
 @include('admin.partials.footer')
 
 

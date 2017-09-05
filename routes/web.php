@@ -22,7 +22,8 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/orders', 'Admin\AdminController@index')->name('adminIndex');
 
-    Route::get('/categories/add', 'Admin\AdminController@categoriesAdd')->name('categoriesAdd');
+    Route::get('/categories/add', 'Admin\AdminController@viewCategoriesAdd')->name('category.view.add');
+    Route::post('/categories/add', 'Admin\AdminController@categoriesAdd')->name('category.form.add');
     Route::get('/categories/edit', 'Admin\AdminController@index')->name('adminIndex');
     Route::get('/categories/del', 'Admin\AdminController@index')->name('adminIndex');
 

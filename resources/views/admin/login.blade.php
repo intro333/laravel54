@@ -9,6 +9,7 @@
                         <p class="main-text">Войти</p>
                         <p class="explain-text">Для входа укажите свои данные</p>
                     </div>
+                    <div id="go-to-site" class="middle-button"><p>На сайт</p></div>
                 </div>
                 <div class="register-filds">
                     <form action="{{ route('adminLogin') }}" method="POST" id="login-form" autocomplete="on">

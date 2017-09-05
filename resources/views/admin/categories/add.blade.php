@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2">
-            <h1>{{ trans('quickadmin::admin.roles-create-create_role') }}</h1>
+            <h1>Добавить категорию</h1>
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -18,18 +18,30 @@
         </div>
     </div>
 
-    {!! Form::open(['route' => 'roles.store', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['route' => 'category.form.add', 'class' => 'form-horizontal', 'files' => true]) !!}
 
     <div class="form-group">
-        {!! Form::label('title', trans('quickadmin::admin.roles-create-title'), ['class'=>'col-sm-2 control-label']) !!}
+        {!! Form::label('name', 'Имя категории', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::text('title', old('title'), ['class'=>'form-control', 'placeholder'=> trans('quickadmin::admin.roles-create-title_placeholder')]) !!}
+            {!! Form::text('name', old('name'), ['class'=>'form-control', 'placeholder'=> 'Введите название категории', 'required' => 'required']) !!}
+        </div>
+    </div>
+    <div class="form-group">
+        {!! Form::label('description', 'Описание', ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::text('description', old('description'), ['class'=>'form-control', 'placeholder'=> 'Введите описание', 'required' => 'required']) !!}
+        </div>
+    </div>
+    <div class="form-group">
+        {!! Form::label('image', 'Изображение', ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::file('image', ['required' => 'required']) !!}
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
-            {!! Form::submit(trans('quickadmin::admin.roles-create-btncreate'), ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Добавить', ['class' => 'btn btn-primary']) !!}
         </div>
     </div>
 
