@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    {!! Form::open(['route' => 'category.form.add', 'class' => 'form-horizontal', 'files' => true]) !!}
+    {!! Form::open(['route' => 'category.form.add', 'class' => 'form-horizontal', 'files' => true, "autocomplete" => "off"]) !!}
 
     <div class="form-group">
         {!! Form::label('name', 'Имя категории', ['class'=>'col-sm-2 control-label']) !!}
@@ -35,7 +35,7 @@
     <div class="form-group">
         {!! Form::label('image', 'Изображение', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::file('image', ['required' => 'required']) !!}
+            {!! Form::file('image', ['required' => 'required', 'class'=>'form-control']) !!}
         </div>
     </div>
 
