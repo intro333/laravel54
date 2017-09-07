@@ -9,18 +9,18 @@ use App\Http\Controllers\Controller;
 class AdminController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
     //Главная страница админки
     public function index()
     {
-        if($this->role()) {
+//        if($this->role()) {
             return view('admin.dashboard');
-        }
+//        }
 
-        return $this->ifRoleNotAdmin();
+//        return $this->ifRoleNotAdmin();
     }
     //вьюха добавления категорий
     public function categoriesViewAdd()
@@ -121,7 +121,7 @@ class AdminController extends Controller
         return $this->ifRoleNotAdmin();
     }
     //Удалить категорию
-    public function categoriesDelete($id)
+    public function categoriesDelete()
     {
         return 'Удалить категорию';
         if($this->role()) {

@@ -69,7 +69,7 @@ var CategoryItem = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'category-item__img' },
-            _react2.default.createElement('img', { src: this.props.imgSrc, width: '170' }),
+            _react2.default.createElement('img', { src: '/storage/images/categories/' + this.props.imgSrc, width: '170' }),
             _react2.default.createElement(
               'div',
               { className: 'category-item__name' },

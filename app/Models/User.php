@@ -2,46 +2,14 @@
 
 namespace App\Models;
 
-//use Illuminate\Notifications\Notifiable;
-//use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
-//use Illuminate\Auth\Authenticatable;
-//use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContracts;
-//use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContracts;
-//use Jenssegers\Mongodb\Eloquent\HybridRelations;
-//
-//class User extends Eloquent implements AuthenticatableContracts, CanResetPasswordContracts
-//{
 use App\Notifications\MyOwnResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 
 class User extends Authenticatable
 {
     use Notifiable;
-//    use Authenticatable;
-//    use Notifiable;
-//    use HybridRelations;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     * @return string|void
-     */
-//    public function getEmailForPasswordReset() {
-//
-//    }
-
-    /**
-     * Send the password reset notification.
-     *
-     * @param  string  $token
-     * @return void
-     */
-//    public function sendPasswordResetNotification($token) {
-//
-//    }
     protected $softDelete = true;// <-- Используем этот свойство для мягкого удаления.
 
     protected $fillable = [
@@ -93,5 +61,23 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany('App\Models\Order', 'order_id', 'id');
+    }
+
+    //Role Manage
+    public static function isAdmin()
+    {
+        return self::can('can_all');
+    }
+    public function hasRole()
+    {
+        if($this->role === 'admin') {
+            return true;
+        }
+        return false;
+//        if (is_array($role)) {
+//            return in_array($this->attributes['role'], $role);
+//        }
+//
+//        return $this->attributes['role'] == $role;
     }
 }
