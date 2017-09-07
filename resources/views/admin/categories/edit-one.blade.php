@@ -41,7 +41,7 @@
     <div class="form-group">
         {!! Form::label('image', 'Изображение', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::file('image', ['class'=>'form-control']) !!}
+            {!! Form::file('image', ['class'=>'image-for-admin-panel']) !!}
         </div>
     </div>
 

@@ -3121,3 +3121,17 @@ table {
     text-shadow: none;
     color: #888888;
 }
+
+/* my styles --------------------------------------------------------------------------------------------------------------------------------*/
+.image-for-admin-panel {
+    border: 1px solid #e5e5e5;
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    background-color: #fff;
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    background-image: none;
+    line-height: 1.42857143;
+}

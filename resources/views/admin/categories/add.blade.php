@@ -35,7 +35,7 @@
     <div class="form-group">
         {!! Form::label('image', 'Изображение', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::file('image', ['required' => 'required', 'class'=>'form-control']) !!}
+            {!! Form::file('image', ['required' => 'required', 'class'=>'image-for-admin-panel']) !!}
         </div>
     </div>
 
