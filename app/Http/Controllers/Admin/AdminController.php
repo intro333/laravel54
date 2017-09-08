@@ -9,10 +9,11 @@ use App\Http\Controllers\Controller;
 class AdminController extends Controller
 {
 
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
+    public function __construct()
+    {
+//        dd(\Auth::user());
+//        $this->middleware('isAdmin');
+    }
     //Главная страница админки
     public function index()
     {

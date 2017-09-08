@@ -41,9 +41,10 @@ class Kernel extends HttpKernel
             'bindings',
         ],
 
-        'admin' => [
-            'isAdmin'
-        ],
+//        'admin' => [
+////            'auth',
+//            'isAdmin'
+//        ],
     ];
 
     /**

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 |
 */
 //Route::group(['roles' => 'admin'], function () {
-    Route::get('/', 'Admin\AdminController@index')->name('adminIndex');
+//    Route::get('/', 'Admin\AdminController@index')->name('adminIndex');
 //
 //    Route::get('/orders', 'Admin\AdminController@index')->name('adminIndex');
 //

@@ -64,20 +64,11 @@ class User extends Authenticatable
     }
 
     //Role Manage
-    public static function isAdmin()
+    public function hasRole($role)
     {
-        return self::can('can_all');
-    }
-    public function hasRole()
-    {
-        if($this->role === 'admin') {
+        if($this->role === $role) {
             return true;
         }
         return false;
-//        if (is_array($role)) {
-//            return in_array($this->attributes['role'], $role);
-//        }
-//
-//        return $this->attributes['role'] == $role;
     }
 }

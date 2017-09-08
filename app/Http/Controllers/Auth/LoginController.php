@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -33,12 +34,13 @@ class LoginController extends Controller
 
             return $this->sendLockoutResponse($request);
         }
+        //Проверяем, что через юзерскую страничку аутентификации не набрали логин админа
+        $adminUser = User::where('role', 'admin')->get()->first();
 
-        if ($this->attemptLogin($request)) {
+        if ($adminUser->email !== $request->input('email') && $this->attemptLogin($request)) {
             session()->put('sessionUserName', $request->input('email'));
             return $this->sendLoginResponse($request);
         }
-
         flash('Не правильный логин или пароль')->error();
 
         // If the login attempt was unsuccessful we will increment the number of attempts

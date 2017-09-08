@@ -15,13 +15,25 @@ class isAdmin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
-//        dd(Auth::user());
-//        if (Auth::check() && Auth::user()->hasRole()) {
-        if (Auth::check() && Auth::user()->hasRole()) {
+
+//        dd($guard);
+//        dd(session()->get('sessionUserName'));
+        if (Auth::check() && Auth::user()->hasRole($guard)) {
             return $next($request);
+        } else if ($guard === 'admin' && !Auth::check()) {
+            return redirect(route('viewAdminLogin'));
+        } else if ($guard === 'person' && !Auth::check()) {
+            return redirect(route('login'));
+        } else if (Auth::check() && !Auth::user()->hasRole($guard) && $guard === 'admin') {
+            return redirect(route('customer'));
+        } else if (Auth::check() && !Auth::user()->hasRole($guard) && $guard === 'person') {
+            return redirect(route('adminIndex'));
         }
-        return redirect(route('viewAdminLogin'));
+//        else if ($guard === 'admin' && Auth::user()->role === 'person') {
+//            return redirect(route('viewAdminLogin'));
+//        }
+        return response('Unauthorized.', 401);
     }
 }
