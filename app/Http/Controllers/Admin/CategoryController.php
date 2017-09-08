@@ -13,7 +13,7 @@ class CategoryController extends Controller
     private $image;
     private $fileName;
 
-    //Главная страница админки
+    //Главная страница админки(вынес сюда, чтобы не создавать контроллер для одного метода)
     public function index()
     {
         return view('admin.dashboard');
@@ -51,7 +51,7 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             flash('Ошибка.Категория не добавлена: ' . $e)->error();
         }
-        flash('Ошибка обновления категории.')->error();
+        flash('Ошибка добавления категории.')->error();
         return redirect(route('adminIndex'));
     }
     //Вьюха Показать все категории
@@ -115,7 +115,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             flash('Ошибка удаления категории: ' . $e)->error();
         }
-        flash('Ошибка обновления категории: ' . $e)->error();
+        flash('Ошибка удаления категории: ' . $e)->error();
         return redirect(route('adminIndex'));
     }
 

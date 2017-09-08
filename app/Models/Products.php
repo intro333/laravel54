@@ -15,6 +15,7 @@ class Products extends Model
         "description",
         "image_path",
         "price",
+        "unit",
         "features",
         "is_active",
         "deleted_at",
