@@ -13,12 +13,6 @@ use App\Http\Controllers\Controller;
 
 class SessionController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('api');
-//    }
-
-
     public function addProductToCart(Request $request)
     {
         $sessionName = 'productFromCart.'.$request->input('barCode');

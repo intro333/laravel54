@@ -41,14 +41,14 @@
                             </span>
                         </a>
                     </li>
-                    <li @if(Request::path() == 'admin/categories/del') class="active active-sub" @endif>
-                        <a href="/admin/categories/del">
-                            <i class="fa fa-trash-o fa-fw"></i>
-                            <span class="title">
-                                Удалить
-                            </span>
-                        </a>
-                    </li>
+                    {{--<li @if(Request::path() == 'admin/categories/del') class="active active-sub" @endif>--}}
+                        {{--<a href="/admin/categories/del">--}}
+                            {{--<i class="fa fa-trash-o fa-fw"></i>--}}
+                            {{--<span class="title">--}}
+                                {{--Удалить--}}
+                            {{--</span>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                 </ul>
             </li>
             <li>
@@ -75,14 +75,14 @@
                             </span>
                         </a>
                     </li>
-                    <li @if(Request::path() == 'admin/products/del') class="active active-sub" @endif>
-                        <a href="/admin/products/del">
-                            <i class="fa fa-trash-o fa-fw"></i>
-                            <span class="title">
-                                Удалить
-                            </span>
-                        </a>
-                    </li>
+                    {{--<li @if(Request::path() == 'admin/products/del') class="active active-sub" @endif>--}}
+                        {{--<a href="/admin/products/del">--}}
+                            {{--<i class="fa fa-trash-o fa-fw"></i>--}}
+                            {{--<span class="title">--}}
+                                {{--Удалить--}}
+                            {{--</span>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                 </ul>
             </li>
             <li>

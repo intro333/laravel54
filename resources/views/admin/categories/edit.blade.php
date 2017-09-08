@@ -24,7 +24,7 @@
                                 <td>{{ $category->name }}</td>
                                 <td>
                                     {!! link_to_route('category.view.edit.one', 'Редактировать', [$category->category_id], ['class' => 'btn btn-xs btn-info']) !!}
-                                    {!! Form::open(['style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => 'return confirm(\'' . 'Вы точно хотите удалить эту категорию?' . '\');',  'route' => ['category.del', $category->category_id]]) !!}
+                                    {!! Form::open(['style' => 'display: inline-block;', 'method' => 'POST', 'onsubmit' => 'return confirm(\'' . 'Вы точно хотите удалить эту категорию?' . '\');',  'route' => ['category.del', $category->category_id]]) !!}
                                     {!! Form::submit('Удалить', ['class' => 'btn btn-xs btn-danger']) !!}
                                     {!! Form::close() !!}
                                 </td>
