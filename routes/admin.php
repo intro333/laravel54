@@ -23,7 +23,9 @@ Route::group(['middleware' => 'isAdmin:admin'], function () {
     Route::post('/categories/del/{id}', 'Admin\CategoryController@categoriesDelete')->name('category.del');
 //
     Route::get('/products/add', 'Admin\ProductController@productViewAdd')->name('product.view.add');
-    Route::post('/products/add', 'Admin\ProductController@productsAdd')->name('products.form.add');
-//    Route::get('/products/edit', 'Admin\CategoryController@index')->name('adminIndex');
-//    Route::get('/products/del/{id}', 'Admin\CategoryController@index')->name('adminIndex');
+    Route::post('/products/add', 'Admin\ProductController@productAdd')->name('product.form.add');
+    Route::get('/products/edit', 'Admin\ProductController@productViewEdit')->name('products.view.edit');
+    Route::get('/products/edit/{id}', 'Admin\ProductController@productViewEditOne')->name('product.view.edit.one');
+    Route::post('/products/edit', 'Admin\ProductController@productEdit')->name('product.edit');
+    Route::post('/products/del/{id}', 'Admin\ProductController@productDelete')->name('product.del');
 });

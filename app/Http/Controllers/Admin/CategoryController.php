@@ -45,7 +45,7 @@ class CategoryController extends Controller
                     'is_active'   => 1,
                 ]);
                 flash('Категория добавлена.')->success();
-                return redirect(route('category.view.add'));
+                return redirect(route('category.view.edit'));
             }
             flash('Ошибка.Категория не добавлена.')->error();
         } catch (\Exception $e) {
@@ -91,8 +91,7 @@ class CategoryController extends Controller
                 return redirect(route('category.view.edit.one', $request->input('category_id')));
             }
             flash('Ошибка обновления категории.')->error();
-            return view('admin.categories.edit-one',
-                compact('category'));
+            return redirect(route('category.view.edit.one', $request->input('category_id')));
         } catch (\Exception $e) {
             flash('Ошибка обновления категории: ' . $e)->error();
         }

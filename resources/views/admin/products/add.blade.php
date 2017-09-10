@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    {!! Form::open(['route' => 'products.form.add', 'class' => 'form-horizontal', 'files' => true]) !!}
+    {!! Form::open(['route' => 'product.form.add', 'class' => 'form-horizontal', 'files' => true]) !!}
 
     <div class="form-group">
         {!! Form::label('category_id', 'Выберите категорию', ['class'=>'col-sm-2 control-label']) !!}
