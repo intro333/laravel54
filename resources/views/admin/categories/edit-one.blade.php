@@ -39,7 +39,17 @@
         </div>
     </div>
     <div class="form-group">
-        {!! Form::label('image', 'Изображение', ['class'=>'col-sm-2 control-label']) !!}
+        {!! Form::label('image_path', 'Изображение', ['class'=>'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            @if ($category->image_path !== '')
+                <img src="{{ '/storage/images/categories/' . $category->image_path }}" width="190" height="190">
+            @else
+                {!! Form::text('image_path', old('image_path', 'Нет изображения'), ['class'=>'form-control', 'readonly' => 'readonly']) !!}
+            @endif
+        </div>
+    </div>
+    <div class="form-group">
+        {!! Form::label('image', 'Добавить изображение', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
             {!! Form::file('image', ['class'=>'image-for-admin-panel']) !!}
         </div>

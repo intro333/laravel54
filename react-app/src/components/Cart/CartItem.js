@@ -122,7 +122,7 @@ class CartItem extends Component {
     return (
       <tr key={this.props.keyProductId}>
         <td className="table-40-procent-td">
-          <img className="cart-product-image" src={this.props.item.imagePath} />
+          <img className="cart-product-image" src={'/storage/images/products/' + this.props.item.imagePath} />
           <span>{this.props.item.name}</span>
         </td>
         <td>{this.props.item.price} ₽ / {this.props.item.unit}</td>

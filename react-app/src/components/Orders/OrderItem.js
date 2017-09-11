@@ -84,7 +84,7 @@ class OrderItem extends Component {
         if(index !== 0) {
           return <tr key={index}>
             <td className="table-40-procent-td">
-              <img className="cart-product-image" src={item.image_path}/>
+              <img className="cart-product-image" src={'/storage/images/products/' + item.image_path}/>
               <span>{item.name}</span>
             </td>
             <td>{item.price} ₽ / {item.unit}</td>

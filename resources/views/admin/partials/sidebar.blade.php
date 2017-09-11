@@ -3,6 +3,7 @@
         color: #a0a0a0;
     }
 </style>
+{{--{{ dd(explode('/',Request::path())[3]) }}--}}
 <div class="page-sidebar-wrapper">
     <div class="page-sidebar navbar-collapse collapse">
         {{--{{ dd(Request::path()) }}--}}
@@ -33,7 +34,10 @@
                             </span>
                         </a>
                     </li>
-                    <li @if(Request::path() == 'admin/categories/edit') class="active active-sub" @endif>
+                    <li @if(Request::path() == 'admin/categories/edit' ||
+                    (isset(explode('/', Request::path())[1]) && explode('/',Request::path())[1] === 'categories' &&
+                    isset(explode('/', Request::path())[2]) &&  explode('/',Request::path())[2] === 'edit' &&
+                    isset(explode('/', Request::path())[3])))) class="active active-sub" @endif>
                         <a href="/admin/categories/edit">
                             <i class="fa fa-pencil fa-fw"></i>
                             <span class="title">
@@ -67,7 +71,10 @@
                             </span>
                         </a>
                     </li>
-                    <li @if(Request::path() == 'admin/products/edit') class="active active-sub" @endif>
+                    <li @if(Request::path() == 'admin/products/edit' ||
+                    (isset(explode('/', Request::path())[1]) && explode('/', Request::path())[1] === 'products' &&
+                    isset(explode('/', Request::path())[2]) && explode('/',Request::path())[2] === 'edit' &&
+                    isset(explode('/', Request::path())[3]))) class="active active-sub" @endif>
                         <a href="/admin/products/edit">
                             <i class="fa fa-pencil fa-fw"></i>
                             <span class="title">
