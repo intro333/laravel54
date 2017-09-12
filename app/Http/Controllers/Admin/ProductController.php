@@ -89,12 +89,17 @@ class ProductController extends Controller
             $this->dirImageFile($request);
             $product = Products::where('product_id', $request->input('product_id'))->get()->first();
 
-            if ($request->input('bar_code') !== $product->bar_code || $request->input('name') !== $product->name) {
-                $productAnother = Products::where('bar_code', $request->input('bar_code'))
-                    ->orWhere('name', $request->input('name'))
-                    ->get();
-                if (!$productAnother->isEmpty()) { //проверка на существование артикула или имени
-                    flash('Продукт с таким артикулом или именем уже существует.')->error();
+            if ($request->input('bar_code') !== $product->bar_code) {
+                $productAnotherBarCode = Products::where('bar_code', $request->input('bar_code'))->get();
+                if (!$productAnotherBarCode->isEmpty()) { //проверка на существование артикула
+                    flash('Продукт с таким артикулом уже существует.')->error();
+                    return redirect(route('product.view.edit.one', $request->input('product_id')));
+                }
+            }
+            if ($request->input('name') !== $product->name) {
+                $productAnotherName = Products::where('name', $request->input('name'))->get();
+                if (!$productAnotherName->isEmpty()) { //проверка на существование имени
+                    flash('Продукт с таким именем уже существует.')->error();
                     return redirect(route('product.view.edit.one', $request->input('product_id')));
                 }
             }
@@ -145,6 +150,7 @@ class ProductController extends Controller
         flash('Ошибка удаления продукта: ' . $e)->error();
         return redirect(route('adminIndex'));
     }
+
     //Добавить файл в storage
     private function moveFile($file, $path, $fileName) {
         move_uploaded_file($file, $path . '/' . $fileName);

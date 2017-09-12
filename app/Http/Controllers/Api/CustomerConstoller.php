@@ -64,6 +64,7 @@ class CustomerConstoller extends Controller
         return $this->localDataOfPersonalAccount();
     }
 
+    //Показать все заказы пользователя
     public function ordersGetAll(Request $request)
     {
         $result = [];

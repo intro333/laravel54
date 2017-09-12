@@ -33,7 +33,7 @@ class ProductsTableSeeder extends Seeder
                 'price'         => '800',
                 'unit'         => 'кг.',
                 'features'      => null,//json поле
-                'image_path'    => '/storage/images/products/beef.jpg',
+                'image_path'    => 'beef.jpg',
                 'is_active'     => 1,
                 "deleted_at"    => null,
                 "created_at"    => Carbon::now(),
@@ -47,7 +47,7 @@ class ProductsTableSeeder extends Seeder
                 'price'         => '650',
                 'unit'         => 'кг.',
                 'features'      => null,//json поле
-                'image_path'    => '/storage/images/products/pork.jpg',
+                'image_path'    => 'pork.jpg',
                 'is_active'     => 1,
                 "deleted_at"    => null,
                 "created_at"    => Carbon::now(),
@@ -61,7 +61,7 @@ class ProductsTableSeeder extends Seeder
                 'price'         => '545',
                 'unit'         => 'кг.',
                 'features'      => null,//json поле
-                'image_path'    => '/storage/images/products/veal.jpg',
+                'image_path'    => 'veal.jpg',
                 'is_active'     => 1,
                 "deleted_at"    => null,
                 "created_at"    => Carbon::now(),
@@ -75,7 +75,7 @@ class ProductsTableSeeder extends Seeder
                 'price'         => '200',
                 'unit'         => 'шт.',
                 'features'      => null,//json поле
-                'image_path'    => '/storage/images/products/tvorog.jpg',
+                'image_path'    => 'tvorog.jpg',
                 'is_active'     => 1,
                 "deleted_at"    => null,
                 "created_at"    => Carbon::now(),
@@ -89,7 +89,7 @@ class ProductsTableSeeder extends Seeder
                 'price'         => '250',
                 'unit'         => 'шт.',
                 'features'      => null,//json поле
-                'image_path'    => '/storage/images/products/maslo.jpg',
+                'image_path'    => 'maslo.jpg',
                 'is_active'     => 1,
                 "deleted_at"    => null,
                 "created_at"    => Carbon::now(),
@@ -103,7 +103,7 @@ class ProductsTableSeeder extends Seeder
                 'price'         => '230',
                 'unit'         => 'шт.',
                 'features'      => null,//json поле
-                'image_path'    => '/storage/images/products/kapusta.jpg',
+                'image_path'    => 'kapusta.jpg',
                 'is_active'     => 1,
                 "deleted_at"    => null,
                 "created_at"    => Carbon::now(),
@@ -117,7 +117,7 @@ class ProductsTableSeeder extends Seeder
                 'price'         => '260',
                 'unit'         => 'шт.',
                 'features'      => null,//json поле
-                'image_path'    => '/storage/images/products/kapusta2.jpg',
+                'image_path'    => 'kapusta2.jpg',
                 'is_active'     => 1,
                 "deleted_at"    => null,
                 "created_at"    => Carbon::now(),

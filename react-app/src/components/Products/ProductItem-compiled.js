@@ -157,7 +157,7 @@ var ProductItem = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'category-item__img', style: categoryItemImg },
-          _react2.default.createElement('img', { src: this.props.imgSrc, width: '190' }),
+          _react2.default.createElement('img', { src: '/storage/images/products/' + this.props.imgSrc, width: '190' }),
           _react2.default.createElement(
             'div',
             { className: 'category-item__name' },

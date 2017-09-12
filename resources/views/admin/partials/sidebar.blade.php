@@ -16,7 +16,19 @@
                 <a href="/admin/orders">
                     <i class="fa fa-shopping-cart"></i>
                     <span class="title">Заказы</span>
+                    <span class="fa arrow"></span>
                 </a>
+                <ul class="sub-menu">
+                    {{--                    <li @if(isset(explode('/',Request::path())[2]) && explode('/',Request::path())[2] == strtolower('/add')) class="active active-sub" @endif>--}}
+                    <li @if(Request::path() == 'admin/orders/new') class="active active-sub" @endif>
+                        <a href="/admin/orders/new">
+                            <i class="fa fa-newspaper-o"></i>
+                            <span class="title">
+                                Новые
+                            </span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="/admin/categories">

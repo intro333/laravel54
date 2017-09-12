@@ -135,7 +135,7 @@ var OrderItem = function (_Component) {
             _react2.default.createElement(
               'td',
               { className: 'table-40-procent-td' },
-              _react2.default.createElement('img', { className: 'cart-product-image', src: item.image_path }),
+              _react2.default.createElement('img', { className: 'cart-product-image', src: '/storage/images/products/' + item.image_path }),
               _react2.default.createElement(
                 'span',
                 null,

@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 //Admin app routes
 Route::group(['middleware' => 'isAdmin:admin'], function () {
     Route::get('/', 'Admin\CategoryController@index')->name('adminIndex');
-    Route::get('/orders', 'Admin\CategoryController@index')->name('adminIndex');
 
     Route::get('/categories/add', 'Admin\CategoryController@categoriesViewAdd')->name('category.view.add');
     Route::post('/categories/add', 'Admin\CategoryController@categoriesAdd')->name('category.form.add');
@@ -21,11 +20,13 @@ Route::group(['middleware' => 'isAdmin:admin'], function () {
     Route::get('/categories/edit/{id}', 'Admin\CategoryController@categoriesViewEditOne')->name('category.view.edit.one');
     Route::post('/categories/edit', 'Admin\CategoryController@categoryEdit')->name('category.edit');
     Route::post('/categories/del/{id}', 'Admin\CategoryController@categoriesDelete')->name('category.del');
-//
+
     Route::get('/products/add', 'Admin\ProductController@productViewAdd')->name('product.view.add');
     Route::post('/products/add', 'Admin\ProductController@productAdd')->name('product.form.add');
     Route::get('/products/edit', 'Admin\ProductController@productViewEdit')->name('products.view.edit');
     Route::get('/products/edit/{id}', 'Admin\ProductController@productViewEditOne')->name('product.view.edit.one');
     Route::post('/products/edit', 'Admin\ProductController@productEdit')->name('product.edit');
     Route::post('/products/del/{id}', 'Admin\ProductController@productDelete')->name('product.del');
+
+    Route::get('/orders/new', 'Admin\OrderController@ordersNewView')->name('ordersNewView');
 });

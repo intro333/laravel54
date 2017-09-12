@@ -43,6 +43,7 @@ class SessionController extends Controller
         return $this->localShowProductsInCart(false);
     }
 
+    //Отправить заказ из корзины
     public function sendOrder(Request $request)
     {
         $user = \Auth::user();
