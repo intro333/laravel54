@@ -110,8 +110,22 @@ var OrderItem = function (_Component) {
         orderId: this.props.orderId
       };
 
-      var result = confirm('Все товары из корзины заменятся на товары из этого заказы.');
+      var result = confirm('Если в корзине есть товары, то они будут удалены.');
       result && (0, _api.repeatOrDeleteOrder)(dispatch, data, history);
+    }
+  }, {
+    key: 'handlerChangeOrder',
+    value: function handlerChangeOrder() {
+      var _props4 = this.props,
+          dispatch = _props4.dispatch,
+          history = _props4.history;
+
+      var data = {
+        orderId: this.props.orderId
+      };
+
+      var result = confirm('Если в корзине есть товары, то они будут удалены.');
+      result && (0, _api.changeOrder)(dispatch, data, history);
     }
   }, {
     key: 'render',
@@ -196,12 +210,6 @@ var OrderItem = function (_Component) {
       });
 
       var headTd = null;
-      var thStyle = {
-        textAlign: 'left',
-        width: '100%',
-        letterSpacing: '0.05em',
-        fontWeight: '400 !important'
-      };
 
       if (!this.state.orderNum) {
         headTd = _react2.default.createElement(
@@ -256,12 +264,12 @@ var OrderItem = function (_Component) {
       var total = itemsForTotal.reduce(function (total, item) {
         return total + item.cost;
       }, 0);
-      var orderConfogCancel = '';
+      var orderConfigCancel = '';
 
       switch (this.props.orderStatus) {
         case 1:
           // Если заказ обрабатывается
-          orderConfogCancel = _react2.default.createElement(
+          orderConfigCancel = _react2.default.createElement(
             'span',
             { onClick: this.handlerCancelOrder.bind(this) },
             '\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
@@ -269,7 +277,7 @@ var OrderItem = function (_Component) {
           break;
         case 2:
           // Если заказ выполнен
-          orderConfogCancel = _react2.default.createElement(
+          orderConfigCancel = _react2.default.createElement(
             'span',
             { onClick: this.handlerCancelOrder.bind(this) },
             '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
@@ -277,7 +285,7 @@ var OrderItem = function (_Component) {
           break;
         case 3:
           // Если заказ удален
-          orderConfogCancel = _react2.default.createElement(
+          orderConfigCancel = _react2.default.createElement(
             'span',
             { onClick: this.handlerDeleteOrder.bind(this) },
             '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
@@ -326,7 +334,12 @@ var OrderItem = function (_Component) {
             { onClick: this.handlerRepeatOrder.bind(this) },
             '\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           ),
-          orderConfogCancel
+          this.props.orderStatus === 1 && _react2.default.createElement(
+            'span',
+            { onClick: this.handlerChangeOrder.bind(this) },
+            '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+          ),
+          orderConfigCancel
         )
       );
 

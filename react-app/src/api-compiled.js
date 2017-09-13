@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.repeatOrDeleteOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.changeOrder = exports.repeatOrDeleteOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -343,6 +343,26 @@ var repeatOrDeleteOrder = exports.repeatOrDeleteOrder = function repeatOrDeleteO
 
   var error = function error(_error16) {
     console.log(_error16);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+//Изменить заказ
+var changeOrder = exports.changeOrder = function changeOrder(dispatcher, data, history) {
+  var params = {
+    method: 'post',
+    url: '/api/order-repeat',
+    data: data
+  };
+
+  var then = function then(response) {
+    dispatcher(modelActions.setProductsForCart(response.data));
+    history.push('/cart');
+  };
+
+  var error = function error(_error17) {
+    console.log(_error17);
   };
 
   makeRequest(dispatcher, params, then, error);

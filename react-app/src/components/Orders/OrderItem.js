@@ -8,7 +8,8 @@ import '../../theme/css/adaptive.css';
 import {
   showOrdersQuotaInCart,
   cancelOrDeleteOrder,
-  repeatOrDeleteOrder
+  repeatOrDeleteOrder,
+  changeOrder
 } from '../../api';
 // import * as modelActions from './actions';
 
@@ -38,12 +39,12 @@ class OrderItem extends Component {
   }
 
   handlerCancelOrder(e) {
-    var text = e.target.innerText
+    var text = e.target.innerText;
     const { dispatch, history } = this.props;
     const data = {
       orderId: this.props.orderId,
       orderRemove: false,
-    }
+    };
 
     let result = confirm('Вы уверены, что хотите ' + text.toLowerCase() + '?');
     result && cancelOrDeleteOrder(dispatch, data, history)
@@ -54,7 +55,7 @@ class OrderItem extends Component {
     const data = {
       orderId: this.props.orderId,
       orderRemove: true,
-    }
+    };
 
     cancelOrDeleteOrder(dispatch, data, history)
   }
@@ -63,10 +64,20 @@ class OrderItem extends Component {
     const { dispatch, history } = this.props;
     const data = {
       orderId: this.props.orderId,
-    }
+    };
 
-    let result = confirm('Все товары из корзины заменятся на товары из этого заказы.');
+    let result = confirm('Если в корзине есть товары, то они будут удалены.');
     result && repeatOrDeleteOrder(dispatch, data, history)
+  }
+
+  handlerChangeOrder() {
+    const { dispatch, history } = this.props;
+    const data = {
+      orderId: this.props.orderId,
+    };
+
+    let result = confirm('Если в корзине есть товары, то они будут удалены.');
+    result && changeOrder(dispatch, data, history)
   }
 
   render() {
@@ -78,7 +89,7 @@ class OrderItem extends Component {
     });
     const totalStyle = {
       margin: '10px'
-    }
+    };
 
     var productsTr = items.map((item, index) => {
         if(index !== 0) {
@@ -120,12 +131,6 @@ class OrderItem extends Component {
     );
 
     var headTd = null;
-    const thStyle = {
-      textAlign: 'left',
-      width: '100%',
-      letterSpacing: '0.05em',
-      fontWeight: '400 !important'
-    }
 
     if (!this.state.orderNum) {
       headTd = <tr className="order-tr-head" onClick={this.handleClickOrder.bind(this)}>
@@ -147,17 +152,17 @@ class OrderItem extends Component {
 
     var itemsForTotal = items.filter((number, index) => index !== 0);
     var total = itemsForTotal.reduce((total, item) => total + item.cost, 0);
-    var orderConfogCancel = '';
+    var orderConfigCancel = '';
 
       switch(this.props.orderStatus) {
         case 1:  // Если заказ обрабатывается
-          orderConfogCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Отменить заказ</span>
+          orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Отменить заказ</span>
           break;
         case 2:  // Если заказ выполнен
-          orderConfogCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Удалить</span>
+          orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Удалить</span>
           break;
         case 3:  // Если заказ удален
-          orderConfogCancel = <span onClick={this.handlerDeleteOrder.bind(this)}>Удалить</span>
+          orderConfigCancel = <span onClick={this.handlerDeleteOrder.bind(this)}>Удалить</span>
           break;
       }
 
@@ -175,7 +180,8 @@ class OrderItem extends Component {
         <div className="order-config">
           {/*{this.props.orderStatus === 1 && <span>Редактировать заказ</span>}*/}
           {this.props.orderStatus !== 1 && <span onClick={this.handlerRepeatOrder.bind(this)}>Повторить заказ</span>}
-          {orderConfogCancel}
+          {this.props.orderStatus === 1 && <span onClick={this.handlerChangeOrder.bind(this)}>Изменить заказ</span>}
+          {orderConfigCancel}
         </div>
       </div>;
 
