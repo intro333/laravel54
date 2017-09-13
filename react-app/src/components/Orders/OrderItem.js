@@ -177,7 +177,7 @@ class OrderItem extends Component {
           {this.props.orderStatus !== 1 && <span onClick={this.handlerRepeatOrder.bind(this)}>Повторить заказ</span>}
           {orderConfogCancel}
         </div>
-      </div>
+      </div>;
 
     return (
       <div className="orders-item">

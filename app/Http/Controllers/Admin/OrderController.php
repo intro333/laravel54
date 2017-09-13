@@ -13,20 +13,24 @@ class OrderController extends Controller
     public function ordersNewView()
     {
         $result = [];
-        $orders = Order::with('timeQuota', 'user')
+        $orders = Order::with('timeQuota', 'user.details')
             ->status(1)
             ->get();
 
         foreach ($orders as $key => $order) {
+//            dd($order->user->details->first());
             $emailHash = hash('md5', $order->user->email);
             $emailHash = preg_replace('/[^0-9]/', '', $emailHash);
             $emailHash = substr($emailHash, 0, 7);
+            $total = 0;
 
             $result[$order->order_id][] = [
                 'orderId'     => $order->order_id,
                 'emailHash'   => $emailHash,
-                'orderDate' => $order->created_at->format('d-m-Y'),
-                'timeQuota' => $order->timeQuota->time_quota,
+                'orderDate'   => $order->created_at->format('d-m-Y'),
+                'timeQuota'   => $order->timeQuota->time_quota,
+                'details'     => $order->user->details->first(),
+                'comment'     => $order->comment,
             ];
             foreach ($order->features as $feature) {
                 $product = Products::find($feature['productId']);
@@ -38,7 +42,9 @@ class OrderController extends Controller
                     'counts'     => $feature['count'],
                     'cost'       => ($product->price * $feature['count']),
                 ];
+                $total = $total + $product->price * $feature['count'];
             }
+            $result[$order->order_id][0]['total'] = $total;
         }
 
 //        dd($result);

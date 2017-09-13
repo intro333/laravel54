@@ -44,7 +44,7 @@ class Order extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'order_id', 'id');
+        return $this->belongsTo('App\Models\User', 'user_order_id', 'id');
     }
 
     /*

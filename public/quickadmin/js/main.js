@@ -97,9 +97,11 @@ $(document).ready(function () {
 
 });
 
-/*my scripts*/
+/*scripts by shop-travel for admin*/
 $(document).on('click', '.cart-products-table thead', function () {
   $(this).parent().parent().find('.order-instruments').toggleClass('not-active');
+  $(this).parent().parent().find('.cart-order__total').toggleClass('not-active');
+  $(this).parent().parent().find('.order-comment-admin').toggleClass('not-active');
   $(this).parent().find('.order-tbody').toggleClass('not-active');
   $(this).parent().find('.order-tr-head:eq(0)').toggleClass('not-active');
   $(this).parent().find('.order-tr-head:eq(1)').toggleClass('not-active');

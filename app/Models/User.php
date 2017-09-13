@@ -60,7 +60,7 @@ class User extends Authenticatable
      */
     public function orders()
     {
-        return $this->hasMany('App\Models\Order', 'order_id', 'id');
+        return $this->hasMany('App\Models\Order', 'user_order_id', 'id');
     }
 
     //Role Manage

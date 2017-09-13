@@ -24,6 +24,8 @@
     <link rel="stylesheet"
           href="{{ url('quickadmin/css') }}/quickadmin-layout.css"/>
     <link rel="stylesheet"
+          href="{{ url('quickadmin/css') }}/shop-travel.css"/>
+    <link rel="stylesheet"
           href="{{ url('quickadmin/css') }}/quickadmin-theme-default.css"/>
     <link rel="stylesheet"
           href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
