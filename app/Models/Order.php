@@ -11,6 +11,7 @@ class Order extends Model
     const IN_PROGRESS = 1;//Обрабатывается
     const DONE = 2;//Выполнен
     const CANCELLED = 3;//Удалён/Отменён
+    const CHANGE = 4;//Изменить
 
     //Трейт для мягкого удаления
     use SoftDeletes;

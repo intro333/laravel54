@@ -85,6 +85,7 @@ class CustomerConstoller extends Controller
                 'emailHash'   => $emailHash,
                 'orderDate' => $order->created_at->format('d-m-Y'),
                 'timeQuota' => $order->timeQuota->time_quota,
+                'timeQuotaId' => $order->time_quota_id,
             ];
             foreach ($order->features as $feature) {
                 $product = Products::find($feature['productId']);
@@ -117,9 +118,19 @@ class CustomerConstoller extends Controller
         return $result;
     }
 
-    public function orderRepeat(Request $request)
+    public function orderRepeatOrChange(Request $request)
     {
-        $order = Order::find($request->input('orderId'));
+        $order = Order::with('timeQuota')
+            ->where('order_id', $request->input('orderId'))->get()->first();
+
+        //Если нажали Изменить заказ, то ставим этому заказу статус 4 и прибавляем к количеству его временной квоты +1
+        if ($request->input('orderChange')) {
+            $order->update(['status' => 4]);
+            $order->timeQuota->update([
+                'counts_quota' => ($order->timeQuota->counts_quota + 1)
+            ]);
+        }
+
         //Удалить все текущие продукты из сессии.
         session()->forget('productFromCart');
         session()->save();
@@ -133,12 +144,12 @@ class CustomerConstoller extends Controller
             ];
 
             session()->put($sessionName, $productCartInfo);
-            session()->save();
         }
 
-        $session = session()->get('productFromCart');
+        $request->input('orderChange') && session()->put('orderChangeId', $order->order_id);
+        session()->save();
 
-        return $this->localShowProductsInCart($session);
+        return $this->localShowProductsInCart(session()->get('productFromCart'));
     }
 
     //Локальная функция формирования заказа в корзине

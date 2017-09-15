@@ -12,6 +12,7 @@ class OrdersQuota extends Model
 
     protected $fillable = [
         'time_quota',
+        'counts_quota',
     ];
 
     protected $dates = [

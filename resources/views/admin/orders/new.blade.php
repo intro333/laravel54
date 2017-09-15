@@ -26,7 +26,7 @@
                         <th class="table-10-procent"></th>
                         <th class="table-10-procent"></th>
                     </tr>
-                    <tr class="order-tr-head not-active">
+                    <tr class="order-tr-head tr_opened not-active">
                         <th class="table-30-procent">Продукт</th>
                         <th class="table-25-procent">Цена</th>
                         <th class="table-25-procent">Количество</th>

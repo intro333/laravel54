@@ -64,16 +64,28 @@ class SessionController extends Controller
                     'barCode'   => $item['barCode'],
                 ];
             }
-            Order::create([
-                'user_order_id' => $user->id,
-                'comment'       => $comment ? $comment : '',
-                'status'        => 1, //Обрабатывается
-                'time_quota_id' => $timeQuotaId && $updateResult !== 2 ? $timeQuotaId : 1,
-                'features'      => $products,
-            ]);
+            if(session()->get('orderChangeId')) {
+                $order = Order::with('timeQuota')
+                    ->where('order_id', session()->get('orderChangeId'))->get()->first();
+                $order->update([
+                    'comment'       => $comment ? $comment : '',
+                    'status'        => 1, //Обрабатывается
+                    'time_quota_id' => $timeQuotaId && $updateResult !== 2 ? $timeQuotaId : 1,
+                    'features'      => $products,
+                ]);
+            } else {
+                Order::create([
+                    'user_order_id' => $user->id,
+                    'comment'       => $comment ? $comment : '',
+                    'status'        => 1, //Обрабатывается
+                    'time_quota_id' => $timeQuotaId && $updateResult !== 2 ? $timeQuotaId : 1,
+                    'features'      => $products,
+                ]);
+            }
 
             //Удалить все продукты из сессии.
             session()->forget('productFromCart');
+            session()->forget('orderChangeId');
             session()->save();
 
             return ['successTime' => 'success'];
