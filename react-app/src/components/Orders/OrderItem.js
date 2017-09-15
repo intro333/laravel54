@@ -8,8 +8,7 @@ import '../../theme/css/adaptive.css';
 import {
   showOrdersQuotaInCart,
   cancelOrDeleteOrder,
-  repeatOrDeleteOrder,
-  changeOrder
+  repeatOrChangeOrder,
 } from '../../api';
 // import * as modelActions from './actions';
 
@@ -64,20 +63,22 @@ class OrderItem extends Component {
     const { dispatch, history } = this.props;
     const data = {
       orderId: this.props.orderId,
+      orderChange: false
     };
 
     let result = confirm('Если в корзине есть товары, то они будут удалены.');
-    result && repeatOrDeleteOrder(dispatch, data, history)
+    result && repeatOrChangeOrder(dispatch, data, history)
   }
 
   handlerChangeOrder() {
     const { dispatch, history } = this.props;
     const data = {
       orderId: this.props.orderId,
+      orderChange: true
     };
 
-    let result = confirm('Если в корзине есть товары, то они будут удалены.');
-    result && changeOrder(dispatch, data, history)
+    let result = confirm('Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно.');
+    result && repeatOrChangeOrder(dispatch, data, history)
   }
 
   render() {

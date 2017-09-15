@@ -316,30 +316,10 @@ export const cancelOrDeleteOrder = (dispatcher, data, history) => {
 };
 
 //Повторить заказ
-export const repeatOrDeleteOrder = (dispatcher, data, history) => {
+export const repeatOrChangeOrder = (dispatcher, data, history) => {
   const params = {
     method:'post',
-    url:'/api/order-repeat',
-    data: data
-  };
-
-  const then = response => {
-    dispatcher(modelActions.setProductsForCart(response.data));
-    history.push('/cart');
-  };
-
-  const error = (error) => {
-    console.log(error);
-  };
-
-  makeRequest(dispatcher, params, then, error);
-};
-
-//Изменить заказ
-export const changeOrder = (dispatcher, data, history) => {
-  const params = {
-    method:'post',
-    url:'/api/order-repeat',
+    url:'/api/order-repeat-or-change',
     data: data
   };
 
