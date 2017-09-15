@@ -839,6 +839,28 @@ th {
 .order-tr-head {
     background: #4CAF50;
 }
+.order-tr-head:after {
+    position: relative;
+    top: 21px;
+    right: 23px;
+    display: block;
+    width: 14px;
+    height: 9px;
+    content: '';
+    opacity: .3;
+    /*fill: #fff !important;*/
+    background: no-repeat url(/images/12.svg);
+    background-size: contain;
+    transition: 200ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition: 200ms;
+    -webkit-transition-timing-function: ease-in-out;
+}
+.order-tr-head.tr_opened:after
+{
+    transform: rotate(180deg);
+    /*opacity: 1;*/
+}
 .order-tr-head:hover {
     cursor: pointer;
     background: #3A923E;

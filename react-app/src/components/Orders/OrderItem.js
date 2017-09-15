@@ -142,7 +142,7 @@ class OrderItem extends Component {
         <th className="table-10-procent"></th>
       </tr>
     } else {
-      headTd = <tr className="order-tr-head" onClick={this.handleClickOrder.bind(this)}>
+      headTd = <tr className="order-tr-head tr_opened" onClick={this.handleClickOrder.bind(this)}>
         <th className="table-30-procent">Продукт</th>
         <th className="table-25-procent">Цена</th>
         <th className="table-25-procent">Количество</th>
