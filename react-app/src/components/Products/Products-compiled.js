@@ -32,6 +32,10 @@ var _ProductItem = require('./ProductItem');
 
 var _ProductItem2 = _interopRequireDefault(_ProductItem);
 
+var _Modal = require('../Popups/Modal');
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
 var _api = require('../../api');
 
 var _helpers = require('../../helpers');
@@ -87,6 +91,7 @@ var Products = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'container' },
+        _react2.default.createElement(_Modal2.default, null),
         _react2.default.createElement(_Navigation2.default, null),
         _react2.default.createElement(_MenuMobile2.default, null),
         _react2.default.createElement(

@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import ProductItem from './ProductItem';
+import Modal  from '../Popups/Modal';
 import {
   setProducts,
 } from '../../api';
@@ -41,6 +42,7 @@ class Products extends Component {
 
     return (
       <div className="container">
+        <Modal />
         <Navigation />
         <MenuMobile />
         <div className="main-container">

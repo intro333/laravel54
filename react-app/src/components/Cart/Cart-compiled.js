@@ -22,8 +22,6 @@ require('../../theme/css/main.css');
 
 require('../../theme/css/adaptive.css');
 
-var _reactRouterDom = require('react-router-dom');
-
 var _Navigation = require('../Navigation/Navigation');
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
@@ -39,6 +37,10 @@ var _CartItem2 = _interopRequireDefault(_CartItem);
 var _actions = require('../../actions');
 
 var modelActions = _interopRequireWildcard(_actions);
+
+var _Modal = require('../Popups/Modal');
+
+var _Modal2 = _interopRequireDefault(_Modal);
 
 var _api = require('../../api');
 
@@ -66,7 +68,14 @@ var Cart = function (_Component) {
       comment: '',
       time_quota: 0,
       cart_error: '',
-      comment_count_error: ''
+      comment_count_error: '',
+      selectError: {
+        borderColor: ''
+      },
+      fadeIn: false,
+      modalDisplay: false,
+      textHeader: '',
+      textBody: ''
     };
 
     return _this;
@@ -108,7 +117,10 @@ var Cart = function (_Component) {
 
       dispatch(modelActions.setErrors(''));
       this.setState({
-        cart_error: ''
+        cart_error: '',
+        selectError: {
+          borderColor: '' //#d9d9d9 #ccc #b3b3b3
+        }
       });
       this.setState({ time_quota: e.value });
     }
@@ -131,18 +143,39 @@ var Cart = function (_Component) {
       } else {
         (0, _helpers.scrollToElement)('.scroll-to-error', 1500);
         this.setState({
-          cart_error: 'Выберите удобный период получения заказа.'
+          cart_error: 'Выберите удобный период получения заказа.',
+          selectError: {
+            borderColor: 'indianred'
+          }
         });
       }
     }
   }, {
     key: 'handlerClearCart',
     value: function handlerClearCart() {
+      this.setState({
+        fadeIn: true,
+        modalDisplay: true,
+        textHeader: 'Удалить все товары из корзины?',
+        textBody: 'Удалить все товары из корзины?'
+      });
+    }
+  }, {
+    key: 'handlerCloseModal',
+    value: function handlerCloseModal() {
+      this.setState({
+        fadeIn: false,
+        modalDisplay: false
+      });
+    }
+  }, {
+    key: 'handlerSuccessModal',
+    value: function handlerSuccessModal() {
       var _props2 = this.props,
           dispatch = _props2.dispatch,
           history = _props2.history;
 
-      confirm("Удалить все товары из корзины?") && (0, _api.clearCart)(dispatch, history);
+      (0, _api.clearCart)(dispatch, history);
     }
   }, {
     key: 'render',
@@ -198,7 +231,8 @@ var Cart = function (_Component) {
             onChange: this.handleChangeTimeQuota.bind(this),
             placeholder: '',
             clearable: false,
-            searchable: false
+            searchable: false,
+            style: this.state.selectError
           })
         )
       );
@@ -208,12 +242,19 @@ var Cart = function (_Component) {
         { className: 'order-filds-label', htmlFor: 'time_quota', style: { marginBottom: '15px' } },
         '\u0417\u0430\u043A\u0430\u0437 \u043C\u043E\u0436\u043D\u043E \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0432 \u043B\u044E\u0431\u043E\u0435 \u0443\u0434\u043E\u0431\u043D\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0432 \u0443\u043A\u0430\u0437\u0430\u043D\u043D\u044B\u0439 \u0434\u0435\u043D\u044C \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438.\u041F\u0435\u0440\u0438\u043E\u0434\u044B \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u0430 \u0437\u0430\u043A\u043E\u043D\u0447\u0438\u043B\u0438\u0441\u044C.'
       );
-
       return _react2.default.createElement(
         'div',
         { className: 'container' },
         _react2.default.createElement(_Navigation2.default, null),
         _react2.default.createElement(_MenuMobile2.default, null),
+        _react2.default.createElement(_Modal2.default, {
+          fadeIn: this.state.fadeIn,
+          modalDisplay: this.state.modalDisplay,
+          handlerCloseModal: this.handlerCloseModal.bind(this),
+          handlerSuccessModal: this.handlerSuccessModal.bind(this),
+          textHeader: this.state.textHeader,
+          textBody: this.state.textBody
+        }),
         _react2.default.createElement(
           'div',
           { className: 'main-container' },
@@ -310,7 +351,8 @@ var Cart = function (_Component) {
           ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
           _react2.default.createElement(
             'label',
-            { className: 'order-filds-label scroll-to-error', style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
+            { className: 'order-filds-label scroll-to-error',
+              style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
             this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
           ),
           _react2.default.createElement(

@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
+import Modal  from '../Popups/Modal';
 import {
   showOrdersQuotaInCart,
   cancelOrDeleteOrder,
@@ -18,7 +19,11 @@ class OrderItem extends Component {
     super(props);
     this.state = {
       orderNum: false,
-      tdBotyVisible: false
+      tdBotyVisible: false,
+      fadeIn: false,
+      modalDisplay: false,
+      textHeader: '',
+      function: null
     };
   }
 
@@ -39,14 +44,19 @@ class OrderItem extends Component {
 
   handlerCancelOrder(e) {
     var text = e.target.innerText;
-    const { dispatch, history } = this.props;
-    const data = {
-      orderId: this.props.orderId,
-      orderRemove: false,
-    };
-
-    let result = confirm('Вы уверены, что хотите ' + text.toLowerCase() + '?');
-    result && cancelOrDeleteOrder(dispatch, data, history)
+    this.setState({
+      fadeIn: true,
+      modalDisplay: true,
+      textHeader: 'Вы уверены, что хотите ' + text.toLowerCase() + '?',
+      function: () => {
+        const { dispatch, history } = this.props;
+        const data = {
+          orderId: this.props.orderId,
+          orderRemove: false,
+        };
+        cancelOrDeleteOrder(dispatch, data, history)
+      }
+    });
   }
 
   handlerDeleteOrder() {
@@ -55,30 +65,50 @@ class OrderItem extends Component {
       orderId: this.props.orderId,
       orderRemove: true,
     };
-
     cancelOrDeleteOrder(dispatch, data, history)
   }
 
   handlerRepeatOrder() {
-    const { dispatch, history } = this.props;
-    const data = {
-      orderId: this.props.orderId,
-      orderChange: false
-    };
-
-    let result = confirm('Если в корзине есть товары, то они будут удалены.');
-    result && repeatOrChangeOrder(dispatch, data, history)
+    this.setState({
+      fadeIn: true,
+      modalDisplay: true,
+      textHeader: 'Если в корзине есть товары, то они будут удалены. Продолжить?',
+      function: () => {
+        const { dispatch, history } = this.props;
+        const data = {
+          orderId: this.props.orderId,
+          orderChange: false
+        };
+        repeatOrChangeOrder(dispatch, data, history)
+      }
+    });
   }
 
   handlerChangeOrder() {
-    const { dispatch, history } = this.props;
-    const data = {
-      orderId: this.props.orderId,
-      orderChange: true
-    };
+    this.setState({
+      fadeIn: true,
+      modalDisplay: true,
+      textHeader: 'Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно. Продолжить?',
+      function: () => {
+        const { dispatch, history } = this.props;
+        const data = {
+          orderId: this.props.orderId,
+          orderChange: true
+        };
+        repeatOrChangeOrder(dispatch, data, history)
+      }
+    });
+  }
 
-    let result = confirm('Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно.');
-    result && repeatOrChangeOrder(dispatch, data, history)
+  handlerCloseModal() {
+    this.setState({
+      fadeIn: false,
+      modalDisplay: false,
+    });
+  }
+
+  handlerSuccessModal() {
+    this.state.function();
   }
 
   render() {
@@ -188,6 +218,14 @@ class OrderItem extends Component {
 
     return (
       <div className="orders-item">
+        <Modal
+          fadeIn={this.state.fadeIn}
+          modalDisplay={this.state.modalDisplay}
+          handlerCloseModal={this.handlerCloseModal.bind(this)}
+          handlerSuccessModal={this.handlerSuccessModal.bind(this)}
+          textHeader={this.state.textHeader}
+          textBody={this.state.textBody}
+        />
         { this.state.tdBotyVisible &&  orderInfo }
         <table className="cart-products-table margin-off">
           <thead>

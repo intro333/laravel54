@@ -978,3 +978,180 @@ th {
     color: steelblue;
 }
 /* END Мои заказы -------------------------------------------------------------------------------------------------------------*/
+
+/*НАЧАЛО MODAL DIALOG----------------------------------------------------------------------------------------------------------*/
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modal-display {
+    display: block;
+    padding-left: 15px;
+}
+.fade.in {
+    opacity: 1;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    background: transparent;
+}
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    transform: translate(0,0);
+}
+.modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -o-transition: -o-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    -webkit-transform: translate(0,-25%);
+    -ms-transform: translate(0,-25%);
+    -o-transform: translate(0,-25%);
+    transform: translate(0,-25%);
+}
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+.modal-content {
+    position: relative;
+    margin-top: 40%;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+}
+.modal-header .close {
+    margin-top: -2px;
+}
+button.close {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+}
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+}
+.modal-header .h4, h4 {
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: 500;
+}
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+
+.modal-body {
+    position: relative;
+    padding: 15px;
+}
+.modal-body p {
+    margin: 0 0 10px;
+}
+.modal-footer {
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+    /*border-top: 1px solid #e5e5e5;*/
+}
+.modal-footer .btn-default {
+    color: #fff;
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+.modal-footer .btn-default:hover {
+    font-weight: bold;
+    color: #4CAF50;
+    background-color: #fff;
+    border-color: #4CAF50;
+}
+.modal-footer .btn-default:active {
+    background-color: #1b8a20;
+    border-color: #8c8c8c;
+}
+.modal-footer .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.modal-footer button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+.modal-backdrop.in {
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+}
+
+@media (min-width: 768px) {
+    .modal-sm {
+        width: 300px;
+    }
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+    .modal-content {
+        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    }
+}
+
+/*НАЧАЛО MODAL DIALOG----------------------------------------------------------------------------------------------------------*/

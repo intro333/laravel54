@@ -24,6 +24,10 @@ require('../../theme/css/main.css');
 
 require('../../theme/css/adaptive.css');
 
+var _Modal = require('../Popups/Modal');
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
 var _api = require('../../api');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -46,7 +50,11 @@ var OrderItem = function (_Component) {
 
     _this.state = {
       orderNum: false,
-      tdBotyVisible: false
+      tdBotyVisible: false,
+      fadeIn: false,
+      modalDisplay: false,
+      textHeader: '',
+      function: null
     };
     return _this;
   }
@@ -72,18 +80,25 @@ var OrderItem = function (_Component) {
   }, {
     key: 'handlerCancelOrder',
     value: function handlerCancelOrder(e) {
+      var _this2 = this;
+
       var text = e.target.innerText;
-      var _props = this.props,
-          dispatch = _props.dispatch,
-          history = _props.history;
+      this.setState({
+        fadeIn: true,
+        modalDisplay: true,
+        textHeader: 'Вы уверены, что хотите ' + text.toLowerCase() + '?',
+        function: function _function() {
+          var _props = _this2.props,
+              dispatch = _props.dispatch,
+              history = _props.history;
 
-      var data = {
-        orderId: this.props.orderId,
-        orderRemove: false
-      };
-
-      var result = confirm('Вы уверены, что хотите ' + text.toLowerCase() + '?');
-      result && (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
+          var data = {
+            orderId: _this2.props.orderId,
+            orderRemove: false
+          };
+          (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
+        }
+      });
     }
   }, {
     key: 'handlerDeleteOrder',
@@ -96,38 +111,64 @@ var OrderItem = function (_Component) {
         orderId: this.props.orderId,
         orderRemove: true
       };
-
       (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
     }
   }, {
     key: 'handlerRepeatOrder',
     value: function handlerRepeatOrder() {
-      var _props3 = this.props,
-          dispatch = _props3.dispatch,
-          history = _props3.history;
+      var _this3 = this;
 
-      var data = {
-        orderId: this.props.orderId,
-        orderChange: false
-      };
+      this.setState({
+        fadeIn: true,
+        modalDisplay: true,
+        textHeader: 'Если в корзине есть товары, то они будут удалены. Продолжить?',
+        function: function _function() {
+          var _props3 = _this3.props,
+              dispatch = _props3.dispatch,
+              history = _props3.history;
 
-      var result = confirm('Если в корзине есть товары, то они будут удалены.');
-      result && (0, _api.repeatOrChangeOrder)(dispatch, data, history);
+          var data = {
+            orderId: _this3.props.orderId,
+            orderChange: false
+          };
+          (0, _api.repeatOrChangeOrder)(dispatch, data, history);
+        }
+      });
     }
   }, {
     key: 'handlerChangeOrder',
     value: function handlerChangeOrder() {
-      var _props4 = this.props,
-          dispatch = _props4.dispatch,
-          history = _props4.history;
+      var _this4 = this;
 
-      var data = {
-        orderId: this.props.orderId,
-        orderChange: true
-      };
+      this.setState({
+        fadeIn: true,
+        modalDisplay: true,
+        textHeader: 'Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно. Продолжить?',
+        function: function _function() {
+          var _props4 = _this4.props,
+              dispatch = _props4.dispatch,
+              history = _props4.history;
 
-      var result = confirm('Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно.');
-      result && (0, _api.repeatOrChangeOrder)(dispatch, data, history);
+          var data = {
+            orderId: _this4.props.orderId,
+            orderChange: true
+          };
+          (0, _api.repeatOrChangeOrder)(dispatch, data, history);
+        }
+      });
+    }
+  }, {
+    key: 'handlerCloseModal',
+    value: function handlerCloseModal() {
+      this.setState({
+        fadeIn: false,
+        modalDisplay: false
+      });
+    }
+  }, {
+    key: 'handlerSuccessModal',
+    value: function handlerSuccessModal() {
+      this.state.function();
     }
   }, {
     key: 'render',
@@ -348,6 +389,14 @@ var OrderItem = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'orders-item' },
+        _react2.default.createElement(_Modal2.default, {
+          fadeIn: this.state.fadeIn,
+          modalDisplay: this.state.modalDisplay,
+          handlerCloseModal: this.handlerCloseModal.bind(this),
+          handlerSuccessModal: this.handlerSuccessModal.bind(this),
+          textHeader: this.state.textHeader,
+          textBody: this.state.textBody
+        }),
         this.state.tdBotyVisible && orderInfo,
         _react2.default.createElement(
           'table',
