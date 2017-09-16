@@ -42,4 +42,14 @@ class Categories extends Model
     {
         return $this->hasMany('App\Models\Products', 'product_category_id', 'category_id');
     }
+
+    /**
+     * Заготовка запроса активных категорий.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 }

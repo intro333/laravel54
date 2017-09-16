@@ -65,7 +65,8 @@ var Cart = function (_Component) {
     _this.state = {
       comment: '',
       time_quota: 0,
-      cart_error: ''
+      cart_error: '',
+      comment_count_error: ''
     };
 
     return _this;
@@ -80,9 +81,25 @@ var Cart = function (_Component) {
       (0, _api.showOrdersQuotaInCart)(dispatch);
     }
   }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(next) {
+      if (next.session.get('productCounts') === 0) {
+        next.history.push('/');
+      }
+    }
+  }, {
     key: 'handleChangeComment',
     value: function handleChangeComment(event) {
-      this.setState({ comment: event.target.value });
+      if (event.target.value.length < 1000) {
+        this.setState({ comment: event.target.value });
+        this.setState({
+          comment_count_error: ''
+        });
+      } else {
+        this.setState({
+          comment_count_error: 'Максимальное количество символов 1000'
+        });
+      }
     }
   }, {
     key: 'handleChangeTimeQuota',
@@ -118,12 +135,21 @@ var Cart = function (_Component) {
       }
     }
   }, {
+    key: 'handlerClearCart',
+    value: function handlerClearCart() {
+      var _props2 = this.props,
+          dispatch = _props2.dispatch,
+          history = _props2.history;
+
+      confirm("Удалить все товары из корзины?") && (0, _api.clearCart)(dispatch, history);
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _props2 = this.props,
-          ordersQuota = _props2.ordersQuota,
-          productsForCart = _props2.productsForCart,
-          errorMessageCountQuota = _props2.errorMessageCountQuota;
+      var _props3 = this.props,
+          ordersQuota = _props3.ordersQuota,
+          productsForCart = _props3.productsForCart,
+          errorMessageCountQuota = _props3.errorMessageCountQuota;
       // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
       // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
 
@@ -181,6 +207,7 @@ var Cart = function (_Component) {
         { className: 'order-filds-label', htmlFor: 'time_quota', style: { marginBottom: '15px' } },
         '\u0417\u0430\u043A\u0430\u0437 \u043C\u043E\u0436\u043D\u043E \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0432 \u043B\u044E\u0431\u043E\u0435 \u0443\u0434\u043E\u0431\u043D\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0432 \u0443\u043A\u0430\u0437\u0430\u043D\u043D\u044B\u0439 \u0434\u0435\u043D\u044C \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438.\u041F\u0435\u0440\u0438\u043E\u0434\u044B \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u0430 \u0437\u0430\u043A\u043E\u043D\u0447\u0438\u043B\u0438\u0441\u044C.'
       );
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -199,8 +226,17 @@ var Cart = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
-              '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+              { style: { display: 'flex' } },
+              _react2.default.createElement(
+                'div',
+                { onClick: this.handlerClearCart.bind(this), className: 'cart-button-clear' },
+                '\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+              ),
+              _react2.default.createElement(
+                'div',
+                { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
+                '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+              )
             )
           ),
           _react2.default.createElement(
@@ -251,6 +287,11 @@ var Cart = function (_Component) {
               total,
               ' \u20BD'
             )
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'order-filds-label', style: { color: 'red', fontSize: '12px', margin: '0' } },
+            this.state.comment_count_error !== '' && this.state.comment_count_error
           ),
           _react2.default.createElement('textarea', {
             name: 'comment',

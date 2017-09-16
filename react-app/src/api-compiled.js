@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changeOrder = exports.repeatOrDeleteOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.repeatOrChangeOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.clearCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -189,6 +189,26 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history
   makeRequest(dispatcher, params, then, error);
 };
 
+//Очистить корзину.
+var clearCart = exports.clearCart = function clearCart(dispatcher, history) {
+  var params = {
+    method: 'post',
+    url: '/api/clear-cart'
+  };
+
+  var then = function then(response) {
+    if (response.status === 200) {
+      history.push('/');
+    }
+  };
+
+  var error = function error(_error9) {
+    console.log(_error9);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
 //Показать квоты в корзине.
 var showOrdersQuotaInCart = exports.showOrdersQuotaInCart = function showOrdersQuotaInCart(dispatcher) {
   var params = {
@@ -200,8 +220,8 @@ var showOrdersQuotaInCart = exports.showOrdersQuotaInCart = function showOrdersQ
     dispatcher(modelActions.setOrdersQuotaForCart(response.data));
   };
 
-  var error = function error(_error9) {
-    console.log(_error9);
+  var error = function error(_error10) {
+    console.log(_error10);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -219,8 +239,8 @@ var checkTimeQuota = exports.checkTimeQuota = function checkTimeQuota(dispatcher
     dispatcher(modelActions.setCheckTimeQuotaForCart(response.data));
   };
 
-  var error = function error(_error10) {
-    console.log(_error10);
+  var error = function error(_error11) {
+    console.log(_error11);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -237,8 +257,8 @@ var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
     dispatcher(modelActions.setUserInfo(response.data));
   };
 
-  var error = function error(_error11) {
-    console.log(_error11);
+  var error = function error(_error12) {
+    console.log(_error12);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -256,8 +276,8 @@ var updatePersonalData = exports.updatePersonalData = function updatePersonalDat
     dispatcher(modelActions.setUserInfo(response.data));
   };
 
-  var error = function error(_error12) {
-    console.log(_error12);
+  var error = function error(_error13) {
+    console.log(_error13);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -280,8 +300,8 @@ var changePhotoPersonalData = exports.changePhotoPersonalData = function changeP
     dispatcher(modelActions.setUserImage(response.data));
   };
 
-  var error = function error(_error13) {
-    console.log(_error13);
+  var error = function error(_error14) {
+    console.log(_error14);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -300,8 +320,8 @@ var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data
     // console.log('ordersGetAll response.data', response.data);
   };
 
-  var error = function error(_error14) {
-    console.log(_error14);
+  var error = function error(_error15) {
+    console.log(_error15);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -321,26 +341,6 @@ var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteO
     // console.log('ordersGetAll response.data', response.data);
   };
 
-  var error = function error(_error15) {
-    console.log(_error15);
-  };
-
-  makeRequest(dispatcher, params, then, error);
-};
-
-//Повторить заказ
-var repeatOrDeleteOrder = exports.repeatOrDeleteOrder = function repeatOrDeleteOrder(dispatcher, data, history) {
-  var params = {
-    method: 'post',
-    url: '/api/order-repeat',
-    data: data
-  };
-
-  var then = function then(response) {
-    dispatcher(modelActions.setProductsForCart(response.data));
-    history.push('/cart');
-  };
-
   var error = function error(_error16) {
     console.log(_error16);
   };
@@ -348,11 +348,11 @@ var repeatOrDeleteOrder = exports.repeatOrDeleteOrder = function repeatOrDeleteO
   makeRequest(dispatcher, params, then, error);
 };
 
-//Изменить заказ
-var changeOrder = exports.changeOrder = function changeOrder(dispatcher, data, history) {
+//Повторить заказ
+var repeatOrChangeOrder = exports.repeatOrChangeOrder = function repeatOrChangeOrder(dispatcher, data, history) {
   var params = {
     method: 'post',
-    url: '/api/order-repeat',
+    url: '/api/order-repeat-or-change',
     data: data
   };
 

@@ -101,13 +101,14 @@ class CartItem extends Component {
   }
 
   deleteProductFromCart() {
-    const { dispatch } = this.props;
+    const { dispatch, session } = this.props;
     const data = {
       barCode: this.props.item.barCode,
       productId: this.props.item.productId
     };
+    // const cartProductsCounts = session.get('productCounts');
+    // console.log(1, cartProductsCounts)
     deleteProductFromCart(dispatch, data);
-    // getProductCounts(dispatch);
   }
 
   render() {

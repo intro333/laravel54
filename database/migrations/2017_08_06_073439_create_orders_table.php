@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('order_id');
             $table->integer('user_order_id')->unsigned();//Поле для foreign key должно быть integer и ->unsigned()
 //            $table->string('order_num', 255)->unique();//Уникальный номер заказа
-            $table->string('comment', 1000);
+            $table->string('comment', 3000);
             $table->integer('time_quota_id')->unsigned();//Поле для foreign key к таблице квот
             $table->tinyInteger('status')->unsigned();
             $table->json('features')->nullable();

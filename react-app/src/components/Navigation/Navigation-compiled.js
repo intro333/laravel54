@@ -80,7 +80,6 @@ var Navigation = function (_Component) {
 
       var productsCounts = session.get('productCounts');
       var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
-      var productsCount = productsCounts && productsCounts !== 0 ? productsCounts : 0;
       // console.log('productsCounts', productsCounts)
 
       return _react2.default.createElement(
@@ -126,7 +125,7 @@ var Navigation = function (_Component) {
                   _react2.default.createElement(
                     'div',
                     { className: 'menu__item--basket__amount' },
-                    productsCount
+                    productsCounts && productsCounts
                   )
                 ),
                 _react2.default.createElement(
@@ -205,20 +204,7 @@ var Navigation = function (_Component) {
                     _react2.default.createElement(
                       'div',
                       { className: 'menu__item--basket__amount' },
-                      productsCount
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: 'sussess-page' },
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'mob-nav-text' },
-                      'Success'
+                      productsCounts && productsCounts
                     )
                   )
                 ),

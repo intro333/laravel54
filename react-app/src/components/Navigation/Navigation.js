@@ -39,7 +39,6 @@ class Navigation extends Component {
 
     const productsCounts = session.get('productCounts');
     var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
-    var productsCount = productsCounts && productsCounts !== 0 ? productsCounts : 0;
     // console.log('productsCounts', productsCounts)
 
     return (
@@ -69,7 +68,7 @@ class Navigation extends Component {
                 <Link to={'/personal-account'}><span className="glyphicon glyphicon-user  mob-menu-right"></span></Link>
                 <Link to={'/cart'}>
                   <span className="glyphicon glyphicon-shopping-cart mob-menu-right"></span>
-                  <div className="menu__item--basket__amount">{productsCount}</div>
+                  <div className="menu__item--basket__amount">{productsCounts && productsCounts}</div>
                 </Link>
                   <Link to={'/orders'}>
                     <span className="glyphicon glyphicon-list-alt mob-menu-right"></span>
@@ -113,14 +112,14 @@ class Navigation extends Component {
                 <li><Link to={cartUrl}>
                   <span className="glyphicon glyphicon-shopping-cart"></span>
                   <span className="mob-nav-text">Корзина</span>
-                  <div className="menu__item--basket__amount">{productsCount}</div>
+                  <div className="menu__item--basket__amount">{productsCounts && productsCounts}</div>
                 </Link>
                 </li>
-                <li>
-                  <Link to="sussess-page">
-                  <span className="mob-nav-text">Success</span>
-                  </Link>
-                </li>
+                {/*<li>*/}
+                  {/*<Link to="sussess-page">*/}
+                  {/*<span className="mob-nav-text">Success</span>*/}
+                  {/*</Link>*/}
+                {/*</li>*/}
                 <li><Link to={'/personal-account'}>
                   <span className="glyphicon glyphicon-user"></span>
                   <span className="mob-nav-text">Акаунт</span>

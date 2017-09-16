@@ -137,14 +137,17 @@ var CartItem = function (_Component) {
   }, {
     key: 'deleteProductFromCart',
     value: function deleteProductFromCart() {
-      var dispatch = this.props.dispatch;
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          session = _props.session;
 
       var data = {
         barCode: this.props.item.barCode,
         productId: this.props.item.productId
       };
+      // const cartProductsCounts = session.get('productCounts');
+      // console.log(1, cartProductsCounts)
       (0, _api.deleteProductFromCart)(dispatch, data);
-      // getProductCounts(dispatch);
     }
   }, {
     key: 'render',

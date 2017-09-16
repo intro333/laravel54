@@ -175,6 +175,26 @@ export const sendOrder = (dispatcher, data, history) => {
   makeRequest(dispatcher, params, then, error);
 };
 
+//Очистить корзину.
+export const clearCart = (dispatcher, history) => {
+  const params = {
+    method:'post',
+    url:'/api/clear-cart'
+  };
+
+  const then = response => {
+    if (response.status === 200) {
+      history.push('/');
+    }
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
 //Показать квоты в корзине.
 export const showOrdersQuotaInCart = (dispatcher) => {
   const params = {

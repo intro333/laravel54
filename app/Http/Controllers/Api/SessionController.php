@@ -92,6 +92,16 @@ class SessionController extends Controller
         }
     }
 
+    public function clearCart()
+    {
+        //Удалить все продукты из сессии.
+        session()->forget('productFromCart');
+        session()->forget('orderChangeId');
+        session()->save();
+
+        return;
+    }
+
     //Дата доставки и квоты для корзины
     public function showOrdersQuotaInCart()
     {

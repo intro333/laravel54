@@ -139,6 +139,7 @@ var Orders = function (_Component) {
             emailHash: item[1][0]['emailHash'],
             orderDate: item[1][0]['orderDate'],
             timeQuota: item[1][0]['timeQuota'],
+            timeQuotaId: item[1][0]['timeQuotaId'],
             key: item[1][0]['orderId'],
             item: item[1],
             history: history,

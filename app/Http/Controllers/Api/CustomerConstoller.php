@@ -14,7 +14,7 @@ class CustomerConstoller extends Controller
 {
     public function getCategories()
     {
-        $categories = Categories::all();
+        $categories = Categories::active()->get();
 
         return $categories;
     }
@@ -22,20 +22,11 @@ class CustomerConstoller extends Controller
     public function getProducts($id)
     {
         $products = Products::with('category')
-            ->where('product_category_id', $id)->get();
+            ->where('product_category_id', $id)
+            ->active()->get();
 
         return $products;
     }
-
-    //получить данные для личного кабинета
-//    public function getDataOfPersonalAccount(Request $request)
-//    {
-//        $email = $request->input('sessionUserName');
-//        $user = User::with('details')
-//            ->where('email', $email)->get()->first();
-////        $userDetails = $user->details()->first();
-//        return $user;
-//    }
 
     public function getUserInfo()
     {

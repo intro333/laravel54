@@ -107,11 +107,12 @@ var OrderItem = function (_Component) {
           history = _props3.history;
 
       var data = {
-        orderId: this.props.orderId
+        orderId: this.props.orderId,
+        orderChange: false
       };
 
       var result = confirm('Если в корзине есть товары, то они будут удалены.');
-      result && (0, _api.repeatOrDeleteOrder)(dispatch, data, history);
+      result && (0, _api.repeatOrChangeOrder)(dispatch, data, history);
     }
   }, {
     key: 'handlerChangeOrder',
@@ -121,11 +122,12 @@ var OrderItem = function (_Component) {
           history = _props4.history;
 
       var data = {
-        orderId: this.props.orderId
+        orderId: this.props.orderId,
+        orderChange: true
       };
 
-      var result = confirm('Если в корзине есть товары, то они будут удалены.');
-      result && (0, _api.changeOrder)(dispatch, data, history);
+      var result = confirm('Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно.');
+      result && (0, _api.repeatOrChangeOrder)(dispatch, data, history);
     }
   }, {
     key: 'render',
@@ -233,7 +235,7 @@ var OrderItem = function (_Component) {
       } else {
         headTd = _react2.default.createElement(
           'tr',
-          { className: 'order-tr-head', onClick: this.handleClickOrder.bind(this) },
+          { className: 'order-tr-head tr_opened', onClick: this.handleClickOrder.bind(this) },
           _react2.default.createElement(
             'th',
             { className: 'table-30-procent' },

@@ -13,6 +13,7 @@ import {
   showProductsInCart,
   showOrdersQuotaInCart,
   sendOrder,
+  clearCart,
   checkTimeQuota,
 } from '../../api';
 import {isEmptyMap} from '../../helpers';
@@ -24,6 +25,7 @@ class Cart extends Component {
       comment: '',
       time_quota: 0,
       cart_error: '',
+      comment_count_error: '',
     };
 
   }
@@ -34,8 +36,23 @@ class Cart extends Component {
     showOrdersQuotaInCart(dispatch);
   }
 
+  componentWillReceiveProps(next) {
+    if (next.session.get('productCounts') === 0) {
+      next.history.push('/')
+    }
+  }
+
   handleChangeComment(event) {
-    this.setState({comment: event.target.value});
+    if (event.target.value.length < 1000) {
+      this.setState({comment: event.target.value});
+      this.setState({
+        comment_count_error: ''
+      });
+    } else {
+      this.setState({
+        comment_count_error: 'Максимальное количество символов 1000'
+      });
+    }
   }
 
   handleChangeTimeQuota(e) {
@@ -62,6 +79,11 @@ class Cart extends Component {
         cart_error: 'Выберите удобный период получения заказа.'
       });
     }
+  }
+
+  handlerClearCart() {
+    const { dispatch, history } = this.props;
+    confirm("Удалить все товары из корзины?") && clearCart(dispatch, history);
   }
 
   render() {
@@ -92,7 +114,7 @@ class Cart extends Component {
       width: '100%',
       display: 'flex',
       alignItems: 'center'
-    }
+    };
 
     var ordersQoutaDiv = <div style={quotaStyle}>
       <label className="order-filds-label" htmlFor="time_quota">Я смогу забрать свой заказ в период с</label>
@@ -112,6 +134,7 @@ class Cart extends Component {
     var OrderNonQuota = <label className="order-filds-label" htmlFor="time_quota" style={{marginBottom: '15px'}}>
       Заказ можно получить в любое удобное время в указанный день доставки.Периоды получения заказа закончились.
     </label>;
+
     return (
       <div className="container">
         <Navigation />
@@ -119,7 +142,10 @@ class Cart extends Component {
         <div className="main-container">
           <div className="flex-box-between">
             <h3>Корзина</h3>
-            <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
+            <div style={{display: 'flex'}}>
+              <div onClick={this.handlerClearCart.bind(this)} className="cart-button-clear">Очистить корзину</div>
+              <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
+            </div>
           </div>
 
           <table className="cart-products-table">
@@ -137,6 +163,9 @@ class Cart extends Component {
             </tbody>
           </table>
           <div className="cart-order__total">Сумма:&nbsp;<span>{ total } ₽</span></div>
+          <p className="order-filds-label" style={{color: 'red', fontSize: '12px', margin: '0'}}>
+            {this.state.comment_count_error !== '' && this.state.comment_count_error}
+          </p>
           <textarea
             name="comment"
             className="cart-comment"
