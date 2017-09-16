@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.inputmaskBirthDate = inputmaskBirthDate;
 exports.getNumberSelectOptions = getNumberSelectOptions;
 exports.isEmptyMap = isEmptyMap;
+exports.scrollTo = scrollTo;
+exports.scrollToElement = scrollToElement;
 //Маска для даты
 function inputmaskBirthDate(value, length, date) {
 
@@ -89,5 +91,62 @@ function getNumberSelectOptions(start, end) {
 function isEmptyMap(map) {
   return !!(map && map.size !== 0);
 }
+
+/*SCROLL TO ELEMENT ----------------------------------------------------------*/
+/**
+ * ScrollTo utility
+ * © https://gist.github.com/james2doyle/5694700
+ */
+var easeInOutQuad = function easeInOutQuad(t, b, c, d) {
+  if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+
+  return -c / 2 * (--t * (t - 2) - 1) + b;
+};
+
+// requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
+var requestAnimFrame = function () {
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
+    return window.setTimeout(callback, 1000 / 60);
+  };
+}();
+
+function scrollTo(to) {
+  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+  var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  var move = function move(amount) {
+    document.documentElement.scrollTop = amount;
+    document.body.parentNode.scrollTop = amount;
+    document.body.scrollTop = amount;
+  };
+  var start = document.documentElement.scrollTop || document.body.parentNode.scrollTop || document.body.scrollTop;
+  var change = to - start;
+  var increment = 20;
+  var currentTime = 0;
+
+  var animateScroll = function animateScroll() {
+    currentTime += increment;
+    var val = easeInOutQuad(currentTime, start, change, duration);
+    move(val);
+    if (currentTime < duration) {
+      requestAnimFrame(animateScroll);
+    } else {
+      if (callback && typeof callback === 'function') {
+        callback();
+      }
+    }
+  };
+  animateScroll();
+}
+
+function scrollToElement(toSelector) {
+  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+
+  var element = document.querySelector(toSelector);
+  if (!element) return;
+
+  scrollTo(element.getBoundingClientRect().top, duration);
+}
+/*SCROLL TO ELEMENT ----------------------------------------------------------*/
 
 //# sourceMappingURL=helpers-compiled.js.map

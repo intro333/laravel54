@@ -145,8 +145,6 @@ var CartItem = function (_Component) {
         barCode: this.props.item.barCode,
         productId: this.props.item.productId
       };
-      // const cartProductsCounts = session.get('productCounts');
-      // console.log(1, cartProductsCounts)
       (0, _api.deleteProductFromCart)(dispatch, data);
     }
   }, {

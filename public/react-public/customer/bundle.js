@@ -5817,6 +5817,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.inputmaskBirthDate = inputmaskBirthDate;
 exports.getNumberSelectOptions = getNumberSelectOptions;
 exports.isEmptyMap = isEmptyMap;
+exports.scrollTo = scrollTo;
+exports.scrollToElement = scrollToElement;
 //Маска для даты
 function inputmaskBirthDate(value, length, date) {
 
@@ -5900,6 +5902,63 @@ function getNumberSelectOptions(start, end) {
 function isEmptyMap(map) {
   return !!(map && map.size !== 0);
 }
+
+/*SCROLL TO ELEMENT ----------------------------------------------------------*/
+/**
+ * ScrollTo utility
+ * © https://gist.github.com/james2doyle/5694700
+ */
+var easeInOutQuad = function easeInOutQuad(t, b, c, d) {
+  if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+
+  return -c / 2 * (--t * (t - 2) - 1) + b;
+};
+
+// requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
+var requestAnimFrame = function () {
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
+    return window.setTimeout(callback, 1000 / 60);
+  };
+}();
+
+function scrollTo(to) {
+  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+  var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  var move = function move(amount) {
+    document.documentElement.scrollTop = amount;
+    document.body.parentNode.scrollTop = amount;
+    document.body.scrollTop = amount;
+  };
+  var start = document.documentElement.scrollTop || document.body.parentNode.scrollTop || document.body.scrollTop;
+  var change = to - start;
+  var increment = 20;
+  var currentTime = 0;
+
+  var animateScroll = function animateScroll() {
+    currentTime += increment;
+    var val = easeInOutQuad(currentTime, start, change, duration);
+    move(val);
+    if (currentTime < duration) {
+      requestAnimFrame(animateScroll);
+    } else {
+      if (callback && typeof callback === 'function') {
+        callback();
+      }
+    }
+  };
+  animateScroll();
+}
+
+function scrollToElement(toSelector) {
+  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+
+  var element = document.querySelector(toSelector);
+  if (!element) return;
+
+  scrollTo(element.getBoundingClientRect().top, duration);
+}
+/*SCROLL TO ELEMENT ----------------------------------------------------------*/
 
 /***/ }),
 /* 39 */
@@ -11130,8 +11189,6 @@ var CartItem = function (_Component) {
         barCode: this.props.item.barCode,
         productId: this.props.item.productId
       };
-      // const cartProductsCounts = session.get('productCounts');
-      // console.log(1, cartProductsCounts)
       (0, _api.deleteProductFromCart)(dispatch, data);
     }
   }, {
@@ -23573,6 +23630,7 @@ var Cart = function (_Component) {
       } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
         (0, _api.sendOrder)(dispatch, data, history);
       } else {
+        (0, _helpers.scrollToElement)('.scroll-to-error', 1500);
         this.setState({
           cart_error: 'Выберите удобный период получения заказа.'
         });
@@ -23753,7 +23811,7 @@ var Cart = function (_Component) {
           ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
           _react2.default.createElement(
             'label',
-            { className: 'order-filds-label', style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
+            { className: 'order-filds-label scroll-to-error', style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
             this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
           ),
           _react2.default.createElement(

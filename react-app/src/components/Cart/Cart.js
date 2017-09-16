@@ -16,7 +16,7 @@ import {
   clearCart,
   checkTimeQuota,
 } from '../../api';
-import {isEmptyMap} from '../../helpers';
+import {isEmptyMap, scrollToElement} from '../../helpers';
 
 class Cart extends Component {
   constructor(props) {
@@ -75,6 +75,7 @@ class Cart extends Component {
     } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
       sendOrder(dispatch, data, history)
     } else {
+      scrollToElement('.scroll-to-error', 1500);
       this.setState({
         cart_error: 'Выберите удобный период получения заказа.'
       });
@@ -175,7 +176,7 @@ class Cart extends Component {
           />
           <label className="order-filds-label">Дата доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</label>
           {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
-          <label className="order-filds-label" style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>
+          <label className="order-filds-label scroll-to-error" style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>
             {
               this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
             }

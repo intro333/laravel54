@@ -129,6 +129,7 @@ var Cart = function (_Component) {
       } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
         (0, _api.sendOrder)(dispatch, data, history);
       } else {
+        (0, _helpers.scrollToElement)('.scroll-to-error', 1500);
         this.setState({
           cart_error: 'Выберите удобный период получения заказа.'
         });
@@ -309,7 +310,7 @@ var Cart = function (_Component) {
           ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
           _react2.default.createElement(
             'label',
-            { className: 'order-filds-label', style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
+            { className: 'order-filds-label scroll-to-error', style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
             this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
           ),
           _react2.default.createElement(
