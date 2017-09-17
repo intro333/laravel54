@@ -80,6 +80,12 @@ export function getNumberSelectOptions(start, end, filter=true) {
 export function isEmptyMap(map) {
   return !!(map && map.size !== 0);
 }
+export function isEmptyArray(map) {
+  if (!!(map && map.size !== 0)) {
+    return !!(map && map.length !== 0);
+  }
+  return false;
+}
 
 /*SCROLL TO ELEMENT ----------------------------------------------------------*/
 /**

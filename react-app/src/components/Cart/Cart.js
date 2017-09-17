@@ -121,7 +121,7 @@ class Cart extends Component {
   }
 
   render() {
-    const {ordersQuota, productsForCart, errorMessageCountQuota} = this.props;
+    const { ordersQuota, productsForCart, errorMessageCountQuota } = this.props;
     // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
     // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
     var total = 0;

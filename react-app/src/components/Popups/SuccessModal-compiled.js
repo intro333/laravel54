@@ -88,16 +88,13 @@ var SuccessModal = function (_Component) {
       }, 0);
 
       var unit = this.dec("товаров", "товар", "товара", session.get("productCounts")); // склоняем по падежам
-      var scrollTopStyle = (0, _classnames2.default)({
-        'modal-dialog-success': true,
-        'scroll-top': products.get('scrollTop') > 98 ? true : false
-      });
-
-      console.log(4, products.get('scrollTop'));
+      var scrollTopStyle = {
+        top: products.get('scrollTop') < 98 ? 98 - products.get('scrollTop') + 'px' : '1px'
+      };
 
       return _react2.default.createElement(
         'div',
-        { className: scrollTopStyle },
+        { className: 'modal-dialog-success', style: scrollTopStyle },
         _react2.default.createElement(
           'div',
           { className: 'modal-content-success' },

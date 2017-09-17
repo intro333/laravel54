@@ -47,15 +47,12 @@ class SuccessModal extends Component {
     );
 
     const unit = this.dec("товаров", "товар", "товара", session.get("productCounts")); // склоняем по падежам
-    const scrollTopStyle = classNames({
-      'modal-dialog-success': true,
-      'scroll-top': products.get('scrollTop') > 98 ? true : false,
-    });
-
-    console.log(4, products.get('scrollTop'));
+    const scrollTopStyle = {
+      top: (products.get('scrollTop') < 98) ? ((98 - products.get('scrollTop')) + 'px') : '1px'
+    };
 
   return(
-    <div className={scrollTopStyle}>
+    <div className="modal-dialog-success" style={scrollTopStyle}>
       <div className="modal-content-success">
         <div className="modal-header-success">
           <button type="button" className="close" onClick={this.props.handlerCloseModal}>&times;</button>

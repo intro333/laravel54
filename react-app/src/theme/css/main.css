@@ -1160,7 +1160,7 @@ button.close {
     width: 300px;
     position: fixed;
     right: 8%;
-    top: 98px;
+    /*top: 98px;*/
 }
 .scroll-top {
     top: 1px !important;

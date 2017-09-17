@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import '../../theme/css/bootstrap-datepicker3.min.css';
@@ -7,17 +6,18 @@ import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import {
   addProductToCart,
+  showProductsInCart
 } from '../../api';
 import { changeSuccessModalDisplay, setScrollTop } from './actions';
+import { isEmptyMap, isEmptyArray } from '../../helpers';
 
 class ProductItem extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      getProps: props,
       scrollTop: 0,
-      orderNumberInp: 1,
+      orderNumberInp: 0,
       errorBorderRed: false,
       inputPlaceHolder: '',
       addButtonText: 'Добавить в корзину',
@@ -25,6 +25,11 @@ class ProductItem extends Component {
         background: 'steelblue'
       },
     }
+  }
+
+  componentWillMount() {
+    const {dispatch} = this.props;
+    showProductsInCart(dispatch);
   }
 
   componentWillUnmount() {
@@ -35,14 +40,16 @@ class ProductItem extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', (event) => {
-      const { dispatch } = this.state.getProps;
+      const { dispatch } = this.props;
       let scrollTop = event.srcElement.body.scrollTop;
       dispatch(setScrollTop(scrollTop));
     });
   }
 
   setPlusNumber() {
-    var inputVal = this.state.orderNumberInp;
+    const { productsForCart } = this.props;
+    const product = isEmptyArray(productsForCart) && productsForCart.filter((item) => item.name === this.props.itemName);
+    var inputVal = parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (isEmptyArray(product) ? product[0]['count'] : 1);
     if (inputVal < 99) {
       this.setState({
         orderNumberInp: (parseInt(inputVal) + 1)
@@ -56,7 +63,9 @@ class ProductItem extends Component {
   }
 
   setMinusNumber() {
-    var inputVal = parseInt(this.state.orderNumberInp);
+    const { productsForCart } = this.props;
+    const product = isEmptyArray(productsForCart) && productsForCart.filter((item) => item.name === this.props.itemName);
+    var inputVal = parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (isEmptyArray(product) ? product[0]['count'] : 1);
     if (inputVal > 1) {
       this.setState({
         orderNumberInp: (parseInt(inputVal) - 1)
@@ -107,6 +116,7 @@ class ProductItem extends Component {
   }
 
   render() {
+    const { productsForCart } = this.props;
     const categoryItemImg = {
       padding: '0 20px 0 20px'
     };
@@ -116,9 +126,11 @@ class ProductItem extends Component {
       'error-border-red': this.state.errorBorderRed
     });
 
-    var inputVal = this.state.orderNumberInp;
+    const product = isEmptyMap(productsForCart) && productsForCart.filter((item) => item.name === this.props.itemName);
+    var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: 1);
     var inputPlaceHolder = this.state.inputPlaceHolder;
-    var addToCartButtonStyle = this.state.addToCartButtonStyle;
+    var addToCartButtonText = isEmptyArray(product) ? 'Товар в корзине' : this.state.addButtonText;
+    var addToCartButtonStyle = isEmptyArray(product) ? { background: '#3c763d' } : this.state.addToCartButtonStyle;
 
     return (
       <div className="category-item">
@@ -158,7 +170,7 @@ class ProductItem extends Component {
             style={addToCartButtonStyle}
             onClick={this.addProductToCart.bind(this)}
           >
-            <p>{this.state.addButtonText}</p>
+            <p>{addToCartButtonText}</p>
           </div>
         </div>
       </div>
@@ -171,4 +183,5 @@ export default connect(store => ({
   session: store.session,
   api: store.api,
   products: store.products,
+  productsForCart: store.api.get('productsForCart'),
 }))(ProductItem);

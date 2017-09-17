@@ -10,8 +10,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = require('react-router-dom');
-
 var _reactRedux = require('react-redux');
 
 var _classnames = require('classnames');
@@ -27,6 +25,8 @@ require('../../theme/css/adaptive.css');
 var _api = require('../../api');
 
 var _actions = require('./actions');
+
+var _helpers = require('../../helpers');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45,9 +45,8 @@ var ProductItem = function (_Component) {
     var _this = _possibleConstructorReturn(this, (ProductItem.__proto__ || Object.getPrototypeOf(ProductItem)).call(this, props));
 
     _this.state = {
-      getProps: props,
       scrollTop: 0,
-      orderNumberInp: 1,
+      orderNumberInp: 0,
       errorBorderRed: false,
       inputPlaceHolder: '',
       addButtonText: 'Добавить в корзину',
@@ -59,6 +58,13 @@ var ProductItem = function (_Component) {
   }
 
   _createClass(ProductItem, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var dispatch = this.props.dispatch;
+
+      (0, _api.showProductsInCart)(dispatch);
+    }
+  }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       var dispatch = this.props.dispatch;
@@ -72,7 +78,7 @@ var ProductItem = function (_Component) {
       var _this2 = this;
 
       window.addEventListener('scroll', function (event) {
-        var dispatch = _this2.state.getProps.dispatch;
+        var dispatch = _this2.props.dispatch;
 
         var scrollTop = event.srcElement.body.scrollTop;
         dispatch((0, _actions.setScrollTop)(scrollTop));
@@ -81,7 +87,14 @@ var ProductItem = function (_Component) {
   }, {
     key: 'setPlusNumber',
     value: function setPlusNumber() {
-      var inputVal = this.state.orderNumberInp;
+      var _this3 = this;
+
+      var productsForCart = this.props.productsForCart;
+
+      var product = (0, _helpers.isEmptyArray)(productsForCart) && productsForCart.filter(function (item) {
+        return item.name === _this3.props.itemName;
+      });
+      var inputVal = parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : 1;
       if (inputVal < 99) {
         this.setState({
           orderNumberInp: parseInt(inputVal) + 1
@@ -96,7 +109,14 @@ var ProductItem = function (_Component) {
   }, {
     key: 'setMinusNumber',
     value: function setMinusNumber() {
-      var inputVal = parseInt(this.state.orderNumberInp);
+      var _this4 = this;
+
+      var productsForCart = this.props.productsForCart;
+
+      var product = (0, _helpers.isEmptyArray)(productsForCart) && productsForCart.filter(function (item) {
+        return item.name === _this4.props.itemName;
+      });
+      var inputVal = parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : 1;
       if (inputVal > 1) {
         this.setState({
           orderNumberInp: parseInt(inputVal) - 1
@@ -151,6 +171,10 @@ var ProductItem = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this5 = this;
+
+      var productsForCart = this.props.productsForCart;
+
       var categoryItemImg = {
         padding: '0 20px 0 20px'
       };
@@ -160,9 +184,13 @@ var ProductItem = function (_Component) {
         'error-border-red': this.state.errorBorderRed
       });
 
-      var inputVal = this.state.orderNumberInp;
+      var product = (0, _helpers.isEmptyMap)(productsForCart) && productsForCart.filter(function (item) {
+        return item.name === _this5.props.itemName;
+      });
+      var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : 1;
       var inputPlaceHolder = this.state.inputPlaceHolder;
-      var addToCartButtonStyle = this.state.addToCartButtonStyle;
+      var addToCartButtonText = (0, _helpers.isEmptyArray)(product) ? 'Товар в корзине' : this.state.addButtonText;
+      var addToCartButtonStyle = (0, _helpers.isEmptyArray)(product) ? { background: '#3c763d' } : this.state.addToCartButtonStyle;
 
       return _react2.default.createElement(
         'div',
@@ -231,7 +259,7 @@ var ProductItem = function (_Component) {
             _react2.default.createElement(
               'p',
               null,
-              this.state.addButtonText
+              addToCartButtonText
             )
           )
         )
@@ -247,7 +275,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     dispatch: store.dispatch,
     session: store.session,
     api: store.api,
-    products: store.products
+    products: store.products,
+    productsForCart: store.api.get('productsForCart')
   };
 })(ProductItem);
 

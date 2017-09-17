@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.inputmaskBirthDate = inputmaskBirthDate;
 exports.getNumberSelectOptions = getNumberSelectOptions;
 exports.isEmptyMap = isEmptyMap;
+exports.isEmptyArray = isEmptyArray;
 exports.scrollTo = scrollTo;
 exports.scrollToElement = scrollToElement;
 //Маска для даты
@@ -90,6 +91,12 @@ function getNumberSelectOptions(start, end) {
 //Проверка на пустой Map
 function isEmptyMap(map) {
   return !!(map && map.size !== 0);
+}
+function isEmptyArray(map) {
+  if (!!(map && map.size !== 0)) {
+    return !!(map && map.length !== 0);
+  }
+  return false;
 }
 
 /*SCROLL TO ELEMENT ----------------------------------------------------------*/
