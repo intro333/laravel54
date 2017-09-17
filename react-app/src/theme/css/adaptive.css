@@ -1,3 +1,9 @@
+@media (min-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+
 /*****ADAPTIVE for footer******/
 @media (min-width: 1025px) {
     .footer__social__item:hover {
@@ -198,9 +204,18 @@
     /*}*/
 }
 
-/*nextOrPrev*/
-/*@media (min-width: 1200px) {*/
-    /*.container-for-nextOrPrev {*/
-        /*width: 90%;*/
-    /*}*/
-/*}*/
+@media (max-width: 767px) {
+    .modal-dialog-success {
+        right: 4%;
+    }
+}
+@media (min-width: 767px) {
+    .modal-dialog-success {
+        right: 5%;
+    }
+}
+@media (max-width: 540px) {
+    .modal-dialog-success {
+        right: 6%;
+    }
+}

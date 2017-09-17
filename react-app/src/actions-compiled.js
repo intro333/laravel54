@@ -17,6 +17,7 @@ exports.setUserImage = setUserImage;
 exports.setProductCounts = setProductCounts;
 exports.setOrders = setOrders;
 exports.componentWillReceivePropsChange = componentWillReceivePropsChange;
+exports.setTotalSum = setTotalSum;
 function setUserInfo(userInfo) {
   return { type: 'SET_USER_INFO', userInfo: userInfo };
 }
@@ -71,6 +72,10 @@ function setOrders(orders) {
 
 function componentWillReceivePropsChange(componentWillReceivePropsChange) {
   return { type: 'SET_COMPONENT_WILL_RECEIVE_PROPS', componentWillReceivePropsChange: componentWillReceivePropsChange };
+}
+
+function setTotalSum(totalSum) {
+  return { type: 'SET_TOTAL_SUM', totalSum: totalSum };
 }
 
 //# sourceMappingURL=actions-compiled.js.map

@@ -76,7 +76,8 @@ var defaultSessionState = map({
   mobNavElement: true,
   categoryId: null,
   categoryName: null,
-  productCounts: 0
+  productCounts: 0,
+  totalSum: 0
 });
 
 var session = function session() {
@@ -102,6 +103,9 @@ var session = function session() {
 
     case 'SET_PRODUCT_COUNTS':
       return state.set('productCounts', action.productCounts);
+
+    case 'SET_TOTAL_SUM':
+      return state.set('totalSum', action.totalSum);
 
     default:
       return state;

@@ -42,7 +42,9 @@ var Home = function (_Component) {
   _createClass(Home, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      var dispatch = this.props.dispatch;
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          session = _props.session;
 
       (0, _api.setUserInfo)(dispatch);
     }
@@ -51,7 +53,7 @@ var Home = function (_Component) {
     value: function render() {
       // const { session } = this.props;
       // const sessionUserName = session.get('userInfo');
-      // console.log('tokenn', sessionUserName)
+      // console.log('session', session)
 
       return _react2.default.createElement(
         'div',

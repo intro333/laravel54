@@ -62,6 +62,7 @@ let defaultSessionState = map({
   categoryId: null,
   categoryName: null,
   productCounts: 0,
+  totalSum: 0,
 });
 
 const session = (state = defaultSessionState, action) => {
@@ -84,6 +85,9 @@ const session = (state = defaultSessionState, action) => {
 
     case 'SET_PRODUCT_COUNTS':
       return state.set('productCounts', action.productCounts);
+
+    case 'SET_TOTAL_SUM':
+      return state.set('totalSum', action.totalSum);
 
     default:
       return state;

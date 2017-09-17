@@ -13,14 +13,14 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    const { dispatch } = this.props;
+    const { dispatch, session } = this.props;
     setUserInfo(dispatch);
   }
 
   render() {
     // const { session } = this.props;
     // const sessionUserName = session.get('userInfo');
-    // console.log('tokenn', sessionUserName)
+    // console.log('session', session)
 
     return (
       <div className="container">

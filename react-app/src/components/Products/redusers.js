@@ -5,13 +5,21 @@ const map = Map;
 const list = List;
 
 const defaultState = map({
-  orderNumberInp: 1
+  orderNumberInp: 1,
+  successModalDisplay: false,
+  scrollTop: 0,
 });
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'CHANGE_ORDER_NUMBER_INP':
       return state.set('orderNumberInp', action.orderNumberInp);
+
+    case 'CHANGE_SUCCESS_MODAL_DISPLAY':
+      return state.set('successModalDisplay', action.successModalDisplay);
+
+    case 'SET_SCROLL_TOP':
+      return state.set('scrollTop', action.scrollTop);
 
     default:
       return state;

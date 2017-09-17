@@ -8,22 +8,37 @@ import '../../theme/css/adaptive.css';
 import {
   addProductToCart,
 } from '../../api';
-import * as modelActions from './actions';
+import { changeSuccessModalDisplay, setScrollTop } from './actions';
 
 class ProductItem extends Component {
 
   constructor(props) {
-
     super(props);
     this.state = {
+      getProps: props,
+      scrollTop: 0,
       orderNumberInp: 1,
       errorBorderRed: false,
       inputPlaceHolder: '',
       addButtonText: 'Добавить в корзину',
       addToCartButtonStyle: {
         background: 'steelblue'
-      }
+      },
     }
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(changeSuccessModalDisplay(false));
+    // window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', (event) => {
+      const { dispatch } = this.state.getProps;
+      let scrollTop = event.srcElement.body.scrollTop;
+      dispatch(setScrollTop(scrollTop));
+    });
   }
 
   setPlusNumber() {
@@ -80,8 +95,9 @@ class ProductItem extends Component {
         addButtonText: 'Товар в корзине',
         addToCartButtonStyle: {
           background: '#3c763d'
-        }
-      })
+        },
+      });
+      dispatch(changeSuccessModalDisplay(true));
     } else {
       this.setState({
         errorBorderRed: true,
@@ -91,9 +107,6 @@ class ProductItem extends Component {
   }
 
   render() {
-    const { api, session } = this.props;
-    // const products = api.get('products');
-    // console.log('products get: ', products);
     const categoryItemImg = {
       padding: '0 20px 0 20px'
     };

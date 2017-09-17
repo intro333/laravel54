@@ -7,7 +7,8 @@ import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import ProductItem from './ProductItem';
-import Modal  from '../Popups/Modal';
+import SuccessModal  from '../Popups/SuccessModal';
+import { changeSuccessModalDisplay } from './actions'
 import {
   setProducts,
 } from '../../api';
@@ -23,11 +24,16 @@ class Products extends Component {
     setProducts(dispatch, session.get('categoryId'));
   }
 
-  render() {
-    const { api, session } = this.props;
-    const products = api.get('products');
+  handlerCloseModal() {
+    const { dispatch } = this.props;
+    dispatch(changeSuccessModalDisplay(false));
+  }
 
-    const productItem = isEmptyMap(products) && products.map((item) =>
+  render() {
+    const { api, session, products, history } = this.props;
+    const productsApi = api.get('products');
+
+    const productItem = isEmptyMap(productsApi) && productsApi.map((item) =>
       <ProductItem
         key={item.product_id}
         productId={item.product_id}
@@ -42,9 +48,12 @@ class Products extends Component {
 
     return (
       <div className="container">
-        <Modal />
         <Navigation />
         <MenuMobile />
+        {products.get('successModalDisplay') && <SuccessModal
+          handlerCloseModal={this.handlerCloseModal.bind(this)}
+          history={history}
+        />}
         <div className="main-container">
           <div className="category-head">
             <Link to="/categories"><h3 className="bread-crumbs-link">Продукты</h3></Link>
@@ -64,4 +73,5 @@ export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
   api: store.api,
+  products: store.products,
 }))(Products);

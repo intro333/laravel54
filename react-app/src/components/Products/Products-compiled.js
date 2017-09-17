@@ -32,9 +32,11 @@ var _ProductItem = require('./ProductItem');
 
 var _ProductItem2 = _interopRequireDefault(_ProductItem);
 
-var _Modal = require('../Popups/Modal');
+var _SuccessModal = require('../Popups/SuccessModal');
 
-var _Modal2 = _interopRequireDefault(_Modal);
+var _SuccessModal2 = _interopRequireDefault(_SuccessModal);
+
+var _actions = require('./actions');
 
 var _api = require('../../api');
 
@@ -67,15 +69,24 @@ var Products = function (_Component) {
       (0, _api.setProducts)(dispatch, session.get('categoryId'));
     }
   }, {
+    key: 'handlerCloseModal',
+    value: function handlerCloseModal() {
+      var dispatch = this.props.dispatch;
+
+      dispatch((0, _actions.changeSuccessModalDisplay)(false));
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props2 = this.props,
           api = _props2.api,
-          session = _props2.session;
+          session = _props2.session,
+          products = _props2.products,
+          history = _props2.history;
 
-      var products = api.get('products');
+      var productsApi = api.get('products');
 
-      var productItem = (0, _helpers.isEmptyMap)(products) && products.map(function (item) {
+      var productItem = (0, _helpers.isEmptyMap)(productsApi) && productsApi.map(function (item) {
         return _react2.default.createElement(_ProductItem2.default, {
           key: item.product_id,
           productId: item.product_id,
@@ -91,9 +102,12 @@ var Products = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'container' },
-        _react2.default.createElement(_Modal2.default, null),
         _react2.default.createElement(_Navigation2.default, null),
         _react2.default.createElement(_MenuMobile2.default, null),
+        products.get('successModalDisplay') && _react2.default.createElement(_SuccessModal2.default, {
+          handlerCloseModal: this.handlerCloseModal.bind(this),
+          history: history
+        }),
         _react2.default.createElement(
           'div',
           { className: 'main-container' },
@@ -133,7 +147,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
     session: store.session,
-    api: store.api
+    api: store.api,
+    products: store.products
   };
 })(Products);
 

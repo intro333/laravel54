@@ -33,6 +33,7 @@ class Cart extends Component {
       modalDisplay: false,
       textHeader: '',
       textBody: '',
+      function: null,
     };
 
   }
@@ -101,6 +102,10 @@ class Cart extends Component {
       modalDisplay: true,
       textHeader: 'Удалить все товары из корзины?',
       textBody: 'Удалить все товары из корзины?',
+      function: () => {
+        const {dispatch, history} = this.props;
+        clearCart(dispatch, history);
+      }
     });
   }
 
@@ -112,15 +117,14 @@ class Cart extends Component {
   }
 
   handlerSuccessModal() {
-    const {dispatch, history} = this.props;
-    clearCart(dispatch, history);
+    this.state.function();
   }
 
   render() {
     const {ordersQuota, productsForCart, errorMessageCountQuota} = this.props;
     // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
     // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
-    var total = null;
+    var total = 0;
 
     const productsTd = isEmptyMap(productsForCart) && productsForCart.map((item) =>
         <CartItem

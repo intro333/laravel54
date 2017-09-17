@@ -28,10 +28,6 @@ var _api = require('../../api');
 
 var _actions = require('./actions');
 
-var modelActions = _interopRequireWildcard(_actions);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49,6 +45,8 @@ var ProductItem = function (_Component) {
     var _this = _possibleConstructorReturn(this, (ProductItem.__proto__ || Object.getPrototypeOf(ProductItem)).call(this, props));
 
     _this.state = {
+      getProps: props,
+      scrollTop: 0,
       orderNumberInp: 1,
       errorBorderRed: false,
       inputPlaceHolder: '',
@@ -61,6 +59,26 @@ var ProductItem = function (_Component) {
   }
 
   _createClass(ProductItem, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      var dispatch = this.props.dispatch;
+
+      dispatch((0, _actions.changeSuccessModalDisplay)(false));
+      // window.removeEventListener('scroll', this.handleScroll);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      window.addEventListener('scroll', function (event) {
+        var dispatch = _this2.state.getProps.dispatch;
+
+        var scrollTop = event.srcElement.body.scrollTop;
+        dispatch((0, _actions.setScrollTop)(scrollTop));
+      });
+    }
+  }, {
     key: 'setPlusNumber',
     value: function setPlusNumber() {
       var inputVal = this.state.orderNumberInp;
@@ -122,6 +140,7 @@ var ProductItem = function (_Component) {
             background: '#3c763d'
           }
         });
+        dispatch((0, _actions.changeSuccessModalDisplay)(true));
       } else {
         this.setState({
           errorBorderRed: true,
@@ -132,12 +151,6 @@ var ProductItem = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          api = _props.api,
-          session = _props.session;
-      // const products = api.get('products');
-      // console.log('products get: ', products);
-
       var categoryItemImg = {
         padding: '0 20px 0 20px'
       };

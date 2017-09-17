@@ -53,3 +53,7 @@ export function setOrders(orders) {
 export function componentWillReceivePropsChange(componentWillReceivePropsChange) {
   return { type: 'SET_COMPONENT_WILL_RECEIVE_PROPS', componentWillReceivePropsChange };
 }
+
+export function setTotalSum(totalSum) {
+  return { type: 'SET_TOTAL_SUM', totalSum };
+}

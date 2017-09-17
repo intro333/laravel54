@@ -75,7 +75,8 @@ var Cart = function (_Component) {
       fadeIn: false,
       modalDisplay: false,
       textHeader: '',
-      textBody: ''
+      textBody: '',
+      function: null
     };
 
     return _this;
@@ -153,11 +154,20 @@ var Cart = function (_Component) {
   }, {
     key: 'handlerClearCart',
     value: function handlerClearCart() {
+      var _this2 = this;
+
       this.setState({
         fadeIn: true,
         modalDisplay: true,
         textHeader: 'Удалить все товары из корзины?',
-        textBody: 'Удалить все товары из корзины?'
+        textBody: 'Удалить все товары из корзины?',
+        function: function _function() {
+          var _props2 = _this2.props,
+              dispatch = _props2.dispatch,
+              history = _props2.history;
+
+          (0, _api.clearCart)(dispatch, history);
+        }
       });
     }
   }, {
@@ -171,11 +181,7 @@ var Cart = function (_Component) {
   }, {
     key: 'handlerSuccessModal',
     value: function handlerSuccessModal() {
-      var _props2 = this.props,
-          dispatch = _props2.dispatch,
-          history = _props2.history;
-
-      (0, _api.clearCart)(dispatch, history);
+      this.state.function();
     }
   }, {
     key: 'render',
@@ -187,7 +193,7 @@ var Cart = function (_Component) {
       // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
       // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
 
-      var total = null;
+      var total = 0;
 
       var productsTd = (0, _helpers.isEmptyMap)(productsForCart) && productsForCart.map(function (item) {
         return _react2.default.createElement(_CartItem2.default, {
