@@ -115,10 +115,11 @@ export const addProductToCart = (dispatcher, data) => {
 };
 
 //Показать товар в корзине.
-export const showProductsInCart = (dispatcher) => {
+export const showProductsInCart = (dispatcher, data=[]) => {
   const params = {
     method:'post',
-    url:'/api/get-products-in-cart'
+    url:'/api/get-products-in-cart',
+    data: data
   };
 
   const then = response => {

@@ -29,7 +29,10 @@ class ProductItem extends Component {
 
   componentWillMount() {
     const {dispatch} = this.props;
-    showProductsInCart(dispatch);
+    const data = {
+      emptyArray: true
+    };
+    showProductsInCart(dispatch, data);
   }
 
   componentWillUnmount() {
@@ -46,10 +49,15 @@ class ProductItem extends Component {
     });
   }
 
-  setPlusNumber() {
+  getCountProductCart() {
     const { productsForCart } = this.props;
     const product = isEmptyArray(productsForCart) && productsForCart.filter((item) => item.name === this.props.itemName);
-    var inputVal = parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (isEmptyArray(product) ? product[0]['count'] : 1);
+    return parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (isEmptyArray(product) ? product[0]['count'] : 1);
+  }
+
+  setPlusNumber() {
+
+    var inputVal = this.getCountProductCart();
     if (inputVal < 99) {
       this.setState({
         orderNumberInp: (parseInt(inputVal) + 1)
@@ -65,7 +73,7 @@ class ProductItem extends Component {
   setMinusNumber() {
     const { productsForCart } = this.props;
     const product = isEmptyArray(productsForCart) && productsForCart.filter((item) => item.name === this.props.itemName);
-    var inputVal = parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (isEmptyArray(product) ? product[0]['count'] : 1);
+    var inputVal = this.getCountProductCart();
     if (inputVal > 1) {
       this.setState({
         orderNumberInp: (parseInt(inputVal) - 1)
@@ -90,7 +98,7 @@ class ProductItem extends Component {
   }
 
   addProductToCart() {
-    let productCounts = this.state.orderNumberInp;
+    let productCounts = this.getCountProductCart();
 
     if (productCounts) {
       const { dispatch } = this.props;

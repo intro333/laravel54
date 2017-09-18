@@ -30,9 +30,10 @@ class SessionController extends Controller
         return $this->localShowProductsInCart($session);
     }
 
-    public function showProductsInCart()
+    public function showProductsInCart(Request $request)
     {
-        return $this->localShowProductsInCart(false);
+        $emptyArray = $request->input('emptyArray') ? [] : false;
+        return $this->localShowProductsInCart($emptyArray);
     }
 
     public function deleteProductFromCart(Request $request)
@@ -142,18 +143,20 @@ class SessionController extends Controller
     {
         $session = $session ? $session : session()->get('productFromCart');
         $products = [];
-        foreach ($session as $item) {
-            $product = Products::where('product_id', $item['productId'])->get()->first();
-            $products[] = [
-                'productId' => $product->product_id,
-                'imagePath' => $product->image_path,
-                'name'      => $product->name,
-                'price'     => $product->price,
-                'unit'      => $product->unit,
-                'barCode'   => $product->bar_code,
-                'count'     => $item['productCounts'] ? $item['productCounts'] : ""
+        if (!empty($session)) {
+            foreach ($session as $item) {
+                $product = Products::where('product_id', $item['productId'])->get()->first();
+                $products[] = [
+                    'productId' => $product->product_id,
+                    'imagePath' => $product->image_path,
+                    'name'      => $product->name,
+                    'price'     => $product->price,
+                    'unit'      => $product->unit,
+                    'barCode'   => $product->bar_code,
+                    'count'     => $item['productCounts'] ? $item['productCounts'] : ""
 //                'count'     => $item['productCounts']
-            ];
+                ];
+            }
         }
 
         return $products;
