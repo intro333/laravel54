@@ -12,6 +12,7 @@ import {
   setCategories,
 } from '../../api';
 import {isEmptyMap} from '../../helpers';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class Categories extends Component {
 
@@ -23,7 +24,6 @@ class Categories extends Component {
     const {dispatch} = this.props;
     setCategories(dispatch);
   }
-
 
   render() {
     const {api} = this.props;
@@ -37,19 +37,28 @@ class Categories extends Component {
         />
       );
 
-    return (
-      <div className="container">
-        <Navigation />
-        <MenuMobile />
-        <div className="main-container">
-          <div className="category-head">
-            <h3 className="bread-crumbs-on-page">Продукты</h3>
-          </div>
-          <div className="category-all">
-            {categoryItems}
-          </div>
+    var items = <div className="container">
+      <Navigation />
+      <MenuMobile />
+      <div className="main-container">
+        <div className="category-head">
+          <h3 className="bread-crumbs-on-page">Продукты</h3>
+        </div>
+        <div className="category-all">
+          {categoryItems}
         </div>
       </div>
+    </div>;
+
+    return (
+    <ReactCSSTransitionGroup transitionName="popups-transition"
+                             transitionAppear={true}
+                             transitionAppearTimeout={500}
+                             transitionEnter={false}
+                             transitionLeave={false}
+    >
+      {items}
+    </ReactCSSTransitionGroup>
     );
   }
 }

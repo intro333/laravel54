@@ -13,6 +13,7 @@ import {
   setProducts,
 } from '../../api';
 import {isEmptyMap} from '../../helpers';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class Products extends Component {
   constructor(props) {
@@ -46,25 +47,34 @@ class Products extends Component {
       />
     );
 
-    return (
-      <div className="container">
-        <Navigation />
-        <MenuMobile />
-        {products.get('successModalDisplay') && <SuccessModal
-          handlerCloseModal={this.handlerCloseModal.bind(this)}
-          history={history}
-        />}
-        <div className="main-container">
-          <div className="category-head">
-            <Link to="/categories"><h3 className="bread-crumbs-link">Продукты</h3></Link>
-            <div className="bread-crumbs-circle"></div>
-            <h3 className="bread-crumbs-on-page">{ session.get('categoryName') }</h3>
-          </div>
-          <div className="category-all">
-            { productItem }
-          </div>
+    var items = <div className="container">
+      <Navigation />
+      <MenuMobile />
+      {products.get('successModalDisplay') && <SuccessModal
+        handlerCloseModal={this.handlerCloseModal.bind(this)}
+        history={history}
+      />}
+      <div className="main-container">
+        <div className="category-head">
+          <Link to="/categories"><h3 className="bread-crumbs-link">Продукты</h3></Link>
+          <div className="bread-crumbs-circle"></div>
+          <h3 className="bread-crumbs-on-page">{ session.get('categoryName') }</h3>
+        </div>
+        <div className="category-all">
+          { productItem }
         </div>
       </div>
+    </div>;
+
+    return (
+    <ReactCSSTransitionGroup transitionName="popups-transition"
+                             transitionAppear={true}
+                             transitionAppearTimeout={500}
+                             transitionEnter={false}
+                             transitionLeave={false}
+    >
+      {items}
+    </ReactCSSTransitionGroup>
     );
   }
 }
