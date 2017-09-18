@@ -47,34 +47,29 @@ class Products extends Component {
       />
     );
 
-    var items = <div className="container">
-      <Navigation />
-      <MenuMobile />
-      {products.get('successModalDisplay') && <SuccessModal
-        handlerCloseModal={this.handlerCloseModal.bind(this)}
-        history={history}
-      />}
-      <div className="main-container">
-        <div className="category-head">
-          <Link to="/categories"><h3 className="bread-crumbs-link">Продукты</h3></Link>
-          <div className="bread-crumbs-circle"></div>
-          <h3 className="bread-crumbs-on-page">{ session.get('categoryName') }</h3>
-        </div>
-        <div className="category-all">
-          { productItem }
+    return (
+      <div className="container">
+        <Navigation />
+        <MenuMobile />
+        <div className="main-container">
+          {products.get('successModalDisplay') && <SuccessModal
+            handlerCloseModal={this.handlerCloseModal.bind(this)}
+            history={history}
+          />}
+          <div className="category-head">
+            <Link to="/categories"><h3 className="bread-crumbs-link">Продукты</h3></Link>
+            <div className="bread-crumbs-circle"></div>
+            <h3 className="bread-crumbs-on-page">{ session.get('categoryName') }</h3>
+          </div>
+          <ReactCSSTransitionGroup transitionName="popups-transition"
+                                   transitionAppear={true}
+          >
+            <div className="category-all">
+              { productItem }
+            </div>
+          </ReactCSSTransitionGroup>
         </div>
       </div>
-    </div>;
-
-    return (
-    <ReactCSSTransitionGroup transitionName="popups-transition"
-                             transitionAppear={true}
-                             transitionAppearTimeout={500}
-                             transitionEnter={false}
-                             transitionLeave={false}
-    >
-      {items}
-    </ReactCSSTransitionGroup>
     );
   }
 }

@@ -62,7 +62,10 @@ var ProductItem = function (_Component) {
     value: function componentWillMount() {
       var dispatch = this.props.dispatch;
 
-      (0, _api.showProductsInCart)(dispatch);
+      var data = {
+        emptyArray: true
+      };
+      (0, _api.showProductsInCart)(dispatch, data);
     }
   }, {
     key: 'componentWillUnmount',
@@ -80,13 +83,14 @@ var ProductItem = function (_Component) {
       window.addEventListener('scroll', function (event) {
         var dispatch = _this2.props.dispatch;
 
-        var scrollTop = event.srcElement.body.scrollTop;
+        var target = event.target || event.srcElement;
+        var scrollTop = target.body.scrollTop;
         dispatch((0, _actions.setScrollTop)(scrollTop));
       });
     }
   }, {
-    key: 'setPlusNumber',
-    value: function setPlusNumber() {
+    key: 'getCountProductCart',
+    value: function getCountProductCart() {
       var _this3 = this;
 
       var productsForCart = this.props.productsForCart;
@@ -94,7 +98,13 @@ var ProductItem = function (_Component) {
       var product = (0, _helpers.isEmptyArray)(productsForCart) && productsForCart.filter(function (item) {
         return item.name === _this3.props.itemName;
       });
-      var inputVal = parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : 1;
+      return parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : 1;
+    }
+  }, {
+    key: 'setPlusNumber',
+    value: function setPlusNumber() {
+
+      var inputVal = this.getCountProductCart();
       if (inputVal < 99) {
         this.setState({
           orderNumberInp: parseInt(inputVal) + 1
@@ -116,7 +126,7 @@ var ProductItem = function (_Component) {
       var product = (0, _helpers.isEmptyArray)(productsForCart) && productsForCart.filter(function (item) {
         return item.name === _this4.props.itemName;
       });
-      var inputVal = parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : 1;
+      var inputVal = this.getCountProductCart();
       if (inputVal > 1) {
         this.setState({
           orderNumberInp: parseInt(inputVal) - 1
@@ -143,7 +153,7 @@ var ProductItem = function (_Component) {
   }, {
     key: 'addProductToCart',
     value: function addProductToCart() {
-      var productCounts = this.state.orderNumberInp;
+      var productCounts = this.getCountProductCart();
 
       if (productCounts) {
         var dispatch = this.props.dispatch;

@@ -17,6 +17,7 @@ import {
   checkTimeQuota,
 } from '../../api';
 import {isEmptyMap, scrollToElement} from '../../helpers';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class Cart extends Component {
   constructor(props) {
@@ -189,42 +190,45 @@ class Cart extends Component {
               <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
             </div>
           </div>
-
-          <table className="cart-products-table">
-            <thead>
-            <tr className="cart-tr-head">
-              <th className="table-30-procent">Продукт</th>
-              <th className="table-25-procent">Цена</th>
-              <th className="table-25-procent">Количество</th>
-              <th className="table-10-procent">Стоимость</th>
-              <th className="table-10-procent"></th>
-            </tr>
-            </thead>
-            <tbody>
-            { productsTd }
-            </tbody>
-          </table>
-          <div className="cart-order__total">Сумма:&nbsp;<span>{ total } ₽</span></div>
-          <p className="order-filds-label" style={{color: 'red', fontSize: '12px', margin: '0'}}>
-            {this.state.comment_count_error !== '' && this.state.comment_count_error}
-          </p>
-          <textarea
-            name="comment"
-            className="cart-comment"
-            value={this.state.comment}
-            onChange={this.handleChangeComment.bind(this)}
-            placeholder="Оставьте комментарий к заказу..."
-          />
-          <label className="order-filds-label">Дата
-            доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</label>
-          {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
-          <label className="order-filds-label scroll-to-error"
-                 style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>
-            {
-              this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
-            }
-          </label>
-          <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
+          <ReactCSSTransitionGroup transitionName="popups-transition"
+                                   transitionAppear={true}
+          >
+            <table className="cart-products-table">
+              <thead>
+              <tr className="cart-tr-head">
+                <th className="table-30-procent">Продукт</th>
+                <th className="table-25-procent">Цена</th>
+                <th className="table-25-procent">Количество</th>
+                <th className="table-10-procent">Стоимость</th>
+                <th className="table-10-procent"></th>
+              </tr>
+              </thead>
+              <tbody>
+              { productsTd }
+              </tbody>
+            </table>
+            <div className="cart-order__total">Сумма:&nbsp;<span>{ total } ₽</span></div>
+            <p className="order-filds-label" style={{color: 'red', fontSize: '12px', margin: '0'}}>
+              {this.state.comment_count_error !== '' && this.state.comment_count_error}
+            </p>
+            <textarea
+              name="comment"
+              className="cart-comment"
+              value={this.state.comment}
+              onChange={this.handleChangeComment.bind(this)}
+              placeholder="Оставьте комментарий к заказу..."
+            />
+            <label className="order-filds-label">Дата
+              доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</label>
+            {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
+            <label className="order-filds-label scroll-to-error"
+                   style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>
+              {
+                this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
+              }
+            </label>
+            <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     );

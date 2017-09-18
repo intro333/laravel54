@@ -46,6 +46,10 @@ var _api = require('../../api');
 
 var _helpers = require('../../helpers');
 
+var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
+
+var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -55,6 +59,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// ES6
 
 var Cart = function (_Component) {
   _inherits(Cart, _Component);
@@ -288,83 +294,89 @@ var Cart = function (_Component) {
             )
           ),
           _react2.default.createElement(
-            'table',
-            { className: 'cart-products-table' },
+            _reactAddonsCssTransitionGroup2.default,
+            { transitionName: 'popups-transition',
+              transitionAppear: true
+            },
             _react2.default.createElement(
-              'thead',
-              null,
+              'table',
+              { className: 'cart-products-table' },
               _react2.default.createElement(
-                'tr',
-                { className: 'cart-tr-head' },
+                'thead',
+                null,
                 _react2.default.createElement(
-                  'th',
-                  { className: 'table-30-procent' },
-                  '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'table-25-procent' },
-                  '\u0426\u0435\u043D\u0430'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'table-25-procent' },
-                  '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'table-10-procent' },
-                  '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
-                ),
-                _react2.default.createElement('th', { className: 'table-10-procent' })
+                  'tr',
+                  { className: 'cart-tr-head' },
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-30-procent' },
+                    '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
+                  ),
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-25-procent' },
+                    '\u0426\u0435\u043D\u0430'
+                  ),
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-25-procent' },
+                    '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
+                  ),
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-10-procent' },
+                    '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+                  ),
+                  _react2.default.createElement('th', { className: 'table-10-procent' })
+                )
+              ),
+              _react2.default.createElement(
+                'tbody',
+                null,
+                productsTd
               )
             ),
             _react2.default.createElement(
-              'tbody',
-              null,
-              productsTd
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'cart-order__total' },
-            '\u0421\u0443\u043C\u043C\u0430:\xA0',
+              'div',
+              { className: 'cart-order__total' },
+              '\u0421\u0443\u043C\u043C\u0430:\xA0',
+              _react2.default.createElement(
+                'span',
+                null,
+                total,
+                ' \u20BD'
+              )
+            ),
             _react2.default.createElement(
-              'span',
-              null,
-              total,
-              ' \u20BD'
+              'p',
+              { className: 'order-filds-label', style: { color: 'red', fontSize: '12px', margin: '0' } },
+              this.state.comment_count_error !== '' && this.state.comment_count_error
+            ),
+            _react2.default.createElement('textarea', {
+              name: 'comment',
+              className: 'cart-comment',
+              value: this.state.comment,
+              onChange: this.handleChangeComment.bind(this),
+              placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
+            }),
+            _react2.default.createElement(
+              'label',
+              { className: 'order-filds-label' },
+              '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
+              ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
+            ),
+            ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
+            _react2.default.createElement(
+              'label',
+              { className: 'order-filds-label scroll-to-error',
+                style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
+              this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
+            ),
+            _react2.default.createElement(
+              'div',
+              { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
+              '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
             )
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'order-filds-label', style: { color: 'red', fontSize: '12px', margin: '0' } },
-            this.state.comment_count_error !== '' && this.state.comment_count_error
-          ),
-          _react2.default.createElement('textarea', {
-            name: 'comment',
-            className: 'cart-comment',
-            value: this.state.comment,
-            onChange: this.handleChangeComment.bind(this),
-            placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
-          }),
-          _react2.default.createElement(
-            'label',
-            { className: 'order-filds-label' },
-            '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
-            ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
-          ),
-          ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
-          _react2.default.createElement(
-            'label',
-            { className: 'order-filds-label scroll-to-error',
-              style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
-            this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
-          ),
-          _react2.default.createElement(
-            'div',
-            { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
-            '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           )
         )
       );

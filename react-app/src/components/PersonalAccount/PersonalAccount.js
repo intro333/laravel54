@@ -1,20 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-import classNames from 'classnames';
-// Be sure to include styles at some point, probably during your bootstrapping
 import 'react-select/dist/react-select.css';
 import '../../theme/css/index.css';
 import '../../theme/css/adaptive.css';
 import '../../theme/css/main.css';
-import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
-import Avatar from '../Popups/Avatar';
 import InputMask from 'react-input-mask';
 import * as helpers from '../../helpers';
-
-import * as modelActions from '../../actions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 import {
   setUserInfo,
@@ -116,18 +111,6 @@ class PersonalAccount extends Component {
     this.setState({gender: e.value});
   }
 
-  // handlerChangeBirthdate(e) {
-  //   var value = e.target.value;
-  //   var length = e.target.value.trim().length;
-  //   var date = this.state.date;
-  //
-  //   var result = helpers.inputmaskBirthDate(value, length, date);
-  //
-  //   this.setState({
-  //     birthdate: result
-  //   });
-  // }
-
   handlerUpdatePersonalData() {
     const { dispatch } = this.props;
 
@@ -152,7 +135,7 @@ class PersonalAccount extends Component {
 
   render() {
 
-    const { dispatch, session, api } = this.props;
+    const { session, api } = this.props;
     const userInfo = session.get('userInfo');
     const userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
     const genderOptions = [
@@ -178,104 +161,109 @@ class PersonalAccount extends Component {
           <h2>Личный кабинет</h2>
           <p className="personal-explain-text">Здесь вы можете отредактировать свои данные.</p>
 
-          <div className="personal-container">
-            {/*<div className="image-container">*/}
-              {/*<div className="customer-image">*/}
-                {/*<img src={userImage} />*/}
+          <ReactCSSTransitionGroup
+            transitionName="popups-transition"
+            transitionAppear={true}
+          >
+            <div className="personal-container">
+              {/*<div className="image-container">*/}
+                {/*<div className="customer-image">*/}
+                  {/*<img src={userImage} />*/}
+                {/*</div>*/}
+                  {/*<input value="Добавить фото" id="personal-photo" className="register-button" onClick={this.handlerChangePhoto.bind(this)} />*/}
               {/*</div>*/}
-                {/*<input value="Добавить фото" id="personal-photo" className="register-button" onClick={this.handlerChangePhoto.bind(this)} />*/}
-            {/*</div>*/}
-            <div className="customer-data-container">
-              <form action="/personal" method="POST" id="personal-data-form">
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="fname">Имя</label>
-                  <input id="fname" name="fname" type="text" value={this.state.name} onChange={this.handlerChangeName.bind(this)} />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="sname">Фамилия</label>
-                  <input id="sname" name="sname" type="text" value={this.state.sname} onChange={this.handlerChangeSName.bind(this)} />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="mname">Отчество</label>
-                  <input id="mname" name="mname" type="text" value={this.state.mname ? this.state.mname : ''} onChange={this.handlerChangeMName.bind(this)}  />
-                </div>
-                <input type="hidden" name="birthdate" value={this.state.birthdate} />
-                <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
-                <div className="personal-filds-label-input">
-                  <div className="personal-select-birdthdate-group">
-                    <Select
-                      name="birthdate"
-                      className="margin-right-10"
-                      value={this.state.birthdateDay ? this.state.birthdateDay : ''}
-                      options={dayOptions}
-                      onChange={this.handlerChangeDateDay.bind(this)}
-                      placeholder=""
-                      clearable={false}
-                      searchable={false}
-                      scrollMenuIntoView={false}
-                    />
-                    <Select
-                      className="margin-right-10"
-                      name="birthdate"
-                      value={this.state.birthdateMonth ? this.state.birthdateMonth : ''}
-                      options={monthOptions}
-                      onChange={this.handlerChangeDateMonth.bind(this)}
-                      placeholder=""
-                      clearable={false}
-                      searchable={false}
-                      scrollMenuIntoView={false}
-                    />
-                    <Select
-                      name="birthdate"
-                      value={this.state.birthdateYear ? this.state.birthdateYear : ''}
-                      options={yearOptions}
-                      onChange={this.handlerChangeDateYear.bind(this)}
-                      placeholder=""
-                      clearable={false}
-                      searchable={false}
-                      scrollMenuIntoView={false}
-                    />
-                    {/*<InputMask*/}
-                    {/*id="birthdate"*/}
-                    {/*value={this.state.birthdate ? this.state.birthdate : ''}*/}
-                    {/*mask="99 99 9999" maskChar=" "*/}
-                    {/*onChange={this.handlerChangeBirthdate.bind(this)}*/}
-                    {/*name="birthdate"*/}
-                    {/*placeholder="09-12-1986" />*/}
-                    {/*<span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>*/}
+              <div className="customer-data-container">
+                <form action="/personal" method="POST" id="personal-data-form">
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="fname">Имя</label>
+                    <input id="fname" name="fname" type="text" value={this.state.name} onChange={this.handlerChangeName.bind(this)} />
                   </div>
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="gender">Пол</label>
-                  <Select
-                    name="gender"
-                    value={this.state.gender}
-                    options={genderOptions}
-                    onChange={this.handleChangeGender.bind(this)}
-                    placeholder="Не выбран"
-                    clearable={false}
-                    searchable={false}
-                  />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="email">Email</label>
-                  <input id="email" name="email" type="email" value={this.state.email} disabled  />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="phone">Телефон</label>
-                  <InputMask /*{...this.props}*/
-                    id="phone"
-                    value={this.state.phone ? this.state.phone : ''}
-                    mask="+7\(999\) 999 99 99" maskChar=" "
-                    onChange={this.handlerChangePhone.bind(this)}
-                    name="phone"
-                    placeholder="+7(___) ___ __ __" />
-                </div>
-                <p style={{color: 'red', display: 'none'}} className="error_message_for_create">Заполните все поля помеченные звёздочкой.</p>
-                <input id="personal-submit" className="register-button" value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
-              </form>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="sname">Фамилия</label>
+                    <input id="sname" name="sname" type="text" value={this.state.sname} onChange={this.handlerChangeSName.bind(this)} />
+                  </div>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="mname">Отчество</label>
+                    <input id="mname" name="mname" type="text" value={this.state.mname ? this.state.mname : ''} onChange={this.handlerChangeMName.bind(this)}  />
+                  </div>
+                  <input type="hidden" name="birthdate" value={this.state.birthdate} />
+                  <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
+                  <div className="personal-filds-label-input">
+                    <div className="personal-select-birdthdate-group">
+                      <Select
+                        name="birthdate"
+                        className="margin-right-10"
+                        value={this.state.birthdateDay ? this.state.birthdateDay : ''}
+                        options={dayOptions}
+                        onChange={this.handlerChangeDateDay.bind(this)}
+                        placeholder=""
+                        clearable={false}
+                        searchable={false}
+                        scrollMenuIntoView={false}
+                      />
+                      <Select
+                        className="margin-right-10"
+                        name="birthdate"
+                        value={this.state.birthdateMonth ? this.state.birthdateMonth : ''}
+                        options={monthOptions}
+                        onChange={this.handlerChangeDateMonth.bind(this)}
+                        placeholder=""
+                        clearable={false}
+                        searchable={false}
+                        scrollMenuIntoView={false}
+                      />
+                      <Select
+                        name="birthdate"
+                        value={this.state.birthdateYear ? this.state.birthdateYear : ''}
+                        options={yearOptions}
+                        onChange={this.handlerChangeDateYear.bind(this)}
+                        placeholder=""
+                        clearable={false}
+                        searchable={false}
+                        scrollMenuIntoView={false}
+                      />
+                      {/*<InputMask*/}
+                      {/*id="birthdate"*/}
+                      {/*value={this.state.birthdate ? this.state.birthdate : ''}*/}
+                      {/*mask="99 99 9999" maskChar=" "*/}
+                      {/*onChange={this.handlerChangeBirthdate.bind(this)}*/}
+                      {/*name="birthdate"*/}
+                      {/*placeholder="09-12-1986" />*/}
+                      {/*<span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>*/}
+                    </div>
+                  </div>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="gender">Пол</label>
+                    <Select
+                      name="gender"
+                      value={this.state.gender}
+                      options={genderOptions}
+                      onChange={this.handleChangeGender.bind(this)}
+                      placeholder="Не выбран"
+                      clearable={false}
+                      searchable={false}
+                    />
+                  </div>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="email">Email</label>
+                    <input id="email" name="email" type="email" value={this.state.email} disabled  />
+                  </div>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="phone">Телефон</label>
+                    <InputMask /*{...this.props}*/
+                      id="phone"
+                      value={this.state.phone ? this.state.phone : ''}
+                      mask="+7\(999\) 999 99 99" maskChar=" "
+                      onChange={this.handlerChangePhone.bind(this)}
+                      name="phone"
+                      placeholder="+7(___) ___ __ __" />
+                  </div>
+                  <p style={{color: 'red', display: 'none'}} className="error_message_for_create">Заполните все поля помеченные звёздочкой.</p>
+                  <input id="personal-submit" className="register-button" value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
+                </form>
+              </div>
             </div>
-          </div>
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     );

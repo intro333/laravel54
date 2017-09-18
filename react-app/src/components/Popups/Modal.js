@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import classNames from 'classnames';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
-import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as modelActions from '../../actions';
 
 class Modal extends Component {
   constructor(props) {

@@ -5,7 +5,6 @@ import * as helpers from '../../helpers';
 import '../../theme/css/index.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
-import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import OrderItem from '../Orders/OrderItem';
@@ -13,6 +12,7 @@ import {
   ordersGetAll,
 } from '../../api';
 import * as modelActions from '../../actions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class Orders extends Component {
   constructor(props) {
@@ -144,7 +144,12 @@ class Orders extends Component {
             </div>
           </div>
           <div className="orders-all">
+            <ReactCSSTransitionGroup
+              transitionName="popups-transition"
+              transitionAppear={true}
+            >
               {tables}
+            </ReactCSSTransitionGroup>
           </div>
         </div>
       </div>

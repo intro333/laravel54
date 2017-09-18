@@ -3,11 +3,9 @@ import {connect} from 'react-redux';
 import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
-import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import CategoryItem from './CategoryItem';
-import * as modelActions from '../../actions';
 import {
   setCategories,
 } from '../../api';
@@ -51,14 +49,23 @@ class Categories extends Component {
     </div>;
 
     return (
-    <ReactCSSTransitionGroup transitionName="popups-transition"
-                             transitionAppear={true}
-                             transitionAppearTimeout={500}
-                             transitionEnter={false}
-                             transitionLeave={false}
-    >
-      {items}
-    </ReactCSSTransitionGroup>
+      <div className="container">
+        <Navigation />
+        <MenuMobile />
+        <div className="main-container">
+          <div className="category-head">
+            <h3 className="bread-crumbs-on-page">Продукты</h3>
+          </div>
+          <ReactCSSTransitionGroup
+            transitionName="popups-transition"
+            transitionAppear={true}
+          >
+            <div className="category-all">
+              {categoryItems}
+            </div>
+          </ReactCSSTransitionGroup>
+        </div>
+      </div>
     );
   }
 }
