@@ -44,7 +44,8 @@ class ProductItem extends Component {
   componentDidMount() {
     window.addEventListener('scroll', (event) => {
       const { dispatch } = this.props;
-      let scrollTop = event.srcElement.body.scrollTop;
+      var target = event.target || event.srcElement;
+      let scrollTop = target.body.scrollTop;
       dispatch(setScrollTop(scrollTop));
     });
   }

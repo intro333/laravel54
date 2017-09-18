@@ -26008,7 +26008,8 @@ var ProductItem = function (_Component) {
       window.addEventListener('scroll', function (event) {
         var dispatch = _this2.props.dispatch;
 
-        var scrollTop = event.srcElement.body.scrollTop;
+        var target = event.target || event.srcElement;
+        var scrollTop = target.body.scrollTop;
         dispatch((0, _actions.setScrollTop)(scrollTop));
       });
     }
