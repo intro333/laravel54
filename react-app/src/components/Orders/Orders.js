@@ -12,7 +12,6 @@ import {
   ordersGetAll,
 } from '../../api';
 import * as modelActions from '../../actions';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class Orders extends Component {
   constructor(props) {
@@ -144,15 +143,7 @@ class Orders extends Component {
             </div>
           </div>
           <div className="orders-all">
-            <ReactCSSTransitionGroup
-              transitionName="popups-transition"
-              transitionAppear={true}
-              transitionAppearTimeout={500}
-              transitionEnter={true}
-              transitionLeave={true}
-            >
               {tables}
-            </ReactCSSTransitionGroup>
           </div>
         </div>
       </div>

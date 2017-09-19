@@ -24,11 +24,13 @@ class CategoryItem extends Component {
 
   render() {
 
+    const imgPath ='/storage/images/categories/' + this.props.imgSrc;
+
     return (
-      <div className="category-item" onClick={this.setCategoryId.bind(this)}>
+      <div className="category-item animation-page-load-medium" onClick={this.setCategoryId.bind(this)}>
         <Link to={'/products'}>
           <div className="category-item__img">
-            <img src={'/storage/images/categories/' + this.props.imgSrc} width="170" />
+            <img src={imgPath && imgPath} width="170" />
             <div className="category-item__name">{this.props.itemName}</div>
           </div>
         </Link>

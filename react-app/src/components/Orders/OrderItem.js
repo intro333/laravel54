@@ -227,7 +227,7 @@ class OrderItem extends Component {
           textBody={this.state.textBody}
         />
         { this.state.tdBotyVisible &&  orderInfo }
-        <table className="cart-products-table margin-off">
+        <table className="cart-products-table margin-off animation-page-load-medium">
           <thead>
             { headTd }
           </thead>

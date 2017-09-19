@@ -427,15 +427,14 @@ input[type="checkbox"]:checked + label span {
     animation-name:pageLoadOpacity;
     animation-duration: .5s;
     animation-iteration-count: 1;
-    animation-direction: normal;
     animation-timing-function: ease-in;
 }
 .animation-page-load-long {
     animation-name:pageLoadOpacity;
     animation-duration: 1s;
     animation-iteration-count: 1;
-    animation-direction: normal;
     animation-timing-function: ease-in;
+    /*animation-direction: alternate;*/
 }
 .category-all {
     display: -ms-flexbox;
@@ -1224,60 +1223,3 @@ button.close {
     font-weight: 500;
 }
 /*КОНЕЦ MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/
-
-/* НАЧАЛО react-addons-css-transition-group */
-/*POPUPS*/
-.popups-transition-enter {
-    opacity: 0.01;
-}
-
-.popups-transition-enter.popups-transition-enter-active {
-    opacity: 1;
-    transition: opacity 0.5s ease;
-}
-
-.popups-transition-leave {
-    opacity: 1;
-}
-
-.popups-transition-leave.popups-transition-leave-active {
-    opacity: 0.01;
-    transition: opacity .3s ease-in;
-}
-
-.popups-transition-appear {
-    opacity: 0.01;
-    transition: opacity .5s ease-in;
-}
-
-.popups-transition-appear.popups-transition-appear-active {
-    opacity: 1;
-}
-/*PRODUCTS*/
-.products-transition-enter {
-    opacity: 0.01;
-}
-
-.products-transition-enter.products-transition-enter-active {
-    opacity: 1;
-    transition: opacity 1s ease;
-}
-
-.products-transition-leave {
-    opacity: 1;
-}
-
-.products-transition-leave.products-transition-leave-active {
-    opacity: 0.01;
-    transition: opacity 1s ease-in;
-}
-
-.products-transition-appear {
-    opacity: 0.01;
-    transition: opacity 1s ease-in;
-}
-
-.products-transition-appear.products-transition-appear-active {
-    opacity: 1;
-}
-/* КОНЕЦ react-addons-css-transition-group */

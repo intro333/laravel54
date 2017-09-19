@@ -6,8 +6,6 @@ import products from './components/Products/redusers';
 
 // Just ease ESLint rule
 const map = Map;
-const orderedMap = OrderedMap;
-const list = List;
 
 export const api = (state = map({
   categories: map(),

@@ -204,7 +204,7 @@ var ProductItem = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'category-item' },
+        { className: 'category-item animation-page-load-medium' },
         _react2.default.createElement(
           'div',
           { className: 'category-item__img', style: categoryItemImg },

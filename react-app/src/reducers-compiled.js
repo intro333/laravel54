@@ -18,9 +18,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Just ease ESLint rule
 var map = _immutable.Map; /* global NODE_ENV */
 
-var orderedMap = _immutable.OrderedMap;
-var list = _immutable.List;
-
 var api = exports.api = function api() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : map({
     categories: map(),

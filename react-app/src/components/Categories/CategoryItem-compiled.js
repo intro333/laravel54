@@ -60,16 +60,18 @@ var CategoryItem = function (_Component) {
     key: 'render',
     value: function render() {
 
+      var imgPath = '/storage/images/categories/' + this.props.imgSrc;
+
       return _react2.default.createElement(
         'div',
-        { className: 'category-item', onClick: this.setCategoryId.bind(this) },
+        { className: 'category-item animation-page-load-medium', onClick: this.setCategoryId.bind(this) },
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: '/products' },
           _react2.default.createElement(
             'div',
             { className: 'category-item__img' },
-            _react2.default.createElement('img', { src: '/storage/images/categories/' + this.props.imgSrc, width: '170' }),
+            _react2.default.createElement('img', { src: imgPath && imgPath, width: '170' }),
             _react2.default.createElement(
               'div',
               { className: 'category-item__name' },

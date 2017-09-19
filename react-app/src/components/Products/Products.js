@@ -9,6 +9,9 @@ import MenuMobile from '../Popups/MenuMobile';
 import ProductItem from './ProductItem';
 import SuccessModal  from '../Popups/SuccessModal';
 import { changeSuccessModalDisplay } from './actions'
+import * as mainActions from '../../actions';
+import { List, Map, OrderedMap } from 'immutable';
+
 import {
   setProducts,
 } from '../../api';
@@ -22,6 +25,12 @@ class Products extends Component {
   componentWillMount() {
     const { dispatch, session } = this.props;
     setProducts(dispatch, session.get('categoryId'));
+  }
+
+  componentWillUnmount() {
+    const map = Map;
+    const { dispatch } = this.props;
+    dispatch(mainActions.setProducts(map()));
   }
 
   handlerCloseModal() {
@@ -61,7 +70,7 @@ class Products extends Component {
             <div className="bread-crumbs-circle"></div>
             <h3 className="bread-crumbs-on-page">{ session.get('categoryName') }</h3>
           </div>
-          <div className="category-all animation-page-load-medium">
+          <div className="category-all">
             { productItem }
           </div>
         </div>

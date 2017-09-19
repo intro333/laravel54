@@ -38,13 +38,17 @@ var _SuccessModal2 = _interopRequireDefault(_SuccessModal);
 
 var _actions = require('./actions');
 
+var _actions2 = require('../../actions');
+
+var mainActions = _interopRequireWildcard(_actions2);
+
+var _immutable = require('immutable');
+
 var _api = require('../../api');
 
 var _helpers = require('../../helpers');
 
-var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
-
-var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53,8 +57,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// ES6
 
 var Products = function (_Component) {
   _inherits(Products, _Component);
@@ -73,6 +75,14 @@ var Products = function (_Component) {
           session = _props.session;
 
       (0, _api.setProducts)(dispatch, session.get('categoryId'));
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      var map = _immutable.Map;
+      var dispatch = this.props.dispatch;
+
+      dispatch(mainActions.setProducts(map()));
     }
   }, {
     key: 'handlerCloseModal',
@@ -113,8 +123,9 @@ var Products = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'main-container' },
-          products.get('successModalDisplay') && _react2.default.createElement(_SuccessModal2.default, {
+          _react2.default.createElement(_SuccessModal2.default, {
             handlerCloseModal: this.handlerCloseModal.bind(this),
+            successModalDisplay: products.get('successModalDisplay'),
             history: history
           }),
           _react2.default.createElement(
@@ -137,15 +148,9 @@ var Products = function (_Component) {
             )
           ),
           _react2.default.createElement(
-            _reactAddonsCssTransitionGroup2.default,
-            { transitionName: 'popups-transition',
-              transitionAppear: true
-            },
-            _react2.default.createElement(
-              'div',
-              { className: 'category-all' },
-              productItem
-            )
+            'div',
+            { className: 'category-all' },
+            productItem
           )
         )
       );

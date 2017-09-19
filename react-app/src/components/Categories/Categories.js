@@ -55,7 +55,7 @@ class Categories extends Component {
           <div className="category-head">
             <h3 className="bread-crumbs-on-page">Продукты</h3>
           </div>
-          <div className="category-all animation-page-load-medium">
+          <div className="category-all">
             {categoryItems}
           </div>
         </div>

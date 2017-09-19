@@ -400,7 +400,7 @@ var OrderItem = function (_Component) {
         this.state.tdBotyVisible && orderInfo,
         _react2.default.createElement(
           'table',
-          { className: 'cart-products-table margin-off' },
+          { className: 'cart-products-table margin-off animation-page-load-medium' },
           _react2.default.createElement(
             'thead',
             null,

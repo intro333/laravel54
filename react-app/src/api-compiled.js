@@ -130,9 +130,12 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
 
 //Показать товар в корзине.
 var showProductsInCart = exports.showProductsInCart = function showProductsInCart(dispatcher) {
+  var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
   var params = {
     method: 'post',
-    url: '/api/get-products-in-cart'
+    url: '/api/get-products-in-cart',
+    data: data
   };
 
   var then = function then(response) {

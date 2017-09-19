@@ -12,7 +12,6 @@ import { changeSuccessModalDisplay, setScrollTop } from './actions';
 import { isEmptyMap, isEmptyArray } from '../../helpers';
 
 class ProductItem extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -142,7 +141,7 @@ class ProductItem extends Component {
     var addToCartButtonStyle = isEmptyArray(product) ? { background: '#3c763d' } : this.state.addToCartButtonStyle;
 
     return (
-      <div className="category-item">
+      <div className="category-item animation-page-load-medium">
         <div className="category-item__img" style={categoryItemImg}>
           <img src={'/storage/images/products/' + this.props.imgSrc} width="190" />
           <div className="category-item__name"> {this.props.itemName}</div>

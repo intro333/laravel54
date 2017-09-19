@@ -40,10 +40,6 @@ var _helpers = require('../../helpers');
 
 var helpers = _interopRequireWildcard(_helpers);
 
-var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
-
-var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
 var _api = require('../../api');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -54,7 +50,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // ES6
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var PersonalAccount = function (_Component) {
   _inherits(PersonalAccount, _Component);
@@ -225,147 +221,140 @@ var PersonalAccount = function (_Component) {
             '\u0417\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0441\u0432\u043E\u0438 \u0434\u0430\u043D\u043D\u044B\u0435.'
           ),
           _react2.default.createElement(
-            _reactAddonsCssTransitionGroup2.default,
-            {
-              transitionName: 'popups-transition',
-              transitionAppear: true
-            },
+            'div',
+            { className: 'personal-container animation-page-load-medium' },
             _react2.default.createElement(
               'div',
-              { className: 'personal-container' },
+              { className: 'customer-data-container' },
               _react2.default.createElement(
-                'div',
-                { className: 'customer-data-container' },
+                'form',
+                { action: '/personal', method: 'POST', id: 'personal-data-form' },
                 _react2.default.createElement(
-                  'form',
-                  { action: '/personal', method: 'POST', id: 'personal-data-form' },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'personal-filds-label-input' },
-                    _react2.default.createElement(
-                      'label',
-                      { className: 'personal-filds-label', htmlFor: 'fname' },
-                      '\u0418\u043C\u044F'
-                    ),
-                    _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text', value: this.state.name, onChange: this.handlerChangeName.bind(this) })
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'personal-filds-label-input' },
-                    _react2.default.createElement(
-                      'label',
-                      { className: 'personal-filds-label', htmlFor: 'sname' },
-                      '\u0424\u0430\u043C\u0438\u043B\u0438\u044F'
-                    ),
-                    _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname, onChange: this.handlerChangeSName.bind(this) })
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'personal-filds-label-input' },
-                    _react2.default.createElement(
-                      'label',
-                      { className: 'personal-filds-label', htmlFor: 'mname' },
-                      '\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E'
-                    ),
-                    _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
-                  ),
-                  _react2.default.createElement('input', { type: 'hidden', name: 'birthdate', value: this.state.birthdate }),
+                  'div',
+                  { className: 'personal-filds-label-input' },
                   _react2.default.createElement(
                     'label',
-                    { className: 'personal-filds-label', htmlFor: 'birthdate' },
-                    '\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F'
+                    { className: 'personal-filds-label', htmlFor: 'fname' },
+                    '\u0418\u043C\u044F'
                   ),
+                  _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text', value: this.state.name, onChange: this.handlerChangeName.bind(this) })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'personal-filds-label-input' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'personal-filds-label', htmlFor: 'sname' },
+                    '\u0424\u0430\u043C\u0438\u043B\u0438\u044F'
+                  ),
+                  _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname, onChange: this.handlerChangeSName.bind(this) })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'personal-filds-label-input' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'personal-filds-label', htmlFor: 'mname' },
+                    '\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E'
+                  ),
+                  _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
+                ),
+                _react2.default.createElement('input', { type: 'hidden', name: 'birthdate', value: this.state.birthdate }),
+                _react2.default.createElement(
+                  'label',
+                  { className: 'personal-filds-label', htmlFor: 'birthdate' },
+                  '\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'personal-filds-label-input' },
                   _react2.default.createElement(
                     'div',
-                    { className: 'personal-filds-label-input' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'personal-select-birdthdate-group' },
-                      _react2.default.createElement(_reactSelect2.default, {
-                        name: 'birthdate',
-                        className: 'margin-right-10',
-                        value: this.state.birthdateDay ? this.state.birthdateDay : '',
-                        options: dayOptions,
-                        onChange: this.handlerChangeDateDay.bind(this),
-                        placeholder: '',
-                        clearable: false,
-                        searchable: false,
-                        scrollMenuIntoView: false
-                      }),
-                      _react2.default.createElement(_reactSelect2.default, {
-                        className: 'margin-right-10',
-                        name: 'birthdate',
-                        value: this.state.birthdateMonth ? this.state.birthdateMonth : '',
-                        options: monthOptions,
-                        onChange: this.handlerChangeDateMonth.bind(this),
-                        placeholder: '',
-                        clearable: false,
-                        searchable: false,
-                        scrollMenuIntoView: false
-                      }),
-                      _react2.default.createElement(_reactSelect2.default, {
-                        name: 'birthdate',
-                        value: this.state.birthdateYear ? this.state.birthdateYear : '',
-                        options: yearOptions,
-                        onChange: this.handlerChangeDateYear.bind(this),
-                        placeholder: '',
-                        clearable: false,
-                        searchable: false,
-                        scrollMenuIntoView: false
-                      })
-                    )
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'personal-filds-label-input' },
-                    _react2.default.createElement(
-                      'label',
-                      { className: 'personal-filds-label', htmlFor: 'gender' },
-                      '\u041F\u043E\u043B'
-                    ),
+                    { className: 'personal-select-birdthdate-group' },
                     _react2.default.createElement(_reactSelect2.default, {
-                      name: 'gender',
-                      value: this.state.gender,
-                      options: genderOptions,
-                      onChange: this.handleChangeGender.bind(this),
-                      placeholder: '\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D',
+                      name: 'birthdate',
+                      className: 'margin-right-10',
+                      value: this.state.birthdateDay ? this.state.birthdateDay : '',
+                      options: dayOptions,
+                      onChange: this.handlerChangeDateDay.bind(this),
+                      placeholder: '',
                       clearable: false,
-                      searchable: false
+                      searchable: false,
+                      scrollMenuIntoView: false
+                    }),
+                    _react2.default.createElement(_reactSelect2.default, {
+                      className: 'margin-right-10',
+                      name: 'birthdate',
+                      value: this.state.birthdateMonth ? this.state.birthdateMonth : '',
+                      options: monthOptions,
+                      onChange: this.handlerChangeDateMonth.bind(this),
+                      placeholder: '',
+                      clearable: false,
+                      searchable: false,
+                      scrollMenuIntoView: false
+                    }),
+                    _react2.default.createElement(_reactSelect2.default, {
+                      name: 'birthdate',
+                      value: this.state.birthdateYear ? this.state.birthdateYear : '',
+                      options: yearOptions,
+                      onChange: this.handlerChangeDateYear.bind(this),
+                      placeholder: '',
+                      clearable: false,
+                      searchable: false,
+                      scrollMenuIntoView: false
                     })
-                  ),
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'personal-filds-label-input' },
                   _react2.default.createElement(
-                    'div',
-                    { className: 'personal-filds-label-input' },
-                    _react2.default.createElement(
-                      'label',
-                      { className: 'personal-filds-label', htmlFor: 'email' },
-                      'Email'
-                    ),
-                    _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, disabled: true })
+                    'label',
+                    { className: 'personal-filds-label', htmlFor: 'gender' },
+                    '\u041F\u043E\u043B'
                   ),
+                  _react2.default.createElement(_reactSelect2.default, {
+                    name: 'gender',
+                    value: this.state.gender,
+                    options: genderOptions,
+                    onChange: this.handleChangeGender.bind(this),
+                    placeholder: '\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D',
+                    clearable: false,
+                    searchable: false
+                  })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'personal-filds-label-input' },
                   _react2.default.createElement(
-                    'div',
-                    { className: 'personal-filds-label-input' },
-                    _react2.default.createElement(
-                      'label',
-                      { className: 'personal-filds-label', htmlFor: 'phone' },
-                      '\u0422\u0435\u043B\u0435\u0444\u043E\u043D'
-                    ),
-                    _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/
-                    , { id: 'phone',
-                      value: this.state.phone ? this.state.phone : '',
-                      mask: '+7\\(999\\) 999 99 99', maskChar: ' ',
-                      onChange: this.handlerChangePhone.bind(this),
-                      name: 'phone',
-                      placeholder: '+7(___) ___ __ __' })
+                    'label',
+                    { className: 'personal-filds-label', htmlFor: 'email' },
+                    'Email'
                   ),
+                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, disabled: true })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'personal-filds-label-input' },
                   _react2.default.createElement(
-                    'p',
-                    { style: { color: 'red', display: 'none' }, className: 'error_message_for_create' },
-                    '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
+                    'label',
+                    { className: 'personal-filds-label', htmlFor: 'phone' },
+                    '\u0422\u0435\u043B\u0435\u0444\u043E\u043D'
                   ),
-                  _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
-                )
+                  _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/
+                  , { id: 'phone',
+                    value: this.state.phone ? this.state.phone : '',
+                    mask: '+7\\(999\\) 999 99 99', maskChar: ' ',
+                    onChange: this.handlerChangePhone.bind(this),
+                    name: 'phone',
+                    placeholder: '+7(___) ___ __ __' })
+                ),
+                _react2.default.createElement(
+                  'p',
+                  { style: { color: 'red', display: 'none' }, className: 'error_message_for_create' },
+                  '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
+                ),
+                _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
               )
             )
           )
