@@ -147,6 +147,9 @@ class Orders extends Component {
             <ReactCSSTransitionGroup
               transitionName="popups-transition"
               transitionAppear={true}
+              transitionAppearTimeout={500}
+              transitionEnter={true}
+              transitionLeave={true}
             >
               {tables}
             </ReactCSSTransitionGroup>

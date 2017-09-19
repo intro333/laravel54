@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import { connect } from 'react-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class SuccessModal extends Component {
   constructor(props) {
@@ -52,7 +51,12 @@ class SuccessModal extends Component {
       top: (products.get('scrollTop') < 98) ? ((98 - products.get('scrollTop')) + 'px') : '1px'
     };
 
-    var items = <div className="modal-dialog-success" style={scrollTopStyle}>
+    const modalDialog = classNames({
+      'modal-dialog-success': true,
+      'transition-scale': this.props.successModalDisplay,
+    });
+  return(
+    <div className={modalDialog} style={scrollTopStyle}>
       <div className="modal-content-success">
         <div className="modal-header-success">
           <button type="button" className="close" onClick={this.props.handlerCloseModal}>&times;</button>
@@ -60,17 +64,7 @@ class SuccessModal extends Component {
           <button type="button" className="btn btn-default" style={{width: '100%'}} onClick={this.handlerGoToCart.bind(this)}>Оформить</button>
         </div>
       </div>
-    </div>;
-
-  return(
-    <ReactCSSTransitionGroup transitionName="popups-transition"
-                             transitionAppear={true}
-                             transitionAppearTimeout={500}
-                             transitionEnter={false}
-                             transitionLeave={false}
-    >
-      {items}
-    </ReactCSSTransitionGroup>
+    </div>
   );
   }
 }

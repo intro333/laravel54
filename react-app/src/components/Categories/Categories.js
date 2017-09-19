@@ -10,7 +10,6 @@ import {
   setCategories,
 } from '../../api';
 import {isEmptyMap} from '../../helpers';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class Categories extends Component {
 
@@ -56,14 +55,9 @@ class Categories extends Component {
           <div className="category-head">
             <h3 className="bread-crumbs-on-page">Продукты</h3>
           </div>
-          <ReactCSSTransitionGroup
-            transitionName="popups-transition"
-            transitionAppear={true}
-          >
-            <div className="category-all">
-              {categoryItems}
-            </div>
-          </ReactCSSTransitionGroup>
+          <div className="category-all animation-page-load-medium">
+            {categoryItems}
+          </div>
         </div>
       </div>
     );

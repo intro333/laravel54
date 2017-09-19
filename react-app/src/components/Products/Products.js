@@ -13,7 +13,6 @@ import {
   setProducts,
 } from '../../api';
 import {isEmptyMap} from '../../helpers';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class Products extends Component {
   constructor(props) {
@@ -52,22 +51,19 @@ class Products extends Component {
         <Navigation />
         <MenuMobile />
         <div className="main-container">
-          {products.get('successModalDisplay') && <SuccessModal
+          <SuccessModal
             handlerCloseModal={this.handlerCloseModal.bind(this)}
+            successModalDisplay={products.get('successModalDisplay')}
             history={history}
-          />}
+          />
           <div className="category-head">
             <Link to="/categories"><h3 className="bread-crumbs-link">Продукты</h3></Link>
             <div className="bread-crumbs-circle"></div>
             <h3 className="bread-crumbs-on-page">{ session.get('categoryName') }</h3>
           </div>
-          <ReactCSSTransitionGroup transitionName="popups-transition"
-                                   transitionAppear={true}
-          >
-            <div className="category-all">
-              { productItem }
-            </div>
-          </ReactCSSTransitionGroup>
+          <div className="category-all animation-page-load-medium">
+            { productItem }
+          </div>
         </div>
       </div>
     );
