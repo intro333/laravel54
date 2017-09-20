@@ -24094,12 +24094,6 @@ var _MenuMobile = __webpack_require__(26);
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
-var _CartItem = __webpack_require__(89);
-
-var _CartItem2 = _interopRequireDefault(_CartItem);
-
-var _api = __webpack_require__(14);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24114,25 +24108,12 @@ var SuccessPage = function (_Component) {
   function SuccessPage(props) {
     _classCallCheck(this, SuccessPage);
 
-    var _this = _possibleConstructorReturn(this, (SuccessPage.__proto__ || Object.getPrototypeOf(SuccessPage)).call(this, props));
-
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, (SuccessPage.__proto__ || Object.getPrototypeOf(SuccessPage)).call(this, props));
   }
 
   _createClass(SuccessPage, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {}
-  }, {
     key: 'render',
     value: function render() {
-
-      var toHome = {
-        width: '75%',
-        margin: '35px auto 20px',
-        background: '#4CAF50'
-      };
-
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -24140,7 +24121,7 @@ var SuccessPage = function (_Component) {
         _react2.default.createElement(_MenuMobile2.default, null),
         _react2.default.createElement(
           'section',
-          { className: 'success-page' },
+          { className: 'success-page animation-page-load-long' },
           _react2.default.createElement(
             'div',
             { className: 'success-page__content' },
