@@ -423,6 +423,22 @@ input[type="checkbox"]:checked + label span {
         opacity: 1;
     }
 }
+@keyframes popupLoadScale {
+    0% {
+        transform: scale(0);
+        opacity: 0.01;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.animation-popup-load-fast {
+    animation-name:popupLoadScale;
+    animation-duration: .3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+}
 .animation-page-load-medium {
     animation-name:pageLoadOpacity;
     animation-duration: .5s;

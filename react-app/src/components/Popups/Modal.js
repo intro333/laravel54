@@ -15,6 +15,7 @@ class Modal extends Component {
 
   render() {
     const modalFadeIn = classNames({
+      'animation-popup-load-fast': true,
       'modal': true,
       'fade': true,
       'in': this.props.fadeIn
