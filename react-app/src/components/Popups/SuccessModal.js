@@ -12,14 +12,6 @@ class SuccessModal extends Component {
     };
   }
 
-  componentWillMount() {
-    //console.log(3, scrollTop);
-  }
-
-  // componentWillReceiveProps(next) {
-  //   console.log(3, next.products.get('scrollTop'));
-  // }
-
   handlerGoToCart() {
     const { history } = this.props;
     history.push('/cart');
@@ -39,7 +31,7 @@ class SuccessModal extends Component {
   render() {
 
     var total = 0;
-    const { session, productsForCart, products, scrollTop } = this.props;
+    const { session, productsForCart, products } = this.props;
 
     total = productsForCart.reduce((total, item) => {
         return total + ((item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10));

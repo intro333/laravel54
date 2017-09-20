@@ -17,6 +17,8 @@ var _actions = require('./actions');
 
 var modelActions = _interopRequireWildcard(_actions);
 
+var _actions2 = require('./components/Products/actions');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -276,7 +278,13 @@ var updatePersonalData = exports.updatePersonalData = function updatePersonalDat
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setUserInfo(response.data));
+    if (response.status === 200) {
+      dispatcher((0, _actions2.changeSuccessModalDisplay)(true));
+      dispatcher(modelActions.setUserInfo(response.data));
+      setTimeout(function () {
+        dispatcher((0, _actions2.changeSuccessModalDisplay)(false));
+      }, 2000);
+    }
   };
 
   var error = function error(_error13) {

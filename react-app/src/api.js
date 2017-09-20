@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import * as modelActions from './actions';
+import { changeSuccessModalDisplay, setScrollTop } from './components/Products/actions';
 
 export const makeRequest = (dispatcher, params, then, error) => {
   axios(params).then((result) => {
@@ -260,7 +261,11 @@ export const updatePersonalData = (dispatcher, data) => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setUserInfo(response.data))
+    if(response.status === 200) {
+      dispatcher(changeSuccessModalDisplay(true));
+      dispatcher(modelActions.setUserInfo(response.data));
+      setTimeout(function(){ dispatcher(changeSuccessModalDisplay(false)); }, 2000);
+    }
   };
 
   const error = (error) => {

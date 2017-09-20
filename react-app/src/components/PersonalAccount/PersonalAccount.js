@@ -9,6 +9,9 @@ import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import InputMask from 'react-input-mask';
 import * as helpers from '../../helpers';
+import SuccessSaveModal  from '../Popups/SuccessSaveModal';
+import { changeSuccessModalDisplay, setScrollTop } from '../Products/actions';
+import classNames from 'classnames';
 
 import {
   setUserInfo,
@@ -32,7 +35,8 @@ class PersonalAccount extends Component {
       birthdateMonth: false,
       birthdateYear: false,
       gender: '',
-      avatar: true
+      avatar: true,
+      errorMessageForCreate: true,
 
     }
   }
@@ -59,6 +63,20 @@ class PersonalAccount extends Component {
         birthdateYear: new Date(userInfo['birthdate']).getUTCFullYear(),
       });
     }
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', (event) => {
+      const { dispatch } = this.props;
+      var target = event.target || event.srcElement;
+      let scrollTop = target.body.scrollTop;
+      dispatch(setScrollTop(scrollTop));
+    });
+  }
+
+  handlerCloseModal() {
+    const { dispatch } = this.props;
+    dispatch(changeSuccessModalDisplay(false));
   }
 
   handlerChangeDateDay(e) {
@@ -123,7 +141,16 @@ class PersonalAccount extends Component {
       birthdate: this.state.birthdate,
     };
 
-    updatePersonalData(dispatch, data);
+    if (this.state.name !== '' && this.state.sname !== '') {
+      this.setState({
+        errorMessageForCreate: true
+      });
+      updatePersonalData(dispatch, data);
+    } else {
+      this.setState({
+        errorMessageForCreate: false
+      });
+    }
   }
 
   handlerChangePhoto() {
@@ -132,9 +159,15 @@ class PersonalAccount extends Component {
     });
   }
 
+  handlerInputOnFocus() {
+    this.setState({
+      errorMessageForCreate: true
+    });
+  }
+
   render() {
 
-    const { session, api } = this.props;
+    const { session, api, products } = this.props;
     const userInfo = session.get('userInfo');
     const userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
     const genderOptions = [
@@ -149,6 +182,12 @@ class PersonalAccount extends Component {
     const dayOptions = helpers.getNumberSelectOptions(1, 31);
     const yearOptions = helpers.getNumberSelectOptions(1900, (new Date().getUTCFullYear() - 10));
 
+    const errorMessageForCreate = classNames({
+      'error_message_for_create': true,
+      'fade': this.state.errorMessageForCreate,
+      'in': !this.state.errorMessageForCreate
+    });
+
     return (
       <div className="container">
         <Navigation />
@@ -156,30 +195,30 @@ class PersonalAccount extends Component {
         {/*<Avatar*/}
           {/*avatar={this.state.avatar}*/}
         {/*/>*/}
+        <SuccessSaveModal
+          handlerCloseModal={this.handlerCloseModal.bind(this)}
+          successModalDisplay={products.get('successModalDisplay')}
+        />
         <div className="main-container">
           <h2>Личный кабинет</h2>
           <p className="personal-explain-text">Здесь вы можете отредактировать свои данные.</p>
           <div className="personal-container animation-page-load-medium">
-            {/*<div className="image-container">*/}
-              {/*<div className="customer-image">*/}
-                {/*<img src={userImage} />*/}
-              {/*</div>*/}
-                {/*<input value="Добавить фото" id="personal-photo" className="register-button" onClick={this.handlerChangePhoto.bind(this)} />*/}
-            {/*</div>*/}
-            <div className="customer-data-container">
-              <form action="/personal" method="POST" id="personal-data-form">
+            <form action="/personal" method="POST" id="personal-data-form">
+              <div className="customer-data-container">
                 <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="fname">Имя</label>
-                  <input id="fname" name="fname" type="text" value={this.state.name} onChange={this.handlerChangeName.bind(this)} />
+                  <label className="personal-filds-label" htmlFor="fname">Имя*</label>
+                  <input id="fname" name="fname" type="text" value={this.state.name} onChange={this.handlerChangeName.bind(this)} onFocus={this.handlerInputOnFocus.bind(this)} />
                 </div>
                 <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="sname">Фамилия</label>
-                  <input id="sname" name="sname" type="text" value={this.state.sname} onChange={this.handlerChangeSName.bind(this)} />
+                  <label className="personal-filds-label" htmlFor="sname">Фамилия*</label>
+                  <input id="sname" name="sname" type="text" value={this.state.sname} onChange={this.handlerChangeSName.bind(this)} onFocus={this.handlerInputOnFocus.bind(this)} />
                 </div>
                 <div className="personal-filds-label-input">
                   <label className="personal-filds-label" htmlFor="mname">Отчество</label>
                   <input id="mname" name="mname" type="text" value={this.state.mname ? this.state.mname : ''} onChange={this.handlerChangeMName.bind(this)}  />
                 </div>
+              </div>
+              <div className="customer-data-container">
                 <input type="hidden" name="birthdate" value={this.state.birthdate} />
                 <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
                 <div className="personal-filds-label-input">
@@ -192,7 +231,7 @@ class PersonalAccount extends Component {
                       onChange={this.handlerChangeDateDay.bind(this)}
                       placeholder=""
                       clearable={false}
-                      searchable={false}
+                      searchable={true}
                       scrollMenuIntoView={false}
                     />
                     <Select
@@ -213,17 +252,9 @@ class PersonalAccount extends Component {
                       onChange={this.handlerChangeDateYear.bind(this)}
                       placeholder=""
                       clearable={false}
-                      searchable={false}
+                      searchable={true}
                       scrollMenuIntoView={false}
                     />
-                    {/*<InputMask*/}
-                    {/*id="birthdate"*/}
-                    {/*value={this.state.birthdate ? this.state.birthdate : ''}*/}
-                    {/*mask="99 99 9999" maskChar=" "*/}
-                    {/*onChange={this.handlerChangeBirthdate.bind(this)}*/}
-                    {/*name="birthdate"*/}
-                    {/*placeholder="09-12-1986" />*/}
-                    {/*<span className="input-group-addon" id="basic-addon1"><i className="glyphicon glyphicon-calendar"></i></span>*/}
                   </div>
                 </div>
                 <div className="personal-filds-label-input">
@@ -252,9 +283,12 @@ class PersonalAccount extends Component {
                     name="phone"
                     placeholder="+7(___) ___ __ __" />
                 </div>
-                <p style={{color: 'red', display: 'none'}} className="error_message_for_create">Заполните все поля помеченные звёздочкой.</p>
-                <input id="personal-submit" className="register-button" value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
-              </form>
+              </div>
+            </form>
+            <hr />
+            <div className="person-success-button-div">
+              <p className={errorMessageForCreate}>Заполните все поля помеченные звёздочкой.</p>
+              <input id="personal-submit" className="register-button" style={{width: '30%'}} value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
             </div>
           </div>
         </div>
@@ -267,4 +301,5 @@ export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
   api: store.api,
+  products: store.products,
 }))(PersonalAccount);

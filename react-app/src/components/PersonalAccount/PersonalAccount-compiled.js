@@ -40,6 +40,16 @@ var _helpers = require('../../helpers');
 
 var helpers = _interopRequireWildcard(_helpers);
 
+var _SuccessSaveModal = require('../Popups/SuccessSaveModal');
+
+var _SuccessSaveModal2 = _interopRequireDefault(_SuccessSaveModal);
+
+var _actions = require('../Products/actions');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 var _api = require('../../api');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -72,7 +82,8 @@ var PersonalAccount = function (_Component) {
       birthdateMonth: false,
       birthdateYear: false,
       gender: '',
-      avatar: true
+      avatar: true,
+      errorMessageForCreate: true
 
     };
     return _this;
@@ -105,6 +116,26 @@ var PersonalAccount = function (_Component) {
           birthdateYear: new Date(userInfo['birthdate']).getUTCFullYear()
         });
       }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      window.addEventListener('scroll', function (event) {
+        var dispatch = _this2.props.dispatch;
+
+        var target = event.target || event.srcElement;
+        var scrollTop = target.body.scrollTop;
+        dispatch((0, _actions.setScrollTop)(scrollTop));
+      });
+    }
+  }, {
+    key: 'handlerCloseModal',
+    value: function handlerCloseModal() {
+      var dispatch = this.props.dispatch;
+
+      dispatch((0, _actions.changeSuccessModalDisplay)(false));
     }
   }, {
     key: 'handlerChangeDateDay',
@@ -179,7 +210,16 @@ var PersonalAccount = function (_Component) {
         birthdate: this.state.birthdate
       };
 
-      (0, _api.updatePersonalData)(dispatch, data);
+      if (this.state.name !== '' && this.state.sname !== '') {
+        this.setState({
+          errorMessageForCreate: true
+        });
+        (0, _api.updatePersonalData)(dispatch, data);
+      } else {
+        this.setState({
+          errorMessageForCreate: false
+        });
+      }
     }
   }, {
     key: 'handlerChangePhoto',
@@ -189,11 +229,19 @@ var PersonalAccount = function (_Component) {
       });
     }
   }, {
+    key: 'handlerInputOnFocus',
+    value: function handlerInputOnFocus() {
+      this.setState({
+        errorMessageForCreate: true
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props2 = this.props,
           session = _props2.session,
-          api = _props2.api;
+          api = _props2.api,
+          products = _props2.products;
 
       var userInfo = session.get('userInfo');
       var userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
@@ -202,11 +250,21 @@ var PersonalAccount = function (_Component) {
       var dayOptions = helpers.getNumberSelectOptions(1, 31);
       var yearOptions = helpers.getNumberSelectOptions(1900, new Date().getUTCFullYear() - 10);
 
+      var errorMessageForCreate = (0, _classnames2.default)({
+        'error_message_for_create': true,
+        'fade': this.state.errorMessageForCreate,
+        'in': !this.state.errorMessageForCreate
+      });
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
         _react2.default.createElement(_Navigation2.default, null),
         _react2.default.createElement(_MenuMobile2.default, null),
+        _react2.default.createElement(_SuccessSaveModal2.default, {
+          handlerCloseModal: this.handlerCloseModal.bind(this),
+          successModalDisplay: products.get('successModalDisplay')
+        }),
         _react2.default.createElement(
           'div',
           { className: 'main-container' },
@@ -224,20 +282,20 @@ var PersonalAccount = function (_Component) {
             'div',
             { className: 'personal-container animation-page-load-medium' },
             _react2.default.createElement(
-              'div',
-              { className: 'customer-data-container' },
+              'form',
+              { action: '/personal', method: 'POST', id: 'personal-data-form' },
               _react2.default.createElement(
-                'form',
-                { action: '/personal', method: 'POST', id: 'personal-data-form' },
+                'div',
+                { className: 'customer-data-container' },
                 _react2.default.createElement(
                   'div',
                   { className: 'personal-filds-label-input' },
                   _react2.default.createElement(
                     'label',
                     { className: 'personal-filds-label', htmlFor: 'fname' },
-                    '\u0418\u043C\u044F'
+                    '\u0418\u043C\u044F*'
                   ),
-                  _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text', value: this.state.name, onChange: this.handlerChangeName.bind(this) })
+                  _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text', value: this.state.name, onChange: this.handlerChangeName.bind(this), onFocus: this.handlerInputOnFocus.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -245,9 +303,9 @@ var PersonalAccount = function (_Component) {
                   _react2.default.createElement(
                     'label',
                     { className: 'personal-filds-label', htmlFor: 'sname' },
-                    '\u0424\u0430\u043C\u0438\u043B\u0438\u044F'
+                    '\u0424\u0430\u043C\u0438\u043B\u0438\u044F*'
                   ),
-                  _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname, onChange: this.handlerChangeSName.bind(this) })
+                  _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname, onChange: this.handlerChangeSName.bind(this), onFocus: this.handlerInputOnFocus.bind(this) })
                 ),
                 _react2.default.createElement(
                   'div',
@@ -258,7 +316,11 @@ var PersonalAccount = function (_Component) {
                     '\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E'
                   ),
                   _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
-                ),
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'customer-data-container' },
                 _react2.default.createElement('input', { type: 'hidden', name: 'birthdate', value: this.state.birthdate }),
                 _react2.default.createElement(
                   'label',
@@ -279,7 +341,7 @@ var PersonalAccount = function (_Component) {
                       onChange: this.handlerChangeDateDay.bind(this),
                       placeholder: '',
                       clearable: false,
-                      searchable: false,
+                      searchable: true,
                       scrollMenuIntoView: false
                     }),
                     _react2.default.createElement(_reactSelect2.default, {
@@ -300,7 +362,7 @@ var PersonalAccount = function (_Component) {
                       onChange: this.handlerChangeDateYear.bind(this),
                       placeholder: '',
                       clearable: false,
-                      searchable: false,
+                      searchable: true,
                       scrollMenuIntoView: false
                     })
                   )
@@ -348,14 +410,19 @@ var PersonalAccount = function (_Component) {
                     onChange: this.handlerChangePhone.bind(this),
                     name: 'phone',
                     placeholder: '+7(___) ___ __ __' })
-                ),
-                _react2.default.createElement(
-                  'p',
-                  { style: { color: 'red', display: 'none' }, className: 'error_message_for_create' },
-                  '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
-                ),
-                _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
+                )
               )
+            ),
+            _react2.default.createElement('hr', null),
+            _react2.default.createElement(
+              'div',
+              { className: 'person-success-button-div' },
+              _react2.default.createElement(
+                'p',
+                { className: errorMessageForCreate },
+                '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
+              ),
+              _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', style: { width: '30%' }, value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
             )
           )
         )
@@ -370,7 +437,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
     session: store.session,
-    api: store.api
+    api: store.api,
+    products: store.products
   };
 })(PersonalAccount);
 

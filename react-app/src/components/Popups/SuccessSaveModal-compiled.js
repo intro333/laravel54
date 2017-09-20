@@ -20,6 +20,8 @@ require('../../theme/css/adaptive.css');
 
 var _reactRedux = require('react-redux');
 
+var _actions = require('../Products/actions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28,13 +30,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SuccessModal = function (_Component) {
-  _inherits(SuccessModal, _Component);
+var SuccessSaveModal = function (_Component) {
+  _inherits(SuccessSaveModal, _Component);
 
-  function SuccessModal(props) {
-    _classCallCheck(this, SuccessModal);
+  function SuccessSaveModal(props) {
+    _classCallCheck(this, SuccessSaveModal);
 
-    var _this = _possibleConstructorReturn(this, (SuccessModal.__proto__ || Object.getPrototypeOf(SuccessModal)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (SuccessSaveModal.__proto__ || Object.getPrototypeOf(SuccessSaveModal)).call(this, props));
 
     _this.state = {
       fadeIn: false
@@ -42,87 +44,44 @@ var SuccessModal = function (_Component) {
     return _this;
   }
 
-  _createClass(SuccessModal, [{
-    key: 'handlerGoToCart',
-    value: function handlerGoToCart() {
-      var history = this.props.history;
-
-      history.push('/cart');
-    }
-  }, {
-    key: 'dec',
-    value: function dec(a, b, c, s) {
-      var variants = [a, b, c];
-      var index = s % 100;
-      if (index >= 11 && index <= 14) {
-        index = 0;
-      } else {
-        index = (index %= 10) < 5 ? index > 2 ? 2 : index : 0;
-      }
-      return variants[index];
-    }
-  }, {
+  _createClass(SuccessSaveModal, [{
     key: 'render',
     value: function render() {
-
-      var total = 0;
       var _props = this.props,
-          session = _props.session,
-          productsForCart = _props.productsForCart,
-          products = _props.products;
+          products = _props.products,
+          dispatch = _props.dispatch;
 
-
-      total = productsForCart.reduce(function (total, item) {
-        return total + (item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10);
-      }, 0);
-
-      var unit = this.dec("товаров", "товар", "товара", session.get("productCounts")); // склоняем по падежам
       var scrollTopStyle = {
         top: products.get('scrollTop') < 98 ? 98 - products.get('scrollTop') + 'px' : '1px'
       };
 
       var modalDialog = (0, _classnames2.default)({
         'modal-dialog-success': true,
+        'modal-dialog-success-save': true,
         'transition-scale': this.props.successModalDisplay
       });
+
+      // setTimeout(dispatch(changeSuccessModalDisplay(false)), 2000);
+
+
       return _react2.default.createElement(
         'div',
         { className: modalDialog, style: scrollTopStyle },
         _react2.default.createElement(
           'div',
-          { className: 'modal-content-success' },
+          { className: 'modal-content-success modal-content-success-save' },
           _react2.default.createElement(
             'div',
-            { className: 'modal-header-success' },
+            { className: 'modal-header-success modal-header-success-save', style: { padding: '7px' } },
             _react2.default.createElement(
               'button',
-              { type: 'button', className: 'close', onClick: this.props.handlerCloseModal },
+              { type: 'button', className: 'close', style: { color: '#fff' }, onClick: this.props.handlerCloseModal },
               '\xD7'
             ),
             _react2.default.createElement(
               'h4',
-              { className: 'modal-title', style: { marginBottom: '5px' } },
-              _react2.default.createElement(
-                'span',
-                { style: { textDecoration: 'underline' } },
-                '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
-              ),
-              ': ',
-              session.get("productCounts"),
-              ' ',
-              unit,
-              ' ',
-              _react2.default.createElement(
-                'b',
-                null,
-                total
-              ),
-              ' \u20BD'
-            ),
-            _react2.default.createElement(
-              'button',
-              { type: 'button', className: 'btn btn-default', style: { width: '100%' }, onClick: this.handlerGoToCart.bind(this) },
-              '\u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C'
+              { className: 'modal-title' },
+              '\u0414\u0430\u043D\u043D\u044B\u0435 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u044B.'
             )
           )
         )
@@ -130,7 +89,7 @@ var SuccessModal = function (_Component) {
     }
   }]);
 
-  return SuccessModal;
+  return SuccessSaveModal;
 }(_react.Component);
 
 exports.default = (0, _reactRedux.connect)(function (store) {
@@ -140,6 +99,6 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     products: store.products,
     productsForCart: store.api.get('productsForCart')
   };
-})(SuccessModal);
+})(SuccessSaveModal);
 
-//# sourceMappingURL=SuccessModal-compiled.js.map
+//# sourceMappingURL=SuccessSaveModal-compiled.js.map

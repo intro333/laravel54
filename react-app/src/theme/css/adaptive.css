@@ -81,6 +81,10 @@
     .close-button {
         font-size: 11px;
     }
+    .personal-container form {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 }
 /***** END! ADAPTIVE for footer END!******/
 /*.app-container {*/
@@ -97,6 +101,14 @@
         /*display: none;*/
     /*}*/
 /*}*/
+@media (max-width: 645px) {
+    .register-button {
+        width: 100% !important;
+    }
+    .person-success-button-div {
+        text-align: center;
+    }
+}
 @media (min-width: 767px) {
     .popup_mob-nav-elem {
         display: none;

@@ -13,10 +13,17 @@ h1, h2, h3 {
     margin: 0 !important;
 }
 hr {
-    border: none;
-    color: steelblue;
-    background-color: steelblue; /* Цвет линии для браузера Firefox и Opera */
-    height: 1px; /* Толщина линии */
+    border-top: 1px solid #a2a2a2;
+    /*color: steelblue;*/
+    /*background-color: steelblue; !* Цвет линии для браузера Firefox и Opera *!*/
+    /*height: 1px; !* Толщина линии *!*/
+}
+.error_message_for_create.fade {
+    display: none
+}
+.error_message_for_create.in {
+    display: block;
+    color: red;
 }
 .navbar-default {
     background: #fff !important;
@@ -314,11 +321,11 @@ input[type="checkbox"]:checked + label span {
 /*CHECKBOX КОНЕЦ------------------------------------------------------------------*/
 
 /*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/
-.personal-container {
+.personal-container form {
     margin-top: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     width: 100%;
 }
 .image-container {
@@ -326,7 +333,7 @@ input[type="checkbox"]:checked + label span {
     margin-top: 4px;
 }
 .customer-data-container {
-    width: 40%;
+    width: 48%;
     /*padding: 0 20px 0 20px;*/
     display: flex;
     flex-direction: column;
@@ -387,6 +394,9 @@ input[type="checkbox"]:checked + label span {
 }
 .personal-select-birdthdate-group .Select:nth-child(3) {
     width: 30%;
+}
+.person-success-button-div {
+    text-align: right;
 }
 /*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/
 
@@ -1206,6 +1216,15 @@ button.close {
     transition: 0.3s
     /*top: 98px;*/
 }
+.modal-dialog-success-save {
+    width: 220px !important;
+}
+.modal-content-success-save {
+    background: #4CAF50 !important;
+}
+.modal-header-success-save {
+    color: #fff !important;
+}
 .transition-scale {
     transform: scale(1);
     opacity: 1;
@@ -1239,3 +1258,7 @@ button.close {
     font-weight: 500;
 }
 /*КОНЕЦ MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/
+.Select-input > input {
+    width: 100% !important;
+    border: none !important;
+}

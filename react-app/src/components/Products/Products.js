@@ -8,9 +8,9 @@ import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import ProductItem from './ProductItem';
 import SuccessModal  from '../Popups/SuccessModal';
-import { changeSuccessModalDisplay } from './actions'
+import { changeSuccessModalDisplay } from './actions';
 import * as mainActions from '../../actions';
-import { List, Map, OrderedMap } from 'immutable';
+import { Map } from 'immutable';
 
 import {
   setProducts,
