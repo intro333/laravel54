@@ -95,6 +95,16 @@ class SessionController extends Controller
 
     public function clearCart()
     {
+        $orders = Order::status(4)->get();
+        /*
+         * Если вдруг запустили механизм изменения заказа и нажали очистить корзину, то помечаем этот заказ(ы) как удаленный(ые).
+         * Это нужно для того, чтобы сформировался новый заказ, а все старые удалились.А то в корзине могут вылезти артефакты от старого заказа в виде комментариев например.
+         */
+        foreach ($orders as $order) {
+            $order->update([
+                'status' => 3
+            ]);
+        }
         //Удалить все продукты из сессии.
         session()->forget('productFromCart');
         session()->forget('orderChangeId');
@@ -121,6 +131,21 @@ class SessionController extends Controller
             'delivery'      =>  $delivery,
             'ordersQuota'   =>  $ordersQuota
         ];
+    }
+
+    //Показать текущий заказ(со статусом 1 или 4).
+    public function showOrderCurrent()
+    {
+        $orderOne = Order::status(1)->get();
+        $orderFour = Order::status(4)->get();
+        if(!$orderOne->isEmpty() || !$orderFour->isEmpty()) {
+            return [
+                'one' => $orderOne->first(),
+                'four' => $orderFour->first(),
+            ];
+        }
+
+        else return [];
     }
 
     //Прочекать квоты в корзине на наличие 0

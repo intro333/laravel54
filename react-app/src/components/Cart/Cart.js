@@ -9,14 +9,16 @@ import MenuMobile from '../Popups/MenuMobile';
 import CartItem from '../Cart/CartItem';
 import * as modelActions from '../../actions';
 import Modal  from '../Popups/Modal';
+import { Map } from 'immutable';
 import {
   showProductsInCart,
   showOrdersQuotaInCart,
+  showCurrentOrder,
   sendOrder,
   clearCart,
   checkTimeQuota,
 } from '../../api';
-import {isEmptyMap, scrollToElement} from '../../helpers';
+import {isEmptyMap, isEmptyArray, scrollToElement} from '../../helpers';
 
 class Cart extends Component {
   constructor(props) {
@@ -39,15 +41,24 @@ class Cart extends Component {
   }
 
   componentWillMount() {
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     showProductsInCart(dispatch);
     showOrdersQuotaInCart(dispatch);
+    showCurrentOrder(dispatch);
   }
 
   componentWillReceiveProps(next) {
     if (next.session.get('productCounts') === 0) {
-      next.history.push('/')
+      const {dispatch, history} = this.props;
+      clearCart(dispatch, history);
+      next.history.push('/');
     }
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    const map = Map;
+    dispatch(modelActions.setCurrentOrder(map()));
   }
 
   handleChangeComment(event) {
@@ -76,23 +87,35 @@ class Cart extends Component {
   }
 
   handlerSendOrder() {
-    const {dispatch, history, ordersQuota} = this.props;
+    const {dispatch, history, ordersQuota, currentOrder} = this.props;
     const data = {
       comment: this.state.comment,
       time_quota: this.state.time_quota
     };
-    if (this.state.time_quota !== 0) {
-      sendOrder(dispatch, data, history);
-    } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
-      sendOrder(dispatch, data, history)
-    } else {
-      scrollToElement('.scroll-to-error', 1500);
+    if(isEmptyArray(currentOrder) && isEmptyArray(currentOrder['one'])) {
       this.setState({
-        cart_error: 'Выберите удобный период получения заказа.',
-        selectError: {
-          borderColor: 'indianred'
+        fadeIn: true,
+        modalDisplay: true,
+        textHeader: 'У Вас уже есть один заказ в обработке.Перейти к заказу?',
+        function: () => {
+          const { history } = this.props;
+          history.push('/orders');
         }
       });
+    } else {
+      if (this.state.time_quota !== 0) {
+        sendOrder(dispatch, data, history);
+      } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
+        sendOrder(dispatch, data, history)
+      } else {
+        scrollToElement('.scroll-to-error', 1500);
+        this.setState({
+          cart_error: 'Выберите удобный период получения заказа.',
+          selectError: {
+            borderColor: 'indianred'
+          }
+        });
+      }
     }
   }
 
@@ -121,7 +144,7 @@ class Cart extends Component {
   }
 
   render() {
-    const { ordersQuota, productsForCart, errorMessageCountQuota } = this.props;
+    const { ordersQuota, productsForCart, errorMessageCountQuota, currentOrder, session } = this.props;
     // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
     // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
     var total = 0;
@@ -134,6 +157,7 @@ class Cart extends Component {
         />
       );
 
+    const userInfo = session.get('userInfo');
     total = productsForCart.reduce((total, item) => {
         return total + ((item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10));
       }, 0
@@ -189,6 +213,10 @@ class Cart extends Component {
               <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
             </div>
           </div>
+          {isEmptyArray(currentOrder) && isEmptyArray(currentOrder['four']) &&
+          <p className="personal-explain-text">Изменение заказа № ST-{userInfo.emailHash}-{currentOrder['four'].order_id}</p>}
+          {isEmptyArray(currentOrder) && isEmptyArray(currentOrder['one']) &&
+          <p className="personal-explain-text" style={{color: 'red'}}>У Вас уже есть заказ в обработке.</p>}
           <table className="cart-products-table">
             <thead>
             <tr className="cart-tr-head">
@@ -210,7 +238,7 @@ class Cart extends Component {
           <textarea
             name="comment"
             className="cart-comment"
-            value={this.state.comment}
+            value={isEmptyArray(currentOrder) && isEmptyArray(currentOrder['four']) && currentOrder['four'].comment ? currentOrder['four'].comment : this.state.comment}
             onChange={this.handleChangeComment.bind(this)}
             placeholder="Оставьте комментарий к заказу..."
           />
@@ -236,5 +264,6 @@ export default connect(store => ({
   api: store.api,
   ordersQuota: store.api.get('ordersQuota'),
   productsForCart: store.api.get('productsForCart'),
+  currentOrder: store.api.get('currentOrder'),
   errorMessageCountQuota: store.session.get('errors').errorTime,
 }))(Cart);

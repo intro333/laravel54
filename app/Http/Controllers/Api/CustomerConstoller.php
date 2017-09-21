@@ -175,6 +175,9 @@ class CustomerConstoller extends Controller
             ->first();
         $details = $user->details()->first();
         $date = $details->birthdate ? new \DateTime($details->birthdate) : '';
+        $emailHash = hash('md5', $email);
+        $emailHash = preg_replace('/[^0-9]/', '', $emailHash);
+        $emailHash = substr($emailHash, 0, 7);
         $userInfo = [
             'email'     => $user['email'],
             'name'      => $details->name,
@@ -184,6 +187,7 @@ class CustomerConstoller extends Controller
             'address'   => $details->address,
             'gender'    => $details->gender,
             'birthdate' => $date ? $date->format('Y-m-d') : '',
+            'emailHash' => $emailHash,
         ];
 
         return $userInfo;

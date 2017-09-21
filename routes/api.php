@@ -24,6 +24,7 @@ Route::post('/delete-product-from-cart', 'Api\SessionController@deleteProductFro
 Route::post('/send-order', 'Api\SessionController@sendOrder')->name('sendOrder');
 Route::post('/clear-cart', 'Api\SessionController@clearCart')->name('clearCart');
 Route::post('/get-orders-quota-in-cart', 'Api\SessionController@showOrdersQuotaInCart')->name('showOrdersQuotaInCart');
+Route::post('/get-order-current', 'Api\SessionController@showOrderCurrent')->name('showOrderCurrent');
 Route::post('/check-time-quota-in-cart', 'Api\SessionController@checkTimeQuotaInCart')->name('checkTimeQuotaInCart');
 Route::post('/get-product-counts', 'Api\SessionController@getProductCounts')->name('getProductCounts');
 Route::post('/getUserInfo', 'Api\CustomerConstoller@getUserInfo')->name('getUserInfo');

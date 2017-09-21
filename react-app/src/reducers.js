@@ -12,6 +12,7 @@ export const api = (state = map({
   products: map(),
   productsForCart: map(),
   ordersQuota: map(),
+  currentOrder: map(),
   checkTimeQuota: null,
   dataOfPersonalAccount: map(),
   imagePath: false,
@@ -33,6 +34,10 @@ export const api = (state = map({
 
     case 'SET_ORDERS_QUOTA_FOR_CART':
       return state.set('ordersQuota', action.ordersQuota);
+
+
+    case 'SET_CURRENT_ORDER':
+      return state.set('currentOrder', action.currentOrder);
 
     case 'SET_CHECK_TIME_QUOTA_FOR_CART':
       return state.set('checkTimeQuota', action.checkTimeQuota);

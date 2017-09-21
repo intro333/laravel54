@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import * as modelActions from './actions';
-import { changeSuccessModalDisplay, setScrollTop } from './components/Products/actions';
+import { changeSuccessModalDisplay } from './components/Products/actions';
+import { isEmptyMap } from './helpers';
 
 export const makeRequest = (dispatcher, params, then, error) => {
   axios(params).then((result) => {
@@ -218,6 +219,26 @@ export const showOrdersQuotaInCart = (dispatcher) => {
   makeRequest(dispatcher, params, then, error);
 };
 
+//Показать текущий заказ(со статусом 1 или 4).
+export const showCurrentOrder = (dispatcher) => {
+  const params = {
+    method:'post',
+    url:'/api/get-order-current'
+  };
+
+  const then = response => {
+    if(response.status === 200) {
+      dispatcher(modelActions.setCurrentOrder(response.data))
+    }
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
 //Прочекать квоты в корзине на наличие 0.
 export const checkTimeQuota = (dispatcher, data) => {
   const params = {
@@ -353,8 +374,10 @@ export const repeatOrChangeOrder = (dispatcher, data, history) => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setProductsForCart(response.data));
-    history.push('/cart');
+    if (response.status === 200) {
+      dispatcher(modelActions.setProductsForCart(response.data));
+      history.push('/cart');
+    }
   };
 
   const error = (error) => {

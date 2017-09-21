@@ -34,6 +34,10 @@ export function setOrdersQuotaForCart(ordersQuota) {
   return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota };
 }
 
+export function setCurrentOrder(currentOrder) {
+  return { type: 'SET_CURRENT_ORDER', currentOrder };
+}
+
 export function setCheckTimeQuotaForCart(checkTimeQuota) {
   return { type: 'SET_CHECK_TIME_QUOTA_FOR_CART', checkTimeQuota };
 }
