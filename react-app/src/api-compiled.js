@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.repeatOrChangeOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showOrdersQuotaInCart = exports.clearCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.repeatOrChangeOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showCurrentOrder = exports.showOrdersQuotaInCart = exports.clearCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -18,6 +18,8 @@ var _actions = require('./actions');
 var modelActions = _interopRequireWildcard(_actions);
 
 var _actions2 = require('./components/Products/actions');
+
+var _helpers = require('./helpers');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -180,7 +182,12 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history
 
   var then = function then(response) {
     if (response.data.successTime) {
-      history.push('/sussess-page'); //TODO редирект на страницу успешного завершения отправления заказа
+      setTimeout(function () {
+        dispatcher(modelActions.setSuccessPageStatus('success'));
+      }, 3000);
+      setTimeout(function () {
+        dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+      }, 3000);
     } else if (response.data.errorTime) {
       dispatcher(modelActions.setErrors(response.data));
       showOrdersQuotaInCart(dispatcher);
@@ -189,6 +196,9 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history
 
   var error = function error(_error8) {
     console.log(_error8);
+    setTimeout(function () {
+      dispatcher(modelActions.setSuccessPageStatus('error'));
+    }, 3000);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -232,6 +242,26 @@ var showOrdersQuotaInCart = exports.showOrdersQuotaInCart = function showOrdersQ
   makeRequest(dispatcher, params, then, error);
 };
 
+//Показать текущий заказ(со статусом 1 или 4).
+var showCurrentOrder = exports.showCurrentOrder = function showCurrentOrder(dispatcher) {
+  var params = {
+    method: 'post',
+    url: '/api/get-order-current'
+  };
+
+  var then = function then(response) {
+    if (response.status === 200) {
+      dispatcher(modelActions.setCurrentOrder(response.data));
+    }
+  };
+
+  var error = function error(_error11) {
+    console.log(_error11);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
 //Прочекать квоты в корзине на наличие 0.
 var checkTimeQuota = exports.checkTimeQuota = function checkTimeQuota(dispatcher, data) {
   var params = {
@@ -244,8 +274,8 @@ var checkTimeQuota = exports.checkTimeQuota = function checkTimeQuota(dispatcher
     dispatcher(modelActions.setCheckTimeQuotaForCart(response.data));
   };
 
-  var error = function error(_error11) {
-    console.log(_error11);
+  var error = function error(_error12) {
+    console.log(_error12);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -262,8 +292,8 @@ var setUserInfo = exports.setUserInfo = function setUserInfo(dispatcher) {
     dispatcher(modelActions.setUserInfo(response.data));
   };
 
-  var error = function error(_error12) {
-    console.log(_error12);
+  var error = function error(_error13) {
+    console.log(_error13);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -287,8 +317,8 @@ var updatePersonalData = exports.updatePersonalData = function updatePersonalDat
     }
   };
 
-  var error = function error(_error13) {
-    console.log(_error13);
+  var error = function error(_error14) {
+    console.log(_error14);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -311,8 +341,8 @@ var changePhotoPersonalData = exports.changePhotoPersonalData = function changeP
     dispatcher(modelActions.setUserImage(response.data));
   };
 
-  var error = function error(_error14) {
-    console.log(_error14);
+  var error = function error(_error15) {
+    console.log(_error15);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -331,8 +361,8 @@ var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data
     // console.log('ordersGetAll response.data', response.data);
   };
 
-  var error = function error(_error15) {
-    console.log(_error15);
+  var error = function error(_error16) {
+    console.log(_error16);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -352,8 +382,8 @@ var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteO
     // console.log('ordersGetAll response.data', response.data);
   };
 
-  var error = function error(_error16) {
-    console.log(_error16);
+  var error = function error(_error17) {
+    console.log(_error17);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -368,12 +398,14 @@ var repeatOrChangeOrder = exports.repeatOrChangeOrder = function repeatOrChangeO
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setProductsForCart(response.data));
-    history.push('/cart');
+    if (response.status === 200) {
+      dispatcher(modelActions.setProductsForCart(response.data));
+      history.push('/cart');
+    }
   };
 
-  var error = function error(_error17) {
-    console.log(_error17);
+  var error = function error(_error18) {
+    console.log(_error18);
   };
 
   makeRequest(dispatcher, params, then, error);

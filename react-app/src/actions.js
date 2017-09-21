@@ -62,6 +62,10 @@ export function setModalLoaderCartSentStatus(modalLoaderCartSentStatus) {
   return { type: 'SET_MODAL_LOADER_CART_SENT_STATUS', modalLoaderCartSentStatus };
 }
 
+export function setSuccessPageStatus(successPageStatus) {
+  return { type: 'SET_SUCCESS_PAGE_STATUS', successPageStatus };
+}
+
 export function setTotalSum(totalSum) {
   return { type: 'SET_TOTAL_SUM', totalSum };
 }

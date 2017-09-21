@@ -42,6 +42,8 @@ var _Modal = require('../Popups/Modal');
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
+var _immutable = require('immutable');
+
 var _api = require('../../api');
 
 var _helpers = require('../../helpers');
@@ -89,13 +91,27 @@ var Cart = function (_Component) {
 
       (0, _api.showProductsInCart)(dispatch);
       (0, _api.showOrdersQuotaInCart)(dispatch);
+      (0, _api.showCurrentOrder)(dispatch);
     }
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(next) {
       if (next.session.get('productCounts') === 0) {
+        var _props = this.props,
+            dispatch = _props.dispatch,
+            history = _props.history;
+
+        (0, _api.clearCart)(dispatch, history);
         next.history.push('/');
       }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      var dispatch = this.props.dispatch;
+
+      var map = _immutable.Map;
+      dispatch(modelActions.setCurrentOrder(map()));
     }
   }, {
     key: 'handleChangeComment',
@@ -128,33 +144,53 @@ var Cart = function (_Component) {
   }, {
     key: 'handlerSendOrder',
     value: function handlerSendOrder() {
-      var _props = this.props,
-          dispatch = _props.dispatch,
-          history = _props.history,
-          ordersQuota = _props.ordersQuota;
+      var _this2 = this;
+
+      var _props2 = this.props,
+          dispatch = _props2.dispatch,
+          history = _props2.history,
+          ordersQuota = _props2.ordersQuota,
+          currentOrder = _props2.currentOrder;
 
       var data = {
         comment: this.state.comment,
         time_quota: this.state.time_quota
       };
-      if (this.state.time_quota !== 0) {
-        (0, _api.sendOrder)(dispatch, data, history);
-      } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
-        (0, _api.sendOrder)(dispatch, data, history);
-      } else {
-        (0, _helpers.scrollToElement)('.scroll-to-error', 1500);
+      if ((0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one'])) {
         this.setState({
-          cart_error: 'Выберите удобный период получения заказа.',
-          selectError: {
-            borderColor: 'indianred'
+          fadeIn: true,
+          modalDisplay: true,
+          textHeader: 'У Вас уже есть один заказ в обработке.Перейти к заказу?',
+          function: function _function() {
+            var history = _this2.props.history;
+
+            history.push('/orders');
           }
         });
+      } else {
+        if (this.state.time_quota !== 0) {
+          (0, _api.sendOrder)(dispatch, data, history);
+          dispatch(modelActions.setModalLoaderCartSentStatus(true));
+          history.push('/sussess-page');
+        } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
+          (0, _api.sendOrder)(dispatch, data, history);
+          dispatch(modelActions.setModalLoaderCartSentStatus(true));
+          history.push('/sussess-page');
+        } else {
+          (0, _helpers.scrollToElement)('.scroll-to-error', 1500);
+          this.setState({
+            cart_error: 'Выберите удобный период получения заказа.',
+            selectError: {
+              borderColor: 'indianred'
+            }
+          });
+        }
       }
     }
   }, {
     key: 'handlerClearCart',
     value: function handlerClearCart() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.setState({
         fadeIn: true,
@@ -162,9 +198,9 @@ var Cart = function (_Component) {
         textHeader: 'Удалить все товары из корзины?',
         textBody: 'Удалить все товары из корзины?',
         function: function _function() {
-          var _props2 = _this2.props,
-              dispatch = _props2.dispatch,
-              history = _props2.history;
+          var _props3 = _this3.props,
+              dispatch = _props3.dispatch,
+              history = _props3.history;
 
           (0, _api.clearCart)(dispatch, history);
         }
@@ -186,10 +222,12 @@ var Cart = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props3 = this.props,
-          ordersQuota = _props3.ordersQuota,
-          productsForCart = _props3.productsForCart,
-          errorMessageCountQuota = _props3.errorMessageCountQuota;
+      var _props4 = this.props,
+          ordersQuota = _props4.ordersQuota,
+          productsForCart = _props4.productsForCart,
+          errorMessageCountQuota = _props4.errorMessageCountQuota,
+          currentOrder = _props4.currentOrder,
+          session = _props4.session;
       // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
       // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
 
@@ -203,6 +241,7 @@ var Cart = function (_Component) {
         });
       });
 
+      var userInfo = session.get('userInfo');
       total = productsForCart.reduce(function (total, item) {
         return total + (item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10);
       }, 0);
@@ -218,6 +257,8 @@ var Cart = function (_Component) {
         display: 'flex',
         alignItems: 'center'
       };
+
+      var comment = (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && currentOrder['four'].comment ? currentOrder['four'].comment : '';
 
       var ordersQoutaDiv = _react2.default.createElement(
         'div',
@@ -287,6 +328,19 @@ var Cart = function (_Component) {
               )
             )
           ),
+          (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && _react2.default.createElement(
+            'p',
+            { className: 'personal-explain-text' },
+            '\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430 \u2116 ST-',
+            userInfo.emailHash,
+            '-',
+            currentOrder['four'].order_id
+          ),
+          (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one']) && _react2.default.createElement(
+            'p',
+            { className: 'personal-explain-text', style: { color: 'red' } },
+            '\u0423 \u0412\u0430\u0441 \u0443\u0436\u0435 \u0435\u0441\u0442\u044C \u0437\u0430\u043A\u0430\u0437 \u0432 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0435.'
+          ),
           _react2.default.createElement(
             'table',
             { className: 'cart-products-table' },
@@ -344,7 +398,7 @@ var Cart = function (_Component) {
           _react2.default.createElement('textarea', {
             name: 'comment',
             className: 'cart-comment',
-            value: this.state.comment,
+            value: this.state.comment === '' ? comment : this.state.comment,
             onChange: this.handleChangeComment.bind(this),
             placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
           }),
@@ -381,6 +435,7 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     api: store.api,
     ordersQuota: store.api.get('ordersQuota'),
     productsForCart: store.api.get('productsForCart'),
+    currentOrder: store.api.get('currentOrder'),
     errorMessageCountQuota: store.session.get('errors').errorTime
   };
 })(Cart);

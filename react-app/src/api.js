@@ -164,9 +164,7 @@ export const sendOrder = (dispatcher, data, history) => {
 
   const then = response => {
     if (response.data.successTime) {
-      console.log(3, 'Пришёл статус ок.');
-      dispatcher(modelActions.setModalLoaderCartSentStatus(true));
-      history.push('/sussess-page');//TODO редирект на страницу успешного завершения отправления заказа
+      setTimeout(function(){ dispatcher(modelActions.setSuccessPageStatus('success')); }, 3000);
       setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 3000);
     } else if (response.data.errorTime) {
       dispatcher(modelActions.setErrors(response.data));
@@ -176,6 +174,7 @@ export const sendOrder = (dispatcher, data, history) => {
 
   const error = (error) => {
     console.log(error);
+    setTimeout(function(){ dispatcher(modelActions.setSuccessPageStatus('error')); }, 3000);
   };
 
   makeRequest(dispatcher, params, then, error);

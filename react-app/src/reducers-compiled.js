@@ -24,10 +24,13 @@ var api = exports.api = function api() {
     products: map(),
     productsForCart: map(),
     ordersQuota: map(),
+    currentOrder: map(),
     checkTimeQuota: null,
     dataOfPersonalAccount: map(),
     imagePath: false,
     componentWillReceivePropsChange: false,
+    modalLoaderCartSentStatus: false,
+    successPageStatus: null,
     orders: map()
 
   });
@@ -47,6 +50,9 @@ var api = exports.api = function api() {
     case 'SET_ORDERS_QUOTA_FOR_CART':
       return state.set('ordersQuota', action.ordersQuota);
 
+    case 'SET_CURRENT_ORDER':
+      return state.set('currentOrder', action.currentOrder);
+
     case 'SET_CHECK_TIME_QUOTA_FOR_CART':
       return state.set('checkTimeQuota', action.checkTimeQuota);
 
@@ -61,6 +67,12 @@ var api = exports.api = function api() {
 
     case 'SET_COMPONENT_WILL_RECEIVE_PROPS':
       return state.set('componentWillReceivePropsChange', action.componentWillReceivePropsChange);
+
+    case 'SET_MODAL_LOADER_CART_SENT_STATUS':
+      return state.set('modalLoaderCartSentStatus', action.modalLoaderCartSentStatus);
+
+    case 'SET_SUCCESS_PAGE_STATUS':
+      return state.set('successPageStatus', action.successPageStatus);
 
     default:
       return state;

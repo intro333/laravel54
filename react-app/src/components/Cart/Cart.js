@@ -105,8 +105,12 @@ class Cart extends Component {
     } else {
       if (this.state.time_quota !== 0) {
         sendOrder(dispatch, data, history);
+        dispatch(modelActions.setModalLoaderCartSentStatus(true));
+        history.push('/sussess-page');
       } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
-        sendOrder(dispatch, data, history)
+        sendOrder(dispatch, data, history);
+        dispatch(modelActions.setModalLoaderCartSentStatus(true));
+        history.push('/sussess-page');
       } else {
         scrollToElement('.scroll-to-error', 1500);
         this.setState({
@@ -174,6 +178,8 @@ class Cart extends Component {
       alignItems: 'center'
     };
 
+    const comment = isEmptyArray(currentOrder) && isEmptyArray(currentOrder['four']) && currentOrder['four'].comment ? currentOrder['four'].comment : '';
+
     var ordersQoutaDiv = <div style={quotaStyle}>
       <label className="order-filds-label" htmlFor="time_quota">Я смогу забрать свой заказ в период с</label>
       <div style={{width: '120px', marginLeft: '10px'}}>
@@ -238,7 +244,7 @@ class Cart extends Component {
           <textarea
             name="comment"
             className="cart-comment"
-            value={isEmptyArray(currentOrder) && isEmptyArray(currentOrder['four']) && currentOrder['four'].comment ? currentOrder['four'].comment : this.state.comment}
+            value={this.state.comment === '' ? comment : this.state.comment}
             onChange={this.handleChangeComment.bind(this)}
             placeholder="Оставьте комментарий к заказу..."
           />

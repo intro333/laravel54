@@ -12,11 +12,14 @@ exports.setCategoryId = setCategoryId;
 exports.setCategoryName = setCategoryName;
 exports.setProductsForCart = setProductsForCart;
 exports.setOrdersQuotaForCart = setOrdersQuotaForCart;
+exports.setCurrentOrder = setCurrentOrder;
 exports.setCheckTimeQuotaForCart = setCheckTimeQuotaForCart;
 exports.setUserImage = setUserImage;
 exports.setProductCounts = setProductCounts;
 exports.setOrders = setOrders;
 exports.componentWillReceivePropsChange = componentWillReceivePropsChange;
+exports.setModalLoaderCartSentStatus = setModalLoaderCartSentStatus;
+exports.setSuccessPageStatus = setSuccessPageStatus;
 exports.setTotalSum = setTotalSum;
 function setUserInfo(userInfo) {
   return { type: 'SET_USER_INFO', userInfo: userInfo };
@@ -54,6 +57,10 @@ function setOrdersQuotaForCart(ordersQuota) {
   return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota: ordersQuota };
 }
 
+function setCurrentOrder(currentOrder) {
+  return { type: 'SET_CURRENT_ORDER', currentOrder: currentOrder };
+}
+
 function setCheckTimeQuotaForCart(checkTimeQuota) {
   return { type: 'SET_CHECK_TIME_QUOTA_FOR_CART', checkTimeQuota: checkTimeQuota };
 }
@@ -72,6 +79,14 @@ function setOrders(orders) {
 
 function componentWillReceivePropsChange(componentWillReceivePropsChange) {
   return { type: 'SET_COMPONENT_WILL_RECEIVE_PROPS', componentWillReceivePropsChange: componentWillReceivePropsChange };
+}
+
+function setModalLoaderCartSentStatus(modalLoaderCartSentStatus) {
+  return { type: 'SET_MODAL_LOADER_CART_SENT_STATUS', modalLoaderCartSentStatus: modalLoaderCartSentStatus };
+}
+
+function setSuccessPageStatus(successPageStatus) {
+  return { type: 'SET_SUCCESS_PAGE_STATUS', successPageStatus: successPageStatus };
 }
 
 function setTotalSum(totalSum) {
