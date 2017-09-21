@@ -16,6 +16,7 @@ export const api = (state = map({
   dataOfPersonalAccount: map(),
   imagePath: false,
   componentWillReceivePropsChange: false,
+  modalLoaderCartSentStatus: false,
   orders: map(),
 
 }), action) => {
@@ -47,6 +48,9 @@ export const api = (state = map({
 
     case 'SET_COMPONENT_WILL_RECEIVE_PROPS':
       return state.set('componentWillReceivePropsChange', action.componentWillReceivePropsChange);
+
+    case 'SET_MODAL_LOADER_CART_SENT_STATUS':
+      return state.set('modalLoaderCartSentStatus', action.modalLoaderCartSentStatus);
 
     default:
       return state;

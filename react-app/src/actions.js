@@ -54,6 +54,10 @@ export function componentWillReceivePropsChange(componentWillReceivePropsChange)
   return { type: 'SET_COMPONENT_WILL_RECEIVE_PROPS', componentWillReceivePropsChange };
 }
 
+export function setModalLoaderCartSentStatus(modalLoaderCartSentStatus) {
+  return { type: 'SET_MODAL_LOADER_CART_SENT_STATUS', modalLoaderCartSentStatus };
+}
+
 export function setTotalSum(totalSum) {
   return { type: 'SET_TOTAL_SUM', totalSum };
 }

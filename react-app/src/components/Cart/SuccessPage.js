@@ -6,6 +6,7 @@ import '../../theme/css/adaptive.css';
 import {Link} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
+import ModalLoaderCartSent  from '../Popups/ModalLoaderCartSent';
 
 class SuccessPage extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class SuccessPage extends Component {
         <Navigation />
         <MenuMobile />
         <section className="success-page animation-page-load-long">
+          <ModalLoaderCartSent />
           <div className="success-page__content">
             <div className="success-page__title">Ваш заказ принят!</div>
             <div className="success-page__text">
