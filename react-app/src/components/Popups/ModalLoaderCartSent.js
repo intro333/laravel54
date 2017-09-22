@@ -46,9 +46,11 @@ class ModalLoaderCartSent extends Component {
         <div className="modal-dialog modal-sm">
           <div className="modal-content">
             <div className="modal-animation">
-              <h4 className="modal-title">Отправка заказа.</h4>
+              <h4 className="modal-title" style={{textAlign: 'center'}}>Отправка заказа.</h4>
               <div className="modal-animation__item">
-                <span className={transitionTiming}><TextO size={50} /></span>
+                <span><Mobile /></span>
+                <span className={transitionTiming}><TextO /></span>
+                <span><MdComputer /></span>
               </div>
             </div>
           </div>

@@ -1089,23 +1089,37 @@ th {
     box-shadow: 0 3px 9px rgba(0,0,0,.5);
 }
 .modal-animation {
-    height: 300px;
+    /*height: 300px;*/
     padding: 15px;
-    text-align: center;
+    text-align: left !important;
 }
+
 .modal-animation__item {
-    display: flex;
     padding: 20px;
+}
+.modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {
+    height: 120px;
+    width: 120px;
+}
+.modal-animation__item span:nth-child(2) svg {
+    height: 50px;
+    width: 50px;
+}
+.modal-animation__item span:nth-child(3) {
+    position: relative;
+    right: 30px;
+    float: right;
 }
 @keyframes transitionTiming {
     0% {
         left:0;
     }
     100% {
-        left:200px;
+        left:180px;
     }
 }
 .transition-timing-linear {
+    left: 0;
     position: relative;
     animation-name:transitionTiming;
     animation-duration: 2s;

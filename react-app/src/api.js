@@ -164,8 +164,8 @@ export const sendOrder = (dispatcher, data, history) => {
 
   const then = response => {
     if (response.data.successTime) {
-      setTimeout(function(){ dispatcher(modelActions.setSuccessPageStatus('success')); }, 3000);
-      // setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 3000);
+      setTimeout(function(){ dispatcher(modelActions.setSuccessPageStatus('success')); }, 5000);
+      // setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 5000);
     } else if (response.data.errorTime) {
       dispatcher(modelActions.setErrors(response.data));
       showOrdersQuotaInCart(dispatcher);
@@ -174,7 +174,8 @@ export const sendOrder = (dispatcher, data, history) => {
 
   const error = (error) => {
     console.log(error);
-    setTimeout(function(){ dispatcher(modelActions.setSuccessPageStatus('error')); }, 3000);
+    setTimeout(function(){ dispatcher(modelActions.setSuccessPageStatus('error')); }, 5000);
+    setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 5000);
   };
 
   makeRequest(dispatcher, params, then, error);

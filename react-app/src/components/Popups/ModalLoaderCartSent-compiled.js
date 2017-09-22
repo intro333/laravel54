@@ -20,7 +20,17 @@ require('../../theme/css/adaptive.css');
 
 var _reactRedux = require('react-redux');
 
-var _actions = require('../../actions');
+var _fileTextO = require('react-icons/lib/fa/file-text-o');
+
+var _fileTextO2 = _interopRequireDefault(_fileTextO);
+
+var _mobile = require('react-icons/lib/fa/mobile');
+
+var _mobile2 = _interopRequireDefault(_mobile);
+
+var _computer = require('react-icons/lib/md/computer');
+
+var _computer2 = _interopRequireDefault(_computer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49,16 +59,23 @@ var ModalLoaderCartSent = function (_Component) {
     value: function render() {
       var api = this.props.api;
 
+
+      var onOff = api.get('modalLoaderCartSentStatus');
       var modalFadeIn = (0, _classnames2.default)({
         'animation-popup-load-fast': true,
         'modal': true,
         'fade': true,
-        'in': api.get('modalLoaderCartSentStatus')
+        'in': onOff
+      });
+
+      var transitionTiming = (0, _classnames2.default)({
+        'transition-timing-linear': true
       });
 
       var modalStyleOn = {
         display: 'block', paddingLeft: '15px'
       };
+
       var modalStyleOff = {
         display: 'none'
       };
@@ -66,10 +83,10 @@ var ModalLoaderCartSent = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement('div', { className: 'modal-backdrop-white fade in', style: api.get('modalLoaderCartSentStatus') ? modalStyleOn : modalStyleOff }),
+        _react2.default.createElement('div', { className: 'modal-backdrop-white fade in', style: onOff ? modalStyleOn : modalStyleOff }),
         _react2.default.createElement(
           'div',
-          { className: modalFadeIn, role: 'dialog', style: api.get('modalLoaderCartSentStatus') ? modalStyleOn : modalStyleOff },
+          { className: modalFadeIn, role: 'dialog', style: onOff ? modalStyleOn : modalStyleOff },
           _react2.default.createElement(
             'div',
             { className: 'modal-dialog modal-sm' },
@@ -78,11 +95,30 @@ var ModalLoaderCartSent = function (_Component) {
               { className: 'modal-content' },
               _react2.default.createElement(
                 'div',
-                { className: 'modal-header' },
+                { className: 'modal-animation' },
                 _react2.default.createElement(
                   'h4',
-                  { className: 'modal-title' },
-                  '\u041E\u0442\u043F\u0440\u0430\u0432\u043A\u0430 \u0437\u0430\u043A\u0430\u0437\u0430...'
+                  { className: 'modal-title', style: { textAlign: 'center' } },
+                  '\u041E\u0442\u043F\u0440\u0430\u0432\u043A\u0430 \u0437\u0430\u043A\u0430\u0437\u0430.'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'modal-animation__item' },
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    _react2.default.createElement(_mobile2.default, null)
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    { className: transitionTiming },
+                    _react2.default.createElement(_fileTextO2.default, null)
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    _react2.default.createElement(_computer2.default, null)
+                  )
                 )
               )
             )

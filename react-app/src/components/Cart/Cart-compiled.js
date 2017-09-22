@@ -116,8 +116,15 @@ var Cart = function (_Component) {
   }, {
     key: 'handleChangeComment',
     value: function handleChangeComment(event) {
+      var currentOrder = this.props.currentOrder;
+
+      var comment = (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && currentOrder['four'].comment ? currentOrder['four'].comment : '';
       if (event.target.value.length < 1000) {
-        this.setState({ comment: event.target.value });
+        if (comment !== '' && event.target.value === '') {
+          this.setState({
+            comment: ' '
+          });
+        } else this.setState({ comment: event.target.value });
         this.setState({
           comment_count_error: ''
         });
