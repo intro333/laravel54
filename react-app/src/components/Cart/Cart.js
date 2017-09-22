@@ -62,8 +62,14 @@ class Cart extends Component {
   }
 
   handleChangeComment(event) {
+    const { currentOrder } = this.props;
+    const comment = isEmptyArray(currentOrder) && isEmptyArray(currentOrder['four']) && currentOrder['four'].comment ? currentOrder['four'].comment : '';
     if (event.target.value.length < 1000) {
-      this.setState({comment: event.target.value});
+      if (comment !== '' && event.target.value === '') {
+        this.setState({
+          comment: ' '
+        });
+      } else this.setState({comment: event.target.value});
       this.setState({
         comment_count_error: ''
       });

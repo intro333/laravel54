@@ -3,7 +3,9 @@ import classNames from 'classnames';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import { connect } from 'react-redux';
-import { setModalLoaderCartSentStatus } from '../../actions';
+import TextO from 'react-icons/lib/fa/file-text-o';
+import Mobile from 'react-icons/lib/fa/mobile';
+import MdComputer from 'react-icons/lib/md/computer';
 
 class ModalLoaderCartSent extends Component {
   constructor(props) {
@@ -16,28 +18,38 @@ class ModalLoaderCartSent extends Component {
 
   render() {
     const { api } = this.props;
+
+    var onOff = api.get('modalLoaderCartSentStatus');
     const modalFadeIn = classNames({
       'animation-popup-load-fast': true,
       'modal': true,
       'fade': true,
-      'in': api.get('modalLoaderCartSentStatus'),
+      'in': onOff,
+    });
+
+    const transitionTiming = classNames({
+      'transition-timing-linear': true,
     });
 
     const modalStyleOn = {
       display: 'block', paddingLeft: '15px'
     };
+
     const modalStyleOff = {
       display: 'none'
     };
 
   return(
     <div>
-      <div className="modal-backdrop-white fade in" style={api.get('modalLoaderCartSentStatus') ? modalStyleOn : modalStyleOff}></div>
-      <div className={modalFadeIn} role="dialog" style={api.get('modalLoaderCartSentStatus') ? modalStyleOn : modalStyleOff}>
+      <div className="modal-backdrop-white fade in" style={onOff ? modalStyleOn : modalStyleOff}></div>
+      <div className={modalFadeIn} role="dialog" style={onOff ? modalStyleOn : modalStyleOff}>
         <div className="modal-dialog modal-sm">
           <div className="modal-content">
-            <div className="modal-header">
-              <h4 className="modal-title">Отправка заказа...</h4>
+            <div className="modal-animation">
+              <h4 className="modal-title">Отправка заказа.</h4>
+              <div className="modal-animation__item">
+                <span className={transitionTiming}><TextO size={50} /></span>
+              </div>
             </div>
           </div>
         </div>

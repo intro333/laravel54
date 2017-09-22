@@ -165,7 +165,7 @@ export const sendOrder = (dispatcher, data, history) => {
   const then = response => {
     if (response.data.successTime) {
       setTimeout(function(){ dispatcher(modelActions.setSuccessPageStatus('success')); }, 3000);
-      setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 3000);
+      // setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 3000);
     } else if (response.data.errorTime) {
       dispatcher(modelActions.setErrors(response.data));
       showOrdersQuotaInCart(dispatcher);
