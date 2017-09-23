@@ -181,21 +181,19 @@
     h2 {
         font-size: 24px;
     }
-    .transition-timing-linear {
-        left: 37vw;
+    @keyframes transitionTiming {
+        0% {
+            left:0;
+        }
+        100% {
+            left:calc(100% - 320px);
+        }
     }
     .modal-animation__item span:nth-child(3) {
-        position: relative;
         right: 0;
-        float: right;
     }
 }
 
-@media (max-width: 680px) {
-    .transition-timing-linear {
-        left: 30vw;
-    }
-}
 @media (max-width: 600px) {
     .lesson-theme {
         max-width: 60%;
@@ -208,15 +206,16 @@
         height: 100px;
         width: 100px;
     }
-    .transition-timing-linear {
-        left: 35vw;
+    @keyframes transitionTiming {
+        0% {
+            left:0;
+        }
+        100% {
+            left:calc(100% - 270px);
+        }
     }
     .modal-animation__item {
         padding: 40px 0;
-    }
-}@media (max-width: 520px) {
-    .transition-timing-linear {
-        left: 30vw;
     }
 }
 
@@ -229,13 +228,23 @@
         height: 80px;
         width: 80px;
     }
-    .transition-timing-linear {
-        left: 35vw;
+    @keyframes transitionTiming {
+        0% {
+            left:0;
+        }
+        100% {
+            left:calc(100% - 225px);
+        }
     }
 }
 @media (max-width: 440px) {
-    .transition-timing-linear {
-        left: 30vw;
+    @keyframes transitionTiming {
+        0% {
+            left:0;
+        }
+        100% {
+            left:calc(100% - 190px);
+        }
     }
     .modal-animation__item span:nth-child(2) svg {
         height: 30px;
@@ -244,16 +253,6 @@
     .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {
         height: 70px;
         width: 70px;
-    }
-}
-@media (max-width: 360px) {
-    .transition-timing-linear {
-        left: 20vw;
-    }
-}
-@media (max-width: 340px) {
-    .lesson-theme {
-        max-width: 55%;
     }
 }
 /*Блок с заданиями*/

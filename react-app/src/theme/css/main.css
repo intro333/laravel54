@@ -1115,11 +1115,10 @@ th {
         left:0;
     }
     100% {
-        left:180px;
+        left:calc(600px - 420px);
     }
 }
 .transition-timing-linear {
-    left: 0;
     position: relative;
     animation-name:transitionTiming;
     animation-duration: 2s;
