@@ -120,11 +120,6 @@ var Navigation = function (_Component) {
                 ),
                 _react2.default.createElement(
                   _reactRouterDom.Link,
-                  { to: '/sussess-page' },
-                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-user  mob-menu-right' })
-                ),
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
                   { to: '/cart' },
                   _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart mob-menu-right' }),
                   _react2.default.createElement(
@@ -210,19 +205,6 @@ var Navigation = function (_Component) {
                       'div',
                       { className: 'menu__item--basket__amount' },
                       productsCounts && productsCounts
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: 'sussess-page' },
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'mob-nav-text' },
-                      'Success'
                     )
                   )
                 ),

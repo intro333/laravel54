@@ -1960,7 +1960,9 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history
       setTimeout(function () {
         dispatcher(modelActions.setSuccessPageStatus('success'));
       }, 5000);
-      // setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 5000);
+      setTimeout(function () {
+        dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+      }, 5000);
     } else if (response.data.errorTime) {
       dispatcher(modelActions.setErrors(response.data));
       showOrdersQuotaInCart(dispatcher);
@@ -3251,11 +3253,6 @@ var Navigation = function (_Component) {
                 ),
                 _react2.default.createElement(
                   _reactRouterDom.Link,
-                  { to: '/sussess-page' },
-                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-user  mob-menu-right' })
-                ),
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
                   { to: '/cart' },
                   _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart mob-menu-right' }),
                   _react2.default.createElement(
@@ -3341,19 +3338,6 @@ var Navigation = function (_Component) {
                       'div',
                       { className: 'menu__item--basket__amount' },
                       productsCounts && productsCounts
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: 'sussess-page' },
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'mob-nav-text' },
-                      'Success'
                     )
                   )
                 ),
@@ -26016,9 +26000,9 @@ var ModalLoaderCartSent = function (_Component) {
     value: function render() {
       var api = this.props.api;
 
-      // var onOff = api.get('modalLoaderCartSentStatus');
 
-      var onOff = true;
+      var onOff = api.get('modalLoaderCartSentStatus');
+      // var onOff = true;
       var modalFadeIn = (0, _classnames2.default)({
         'animation-popup-load-fast': true,
         'modal': true,

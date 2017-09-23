@@ -59,9 +59,9 @@ var ModalLoaderCartSent = function (_Component) {
     value: function render() {
       var api = this.props.api;
 
-      // var onOff = api.get('modalLoaderCartSentStatus');
 
-      var onOff = true;
+      var onOff = api.get('modalLoaderCartSentStatus');
+      // var onOff = true;
       var modalFadeIn = (0, _classnames2.default)({
         'animation-popup-load-fast': true,
         'modal': true,

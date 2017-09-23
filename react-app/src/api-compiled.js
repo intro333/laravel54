@@ -185,7 +185,9 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history
       setTimeout(function () {
         dispatcher(modelActions.setSuccessPageStatus('success'));
       }, 5000);
-      // setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 5000);
+      setTimeout(function () {
+        dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+      }, 5000);
     } else if (response.data.errorTime) {
       dispatcher(modelActions.setErrors(response.data));
       showOrdersQuotaInCart(dispatcher);

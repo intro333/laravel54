@@ -19,8 +19,8 @@ class ModalLoaderCartSent extends Component {
   render() {
     const { api } = this.props;
 
-    // var onOff = api.get('modalLoaderCartSentStatus');
-    var onOff = true;
+    var onOff = api.get('modalLoaderCartSentStatus');
+    // var onOff = true;
     const modalFadeIn = classNames({
       'animation-popup-load-fast': true,
       'modal': true,
