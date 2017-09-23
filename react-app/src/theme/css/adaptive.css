@@ -87,20 +87,63 @@
     }
 }
 /***** END! ADAPTIVE for footer END!******/
-/*.app-container {*/
-    /*display: block;*/
-/*}*/
+
 /*адаптив для меню,навигации*/
 @media (max-width: 767px) {
     .mob-nav-text {
         display: none;
     }
 }
-/*@media (max-width: 1767px) {*/
-    /*#mob-www-logo {*/
-        /*display: none;*/
-    /*}*/
-/*}*/
+/*Продукты контейнер*/
+@media (min-width: 1980px) {
+    .category-item {
+        width: calc(100% / 6 - 10px);
+    }
+}
+@media (min-width: 1300px) {
+    .category-item {
+        width: calc(100% / 5 - 10px);
+    }
+}
+@media (max-width: 1023px) {
+    .category-item {
+        width: calc(100% / 3 - 10px);
+    }
+}
+@media (max-width: 780px) {
+    .category-item {
+        width: calc(100% / 2 - 10px);
+    }
+}
+@media (max-width: 520px) {
+    .category-item {
+        width: calc(100% / 1 - 10px);
+    }
+    .order-number {
+        width: 100px;
+    }
+    .category-item__price-measure span {
+        font-size: 16px;
+    }
+}
+@media (max-width: 390px) {
+    .bread-crumbs-link {
+        font-size: 18px;
+    }
+    .bread-crumbs-on-page {
+        font-size: 18px;
+    }
+    .bread-crumbs-circle {
+        width: 8px;
+        height: 8px;
+    }
+    .order-number {
+        width: 100px;
+    }
+    .category-item__price-measure span {
+        font-size: 16px;
+    }
+}
 @media (max-width: 645px) {
     .register-button {
         width: 100% !important;
