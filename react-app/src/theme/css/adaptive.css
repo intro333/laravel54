@@ -314,6 +314,15 @@
     .order-filds-label-input:nth-child(2) {
         width: 100%;
     }
+    .order-instruments {
+        flex-direction: column;
+    }
+    .Select.margin-right-10 {
+        margin: 0;
+    }
+    .order-filds-label-input:nth-child(3) {
+        width: 100%;
+    }
 }
 @media (max-width: 500px) {
     /*.h1 {*/
@@ -334,5 +343,43 @@
 @media (max-width: 540px) {
     .modal-dialog-success {
         right: 6%;
+    }
+}
+/* Таблица с продуктами */
+@media (max-width: 1050px) {
+    .table-30-procent {
+        width: 50%;
+    }
+    .table-40-procent-td {
+        font-size: 16px;
+    }
+}
+@media (max-width: 870px) {
+    .cart-product-image {
+        display: none;
+    }
+    td {
+        font-weight: normal;
+        font-size: 15px;
+    }
+    .table-40-procent-td {
+        font-weight: normal;
+        font-size: 15px;
+    }
+}
+@media (max-width: 690px) {
+    th {
+        font-size: 14px;
+        font-weight: normal;
+    }
+    .table-25-procent {
+        width: 21%;
+    }
+    td {
+        font-weight: normal;
+        font-size: 14px;
+    }
+    .table-40-procent-td {
+        font-size: 14px;
     }
 }
