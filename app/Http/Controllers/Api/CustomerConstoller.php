@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Categories;
 use App\Models\Order;
-use App\Models\OrdersQuota;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Http\Request;

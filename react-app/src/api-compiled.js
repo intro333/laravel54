@@ -191,6 +191,13 @@ var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history
     } else if (response.data.errorTime) {
       dispatcher(modelActions.setErrors(response.data));
       showOrdersQuotaInCart(dispatcher);
+    } else {
+      setTimeout(function () {
+        dispatcher(modelActions.setSuccessPageStatus('error'));
+      }, 5000);
+      setTimeout(function () {
+        dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+      }, 5000);
     }
   };
 

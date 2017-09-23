@@ -244,8 +244,7 @@ var OrderItem = function (_Component) {
               'td',
               { style: { color: 'firebrick' } },
               _react2.default.createElement('span', {
-                className: 'remove-product',
-                'aria-hidden': 'true'
+                className: 'remove-product'
               })
             )
           );

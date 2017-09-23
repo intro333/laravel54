@@ -152,7 +152,6 @@ class OrderItem extends Component {
             <td style={{color: 'firebrick'}}>
             <span
               className="remove-product"
-              aria-hidden="true"
             >
             </span>
             </td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Jobs\UpdateOrder;
 use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\OrdersQuota;
@@ -68,12 +69,12 @@ class SessionController extends Controller
             if(session()->get('orderChangeId')) {
                 $order = Order::with('timeQuota')
                     ->where('order_id', session()->get('orderChangeId'))->get()->first();
-                $order->update([
-                    'comment'       => $comment ? $comment : '',
-                    'status'        => 1, //Обрабатывается
-                    'time_quota_id' => $timeQuotaId && $updateResult !== 2 ? $timeQuotaId : 1,
-                    'features'      => $products,
-                ]);
+                dispatch(new UpdateOrder($order, [
+                    'comment'      => $comment,
+                    'timeQuotaId'  => $timeQuotaId,
+                    'updateResult' => $updateResult,
+                    'products'     => $products,
+                ]));
             } else {
                 Order::create([
                     'user_order_id' => $user->id,
