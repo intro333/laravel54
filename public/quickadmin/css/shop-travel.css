@@ -201,4 +201,22 @@ th {
     transform: rotate(180deg);
     /*opacity: 1;*/
 }
+#filter-panel-button {
+    margin-bottom: 20px;
+}
+.filter-col {
+    padding-left:10px;
+    padding-right:10px;
+}
+.input-style {
+    border-color: #a9a9a9;
+}
+.input-style:focus {
+    border-color: #555;
+}
+@media (max-width: 1010px) {
+    .panel-body {
+        padding: 15px 5px;
+    }
+}
 /* END Мои заказы -------------------------------------------------------------------------------------------------------------*/

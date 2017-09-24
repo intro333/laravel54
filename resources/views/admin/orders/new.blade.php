@@ -1,10 +1,19 @@
 @extends('admin.layouts.master')
 
 @section('content')
-
+    <h2>Новые заказы (со статусом "<b>обрабатывается</b>").</h2>
     <div class="orders-all">
+        <!-- Панель для фильтрации и поиска -->
+        @include('admin.partials.filter-search')
+        <!-- Все заказы-->
         @foreach($result as $item)
-            <div class="orders-item">
+            <div class="orders-item"
+                 order-number="{{ $item[0]['emailHash'] }}-{{ $item[0]['orderId'] }}"
+                 phone-number="{{ preg_replace("/[^0-9]/","",$item[0]['details']['phone']) }}"
+                 names="{{ $item[0]['details']['sname'] . ' ' . $item[0]['details']['name'] . ' ' . $item[0]['details']['mname'] }}"
+                 period="{{ $item[0]['timeQuota'] }}"
+                 active="on"
+            >
                 <div class="order-instruments not-active">
                     <div class="order-info">
                         <span>Заказ № ST-{{ $item[0]['emailHash'] }}-{{ $item[0]['orderId'] }} от {{ $item[0]['orderDate'] }}</span>
