@@ -155,3 +155,20 @@ $(document).on('keyup', '#pref-names', function () {
 $(document).on('change', '#pref-period', function () {
   search();
 });
+//Сбросить фильтры
+$(document).on('click', '#filter-panel-button', function () {
+  if ($(this).hasClass('not-clear')) {
+    $(this).text('Очистить фильтры');
+    $(this).css('background', '#bb4545');
+    $(this).removeClass('not-clear');
+  } else {
+    $('#pref-search').val('');
+    $('#pref-phone').val('');
+    $('#pref-names').val('');
+    $('#pref-period').val('0');
+    $('.orders-item').show();
+    $(this).text('Поиск и фильтры');
+    $(this).css('background', '');
+    $(this).addClass('not-clear');
+  }
+});

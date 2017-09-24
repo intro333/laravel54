@@ -48,7 +48,7 @@
     </div>
 </div>
 <button type="button"
-        class="btn btn-primary"
+        class="btn btn-primary not-clear"
         data-toggle="collapse"
         data-target="#filter-panel"
         style="width: 200px;"
