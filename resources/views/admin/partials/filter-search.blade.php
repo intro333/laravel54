@@ -29,7 +29,7 @@
                     </select>
                 </div> <!-- form group [rows] -->
                     <input type="text" class="form-control input-sm input-style" id="pref-search" placeholder="№ заказа">
-                    <input type="text" class="form-control input-sm input-style" id="pref-phone" placeholder="Телефон" style="width: 135px;">
+                    <input type="text" class="form-control input-sm input-style" id="pref-phone" placeholder="Телефон">
                     <input type="text" class="form-control input-sm input-style" id="pref-names" placeholder="Имя, фамилия или отчество">
                     {{--<select id="pref-orderby" class="form-control">--}}
                         {{--<option>Descendent</option>--}}

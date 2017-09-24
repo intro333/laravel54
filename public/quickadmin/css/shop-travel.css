@@ -201,6 +201,10 @@ th {
     transform: rotate(180deg);
     /*opacity: 1;*/
 }
+/* filter and search */
+#pref-phone {
+    width: 105px;
+}
 #filter-panel-button {
     margin-bottom: 20px;
 }
@@ -214,9 +218,20 @@ th {
 .input-style:focus {
     border-color: #555;
 }
-@media (max-width: 1010px) {
+#pref-period {
+    padding: 0;
+}
+@media (max-width: 1045px) {
     .panel-body {
         padding: 15px 5px;
+    }
+}
+@media (max-width: 767px) {
+    #pref-phone {
+        width: 100%;
+    }
+    .input-style {
+        margin-top: 10px;
     }
 }
 /* END Мои заказы -------------------------------------------------------------------------------------------------------------*/

@@ -106,8 +106,8 @@ $(document).on('click', '.cart-products-table thead', function () {
   $(this).parent().find('.order-tr-head:eq(0)').toggleClass('not-active');
   $(this).parent().find('.order-tr-head:eq(1)').toggleClass('not-active');
 });
+
 /* Поиск и фильтрация */
-//Поиск по номеру заказа
 const search = function () {
   var prefSearch = $('#pref-search').val();
   var prefPhone = $('#pref-phone').val();
@@ -121,16 +121,10 @@ const search = function () {
     prefPeriod !== '0';
 
   const if_2 = function (_this) {
-    console.log(1, (prefSearch === '' && prefSearch.length <= 1) ? true : _this.attr('order-number').indexOf(prefSearch) !== -1);
-    console.log(2, (prefPhone === '' && prefPhone.length <= 2) ? true : _this.attr('phone-number').indexOf(prefPhone) !== -1);
-    console.log(3, (prefNames === '' && prefNames.length <= 2) ? true :_this.attr('names').toLowerCase().indexOf(prefNames) !== -1);
-    console.log(4, (prefPeriod === '0' ? true : _this.attr('period') === prefPeriod));
-    var result =  ((prefSearch === '' && prefSearch.length <= 1) ? true : _this.attr('order-number').indexOf(prefSearch) !== -1) &&
+    return  ((prefSearch === '' && prefSearch.length <= 1) ? true : _this.attr('order-number').indexOf(prefSearch) !== -1) &&
     ((prefPhone === '' && prefPhone.length <= 2) ? true : _this.attr('phone-number').indexOf(prefPhone) !== -1) &&
     ((prefNames === '' && prefNames.length <= 2) ? true :_this.attr('names').toLowerCase().indexOf(prefNames) !== -1) &&
     (prefPeriod === '0' ? true : _this.attr('period') === prefPeriod);
-    console.log(5, result);
-    return result;
   };
 
   if (if_1) {
@@ -145,69 +139,19 @@ const search = function () {
     ordersItem.show();
   }
 };
-
+//Поиск по номеру заказа
 $(document).on('keyup', '#pref-search', function () {
   search();
-  // var elementValue = $(this).val();
-  // var ordersItem = $('.orders-item');
-  //
-  // if (elementValue !== '' && elementValue.length > 1) {
-  //   ordersItem.each(function (index) {
-  //     if ($(this).attr('order-number').indexOf(elementValue) === -1) {
-  //       $(this).hide();
-  //     } else $(this).show();
-  //   });
-  // } else {
-  //   ordersItem.show();
-  // }
 });
 //Поиск по номеру телефона
 $(document).on('keyup', '#pref-phone', function () {
   search();
-  // var elementValue = $(this).val();
-  // var ordersItem = $('.orders-item');
-  //
-  // if (elementValue !== '' && elementValue.length > 2) {
-  //   ordersItem.each(function (index) {
-  //     if ($(this).attr('phone-number').indexOf(elementValue) === -1) {
-  //       $(this).hide();
-  //     } else $(this).show();
-  //   });
-  // } else {
-  //   ordersItem.show();
-  // }
 });
 //Поиск по ФИО
 $(document).on('keyup', '#pref-names', function () {
   search();
-  // var elementValue = $(this).val().toLowerCase();
-  // var ordersItem = $('.orders-item');
-  //
-  // if (elementValue !== '' && elementValue.length > 2) {
-  //   ordersItem.each(function (index) {
-  //     if ($(this).attr('names').toLowerCase().indexOf(elementValue) === -1) {
-  //       $(this).hide();
-  //     } else $(this).show();
-  //   });
-  // } else {
-  //   ordersItem.show();
-  // }
 });
 //Поиск по периоду
 $(document).on('change', '#pref-period', function () {
   search();
-  // var elementValue = $(this).val();
-  // var ordersItem = $('.orders-item');
-  //
-  // if (elementValue !== '0') {
-  //   ordersItem.each(function (index) {
-  //     console.log(1, elementValue)
-  //     console.log(2, $(this).attr('period'))
-  //     if ($(this).attr('period') !== elementValue) {
-  //       $(this).hide();
-  //     } else $(this).show();
-  //   });
-  // } else {
-  //   ordersItem.show();
-  // }
 });
