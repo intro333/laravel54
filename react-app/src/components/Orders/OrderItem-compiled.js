@@ -399,7 +399,7 @@ var OrderItem = function (_Component) {
         this.state.tdBotyVisible && orderInfo,
         _react2.default.createElement(
           'table',
-          { className: 'cart-products-table margin-off animation-page-load-medium' },
+          { className: 'cart-products-table cart-products-table__order margin-off animation-page-load-medium' },
           _react2.default.createElement(
             'thead',
             null,
@@ -413,7 +413,7 @@ var OrderItem = function (_Component) {
         ),
         this.state.tdBotyVisible && _react2.default.createElement(
           'div',
-          { className: 'cart-order__total', style: totalStyle },
+          { className: 'cart-order__total order_total', style: totalStyle },
           '\u0421\u0443\u043C\u043C\u0430:\xA0',
           _react2.default.createElement(
             'span',

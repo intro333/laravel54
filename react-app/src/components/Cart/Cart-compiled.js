@@ -269,7 +269,7 @@ var Cart = function (_Component) {
 
       var ordersQoutaDiv = _react2.default.createElement(
         'div',
-        { style: quotaStyle },
+        { className: 'quota-style', style: quotaStyle },
         _react2.default.createElement(
           'label',
           { className: 'order-filds-label', htmlFor: 'time_quota' },
@@ -311,7 +311,7 @@ var Cart = function (_Component) {
         }),
         _react2.default.createElement(
           'div',
-          { className: 'main-container animation-page-load-medium' },
+          { className: 'main-container animation-page-load-medium cart-scroll-adaptive' },
           _react2.default.createElement(
             'div',
             { className: 'flex-box-between' },
@@ -350,7 +350,7 @@ var Cart = function (_Component) {
           ),
           _react2.default.createElement(
             'table',
-            { className: 'cart-products-table' },
+            { className: 'cart-products-table cart-products-table__cart' },
             _react2.default.createElement(
               'thead',
               null,
@@ -388,7 +388,7 @@ var Cart = function (_Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'cart-order__total' },
+            { className: 'cart-order__total cart_total' },
             '\u0421\u0443\u043C\u043C\u0430:\xA0',
             _react2.default.createElement(
               'span',
@@ -410,14 +410,14 @@ var Cart = function (_Component) {
             placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
           }),
           _react2.default.createElement(
-            'label',
-            { className: 'order-filds-label' },
+            'p',
+            { className: 'order-filds-label', style: { fontWeight: '700' } },
             '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
             ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
           ),
           ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
           _react2.default.createElement(
-            'label',
+            'p',
             { className: 'order-filds-label scroll-to-error',
               style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
             this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota

@@ -226,7 +226,7 @@ class OrderItem extends Component {
           textBody={this.state.textBody}
         />
         { this.state.tdBotyVisible &&  orderInfo }
-        <table className="cart-products-table margin-off animation-page-load-medium">
+        <table className="cart-products-table cart-products-table__order margin-off animation-page-load-medium">
           <thead>
             { headTd }
           </thead>
@@ -236,7 +236,7 @@ class OrderItem extends Component {
         </table>
         {
           this.state.tdBotyVisible &&
-          <div className="cart-order__total" style={totalStyle}>Сумма:&nbsp;<span>{ total } ₽</span></div>
+          <div className="cart-order__total order_total" style={totalStyle}>Сумма:&nbsp;<span>{ total } ₽</span></div>
         }
       </div>
     );

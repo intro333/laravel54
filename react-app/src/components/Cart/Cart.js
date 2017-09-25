@@ -186,7 +186,7 @@ class Cart extends Component {
 
     const comment = isEmptyArray(currentOrder) && isEmptyArray(currentOrder['four']) && currentOrder['four'].comment ? currentOrder['four'].comment : '';
 
-    var ordersQoutaDiv = <div style={quotaStyle}>
+    var ordersQoutaDiv = <div className="quota-style" style={quotaStyle}>
       <label className="order-filds-label" htmlFor="time_quota">Я смогу забрать свой заказ в период с</label>
       <div style={{width: '120px', marginLeft: '10px'}}>
         <Select
@@ -217,7 +217,7 @@ class Cart extends Component {
           textHeader={this.state.textHeader}
           textBody={this.state.textBody}
         />
-        <div className="main-container animation-page-load-medium">
+        <div className="main-container animation-page-load-medium cart-scroll-adaptive">
           <div className="flex-box-between">
             <h3>Корзина</h3>
             <div style={{display: 'flex'}}>
@@ -229,7 +229,7 @@ class Cart extends Component {
           <p className="personal-explain-text">Изменение заказа № ST-{userInfo.emailHash}-{currentOrder['four'].order_id}</p>}
           {isEmptyArray(currentOrder) && isEmptyArray(currentOrder['one']) &&
           <p className="personal-explain-text" style={{color: 'red'}}>У Вас уже есть заказ в обработке.</p>}
-          <table className="cart-products-table">
+          <table className="cart-products-table cart-products-table__cart">
             <thead>
             <tr className="cart-tr-head">
               <th className="table-30-procent">Продукт</th>
@@ -243,7 +243,7 @@ class Cart extends Component {
             { productsTd }
             </tbody>
           </table>
-          <div className="cart-order__total">Сумма:&nbsp;<span>{ total } ₽</span></div>
+          <div className="cart-order__total cart_total">Сумма:&nbsp;<span>{ total } ₽</span></div>
           <p className="order-filds-label" style={{color: 'red', fontSize: '12px', margin: '0'}}>
             {this.state.comment_count_error !== '' && this.state.comment_count_error}
           </p>
@@ -254,15 +254,15 @@ class Cart extends Component {
             onChange={this.handleChangeComment.bind(this)}
             placeholder="Оставьте комментарий к заказу..."
           />
-          <label className="order-filds-label">Дата
-            доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</label>
+          <p className="order-filds-label" style={{fontWeight: '700'}}>Дата
+            доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</p>
           {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
-          <label className="order-filds-label scroll-to-error"
+          <p className="order-filds-label scroll-to-error"
                  style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>
             {
               this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
             }
-          </label>
+          </p>
           <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
         </div>
       </div>
