@@ -324,6 +324,19 @@
         width: 100%;
     }
 }
+@media (max-width: 520px) {
+    .orders-item {
+        overflow-x: scroll;
+    }
+    .order-instruments {
+        white-space: nowrap;
+        width: 433px !important;
+    }
+    .cart-order__total {
+        white-space: nowrap;
+        width: 423px !important;
+    }
+}
 @media (max-width: 500px) {
     /*.h1 {*/
         /*font-size: 14px !important;*/
@@ -365,6 +378,13 @@
     .table-40-procent-td {
         font-weight: normal;
         font-size: 15px;
+        text-align: center;
+    }
+    .cart-order__total {
+        font-size: 18px;
+    }
+    .cart-order__total {
+        font-size: 20px;
     }
 }
 @media (max-width: 690px) {
@@ -381,5 +401,10 @@
     }
     .table-40-procent-td {
         font-size: 14px;
+    }
+}
+@media (max-width: 530px) {
+    .cart-order__total {
+        font-size: 18px;
     }
 }
