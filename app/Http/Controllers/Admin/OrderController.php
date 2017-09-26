@@ -83,6 +83,14 @@ class OrderController extends Controller
             flash('Данные доставки не обновлены. Ошибка: ' . $e)->error();
             return redirect(route('orders.view.delivery'));
         }
-
     }
+
+    /* вьюха управление заказами */
+//    public function ordersControlView()
+//    {
+//        $delivery = Delivery::all()->first();
+//
+//        return view('admin.orders.delivery',
+//            compact('delivery'));
+//    }
 }

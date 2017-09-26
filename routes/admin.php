@@ -31,4 +31,7 @@ Route::group(['middleware' => 'isAdmin:admin'], function () {
     Route::get('/orders/new', 'Admin\OrderController@ordersNewView')->name('orders.view.new');
     Route::get('/orders/delivery', 'Admin\OrderController@ordersDeliveryView')->name('orders.view.delivery');
     Route::post('/orders/delivery', 'Admin\OrderController@ordersDelivery')->name('orders.delivery');
+//    Route::post('/orders/control', 'Admin\OrderController@ordersControlView')->name('orders.view.control');
+
+    Route::get('/users/all', 'Admin\UserController@getAll')->name('users.view.all');
 });

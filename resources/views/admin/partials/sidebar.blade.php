@@ -38,6 +38,23 @@
                     </li>
                 </ul>
             </li>
+            <li @if(Request::path() == 'admin/users') class="active" @endif>
+                <a href="/admin/users">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="title">Пользователи</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li @if(Request::path() == 'admin/users/all') class="active active-sub" @endif>
+                        <a href="/admin/users/all">
+                            <i class="fa fa-newspaper-o"></i>
+                            <span class="title">
+                                Список
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li>
                 <a href="/admin/categories">
                     <i class="fa fa-puzzle-piece"></i>

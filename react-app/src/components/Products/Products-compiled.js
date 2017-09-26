@@ -75,6 +75,7 @@ var Products = function (_Component) {
           session = _props.session;
 
       (0, _api.setProducts)(dispatch, session.get('categoryId'));
+      (0, _api.showOrdersQuotaInCart)(dispatch);
     }
   }, {
     key: 'componentWillUnmount',
@@ -98,7 +99,8 @@ var Products = function (_Component) {
           api = _props2.api,
           session = _props2.session,
           products = _props2.products,
-          history = _props2.history;
+          history = _props2.history,
+          ordersQuota = _props2.ordersQuota;
 
       var productsApi = api.get('products');
 
@@ -111,9 +113,17 @@ var Products = function (_Component) {
           imgSrc: item.image_path,
           itemName: item.name,
           price: item.price,
-          unit: item.unit
+          unit: item.unit,
+          ordersQuota: ordersQuota.delivery ? ordersQuota.delivery : ''
         });
       });
+      var deliveryStatus = ordersQuota.delivery && ordersQuota.delivery.status && ordersQuota.delivery.status;
+      var deliveryMessage = _react2.default.createElement(
+        'p',
+        { className: 'order-filds-label scroll-to-error',
+          style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
+        '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 \u0437\u0430\u043A\u0440\u044B\u0442\u0430.\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u043E\u0441\u0442\u0438 \u0437\u0434\u0435\u0441\u044C.'
+      );
 
       return _react2.default.createElement(
         'div',
@@ -147,6 +157,7 @@ var Products = function (_Component) {
               session.get('categoryName')
             )
           ),
+          deliveryStatus === 0 && deliveryMessage,
           _react2.default.createElement(
             'div',
             { className: 'category-all' },
@@ -165,7 +176,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     dispatch: store.dispatch,
     session: store.session,
     api: store.api,
-    products: store.products
+    products: store.products,
+    ordersQuota: store.api.get('ordersQuota')
   };
 })(Products);
 

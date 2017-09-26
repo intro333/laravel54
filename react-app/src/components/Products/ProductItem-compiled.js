@@ -153,28 +153,34 @@ var ProductItem = function (_Component) {
   }, {
     key: 'addProductToCart',
     value: function addProductToCart() {
-      var productCounts = this.getCountProductCart();
+      if (this.props.ordersQuota && this.props.ordersQuota.status) {
+        var productCounts = this.getCountProductCart();
 
-      if (productCounts) {
-        var dispatch = this.props.dispatch;
+        if (productCounts) {
+          var dispatch = this.props.dispatch;
 
-        var data = {
-          barCode: this.props.barCode,
-          productId: this.props.productId,
-          productCounts: productCounts
-        };
-        (0, _api.addProductToCart)(dispatch, data);
+          var data = {
+            barCode: this.props.barCode,
+            productId: this.props.productId,
+            productCounts: productCounts
+          };
+          (0, _api.addProductToCart)(dispatch, data);
+          this.setState({
+            addButtonText: 'Товар в корзине',
+            addToCartButtonStyle: {
+              background: '#3c763d'
+            }
+          });
+          dispatch((0, _actions.changeSuccessModalDisplay)(true));
+        } else {
+          this.setState({
+            errorBorderRed: true,
+            inputPlaceHolder: '?'
+          });
+        }
+      }{
         this.setState({
-          addButtonText: 'Товар в корзине',
-          addToCartButtonStyle: {
-            background: '#3c763d'
-          }
-        });
-        dispatch((0, _actions.changeSuccessModalDisplay)(true));
-      } else {
-        this.setState({
-          errorBorderRed: true,
-          inputPlaceHolder: '?'
+          addButtonText: 'Дата доставки закрыта'
         });
       }
     }
@@ -200,7 +206,7 @@ var ProductItem = function (_Component) {
       var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : 1;
       var inputPlaceHolder = this.state.inputPlaceHolder;
       var addToCartButtonText = (0, _helpers.isEmptyArray)(product) ? 'Товар в корзине' : this.state.addButtonText;
-      var addToCartButtonStyle = (0, _helpers.isEmptyArray)(product) ? { background: '#3c763d' } : this.state.addToCartButtonStyle;
+      var addToCartButtonStyle = this.props.ordersQuota && this.props.ordersQuota.status ? (0, _helpers.isEmptyArray)(product) ? { background: '#3c763d' } : this.state.addToCartButtonStyle : { background: '#aab5bf' };
 
       return _react2.default.createElement(
         'div',

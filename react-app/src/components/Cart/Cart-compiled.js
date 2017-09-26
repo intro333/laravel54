@@ -159,39 +159,52 @@ var Cart = function (_Component) {
           ordersQuota = _props2.ordersQuota,
           currentOrder = _props2.currentOrder;
 
-      var data = {
-        comment: this.state.comment,
-        time_quota: this.state.time_quota
-      };
-      if ((0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one'])) {
+      if (ordersQuota.delivery && ordersQuota.delivery.status) {
+        var data = {
+          comment: this.state.comment,
+          time_quota: this.state.time_quota
+        };
+        if ((0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one'])) {
+          this.setState({
+            fadeIn: true,
+            modalDisplay: true,
+            textHeader: 'У Вас уже есть один заказ в обработке.Перейти к заказу?',
+            function: function _function() {
+              var history = _this2.props.history;
+
+              history.push('/orders');
+            }
+          });
+        } else {
+          if (this.state.time_quota !== 0) {
+            (0, _api.sendOrder)(dispatch, data, history);
+            dispatch(modelActions.setModalLoaderCartSentStatus(true));
+            history.push('/sussess-page');
+          } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
+            (0, _api.sendOrder)(dispatch, data, history);
+            dispatch(modelActions.setModalLoaderCartSentStatus(true));
+            history.push('/sussess-page');
+          } else {
+            (0, _helpers.scrollToElement)('.scroll-to-error', 1500);
+            this.setState({
+              cart_error: 'Выберите удобный период получения заказа.',
+              selectError: {
+                borderColor: 'indianred'
+              }
+            });
+          }
+        }
+      } else {
         this.setState({
           fadeIn: true,
           modalDisplay: true,
-          textHeader: 'У Вас уже есть один заказ в обработке.Перейти к заказу?',
+          textHeader: 'Дата доставки закрыта. Узнать подробнее?',
           function: function _function() {
             var history = _this2.props.history;
 
-            history.push('/orders');
+            history.push('/orders'); //TODO сделать редирект на нужную страницу
           }
         });
-      } else {
-        if (this.state.time_quota !== 0) {
-          (0, _api.sendOrder)(dispatch, data, history);
-          dispatch(modelActions.setModalLoaderCartSentStatus(true));
-          history.push('/sussess-page');
-        } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
-          (0, _api.sendOrder)(dispatch, data, history);
-          dispatch(modelActions.setModalLoaderCartSentStatus(true));
-          history.push('/sussess-page');
-        } else {
-          (0, _helpers.scrollToElement)('.scroll-to-error', 1500);
-          this.setState({
-            cart_error: 'Выберите удобный период получения заказа.',
-            selectError: {
-              borderColor: 'indianred'
-            }
-          });
-        }
       }
     }
   }, {

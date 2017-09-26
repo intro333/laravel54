@@ -25,23 +25,23 @@
                 </div>
                 <table class="cart-products-table">
                     <thead>
-                    <tr class="order-tr-head">
-                        <th class="order-th-head">Заказ № ST-{{ $item[0]['emailHash'] }}-{{ $item[0]['orderId'] }}&nbsp;
-                            {{ $item[0]['details']['sname'] . ' ' . $item[0]['details']['name'] . ' ' . $item[0]['details']['mname'] }}&nbsp;
-                            тел.&nbsp;{{ $item[0]['details']['phone'] }}
-                        </th>
-                        <th class="table-25-procent"></th>
-                        <th class="table-25-procent"></th>
-                        <th class="table-10-procent"></th>
-                        <th class="table-10-procent"></th>
-                    </tr>
-                    <tr class="order-tr-head tr_opened not-active">
-                        <th class="table-30-procent">Продукт</th>
-                        <th class="table-25-procent">Цена</th>
-                        <th class="table-25-procent">Количество</th>
-                        <th class="table-10-procent">Стоимость</th>
-                        <th class="table-10-procent"></th>
-                    </tr>
+                        <tr class="order-tr-head">
+                            <th class="order-th-head">Заказ № ST-{{ $item[0]['emailHash'] }}-{{ $item[0]['orderId'] }}&nbsp;
+                                {{ $item[0]['details']['sname'] . ' ' . $item[0]['details']['name'] . ' ' . $item[0]['details']['mname'] }}&nbsp;
+                                тел.&nbsp;{{ $item[0]['details']['phone'] }}
+                            </th>
+                            <th class="table-25-procent"></th>
+                            <th class="table-25-procent"></th>
+                            <th class="table-10-procent"></th>
+                            <th class="table-10-procent"></th>
+                        </tr>
+                        <tr class="order-tr-head tr_opened not-active">
+                            <th class="table-30-procent">Продукт</th>
+                            <th class="table-25-procent">Цена</th>
+                            <th class="table-25-procent">Количество</th>
+                            <th class="table-10-procent">Стоимость</th>
+                            <th class="table-10-procent"></th>
+                        </tr>
                     </thead>
                     <tbody class="order-tbody not-active">
                     @foreach($item as $key => $products)
