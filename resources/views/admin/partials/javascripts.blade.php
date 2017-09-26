@@ -9,12 +9,12 @@
 
 <script>
 
-    $('.datepicker').datepicker({
+    $('#datepicker').datepicker({
         autoclose: true,
         dateFormat: "{{ config('quickadmin.date_format_jquery') }}"
     });
 
-    $('.datetimepicker').datetimepicker({
+    $('#datetimepicker').datetimepicker({
         autoclose: true,
         dateFormat: "{{ config('quickadmin.date_format_jquery') }}",
         timeFormat: "{{ config('quickadmin.time_format_jquery') }}"

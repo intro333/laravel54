@@ -42,7 +42,7 @@ hr {
     border: none !important;
 }
 .margin-right-10 {
-    margin-right: 10px;
+    margin-right: 10px !important;
 }
 .flex-box-between {
     display: flex;
@@ -1263,7 +1263,8 @@ button.close {
     right: 8%;
     opacity: 0;
     transform: scale(0);
-    transition: 0.3s
+    transition: 0.3s;
+    z-index: 2 !important;
     /*top: 98px;*/
 }
 .modal-dialog-success-save {

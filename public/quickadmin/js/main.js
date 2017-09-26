@@ -172,3 +172,13 @@ $(document).on('click', '#filter-panel-button', function () {
     $(this).addClass('not-clear');
   }
 });
+
+/* Календарь */
+$('#datetimepicker').datepicker({
+  format: this.dateFormatLower,
+  endDate: '0d',
+  keepEmptyValues: true,
+  autoclose: true,
+  forceParse: false,
+  language: 'ru'
+});

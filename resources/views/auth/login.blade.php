@@ -29,7 +29,7 @@
                                 <label for="remember"><span></span>Запомнить меня</label>
                             </div>
                         </div>
-                        <div class="register-filds-elements">
+                        <div class="register-filds-elements flex-direction-column">
                             <label class="register-filds-label"></label>
                             <div>
                                 <!--<button class="login-button">Войти</button>-->

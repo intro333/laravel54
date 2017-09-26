@@ -186,13 +186,13 @@ class OrderItem extends Component {
 
       switch(this.props.orderStatus) {
         case 1:  // Если заказ обрабатывается
-          orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Отменить заказ</span>
+          orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Отменить заказ</span>;
           break;
         case 2:  // Если заказ выполнен
-          orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Удалить</span>
+          orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Удалить</span>;
           break;
         case 3:  // Если заказ удален
-          orderConfigCancel = <span onClick={this.handlerDeleteOrder.bind(this)}>Удалить</span>
+          orderConfigCancel = <span onClick={this.handlerDeleteOrder.bind(this)}>Удалить</span>;
           break;
       }
 

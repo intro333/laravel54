@@ -28,5 +28,7 @@ Route::group(['middleware' => 'isAdmin:admin'], function () {
     Route::post('/products/edit', 'Admin\ProductController@productEdit')->name('product.edit');
     Route::post('/products/del/{id}', 'Admin\ProductController@productDelete')->name('product.del');
 
-    Route::get('/orders/new', 'Admin\OrderController@ordersNewView')->name('ordersNewView');
+    Route::get('/orders/new', 'Admin\OrderController@ordersNewView')->name('orders.view.new');
+    Route::get('/orders/delivery', 'Admin\OrderController@ordersDeliveryView')->name('orders.view.delivery');
+    Route::post('/orders/delivery', 'Admin\OrderController@ordersDelivery')->name('orders.delivery');
 });

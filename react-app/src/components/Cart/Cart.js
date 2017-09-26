@@ -94,38 +94,50 @@ class Cart extends Component {
 
   handlerSendOrder() {
     const {dispatch, history, ordersQuota, currentOrder} = this.props;
-    const data = {
-      comment: this.state.comment,
-      time_quota: this.state.time_quota
-    };
-    if(isEmptyArray(currentOrder) && isEmptyArray(currentOrder['one'])) {
+    if (ordersQuota.delivery && ordersQuota.delivery.status) {
+      const data = {
+        comment: this.state.comment,
+        time_quota: this.state.time_quota
+      };
+      if(isEmptyArray(currentOrder) && isEmptyArray(currentOrder['one'])) {
+        this.setState({
+          fadeIn: true,
+          modalDisplay: true,
+          textHeader: 'У Вас уже есть один заказ в обработке.Перейти к заказу?',
+          function: () => {
+            const { history } = this.props;
+            history.push('/orders');
+          }
+        });
+      } else {
+        if (this.state.time_quota !== 0) {
+          sendOrder(dispatch, data, history);
+          dispatch(modelActions.setModalLoaderCartSentStatus(true));
+          history.push('/sussess-page');
+        } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
+          sendOrder(dispatch, data, history);
+          dispatch(modelActions.setModalLoaderCartSentStatus(true));
+          history.push('/sussess-page');
+        } else {
+          scrollToElement('.scroll-to-error', 1500);
+          this.setState({
+            cart_error: 'Выберите удобный период получения заказа.',
+            selectError: {
+              borderColor: 'indianred'
+            }
+          });
+        }
+      }
+    } else {
       this.setState({
         fadeIn: true,
         modalDisplay: true,
-        textHeader: 'У Вас уже есть один заказ в обработке.Перейти к заказу?',
+        textHeader: 'Дата доставки закрыта. Узнать подробнее?',
         function: () => {
           const { history } = this.props;
-          history.push('/orders');
+          history.push('/orders');//TODO сделать редирект на нужную страницу
         }
       });
-    } else {
-      if (this.state.time_quota !== 0) {
-        sendOrder(dispatch, data, history);
-        dispatch(modelActions.setModalLoaderCartSentStatus(true));
-        history.push('/sussess-page');
-      } else if (ordersQuota.ordersQuota && ordersQuota.ordersQuota.length === 0) {
-        sendOrder(dispatch, data, history);
-        dispatch(modelActions.setModalLoaderCartSentStatus(true));
-        history.push('/sussess-page');
-      } else {
-        scrollToElement('.scroll-to-error', 1500);
-        this.setState({
-          cart_error: 'Выберите удобный период получения заказа.',
-          selectError: {
-            borderColor: 'indianred'
-          }
-        });
-      }
     }
   }
 

@@ -28,6 +28,14 @@
                             </span>
                         </a>
                     </li>
+                    <li @if(Request::path() == 'admin/orders/date') class="active active-sub" @endif>
+                        <a href="{{ route('orders.view.delivery') }}">
+                            <i class="fa fa-calendar"></i>
+                            <span class="title">
+                                Дата доставки
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>

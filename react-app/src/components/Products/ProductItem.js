@@ -98,29 +98,36 @@ class ProductItem extends Component {
   }
 
   addProductToCart() {
-    let productCounts = this.getCountProductCart();
+    if (this.props.ordersQuota && this.props.ordersQuota.status) {
+      let productCounts = this.getCountProductCart();
 
-    if (productCounts) {
-      const { dispatch } = this.props;
-      const data = {
-        barCode: this.props.barCode,
-        productId: this.props.productId,
-        productCounts: productCounts,
-      };
-      addProductToCart(dispatch, data);
+      if (productCounts) {
+        const { dispatch } = this.props;
+        const data = {
+          barCode: this.props.barCode,
+          productId: this.props.productId,
+          productCounts: productCounts,
+        };
+        addProductToCart(dispatch, data);
+        this.setState({
+          addButtonText: 'Товар в корзине',
+          addToCartButtonStyle: {
+            background: '#3c763d'
+          },
+        });
+        dispatch(changeSuccessModalDisplay(true));
+      } else {
+        this.setState({
+          errorBorderRed: true,
+          inputPlaceHolder: '?'
+        });
+      }
+    } {
       this.setState({
-        addButtonText: 'Товар в корзине',
-        addToCartButtonStyle: {
-          background: '#3c763d'
-        },
-      });
-      dispatch(changeSuccessModalDisplay(true));
-    } else {
-      this.setState({
-        errorBorderRed: true,
-        inputPlaceHolder: '?'
+        addButtonText: 'Дата доставки закрыта'
       });
     }
+
   }
 
   render() {
@@ -138,7 +145,7 @@ class ProductItem extends Component {
     var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: 1);
     var inputPlaceHolder = this.state.inputPlaceHolder;
     var addToCartButtonText = isEmptyArray(product) ? 'Товар в корзине' : this.state.addButtonText;
-    var addToCartButtonStyle = isEmptyArray(product) ? { background: '#3c763d' } : this.state.addToCartButtonStyle;
+    var addToCartButtonStyle = this.props.ordersQuota && this.props.ordersQuota.status ? (isEmptyArray(product) ? { background: '#3c763d' } : this.state.addToCartButtonStyle) : { background: '#aab5bf' };
 
     return (
       <div className="category-item animation-page-load-medium">

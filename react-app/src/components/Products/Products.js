@@ -14,6 +14,7 @@ import { Map } from 'immutable';
 
 import {
   setProducts,
+  showOrdersQuotaInCart,
 } from '../../api';
 import {isEmptyMap} from '../../helpers';
 
@@ -25,6 +26,7 @@ class Products extends Component {
   componentWillMount() {
     const { dispatch, session } = this.props;
     setProducts(dispatch, session.get('categoryId'));
+    showOrdersQuotaInCart(dispatch);
   }
 
   componentWillUnmount() {
@@ -39,7 +41,7 @@ class Products extends Component {
   }
 
   render() {
-    const { api, session, products, history } = this.props;
+    const { api, session, products, history, ordersQuota } = this.props;
     const productsApi = api.get('products');
 
     const productItem = isEmptyMap(productsApi) && productsApi.map((item) =>
@@ -52,8 +54,12 @@ class Products extends Component {
         itemName={ item.name }
         price={ item.price }
         unit={ item.unit }
+        ordersQuota={ordersQuota.delivery ? ordersQuota.delivery : ''}
       />
     );
+    const deliveryStatus = ordersQuota.delivery && ordersQuota.delivery.status && ordersQuota.delivery.status;
+    const deliveryMessage = <p className="order-filds-label scroll-to-error"
+                              style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>Дата доставки закрыта.Подробности здесь.</p>;
 
     return (
       <div className="container">
@@ -70,6 +76,7 @@ class Products extends Component {
             <div className="bread-crumbs-circle"></div>
             <h3 className="bread-crumbs-on-page">{ session.get('categoryName') }</h3>
           </div>
+          {deliveryStatus === 0 && deliveryMessage}
           <div className="category-all">
             { productItem }
           </div>
@@ -84,4 +91,5 @@ export default connect(store => ({
   session: store.session,
   api: store.api,
   products: store.products,
+  ordersQuota: store.api.get('ordersQuota'),
 }))(Products);

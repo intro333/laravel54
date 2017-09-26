@@ -272,3 +272,50 @@ input[type="checkbox"]:checked + label span {
 }
 /*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/
 
+/* НАЧАЛО Адаптив */
+@media (max-width: 1200px) {
+    .register-container {
+        width: 60%;
+    }
+}
+@media (max-width: 1000px) {
+    .register-container {
+        width: 80%;
+    }
+}
+@media (max-width: 767px) {
+    .register-container {
+        width: 100%;
+    }
+}
+@media (max-width: 500px) {
+    .register-header {
+        align-items: left;
+        flex-direction: column;
+    }
+    #go-to-register {
+        margin-top: 10px;
+        width: 150px;
+    }
+    #go-to-login {
+        margin-top: 10px;
+        width: 150px;
+    }
+    #go-to-site {
+        margin-top: 10px;
+        width: 150px;
+    }
+}
+@media (max-width: 450px) {
+    .flex-direction-column {
+        margin-bottom: 0;
+    }
+    .flex-direction-column div {
+        display: flex;
+        flex-direction: column !important;
+    }
+    .flex-direction-column div a {
+        margin-top: 10px;
+    }
+}
+/* КОНЕЦ Адаптив */

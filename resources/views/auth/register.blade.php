@@ -15,31 +15,31 @@
                     {{--<form action="{{ route('register') }}" method="POST" id="register-form" autocomplete="off">--}}
                     <form action="{{ route('register') }}" method="POST" id="register-form">
                         {{ csrf_field() }}
-                        <div class="register-filds-label-input">
+                        <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="name">Имя*</label>
                             <input id="fname" name="name" type="text" placeholder="Введите имя">
                         </div>
-                        <div class="register-filds-label-input">
+                        <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="sname">Фамилия*</label>
                             <input id="sname" name="sname" type="text" placeholder="Введите фамилию">
                         </div>
-                        <div class="register-filds-label-input">
+                        <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="email">Email*</label>
                             <input id="email" name="email" type="email" placeholder="Введите электронную почту">
                         </div>
-                        <div class="register-filds-label-input">
+                        <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="password">Пароль*</label>
                             <input id="password" name="password" type="password" placeholder="Введите пароль">
                         </div>
-                        <div class="register-filds-label-input">
+                        <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="password-confirm">Повтор*</label>
                             <input id="password-confirm" name="password_confirmation" type="password" placeholder="Повторите пароль">
                         </div>
-                        <div class="register-filds-label-input">
+                        <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="password-confirm">Ключ*</label>
                             <input id="electronic_key" name="electronic_key" type="password" placeholder="Введите электронный ключ">
                         </div>
-                        <div class="register-filds-label-input">
+                        <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="phone">Телефон</label>
                             <input id="phone" name="phone" type="text" placeholder="+7(___) ___ __ __">
                         </div>

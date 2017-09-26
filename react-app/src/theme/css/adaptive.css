@@ -24,6 +24,9 @@
     .for-main-desc-block {
         width: 140px;
     }
+    .modal-header {
+        text-align: left;
+    }
     #blok_one {
         padding-top: 3px;
         padding-bottom: 3px;

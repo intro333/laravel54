@@ -19,7 +19,7 @@
     </div>
 
     {!! Form::open(['route' => ['category.edit'], 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true, "autocomplete" => "off"]) !!}
-    {!! Form::hidden('category_id', old('name', $category->category_id)) !!}
+    {!! Form::hidden('category_id', old('category_id', $category->category_id)) !!}
     <div class="form-group">
         {!! Form::label('name', 'Имя категории', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">

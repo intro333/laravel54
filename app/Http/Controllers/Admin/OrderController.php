@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -50,5 +51,38 @@ class OrderController extends Controller
 //        dd($result);
         return view('admin.orders.new',
             compact('result'));
+    }
+
+    /* вьюха дата доставки */
+    public function ordersDeliveryView()
+    {
+        $delivery = Delivery::all()->first();
+
+        return view('admin.orders.delivery',
+            compact('delivery'));
+    }
+
+    /* POST отредактировать дату доставки */
+    public function ordersDelivery(Request $request)
+    {
+        $delivery = Delivery::find($request->input('delivery_date_id'));
+        $updateStatus = $delivery->update([
+            'delivery_date' => $request->input('delivery_date'),
+            'delivery_message' => $request->input('delivery_message') ? $request->input('delivery_message') : '',
+            'status' => (int) $request->input('status'),
+        ]);
+        try {
+            if ($updateStatus) {
+                flash('Данные доставки обновлены!')->success();
+                return redirect(route('orders.view.delivery'));
+            } else {
+                flash('Данные доставки не обновлены!')->error();
+                return redirect(route('orders.view.delivery'));
+            }
+        } catch (\Exception $e) {
+            flash('Данные доставки не обновлены. Ошибка: ' . $e)->error();
+            return redirect(route('orders.view.delivery'));
+        }
+
     }
 }
