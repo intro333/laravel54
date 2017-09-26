@@ -23,6 +23,7 @@ class OrderQuotaTableSeeder extends Seeder
             'delivery_date' => Carbon::now(),
             'status' => 1,
             'delivery_message' => '',
+            'order_control_status' => 1,
         ]);
 
         foreach ($this->getData() as $item) {

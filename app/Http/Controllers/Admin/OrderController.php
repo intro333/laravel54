@@ -86,11 +86,33 @@ class OrderController extends Controller
     }
 
     /* вьюха управление заказами */
-//    public function ordersControlView()
-//    {
-//        $delivery = Delivery::all()->first();
-//
-//        return view('admin.orders.delivery',
-//            compact('delivery'));
-//    }
+    public function ordersControlStatusView()
+    {
+        $delivery = Delivery::all()->first();
+
+        return view('admin.orders.control',
+            compact('delivery'));
+    }
+
+    /* вьюха управление заказами */
+    public function ordersControlStatus(Request $request)
+    {
+        $delivery = Delivery::all()->first();
+
+        $updateStatus = $delivery->update([
+            'order_control_status' => $request->input('order_control_status')
+        ]);
+        try {
+            if ($updateStatus) {
+                flash('Глобальный статус обновлен!')->success();
+                return redirect(route('orders.view.control.status'));
+            } else {
+                flash('Глобальный статус не обновлен!')->error();
+                return redirect(route('orders.view.control.status'));
+            }
+        } catch (\Exception $e) {
+            flash('Глобальный статус не обновлен. Ошибка: ' . $e)->error();
+            return redirect(route('orders.view.control.status'));
+        }
+    }
 }

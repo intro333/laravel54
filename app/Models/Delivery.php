@@ -14,6 +14,7 @@ class Delivery extends Model
         'delivery_date',
         'status',
         'delivery_message',
+        'order_control_status',
     ];
 
     protected $dates = [

@@ -36,6 +36,14 @@
                             </span>
                         </a>
                     </li>
+                    <li @if(Request::path() == 'admin/orders/control/status') class="active active-sub" @endif>
+                        <a href="{{ route('orders.view.control.status') }}">
+                            <i class="fa fa-calendar"></i>
+                            <span class="title">
+                                Управление статусами
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li @if(Request::path() == 'admin/users') class="active" @endif>

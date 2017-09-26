@@ -18,6 +18,7 @@ class CreateDeliveryTable extends Migration
             $table->dateTime('delivery_date');
             $table->tinyInteger('status')->unsigned();
             $table->string('delivery_message', 1000);
+            $table->tinyInteger('order_control_status')->unsigned()->default(1);
             $table->timestamps();
         });
     }

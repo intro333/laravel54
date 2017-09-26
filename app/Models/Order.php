@@ -12,6 +12,7 @@ class Order extends Model
     const DONE = 2;//Выполнен
     const CANCELLED = 3;//Удалён/Отменён
     const CHANGE = 4;//Изменить
+    const RUNS = 5;//Выполняется
 
     //Трейт для мягкого удаления
     use SoftDeletes;
