@@ -1,9 +1,18 @@
-@media (min-width: 768px) {
+@media (max-width: 1980px) {
+    .container {
+        width: 70%;
+    }
+}
+@media (max-width: 1650px) {
+    .container {
+        width: 80%;
+    }
+}
+@media (max-width: 1300px) {
     .container {
         width: 95%;
     }
 }
-
 /*****ADAPTIVE for footer******/
 @media (min-width: 1025px) {
     .footer__social__item:hover {
@@ -98,16 +107,16 @@
     }
 }
 /*Продукты контейнер*/
-@media (min-width: 1980px) {
-    .category-item {
-        width: calc(100% / 6 - 10px);
-    }
-}
-@media (min-width: 1300px) {
-    .category-item {
-        width: calc(100% / 5 - 10px);
-    }
-}
+/*@media (min-width: 1980px) {*/
+    /*.category-item {*/
+        /*width: calc(100% / 6 - 10px);*/
+    /*}*/
+/*}*/
+/*@media (min-width: 1300px) {*/
+    /*.category-item {*/
+        /*width: calc(100% / 5 - 10px);*/
+    /*}*/
+/*}*/
 @media (max-width: 1023px) {
     .category-item {
         width: calc(100% / 3 - 10px);

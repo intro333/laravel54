@@ -51,6 +51,9 @@ hr {
 .margin-off {
     margin: 0 !important;
 }
+.align-center {
+    text-align: center !important;
+}
 .error-border-red::-webkit-input-placeholder {color: indianred !important;}
 .error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */
 .error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */

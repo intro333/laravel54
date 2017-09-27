@@ -22,7 +22,8 @@ class OrderItem extends Component {
       fadeIn: false,
       modalDisplay: false,
       textHeader: '',
-      function: null
+      function: null,
+      textAlign: false
     };
   }
 
@@ -46,6 +47,7 @@ class OrderItem extends Component {
       fadeIn: true,
       modalDisplay: true,
       textHeader: 'Вы уверены, что хотите ' + text.toLowerCase() + '?',
+      textAlign: true,
       function: () => {
         const { dispatch, history } = this.props;
         const data = {
@@ -71,6 +73,7 @@ class OrderItem extends Component {
       fadeIn: true,
       modalDisplay: true,
       textHeader: 'Если в корзине есть товары, то они будут удалены. Продолжить?',
+      textAlign: false,
       function: () => {
         const { dispatch, history } = this.props;
         const data = {
@@ -87,6 +90,7 @@ class OrderItem extends Component {
       fadeIn: true,
       modalDisplay: true,
       textHeader: 'Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно. Продолжить?',
+      textAlign: false,
       function: () => {
         const { dispatch, history } = this.props;
         const data = {
@@ -212,8 +216,8 @@ class OrderItem extends Component {
           }
         </div>
         <div className="order-config">
-          {(this.props.stateOrderStatus !== 1 && this.props.orderStatus !== 5) && <span onClick={this.handlerRepeatOrder.bind(this)}>Повторить заказ</span>}
-          {this.props.stateOrderStatus === 1 && this.props.orderStatus !== 5 && <span onClick={this.handlerChangeOrder.bind(this)}>Изменить заказ</span>}
+          {(this.props.stateOrderStatus !== 1 && this.props.orderStatus !== 5 && this.props.orderStatus !== 2) && <span onClick={this.handlerRepeatOrder.bind(this)}>Повторить заказ</span>}
+          {(this.props.stateOrderStatus === 1 && this.props.orderStatus !== 5 && this.props.orderStatus !== 2) && <span onClick={this.handlerChangeOrder.bind(this)}>Изменить заказ</span>}
           {this.props.orderStatus === 5 && <span></span>}
           {orderConfigCancel}
         </div>
@@ -227,6 +231,7 @@ class OrderItem extends Component {
           handlerCloseModal={this.handlerCloseModal.bind(this)}
           handlerSuccessModal={this.handlerSuccessModal.bind(this)}
           textHeader={this.state.textHeader}
+          textAlign={this.state.textAlign}
           textBody={this.state.textBody}
         />
         { this.state.tdBotyVisible &&  orderInfo }

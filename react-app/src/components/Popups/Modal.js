@@ -28,13 +28,18 @@ class Modal extends Component {
       display: 'none'
     };
 
+    const modalHeader = classNames({
+      'modal-header': true,
+      'align-center': this.props.textAlign
+    });
+
   return(
     <div>
       <div className="modal-backdrop fade in" style={this.props.modalDisplay ? modalStyleOn : modalStyleOff}></div>
       <div className={modalFadeIn} role="dialog" style={this.props.modalDisplay ? modalStyleOn : modalStyleOff}>
         <div className="modal-dialog modal-sm">
           <div className="modal-content">
-            <div className="modal-header">
+            <div className={modalHeader}>
               <button type="button" className="close" onClick={this.props.handlerCloseModal}>&times;</button>
               <h4 className="modal-title">{this.props.textHeader && this.props.textHeader}</h4>
             </div>
