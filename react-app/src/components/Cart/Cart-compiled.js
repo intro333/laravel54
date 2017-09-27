@@ -412,7 +412,7 @@ var Cart = function (_Component) {
           ),
           _react2.default.createElement(
             'p',
-            { className: 'order-filds-label', style: { color: 'red', fontSize: '12px', margin: '0' } },
+            { className: 'order-filds-label', style: { color: 'red', fontSize: '14px', margin: '0' } },
             this.state.comment_count_error !== '' && this.state.comment_count_error
           ),
           _react2.default.createElement('textarea', {
@@ -432,7 +432,7 @@ var Cart = function (_Component) {
           _react2.default.createElement(
             'p',
             { className: 'order-filds-label scroll-to-error',
-              style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
+              style: { color: 'red', fontSize: '14px', marginTop: '5px' } },
             this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
           ),
           _react2.default.createElement(

@@ -429,20 +429,40 @@
         /*font-size: 14px !important;*/
     /*}*/
 }
-
-@media (max-width: 767px) {
-    .modal-dialog-success {
-        right: 4%;
-    }
-}
 @media (min-width: 767px) {
     .modal-dialog-success {
         right: 5%;
     }
 }
-@media (max-width: 540px) {
+@media (min-width: 1300px) {
+    .modal-dialog-success {
+        right: 11%;
+    }
+}
+@media (min-width: 1650px) {
+    .modal-dialog-success {
+        right: 16%;
+    }
+}
+@media (max-width: 767px) {
     .modal-dialog-success {
         right: 6%;
+    }
+}
+@media (max-width: 500px) {
+    .modal-dialog-success {
+        right: 7%;
+    }
+}
+@media (max-width: 400px) {
+    .modal-dialog-success {
+        width: 240px;
+    }
+    .modal-header-success {
+        padding: 9px;
+    }
+    .modal-title {
+        font-size: 15px;
     }
 }
 /* Таблица с продуктами */

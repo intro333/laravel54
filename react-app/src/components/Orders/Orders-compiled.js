@@ -86,6 +86,9 @@ var Orders = function (_Component) {
   }, {
     key: 'componentWillMount',
     value: function componentWillMount() {
+      var dispatch = this.props.dispatch;
+
+      (0, _api.showOrdersQuotaInCart)(dispatch);
       this.ordersGetAll(this.state.orderStatus, this.state.orderYear, this.state.orderMonth);
     }
   }, {
@@ -125,10 +128,12 @@ var Orders = function (_Component) {
 
       var _props = this.props,
           api = _props.api,
-          history = _props.history;
+          history = _props.history,
+          ordersQuota = _props.ordersQuota;
 
       var orders = api.get('orders');
       var tables = null;
+      var orderControlStatus = ordersQuota && ordersQuota.delivery && ordersQuota.delivery.order_control_status;
 
       if (helpers.isEmptyMap(orders)) {
         tables = Object.entries(orders).map(function (item, index) {
@@ -141,7 +146,9 @@ var Orders = function (_Component) {
             key: item[1][0]['orderId'],
             item: item[1],
             history: history,
-            orderStatus: _this2.state.orderStatus
+            stateOrderStatus: _this2.state.orderStatus,
+            orderStatus: orderControlStatus && orderControlStatus,
+            ordersQuota: ordersQuota
           });
         });
       }
@@ -150,6 +157,18 @@ var Orders = function (_Component) {
 
       var yearOptions = helpers.getNumberSelectOptions(2012, new Date().getUTCFullYear(), false);
       var monthOptions = [{ value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }];
+
+      if ((this.state.orderStatus === 1 || this.state.orderStatus === 5) && tables && tables.length === 0) {
+        tables = _react2.default.createElement(
+          'p',
+          { style: { fontSize: '16px' } },
+          _react2.default.createElement(
+            'b',
+            null,
+            '\u0423 \u0432\u0430\u0441 \u043D\u0435\u0442 \u043E\u0431\u0440\u0430\u0431\u0430\u0442\u044B\u0432\u0430\u0435\u043C\u044B\u0445 \u0437\u0430\u043A\u0430\u0437\u043E\u0432.'
+          )
+        );
+      }
 
       return _react2.default.createElement(
         'div',
@@ -167,6 +186,11 @@ var Orders = function (_Component) {
               { className: 'bread-crumbs-on-page' },
               '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
             )
+          ),
+          orderControlStatus && orderControlStatus === 5 && _react2.default.createElement(
+            'p',
+            { className: 'personal-explain-text', style: { color: 'red' } },
+            '\u0417\u0430\u043A\u0430\u0437 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043D\u0430 \u0438\u0441\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u0435.'
           ),
           _react2.default.createElement(
             'div',
@@ -244,7 +268,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
     session: store.session,
-    api: store.api
+    api: store.api,
+    ordersQuota: store.api.get('ordersQuota')
   };
 })(Orders);
 

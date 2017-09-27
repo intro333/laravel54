@@ -54,18 +54,15 @@ var OrderItem = function (_Component) {
       fadeIn: false,
       modalDisplay: false,
       textHeader: '',
-      function: null
+      function: null,
+      textAlign: false
     };
     return _this;
   }
 
   _createClass(OrderItem, [{
     key: 'componentWillMount',
-    value: function componentWillMount() {
-      var dispatch = this.props.dispatch;
-
-      (0, _api.showOrdersQuotaInCart)(dispatch);
-    }
+    value: function componentWillMount() {}
   }, {
     key: 'handleClickOrder',
     value: function handleClickOrder() {
@@ -87,6 +84,7 @@ var OrderItem = function (_Component) {
         fadeIn: true,
         modalDisplay: true,
         textHeader: 'Вы уверены, что хотите ' + text.toLowerCase() + '?',
+        textAlign: true,
         function: function _function() {
           var _props = _this2.props,
               dispatch = _props.dispatch,
@@ -122,6 +120,7 @@ var OrderItem = function (_Component) {
         fadeIn: true,
         modalDisplay: true,
         textHeader: 'Если в корзине есть товары, то они будут удалены. Продолжить?',
+        textAlign: false,
         function: function _function() {
           var _props3 = _this3.props,
               dispatch = _props3.dispatch,
@@ -144,6 +143,7 @@ var OrderItem = function (_Component) {
         fadeIn: true,
         modalDisplay: true,
         textHeader: 'Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно. Продолжить?',
+        textAlign: false,
         function: function _function() {
           var _props4 = _this4.props,
               dispatch = _props4.dispatch,
@@ -308,31 +308,37 @@ var OrderItem = function (_Component) {
       }, 0);
       var orderConfigCancel = '';
 
-      switch (this.props.orderStatus) {
-        case 1:
-          // Если заказ обрабатывается
-          orderConfigCancel = _react2.default.createElement(
-            'span',
-            { onClick: this.handlerCancelOrder.bind(this) },
-            '\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
-          );
-          break;
-        case 2:
-          // Если заказ выполнен
-          orderConfigCancel = _react2.default.createElement(
-            'span',
-            { onClick: this.handlerCancelOrder.bind(this) },
-            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
-          );
-          break;
-        case 3:
-          // Если заказ удален
-          orderConfigCancel = _react2.default.createElement(
-            'span',
-            { onClick: this.handlerDeleteOrder.bind(this) },
-            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
-          );
-          break;
+      if (this.props.orderStatus !== 5) {
+        switch (this.props.stateOrderStatus) {
+          case 1:
+            // Если заказ обрабатывается
+            orderConfigCancel = _react2.default.createElement(
+              'span',
+              { onClick: this.handlerCancelOrder.bind(this) },
+              '\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+            );
+            break;
+
+          case 2:
+            // Если заказ выполнен
+            orderConfigCancel = _react2.default.createElement(
+              'span',
+              { onClick: this.handlerCancelOrder.bind(this) },
+              '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+            );
+            break;
+
+          case 3:
+            // Если заказ удален
+            orderConfigCancel = _react2.default.createElement(
+              'span',
+              { onClick: this.handlerDeleteOrder.bind(this) },
+              '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+            );
+            break;
+        }
+      } else {
+        orderConfigCancel = _react2.default.createElement('span', null);
       }
 
       var orderInfo = _react2.default.createElement(
@@ -371,16 +377,17 @@ var OrderItem = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'order-config' },
-          this.props.orderStatus !== 1 && _react2.default.createElement(
+          this.props.stateOrderStatus !== 1 && this.props.orderStatus !== 5 && this.props.orderStatus !== 2 && _react2.default.createElement(
             'span',
             { onClick: this.handlerRepeatOrder.bind(this) },
             '\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           ),
-          this.props.orderStatus === 1 && _react2.default.createElement(
+          this.props.stateOrderStatus === 1 && this.props.orderStatus !== 5 && this.props.orderStatus !== 2 && _react2.default.createElement(
             'span',
             { onClick: this.handlerChangeOrder.bind(this) },
             '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           ),
+          this.props.orderStatus === 5 && _react2.default.createElement('span', null),
           orderConfigCancel
         )
       );
@@ -394,6 +401,7 @@ var OrderItem = function (_Component) {
           handlerCloseModal: this.handlerCloseModal.bind(this),
           handlerSuccessModal: this.handlerSuccessModal.bind(this),
           textHeader: this.state.textHeader,
+          textAlign: this.state.textAlign,
           textBody: this.state.textBody
         }),
         this.state.tdBotyVisible && orderInfo,
@@ -434,7 +442,6 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     dispatch: store.dispatch,
     session: store.session,
     api: store.api,
-    ordersQuota: store.api.get('ordersQuota'),
     products: store.products
   };
 })(OrderItem);

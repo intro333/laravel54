@@ -121,7 +121,7 @@ var Products = function (_Component) {
       var deliveryMessage = _react2.default.createElement(
         'p',
         { className: 'order-filds-label scroll-to-error',
-          style: { color: 'red', fontSize: '12px', marginTop: '5px' } },
+          style: { color: 'red', fontSize: '14px', marginTop: '5px' } },
         '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 \u0437\u0430\u043A\u0440\u044B\u0442\u0430.\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u043E\u0441\u0442\u0438 \u0437\u0434\u0435\u0441\u044C.'
       );
 

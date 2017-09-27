@@ -59,6 +59,11 @@ var Modal = function (_Component) {
         display: 'none'
       };
 
+      var modalHeader = (0, _classnames2.default)({
+        'modal-header': true,
+        'align-center': this.props.textAlign
+      });
+
       return _react2.default.createElement(
         'div',
         null,
@@ -74,7 +79,7 @@ var Modal = function (_Component) {
               { className: 'modal-content' },
               _react2.default.createElement(
                 'div',
-                { className: 'modal-header' },
+                { className: modalHeader },
                 _react2.default.createElement(
                   'button',
                   { type: 'button', className: 'close', onClick: this.props.handlerCloseModal },
