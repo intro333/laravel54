@@ -7,7 +7,6 @@ import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import Modal  from '../Popups/Modal';
 import {
-  showOrdersQuotaInCart,
   cancelOrDeleteOrder,
   repeatOrChangeOrder,
 } from '../../api';
@@ -28,8 +27,7 @@ class OrderItem extends Component {
   }
 
   componentWillMount() {
-    const { dispatch } = this.props;
-    showOrdersQuotaInCart(dispatch);
+
   }
 
   handleClickOrder() {
@@ -184,17 +182,23 @@ class OrderItem extends Component {
     var total = itemsForTotal.reduce((total, item) => total + item.cost, 0);
     var orderConfigCancel = '';
 
-      switch(this.props.orderStatus) {
+    if (this.props.orderStatus !== 5) {
+      switch (this.props.stateOrderStatus) {
         case 1:  // Если заказ обрабатывается
           orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Отменить заказ</span>;
           break;
+
         case 2:  // Если заказ выполнен
           orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Удалить</span>;
           break;
+
         case 3:  // Если заказ удален
           orderConfigCancel = <span onClick={this.handlerDeleteOrder.bind(this)}>Удалить</span>;
           break;
       }
+    } else {
+      orderConfigCancel = <span></span>;
+    }
 
     var orderInfo =
       <div className="order-instruments">
@@ -208,9 +212,9 @@ class OrderItem extends Component {
           }
         </div>
         <div className="order-config">
-          {/*{this.props.orderStatus === 1 && <span>Редактировать заказ</span>}*/}
-          {this.props.orderStatus !== 1 && <span onClick={this.handlerRepeatOrder.bind(this)}>Повторить заказ</span>}
-          {this.props.orderStatus === 1 && <span onClick={this.handlerChangeOrder.bind(this)}>Изменить заказ</span>}
+          {(this.props.stateOrderStatus !== 1 && this.props.orderStatus !== 5) && <span onClick={this.handlerRepeatOrder.bind(this)}>Повторить заказ</span>}
+          {this.props.stateOrderStatus === 1 && this.props.orderStatus !== 5 && <span onClick={this.handlerChangeOrder.bind(this)}>Изменить заказ</span>}
+          {this.props.orderStatus === 5 && <span></span>}
           {orderConfigCancel}
         </div>
       </div>;
@@ -247,6 +251,5 @@ export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
   api: store.api,
-  ordersQuota: store.api.get('ordersQuota'),
   products: store.products,
 }))(OrderItem);

@@ -23,7 +23,7 @@
     <div class="form-group">
         {!! Form::label('status', 'Статус', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::select('order_control_status', ['1' => 'Обрабатывается', '5' => 'Выполняется', '2' => 'Выполнен'], $delivery->order_control_status, ['placeholder' => 'Выберите статус', 'class'=>'form-control', 'required' => 'required'])!!}
+            {!! Form::select('order_control_status', ['1' => 'Обрабатывается', '5' => 'Передан на исполнение', '2' => 'Выполнен'], $delivery->order_control_status, ['placeholder' => 'Выберите статус', 'class'=>'form-control', 'required' => 'required'])!!}
         </div>
     </div>
 

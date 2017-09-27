@@ -126,6 +126,7 @@ class SessionController extends Controller
             'delivery_date' => $delivery['delivery_date']->format('d-m-Y'),
             'status' => $delivery['status'],
             'delivery_message' => $delivery['delivery_message'],
+            'order_control_status' => $delivery['order_control_status'],
         ];
 
         return [

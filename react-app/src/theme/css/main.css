@@ -363,7 +363,7 @@ input[type="checkbox"]:checked + label span {
     letter-spacing: 1px;
 }
 .personal-explain-text {
-    font-size: 13px;
+    font-size: 14px;
     color: steelblue;
 }
 /*Инпут для вставки фото*/

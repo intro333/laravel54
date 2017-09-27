@@ -59,7 +59,7 @@ class Products extends Component {
     );
     const deliveryStatus = ordersQuota.delivery && ordersQuota.delivery.status && ordersQuota.delivery.status;
     const deliveryMessage = <p className="order-filds-label scroll-to-error"
-                              style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>Дата доставки закрыта.Подробности здесь.</p>;
+                              style={{color: 'red', fontSize: '14px', marginTop: '5px'}}>Дата доставки закрыта.Подробности здесь.</p>;
 
     return (
       <div className="container">

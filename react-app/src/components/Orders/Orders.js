@@ -10,6 +10,7 @@ import MenuMobile from '../Popups/MenuMobile';
 import OrderItem from '../Orders/OrderItem';
 import {
   ordersGetAll,
+  showOrdersQuotaInCart
 } from '../../api';
 import * as modelActions from '../../actions';
 
@@ -35,6 +36,8 @@ class Orders extends Component {
   }
 
   componentWillMount() {
+    const { dispatch } = this.props;
+    showOrdersQuotaInCart(dispatch);
     this.ordersGetAll(this.state.orderStatus, this.state.orderYear, this.state.orderMonth);
   }
 
@@ -63,9 +66,10 @@ class Orders extends Component {
 
   render() {
 
-    const { api, history } = this.props;
+    const { api, history, ordersQuota } = this.props;
     const orders = api.get('orders');
     var tables = null;
+    const orderControlStatus = ordersQuota && ordersQuota.delivery && ordersQuota.delivery.order_control_status;
 
     if(helpers.isEmptyMap(orders)) {
       tables = Object.entries(orders).map((item, index) =>
@@ -78,7 +82,9 @@ class Orders extends Component {
             key={item[1][0]['orderId']}
             item={item[1]}
             history={history}
-            orderStatus={this.state.orderStatus}
+            stateOrderStatus={this.state.orderStatus}
+            orderStatus={orderControlStatus && orderControlStatus}
+            ordersQuota={ordersQuota}
           />
       );
     }
@@ -95,6 +101,10 @@ class Orders extends Component {
       { value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }
     ];
 
+    if((this.state.orderStatus === 1 || this.state.orderStatus === 5) && tables && tables.length === 0) {
+      tables = <p style={{fontSize: '16px'}}><b>У вас нет обрабатываемых заказов.</b></p>;
+    }
+
     return (
       <div className="container">
         <Navigation />
@@ -103,6 +113,8 @@ class Orders extends Component {
           <div className="category-head">
             <h3 className="bread-crumbs-on-page">Мои заказы</h3>
           </div>
+          {orderControlStatus && orderControlStatus === 5 &&
+          <p className="personal-explain-text" style={{color: 'red'}}>Заказ передан на исполнение.</p>}
           <div className="order-filter-main">
             <div className="order-filds-label-input">
               <label className="order-filds-label" htmlFor="status">Статус заказа</label>
@@ -155,4 +167,5 @@ export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
   api: store.api,
+  ordersQuota: store.api.get('ordersQuota'),
 }))(Orders);

@@ -12,7 +12,7 @@ class Order extends Model
     const DONE = 2;//Выполнен
     const CANCELLED = 3;//Удалён/Отменён
     const CHANGE = 4;//Изменить
-    const RUNS = 5;//Выполняется
+    const EXECUTION = 5;//Передан на исполнение
 
     //Трейт для мягкого удаления
     use SoftDeletes;
@@ -64,7 +64,12 @@ class Order extends Model
      */
     public function scopeStatus($query, $status)
     {
-        return $query->where('status', $status);
+        if ($status === 1) {
+            return $query->where('status', 1)->orWhere('status', 5);
+        } else {
+            return $query->where('status', $status);
+        }
+
     }
 
     /**

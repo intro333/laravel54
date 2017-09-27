@@ -256,7 +256,7 @@ class Cart extends Component {
             </tbody>
           </table>
           <div className="cart-order__total cart_total">Сумма:&nbsp;<span>{ total } ₽</span></div>
-          <p className="order-filds-label" style={{color: 'red', fontSize: '12px', margin: '0'}}>
+          <p className="order-filds-label" style={{color: 'red', fontSize: '14px', margin: '0'}}>
             {this.state.comment_count_error !== '' && this.state.comment_count_error}
           </p>
           <textarea
@@ -270,7 +270,7 @@ class Cart extends Component {
             доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</p>
           {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
           <p className="order-filds-label scroll-to-error"
-                 style={{color: 'red', fontSize: '12px', marginTop: '5px'}}>
+                 style={{color: 'red', fontSize: '14px', marginTop: '5px'}}>
             {
               this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
             }

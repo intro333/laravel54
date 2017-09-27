@@ -76,6 +76,7 @@ class CustomerConstoller extends Controller
                 'orderDate' => $order->created_at->format('d-m-Y'),
                 'timeQuota' => $order->timeQuota->time_quota,
                 'timeQuotaId' => $order->time_quota_id,
+                'status' => $order->status,
             ];
             foreach ($order->features as $feature) {
                 $product = Products::find($feature['productId']);

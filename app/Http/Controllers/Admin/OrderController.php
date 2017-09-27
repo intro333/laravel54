@@ -66,12 +66,19 @@ class OrderController extends Controller
     public function ordersDelivery(Request $request)
     {
         $delivery = Delivery::find($request->input('delivery_date_id'));
-        $updateStatus = $delivery->update([
-            'delivery_date' => $request->input('delivery_date'),
-            'delivery_message' => $request->input('delivery_message') ? $request->input('delivery_message') : '',
-            'status' => (int) $request->input('status'),
-        ]);
         try {
+            $updateStatus = $delivery->update([
+                'delivery_date' => $request->input('delivery_date'),
+                'delivery_message' => $request->input('delivery_message') ? $request->input('delivery_message') : '',
+                'status' => (int) $request->input('status'),
+            ]);
+
+            if ((int) $request->input('status') === 1) {
+                $updateStatus = $delivery->update([
+                    'order_control_status' => 1,
+                ]);
+            }
+
             if ($updateStatus) {
                 flash('Данные доставки обновлены!')->success();
                 return redirect(route('orders.view.delivery'));
@@ -97,12 +104,40 @@ class OrderController extends Controller
     /* вьюха управление заказами */
     public function ordersControlStatus(Request $request)
     {
+        $globalStatus = $request->input('order_control_status');
         $delivery = Delivery::all()->first();
 
-        $updateStatus = $delivery->update([
-            'order_control_status' => $request->input('order_control_status')
-        ]);
         try {
+            if ($globalStatus === '5') {
+                $updateStatus = $delivery->update([
+                    'order_control_status' => $globalStatus,
+                    'status' => 0
+                ]);
+                //Изменить статусы у всех продуктов, которые в обработке
+                $orders = Order::where('status', 1)->get();
+                foreach ($orders as $order) {
+                    $order->update([
+                        'status' => 5
+                    ]);
+                }
+            } else if ($globalStatus === '2') {
+                $updateStatus = $delivery->update([
+                    'order_control_status' => $globalStatus,
+                    'status' => 0
+                ]);
+                //Изменить статусы у всех продуктов, которые на исполнении
+                $orders = Order::where('status', 5)->get();
+                foreach ($orders as $order) {
+                    $order->update([
+                        'status' => 2
+                    ]);
+                }
+            }
+
+            $updateStatus = $delivery->update([
+                'order_control_status' => $globalStatus
+            ]);
+
             if ($updateStatus) {
                 flash('Глобальный статус обновлен!')->success();
                 return redirect(route('orders.view.control.status'));
