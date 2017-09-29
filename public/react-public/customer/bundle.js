@@ -345,7 +345,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -906,50 +906,6 @@ if(false) {
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
-
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-module.exports = emptyFunction;
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
   Copyright (c) 2016 Jed Watson.
   Licensed under the MIT License (MIT), see
@@ -1000,6 +956,50 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	}
 }());
 
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
+
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+module.exports = emptyFunction;
 
 /***/ }),
 /* 14 */
@@ -2508,7 +2508,7 @@ var _assign = __webpack_require__(5);
 
 var PooledClass = __webpack_require__(28);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var warning = __webpack_require__(3);
 
 var didWarnForAddedNewProperty = false;
@@ -3413,7 +3413,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -4593,7 +4593,7 @@ var _reactInputAutosize = __webpack_require__(290);
 
 var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -15196,7 +15196,7 @@ module.exports = shouldUpdateReactComponent;
 
 var _assign = __webpack_require__(5);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var warning = __webpack_require__(3);
 
 var validateDOMNesting = emptyFunction;
@@ -16207,7 +16207,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -17224,7 +17224,7 @@ module.exports = factory;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -17860,7 +17860,7 @@ module.exports = function(isValidElement) {
 
 
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -21487,7 +21487,7 @@ module.exports = filterOptions;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -24061,7 +24061,7 @@ var _reactRouterDom = __webpack_require__(24);
 
 var _reactRedux = __webpack_require__(8);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -24750,7 +24750,7 @@ var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
 var _api = __webpack_require__(18);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -24773,7 +24773,11 @@ var Home = function (_Component) {
     _this.state = {
       displayImg_1: false,
       displayImg_2: true,
-      displayImg_3: true
+      displayImg_3: true,
+      timerId: 0,
+      clickTimeout_1: 0,
+      clickTimeout_2: 0,
+      clickTimeout_3: 0
     };
     return _this;
   }
@@ -24790,40 +24794,58 @@ var Home = function (_Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.sliderGo(2000, 4000, 6000);
       var timerId = setInterval(function () {
-        this.sliderGo(2000, 4000, 6000);
-      }.bind(this), 6000);
+        _this2.sliderGo(2000, 4000, 6000);
+      }, 6000);
       this.setState({
         timerId: timerId
       });
+      console.log("m", timerId);
     }
   }, {
-    key: 'componentWillUnMount',
-    value: function componentWillUnMount() {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      console.log("unm", this.state.timerId);
+      console.log("unm", this.state.clickTimeout_1);
+      console.log("unm", this.state.clickTimeout_2);
+      console.log("unm", this.state.clickTimeout_3);
       clearInterval(this.state.timerId);
+      clearTimeout(this.state.clickTimeout_1);
+      clearTimeout(this.state.clickTimeout_2);
+      clearTimeout(this.state.clickTimeout_3);
     }
   }, {
     key: 'sliderGo',
     value: function sliderGo(one, two, three) {
-      setTimeout(function () {
-        this.setState({
-          displayImg_1: true,
-          displayImg_2: false
-        });
-      }.bind(this), one);
-      setTimeout(function () {
-        this.setState({
-          displayImg_2: true,
-          displayImg_3: false
-        });
-      }.bind(this), two);
-      setTimeout(function () {
-        this.setState({
-          displayImg_3: true,
-          displayImg_1: false
-        });
-      }.bind(this), three);
+      var _this3 = this;
+
+      this.setState({
+        clickTimeout_1: setTimeout(function () {
+          _this3.setState({
+            displayImg_1: true,
+            displayImg_2: false
+          });
+        }, one)
+      });
+      this.setState({
+        clickTimeout_2: setTimeout(function () {
+          _this3.setState({
+            displayImg_2: true,
+            displayImg_3: false
+          });
+        }, two)
+      });
+      this.setState({
+        clickTimeout_2: setTimeout(function () {
+          _this3.setState({
+            displayImg_3: true,
+            displayImg_1: false
+          });
+        }, three)
+      });
     }
   }, {
     key: 'render',
@@ -24889,7 +24911,7 @@ var _reactRouterDom = __webpack_require__(24);
 
 var _reactRedux = __webpack_require__(8);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -25654,7 +25676,7 @@ var _SuccessSaveModal2 = _interopRequireDefault(_SuccessSaveModal);
 
 var _actions = __webpack_require__(39);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -26067,7 +26089,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -26214,7 +26236,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -26363,7 +26385,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -26473,7 +26495,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(8);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -29117,7 +29139,7 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(2);
 var ReactPropTypesSecret = __webpack_require__(63);
 
@@ -30225,7 +30247,7 @@ var DOMLazyTree = __webpack_require__(32);
 var ExecutionEnvironment = __webpack_require__(9);
 
 var createNodesFromMarkup = __webpack_require__(188);
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(2);
 
 var Danger = {
@@ -31985,7 +32007,7 @@ var ReactInstrumentation = __webpack_require__(16);
 var ReactMultiChild = __webpack_require__(251);
 var ReactServerRenderingTransaction = __webpack_require__(256);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var escapeTextContentForBrowser = __webpack_require__(54);
 var invariant = __webpack_require__(2);
 var isEventSupported = __webpack_require__(76);
@@ -34895,7 +34917,7 @@ var _assign = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(19);
 var Transaction = __webpack_require__(53);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -35462,7 +35484,7 @@ var ReactCurrentOwner = __webpack_require__(20);
 var ReactReconciler = __webpack_require__(33);
 var ReactChildReconciler = __webpack_require__(223);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var flattenChildren = __webpack_require__(276);
 var invariant = __webpack_require__(2);
 
@@ -37090,7 +37112,7 @@ var SyntheticTransitionEvent = __webpack_require__(270);
 var SyntheticUIEvent = __webpack_require__(46);
 var SyntheticWheelEvent = __webpack_require__(271);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var getEventCharCode = __webpack_require__(73);
 var invariant = __webpack_require__(2);
 
@@ -38638,7 +38660,7 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(2);
 
 module.exports = function() {
@@ -38699,7 +38721,7 @@ module.exports = function() {
 
 
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -42484,7 +42506,7 @@ var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -42607,7 +42629,7 @@ var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _classnames = __webpack_require__(13);
+var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -42966,7 +42988,7 @@ module.exports = PooledClass;
 var PooledClass = __webpack_require__(332);
 var ReactElement = __webpack_require__(29);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var traverseAllChildren = __webpack_require__(343);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;

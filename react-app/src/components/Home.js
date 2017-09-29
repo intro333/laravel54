@@ -16,6 +16,10 @@ class Home extends Component {
       displayImg_1: false,
       displayImg_2: true,
       displayImg_3: true,
+      timerId: 0,
+      clickTimeout_1: 0,
+      clickTimeout_2: 0,
+      clickTimeout_3: 0,
     };
   }
 
@@ -26,37 +30,51 @@ class Home extends Component {
 
   componentDidMount() {
     this.sliderGo(2000, 4000, 6000);
-    var timerId = setInterval(function () {
+    var timerId = setInterval(() => {
       this.sliderGo(2000, 4000, 6000);
-    }.bind(this), 6000);
+    }, 6000);
     this.setState({
       timerId: timerId
     });
+    console.log("m", timerId)
   }
 
-  componentWillUnMount() {
-    clearInterval(this.state.timerId)
+  componentWillUnmount() {
+    console.log("unm", this.state.timerId);
+    console.log("unm", this.state.clickTimeout_1);
+    console.log("unm", this.state.clickTimeout_2);
+    console.log("unm", this.state.clickTimeout_3);
+    clearInterval(this.state.timerId);
+    clearTimeout(this.state.clickTimeout_1);
+    clearTimeout(this.state.clickTimeout_2);
+    clearTimeout(this.state.clickTimeout_3);
   }
 
   sliderGo(one, two, three) {
-      setTimeout(function () {
+    this.setState({
+      clickTimeout_1: setTimeout(() => {
         this.setState({
           displayImg_1: true,
           displayImg_2: false,
         });
-      }.bind(this), one);
-      setTimeout(function () {
+      }, one)
+    });
+    this.setState({
+      clickTimeout_2: setTimeout(() => {
         this.setState({
           displayImg_2: true,
           displayImg_3: false,
         });
-      }.bind(this), two);
-      setTimeout(function () {
+      }, two)
+    });
+    this.setState({
+      clickTimeout_2: setTimeout(() => {
         this.setState({
           displayImg_3: true,
           displayImg_1: false,
         });
-      }.bind(this), three);
+      }, three)
+      });
   }
 
   render() {
