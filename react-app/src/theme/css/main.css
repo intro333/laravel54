@@ -77,7 +77,33 @@ hr {
 a {
     text-decoration: none !important;
 }
-
+/* ГЛАВНАЯ НАЧАЛО ------------------------------------------------------------------*/
+/* Сслайдер */
+.main-slider {
+    display: block;
+    width: 100%;
+}
+@keyframes runSlider {
+    0% {
+        transform: scale(0);
+        opacity: 0.01;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.slider-img {
+    width: 100%;
+    animation-name:runSlider;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+}
+/*.slider-img:not(:nth-child(1)) {*/
+    /*display: none;*/
+/*}*/
+/* ГЛАВНАЯ КОНЕЦ ------------------------------------------------------------------*/
 /*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/
 /*Главный див для форм входа и регистрации*/
 .register-container-main {
