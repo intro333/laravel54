@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Navigation from './Navigation/Navigation';
+import Footer from './Navigation/Footer';
 import MenuMobile from './Popups/MenuMobile';
 import {
   setUserInfo,
@@ -38,7 +39,6 @@ class Home extends Component {
     this.setState({
       timerId: timerId
     });
-    console.log("m", timerId)
   }
 
   componentWillUnmount() {
@@ -55,7 +55,6 @@ class Home extends Component {
       let img_1 = i + 1;
       let img_2 = (i + 1) === seconds.length ? 1 : i + 2;
       let clickTimeout = i + 1;
-      console.log('clickTimeout', clickTimeout);
       this.setState({
         ['clickTimeout_' + clickTimeout]: setTimeout(() => {
           this.setState({
@@ -82,17 +81,36 @@ class Home extends Component {
     });
 
     return (
-      <div className="container">
-        <Navigation />
-        <MenuMobile />
-        <div className="animation-page-load-medium">
-          <div className="main-slider">
-            <img className={sliderImg_1} src="https://www.w3schools.com/w3images/workbench.jpg" />
-            <img className={sliderImg_2} src="https://www.w3schools.com/w3images/coffee.jpg" />
-            <img className={sliderImg_3} src="https://www.w3schools.com/w3images/sound.jpg" />
-
+      <div>
+        <div className="container">
+          <Navigation />
+          <MenuMobile />
+          <div className="animation-page-load-medium">
+            <div className="main-slider">
+              <img className={sliderImg_1} src="https://www.w3schools.com/w3images/workbench.jpg" />
+              <img className={sliderImg_2} src="https://www.w3schools.com/w3images/coffee.jpg" />
+              <img className={sliderImg_3} src="https://www.w3schools.com/w3images/sound.jpg" />
+              <div className="xf-wrapper">
+                <header className="xf-you-love__header">Онлайн-магазин</header>
+                <p className="xf-you-love__subheader">shop-travel.ru это:</p>
+                <ul className="xf-you-love__list">
+                  <div>
+                    <li className="xf-you-love__item">Легкий заказ на сайте</li>
+                    <li className="xf-you-love__item">Значительная экономия времени</li>
+                    <li className="xf-you-love__item">Полный ассортимент товаров супермаркета</li>
+                    <li className="xf-you-love__item">Специальные акции и привлекательные цены</li>
+                  </div>
+                  <div>
+                    <li className="xf-you-love__item">Бережная доставка ежедневно в удобное время</li>
+                    <li className="xf-you-love__item">Оплата картой или наличными</li>
+                    <li className="xf-you-love__item">Привилегии участникам Клуба Перекресток</li>
+                  </div>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

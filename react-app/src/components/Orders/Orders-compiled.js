@@ -44,6 +44,10 @@ var _actions = require('../../actions');
 
 var modelActions = _interopRequireWildcard(_actions);
 
+var _Footer = require('../Navigation/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -172,91 +176,96 @@ var Orders = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'main-container' },
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
           _react2.default.createElement(
             'div',
-            { className: 'category-head' },
-            _react2.default.createElement(
-              'h3',
-              { className: 'bread-crumbs-on-page' },
-              '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
-            )
-          ),
-          orderControlStatus && orderControlStatus === 5 && _react2.default.createElement(
-            'p',
-            { className: 'personal-explain-text', style: { color: 'red' } },
-            '\u0417\u0430\u043A\u0430\u0437 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043D\u0430 \u0438\u0441\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u0435.'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'order-filter-main' },
+            { className: 'main-container' },
             _react2.default.createElement(
               'div',
-              { className: 'order-filds-label-input' },
+              { className: 'category-head' },
               _react2.default.createElement(
-                'label',
-                { className: 'order-filds-label', htmlFor: 'status' },
-                '\u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u043A\u0430\u0437\u0430'
-              ),
-              _react2.default.createElement(_reactSelect2.default, {
-                name: 'status',
-                value: this.state.orderStatus,
-                options: OrderStatusOptions,
-                onChange: this.handleChangeOrderStatus.bind(this),
-                clearable: false,
-                searchable: false
-              })
+                'h3',
+                { className: 'bread-crumbs-on-page' },
+                '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
+              )
+            ),
+            orderControlStatus && orderControlStatus === 5 && _react2.default.createElement(
+              'p',
+              { className: 'personal-explain-text', style: { color: 'red' } },
+              '\u0417\u0430\u043A\u0430\u0437 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043D\u0430 \u0438\u0441\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u0435.'
             ),
             _react2.default.createElement(
               'div',
-              { className: 'order-filds-label-input' },
+              { className: 'order-filter-main' },
               _react2.default.createElement(
-                'label',
-                { className: 'order-filds-label', htmlFor: 'status' },
-                '\u041C\u0435\u0441\u044F\u0446'
+                'div',
+                { className: 'order-filds-label-input' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'order-filds-label', htmlFor: 'status' },
+                  '\u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u043A\u0430\u0437\u0430'
+                ),
+                _react2.default.createElement(_reactSelect2.default, {
+                  name: 'status',
+                  value: this.state.orderStatus,
+                  options: OrderStatusOptions,
+                  onChange: this.handleChangeOrderStatus.bind(this),
+                  clearable: false,
+                  searchable: false
+                })
               ),
-              _react2.default.createElement(_reactSelect2.default, {
-                className: 'margin-right-10',
-                name: 'birthdate',
-                value: this.state.orderMonth,
-                options: monthOptions,
-                onChange: this.handlerChangeOrderMonth.bind(this),
-                placeholder: '',
-                clearable: false,
-                searchable: false,
-                scrollMenuIntoView: false
-              })
+              _react2.default.createElement(
+                'div',
+                { className: 'order-filds-label-input' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'order-filds-label', htmlFor: 'status' },
+                  '\u041C\u0435\u0441\u044F\u0446'
+                ),
+                _react2.default.createElement(_reactSelect2.default, {
+                  className: 'margin-right-10',
+                  name: 'birthdate',
+                  value: this.state.orderMonth,
+                  options: monthOptions,
+                  onChange: this.handlerChangeOrderMonth.bind(this),
+                  placeholder: '',
+                  clearable: false,
+                  searchable: false,
+                  scrollMenuIntoView: false
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'order-filds-label-input' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'order-filds-label', htmlFor: 'status' },
+                  '\u0413\u043E\u0434'
+                ),
+                _react2.default.createElement(_reactSelect2.default, {
+                  name: 'birthdate',
+                  value: this.state.orderYear,
+                  options: yearOptions,
+                  onChange: this.handlerChangeOrderYear.bind(this),
+                  clearable: false,
+                  searchable: false,
+                  scrollMenuIntoView: false
+                })
+              )
             ),
             _react2.default.createElement(
               'div',
-              { className: 'order-filds-label-input' },
-              _react2.default.createElement(
-                'label',
-                { className: 'order-filds-label', htmlFor: 'status' },
-                '\u0413\u043E\u0434'
-              ),
-              _react2.default.createElement(_reactSelect2.default, {
-                name: 'birthdate',
-                value: this.state.orderYear,
-                options: yearOptions,
-                onChange: this.handlerChangeOrderYear.bind(this),
-                clearable: false,
-                searchable: false,
-                scrollMenuIntoView: false
-              })
+              { className: 'orders-all' },
+              tables
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'orders-all' },
-            tables
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);

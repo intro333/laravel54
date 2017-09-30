@@ -10,17 +10,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = require('classnames');
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-require('../../theme/css/main.css');
-
-require('../../theme/css/adaptive.css');
+var _reactRedux = require('react-redux');
 
 var _reactRouterDom = require('react-router-dom');
-
-var _reactRedux = require('react-redux');
 
 var _actions = require('../../actions');
 
@@ -36,16 +28,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MenuMobile = function (_Component) {
-  _inherits(MenuMobile, _Component);
+var Footer = function (_Component) {
+  _inherits(Footer, _Component);
 
-  function MenuMobile(props) {
-    _classCallCheck(this, MenuMobile);
+  function Footer(props) {
+    _classCallCheck(this, Footer);
 
-    return _possibleConstructorReturn(this, (MenuMobile.__proto__ || Object.getPrototypeOf(MenuMobile)).call(this, props));
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
   }
 
-  _createClass(MenuMobile, [{
+  _createClass(Footer, [{
     key: 'closeMobNavElem',
     value: function closeMobNavElem() {
       var dispatch = this.props.dispatch;
@@ -55,47 +47,66 @@ var MenuMobile = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var session = this.props.session;
-
-      var showPopupMonNavElement = (0, _classnames2.default)({
-        'popup_mob-nav-elem': true,
-        'show-hide': session.get('mobNavElement')
-      });
-
       return _react2.default.createElement(
-        'div',
-        { className: showPopupMonNavElement },
-        _react2.default.createElement('div', { onClick: this.closeMobNavElem.bind(this), className: 'popup_mob-nav-elem_bg' }),
+        'footer',
+        { id: 'footer' },
         _react2.default.createElement(
           'div',
-          { className: 'for-mob-nav-elem' },
+          { className: 'layout' },
           _react2.default.createElement(
             'div',
-            { id: 'blok_mob-nav-elem' },
+            { className: 'b-footer' },
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { onClick: this.closeMobNavElem.bind(this), to: '/' },
+              'div',
+              { className: 'b-menu' },
               _react2.default.createElement(
-                'div',
-                { className: 'on-off-nmob-nav-elem' },
+                'nav',
+                { className: 'menu_footer menu_footer--footer' },
                 _react2.default.createElement(
-                  'p',
-                  null,
-                  '\u0413\u043B\u0430\u0432\u043D\u0430\u044F'
+                  'li',
+                  { className: 'menu__item_footer' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    {
+                      className: 'menu__item__link_footer',
+                      onClick: this.closeMobNavElem.bind(this), to: '/cart'
+                    },
+                    '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'menu__item_footer' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    {
+                      className: 'menu__item__link_footer',
+                      onClick: this.closeMobNavElem.bind(this), to: '/orders'
+                    },
+                    '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'menu__item_footer' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    {
+                      className: 'menu__item__link_footer',
+                      onClick: this.closeMobNavElem.bind(this), to: '/personal-account'
+                    },
+                    '\u0410\u043A\u0430\u0443\u043D\u0442'
+                  )
                 )
               )
             ),
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { onClick: this.closeMobNavElem.bind(this), to: '/categories' },
+              'div',
+              { className: 'b-footer__bottom' },
               _react2.default.createElement(
                 'div',
-                { className: 'on-off-nmob-nav-elem' },
-                _react2.default.createElement(
-                  'p',
-                  null,
-                  '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
-                )
+                { className: 'footer__copy' },
+                '\xA9 \xAB\u041C\u0430\u0433\u0430\u0437\u0438\u043D \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u043E\u0432\xBB, 2017'
               )
             )
           )
@@ -104,14 +115,15 @@ var MenuMobile = function (_Component) {
     }
   }]);
 
-  return MenuMobile;
+  return Footer;
 }(_react.Component);
 
 exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
-    session: store.session
+    session: store.session,
+    api: store.api
   };
-})(MenuMobile);
+})(Footer);
 
-//# sourceMappingURL=MenuMobile-compiled.js.map
+//# sourceMappingURL=Footer-compiled.js.map

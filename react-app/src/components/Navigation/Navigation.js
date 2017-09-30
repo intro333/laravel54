@@ -26,23 +26,35 @@ class Navigation extends Component {
     logOut(token);
   }
 
-  render() {
-    const logoImg = {
-      width: '65px',
-      height: '40px',
-      margin: '5px'
-    };
+  closeMobNavElem() {
+    const { dispatch } = this.props;
+    dispatch(modelActions.setMobNavElement(true));
+  }
 
-    const { dispatch, session, api } = this.props;
+  render() {
+    const { dispatch, session } = this.props;
     //Заполнить количество продуктов в корзине в меню
     getProductCounts(dispatch);
 
     const productsCounts = session.get('productCounts');
     var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
-    // console.log('productsCounts', productsCounts)
 
     return (
       <div>
+        <div className="contacts-main">
+          <div className="contacts-item">
+            <span>Сергей</span>
+            <span>8(985)851-20-86</span>
+          </div>
+          <div className="contacts-item">
+            <span>Елена</span>
+            <span>8(929)622-98-15</span>
+          </div>
+          <div className="contacts-item">
+            <span>Электронная почта</span>
+            <span>shop-travel17@yandex.ru</span>
+          </div>
+        </div>
         <div className="mobile-nav-bar-1">
           <nav className="navbar navbar-default">
             <div className="container-fluid">
@@ -63,17 +75,19 @@ class Navigation extends Component {
                   onClick={this.logOut.bind(this)}
                   className="glyphicon glyphicon-log-out mob-menu-right"
                 ></span>
-                {/*<span className="glyphicon glyphicon-cog  mob-menu-right"></span>*/}
-                {/*<span className="glyphicon glyphicon-search  mob-menu-right"></span>*/}
-                <Link to={'/personal-account'}><span className="glyphicon glyphicon-user  mob-menu-right"></span></Link>
-                {/*<Link to={'/sussess-page'}><span className="glyphicon glyphicon-user  mob-menu-right"></span></Link>*/}
-                <Link to={'/cart'}>
+                <Link onClick={this.closeMobNavElem.bind(this)} to={'/cart'}>
                   <span className="glyphicon glyphicon-shopping-cart mob-menu-right"></span>
                   <div className="menu__item--basket__amount">{productsCounts && productsCounts}</div>
                 </Link>
-                  <Link to={'/orders'}>
-                    <span className="glyphicon glyphicon-list-alt mob-menu-right"></span>
-                  </Link>
+                <Link onClick={this.closeMobNavElem.bind(this)}
+                      to={'/personal-account'}>
+                  <span className="glyphicon glyphicon-user  mob-menu-right"></span>
+                </Link>
+                <Link
+                  onClick={this.closeMobNavElem.bind(this)}
+                  to={'/orders'}
+                ><span className="glyphicon glyphicon-list-alt mob-menu-right"></span>
+                </Link>
               </div>
             </div>
           </nav>
@@ -81,10 +95,6 @@ class Navigation extends Component {
         <div className="mobile-nav-bar-2">
           <nav className="navbar navbar-default">
             <div className="container-fluid">
-              {/*<div className="navbar-header">*/}
-
-                {/*<Link to={'/'}><img className="www-logo-image" src="/images/nav/www-logo.jpg" style={logoImg} /></Link>*/}
-              {/*</div>*/}
               <ul className="nav navbar-nav">
                 <li id="mob-www-logo">
                   <Link to={'/'}>
@@ -92,38 +102,22 @@ class Navigation extends Component {
                   </Link>
                 </li>
                 <li><Link to={'/categories'}>Продукты</Link></li>
-                {/*<li><Link to={'/cart'}>Корзина</Link></li>*/}
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                {/*<li><a><span className="glyphicon glyphicon-search"></span>*/}
-                  {/*<span className="mob-nav-text">Поиск</span>*/}
-                {/*</a>*/}
-                {/*</li>*/}
-                {/*<li id="menu-option">*/}
-                  {/*<a>*/}
-                    {/*<span className="glyphicon glyphicon-cog"></span>*/}
-                    {/*<span className="mob-nav-text">Настройки</span>*/}
-                  {/*</a>*/}
-                {/*</li>*/}
                 <li><Link to="/orders">
                   <span className="glyphicon glyphicon-list-alt"></span>
-                  <span className="mob-nav-text">Мои заказы</span>
+                  <span className="mob-nav-text">&nbsp;Мои заказы</span>
+                </Link>
+                </li>
+                <li><Link to={'/personal-account'}>
+                  <span className="glyphicon glyphicon-user"></span>
+                  <span className="mob-nav-text">&nbsp;Акаунт</span>
                 </Link>
                 </li>
                 <li><Link to={cartUrl}>
                   <span className="glyphicon glyphicon-shopping-cart"></span>
-                  <span className="mob-nav-text">Корзина</span>
+                  <span className="mob-nav-text">&nbsp;Корзина</span>
                   <div className="menu__item--basket__amount">{productsCounts && productsCounts}</div>
-                </Link>
-                </li>
-                {/*<li>*/}
-                  {/*<Link to="sussess-page">*/}
-                  {/*<span className="mob-nav-text">Success</span>*/}
-                  {/*</Link>*/}
-                {/*</li>*/}
-                <li><Link to={'/personal-account'}>
-                  <span className="glyphicon glyphicon-user"></span>
-                  <span className="mob-nav-text">Акаунт</span>
                 </Link>
                 </li>
                 <li onClick={this.logOut.bind(this)}>

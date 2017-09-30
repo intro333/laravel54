@@ -34,6 +34,10 @@ var _api = require('../../api');
 
 var _helpers = require('../../helpers');
 
+var _Footer = require('../Navigation/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -100,27 +104,32 @@ var Categories = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'main-container' },
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
           _react2.default.createElement(
             'div',
-            { className: 'category-head' },
+            { className: 'main-container' },
             _react2.default.createElement(
-              'h3',
-              { className: 'bread-crumbs-on-page' },
-              '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+              'div',
+              { className: 'category-head' },
+              _react2.default.createElement(
+                'h3',
+                { className: 'bread-crumbs-on-page' },
+                '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'category-all' },
+              categoryItems
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'category-all' },
-            categoryItems
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);

@@ -13,6 +13,7 @@ import {
   showOrdersQuotaInCart
 } from '../../api';
 import * as modelActions from '../../actions';
+import Footer from '../Navigation/Footer';
 
 class Orders extends Component {
   constructor(props) {
@@ -106,58 +107,61 @@ class Orders extends Component {
     }
 
     return (
-      <div className="container">
-        <Navigation />
-        <MenuMobile />
-        <div className="main-container">
-          <div className="category-head">
-            <h3 className="bread-crumbs-on-page">Мои заказы</h3>
-          </div>
-          {orderControlStatus && orderControlStatus === 5 &&
-          <p className="personal-explain-text" style={{color: 'red'}}>Заказ передан на исполнение.</p>}
-          <div className="order-filter-main">
-            <div className="order-filds-label-input">
-              <label className="order-filds-label" htmlFor="status">Статус заказа</label>
-              <Select
-                name="status"
-                value={this.state.orderStatus}
-                options={OrderStatusOptions}
-                onChange={this.handleChangeOrderStatus.bind(this)}
-                clearable={false}
-                searchable={false}
-              />
+      <div>
+        <div className="container">
+          <Navigation />
+          <MenuMobile />
+          <div className="main-container">
+            <div className="category-head">
+              <h3 className="bread-crumbs-on-page">Мои заказы</h3>
             </div>
-            <div className="order-filds-label-input">
-              <label className="order-filds-label" htmlFor="status">Месяц</label>
-              <Select
-                className="margin-right-10"
-                name="birthdate"
-                value={this.state.orderMonth}
-                options={monthOptions}
-                onChange={this.handlerChangeOrderMonth.bind(this)}
-                placeholder=""
-                clearable={false}
-                searchable={false}
-                scrollMenuIntoView={false}
-              />
+            {orderControlStatus && orderControlStatus === 5 &&
+            <p className="personal-explain-text" style={{color: 'red'}}>Заказ передан на исполнение.</p>}
+            <div className="order-filter-main">
+              <div className="order-filds-label-input">
+                <label className="order-filds-label" htmlFor="status">Статус заказа</label>
+                <Select
+                  name="status"
+                  value={this.state.orderStatus}
+                  options={OrderStatusOptions}
+                  onChange={this.handleChangeOrderStatus.bind(this)}
+                  clearable={false}
+                  searchable={false}
+                />
+              </div>
+              <div className="order-filds-label-input">
+                <label className="order-filds-label" htmlFor="status">Месяц</label>
+                <Select
+                  className="margin-right-10"
+                  name="birthdate"
+                  value={this.state.orderMonth}
+                  options={monthOptions}
+                  onChange={this.handlerChangeOrderMonth.bind(this)}
+                  placeholder=""
+                  clearable={false}
+                  searchable={false}
+                  scrollMenuIntoView={false}
+                />
+              </div>
+              <div className="order-filds-label-input">
+                <label className="order-filds-label" htmlFor="status">Год</label>
+                <Select
+                  name="birthdate"
+                  value={this.state.orderYear}
+                  options={yearOptions}
+                  onChange={this.handlerChangeOrderYear.bind(this)}
+                  clearable={false}
+                  searchable={false}
+                  scrollMenuIntoView={false}
+                />
+              </div>
             </div>
-            <div className="order-filds-label-input">
-              <label className="order-filds-label" htmlFor="status">Год</label>
-              <Select
-                name="birthdate"
-                value={this.state.orderYear}
-                options={yearOptions}
-                onChange={this.handlerChangeOrderYear.bind(this)}
-                clearable={false}
-                searchable={false}
-                scrollMenuIntoView={false}
-              />
+            <div className="orders-all">
+                {tables}
             </div>
-          </div>
-          <div className="orders-all">
-              {tables}
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

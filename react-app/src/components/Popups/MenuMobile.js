@@ -12,14 +12,12 @@ class MenuMobile extends Component {
   }
 
   closeMobNavElem() {
-    const { dispatch, session } = this.props;
+    const { dispatch } = this.props;
     dispatch(modelActions.setMobNavElement(true));
   }
 
   render() {
-
     const { session } = this.props;
-
     const showPopupMonNavElement = classNames({
       'popup_mob-nav-elem': true,
       'show-hide': session.get('mobNavElement')
@@ -27,7 +25,7 @@ class MenuMobile extends Component {
 
     return (
       <div className={showPopupMonNavElement}>
-        <div className="popup_mob-nav-elem_bg"></div>
+        <div onClick={this.closeMobNavElem.bind(this)} className="popup_mob-nav-elem_bg"></div>
         <div className="for-mob-nav-elem">
           <div id="blok_mob-nav-elem">
             <Link onClick={this.closeMobNavElem.bind(this)} to={'/'}><div className="on-off-nmob-nav-elem"><p>Главная</p></div></Link>

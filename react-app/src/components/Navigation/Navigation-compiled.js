@@ -62,29 +62,74 @@ var Navigation = function (_Component) {
       (0, _api.logOut)(token);
     }
   }, {
+    key: 'closeMobNavElem',
+    value: function closeMobNavElem() {
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setMobNavElement(true));
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var logoImg = {
-        width: '65px',
-        height: '40px',
-        margin: '5px'
-      };
-
       var _props2 = this.props,
           dispatch = _props2.dispatch,
-          session = _props2.session,
-          api = _props2.api;
+          session = _props2.session;
       //Заполнить количество продуктов в корзине в меню
 
       (0, _api.getProductCounts)(dispatch);
 
       var productsCounts = session.get('productCounts');
       var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
-      // console.log('productsCounts', productsCounts)
 
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          'div',
+          { className: 'contacts-main' },
+          _react2.default.createElement(
+            'div',
+            { className: 'contacts-item' },
+            _react2.default.createElement(
+              'span',
+              null,
+              '\u0421\u0435\u0440\u0433\u0435\u0439'
+            ),
+            _react2.default.createElement(
+              'span',
+              null,
+              '8(985)851-20-86'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'contacts-item' },
+            _react2.default.createElement(
+              'span',
+              null,
+              '\u0415\u043B\u0435\u043D\u0430'
+            ),
+            _react2.default.createElement(
+              'span',
+              null,
+              '8(929)622-98-15'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'contacts-item' },
+            _react2.default.createElement(
+              'span',
+              null,
+              '\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u0430\u044F \u043F\u043E\u0447\u0442\u0430'
+            ),
+            _react2.default.createElement(
+              'span',
+              null,
+              'shop-travel17@yandex.ru'
+            )
+          )
+        ),
         _react2.default.createElement(
           'div',
           { className: 'mobile-nav-bar-1' },
@@ -115,12 +160,7 @@ var Navigation = function (_Component) {
                 }),
                 _react2.default.createElement(
                   _reactRouterDom.Link,
-                  { to: '/personal-account' },
-                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-user  mob-menu-right' })
-                ),
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { to: '/cart' },
+                  { onClick: this.closeMobNavElem.bind(this), to: '/cart' },
                   _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart mob-menu-right' }),
                   _react2.default.createElement(
                     'div',
@@ -130,7 +170,16 @@ var Navigation = function (_Component) {
                 ),
                 _react2.default.createElement(
                   _reactRouterDom.Link,
-                  { to: '/orders' },
+                  { onClick: this.closeMobNavElem.bind(this),
+                    to: '/personal-account' },
+                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-user  mob-menu-right' })
+                ),
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  {
+                    onClick: this.closeMobNavElem.bind(this),
+                    to: '/orders'
+                  },
                   _react2.default.createElement('span', { className: 'glyphicon glyphicon-list-alt mob-menu-right' })
                 )
               )
@@ -185,26 +234,7 @@ var Navigation = function (_Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: cartUrl },
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'mob-nav-text' },
-                      '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
-                    ),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'menu__item--basket__amount' },
-                      productsCounts && productsCounts
+                      '\xA0\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
                     )
                   )
                 ),
@@ -218,7 +248,26 @@ var Navigation = function (_Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\u0410\u043A\u0430\u0443\u043D\u0442'
+                      '\xA0\u0410\u043A\u0430\u0443\u043D\u0442'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: cartUrl },
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'mob-nav-text' },
+                      '\xA0\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'menu__item--basket__amount' },
+                      productsCounts && productsCounts
                     )
                   )
                 ),

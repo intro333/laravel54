@@ -561,7 +561,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 var _prodInvariant = __webpack_require__(4);
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var ReactDOMComponentFlags = __webpack_require__(105);
 
 var invariant = __webpack_require__(2);
@@ -1794,7 +1794,7 @@ var modelActions = _interopRequireWildcard(_actions);
 
 var _actions2 = __webpack_require__(39);
 
-var _helpers = __webpack_require__(27);
+var _helpers = __webpack_require__(23);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -2864,6 +2864,186 @@ function setTotalSum(totalSum) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.inputmaskBirthDate = inputmaskBirthDate;
+exports.getNumberSelectOptions = getNumberSelectOptions;
+exports.isEmptyMap = isEmptyMap;
+exports.isEmptyArray = isEmptyArray;
+exports.scrollTo = scrollTo;
+exports.scrollToElement = scrollToElement;
+exports.setSecondsArray = setSecondsArray;
+exports.setIntervalValue = setIntervalValue;
+//Маска для даты
+function inputmaskBirthDate(value, length, date) {
+
+  var result = null;
+
+  if (length == 1) {
+    if (value < 4) {
+      result = value;
+    } else {
+      result = '0';
+    }
+  }
+
+  if (length == 2) {
+    if (value < 32 && value.slice(0, 2) != '00') {
+      result = value;
+    } else {
+      result = '31';
+    }
+  }
+
+  if (length == 4) {
+    if (value.slice(3, 4) < 2) {
+      result = value;
+    } else {
+      result = value.slice(0, 3) + '0';
+    }
+  }
+
+  if (length == 5) {
+    if (value.slice(3, 5) < 13 && value.slice(3, 5) != '00') {
+      result = value;
+    } else {
+      result = value.slice(0, 3) + '12';
+    }
+  }
+
+  if (length > 5 && length < 10) {
+    result = value;
+  }
+
+  if (length == 10) {
+    if (value.slice(6, 10) > 1900 && value.slice(6, 10) < date.getFullYear() + 1) {
+      result = value;
+    } else {
+      result = value.slice(0, 6) + (date.getFullYear() - 18);
+    }
+    if (value.slice(0, 2) > 31 || value.slice(0, 2) == '00') {
+      result = '31' + value.slice(2, 10);
+    }
+    if (value.slice(3, 5) > 12 || value.slice(3, 5) == '00') {
+      result = value.slice(0, 3) + '12' + value.slice(6, 10);
+    }
+  }
+
+  return result;
+}
+
+//Маска для даты
+function getNumberSelectOptions(start, end) {
+  var filter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+  var nums = [];
+  var arrayOptions = [];
+  if (filter) arrayOptions.push({ value: 0, label: '' });
+
+  for (var i = start; i <= end; i++) {
+    nums.push(i);
+  }
+
+  nums.forEach(function (item, i) {
+    arrayOptions.push({
+      value: item, label: item
+    });
+  });
+
+  return arrayOptions;
+}
+
+//Проверка на пустой Map
+function isEmptyMap(map) {
+  return !!(map && map.size !== 0);
+}
+function isEmptyArray(map) {
+  if (!!(map && map.size !== 0)) {
+    return !!(map && map.length !== 0);
+  }
+  return false;
+}
+
+/*SCROLL TO ELEMENT ----------------------------------------------------------*/
+/**
+ * ScrollTo utility
+ * © https://gist.github.com/james2doyle/5694700
+ */
+var easeInOutQuad = function easeInOutQuad(t, b, c, d) {
+  if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+
+  return -c / 2 * (--t * (t - 2) - 1) + b;
+};
+
+// requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
+var requestAnimFrame = function () {
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
+    return window.setTimeout(callback, 1000 / 60);
+  };
+}();
+
+function scrollTo(to) {
+  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+  var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  var move = function move(amount) {
+    document.documentElement.scrollTop = amount;
+    document.body.parentNode.scrollTop = amount;
+    document.body.scrollTop = amount;
+  };
+  var start = document.documentElement.scrollTop || document.body.parentNode.scrollTop || document.body.scrollTop;
+  var change = to - start;
+  var increment = 20;
+  var currentTime = 0;
+
+  var animateScroll = function animateScroll() {
+    currentTime += increment;
+    var val = easeInOutQuad(currentTime, start, change, duration);
+    move(val);
+    if (currentTime < duration) {
+      requestAnimFrame(animateScroll);
+    } else {
+      if (callback && typeof callback === 'function') {
+        callback();
+      }
+    }
+  };
+  animateScroll();
+}
+
+function scrollToElement(toSelector) {
+  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+
+  var element = document.querySelector(toSelector);
+  if (!element) return;
+
+  scrollTo(element.getBoundingClientRect().top, duration);
+}
+/*SCROLL TO ELEMENT ----------------------------------------------------------*/
+
+/* Заполнить массив секундами */
+function setSecondsArray(length, interval) {
+  var array = [];
+
+  for (var i = 1; i <= length; i++) {
+    array.push(i * interval * 1000);
+  }
+
+  return array;
+}
+/* Задать значение интервалу */
+function setIntervalValue(length, interval) {
+  return length * interval * 1000;
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3075,7 +3255,7 @@ module.exports = DOMProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3134,7 +3314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3158,7 +3338,7 @@ __webpack_require__(10);
 
 __webpack_require__(37);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(25);
 
 var _actions = __webpack_require__(22);
 
@@ -3202,29 +3382,74 @@ var Navigation = function (_Component) {
       (0, _api.logOut)(token);
     }
   }, {
+    key: 'closeMobNavElem',
+    value: function closeMobNavElem() {
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setMobNavElement(true));
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var logoImg = {
-        width: '65px',
-        height: '40px',
-        margin: '5px'
-      };
-
       var _props2 = this.props,
           dispatch = _props2.dispatch,
-          session = _props2.session,
-          api = _props2.api;
+          session = _props2.session;
       //Заполнить количество продуктов в корзине в меню
 
       (0, _api.getProductCounts)(dispatch);
 
       var productsCounts = session.get('productCounts');
       var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
-      // console.log('productsCounts', productsCounts)
 
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          'div',
+          { className: 'contacts-main' },
+          _react2.default.createElement(
+            'div',
+            { className: 'contacts-item' },
+            _react2.default.createElement(
+              'span',
+              null,
+              '\u0421\u0435\u0440\u0433\u0435\u0439'
+            ),
+            _react2.default.createElement(
+              'span',
+              null,
+              '8(985)851-20-86'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'contacts-item' },
+            _react2.default.createElement(
+              'span',
+              null,
+              '\u0415\u043B\u0435\u043D\u0430'
+            ),
+            _react2.default.createElement(
+              'span',
+              null,
+              '8(929)622-98-15'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'contacts-item' },
+            _react2.default.createElement(
+              'span',
+              null,
+              '\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u0430\u044F \u043F\u043E\u0447\u0442\u0430'
+            ),
+            _react2.default.createElement(
+              'span',
+              null,
+              'shop-travel17@yandex.ru'
+            )
+          )
+        ),
         _react2.default.createElement(
           'div',
           { className: 'mobile-nav-bar-1' },
@@ -3255,12 +3480,7 @@ var Navigation = function (_Component) {
                 }),
                 _react2.default.createElement(
                   _reactRouterDom.Link,
-                  { to: '/personal-account' },
-                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-user  mob-menu-right' })
-                ),
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { to: '/cart' },
+                  { onClick: this.closeMobNavElem.bind(this), to: '/cart' },
                   _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart mob-menu-right' }),
                   _react2.default.createElement(
                     'div',
@@ -3270,7 +3490,16 @@ var Navigation = function (_Component) {
                 ),
                 _react2.default.createElement(
                   _reactRouterDom.Link,
-                  { to: '/orders' },
+                  { onClick: this.closeMobNavElem.bind(this),
+                    to: '/personal-account' },
+                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-user  mob-menu-right' })
+                ),
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  {
+                    onClick: this.closeMobNavElem.bind(this),
+                    to: '/orders'
+                  },
                   _react2.default.createElement('span', { className: 'glyphicon glyphicon-list-alt mob-menu-right' })
                 )
               )
@@ -3325,26 +3554,7 @@ var Navigation = function (_Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: cartUrl },
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'mob-nav-text' },
-                      '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
-                    ),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'menu__item--basket__amount' },
-                      productsCounts && productsCounts
+                      '\xA0\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
                     )
                   )
                 ),
@@ -3358,7 +3568,26 @@ var Navigation = function (_Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\u0410\u043A\u0430\u0443\u043D\u0442'
+                      '\xA0\u0410\u043A\u0430\u0443\u043D\u0442'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: cartUrl },
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'mob-nav-text' },
+                      '\xA0\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'menu__item--basket__amount' },
+                      productsCounts && productsCounts
                     )
                   )
                 ),
@@ -3397,7 +3626,7 @@ exports.default = (0, _reactRedux.connect)(function (store) {
 })(Navigation);
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3421,7 +3650,7 @@ __webpack_require__(11);
 
 __webpack_require__(10);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(25);
 
 var _reactRedux = __webpack_require__(8);
 
@@ -3451,9 +3680,7 @@ var MenuMobile = function (_Component) {
   _createClass(MenuMobile, [{
     key: 'closeMobNavElem',
     value: function closeMobNavElem() {
-      var _props = this.props,
-          dispatch = _props.dispatch,
-          session = _props.session;
+      var dispatch = this.props.dispatch;
 
       dispatch(modelActions.setMobNavElement(true));
     }
@@ -3461,7 +3688,6 @@ var MenuMobile = function (_Component) {
     key: 'render',
     value: function render() {
       var session = this.props.session;
-
 
       var showPopupMonNavElement = (0, _classnames2.default)({
         'popup_mob-nav-elem': true,
@@ -3471,7 +3697,7 @@ var MenuMobile = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: showPopupMonNavElement },
-        _react2.default.createElement('div', { className: 'popup_mob-nav-elem_bg' }),
+        _react2.default.createElement('div', { onClick: this.closeMobNavElem.bind(this), className: 'popup_mob-nav-elem_bg' }),
         _react2.default.createElement(
           'div',
           { className: 'for-mob-nav-elem' },
@@ -3519,186 +3745,6 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     session: store.session
   };
 })(MenuMobile);
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.inputmaskBirthDate = inputmaskBirthDate;
-exports.getNumberSelectOptions = getNumberSelectOptions;
-exports.isEmptyMap = isEmptyMap;
-exports.isEmptyArray = isEmptyArray;
-exports.scrollTo = scrollTo;
-exports.scrollToElement = scrollToElement;
-exports.setSecondsArray = setSecondsArray;
-exports.setIntervalValue = setIntervalValue;
-//Маска для даты
-function inputmaskBirthDate(value, length, date) {
-
-  var result = null;
-
-  if (length == 1) {
-    if (value < 4) {
-      result = value;
-    } else {
-      result = '0';
-    }
-  }
-
-  if (length == 2) {
-    if (value < 32 && value.slice(0, 2) != '00') {
-      result = value;
-    } else {
-      result = '31';
-    }
-  }
-
-  if (length == 4) {
-    if (value.slice(3, 4) < 2) {
-      result = value;
-    } else {
-      result = value.slice(0, 3) + '0';
-    }
-  }
-
-  if (length == 5) {
-    if (value.slice(3, 5) < 13 && value.slice(3, 5) != '00') {
-      result = value;
-    } else {
-      result = value.slice(0, 3) + '12';
-    }
-  }
-
-  if (length > 5 && length < 10) {
-    result = value;
-  }
-
-  if (length == 10) {
-    if (value.slice(6, 10) > 1900 && value.slice(6, 10) < date.getFullYear() + 1) {
-      result = value;
-    } else {
-      result = value.slice(0, 6) + (date.getFullYear() - 18);
-    }
-    if (value.slice(0, 2) > 31 || value.slice(0, 2) == '00') {
-      result = '31' + value.slice(2, 10);
-    }
-    if (value.slice(3, 5) > 12 || value.slice(3, 5) == '00') {
-      result = value.slice(0, 3) + '12' + value.slice(6, 10);
-    }
-  }
-
-  return result;
-}
-
-//Маска для даты
-function getNumberSelectOptions(start, end) {
-  var filter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-  var nums = [];
-  var arrayOptions = [];
-  if (filter) arrayOptions.push({ value: 0, label: '' });
-
-  for (var i = start; i <= end; i++) {
-    nums.push(i);
-  }
-
-  nums.forEach(function (item, i) {
-    arrayOptions.push({
-      value: item, label: item
-    });
-  });
-
-  return arrayOptions;
-}
-
-//Проверка на пустой Map
-function isEmptyMap(map) {
-  return !!(map && map.size !== 0);
-}
-function isEmptyArray(map) {
-  if (!!(map && map.size !== 0)) {
-    return !!(map && map.length !== 0);
-  }
-  return false;
-}
-
-/*SCROLL TO ELEMENT ----------------------------------------------------------*/
-/**
- * ScrollTo utility
- * © https://gist.github.com/james2doyle/5694700
- */
-var easeInOutQuad = function easeInOutQuad(t, b, c, d) {
-  if ((t /= d / 2) < 1) return c / 2 * t * t + b;
-
-  return -c / 2 * (--t * (t - 2) - 1) + b;
-};
-
-// requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
-var requestAnimFrame = function () {
-  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
-    return window.setTimeout(callback, 1000 / 60);
-  };
-}();
-
-function scrollTo(to) {
-  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
-  var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-
-  var move = function move(amount) {
-    document.documentElement.scrollTop = amount;
-    document.body.parentNode.scrollTop = amount;
-    document.body.scrollTop = amount;
-  };
-  var start = document.documentElement.scrollTop || document.body.parentNode.scrollTop || document.body.scrollTop;
-  var change = to - start;
-  var increment = 20;
-  var currentTime = 0;
-
-  var animateScroll = function animateScroll() {
-    currentTime += increment;
-    var val = easeInOutQuad(currentTime, start, change, duration);
-    move(val);
-    if (currentTime < duration) {
-      requestAnimFrame(animateScroll);
-    } else {
-      if (callback && typeof callback === 'function') {
-        callback();
-      }
-    }
-  };
-  animateScroll();
-}
-
-function scrollToElement(toSelector) {
-  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
-
-  var element = document.querySelector(toSelector);
-  if (!element) return;
-
-  scrollTo(element.getBoundingClientRect().top, duration);
-}
-/*SCROLL TO ELEMENT ----------------------------------------------------------*/
-
-/* Заполнить массив секундами */
-function setSecondsArray(length, interval) {
-  var array = [];
-
-  for (var i = 1; i <= length; i++) {
-    array.push(i * interval * 1000);
-  }
-
-  return array;
-}
-/* Задать значение интервалу */
-function setIntervalValue(length, interval) {
-  return length * interval * 1000;
-}
 
 /***/ }),
 /* 28 */
@@ -18682,7 +18728,7 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactInstrumentation = __webpack_require__(16);
 
@@ -19419,7 +19465,7 @@ module.exports = ReactInputSelection;
 var _prodInvariant = __webpack_require__(4);
 
 var DOMLazyTree = __webpack_require__(32);
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var React = __webpack_require__(35);
 var ReactBrowserEventEmitter = __webpack_require__(51);
 var ReactCurrentOwner = __webpack_require__(20);
@@ -22532,7 +22578,7 @@ var _react2 = _interopRequireDefault(_react);
 
 __webpack_require__(38);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(25);
 
 var _createBrowserHistory = __webpack_require__(97);
 
@@ -23619,11 +23665,11 @@ __webpack_require__(11);
 
 __webpack_require__(10);
 
-var _Navigation = __webpack_require__(25);
+var _Navigation = __webpack_require__(26);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _MenuMobile = __webpack_require__(26);
+var _MenuMobile = __webpack_require__(27);
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
@@ -23643,7 +23689,11 @@ var _immutable = __webpack_require__(49);
 
 var _api = __webpack_require__(18);
 
-var _helpers = __webpack_require__(27);
+var _helpers = __webpack_require__(23);
+
+var _Footer = __webpack_require__(355);
+
+var _Footer2 = _interopRequireDefault(_Footer);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -23908,136 +23958,141 @@ var Cart = function (_Component) {
       );
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
-        _react2.default.createElement(_Modal2.default, {
-          fadeIn: this.state.fadeIn,
-          modalDisplay: this.state.modalDisplay,
-          handlerCloseModal: this.handlerCloseModal.bind(this),
-          handlerSuccessModal: this.handlerSuccessModal.bind(this),
-          textHeader: this.state.textHeader,
-          textBody: this.state.textBody
-        }),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'main-container animation-page-load-medium cart-scroll-adaptive' },
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
+          _react2.default.createElement(_Modal2.default, {
+            fadeIn: this.state.fadeIn,
+            modalDisplay: this.state.modalDisplay,
+            handlerCloseModal: this.handlerCloseModal.bind(this),
+            handlerSuccessModal: this.handlerSuccessModal.bind(this),
+            textHeader: this.state.textHeader,
+            textBody: this.state.textBody
+          }),
           _react2.default.createElement(
             'div',
-            { className: 'flex-box-between' },
-            _react2.default.createElement(
-              'h3',
-              null,
-              '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
-            ),
+            { className: 'main-container animation-page-load-medium cart-scroll-adaptive' },
             _react2.default.createElement(
               'div',
-              { style: { display: 'flex' } },
+              { className: 'flex-box-between' },
               _react2.default.createElement(
-                'div',
-                { onClick: this.handlerClearCart.bind(this), className: 'cart-button-clear' },
-                '\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+                'h3',
+                null,
+                '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
               ),
               _react2.default.createElement(
                 'div',
-                { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
-                '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+                { style: { display: 'flex' } },
+                _react2.default.createElement(
+                  'div',
+                  { onClick: this.handlerClearCart.bind(this), className: 'cart-button-clear' },
+                  '\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
+                  '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+                )
               )
-            )
-          ),
-          (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && _react2.default.createElement(
-            'p',
-            { className: 'personal-explain-text' },
-            '\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430 \u2116 ST-',
-            userInfo.emailHash,
-            '-',
-            currentOrder['four'].order_id
-          ),
-          (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one']) && _react2.default.createElement(
-            'p',
-            { className: 'personal-explain-text', style: { color: 'red' } },
-            '\u0423 \u0412\u0430\u0441 \u0443\u0436\u0435 \u0435\u0441\u0442\u044C \u0437\u0430\u043A\u0430\u0437 \u0432 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0435.'
-          ),
-          _react2.default.createElement(
-            'table',
-            { className: 'cart-products-table cart-products-table__cart' },
+            ),
+            (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && _react2.default.createElement(
+              'p',
+              { className: 'personal-explain-text' },
+              '\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430 \u2116 ST-',
+              userInfo.emailHash,
+              '-',
+              currentOrder['four'].order_id
+            ),
+            (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one']) && _react2.default.createElement(
+              'p',
+              { className: 'personal-explain-text', style: { color: 'red' } },
+              '\u0423 \u0412\u0430\u0441 \u0443\u0436\u0435 \u0435\u0441\u0442\u044C \u0437\u0430\u043A\u0430\u0437 \u0432 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0435.'
+            ),
             _react2.default.createElement(
-              'thead',
-              null,
+              'table',
+              { className: 'cart-products-table cart-products-table__cart' },
               _react2.default.createElement(
-                'tr',
-                { className: 'cart-tr-head' },
+                'thead',
+                null,
                 _react2.default.createElement(
-                  'th',
-                  { className: 'table-30-procent' },
-                  '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'table-25-procent' },
-                  '\u0426\u0435\u043D\u0430'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'table-25-procent' },
-                  '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'table-10-procent' },
-                  '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
-                ),
-                _react2.default.createElement('th', { className: 'table-10-procent' })
+                  'tr',
+                  { className: 'cart-tr-head' },
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-30-procent' },
+                    '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
+                  ),
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-25-procent' },
+                    '\u0426\u0435\u043D\u0430'
+                  ),
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-25-procent' },
+                    '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
+                  ),
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-10-procent' },
+                    '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+                  ),
+                  _react2.default.createElement('th', { className: 'table-10-procent' })
+                )
+              ),
+              _react2.default.createElement(
+                'tbody',
+                null,
+                productsTd
               )
             ),
             _react2.default.createElement(
-              'tbody',
-              null,
-              productsTd
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'cart-order__total cart_total' },
-            '\u0421\u0443\u043C\u043C\u0430:\xA0',
+              'div',
+              { className: 'cart-order__total cart_total' },
+              '\u0421\u0443\u043C\u043C\u0430:\xA0',
+              _react2.default.createElement(
+                'span',
+                null,
+                total,
+                ' \u20BD'
+              )
+            ),
             _react2.default.createElement(
-              'span',
-              null,
-              total,
-              ' \u20BD'
+              'p',
+              { className: 'order-filds-label', style: { color: 'red', fontSize: '14px', margin: '0' } },
+              this.state.comment_count_error !== '' && this.state.comment_count_error
+            ),
+            _react2.default.createElement('textarea', {
+              name: 'comment',
+              className: 'cart-comment',
+              value: this.state.comment === '' ? comment : this.state.comment,
+              onChange: this.handleChangeComment.bind(this),
+              placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
+            }),
+            _react2.default.createElement(
+              'p',
+              { className: 'order-filds-label', style: { fontWeight: '700' } },
+              '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
+              ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
+            ),
+            ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
+            _react2.default.createElement(
+              'p',
+              { className: 'order-filds-label scroll-to-error',
+                style: { color: 'red', fontSize: '14px', marginTop: '5px' } },
+              this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
+            ),
+            _react2.default.createElement(
+              'div',
+              { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
+              '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
             )
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'order-filds-label', style: { color: 'red', fontSize: '14px', margin: '0' } },
-            this.state.comment_count_error !== '' && this.state.comment_count_error
-          ),
-          _react2.default.createElement('textarea', {
-            name: 'comment',
-            className: 'cart-comment',
-            value: this.state.comment === '' ? comment : this.state.comment,
-            onChange: this.handleChangeComment.bind(this),
-            placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
-          }),
-          _react2.default.createElement(
-            'p',
-            { className: 'order-filds-label', style: { fontWeight: '700' } },
-            '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
-            ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
-          ),
-          ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
-          _react2.default.createElement(
-            'p',
-            { className: 'order-filds-label scroll-to-error',
-              style: { color: 'red', fontSize: '14px', marginTop: '5px' } },
-            this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
-          ),
-          _react2.default.createElement(
-            'div',
-            { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
-            '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
@@ -24074,7 +24129,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(25);
 
 var _reactRedux = __webpack_require__(8);
 
@@ -24335,13 +24390,13 @@ __webpack_require__(11);
 
 __webpack_require__(10);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(25);
 
-var _Navigation = __webpack_require__(25);
+var _Navigation = __webpack_require__(26);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _MenuMobile = __webpack_require__(26);
+var _MenuMobile = __webpack_require__(27);
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
@@ -24519,11 +24574,11 @@ __webpack_require__(11);
 
 __webpack_require__(10);
 
-var _Navigation = __webpack_require__(25);
+var _Navigation = __webpack_require__(26);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _MenuMobile = __webpack_require__(26);
+var _MenuMobile = __webpack_require__(27);
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
@@ -24533,7 +24588,11 @@ var _CategoryItem2 = _interopRequireDefault(_CategoryItem);
 
 var _api = __webpack_require__(18);
 
-var _helpers = __webpack_require__(27);
+var _helpers = __webpack_require__(23);
+
+var _Footer = __webpack_require__(355);
+
+var _Footer2 = _interopRequireDefault(_Footer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24601,27 +24660,32 @@ var Categories = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'main-container' },
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
           _react2.default.createElement(
             'div',
-            { className: 'category-head' },
+            { className: 'main-container' },
             _react2.default.createElement(
-              'h3',
-              { className: 'bread-crumbs-on-page' },
-              '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+              'div',
+              { className: 'category-head' },
+              _react2.default.createElement(
+                'h3',
+                { className: 'bread-crumbs-on-page' },
+                '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'category-all' },
+              categoryItems
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'category-all' },
-            categoryItems
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
@@ -24656,7 +24720,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(8);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(25);
 
 __webpack_require__(37);
 
@@ -24757,11 +24821,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(8);
 
-var _Navigation = __webpack_require__(25);
+var _Navigation = __webpack_require__(26);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _MenuMobile = __webpack_require__(26);
+var _Footer = __webpack_require__(355);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _MenuMobile = __webpack_require__(27);
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
@@ -24771,7 +24839,7 @@ var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _helpers = __webpack_require__(27);
+var _helpers = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24820,7 +24888,6 @@ var Home = function (_Component) {
       this.setState({
         timerId: timerId
       });
-      console.log("m", timerId);
     }
   }, {
     key: 'componentWillUnmount',
@@ -24840,7 +24907,6 @@ var Home = function (_Component) {
         var img_1 = i + 1;
         var img_2 = i + 1 === seconds.length ? 1 : i + 2;
         var clickTimeout = i + 1;
-        console.log('clickTimeout', clickTimeout);
         _this3.setState(_defineProperty({}, 'clickTimeout_' + clickTimeout, setTimeout(function () {
           var _this3$setState;
 
@@ -24870,20 +24936,86 @@ var Home = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'animation-page-load-medium' },
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
           _react2.default.createElement(
             'div',
-            { className: 'main-slider' },
-            _react2.default.createElement('img', { className: sliderImg_1, src: 'https://www.w3schools.com/w3images/workbench.jpg' }),
-            _react2.default.createElement('img', { className: sliderImg_2, src: 'https://www.w3schools.com/w3images/coffee.jpg' }),
-            _react2.default.createElement('img', { className: sliderImg_3, src: 'https://www.w3schools.com/w3images/sound.jpg' })
+            { className: 'animation-page-load-medium' },
+            _react2.default.createElement(
+              'div',
+              { className: 'main-slider' },
+              _react2.default.createElement('img', { className: sliderImg_1, src: 'https://www.w3schools.com/w3images/workbench.jpg' }),
+              _react2.default.createElement('img', { className: sliderImg_2, src: 'https://www.w3schools.com/w3images/coffee.jpg' }),
+              _react2.default.createElement('img', { className: sliderImg_3, src: 'https://www.w3schools.com/w3images/sound.jpg' }),
+              _react2.default.createElement(
+                'div',
+                { className: 'xf-wrapper' },
+                _react2.default.createElement(
+                  'header',
+                  { className: 'xf-you-love__header' },
+                  '\u041E\u043D\u043B\u0430\u0439\u043D-\u043C\u0430\u0433\u0430\u0437\u0438\u043D'
+                ),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'xf-you-love__subheader' },
+                  'shop-travel.ru \u044D\u0442\u043E:'
+                ),
+                _react2.default.createElement(
+                  'ul',
+                  { className: 'xf-you-love__list' },
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u041B\u0435\u0433\u043A\u0438\u0439 \u0437\u0430\u043A\u0430\u0437 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u0417\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u044D\u043A\u043E\u043D\u043E\u043C\u0438\u044F \u0432\u0440\u0435\u043C\u0435\u043D\u0438'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u041F\u043E\u043B\u043D\u044B\u0439 \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u0441\u0443\u043F\u0435\u0440\u043C\u0430\u0440\u043A\u0435\u0442\u0430'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u0421\u043F\u0435\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0435 \u0430\u043A\u0446\u0438\u0438 \u0438 \u043F\u0440\u0438\u0432\u043B\u0435\u043A\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0446\u0435\u043D\u044B'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u0411\u0435\u0440\u0435\u0436\u043D\u0430\u044F \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0430 \u0435\u0436\u0435\u0434\u043D\u0435\u0432\u043D\u043E \u0432 \u0443\u0434\u043E\u0431\u043D\u043E\u0435 \u0432\u0440\u0435\u043C\u044F'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u041E\u043F\u043B\u0430\u0442\u0430 \u043A\u0430\u0440\u0442\u043E\u0439 \u0438\u043B\u0438 \u043D\u0430\u043B\u0438\u0447\u043D\u044B\u043C\u0438'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u041F\u0440\u0438\u0432\u0438\u043B\u0435\u0433\u0438\u0438 \u0443\u0447\u0430\u0441\u0442\u043D\u0438\u043A\u0430\u043C \u041A\u043B\u0443\u0431\u0430 \u041F\u0435\u0440\u0435\u043A\u0440\u0435\u0441\u0442\u043E\u043A'
+                    )
+                  )
+                )
+              )
+            )
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
@@ -24916,7 +25048,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(25);
 
 var _reactRedux = __webpack_require__(8);
 
@@ -25375,7 +25507,7 @@ var _reactSelect = __webpack_require__(34);
 
 var _reactSelect2 = _interopRequireDefault(_reactSelect);
 
-var _helpers = __webpack_require__(27);
+var _helpers = __webpack_require__(23);
 
 var helpers = _interopRequireWildcard(_helpers);
 
@@ -25385,11 +25517,11 @@ __webpack_require__(11);
 
 __webpack_require__(10);
 
-var _Navigation = __webpack_require__(25);
+var _Navigation = __webpack_require__(26);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _MenuMobile = __webpack_require__(26);
+var _MenuMobile = __webpack_require__(27);
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
@@ -25402,6 +25534,10 @@ var _api = __webpack_require__(18);
 var _actions = __webpack_require__(22);
 
 var modelActions = _interopRequireWildcard(_actions);
+
+var _Footer = __webpack_require__(355);
+
+var _Footer2 = _interopRequireDefault(_Footer);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -25531,91 +25667,96 @@ var Orders = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'main-container' },
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
           _react2.default.createElement(
             'div',
-            { className: 'category-head' },
-            _react2.default.createElement(
-              'h3',
-              { className: 'bread-crumbs-on-page' },
-              '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
-            )
-          ),
-          orderControlStatus && orderControlStatus === 5 && _react2.default.createElement(
-            'p',
-            { className: 'personal-explain-text', style: { color: 'red' } },
-            '\u0417\u0430\u043A\u0430\u0437 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043D\u0430 \u0438\u0441\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u0435.'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'order-filter-main' },
+            { className: 'main-container' },
             _react2.default.createElement(
               'div',
-              { className: 'order-filds-label-input' },
+              { className: 'category-head' },
               _react2.default.createElement(
-                'label',
-                { className: 'order-filds-label', htmlFor: 'status' },
-                '\u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u043A\u0430\u0437\u0430'
-              ),
-              _react2.default.createElement(_reactSelect2.default, {
-                name: 'status',
-                value: this.state.orderStatus,
-                options: OrderStatusOptions,
-                onChange: this.handleChangeOrderStatus.bind(this),
-                clearable: false,
-                searchable: false
-              })
+                'h3',
+                { className: 'bread-crumbs-on-page' },
+                '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
+              )
+            ),
+            orderControlStatus && orderControlStatus === 5 && _react2.default.createElement(
+              'p',
+              { className: 'personal-explain-text', style: { color: 'red' } },
+              '\u0417\u0430\u043A\u0430\u0437 \u043F\u0435\u0440\u0435\u0434\u0430\u043D \u043D\u0430 \u0438\u0441\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u0435.'
             ),
             _react2.default.createElement(
               'div',
-              { className: 'order-filds-label-input' },
+              { className: 'order-filter-main' },
               _react2.default.createElement(
-                'label',
-                { className: 'order-filds-label', htmlFor: 'status' },
-                '\u041C\u0435\u0441\u044F\u0446'
+                'div',
+                { className: 'order-filds-label-input' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'order-filds-label', htmlFor: 'status' },
+                  '\u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0430\u043A\u0430\u0437\u0430'
+                ),
+                _react2.default.createElement(_reactSelect2.default, {
+                  name: 'status',
+                  value: this.state.orderStatus,
+                  options: OrderStatusOptions,
+                  onChange: this.handleChangeOrderStatus.bind(this),
+                  clearable: false,
+                  searchable: false
+                })
               ),
-              _react2.default.createElement(_reactSelect2.default, {
-                className: 'margin-right-10',
-                name: 'birthdate',
-                value: this.state.orderMonth,
-                options: monthOptions,
-                onChange: this.handlerChangeOrderMonth.bind(this),
-                placeholder: '',
-                clearable: false,
-                searchable: false,
-                scrollMenuIntoView: false
-              })
+              _react2.default.createElement(
+                'div',
+                { className: 'order-filds-label-input' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'order-filds-label', htmlFor: 'status' },
+                  '\u041C\u0435\u0441\u044F\u0446'
+                ),
+                _react2.default.createElement(_reactSelect2.default, {
+                  className: 'margin-right-10',
+                  name: 'birthdate',
+                  value: this.state.orderMonth,
+                  options: monthOptions,
+                  onChange: this.handlerChangeOrderMonth.bind(this),
+                  placeholder: '',
+                  clearable: false,
+                  searchable: false,
+                  scrollMenuIntoView: false
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'order-filds-label-input' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'order-filds-label', htmlFor: 'status' },
+                  '\u0413\u043E\u0434'
+                ),
+                _react2.default.createElement(_reactSelect2.default, {
+                  name: 'birthdate',
+                  value: this.state.orderYear,
+                  options: yearOptions,
+                  onChange: this.handlerChangeOrderYear.bind(this),
+                  clearable: false,
+                  searchable: false,
+                  scrollMenuIntoView: false
+                })
+              )
             ),
             _react2.default.createElement(
               'div',
-              { className: 'order-filds-label-input' },
-              _react2.default.createElement(
-                'label',
-                { className: 'order-filds-label', htmlFor: 'status' },
-                '\u0413\u043E\u0434'
-              ),
-              _react2.default.createElement(_reactSelect2.default, {
-                name: 'birthdate',
-                value: this.state.orderYear,
-                options: yearOptions,
-                onChange: this.handlerChangeOrderYear.bind(this),
-                clearable: false,
-                searchable: false,
-                scrollMenuIntoView: false
-              })
+              { className: 'orders-all' },
+              tables
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'orders-all' },
-            tables
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
@@ -25663,11 +25804,11 @@ __webpack_require__(10);
 
 __webpack_require__(11);
 
-var _Navigation = __webpack_require__(25);
+var _Navigation = __webpack_require__(26);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _MenuMobile = __webpack_require__(26);
+var _MenuMobile = __webpack_require__(27);
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
@@ -25675,7 +25816,7 @@ var _reactInputMask = __webpack_require__(292);
 
 var _reactInputMask2 = _interopRequireDefault(_reactInputMask);
 
-var _helpers = __webpack_require__(27);
+var _helpers = __webpack_require__(23);
 
 var helpers = _interopRequireWildcard(_helpers);
 
@@ -25688,6 +25829,10 @@ var _actions = __webpack_require__(39);
 var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Footer = __webpack_require__(355);
+
+var _Footer2 = _interopRequireDefault(_Footer);
 
 var _api = __webpack_require__(18);
 
@@ -25897,174 +26042,179 @@ var PersonalAccount = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
-        _react2.default.createElement(_SuccessSaveModal2.default, {
-          handlerCloseModal: this.handlerCloseModal.bind(this),
-          successModalDisplay: products.get('successModalDisplay')
-        }),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'main-container' },
-          _react2.default.createElement(
-            'h2',
-            null,
-            '\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442'
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'personal-explain-text' },
-            '\u0417\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0441\u0432\u043E\u0438 \u0434\u0430\u043D\u043D\u044B\u0435.'
-          ),
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
+          _react2.default.createElement(_SuccessSaveModal2.default, {
+            handlerCloseModal: this.handlerCloseModal.bind(this),
+            successModalDisplay: products.get('successModalDisplay')
+          }),
           _react2.default.createElement(
             'div',
-            { className: 'personal-container animation-page-load-medium' },
+            { className: 'main-container' },
             _react2.default.createElement(
-              'form',
-              { action: '/personal', method: 'POST', id: 'personal-data-form' },
+              'h2',
+              null,
+              '\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442'
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'personal-explain-text' },
+              '\u0417\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0441\u0432\u043E\u0438 \u0434\u0430\u043D\u043D\u044B\u0435.'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'personal-container animation-page-load-medium' },
               _react2.default.createElement(
-                'div',
-                { className: 'customer-data-container' },
+                'form',
+                { action: '/personal', method: 'POST', id: 'personal-data-form' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'fname' },
-                    '\u0418\u043C\u044F*'
-                  ),
-                  _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text', value: this.state.name, onChange: this.handlerChangeName.bind(this), onFocus: this.handlerInputOnFocus.bind(this) })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'sname' },
-                    '\u0424\u0430\u043C\u0438\u043B\u0438\u044F*'
-                  ),
-                  _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname, onChange: this.handlerChangeSName.bind(this), onFocus: this.handlerInputOnFocus.bind(this) })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
-                  _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'mname' },
-                    '\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E'
-                  ),
-                  _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'customer-data-container' },
-                _react2.default.createElement('input', { type: 'hidden', name: 'birthdate', value: this.state.birthdate }),
-                _react2.default.createElement(
-                  'label',
-                  { className: 'personal-filds-label', htmlFor: 'birthdate' },
-                  '\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F'
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
+                  { className: 'customer-data-container' },
                   _react2.default.createElement(
                     'div',
-                    { className: 'personal-select-birdthdate-group' },
-                    _react2.default.createElement(_reactSelect2.default, {
-                      name: 'birthdate',
-                      className: 'margin-right-10',
-                      value: this.state.birthdateDay ? this.state.birthdateDay : '',
-                      options: dayOptions,
-                      onChange: this.handlerChangeDateDay.bind(this),
-                      placeholder: '',
-                      clearable: false,
-                      searchable: true,
-                      scrollMenuIntoView: false
-                    }),
-                    _react2.default.createElement(_reactSelect2.default, {
-                      className: 'margin-right-10',
-                      name: 'birthdate',
-                      value: this.state.birthdateMonth ? this.state.birthdateMonth : '',
-                      options: monthOptions,
-                      onChange: this.handlerChangeDateMonth.bind(this),
-                      placeholder: '',
-                      clearable: false,
-                      searchable: false,
-                      scrollMenuIntoView: false
-                    }),
-                    _react2.default.createElement(_reactSelect2.default, {
-                      name: 'birthdate',
-                      value: this.state.birthdateYear ? this.state.birthdateYear : '',
-                      options: yearOptions,
-                      onChange: this.handlerChangeDateYear.bind(this),
-                      placeholder: '',
-                      clearable: false,
-                      searchable: true,
-                      scrollMenuIntoView: false
-                    })
+                    { className: 'personal-filds-label-input' },
+                    _react2.default.createElement(
+                      'label',
+                      { className: 'personal-filds-label', htmlFor: 'fname' },
+                      '\u0418\u043C\u044F*'
+                    ),
+                    _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text', value: this.state.name, onChange: this.handlerChangeName.bind(this), onFocus: this.handlerInputOnFocus.bind(this) })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'personal-filds-label-input' },
+                    _react2.default.createElement(
+                      'label',
+                      { className: 'personal-filds-label', htmlFor: 'sname' },
+                      '\u0424\u0430\u043C\u0438\u043B\u0438\u044F*'
+                    ),
+                    _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname, onChange: this.handlerChangeSName.bind(this), onFocus: this.handlerInputOnFocus.bind(this) })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'personal-filds-label-input' },
+                    _react2.default.createElement(
+                      'label',
+                      { className: 'personal-filds-label', htmlFor: 'mname' },
+                      '\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E'
+                    ),
+                    _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
                   )
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'personal-filds-label-input' },
+                  { className: 'customer-data-container' },
+                  _react2.default.createElement('input', { type: 'hidden', name: 'birthdate', value: this.state.birthdate }),
                   _react2.default.createElement(
                     'label',
-                    { className: 'personal-filds-label', htmlFor: 'gender' },
-                    '\u041F\u043E\u043B'
+                    { className: 'personal-filds-label', htmlFor: 'birthdate' },
+                    '\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F'
                   ),
-                  _react2.default.createElement(_reactSelect2.default, {
-                    name: 'gender',
-                    value: this.state.gender,
-                    options: genderOptions,
-                    onChange: this.handleChangeGender.bind(this),
-                    placeholder: '\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D',
-                    clearable: false,
-                    searchable: false
-                  })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
                   _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'email' },
-                    'Email'
+                    'div',
+                    { className: 'personal-filds-label-input' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'personal-select-birdthdate-group' },
+                      _react2.default.createElement(_reactSelect2.default, {
+                        name: 'birthdate',
+                        className: 'margin-right-10',
+                        value: this.state.birthdateDay ? this.state.birthdateDay : '',
+                        options: dayOptions,
+                        onChange: this.handlerChangeDateDay.bind(this),
+                        placeholder: '',
+                        clearable: false,
+                        searchable: true,
+                        scrollMenuIntoView: false
+                      }),
+                      _react2.default.createElement(_reactSelect2.default, {
+                        className: 'margin-right-10',
+                        name: 'birthdate',
+                        value: this.state.birthdateMonth ? this.state.birthdateMonth : '',
+                        options: monthOptions,
+                        onChange: this.handlerChangeDateMonth.bind(this),
+                        placeholder: '',
+                        clearable: false,
+                        searchable: false,
+                        scrollMenuIntoView: false
+                      }),
+                      _react2.default.createElement(_reactSelect2.default, {
+                        name: 'birthdate',
+                        value: this.state.birthdateYear ? this.state.birthdateYear : '',
+                        options: yearOptions,
+                        onChange: this.handlerChangeDateYear.bind(this),
+                        placeholder: '',
+                        clearable: false,
+                        searchable: true,
+                        scrollMenuIntoView: false
+                      })
+                    )
                   ),
-                  _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, disabled: true })
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'personal-filds-label-input' },
                   _react2.default.createElement(
-                    'label',
-                    { className: 'personal-filds-label', htmlFor: 'phone' },
-                    '\u0422\u0435\u043B\u0435\u0444\u043E\u043D'
+                    'div',
+                    { className: 'personal-filds-label-input' },
+                    _react2.default.createElement(
+                      'label',
+                      { className: 'personal-filds-label', htmlFor: 'gender' },
+                      '\u041F\u043E\u043B'
+                    ),
+                    _react2.default.createElement(_reactSelect2.default, {
+                      name: 'gender',
+                      value: this.state.gender,
+                      options: genderOptions,
+                      onChange: this.handleChangeGender.bind(this),
+                      placeholder: '\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D',
+                      clearable: false,
+                      searchable: false
+                    })
                   ),
-                  _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/
-                  , { id: 'phone',
-                    value: this.state.phone ? this.state.phone : '',
-                    mask: '+7\\(999\\) 999 99 99', maskChar: ' ',
-                    onChange: this.handlerChangePhone.bind(this),
-                    name: 'phone',
-                    placeholder: '+7(___) ___ __ __' })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'personal-filds-label-input' },
+                    _react2.default.createElement(
+                      'label',
+                      { className: 'personal-filds-label', htmlFor: 'email' },
+                      'Email'
+                    ),
+                    _react2.default.createElement('input', { id: 'email', name: 'email', type: 'email', value: this.state.email, disabled: true })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'personal-filds-label-input' },
+                    _react2.default.createElement(
+                      'label',
+                      { className: 'personal-filds-label', htmlFor: 'phone' },
+                      '\u0422\u0435\u043B\u0435\u0444\u043E\u043D'
+                    ),
+                    _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/
+                    , { id: 'phone',
+                      value: this.state.phone ? this.state.phone : '',
+                      mask: '+7\\(999\\) 999 99 99', maskChar: ' ',
+                      onChange: this.handlerChangePhone.bind(this),
+                      name: 'phone',
+                      placeholder: '+7(___) ___ __ __' })
+                  )
                 )
-              )
-            ),
-            _react2.default.createElement('hr', null),
-            _react2.default.createElement(
-              'div',
-              { className: 'person-success-button-div' },
-              _react2.default.createElement(
-                'p',
-                { className: errorMessageForCreate },
-                '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
               ),
-              _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', style: { width: '30%' }, value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
+              _react2.default.createElement('hr', null),
+              _react2.default.createElement(
+                'div',
+                { className: 'person-success-button-div' },
+                _react2.default.createElement(
+                  'p',
+                  { className: errorMessageForCreate },
+                  '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
+                ),
+                _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', style: { width: '30%' }, value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
+              )
             )
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
@@ -26518,7 +26668,7 @@ var _api = __webpack_require__(18);
 
 var _actions = __webpack_require__(39);
 
-var _helpers = __webpack_require__(27);
+var _helpers = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26813,13 +26963,13 @@ __webpack_require__(10);
 
 __webpack_require__(11);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(25);
 
-var _Navigation = __webpack_require__(25);
+var _Navigation = __webpack_require__(26);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _MenuMobile = __webpack_require__(26);
+var _MenuMobile = __webpack_require__(27);
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
@@ -26841,7 +26991,7 @@ var _immutable = __webpack_require__(49);
 
 var _api = __webpack_require__(18);
 
-var _helpers = __webpack_require__(27);
+var _helpers = __webpack_require__(23);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -27081,7 +27231,7 @@ exports = module.exports = __webpack_require__(40)(undefined);
 
 
 // module
-exports.push([module.i, "@media (max-width: 1980px) {\n    .container {\n        width: 70%;\n    }\n}\n@media (max-width: 1650px) {\n    .container {\n        width: 80%;\n    }\n}\n@media (max-width: 1300px) {\n    .container {\n        width: 95%;\n    }\n}\n/*****ADAPTIVE for footer******/\n@media (min-width: 1025px) {\n    .footer__social__item:hover {\n        opacity: 0.8; } }\n\n@media (max-width: 1023px) {\n    .menu--footer {\n        bottom: 70px;\n        padding: 45px 0 0 0; }\n    .b-footer .b-search {\n        bottom: 0; }\n    .footer__copy {\n        margin-left: 35px; }\n    .footer__social {\n        margin-right: 35px; } }\n\n@media (max-width: 767px) {\n    .for-main-desc-block {\n        width: 140px;\n    }\n    .modal-header {\n        text-align: left;\n    }\n    #blok_one {\n        padding-top: 3px;\n        padding-bottom: 3px;\n    }\n    #blok_one div {\n        font-size: 14px;\n    }\n    .b-menu {\n        height: auto;\n    }\n\n    .menu_footer {\n        flex-wrap: wrap;\n        padding: 15px 0 15px 15px;\n    }\n\n    .footer__copy {\n        padding-left: 15px;\n        margin-left: 10px !important;\n        float: none;\n    }\n\n    .footer__social {\n        float: none;\n        padding: 10px 0 10px 25px;\n    }\n\n    .menu__item_footer {\n        height: auto;\n    }\n\n    .menu__item__link_footer {\n        line-height: 1.2;\n        font-family: ToyotaText-Reg;\n        text-decoration: underline;\n        font-size: 13px;\n        padding: 5px 0;\n\n    }\n    .b-footer__bottom {\n        line-height: 1 !important;\n        height: 100px\n    }\n    #blok1 {\n        font-size: 13px;\n    }\n    #blok2 {\n        font-size: 13px;\n        padding: 7px;\n    }\n    #blok3 {\n       padding-top: 4px;\n        padding-bottom: 4px;\n    }\n    .close-button {\n        font-size: 11px;\n    }\n    .personal-container form {\n        flex-direction: column;\n        justify-content: flex-start;\n    }\n}\n/***** END! ADAPTIVE for footer END!******/\n\n/*адаптив для меню,навигации*/\n@media (max-width: 767px) {\n    .mob-nav-text {\n        display: none;\n    }\n}\n/*Продукты контейнер*/\n/*@media (min-width: 1980px) {*/\n    /*.category-item {*/\n        /*width: calc(100% / 6 - 10px);*/\n    /*}*/\n/*}*/\n/*@media (min-width: 1300px) {*/\n    /*.category-item {*/\n        /*width: calc(100% / 5 - 10px);*/\n    /*}*/\n/*}*/\n@media (max-width: 1023px) {\n    .category-item {\n        width: calc(100% / 3 - 10px);\n    }\n}\n@media (max-width: 780px) {\n    .category-item {\n        width: calc(100% / 2 - 10px);\n    }\n}\n@media (max-width: 520px) {\n    .category-item {\n        width: calc(100% / 1 - 10px);\n    }\n    .order-number {\n        width: 100px;\n    }\n    .category-item__price-measure span {\n        font-size: 16px;\n    }\n}\n@media (max-width: 390px) {\n    .bread-crumbs-link {\n        font-size: 18px;\n    }\n    .bread-crumbs-on-page {\n        font-size: 18px;\n    }\n    .bread-crumbs-circle {\n        width: 8px;\n        height: 8px;\n    }\n    .order-number {\n        width: 100px;\n    }\n    .category-item__price-measure span {\n        font-size: 16px;\n    }\n}\n@media (max-width: 645px) {\n    .register-button {\n        width: 100% !important;\n    }\n    .person-success-button-div {\n        text-align: center;\n    }\n}\n@media (min-width: 767px) {\n    .popup_mob-nav-elem {\n        display: none;\n    }\n}\n@media (max-width: 767px) {\n    .customer-data-container {\n        width: 100%;\n    }\n    .menu__item--basket__amount {\n        top: 4px;\n        right: 99px;\n    }\n    .navbar-header {\n    display: none;\n    }\n    .mob-nav-text {\n        display: inline;\n    }\n    #mob-www-logo {\n        display: inline;\n    }\n    .mobile-nav-bar-1 {\n        display: block;\n     }\n\n    .mobile-nav-bar-2 {\n        display: none;\n    }\n    .navbar-default {\n        /*background: #DCDCDC;*/\n        border-radius: 0;\n    }\n    .mobile-nav-head {\n        height: 30px;\n        margin-top: 11px;\n        padding: 3px;\n    }\n    .mob-right {\n        float: right;\n    }\n    .mob-nav-elem {\n        display: inline-block;\n        padding: 3px;\n        transition: all .3s ease-in;\n    }\n    .mob-nav-elem:hover {\n        cursor: pointer;\n    }\n    .mob-nav-elem-active {\n        transform: rotate(180deg);\n    }\n    .mob-rectangle {\n        width: 20px;\n        height: 3px;\n        background: #696969;\n        margin-bottom: 3px;\n    }\n    .mob-menu-right {\n        margin-top: 1px;\n        font-size: 17px;\n        float: right;\n        margin-right: 20px;\n        color: #696969;\n    }\n    .mob-menu-right:hover {\n        cursor: pointer;\n        color: #333;\n    }\n    h2 {\n        font-size: 24px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 320px);\n        }\n    }\n    .modal-animation__item span:nth-child(3) {\n        right: 0;\n    }\n}\n\n@media (max-width: 600px) {\n    .lesson-theme {\n        max-width: 60%;\n    }\n    .modal-animation__item span:nth-child(2) svg {\n        height: 45px;\n        width: 45px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 100px;\n        width: 100px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 270px);\n        }\n    }\n    .modal-animation__item {\n        padding: 40px 0;\n    }\n    /*Корзина*/\n    .cart-scroll-adaptive::-webkit-scrollbar {\n        width: 6px;\n        height: 6px;\n        background: #f0f0f0;\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-track {\n        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.2);\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-thumb {\n        background-color: #D3D3D3;\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-thumb:hover {\n        background-color: #808080;\n    }\n    .cart-scroll-adaptive {\n        overflow-x: scroll;\n        /*white-space: nowrap;*/\n    }\n    .flex-box-between {\n        flex-direction: column;\n    }\n    .flex-box-between div {\n        flex-direction: column !important;\n    }\n    .flex-box-between div {\n        margin-top: 10px;\n    }\n    .cart-products-table__cart {\n        width: 533px;\n    }\n    .cart-comment {\n        width: 520px;\n    }\n    .cart_total {\n        margin: 0 !important;\n        font-size: 18px;\n        width: 533px !important;\n    }\n    .quota-style {\n        width: 533px !important;\n        flex-direction: column !important;\n        align-items: left !important;\n    }\n    .quota-style div {\n        margin-left: 0 !important;\n    }\n    .scroll-to-error {\n        white-space: nowrap !important;\n    }\n}\n\n/*@media (max-width: 520px) {*/\n    /*.cart-products-table__cart {*/\n        /*width: 533px !important;*/\n    /*}*/\n/*}*/\n@media (max-width: 500px) {\n    .modal-animation__item span:nth-child(2) svg {\n        height: 35px;\n        width: 35px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 80px;\n        width: 80px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 225px);\n        }\n    }\n}\n@media (max-width: 440px) {\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 190px);\n        }\n    }\n    .modal-animation__item span:nth-child(2) svg {\n        height: 30px;\n        width: 30px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 70px;\n        width: 70px;\n    }\n}\n/*Блок с заданиями*/\n@media (max-width: 900px) {\n    .block-lesson {\n        width: 47%;\n    }\n}\n@media (max-width: 571px) {\n    .order-filter-main {\n        flex-direction: column;\n    }\n    .order-filds-label-input {\n        width: 100%;\n    }\n    .order-filds-label-input:nth-child(2) {\n        width: 100%;\n    }\n    .order-instruments {\n        flex-direction: column;\n    }\n    .Select.margin-right-10 {\n        margin: 0;\n    }\n    .order-filds-label-input:nth-child(3) {\n        width: 100%;\n    }\n}\n/* скроллбар блока orders-item-----------------*/\n.orders-item::-webkit-scrollbar {\n    width: 6px;\n    height: 6px;\n    background: #f0f0f0;\n}\n.orders-item::-webkit-scrollbar-track {\n    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.2);\n}\n.orders-item::-webkit-scrollbar-thumb {\n    background-color: #D3D3D3;\n}\n.orders-item::-webkit-scrollbar-thumb:hover {\n    background-color: #808080;\n}\n/*КОНЕЦ сроллбара--------------------------------------*/\n@media (max-width: 520px) {\n    .orders-item {\n        overflow-x: scroll;\n    }\n    .cart-products-table__order {\n        width: 429px !important;\n    }\n    .order-instruments {\n        white-space: nowrap;\n        width: 429px !important;\n    }\n    .order_total {\n        margin: 0 !important;\n        white-space: nowrap;\n        width: 429px !important;\n    }\n}\n@media (max-width: 500px) {\n    /*.h1 {*/\n        /*font-size: 14px !important;*/\n    /*}*/\n}\n@media (min-width: 767px) {\n    .modal-dialog-success {\n        right: 5%;\n    }\n}\n@media (min-width: 1300px) {\n    .modal-dialog-success {\n        right: 11%;\n    }\n}\n@media (min-width: 1650px) {\n    .modal-dialog-success {\n        right: 16%;\n    }\n}\n@media (max-width: 767px) {\n    .modal-dialog-success {\n        right: 6%;\n    }\n}\n@media (max-width: 500px) {\n    .modal-dialog-success {\n        right: 7%;\n    }\n}\n@media (max-width: 400px) {\n    .modal-dialog-success {\n        width: 240px;\n    }\n    .modal-header-success {\n        padding: 9px;\n    }\n    .modal-title {\n        font-size: 15px;\n    }\n}\n/* Таблица с продуктами */\n@media (max-width: 1050px) {\n    .table-30-procent {\n        width: 50%;\n    }\n    .table-40-procent-td {\n        font-size: 16px;\n    }\n}\n@media (max-width: 870px) {\n    .cart-product-image {\n        display: none;\n    }\n    td {\n        font-weight: normal;\n        font-size: 15px;\n    }\n    .table-40-procent-td {\n        font-weight: normal;\n        font-size: 15px;\n        text-align: center;\n    }\n    .order_total {\n        font-size: 20px;\n    }\n}\n@media (max-width: 690px) {\n    th {\n        font-size: 14px;\n        font-weight: normal;\n    }\n    .table-25-procent {\n        width: 21%;\n    }\n    td {\n        font-weight: normal;\n        font-size: 14px;\n    }\n    .table-40-procent-td {\n        font-size: 14px;\n    }\n}\n@media (max-width: 530px) {\n    .order_total {\n        font-size: 18px;\n    }\n}", ""]);
+exports.push([module.i, "@media (max-width: 1980px) {\n    .container {\n        width: 70%;\n    }\n}\n@media (max-width: 1650px) {\n    .container {\n        width: 80%;\n    }\n}\n@media (max-width: 1300px) {\n    .container {\n        width: 95%;\n    }\n}\n@media (max-width: 400px) {\n    .container {\n        width: 98%;\n        padding-left: 5px;\n        padding-right: 5px;\n    }\n}\n@media (max-width: 767px) {\n    .personal-container form {\n        flex-direction: column;\n        justify-content: flex-start;\n    }\n}\n/*адаптив для меню,навигации*/\n@media (max-width: 767px) {\n    .mob-nav-text {\n        display: none;\n    }\n}\n@media (max-width: 1023px) {\n    .category-item {\n        width: calc(100% / 3 - 10px);\n    }\n}\n@media (max-width: 780px) {\n    .category-item {\n        width: calc(100% / 2 - 10px);\n    }\n}\n@media (max-width: 520px) {\n    .category-item {\n        width: calc(100% / 1 - 10px);\n    }\n    .order-number {\n        width: 100px;\n    }\n    .category-item__price-measure span {\n        font-size: 16px;\n    }\n}\n@media (max-width: 390px) {\n    .bread-crumbs-link {\n        font-size: 18px;\n    }\n    .bread-crumbs-on-page {\n        font-size: 18px;\n    }\n    .bread-crumbs-circle {\n        width: 8px;\n        height: 8px;\n    }\n    .order-number {\n        width: 100px;\n    }\n    .category-item__price-measure span {\n        font-size: 16px;\n    }\n}\n@media (max-width: 645px) {\n    .register-button {\n        width: 100% !important;\n    }\n    .person-success-button-div {\n        text-align: center;\n    }\n    .for-mob-nav-elem {\n        width: 90%;\n    }\n}\n@media (min-width: 768px) {\n    .popup_mob-nav-elem {\n        display: none;\n    }\n}\n@media (max-width: 767px) {\n    .customer-data-container {\n        width: 100%;\n    }\n    .menu__item--basket__amount {\n        top: 4px;\n        right: 62px;\n    }\n    .navbar-header {\n    display: none;\n    }\n    .mob-nav-text {\n        display: inline;\n    }\n    #mob-www-logo {\n        display: inline;\n    }\n    .mobile-nav-bar-1 {\n        display: block;\n     }\n\n    .mobile-nav-bar-2 {\n        display: none;\n    }\n    .navbar-default {\n        /*background: #DCDCDC;*/\n        border-radius: 0;\n    }\n    .mobile-nav-head {\n        height: 30px;\n        margin-top: 11px;\n        padding: 3px;\n    }\n    .mob-right {\n        float: right;\n    }\n    .mob-nav-elem {\n        display: inline-block;\n        padding: 3px;\n        transition: all .3s ease-in;\n    }\n    .mob-nav-elem:hover {\n        cursor: pointer;\n    }\n    .mob-nav-elem-active {\n        transform: rotate(180deg);\n    }\n    .mob-rectangle {\n        width: 20px;\n        height: 3px;\n        background: #696969;\n        margin-bottom: 3px;\n    }\n    .mob-menu-right {\n        margin-top: 1px;\n        font-size: 17px;\n        float: right;\n        margin-right: 20px;\n        color: #696969;\n    }\n    .mob-menu-right:hover {\n        cursor: pointer;\n        color: #333;\n    }\n    h2 {\n        font-size: 24px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 320px);\n        }\n    }\n    .modal-animation__item span:nth-child(3) {\n        right: 0;\n    }\n}\n\n@media (max-width: 600px) {\n    .lesson-theme {\n        max-width: 60%;\n    }\n    .modal-animation__item span:nth-child(2) svg {\n        height: 45px;\n        width: 45px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 100px;\n        width: 100px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 270px);\n        }\n    }\n    .modal-animation__item {\n        padding: 40px 0;\n    }\n    /*Корзина*/\n    .cart-scroll-adaptive::-webkit-scrollbar {\n        width: 6px;\n        height: 6px;\n        background: #f0f0f0;\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-track {\n        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.2);\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-thumb {\n        background-color: #D3D3D3;\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-thumb:hover {\n        background-color: #808080;\n    }\n    .cart-scroll-adaptive {\n        overflow-x: scroll;\n        /*white-space: nowrap;*/\n    }\n    .flex-box-between {\n        flex-direction: column;\n    }\n    .flex-box-between div {\n        flex-direction: column !important;\n    }\n    .flex-box-between div {\n        margin-top: 10px;\n    }\n    .cart-products-table__cart {\n        width: 533px;\n    }\n    .cart-comment {\n        width: 520px;\n    }\n    .cart_total {\n        margin: 0 !important;\n        font-size: 18px;\n        width: 533px !important;\n    }\n    .quota-style {\n        width: 533px !important;\n        flex-direction: column !important;\n        align-items: left !important;\n    }\n    .quota-style div {\n        margin-left: 0 !important;\n    }\n    .scroll-to-error {\n        white-space: nowrap !important;\n    }\n}\n\n/*@media (max-width: 520px) {*/\n    /*.cart-products-table__cart {*/\n        /*width: 533px !important;*/\n    /*}*/\n/*}*/\n@media (max-width: 500px) {\n    .modal-animation__item span:nth-child(2) svg {\n        height: 35px;\n        width: 35px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 80px;\n        width: 80px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 225px);\n        }\n    }\n}\n@media (max-width: 440px) {\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 190px);\n        }\n    }\n    .modal-animation__item span:nth-child(2) svg {\n        height: 30px;\n        width: 30px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 70px;\n        width: 70px;\n    }\n}\n/*Блок с заданиями*/\n@media (max-width: 900px) {\n    .block-lesson {\n        width: 47%;\n    }\n}\n@media (max-width: 571px) {\n    .order-filter-main {\n        flex-direction: column;\n    }\n    .order-filds-label-input {\n        width: 100%;\n    }\n    .order-filds-label-input:nth-child(2) {\n        width: 100%;\n    }\n    .order-instruments {\n        flex-direction: column;\n    }\n    .Select.margin-right-10 {\n        margin: 0;\n    }\n    .order-filds-label-input:nth-child(3) {\n        width: 100%;\n    }\n}\n/* скроллбар блока orders-item-----------------*/\n.orders-item::-webkit-scrollbar {\n    width: 6px;\n    height: 6px;\n    background: #f0f0f0;\n}\n.orders-item::-webkit-scrollbar-track {\n    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.2);\n}\n.orders-item::-webkit-scrollbar-thumb {\n    background-color: #D3D3D3;\n}\n.orders-item::-webkit-scrollbar-thumb:hover {\n    background-color: #808080;\n}\n/*КОНЕЦ сроллбара--------------------------------------*/\n@media (max-width: 520px) {\n    .orders-item {\n        overflow-x: scroll;\n    }\n    .cart-products-table__order {\n        width: 429px !important;\n    }\n    .order-instruments {\n        white-space: nowrap;\n        width: 429px !important;\n    }\n    .order_total {\n        margin: 0 !important;\n        white-space: nowrap;\n        width: 429px !important;\n    }\n    .for-mob-nav-elem {\n        width: 90%;\n    }\n}\n@media (max-width: 500px) {\n    /*.h1 {*/\n        /*font-size: 14px !important;*/\n    /*}*/\n}\n@media (min-width: 767px) {\n    .modal-dialog-success {\n        right: 5%;\n    }\n}\n@media (min-width: 1300px) {\n    .modal-dialog-success {\n        right: 11%;\n    }\n}\n@media (min-width: 1650px) {\n    .modal-dialog-success {\n        right: 16%;\n    }\n}\n@media (max-width: 767px) {\n    .modal-dialog-success {\n        right: 6%;\n    }\n}\n@media (max-width: 500px) {\n    .modal-dialog-success {\n        right: 7%;\n    }\n}\n@media (max-width: 400px) {\n    .modal-dialog-success {\n        width: 240px;\n    }\n    .modal-header-success {\n        padding: 9px;\n    }\n    .modal-title {\n        font-size: 15px;\n    }\n}\n/* Таблица с продуктами */\n@media (max-width: 1050px) {\n    .table-30-procent {\n        width: 50%;\n    }\n    .table-40-procent-td {\n        font-size: 16px;\n    }\n}\n@media (max-width: 870px) {\n    .cart-product-image {\n        display: none;\n    }\n    td {\n        font-weight: normal;\n        font-size: 15px;\n    }\n    .table-40-procent-td {\n        font-weight: normal;\n        font-size: 15px;\n        text-align: center;\n    }\n    .order_total {\n        font-size: 20px;\n    }\n}\n@media (max-width: 690px) {\n    th {\n        font-size: 14px;\n        font-weight: normal;\n    }\n    .table-25-procent {\n        width: 21%;\n    }\n    td {\n        font-weight: normal;\n        font-size: 14px;\n    }\n    .table-40-procent-td {\n        font-size: 14px;\n    }\n}\n@media (max-width: 530px) {\n    .order_total {\n        font-size: 18px;\n    }\n    .for-mob-nav-elem {\n        width: 89%;\n    }\n}\n@media (max-width: 400px) {\n    .for-mob-nav-elem {\n        width: 96%;\n    }\n}\n/* Главная */\n@media (max-width: 980px) {\n    .xf-you-love__list {\n        margin: 30px 0;\n    }\n}\n@media (max-width: 900px) {\n    .xf-you-love__list {\n        justify-content: space-between;\n    }\n}\n@media (max-width: 820px) {\n    .xf-you-love__list>div {\n        flex-basis: 47% !important;\n    }\n}\n@media (max-width: 700px) {\n    .xf-wrapper {\n        padding-top: 30px;\n    }\n    .xf-you-love__item {\n        font-size: 15px;\n        margin-bottom: 13px;\n    }\n    .xf-you-love__list>div {\n        flex-basis: 45% !important;\n    }\n    .xf-you-love__header {\n        font-size: 35px;\n    }\n}\n@media (max-width: 490px) {\n    .xf-wrapper {\n        padding-top: 20px;\n    }\n    .xf-you-love__list {\n        display: block;\n    }\n    .xf-you-love__header {\n        font-size: 30px;\n    }\n    .xf-you-love__subheader {\n        font-size: 18px;\n    }\n}\n@media (max-width: 380px) {\n    .xf-wrapper {\n        padding-top: 15px;\n    }\n    .xf-you-love__header {\n        font-size: 25px;\n    }\n    .xf-you-love__subheader {\n        font-size: 17px;\n    }\n}\n/*****ADAPTIVE for footer******/\n@media (min-width: 1025px) {\n    .footer__social__item:hover {\n        opacity: 0.8; } }\n\n@media (max-width: 1023px) {\n    .menu--footer {\n        bottom: 70px;\n        padding: 45px 0 0 0; }\n    .b-footer .b-search {\n        bottom: 0; }\n    /*.footer__copy {*/\n        /*margin-left: 35px; }*/\n    .footer__social {\n        margin-right: 35px; } }\n\n@media (max-width: 767px) {\n    .for-main-desc-block {\n        width: 140px;\n    }\n    #blok_one {\n        padding-top: 3px;\n        padding-bottom: 3px;\n    }\n    #blok_one div {\n        font-size: 14px;\n    }\n    .b-menu {\n        height: auto;\n    }\n\n    .menu_footer {\n        flex-wrap: wrap;\n        padding: 15px 0 15px 15px;\n    }\n\n    .footer__copy {\n        padding-left: 15px;\n        margin-left: 10px !important;\n        float: none;\n    }\n\n    .footer__social {\n        float: none;\n        padding: 10px 0 10px 25px;\n    }\n\n    .menu__item_footer {\n        height: auto;\n    }\n\n    .menu__item__link_footer {\n        line-height: 1.2;\n        font-family: ToyotaText-Reg;\n        text-decoration: underline;\n        font-size: 14px;\n        padding: 5px 0;\n\n    }\n    .b-footer__bottom {\n        line-height: 1 !important;\n        height: 40px\n    }\n    #blok1 {\n        font-size: 13px;\n    }\n    #blok2 {\n        font-size: 13px;\n        padding: 7px;\n    }\n    #blok3 {\n        padding-top: 4px;\n        padding-bottom: 4px;\n    }\n    .close-button {\n        font-size: 11px;\n    }\n}\n/***** END! ADAPTIVE for footer END!******/", ""]);
 
 // exports
 
@@ -27123,7 +27273,7 @@ exports = module.exports = __webpack_require__(40)(undefined);
 
 
 // module
-exports.push([module.i, "html, body {\n    background: #f8f8f8;\n    width: 100%;\n    /*adaptive*/\n    min-width: 320px;\n    height: 100%;\n    /*adaptive*/ }\n.container {\n    margin-top: 25px;\n}\nh1, h2, h3 {\n    color: steelblue !important;\n    margin: 0 !important;\n}\nhr {\n    border-top: 1px solid #a2a2a2;\n    /*color: steelblue;*/\n    /*background-color: steelblue; !* Цвет линии для браузера Firefox и Opera *!*/\n    /*height: 1px; !* Толщина линии *!*/\n}\n.error_message_for_create.fade {\n    display: none\n}\n.error_message_for_create.in {\n    display: block;\n    color: red;\n}\n.navbar-default {\n    background: #fff !important;\n    background-color: #fff !important;\n}\n.show-hide {\n    display: none;\n}\n.show-hide-flex {\n    display: flex;\n}\n.error-border-red {\n    border: 2px solid indianred !important;\n}\n.error-border-red:focus {\n    border: none !important;\n}\n.margin-right-10 {\n    margin-right: 10px !important;\n}\n.flex-box-between {\n    display: flex;\n    justify-content: space-between;\n}\n.margin-off {\n    margin: 0 !important;\n}\n.align-center {\n    text-align: center !important;\n}\n.error-border-red::-webkit-input-placeholder {color: indianred !important;}\n.error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */\n.error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */\n.error-border-red:-ms-input-placeholder      {color: indianred !important;}\n/*Главный контейнер*/\n.main-container {\n    /*background: #f2f2f2;*/\n    background: #fff;\n    /*min-height: 100% !important;*/\n    padding: 20px;\n    /*background-image: linear-gradient(to bottom left,#fff 0,#f4f4f4 100%);*/\n    box-shadow: inset 0 2px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.095);\n    background-repeat: repeat-x;\n    border-radius: 4px;\n    margin-bottom: 20px;\n    /*-webkit-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*-moz-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n\n}\na {\n    text-decoration: none !important;\n}\n/* ГЛАВНАЯ НАЧАЛО ------------------------------------------------------------------*/\n/* Слайдер */\n.main-slider {\n    display: block;\n    width: 100%;\n}\n@keyframes runSlider {\n    0% {\n        /*transform: scale(0);*/\n        opacity: 0.01;\n    }\n    100% {\n        /*transform: scale(1);*/\n        opacity: 1;\n    }\n}\n.slider-img {\n    width: 100%;\n    animation-name:runSlider;\n    animation-duration: 1.7s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease;\n}\n/*.slider-img:not(:nth-child(1)) {*/\n    /*display: none;*/\n/*}*/\n/* ГЛАВНАЯ КОНЕЦ ------------------------------------------------------------------*/\n\n/*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/\n/*Главный див для форм входа и регистрации*/\n.register-container-main {\n    display: flex;\n    justify-content: center;\n}\n.register-container {\n    display: flex;\n    width: 50%;\n    flex-direction: column;\n}\n/*Голова формы(верхняя часть формы с загруглёнными краями и синим фоном)*/\n.register-header {\n    border: 1px solid #808080;\n    background: steelblue;\n    color: white;\n    border-radius: 8px 8px 0 0;\n    padding: 10px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n/*Для тега <p>, который находится в голове формы, убираем внешние отступы*/\n.register-header p {\n    margin: 0;\n}\n.main-text {\n    font-size: 18px;\n}\n.explain-text {\n    font-size: 13px;\n}\n/*Тело формы, где поля ввода*/\n.register-filds {\n    padding: 30px 15px 0 15px;\n    display: flex;\n    flex-direction: column;\n    border: 1px solid #808080;\n    border-top: 0;\n    justify-content: flex-start;\n    background: #fff;\n}\n/*Див для меток(label) и их инпутов*/\n.register-filds-label-input {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n/*Див для чекбокса и кнопки*/\n.register-filds-elements {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: flex-start;\n    margin-bottom: 10px;\n}\n.register-filds-label {\n    width: 120px;\n    padding-right: 10px;\n    text-align: right;\n    letter-spacing: 1px;\n}\n.register-filds-elements div {\n    width: 100%;\n}\n.customer-data-container input,.register-filds input {\n    width: 100%;\n    height: 30px;\n    padding-left: 5px;\n    border-radius: 4px;\n    border: 1px solid #a2a2a2;\n    /*font-style: italic;*/\n}\n.customer-data-container input:focus, .register-filds input:focus {\n    outline: none;\n    border: 1px solid #696969;\n}\n/*Кнопки*/\n.middle-button {\n    border-radius: 2px;\n    border: 0;\n    background: #fff;\n    color: #000;\n    text-align: center;\n    padding: 2px 15px 2px 15px;\n    margin-right: 15px;\n}\n.middle-button:hover {\n    cursor: pointer;\n    background-color: #f3f3f3;\n}\n.middle-button:active {\n    padding: 1px 14px 1px 14px;\n}\n.login-button {\n    margin-right: 15px;\n    border-radius: 2px;\n    /*border: 1px solid #a2a2a2;*/\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    width: 120px !important;float: left;\n}\n.login-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.login-button:active {\n    background: #1b3447;\n}\n.login-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.register-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    letter-spacing: 1px;\n}\n.register-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.register-button:active {\n    background: #1b3447;\n}\n.register-button:focus {\n    color: transparent;\n    text-shadow: 0 0 0 white;\n    outline: none;\n}\n.register-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.recover-password {\n    vertical-align: sub;\n}\n/*Кнопка отправить заказ*/\n.cart-button {\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid #4CAF50;\n    background: #4CAF50;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    font-weight: bold;\n}\n.cart-button:hover {\n    cursor: pointer;\n    background: #fff;\n    color: #4CAF50;\n}\n.cart-button:active {\n    background: #368e39;\n    color: #fff\n}\n/*Кнопка очистить корзину*/\n.cart-button-clear {\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid indianred;\n    background: indianred;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    margin-right: 15px;\n    font-weight: bold;\n}\n.cart-button-clear:hover {\n    cursor: pointer;\n    background: #fff;\n    color: indianred;\n}\n.cart-button-clear:active {\n    background: #a92525;\n    color: #fff\n}\n.success-button {\n    margin-top: 40px;\n    display: inline-block;\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid #4CAF50;\n    background: #4CAF50;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    font-weight: bold;\n}\n.success-button p {\n    margin: 0;\n}\n.success-button:hover {\n    cursor: pointer;\n    background: #fff;\n    color: #4CAF50;\n}\n.success-button:active {\n    background: #368e39;\n    color: #fff\n}\n.cart-comment {\n    width: 100%;\n    margin-bottom: 20px;\n    padding: 10px;\n    border: 1px solid #c1c1c1;\n    border-radius: 3px;\n}\n.cart-comment:hover {\n    border: 1px solid #a1a1a1;\n}\n/*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/\n\n/*CHECKBOX НАЧАЛО------------------------------------------------------------------*/\ninput[type=checkbox] + label {\n    float: left;\n}\ninput[type=\"checkbox\"] {\n    display:none;\n}\ninput[type=\"checkbox\"] + label span {\n    display:inline-block;\n    width:19px;\n    height:19px;\n    margin:-1px 4px 0 0;\n    vertical-align:middle;\n    background:url(" + __webpack_require__(95) + ") left top no-repeat;\n    cursor:pointer;\n}\ninput[type=\"checkbox\"]:checked + label span {\n    background:url(" + __webpack_require__(95) + ") -19px top no-repeat;\n}\n/*CHECKBOX КОНЕЦ------------------------------------------------------------------*/\n\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/\n.personal-container form {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    width: 100%;\n}\n.image-container {\n    width: 20%;\n    margin-top: 4px;\n}\n.customer-data-container {\n    width: 48%;\n    /*padding: 0 20px 0 20px;*/\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*background: #fff;*/\n}\n.customer-image {\n    margin-bottom: 15px;\n    width: 99%;\n    /*height: 250px;*/\n    border: 1px solid #808080;\n    background: #ffffff;\n}\n.customer-image img {\n    max-width:100%;\n    max-height:100%;\n}\n/*Див для меток(label) и их инпутов*/\n.personal-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.personal-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.personal-explain-text {\n    font-size: 14px;\n    color: steelblue;\n}\n/*Инпут для вставки фото*/\n.customer-image-button {\n    position: relative;\n}\n.customer-image-button #personal-photo {\n    cursor: pointer;\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    height: 100%;\n    -moz-opacity: 0;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    z-index:1;\n}\n.personal-select-birdthdate-group {\n    display: flex;\n    justify-content: flex-start;\n}\n.personal-select-birdthdate-group .Select:nth-child(1) {\n    width: 20%;\n}\n.personal-select-birdthdate-group .Select:nth-child(2) {\n    width: 50%;\n}\n.personal-select-birdthdate-group .Select:nth-child(3) {\n    width: 30%;\n}\n.person-success-button-div {\n    text-align: right;\n}\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. НАЧАЛО---------------------------------------------------*/\n.category-head {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.bread-crumbs-circle {\n    width: 10px;\n    height: 10px;\n    background: #555;\n    -moz-border-radius: 50px;\n    -webkit-border-radius: 50px;\n    border-radius: 50px;\n    margin: 0 10px;\n}\n.bread-crumbs-link {\n    color: #555 !important;\n}\n.bread-crumbs-link:hover {\n    color: #222 !important;\n    text-decoration: underline !important;\n}\n.bread-crumbs-on-page {\n\n}\n@keyframes pageLoadOpacity {\n    0% {\n        opacity: 0.01;\n    }\n    100% {\n        opacity: 1;\n    }\n}\n@keyframes popupLoadScale {\n    0% {\n        transform: scale(0);\n        opacity: 0.01;\n    }\n    100% {\n        transform: scale(1);\n        opacity: 1;\n    }\n}\n.animation-popup-load-fast {\n    animation-name:popupLoadScale;\n    animation-duration: .3s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease;\n}\n.animation-page-load-medium {\n    animation-name:pageLoadOpacity;\n    animation-duration: .5s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease-in;\n}\n.animation-page-load-long {\n    animation-name:pageLoadOpacity;\n    animation-duration: 1s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease-in;\n    /*animation-direction: alternate;*/\n}\n.category-all {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n    flex-wrap: wrap;\n    margin: 5px -5px; }\n.category-item {\n    transition: box-shadow .4s;\n    background: white;\n    border: 1px solid #d8d8d8;\n    width: calc(100% / 4 - 10px);\n    min-width: 0;\n    margin: 10px 5px 10px; }\n.category-item:hover {\n    -webkit-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    -moz-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n}\n.category-item:hover .category-item__name {\n    color: #000;\n}\n.category-item__img {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 20px;\n}\n/*.category-item__img img {*/\n    /*transition: 1.3s;*/\n/*}*/\n/*.category-item__img img:hover {*/\n    /*transform: scale(1.1);*/\n/*}*/\n.category-item__name {\n    padding: 10px;\n    display: table-cell;\n    margin-bottom: 14px;\n    line-height: 20px;\n    vertical-align: inherit;\n    color: #444;\n    font-size: 18px;\n}\n.add-to-cart-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 10px 4px 10px;\n    font-weight: 700;\n    margin-bottom: 20px;\n}\n.add-to-cart-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.add-to-cart-button:active {\n    background: #1b3447;\n}\n.add-to-cart-button p {\n    margin: 0;\n}\n.category-item__price-measure {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 100%;\n    padding: 5px 0 15px 0;\n}\n.category-item__price-measure span {\n    font-size: 15px;\n    font-weight: bold;\n    color: #3c763d;\n}\n.category-item__price-measure select {\n    outline: none;\n    color: #fff;\n    background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);\n    background-color: #3c763d;\n    -moz-border-radius: 20px;\n    border-radius: 20px;\n    padding-left: 8px;\n    -webkit-appearance: button;\n    -webkit-user-select: none;\n    background-position: 80% center;\n    background-repeat: no-repeat;\n    border: none;\n    font-size: inherit;\n    margin-right: 4px;\n    width: 50px;\n}\n.category-item__price-measure:hover select {\n    cursor: pointer;\n}\n\n/*.Количество продуктов */\n.order-number {\n    position: relative;\n    width: 85px;\n    height: 32px;\n    margin: 0 auto;\n    border: 2px solid #3c763d;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field {\n    height: 100%;\n    padding: 0 26px;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field input {\n    font-weight: 900;\n    display: block;\n    width: 100%;\n    height: 100%;\n    color: #3c763d;\n    font-size: 13px;\n    font-family: Arial Bold, 'sans-serif';\n    text-align: center;\n    -moz-appearance: textfield;\n    /*background: #fff;*/\n    background-color: transparent;\n    outline: none;\n    border: 0;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box; }\n.order-number__field input::-webkit-inner-spin-button, .order-number__field input::-webkit-outer-spin-button {\n    margin: 0;\n    /* в каких-то браузерах присутствует отступ */\n    -webkit-appearance: none; }\n.order-number__spin.minus {\n    left: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.minus:after {\n    background-position: 0 0;\n}\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n.order-number__spin.plus {\n    right: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.plus:after {\n    background-position: 0 -10px;\n}\n\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/\n\n/*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/\n.cart-products-table {\n    margin-top: 20px;\n    border-collapse: collapse;\n    width: 100%;\n}\n.cart-tr-head {\n    background-color: #4CAF50;\n}\n.table-100-procent {\n    width: 100%;\n}\n.table-30-procent {\n    width: 30%;\n}\n.table-25-procent {\n    width: 25%;\n}\n.table-10-procent {\n    width: 10%;\n}\n\ntd {\n    text-align: center;\n    padding: 9px;\n    color: #555;\n    font-weight: 600;\n}\n\ntr:nth-child(even){background-color: #f2f2f2}\n\nth {\n    text-align: center;\n    padding: 18px;\n    color: white;\n}\n.table-40-procent-td {\n    text-align: left;\n}\n.remove-product {\n    color: indianred;\n}\n.remove-product:hover {\n    cursor: pointer;\n    color: firebrick;\n}\n.remove-product:active {\n    color: darkred;\n}\n.cart-product-image {\n    border: 1px solid #999;\n    margin-right: 30px;\n    height: 70px;\n}\n.cart-order__total {\n    color: #999;\n    font-size: 24px;\n    font-family: Arial-Bold, 'sans-serif';\n    line-height: 36px;\n    letter-spacing: 6.24px;\n    text-transform: uppercase;\n    text-align: right;\n    margin: 35px 20px; }\n.cart-order__total span {\n    color: #444; }\n/*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/\n/*\n* Меню,навигация\n*/\n.navbar-nav > li:hover {\n    background: #2e6da4;\n}\n.navbar-default .navbar-nav > li > a:hover {\n    color: #fff;\n}\n.mob-nav-text {\n    margin-left: 2px;\n}\n.mobile-nav-bar-1 {\n    display: none;\n}\n.mobile-nav-bar-2 .navbar-nav li {\n    cursor: pointer;\n}\n\n/*mob-nav-elem---------------------------------------------------------------------------------------------------*/\n.popup_mob-nav-elem {\n    padding: 15px;\n    margin: auto;\n    position: absolute;\n    width:100%;\n    z-index:200000;\n    top: 62px;\n    left: 0;\n}\n.popup_mob-nav-elem_bg {\n    background: transparent;\n    /*background:rgba(0,0,0,0.5);*/\n    position:fixed;\n    z-index:1;\n    top:75px;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n.for-mob-nav-elem {\n    position: relative;\n    margin:0;\n    width: 100%;\n}\n#blok_mob-nav-elem {\n    position: relative;\n    z-index:2;\n    width: 100%;\n    padding-top:5px;\n    padding-bottom:5px;\n    background:#fff;\n    background-color:#fff;\n    /*border:1px solid #f5f5f5;*/\n    border-bottom:1px solid #f5f5f5;\n    -webkit-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    -moz-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n}\n#blok_mob-nav-elem a div {\n    padding-left: 10px;\n    margin: 5px;\n}\n#blok_mob-nav-elem a div p {\n    margin: 0;\n    padding: 5px;\n}\n#blok_mob-nav-elem a {\n    color: #696969;\n    text-decoration: none;\n}\n#blok_mob-nav-elem a:hover {\n    color: #fff;\n}\n#blok_mob-nav-elem div:hover {\n    background: #2e6da4;\n    /*height:100%;*/\n    cursor: pointer;\n}\n.menu__item--basket__amount {\n    position: absolute;\n    top: 9px;\n    right: 2px;\n    width: 16px;\n    height: 15px;\n    color: #fff;\n    font-size: 11px;\n    text-align: center;\n    line-height: 15px;\n    background: #777;\n    -webkit-border-radius: 50%;\n    border-radius: 50%;\n    -webkit-transition: 0.3s ease;\n    transition: 0.3s ease;\n}\n\n/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/\n/*avatar-elem---------------------------------------------------------------------------------------------------*/\n.popup_avatar-elem {\n    position: absolute;\n    width:100%;\n    min-height: 80%;\n    left: 0;\n    top: 26px;\n}\n.popup_avatar-elem_bg {\n    background:rgba(0,0,0,0.5);\n    position:fixed;\n    z-index:1;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n#blok-avatar-elem {\n    position: relative;\n    z-index:2;\n    width: 80%;\n    min-height: 100%;\n    margin: 0 auto;\n    padding: 15px;\n    background:#fff;\n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    border-radius: 5px;\n}\n/*END avatar-elem---------------------------------------------------------------------------------------------------*/\n/*Крестик для мобильного меню -------------------------------------------------------------------------------------*/\n.close-mobile-elem {\n    position: absolute;\n    left: 30px;\n    top: 12px;\n    width: 32px;\n    height: 32px;\n    opacity: 1;\n}\n.close-mobile-elem:hover {\n    opacity: 1;\n}\n.close-mobile-elem:before, .close-mobile-elem:after {\n    position: absolute;\n    content: ' ';\n    height: 25px;\n    width: 3px;\n    background-color: #696969;;\n}\n.close-mobile-elem:before {\n    transform: rotate(45deg);\n}\n.close-mobile-elem:after {\n    transform: rotate(-45deg);\n}\n/*END Крестик для мобильного меню ----------------------------------------------------------------------------------------*/\n\n/*Success Page -------------------------------------------------------------------------------------------------------------*/\n.success-page {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    min-height: calc(100vh - 210px);\n    min-height: -webkit-calc(100vh - 210px);\n    min-height: 270px;\n    max-width: 1280px;\n    padding: 15px;\n    margin: auto;\n    box-sizing: border-box;\n    background: #fff /*url(../images/success-page-bg.jpg) no-repeat center top*/;\n    background-size: auto auto;\n    background-size: cover;\n}\n.success-page__content {\n    max-width: 515px;\n    width: 100%;\n    background: #fff;\n    padding: 25px 15px;\n    text-align: center;\n    box-sizing: border-box;\n}\n.success-page__title {\n    font: 400 22px \"Times New Roman\", Times, serif;\n    letter-spacing: 0.285em;\n    text-indent: 5px;\n    color: #838383;\n    text-transform: uppercase;\n    padding: 48px 0 38px;\n    max-width: 400px;\n    margin: auto;\n}\n.success-page__text {\n    font: 400 17px \"Times New Roman\", Times, serif;\n    color: #383838;\n    max-width: 400px;\n    margin: auto;\n}\n/*END Success Page -------------------------------------------------------------------------------------------------------------*/\n\n/* Мои заказы -------------------------------------------------------------------------------------------------------------*/\n.order-tr-head {\n    background: #4CAF50;\n}\n.order-tr-head:after {\n    position: relative;\n    top: 21px;\n    right: 23px;\n    display: block;\n    width: 14px;\n    height: 9px;\n    content: '';\n    opacity: .3;\n    /*fill: #fff !important;*/\n    background: no-repeat url(/images/12.svg);\n    background-size: contain;\n    transition: 200ms;\n    transition-timing-function: ease-in-out;\n    -webkit-transition: 200ms;\n    -webkit-transition-timing-function: ease-in-out;\n}\n.order-tr-head.tr_opened:after\n{\n    transform: rotate(180deg);\n    /*opacity: 1;*/\n}\n.order-tr-head:hover {\n    cursor: pointer;\n    background: #3A923E;\n}\n.orders-all {\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*flex-wrap: wrap;*/\n    margin: 15px 0;\n}\n.orders-item {\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    border: 1px solid #ddd;\n    margin-bottom: 10px;\n}\n.orders-item__head {\n    padding: 10px;\n    background-color: #4CAF50;\n    color: white;\n    font-weight: bold;\n    border-radius: 2px;\n}\n.orders-item__head:hover {\n    cursor: pointer;\n    background-color: #3A923E;\n}\n.orders-item__head:active {\n    background-color: #4CAF50;\n}\n.orders-item__body {\n    background-color: #f9f9f9;\n    padding: 10px;\n    color: #999;\n}\n.order-filter-main {\n    display: flex;\n    padding: 10px;\n}\n.order-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n    width: 150px;\n    margin-right: 10px;\n}\n.order-filds-label-input:nth-child(3) {\n    width: 90px;\n}\n.order-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.order-th-head {\n    text-align: left;\n    width: 100%;\n    font-weight: normal !important;\n}\n.order-td-first {\n    font-weight: normal !important;\n    color: #757575;\n}\n.order-td-first:hover {\n    color: #000;\n}\n.order-instruments {\n    display: flex;\n    justify-content: space-between;\n    background: beige;\n    padding: 10px;\n}\n.order-instruments .order-info {\n    display: flex;\n    flex-direction: column;\n    color: #111;\n}\n.order-info:not(:first-child) {\n    margin-top: 5px;\n}\n.order-config {\n    display: flex;\n    flex-direction: column;\n    color: steelblue;\n}\n.order-config span:hover {\n    color: #1f5b8e;\n    cursor: pointer;\n}\n.order-config span:active {\n    color: steelblue;\n}\n/* END Мои заказы -------------------------------------------------------------------------------------------------------------*/\n\n/*НАЧАЛО MODAL DIALOG----------------------------------------------------------------------------------------------------------*/\n.modal-open .modal {\n    overflow-x: hidden;\n    overflow-y: auto;\n}\n.modal-display {\n    display: block;\n    padding-left: 15px;\n}\n.fade.in {\n    opacity: 1;\n}\n.modal {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1050;\n    display: none;\n    overflow: hidden;\n    -webkit-overflow-scrolling: touch;\n    outline: 0;\n    background: transparent;\n}\n.modal.in .modal-dialog {\n    -webkit-transform: translate(0,0);\n    -ms-transform: translate(0,0);\n    -o-transform: translate(0,0);\n    transform: translate(0,0);\n}\n.modal.fade .modal-dialog {\n    -webkit-transition: -webkit-transform .3s ease-out;\n    -o-transition: -o-transform .3s ease-out;\n    transition: transform .3s ease-out;\n    -webkit-transform: translate(0,-25%);\n    -ms-transform: translate(0,-25%);\n    -o-transform: translate(0,-25%);\n    transform: translate(0,-25%);\n}\n.modal-dialog {\n    position: relative;\n    width: auto;\n    margin: 10px;\n}\n.modal-content {\n    position: relative;\n    margin-top: 40%;\n    background-color: #fff;\n    -webkit-background-clip: padding-box;\n    background-clip: padding-box;\n    border: 1px solid #999;\n    border: 1px solid rgba(0,0,0,.2);\n    border-radius: 6px;\n    outline: 0;\n    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);\n    box-shadow: 0 3px 9px rgba(0,0,0,.5);\n}\n.modal-animation {\n    /*height: 300px;*/\n    padding: 15px;\n    text-align: left !important;\n}\n\n.modal-animation__item {\n    padding: 20px;\n}\n.modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n    height: 120px;\n    width: 120px;\n}\n.modal-animation__item span:nth-child(2) svg {\n    height: 50px;\n    width: 50px;\n}\n.modal-animation__item span:nth-child(3) {\n    position: relative;\n    right: 30px;\n    float: right;\n}\n@keyframes transitionTiming {\n    0% {\n        left:0;\n    }\n    100% {\n        left:calc(600px - 420px);\n    }\n}\n.transition-timing-linear {\n    position: relative;\n    animation-name:transitionTiming;\n    animation-duration: 2s;\n    animation-iteration-count: 3;\n    animation-timing-function: ease;\n}\n.modal-header {\n    padding: 15px;\n    border-bottom: 1px solid #e5e5e5;\n    text-align: center;\n}\n.modal-header .close {\n    margin-top: -2px;\n}\nbutton.close {\n    -webkit-appearance: none;\n    padding: 0;\n    cursor: pointer;\n    background: 0 0;\n    border: 0;\n}\n.modal-title {\n    margin: 0;\n    line-height: 1.42857143;\n}\n.modal-header .h4, h4 {\n    font-size: 18px;\n    font-family: inherit;\n    font-weight: 500;\n}\n.close {\n    float: right;\n    font-size: 21px;\n    font-weight: 700;\n    line-height: 1;\n    color: #000;\n    text-shadow: 0 1px 0 #fff;\n    filter: alpha(opacity=20);\n    opacity: .2;\n}\n\n.modal-body {\n    position: relative;\n    padding: 15px;\n}\n.modal-body p {\n    margin: 0 0 10px;\n}\n.modal-footer {\n    display: flex;\n    padding: 15px;\n    justify-content: space-between;\n    /*border-top: 1px solid #e5e5e5;*/\n}\n.modal-footer .btn-default, .modal-header-success .btn-default {\n    color: #fff;\n    background-color: #4CAF50;\n    border-color: #4CAF50;\n}\n.modal-footer .btn-default:hover, .modal-header-success .btn-default:hover {\n    font-weight: bold;\n    color: #4CAF50;\n    background-color: #fff;\n    border-color: #4CAF50;\n}\n.modal-footer .btn-default:active, .modal-header-success .btn-default:active {\n    background-color: #1b8a20;\n    border-color: #8c8c8c;\n}\n.modal-footer .btn, .modal-header-success .btn {\n    display: inline-block;\n    padding: 6px 12px;\n    margin-bottom: 0;\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 1.42857143;\n    text-align: center;\n    white-space: nowrap;\n    vertical-align: middle;\n    -ms-touch-action: manipulation;\n    touch-action: manipulation;\n    cursor: pointer;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    background-image: none;\n    border: 1px solid transparent;\n    border-radius: 4px;\n}\n.modal-footer button, input, select, textarea, .modal-header-success button {\n    font-family: inherit;\n    font-size: inherit;\n    line-height: inherit;\n}\n.modal-backdrop.in {\n    opacity: .5;\n    filter: alpha(opacity=50);\n}\n.modal-backdrop {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1040;\n    background-color: #000;\n}\n.modal-backdrop-white.in {\n    opacity: .6;\n    filter: alpha(opacity=60);\n}\n.modal-backdrop-white {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1040;\n    background-color: #fff;\n}\n\n@media (min-width: 768px) {\n    .modal-sm {\n        width: 300px;\n    }\n    .modal-dialog {\n        width: 600px;\n        margin: 30px auto;\n    }\n    .modal-content {\n        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);\n        box-shadow: 0 5px 15px rgba(0,0,0,.5);\n    }\n}\n/*КОНЕЦ MODAL DIALOG----------------------------------------------------------------------------------------------------------*/\n\n/*НАЧАЛО MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/\n.modal-dialog-success {\n    width: 300px;\n    position: fixed;\n    right: 8%;\n    opacity: 0;\n    transform: scale(0);\n    transition: 0.3s;\n    z-index: 2 !important;\n    /*top: 98px;*/\n}\n.modal-dialog-success-save {\n    width: 220px !important;\n}\n.modal-content-success-save {\n    background: #4CAF50 !important;\n}\n.modal-header-success-save {\n    color: #fff !important;\n}\n.transition-scale {\n    transform: scale(1);\n    opacity: 1;\n    transition: .4s;\n}\n.scroll-top {\n    top: 1px !important;\n}\n.modal-content-success {\n    position: relative;\n    /*margin-top: 10%;*/\n    background-color: #fff;\n    -webkit-background-clip: padding-box;\n    background-clip: padding-box;\n    border: 1px solid #c9c9c9;\n    border-radius: 5px;\n    outline: 0;\n    -webkit-box-shadow: 0 3px 9px rgba(125, 125, 125, 0.5);\n    box-shadow: 0 3px 9px rgba(125, 125, 125, 0.5);\n}\n.modal-header-success {\n    padding: 15px;\n    text-align: center;\n}\n.modal-header-success .close {\n    margin-top: -2px;\n}\n.modal-header-success .h4, h4 {\n    font-size: 18px;\n    font-family: inherit;\n    font-weight: 500;\n}\n/*КОНЕЦ MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/\n.Select-input > input {\n    width: 100% !important;\n    border: none !important;\n}", ""]);
+exports.push([module.i, "html, body {\n    background: #f8f8f8;\n    width: 100%;\n    /*adaptive*/\n    min-width: 320px;\n    height: 100%;\n    /*adaptive*/ }\n.container {\n    margin-top: 10px;\n    min-height: 100%;\n}\nh1, h2, h3 {\n    color: steelblue !important;\n    margin: 0 !important;\n}\nhr {\n    border-top: 1px solid #a2a2a2;\n    /*color: steelblue;*/\n    /*background-color: steelblue; !* Цвет линии для браузера Firefox и Opera *!*/\n    /*height: 1px; !* Толщина линии *!*/\n}\n.error_message_for_create.fade {\n    display: none\n}\n.error_message_for_create.in {\n    display: block;\n    color: red;\n}\n.navbar-default {\n    background: #fff !important;\n    background-color: #fff !important;\n}\n.show-hide {\n    display: none;\n}\n.show-hide-flex {\n    display: flex;\n}\n.error-border-red {\n    border: 2px solid indianred !important;\n}\n.error-border-red:focus {\n    border: none !important;\n}\n.margin-right-10 {\n    margin-right: 10px !important;\n}\n.flex-box-between {\n    display: flex;\n    justify-content: space-between;\n}\n.margin-off {\n    margin: 0 !important;\n}\n.align-center {\n    text-align: center !important;\n}\n.error-border-red::-webkit-input-placeholder {color: indianred !important;}\n.error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */\n.error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */\n.error-border-red:-ms-input-placeholder      {color: indianred !important;}\n/*Главный контейнер*/\n.main-container {\n    min-height: 100%;\n    /*background: #f2f2f2;*/\n    background: #fff;\n    /*min-height: 100% !important;*/\n    padding: 20px;\n    /*background-image: linear-gradient(to bottom left,#fff 0,#f4f4f4 100%);*/\n    box-shadow: inset 0 2px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.095);\n    background-repeat: repeat-x;\n    border-radius: 4px;\n    margin-bottom: 20px;\n    /*-webkit-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*-moz-box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n    /*box-shadow: 0px 4px 15px 5px rgba(94,94,94,0.32);*/\n\n}\na {\n    text-decoration: none !important;\n}\n/* ГЛАВНАЯ НАЧАЛО ------------------------------------------------------------------*/\n/* Слайдер */\n.main-slider {\n    display: block;\n    width: 100%;\n}\n@keyframes runSlider {\n    0% {\n        /*transform: scale(0);*/\n        opacity: 0.01;\n    }\n    100% {\n        /*transform: scale(1);*/\n        opacity: 1;\n    }\n}\n.slider-img {\n    width: 100%;\n    animation-name:runSlider;\n    animation-duration: 1.7s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease;\n}\n/*.slider-img:not(:nth-child(1)) {*/\n    /*display: none;*/\n/*}*/\n/* Перечень преимуществ */\n.xf-wrapper {\n    padding-top: 40px;\n    padding-bottom: 20px;\n    position: relative;\n    text-align: center;\n    border-bottom: 1px solid #f7f7f7;\n    display: block;\n}\n.xf-you-love__header {\n    font-size: 42px;\n    margin: 0;\n    line-height: 1.25;\n    font-family: Rotonda,sans-serif;\n    font-weight: 700;\n    color: #333;\n    margin-bottom: 10px;\n}\n.xf-you-love__subheader {\n    font-size: 20px;\n    font-weight: 700;\n    margin: 0;\n}\n.xf-you-love__list {\n    margin: 30px 40px 0;\n    display: flex;\n    list-style: none;\n    padding: 0;\n    text-align: left;\n    -webkit-box-pack: justify;\n    -ms-flex-pack: justify;\n    justify-content: space-around;\n}\n.xf-you-love__list>div:first-child {\n    flex-basis: 45%;\n    box-sizing: border-box;\n}\n.xf-you-love__item {\n    font-size: 16px;\n    font-family: GothicBook,sans-serif;\n    margin-bottom: 16px;\n    display: flex;\n    box-sizing: border-box;\n    text-align: -webkit-match-parent;\n}\n.xf-you-love__item:before {\n    content: '';\n    background: url(https://www.perekrestok.ru/build/img/svg/list-bullet.svg) 0 no-repeat;\n    width: 10px;\n    height: 8px;\n    margin-right: 10px;\n    margin-top: 5px;\n    -ms-flex-negative: 0;\n    flex-shrink: 0;\n}\n/* ГЛАВНАЯ КОНЕЦ ------------------------------------------------------------------*/\n\n/*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/\n/*Главный див для форм входа и регистрации*/\n.register-container-main {\n    display: flex;\n    justify-content: center;\n}\n.register-container {\n    display: flex;\n    width: 50%;\n    flex-direction: column;\n}\n/*Голова формы(верхняя часть формы с загруглёнными краями и синим фоном)*/\n.register-header {\n    border: 1px solid #808080;\n    background: steelblue;\n    color: white;\n    border-radius: 8px 8px 0 0;\n    padding: 10px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n/*Для тега <p>, который находится в голове формы, убираем внешние отступы*/\n.register-header p {\n    margin: 0;\n}\n.main-text {\n    font-size: 18px;\n}\n.explain-text {\n    font-size: 13px;\n}\n/*Тело формы, где поля ввода*/\n.register-filds {\n    padding: 30px 15px 0 15px;\n    display: flex;\n    flex-direction: column;\n    border: 1px solid #808080;\n    border-top: 0;\n    justify-content: flex-start;\n    background: #fff;\n}\n/*Див для меток(label) и их инпутов*/\n.register-filds-label-input {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n/*Див для чекбокса и кнопки*/\n.register-filds-elements {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: flex-start;\n    margin-bottom: 10px;\n}\n.register-filds-label {\n    width: 120px;\n    padding-right: 10px;\n    text-align: right;\n    letter-spacing: 1px;\n}\n.register-filds-elements div {\n    width: 100%;\n}\n.customer-data-container input,.register-filds input {\n    width: 100%;\n    height: 30px;\n    padding-left: 5px;\n    border-radius: 4px;\n    border: 1px solid #a2a2a2;\n    /*font-style: italic;*/\n}\n.customer-data-container input:focus, .register-filds input:focus {\n    outline: none;\n    border: 1px solid #696969;\n}\n/*Кнопки*/\n.middle-button {\n    border-radius: 2px;\n    border: 0;\n    background: #fff;\n    color: #000;\n    text-align: center;\n    padding: 2px 15px 2px 15px;\n    margin-right: 15px;\n}\n.middle-button:hover {\n    cursor: pointer;\n    background-color: #f3f3f3;\n}\n.middle-button:active {\n    padding: 1px 14px 1px 14px;\n}\n.login-button {\n    margin-right: 15px;\n    border-radius: 2px;\n    /*border: 1px solid #a2a2a2;*/\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    width: 120px !important;float: left;\n}\n.login-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.login-button:active {\n    background: #1b3447;\n}\n.login-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.register-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    letter-spacing: 1px;\n}\n.register-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.register-button:active {\n    background: #1b3447;\n}\n.register-button:focus {\n    color: transparent;\n    text-shadow: 0 0 0 white;\n    outline: none;\n}\n.register-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.recover-password {\n    vertical-align: sub;\n}\n/*Кнопка отправить заказ*/\n.cart-button {\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid #4CAF50;\n    background: #4CAF50;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    font-weight: bold;\n}\n.cart-button:hover {\n    cursor: pointer;\n    background: #fff;\n    color: #4CAF50;\n}\n.cart-button:active {\n    background: #368e39;\n    color: #fff\n}\n/*Кнопка очистить корзину*/\n.cart-button-clear {\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid indianred;\n    background: indianred;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    margin-right: 15px;\n    font-weight: bold;\n}\n.cart-button-clear:hover {\n    cursor: pointer;\n    background: #fff;\n    color: indianred;\n}\n.cart-button-clear:active {\n    background: #a92525;\n    color: #fff\n}\n.success-button {\n    margin-top: 40px;\n    display: inline-block;\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid #4CAF50;\n    background: #4CAF50;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    font-weight: bold;\n}\n.success-button p {\n    margin: 0;\n}\n.success-button:hover {\n    cursor: pointer;\n    background: #fff;\n    color: #4CAF50;\n}\n.success-button:active {\n    background: #368e39;\n    color: #fff\n}\n.cart-comment {\n    width: 100%;\n    margin-bottom: 20px;\n    padding: 10px;\n    border: 1px solid #c1c1c1;\n    border-radius: 3px;\n}\n.cart-comment:hover {\n    border: 1px solid #a1a1a1;\n}\n/*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/\n\n/*CHECKBOX НАЧАЛО------------------------------------------------------------------*/\ninput[type=checkbox] + label {\n    float: left;\n}\ninput[type=\"checkbox\"] {\n    display:none;\n}\ninput[type=\"checkbox\"] + label span {\n    display:inline-block;\n    width:19px;\n    height:19px;\n    margin:-1px 4px 0 0;\n    vertical-align:middle;\n    background:url(" + __webpack_require__(95) + ") left top no-repeat;\n    cursor:pointer;\n}\ninput[type=\"checkbox\"]:checked + label span {\n    background:url(" + __webpack_require__(95) + ") -19px top no-repeat;\n}\n/*CHECKBOX КОНЕЦ------------------------------------------------------------------*/\n\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/\n.personal-container form {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    width: 100%;\n}\n.image-container {\n    width: 20%;\n    margin-top: 4px;\n}\n.customer-data-container {\n    width: 48%;\n    /*padding: 0 20px 0 20px;*/\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*background: #fff;*/\n}\n.customer-image {\n    margin-bottom: 15px;\n    width: 99%;\n    /*height: 250px;*/\n    border: 1px solid #808080;\n    background: #ffffff;\n}\n.customer-image img {\n    max-width:100%;\n    max-height:100%;\n}\n/*Див для меток(label) и их инпутов*/\n.personal-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.personal-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.personal-explain-text {\n    font-size: 14px;\n    color: steelblue;\n}\n/*Инпут для вставки фото*/\n.customer-image-button {\n    position: relative;\n}\n.customer-image-button #personal-photo {\n    cursor: pointer;\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    height: 100%;\n    -moz-opacity: 0;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    z-index:1;\n}\n.personal-select-birdthdate-group {\n    display: flex;\n    justify-content: flex-start;\n}\n.personal-select-birdthdate-group .Select:nth-child(1) {\n    width: 20%;\n}\n.personal-select-birdthdate-group .Select:nth-child(2) {\n    width: 50%;\n}\n.personal-select-birdthdate-group .Select:nth-child(3) {\n    width: 30%;\n}\n.person-success-button-div {\n    text-align: right;\n}\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. НАЧАЛО---------------------------------------------------*/\n.category-head {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.bread-crumbs-circle {\n    width: 10px;\n    height: 10px;\n    background: #555;\n    -moz-border-radius: 50px;\n    -webkit-border-radius: 50px;\n    border-radius: 50px;\n    margin: 0 10px;\n}\n.bread-crumbs-link {\n    color: #555 !important;\n}\n.bread-crumbs-link:hover {\n    color: #222 !important;\n    text-decoration: underline !important;\n}\n.bread-crumbs-on-page {\n\n}\n@keyframes pageLoadOpacity {\n    0% {\n        opacity: 0.01;\n    }\n    100% {\n        opacity: 1;\n    }\n}\n@keyframes popupLoadScale {\n    0% {\n        transform: scale(0);\n        opacity: 0.01;\n    }\n    100% {\n        transform: scale(1);\n        opacity: 1;\n    }\n}\n.animation-popup-load-fast {\n    animation-name:popupLoadScale;\n    animation-duration: .3s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease;\n}\n.animation-page-load-medium {\n    animation-name:pageLoadOpacity;\n    animation-duration: .5s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease-in;\n}\n.animation-page-load-long {\n    animation-name:pageLoadOpacity;\n    animation-duration: 1s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease-in;\n    /*animation-direction: alternate;*/\n}\n.category-all {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n    flex-wrap: wrap;\n    margin: 5px -5px; }\n.category-item {\n    transition: box-shadow .4s;\n    background: white;\n    border: 1px solid #d8d8d8;\n    width: calc(100% / 4 - 10px);\n    min-width: 0;\n    margin: 10px 5px 10px; }\n.category-item:hover {\n    -webkit-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    -moz-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n}\n.category-item:hover .category-item__name {\n    color: #000;\n}\n.category-item__img {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 20px;\n}\n/*.category-item__img img {*/\n    /*transition: 1.3s;*/\n/*}*/\n/*.category-item__img img:hover {*/\n    /*transform: scale(1.1);*/\n/*}*/\n.category-item__name {\n    padding: 10px;\n    display: table-cell;\n    margin-bottom: 14px;\n    line-height: 20px;\n    vertical-align: inherit;\n    color: #444;\n    font-size: 18px;\n}\n.add-to-cart-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 10px 4px 10px;\n    font-weight: 700;\n    margin-bottom: 20px;\n}\n.add-to-cart-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.add-to-cart-button:active {\n    background: #1b3447;\n}\n.add-to-cart-button p {\n    margin: 0;\n}\n.category-item__price-measure {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 100%;\n    padding: 5px 0 15px 0;\n}\n.category-item__price-measure span {\n    font-size: 15px;\n    font-weight: bold;\n    color: #3c763d;\n}\n.category-item__price-measure select {\n    outline: none;\n    color: #fff;\n    background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);\n    background-color: #3c763d;\n    -moz-border-radius: 20px;\n    border-radius: 20px;\n    padding-left: 8px;\n    -webkit-appearance: button;\n    -webkit-user-select: none;\n    background-position: 80% center;\n    background-repeat: no-repeat;\n    border: none;\n    font-size: inherit;\n    margin-right: 4px;\n    width: 50px;\n}\n.category-item__price-measure:hover select {\n    cursor: pointer;\n}\n\n/*.Количество продуктов */\n.order-number {\n    position: relative;\n    width: 85px;\n    height: 32px;\n    margin: 0 auto;\n    border: 2px solid #3c763d;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field {\n    height: 100%;\n    padding: 0 26px;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field input {\n    font-weight: 900;\n    display: block;\n    width: 100%;\n    height: 100%;\n    color: #3c763d;\n    font-size: 13px;\n    font-family: Arial Bold, 'sans-serif';\n    text-align: center;\n    -moz-appearance: textfield;\n    /*background: #fff;*/\n    background-color: transparent;\n    outline: none;\n    border: 0;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box; }\n.order-number__field input::-webkit-inner-spin-button, .order-number__field input::-webkit-outer-spin-button {\n    margin: 0;\n    /* в каких-то браузерах присутствует отступ */\n    -webkit-appearance: none; }\n.order-number__spin.minus {\n    left: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.minus:after {\n    background-position: 0 0;\n}\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n.order-number__spin.plus {\n    right: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.plus:after {\n    background-position: 0 -10px;\n}\n\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/\n\n/*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/\n.cart-products-table {\n    margin-top: 20px;\n    border-collapse: collapse;\n    width: 100%;\n}\n.cart-tr-head {\n    background-color: #4CAF50;\n}\n.table-100-procent {\n    width: 100%;\n}\n.table-30-procent {\n    width: 30%;\n}\n.table-25-procent {\n    width: 25%;\n}\n.table-10-procent {\n    width: 10%;\n}\n\ntd {\n    text-align: center;\n    padding: 9px;\n    color: #555;\n    font-weight: 600;\n}\n\ntr:nth-child(even){background-color: #f2f2f2}\n\nth {\n    text-align: center;\n    padding: 18px;\n    color: white;\n}\n.table-40-procent-td {\n    text-align: left;\n}\n.remove-product {\n    color: indianred;\n}\n.remove-product:hover {\n    cursor: pointer;\n    color: firebrick;\n}\n.remove-product:active {\n    color: darkred;\n}\n.cart-product-image {\n    border: 1px solid #999;\n    margin-right: 30px;\n    height: 70px;\n}\n.cart-order__total {\n    color: #999;\n    font-size: 24px;\n    font-family: Arial-Bold, 'sans-serif';\n    line-height: 36px;\n    letter-spacing: 6.24px;\n    text-transform: uppercase;\n    text-align: right;\n    margin: 35px 20px; }\n.cart-order__total span {\n    color: #444; }\n/*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/\n/*\n* Меню,навигация\n*/\n.navbar-nav > li:hover {\n    background: #2e6da4;\n}\n.navbar-default .navbar-nav > li > a:hover {\n    color: #fff;\n}\n.mob-nav-text {\n    margin-left: 2px;\n}\n.mobile-nav-bar-1 {\n    display: none;\n}\n.mobile-nav-bar-2 .navbar-nav li {\n    cursor: pointer;\n}\n\n/*mob-nav-elem---------------------------------------------------------------------------------------------------*/\n.popup_mob-nav-elem {\n    position: absolute;\n    width: 100%;\n    z-index: 200000;\n    top: 76px;\n    left: 0;\n}\n.popup_mob-nav-elem_bg {\n    /*background: transparent;*/\n    background: white;\n    opacity: .5;\n    filter: blur(20px);\n    position:fixed;\n    z-index:1;\n    top:75px;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n.for-mob-nav-elem {\n    position: relative;\n    margin: 0 auto;\n    width: 91%;\n}\n#blok_mob-nav-elem {\n    position: relative;\n    z-index:2;\n    width: 100%;\n    padding-top:5px;\n    padding-bottom:5px;\n    background:#fff;\n    background-color:#fff;\n    /*border:1px solid #f5f5f5;*/\n    border-bottom:1px solid #f5f5f5;\n    -webkit-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    -moz-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n}\n#blok_mob-nav-elem a div {\n    padding-left: 10px;\n    margin: 5px;\n}\n#blok_mob-nav-elem a div p {\n    margin: 0;\n    padding: 5px;\n}\n#blok_mob-nav-elem a {\n    color: #696969;\n    text-decoration: none;\n}\n#blok_mob-nav-elem a:hover {\n    color: #fff;\n}\n#blok_mob-nav-elem div:hover {\n    background: #2e6da4;\n    /*height:100%;*/\n    cursor: pointer;\n}\n.menu__item--basket__amount {\n    position: absolute;\n    top: 9px;\n    right: 2px;\n    width: 16px;\n    height: 15px;\n    color: #fff;\n    font-size: 11px;\n    text-align: center;\n    line-height: 15px;\n    background: #777;\n    -webkit-border-radius: 50%;\n    border-radius: 50%;\n    -webkit-transition: 0.3s ease;\n    transition: 0.3s ease;\n}\n\n/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/\n/*avatar-elem---------------------------------------------------------------------------------------------------*/\n.popup_avatar-elem {\n    position: absolute;\n    width:100%;\n    min-height: 80%;\n    left: 0;\n    top: 26px;\n}\n.popup_avatar-elem_bg {\n    background:rgba(0,0,0,0.5);\n    position:fixed;\n    z-index:1;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n#blok-avatar-elem {\n    position: relative;\n    z-index:2;\n    width: 80%;\n    min-height: 100%;\n    margin: 0 auto;\n    padding: 15px;\n    background:#fff;\n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    border-radius: 5px;\n}\n/*END avatar-elem---------------------------------------------------------------------------------------------------*/\n/*Крестик для мобильного меню -------------------------------------------------------------------------------------*/\n.close-mobile-elem {\n    position: absolute;\n    left: 30px;\n    top: 12px;\n    width: 32px;\n    height: 32px;\n    opacity: 1;\n}\n.close-mobile-elem:hover {\n    opacity: 1;\n}\n.close-mobile-elem:before, .close-mobile-elem:after {\n    position: absolute;\n    content: ' ';\n    height: 25px;\n    width: 3px;\n    background-color: #696969;;\n}\n.close-mobile-elem:before {\n    transform: rotate(45deg);\n}\n.close-mobile-elem:after {\n    transform: rotate(-45deg);\n}\n/*END Крестик для мобильного меню ----------------------------------------------------------------------------------------*/\n\n/*Success Page -------------------------------------------------------------------------------------------------------------*/\n.success-page {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    min-height: calc(100vh - 210px);\n    min-height: -webkit-calc(100vh - 210px);\n    min-height: 270px;\n    max-width: 1280px;\n    padding: 15px;\n    margin: auto;\n    box-sizing: border-box;\n    background: #fff /*url(../images/success-page-bg.jpg) no-repeat center top*/;\n    background-size: auto auto;\n    background-size: cover;\n}\n.success-page__content {\n    max-width: 515px;\n    width: 100%;\n    background: #fff;\n    padding: 25px 15px;\n    text-align: center;\n    box-sizing: border-box;\n}\n.success-page__title {\n    font: 400 22px \"Times New Roman\", Times, serif;\n    letter-spacing: 0.285em;\n    text-indent: 5px;\n    color: #838383;\n    text-transform: uppercase;\n    padding: 48px 0 38px;\n    max-width: 400px;\n    margin: auto;\n}\n.success-page__text {\n    font: 400 17px \"Times New Roman\", Times, serif;\n    color: #383838;\n    max-width: 400px;\n    margin: auto;\n}\n/*END Success Page -------------------------------------------------------------------------------------------------------------*/\n\n/* Мои заказы -------------------------------------------------------------------------------------------------------------*/\n.order-tr-head {\n    background: #4CAF50;\n}\n.order-tr-head:after {\n    position: relative;\n    top: 21px;\n    right: 23px;\n    display: block;\n    width: 14px;\n    height: 9px;\n    content: '';\n    opacity: .3;\n    /*fill: #fff !important;*/\n    background: no-repeat url(/images/12.svg);\n    background-size: contain;\n    transition: 200ms;\n    transition-timing-function: ease-in-out;\n    -webkit-transition: 200ms;\n    -webkit-transition-timing-function: ease-in-out;\n}\n.order-tr-head.tr_opened:after\n{\n    transform: rotate(180deg);\n    /*opacity: 1;*/\n}\n.order-tr-head:hover {\n    cursor: pointer;\n    background: #3A923E;\n}\n.orders-all {\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*flex-wrap: wrap;*/\n    margin: 15px 0;\n}\n.orders-item {\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    border: 1px solid #ddd;\n    margin-bottom: 10px;\n}\n.orders-item__head {\n    padding: 10px;\n    background-color: #4CAF50;\n    color: white;\n    font-weight: bold;\n    border-radius: 2px;\n}\n.orders-item__head:hover {\n    cursor: pointer;\n    background-color: #3A923E;\n}\n.orders-item__head:active {\n    background-color: #4CAF50;\n}\n.orders-item__body {\n    background-color: #f9f9f9;\n    padding: 10px;\n    color: #999;\n}\n.order-filter-main {\n    display: flex;\n    padding: 10px;\n}\n.order-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n    width: 150px;\n    margin-right: 10px;\n}\n.order-filds-label-input:nth-child(3) {\n    width: 90px;\n}\n.order-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.order-th-head {\n    text-align: left;\n    width: 100%;\n    font-weight: normal !important;\n}\n.order-td-first {\n    font-weight: normal !important;\n    color: #757575;\n}\n.order-td-first:hover {\n    color: #000;\n}\n.order-instruments {\n    display: flex;\n    justify-content: space-between;\n    background: beige;\n    padding: 10px;\n}\n.order-instruments .order-info {\n    display: flex;\n    flex-direction: column;\n    color: #111;\n}\n.order-info:not(:first-child) {\n    margin-top: 5px;\n}\n.order-config {\n    display: flex;\n    flex-direction: column;\n    color: steelblue;\n}\n.order-config span:hover {\n    color: #1f5b8e;\n    cursor: pointer;\n}\n.order-config span:active {\n    color: steelblue;\n}\n/* END Мои заказы -------------------------------------------------------------------------------------------------------------*/\n\n/*НАЧАЛО MODAL DIALOG----------------------------------------------------------------------------------------------------------*/\n.modal-open .modal {\n    overflow-x: hidden;\n    overflow-y: auto;\n}\n.modal-display {\n    display: block;\n    padding-left: 15px;\n}\n.fade.in {\n    opacity: 1;\n}\n.modal {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1050;\n    display: none;\n    overflow: hidden;\n    -webkit-overflow-scrolling: touch;\n    outline: 0;\n    background: transparent;\n}\n.modal.in .modal-dialog {\n    -webkit-transform: translate(0,0);\n    -ms-transform: translate(0,0);\n    -o-transform: translate(0,0);\n    transform: translate(0,0);\n}\n.modal.fade .modal-dialog {\n    -webkit-transition: -webkit-transform .3s ease-out;\n    -o-transition: -o-transform .3s ease-out;\n    transition: transform .3s ease-out;\n    -webkit-transform: translate(0,-25%);\n    -ms-transform: translate(0,-25%);\n    -o-transform: translate(0,-25%);\n    transform: translate(0,-25%);\n}\n.modal-dialog {\n    position: relative;\n    width: auto;\n    margin: 10px;\n}\n.modal-content {\n    position: relative;\n    margin-top: 40%;\n    background-color: #fff;\n    -webkit-background-clip: padding-box;\n    background-clip: padding-box;\n    border: 1px solid #999;\n    border: 1px solid rgba(0,0,0,.2);\n    border-radius: 6px;\n    outline: 0;\n    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);\n    box-shadow: 0 3px 9px rgba(0,0,0,.5);\n}\n.modal-animation {\n    /*height: 300px;*/\n    padding: 15px;\n    text-align: left !important;\n}\n\n.modal-animation__item {\n    padding: 20px;\n}\n.modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n    height: 120px;\n    width: 120px;\n}\n.modal-animation__item span:nth-child(2) svg {\n    height: 50px;\n    width: 50px;\n}\n.modal-animation__item span:nth-child(3) {\n    position: relative;\n    right: 30px;\n    float: right;\n}\n@keyframes transitionTiming {\n    0% {\n        left:0;\n    }\n    100% {\n        left:calc(600px - 420px);\n    }\n}\n.transition-timing-linear {\n    position: relative;\n    animation-name:transitionTiming;\n    animation-duration: 2s;\n    animation-iteration-count: 3;\n    animation-timing-function: ease;\n}\n.modal-header {\n    padding: 15px;\n    border-bottom: 1px solid #e5e5e5;\n    text-align: center;\n}\n.modal-header .close {\n    margin-top: -2px;\n}\nbutton.close {\n    -webkit-appearance: none;\n    padding: 0;\n    cursor: pointer;\n    background: 0 0;\n    border: 0;\n}\n.modal-title {\n    margin: 0;\n    line-height: 1.42857143;\n}\n.modal-header .h4, h4 {\n    font-size: 18px;\n    font-family: inherit;\n    font-weight: 500;\n}\n.close {\n    float: right;\n    font-size: 21px;\n    font-weight: 700;\n    line-height: 1;\n    color: #000;\n    text-shadow: 0 1px 0 #fff;\n    filter: alpha(opacity=20);\n    opacity: .2;\n}\n\n.modal-body {\n    position: relative;\n    padding: 15px;\n}\n.modal-body p {\n    margin: 0 0 10px;\n}\n.modal-footer {\n    display: flex;\n    padding: 15px;\n    justify-content: space-between;\n    /*border-top: 1px solid #e5e5e5;*/\n}\n.modal-footer .btn-default, .modal-header-success .btn-default {\n    color: #fff;\n    background-color: #4CAF50;\n    border-color: #4CAF50;\n}\n.modal-footer .btn-default:hover, .modal-header-success .btn-default:hover {\n    font-weight: bold;\n    color: #4CAF50;\n    background-color: #fff;\n    border-color: #4CAF50;\n}\n.modal-footer .btn-default:active, .modal-header-success .btn-default:active {\n    background-color: #1b8a20;\n    border-color: #8c8c8c;\n}\n.modal-footer .btn, .modal-header-success .btn {\n    display: inline-block;\n    padding: 6px 12px;\n    margin-bottom: 0;\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 1.42857143;\n    text-align: center;\n    white-space: nowrap;\n    vertical-align: middle;\n    -ms-touch-action: manipulation;\n    touch-action: manipulation;\n    cursor: pointer;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    background-image: none;\n    border: 1px solid transparent;\n    border-radius: 4px;\n}\n.modal-footer button, input, select, textarea, .modal-header-success button {\n    font-family: inherit;\n    font-size: inherit;\n    line-height: inherit;\n}\n.modal-backdrop.in {\n    opacity: .5;\n    filter: alpha(opacity=50);\n}\n.modal-backdrop {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1040;\n    background-color: #000;\n}\n.modal-backdrop-white.in {\n    opacity: .6;\n    filter: alpha(opacity=60);\n}\n.modal-backdrop-white {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1040;\n    background-color: #fff;\n}\n\n@media (min-width: 768px) {\n    .modal-sm {\n        width: 300px;\n    }\n    .modal-dialog {\n        width: 600px;\n        margin: 30px auto;\n    }\n    .modal-content {\n        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);\n        box-shadow: 0 5px 15px rgba(0,0,0,.5);\n    }\n}\n/*КОНЕЦ MODAL DIALOG----------------------------------------------------------------------------------------------------------*/\n\n/*НАЧАЛО MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/\n.modal-dialog-success {\n    width: 300px;\n    position: fixed;\n    right: 8%;\n    opacity: 0;\n    transform: scale(0);\n    transition: 0.3s;\n    z-index: 2 !important;\n    /*top: 98px;*/\n}\n.modal-dialog-success-save {\n    width: 220px !important;\n}\n.modal-content-success-save {\n    background: #4CAF50 !important;\n}\n.modal-header-success-save {\n    color: #fff !important;\n}\n.transition-scale {\n    transform: scale(1);\n    opacity: 1;\n    transition: .4s;\n}\n.scroll-top {\n    top: 1px !important;\n}\n.modal-content-success {\n    position: relative;\n    /*margin-top: 10%;*/\n    background-color: #fff;\n    -webkit-background-clip: padding-box;\n    background-clip: padding-box;\n    border: 1px solid #c9c9c9;\n    border-radius: 5px;\n    outline: 0;\n    -webkit-box-shadow: 0 3px 9px rgba(125, 125, 125, 0.5);\n    box-shadow: 0 3px 9px rgba(125, 125, 125, 0.5);\n}\n.modal-header-success {\n    padding: 15px;\n    text-align: center;\n}\n.modal-header-success .close {\n    margin-top: -2px;\n}\n.modal-header-success .h4, h4 {\n    font-size: 18px;\n    font-family: inherit;\n    font-weight: 500;\n}\n/*КОНЕЦ MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/\n.Select-input > input {\n    width: 100% !important;\n    border: none !important;\n}\n\n/*GO for footer ------------------------------------*/\n#footer {\n    position: relative;\n    z-index: 100;\n    background: #eff0f1;\n    background: -moz-linear-gradient(top, #eff0f1 0%, #ffffff 100%);\n    background: -webkit-linear-gradient(top, #eff0f1 0%, #ffffff 100%);\n    background: linear-gradient(to bottom, #eff0f1 0%, #ffffff 100%);\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eff0f1', endColorstr='#ffffff',GradientType=0 ); }\n#footer > .layout {\n    padding: 0; }\n\n/*style for only footer*/\n.menu--footer {\n    padding-left: 30px; }\n\n.b-footer .b-search {\n    bottom: 70px; }\n\n.b-footer__bottom {\n    height: 40px;\n    line-height: 30px;\n    overflow: hidden; }\n\n.footer__copy {\n    float: left;\n    color: #6c7073;\n    font-size: 13px;\n    font-family: ToyotaDisplay-Reg, 'sans-serif';\n    margin-left: 64px; }\n\n.footer__social {\n    float: right;\n    overflow: hidden;\n    margin: 0 5.2% 0 0; }\n.footer__social__item {\n    display: block;\n    float: left;\n    width: 31px;\n    height: 31px;\n    margin-left: 6px;\n    background: url(" + __webpack_require__(356) + ") no-repeat; }\n.footer__social__item:first-child {\n    margin-left: 0; }\n.footer__social__item--fb {\n    background-position: 0 center; }\n.footer__social__item--vk {\n    background-position: -31px center; }\n.footer__social__item--yt {\n    background-position: -62px center; }\n.footer__social__item--ig {\n    background-position: -93px center; }\n\n#footer .b-order {\n    bottom: 140px; }\n\n/*additions*/\n.menu_footer {\n    display: -ms-flexbox;\n    display: flex;\n    height: inherit; }\n.menu_footer--footer {\n    padding-left: 55px; }\n.menu__item_footer {\n    text-decoration: none;\n    list-style: none;\n    width: auto;\n    padding: 0 10px 0 10px;\n}\n.menu__item__link_footer {\n    display: block;\n    line-height: 70px;\n    color: #6c7073;\n    font-size: 15px;\n    font-family: Verdana, Geneva, sans-serif;\n    font-weight: bold;\n    text-align: center; }\n.menu__item_footer:hover {\n    text-decoration: underline; }\n/*END for footer ------------------------------------*/\n\n/* Контакты */\n.contacts-main {\n    display: flex;\n    flex-direction: row;\n}\n.contacts-item {\n    display: flex;\n    flex-direction: column;\n    margin-bottom: 10px;\n    margin-right: 30px;\n}\n.contacts-item span:nth-child(1) {\n    color: #3c3c3c;\n}\n.contacts-item span:nth-child(2) {\n    color: #9c0000;\n    font-weight: bold;\n}\n/* Контакты */\n", ""]);
 
 // exports
 
@@ -30536,7 +30686,7 @@ module.exports = FallbackCompositionState;
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -32001,7 +32151,7 @@ var AutoFocusUtils = __webpack_require__(214);
 var CSSPropertyOperations = __webpack_require__(216);
 var DOMLazyTree = __webpack_require__(32);
 var DOMNamespaces = __webpack_require__(65);
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var DOMPropertyOperations = __webpack_require__(104);
 var EventPluginHub = __webpack_require__(43);
 var EventPluginRegistry = __webpack_require__(50);
@@ -33467,7 +33617,7 @@ module.exports = ReactDOMInput;
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var ReactComponentTreeHook = __webpack_require__(14);
 
 var warning = __webpack_require__(3);
@@ -34436,7 +34586,7 @@ module.exports = {
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var EventPluginRegistry = __webpack_require__(50);
 var ReactComponentTreeHook = __webpack_require__(14);
 
@@ -35346,7 +35496,7 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 
-var DOMProperty = __webpack_require__(23);
+var DOMProperty = __webpack_require__(24);
 var EventPluginHub = __webpack_require__(43);
 var EventPluginUtils = __webpack_require__(66);
 var ReactComponentEnvironment = __webpack_require__(69);
@@ -44415,6 +44565,145 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 355 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(8);
+
+var _reactRouterDom = __webpack_require__(25);
+
+var _actions = __webpack_require__(22);
+
+var modelActions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+  _inherits(Footer, _Component);
+
+  function Footer(props) {
+    _classCallCheck(this, Footer);
+
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
+  }
+
+  _createClass(Footer, [{
+    key: 'closeMobNavElem',
+    value: function closeMobNavElem() {
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setMobNavElement(true));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'footer',
+        { id: 'footer' },
+        _react2.default.createElement(
+          'div',
+          { className: 'layout' },
+          _react2.default.createElement(
+            'div',
+            { className: 'b-footer' },
+            _react2.default.createElement(
+              'div',
+              { className: 'b-menu' },
+              _react2.default.createElement(
+                'nav',
+                { className: 'menu_footer menu_footer--footer' },
+                _react2.default.createElement(
+                  'li',
+                  { className: 'menu__item_footer' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    {
+                      className: 'menu__item__link_footer',
+                      onClick: this.closeMobNavElem.bind(this), to: '/cart'
+                    },
+                    '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'menu__item_footer' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    {
+                      className: 'menu__item__link_footer',
+                      onClick: this.closeMobNavElem.bind(this), to: '/orders'
+                    },
+                    '\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'menu__item_footer' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    {
+                      className: 'menu__item__link_footer',
+                      onClick: this.closeMobNavElem.bind(this), to: '/personal-account'
+                    },
+                    '\u0410\u043A\u0430\u0443\u043D\u0442'
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'b-footer__bottom' },
+              _react2.default.createElement(
+                'div',
+                { className: 'footer__copy' },
+                '\xA9 \xAB\u041C\u0430\u0433\u0430\u0437\u0438\u043D \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u043E\u0432\xBB, 2017'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Footer;
+}(_react.Component);
+
+exports.default = (0, _reactRedux.connect)(function (store) {
+  return {
+    dispatch: store.dispatch,
+    session: store.session,
+    api: store.api
+  };
+})(Footer);
+
+/***/ }),
+/* 356 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "69c79deccbcea49da0dc00588eebb17d.png";
 
 /***/ })
 /******/ ]);

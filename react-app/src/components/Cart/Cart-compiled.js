@@ -48,6 +48,10 @@ var _api = require('../../api');
 
 var _helpers = require('../../helpers');
 
+var _Footer = require('../Navigation/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -311,136 +315,141 @@ var Cart = function (_Component) {
       );
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
-        _react2.default.createElement(_Modal2.default, {
-          fadeIn: this.state.fadeIn,
-          modalDisplay: this.state.modalDisplay,
-          handlerCloseModal: this.handlerCloseModal.bind(this),
-          handlerSuccessModal: this.handlerSuccessModal.bind(this),
-          textHeader: this.state.textHeader,
-          textBody: this.state.textBody
-        }),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'main-container animation-page-load-medium cart-scroll-adaptive' },
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
+          _react2.default.createElement(_Modal2.default, {
+            fadeIn: this.state.fadeIn,
+            modalDisplay: this.state.modalDisplay,
+            handlerCloseModal: this.handlerCloseModal.bind(this),
+            handlerSuccessModal: this.handlerSuccessModal.bind(this),
+            textHeader: this.state.textHeader,
+            textBody: this.state.textBody
+          }),
           _react2.default.createElement(
             'div',
-            { className: 'flex-box-between' },
-            _react2.default.createElement(
-              'h3',
-              null,
-              '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
-            ),
+            { className: 'main-container animation-page-load-medium cart-scroll-adaptive' },
             _react2.default.createElement(
               'div',
-              { style: { display: 'flex' } },
+              { className: 'flex-box-between' },
               _react2.default.createElement(
-                'div',
-                { onClick: this.handlerClearCart.bind(this), className: 'cart-button-clear' },
-                '\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+                'h3',
+                null,
+                '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
               ),
               _react2.default.createElement(
                 'div',
-                { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
-                '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+                { style: { display: 'flex' } },
+                _react2.default.createElement(
+                  'div',
+                  { onClick: this.handlerClearCart.bind(this), className: 'cart-button-clear' },
+                  '\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
+                  '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+                )
               )
-            )
-          ),
-          (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && _react2.default.createElement(
-            'p',
-            { className: 'personal-explain-text' },
-            '\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430 \u2116 ST-',
-            userInfo.emailHash,
-            '-',
-            currentOrder['four'].order_id
-          ),
-          (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one']) && _react2.default.createElement(
-            'p',
-            { className: 'personal-explain-text', style: { color: 'red' } },
-            '\u0423 \u0412\u0430\u0441 \u0443\u0436\u0435 \u0435\u0441\u0442\u044C \u0437\u0430\u043A\u0430\u0437 \u0432 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0435.'
-          ),
-          _react2.default.createElement(
-            'table',
-            { className: 'cart-products-table cart-products-table__cart' },
+            ),
+            (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && _react2.default.createElement(
+              'p',
+              { className: 'personal-explain-text' },
+              '\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430 \u2116 ST-',
+              userInfo.emailHash,
+              '-',
+              currentOrder['four'].order_id
+            ),
+            (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one']) && _react2.default.createElement(
+              'p',
+              { className: 'personal-explain-text', style: { color: 'red' } },
+              '\u0423 \u0412\u0430\u0441 \u0443\u0436\u0435 \u0435\u0441\u0442\u044C \u0437\u0430\u043A\u0430\u0437 \u0432 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0435.'
+            ),
             _react2.default.createElement(
-              'thead',
-              null,
+              'table',
+              { className: 'cart-products-table cart-products-table__cart' },
               _react2.default.createElement(
-                'tr',
-                { className: 'cart-tr-head' },
+                'thead',
+                null,
                 _react2.default.createElement(
-                  'th',
-                  { className: 'table-30-procent' },
-                  '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'table-25-procent' },
-                  '\u0426\u0435\u043D\u0430'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'table-25-procent' },
-                  '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'table-10-procent' },
-                  '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
-                ),
-                _react2.default.createElement('th', { className: 'table-10-procent' })
+                  'tr',
+                  { className: 'cart-tr-head' },
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-30-procent' },
+                    '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
+                  ),
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-25-procent' },
+                    '\u0426\u0435\u043D\u0430'
+                  ),
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-25-procent' },
+                    '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
+                  ),
+                  _react2.default.createElement(
+                    'th',
+                    { className: 'table-10-procent' },
+                    '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+                  ),
+                  _react2.default.createElement('th', { className: 'table-10-procent' })
+                )
+              ),
+              _react2.default.createElement(
+                'tbody',
+                null,
+                productsTd
               )
             ),
             _react2.default.createElement(
-              'tbody',
-              null,
-              productsTd
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'cart-order__total cart_total' },
-            '\u0421\u0443\u043C\u043C\u0430:\xA0',
+              'div',
+              { className: 'cart-order__total cart_total' },
+              '\u0421\u0443\u043C\u043C\u0430:\xA0',
+              _react2.default.createElement(
+                'span',
+                null,
+                total,
+                ' \u20BD'
+              )
+            ),
             _react2.default.createElement(
-              'span',
-              null,
-              total,
-              ' \u20BD'
+              'p',
+              { className: 'order-filds-label', style: { color: 'red', fontSize: '14px', margin: '0' } },
+              this.state.comment_count_error !== '' && this.state.comment_count_error
+            ),
+            _react2.default.createElement('textarea', {
+              name: 'comment',
+              className: 'cart-comment',
+              value: this.state.comment === '' ? comment : this.state.comment,
+              onChange: this.handleChangeComment.bind(this),
+              placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
+            }),
+            _react2.default.createElement(
+              'p',
+              { className: 'order-filds-label', style: { fontWeight: '700' } },
+              '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
+              ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
+            ),
+            ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
+            _react2.default.createElement(
+              'p',
+              { className: 'order-filds-label scroll-to-error',
+                style: { color: 'red', fontSize: '14px', marginTop: '5px' } },
+              this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
+            ),
+            _react2.default.createElement(
+              'div',
+              { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
+              '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
             )
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'order-filds-label', style: { color: 'red', fontSize: '14px', margin: '0' } },
-            this.state.comment_count_error !== '' && this.state.comment_count_error
-          ),
-          _react2.default.createElement('textarea', {
-            name: 'comment',
-            className: 'cart-comment',
-            value: this.state.comment === '' ? comment : this.state.comment,
-            onChange: this.handleChangeComment.bind(this),
-            placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
-          }),
-          _react2.default.createElement(
-            'p',
-            { className: 'order-filds-label', style: { fontWeight: '700' } },
-            '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
-            ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
-          ),
-          ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
-          _react2.default.createElement(
-            'p',
-            { className: 'order-filds-label scroll-to-error',
-              style: { color: 'red', fontSize: '14px', marginTop: '5px' } },
-            this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
-          ),
-          _react2.default.createElement(
-            'div',
-            { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
-            '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);

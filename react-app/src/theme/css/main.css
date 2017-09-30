@@ -6,7 +6,8 @@ html, body {
     height: 100%;
     /*adaptive*/ }
 .container {
-    margin-top: 25px;
+    margin-top: 10px;
+    min-height: 100%;
 }
 h1, h2, h3 {
     color: steelblue !important;
@@ -60,6 +61,7 @@ hr {
 .error-border-red:-ms-input-placeholder      {color: indianred !important;}
 /*Главный контейнер*/
 .main-container {
+    min-height: 100%;
     /*background: #f2f2f2;*/
     background: #fff;
     /*min-height: 100% !important;*/
@@ -103,6 +105,61 @@ a {
 /*.slider-img:not(:nth-child(1)) {*/
     /*display: none;*/
 /*}*/
+/* Перечень преимуществ */
+.xf-wrapper {
+    padding-top: 40px;
+    padding-bottom: 20px;
+    position: relative;
+    text-align: center;
+    border-bottom: 1px solid #f7f7f7;
+    display: block;
+}
+.xf-you-love__header {
+    font-size: 42px;
+    margin: 0;
+    line-height: 1.25;
+    font-family: Rotonda,sans-serif;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+.xf-you-love__subheader {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+.xf-you-love__list {
+    margin: 30px 40px 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-around;
+}
+.xf-you-love__list>div:first-child {
+    flex-basis: 45%;
+    box-sizing: border-box;
+}
+.xf-you-love__item {
+    font-size: 16px;
+    font-family: GothicBook,sans-serif;
+    margin-bottom: 16px;
+    display: flex;
+    box-sizing: border-box;
+    text-align: -webkit-match-parent;
+}
+.xf-you-love__item:before {
+    content: '';
+    background: url(https://www.perekrestok.ru/build/img/svg/list-bullet.svg) 0 no-repeat;
+    width: 10px;
+    height: 8px;
+    margin-right: 10px;
+    margin-top: 5px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
 /* ГЛАВНАЯ КОНЕЦ ------------------------------------------------------------------*/
 
 /*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/
@@ -761,17 +818,17 @@ th {
 
 /*mob-nav-elem---------------------------------------------------------------------------------------------------*/
 .popup_mob-nav-elem {
-    padding: 15px;
-    margin: auto;
     position: absolute;
-    width:100%;
-    z-index:200000;
-    top: 62px;
+    width: 100%;
+    z-index: 200000;
+    top: 76px;
     left: 0;
 }
 .popup_mob-nav-elem_bg {
-    background: transparent;
-    /*background:rgba(0,0,0,0.5);*/
+    /*background: transparent;*/
+    background: white;
+    opacity: .5;
+    filter: blur(20px);
     position:fixed;
     z-index:1;
     top:75px;
@@ -782,8 +839,8 @@ th {
 }
 .for-mob-nav-elem {
     position: relative;
-    margin:0;
-    width: 100%;
+    margin: 0 auto;
+    width: 91%;
 }
 #blok_mob-nav-elem {
     position: relative;
@@ -1343,3 +1400,104 @@ button.close {
     width: 100% !important;
     border: none !important;
 }
+
+/*GO for footer ------------------------------------*/
+#footer {
+    position: relative;
+    z-index: 100;
+    background: #eff0f1;
+    background: -moz-linear-gradient(top, #eff0f1 0%, #ffffff 100%);
+    background: -webkit-linear-gradient(top, #eff0f1 0%, #ffffff 100%);
+    background: linear-gradient(to bottom, #eff0f1 0%, #ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eff0f1', endColorstr='#ffffff',GradientType=0 ); }
+#footer > .layout {
+    padding: 0; }
+
+/*style for only footer*/
+.menu--footer {
+    padding-left: 30px; }
+
+.b-footer .b-search {
+    bottom: 70px; }
+
+.b-footer__bottom {
+    height: 40px;
+    line-height: 30px;
+    overflow: hidden; }
+
+.footer__copy {
+    float: left;
+    color: #6c7073;
+    font-size: 13px;
+    font-family: ToyotaDisplay-Reg, 'sans-serif';
+    margin-left: 64px; }
+
+.footer__social {
+    float: right;
+    overflow: hidden;
+    margin: 0 5.2% 0 0; }
+.footer__social__item {
+    display: block;
+    float: left;
+    width: 31px;
+    height: 31px;
+    margin-left: 6px;
+    background: url("../images/icons--social.png") no-repeat; }
+.footer__social__item:first-child {
+    margin-left: 0; }
+.footer__social__item--fb {
+    background-position: 0 center; }
+.footer__social__item--vk {
+    background-position: -31px center; }
+.footer__social__item--yt {
+    background-position: -62px center; }
+.footer__social__item--ig {
+    background-position: -93px center; }
+
+#footer .b-order {
+    bottom: 140px; }
+
+/*additions*/
+.menu_footer {
+    display: -ms-flexbox;
+    display: flex;
+    height: inherit; }
+.menu_footer--footer {
+    padding-left: 55px; }
+.menu__item_footer {
+    text-decoration: none;
+    list-style: none;
+    width: auto;
+    padding: 0 10px 0 10px;
+}
+.menu__item__link_footer {
+    display: block;
+    line-height: 70px;
+    color: #6c7073;
+    font-size: 15px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: bold;
+    text-align: center; }
+.menu__item_footer:hover {
+    text-decoration: underline; }
+/*END for footer ------------------------------------*/
+
+/* Контакты */
+.contacts-main {
+    display: flex;
+    flex-direction: row;
+}
+.contacts-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-right: 30px;
+}
+.contacts-item span:nth-child(1) {
+    color: #3c3c3c;
+}
+.contacts-item span:nth-child(2) {
+    color: #9c0000;
+    font-weight: bold;
+}
+/* Контакты */

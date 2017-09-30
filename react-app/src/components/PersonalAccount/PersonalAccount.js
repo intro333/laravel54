@@ -12,6 +12,7 @@ import * as helpers from '../../helpers';
 import SuccessSaveModal  from '../Popups/SuccessSaveModal';
 import { changeSuccessModalDisplay, setScrollTop } from '../Products/actions';
 import classNames from 'classnames';
+import Footer from '../Navigation/Footer';
 
 import {
   setUserInfo,
@@ -189,109 +190,112 @@ class PersonalAccount extends Component {
     });
 
     return (
-      <div className="container">
-        <Navigation />
-        <MenuMobile />
-        {/*<Avatar*/}
-          {/*avatar={this.state.avatar}*/}
-        {/*/>*/}
-        <SuccessSaveModal
-          handlerCloseModal={this.handlerCloseModal.bind(this)}
-          successModalDisplay={products.get('successModalDisplay')}
-        />
-        <div className="main-container">
-          <h2>Личный кабинет</h2>
-          <p className="personal-explain-text">Здесь вы можете отредактировать свои данные.</p>
-          <div className="personal-container animation-page-load-medium">
-            <form action="/personal" method="POST" id="personal-data-form">
-              <div className="customer-data-container">
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="fname">Имя*</label>
-                  <input id="fname" name="fname" type="text" value={this.state.name} onChange={this.handlerChangeName.bind(this)} onFocus={this.handlerInputOnFocus.bind(this)} />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="sname">Фамилия*</label>
-                  <input id="sname" name="sname" type="text" value={this.state.sname} onChange={this.handlerChangeSName.bind(this)} onFocus={this.handlerInputOnFocus.bind(this)} />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="mname">Отчество</label>
-                  <input id="mname" name="mname" type="text" value={this.state.mname ? this.state.mname : ''} onChange={this.handlerChangeMName.bind(this)}  />
-                </div>
-              </div>
-              <div className="customer-data-container">
-                <input type="hidden" name="birthdate" value={this.state.birthdate} />
-                <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
-                <div className="personal-filds-label-input">
-                  <div className="personal-select-birdthdate-group">
-                    <Select
-                      name="birthdate"
-                      className="margin-right-10"
-                      value={this.state.birthdateDay ? this.state.birthdateDay : ''}
-                      options={dayOptions}
-                      onChange={this.handlerChangeDateDay.bind(this)}
-                      placeholder=""
-                      clearable={false}
-                      searchable={true}
-                      scrollMenuIntoView={false}
-                    />
-                    <Select
-                      className="margin-right-10"
-                      name="birthdate"
-                      value={this.state.birthdateMonth ? this.state.birthdateMonth : ''}
-                      options={monthOptions}
-                      onChange={this.handlerChangeDateMonth.bind(this)}
-                      placeholder=""
-                      clearable={false}
-                      searchable={false}
-                      scrollMenuIntoView={false}
-                    />
-                    <Select
-                      name="birthdate"
-                      value={this.state.birthdateYear ? this.state.birthdateYear : ''}
-                      options={yearOptions}
-                      onChange={this.handlerChangeDateYear.bind(this)}
-                      placeholder=""
-                      clearable={false}
-                      searchable={true}
-                      scrollMenuIntoView={false}
-                    />
+      <div>
+        <div className="container">
+          <Navigation />
+          <MenuMobile />
+          {/*<Avatar*/}
+            {/*avatar={this.state.avatar}*/}
+          {/*/>*/}
+          <SuccessSaveModal
+            handlerCloseModal={this.handlerCloseModal.bind(this)}
+            successModalDisplay={products.get('successModalDisplay')}
+          />
+          <div className="main-container">
+            <h2>Личный кабинет</h2>
+            <p className="personal-explain-text">Здесь вы можете отредактировать свои данные.</p>
+            <div className="personal-container animation-page-load-medium">
+              <form action="/personal" method="POST" id="personal-data-form">
+                <div className="customer-data-container">
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="fname">Имя*</label>
+                    <input id="fname" name="fname" type="text" value={this.state.name} onChange={this.handlerChangeName.bind(this)} onFocus={this.handlerInputOnFocus.bind(this)} />
+                  </div>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="sname">Фамилия*</label>
+                    <input id="sname" name="sname" type="text" value={this.state.sname} onChange={this.handlerChangeSName.bind(this)} onFocus={this.handlerInputOnFocus.bind(this)} />
+                  </div>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="mname">Отчество</label>
+                    <input id="mname" name="mname" type="text" value={this.state.mname ? this.state.mname : ''} onChange={this.handlerChangeMName.bind(this)}  />
                   </div>
                 </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="gender">Пол</label>
-                  <Select
-                    name="gender"
-                    value={this.state.gender}
-                    options={genderOptions}
-                    onChange={this.handleChangeGender.bind(this)}
-                    placeholder="Не выбран"
-                    clearable={false}
-                    searchable={false}
-                  />
+                <div className="customer-data-container">
+                  <input type="hidden" name="birthdate" value={this.state.birthdate} />
+                  <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
+                  <div className="personal-filds-label-input">
+                    <div className="personal-select-birdthdate-group">
+                      <Select
+                        name="birthdate"
+                        className="margin-right-10"
+                        value={this.state.birthdateDay ? this.state.birthdateDay : ''}
+                        options={dayOptions}
+                        onChange={this.handlerChangeDateDay.bind(this)}
+                        placeholder=""
+                        clearable={false}
+                        searchable={true}
+                        scrollMenuIntoView={false}
+                      />
+                      <Select
+                        className="margin-right-10"
+                        name="birthdate"
+                        value={this.state.birthdateMonth ? this.state.birthdateMonth : ''}
+                        options={monthOptions}
+                        onChange={this.handlerChangeDateMonth.bind(this)}
+                        placeholder=""
+                        clearable={false}
+                        searchable={false}
+                        scrollMenuIntoView={false}
+                      />
+                      <Select
+                        name="birthdate"
+                        value={this.state.birthdateYear ? this.state.birthdateYear : ''}
+                        options={yearOptions}
+                        onChange={this.handlerChangeDateYear.bind(this)}
+                        placeholder=""
+                        clearable={false}
+                        searchable={true}
+                        scrollMenuIntoView={false}
+                      />
+                    </div>
+                  </div>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="gender">Пол</label>
+                    <Select
+                      name="gender"
+                      value={this.state.gender}
+                      options={genderOptions}
+                      onChange={this.handleChangeGender.bind(this)}
+                      placeholder="Не выбран"
+                      clearable={false}
+                      searchable={false}
+                    />
+                  </div>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="email">Email</label>
+                    <input id="email" name="email" type="email" value={this.state.email} disabled  />
+                  </div>
+                  <div className="personal-filds-label-input">
+                    <label className="personal-filds-label" htmlFor="phone">Телефон</label>
+                    <InputMask /*{...this.props}*/
+                      id="phone"
+                      value={this.state.phone ? this.state.phone : ''}
+                      mask="+7\(999\) 999 99 99" maskChar=" "
+                      onChange={this.handlerChangePhone.bind(this)}
+                      name="phone"
+                      placeholder="+7(___) ___ __ __" />
+                  </div>
                 </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="email">Email</label>
-                  <input id="email" name="email" type="email" value={this.state.email} disabled  />
-                </div>
-                <div className="personal-filds-label-input">
-                  <label className="personal-filds-label" htmlFor="phone">Телефон</label>
-                  <InputMask /*{...this.props}*/
-                    id="phone"
-                    value={this.state.phone ? this.state.phone : ''}
-                    mask="+7\(999\) 999 99 99" maskChar=" "
-                    onChange={this.handlerChangePhone.bind(this)}
-                    name="phone"
-                    placeholder="+7(___) ___ __ __" />
-                </div>
+              </form>
+              <hr />
+              <div className="person-success-button-div">
+                <p className={errorMessageForCreate}>Заполните все поля помеченные звёздочкой.</p>
+                <input id="personal-submit" className="register-button" style={{width: '30%'}} value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
               </div>
-            </form>
-            <hr />
-            <div className="person-success-button-div">
-              <p className={errorMessageForCreate}>Заполните все поля помеченные звёздочкой.</p>
-              <input id="personal-submit" className="register-button" style={{width: '30%'}} value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

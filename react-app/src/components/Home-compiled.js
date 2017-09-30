@@ -16,6 +16,10 @@ var _Navigation = require('./Navigation/Navigation');
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
+var _Footer = require('./Navigation/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 var _MenuMobile = require('./Popups/MenuMobile');
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
@@ -75,7 +79,6 @@ var Home = function (_Component) {
       this.setState({
         timerId: timerId
       });
-      console.log("m", timerId);
     }
   }, {
     key: 'componentWillUnmount',
@@ -95,7 +98,6 @@ var Home = function (_Component) {
         var img_1 = i + 1;
         var img_2 = i + 1 === seconds.length ? 1 : i + 2;
         var clickTimeout = i + 1;
-        console.log('clickTimeout', clickTimeout);
         _this3.setState(_defineProperty({}, 'clickTimeout_' + clickTimeout, setTimeout(function () {
           var _this3$setState;
 
@@ -125,20 +127,86 @@ var Home = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'animation-page-load-medium' },
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
           _react2.default.createElement(
             'div',
-            { className: 'main-slider' },
-            _react2.default.createElement('img', { className: sliderImg_1, src: 'https://www.w3schools.com/w3images/workbench.jpg' }),
-            _react2.default.createElement('img', { className: sliderImg_2, src: 'https://www.w3schools.com/w3images/coffee.jpg' }),
-            _react2.default.createElement('img', { className: sliderImg_3, src: 'https://www.w3schools.com/w3images/sound.jpg' })
+            { className: 'animation-page-load-medium' },
+            _react2.default.createElement(
+              'div',
+              { className: 'main-slider' },
+              _react2.default.createElement('img', { className: sliderImg_1, src: 'https://www.w3schools.com/w3images/workbench.jpg' }),
+              _react2.default.createElement('img', { className: sliderImg_2, src: 'https://www.w3schools.com/w3images/coffee.jpg' }),
+              _react2.default.createElement('img', { className: sliderImg_3, src: 'https://www.w3schools.com/w3images/sound.jpg' }),
+              _react2.default.createElement(
+                'div',
+                { className: 'xf-wrapper' },
+                _react2.default.createElement(
+                  'header',
+                  { className: 'xf-you-love__header' },
+                  '\u041E\u043D\u043B\u0430\u0439\u043D-\u043C\u0430\u0433\u0430\u0437\u0438\u043D'
+                ),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'xf-you-love__subheader' },
+                  'shop-travel.ru \u044D\u0442\u043E:'
+                ),
+                _react2.default.createElement(
+                  'ul',
+                  { className: 'xf-you-love__list' },
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u041B\u0435\u0433\u043A\u0438\u0439 \u0437\u0430\u043A\u0430\u0437 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u0417\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u044D\u043A\u043E\u043D\u043E\u043C\u0438\u044F \u0432\u0440\u0435\u043C\u0435\u043D\u0438'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u041F\u043E\u043B\u043D\u044B\u0439 \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u0441\u0443\u043F\u0435\u0440\u043C\u0430\u0440\u043A\u0435\u0442\u0430'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u0421\u043F\u0435\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0435 \u0430\u043A\u0446\u0438\u0438 \u0438 \u043F\u0440\u0438\u0432\u043B\u0435\u043A\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0446\u0435\u043D\u044B'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u0411\u0435\u0440\u0435\u0436\u043D\u0430\u044F \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0430 \u0435\u0436\u0435\u0434\u043D\u0435\u0432\u043D\u043E \u0432 \u0443\u0434\u043E\u0431\u043D\u043E\u0435 \u0432\u0440\u0435\u043C\u044F'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u041E\u043F\u043B\u0430\u0442\u0430 \u043A\u0430\u0440\u0442\u043E\u0439 \u0438\u043B\u0438 \u043D\u0430\u043B\u0438\u0447\u043D\u044B\u043C\u0438'
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'xf-you-love__item' },
+                      '\u041F\u0440\u0438\u0432\u0438\u043B\u0435\u0433\u0438\u0438 \u0443\u0447\u0430\u0441\u0442\u043D\u0438\u043A\u0430\u043C \u041A\u043B\u0443\u0431\u0430 \u041F\u0435\u0440\u0435\u043A\u0440\u0435\u0441\u0442\u043E\u043A'
+                    )
+                  )
+                )
+              )
+            )
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);

@@ -10,6 +10,7 @@ import {
   setCategories,
 } from '../../api';
 import {isEmptyMap} from '../../helpers';
+import Footer from '../Navigation/Footer';
 
 class Categories extends Component {
 
@@ -48,17 +49,20 @@ class Categories extends Component {
     </div>;
 
     return (
-      <div className="container">
-        <Navigation />
-        <MenuMobile />
-        <div className="main-container">
-          <div className="category-head">
-            <h3 className="bread-crumbs-on-page">Продукты</h3>
-          </div>
-          <div className="category-all">
-            {categoryItems}
+      <div>
+        <div className="container">
+          <Navigation />
+          <MenuMobile />
+          <div className="main-container">
+            <div className="category-head">
+              <h3 className="bread-crumbs-on-page">Продукты</h3>
+            </div>
+            <div className="category-all">
+              {categoryItems}
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
