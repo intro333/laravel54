@@ -9,6 +9,8 @@ exports.isEmptyMap = isEmptyMap;
 exports.isEmptyArray = isEmptyArray;
 exports.scrollTo = scrollTo;
 exports.scrollToElement = scrollToElement;
+exports.setSecondsArray = setSecondsArray;
+exports.setIntervalValue = setIntervalValue;
 //Маска для даты
 function inputmaskBirthDate(value, length, date) {
 
@@ -155,5 +157,20 @@ function scrollToElement(toSelector) {
   scrollTo(element.getBoundingClientRect().top, duration);
 }
 /*SCROLL TO ELEMENT ----------------------------------------------------------*/
+
+/* Заполнить массив секундами */
+function setSecondsArray(length, interval) {
+  var array = [];
+
+  for (var i = 1; i <= length; i++) {
+    array.push(i * interval * 1000);
+  }
+
+  return array;
+}
+/* Задать значение интервалу */
+function setIntervalValue(length, interval) {
+  return length * interval * 1000;
+}
 
 //# sourceMappingURL=helpers-compiled.js.map

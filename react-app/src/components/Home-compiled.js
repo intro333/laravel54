@@ -22,7 +22,15 @@ var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
 var _api = require('../api');
 
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _helpers = require('../helpers');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -36,24 +44,84 @@ var Home = function (_Component) {
   function Home(props) {
     _classCallCheck(this, Home);
 
-    return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
+
+    _this.state = {
+      displayImg_1: false,
+      displayImg_2: true,
+      displayImg_3: true
+    };
+    return _this;
   }
 
   _createClass(Home, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      var _props = this.props,
-          dispatch = _props.dispatch,
-          session = _props.session;
+      var dispatch = this.props.dispatch;
 
       (0, _api.setUserInfo)(dispatch);
     }
   }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var seconds = (0, _helpers.setSecondsArray)(3, 4);
+      var interval = (0, _helpers.setIntervalValue)(3, 4);
+      this.sliderGo(seconds);
+      var timerId = setInterval(function () {
+        _this2.sliderGo(seconds);
+      }, interval);
+      this.setState({
+        timerId: timerId
+      });
+      console.log("m", timerId);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      clearInterval(this.state.timerId);
+      for (var i = 1; i <= 3; i++) {
+        var clickTimeout = 'clickTimeout_' + i;
+        clearTimeout(this.state[clickTimeout]);
+      }
+    }
+  }, {
+    key: 'sliderGo',
+    value: function sliderGo(seconds) {
+      var _this3 = this;
+
+      var _loop = function _loop() {
+        var img_1 = i + 1;
+        var img_2 = i + 1 === seconds.length ? 1 : i + 2;
+        var clickTimeout = i + 1;
+        console.log('clickTimeout', clickTimeout);
+        _this3.setState(_defineProperty({}, 'clickTimeout_' + clickTimeout, setTimeout(function () {
+          var _this3$setState;
+
+          _this3.setState((_this3$setState = {}, _defineProperty(_this3$setState, 'displayImg_' + img_1, true), _defineProperty(_this3$setState, 'displayImg_' + img_2, false), _this3$setState));
+        }, seconds[i])));
+      };
+
+      for (var i = 0; i < seconds.length; i++) {
+        _loop();
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      // const { session } = this.props;
-      // const sessionUserName = session.get('userInfo');
-      // console.log('session', session)
+      var sliderImg_1 = (0, _classnames2.default)({
+        'slider-img': true,
+        'show-hide': this.state.displayImg_1
+      });
+      var sliderImg_2 = (0, _classnames2.default)({
+        'slider-img': true,
+        'show-hide': this.state.displayImg_2
+      });
+      var sliderImg_3 = (0, _classnames2.default)({
+        'slider-img': true,
+        'show-hide': this.state.displayImg_3
+      });
 
       return _react2.default.createElement(
         'div',
@@ -61,9 +129,15 @@ var Home = function (_Component) {
         _react2.default.createElement(_Navigation2.default, null),
         _react2.default.createElement(_MenuMobile2.default, null),
         _react2.default.createElement(
-          'h1',
-          null,
-          '\u0413\u043B\u0430\u0432\u043D\u0430\u044F \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430.'
+          'div',
+          { className: 'animation-page-load-medium' },
+          _react2.default.createElement(
+            'div',
+            { className: 'main-slider' },
+            _react2.default.createElement('img', { className: sliderImg_1, src: 'https://www.w3schools.com/w3images/workbench.jpg' }),
+            _react2.default.createElement('img', { className: sliderImg_2, src: 'https://www.w3schools.com/w3images/coffee.jpg' }),
+            _react2.default.createElement('img', { className: sliderImg_3, src: 'https://www.w3schools.com/w3images/sound.jpg' })
+          )
         )
       );
     }

@@ -6,6 +6,10 @@ import {
   setUserInfo,
 } from '../api';
 import classNames from 'classnames';
+import {
+  setSecondsArray,
+  setIntervalValue,
+  } from '../helpers';
 
 class Home extends Component {
 
@@ -16,23 +20,21 @@ class Home extends Component {
       displayImg_1: false,
       displayImg_2: true,
       displayImg_3: true,
-      timerId: 0,
-      clickTimeout_1: 0,
-      clickTimeout_2: 0,
-      clickTimeout_3: 0,
     };
   }
 
   componentWillMount() {
-    const { dispatch, session } = this.props;
+    const { dispatch } = this.props;
     setUserInfo(dispatch);
   }
 
   componentDidMount() {
-    this.sliderGo(2000, 4000, 6000);
+    const seconds = setSecondsArray(3, 4);
+    const interval = setIntervalValue(3, 4);
+    this.sliderGo(seconds);
     var timerId = setInterval(() => {
-      this.sliderGo(2000, 4000, 6000);
-    }, 6000);
+      this.sliderGo(seconds);
+    }, interval);
     this.setState({
       timerId: timerId
     });
@@ -40,41 +42,29 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
-    console.log("unm", this.state.timerId);
-    console.log("unm", this.state.clickTimeout_1);
-    console.log("unm", this.state.clickTimeout_2);
-    console.log("unm", this.state.clickTimeout_3);
     clearInterval(this.state.timerId);
-    clearTimeout(this.state.clickTimeout_1);
-    clearTimeout(this.state.clickTimeout_2);
-    clearTimeout(this.state.clickTimeout_3);
+    for (var i=1;i<=3;i++) {
+      let clickTimeout = 'clickTimeout_' + i;
+      clearTimeout(this.state[clickTimeout]);
+    }
+
   }
 
-  sliderGo(one, two, three) {
-    this.setState({
-      clickTimeout_1: setTimeout(() => {
-        this.setState({
-          displayImg_1: true,
-          displayImg_2: false,
-        });
-      }, one)
-    });
-    this.setState({
-      clickTimeout_2: setTimeout(() => {
-        this.setState({
-          displayImg_2: true,
-          displayImg_3: false,
-        });
-      }, two)
-    });
-    this.setState({
-      clickTimeout_2: setTimeout(() => {
-        this.setState({
-          displayImg_3: true,
-          displayImg_1: false,
-        });
-      }, three)
+  sliderGo(seconds) {
+    for (var i=0;i<seconds.length;i++) {
+      let img_1 = i + 1;
+      let img_2 = (i + 1) === seconds.length ? 1 : i + 2;
+      let clickTimeout = i + 1;
+      console.log('clickTimeout', clickTimeout);
+      this.setState({
+        ['clickTimeout_' + clickTimeout]: setTimeout(() => {
+          this.setState({
+            ['displayImg_' + img_1]: true,
+            ['displayImg_' + img_2]: false,
+          });
+        }, seconds[i])
       });
+    }
   }
 
   render() {
@@ -95,11 +85,13 @@ class Home extends Component {
       <div className="container">
         <Navigation />
         <MenuMobile />
-        <div className="main-slider">
-          <img className={sliderImg_1} src="https://www.w3schools.com/w3images/workbench.jpg" />
-          <img className={sliderImg_2} src="https://www.w3schools.com/w3images/coffee.jpg" />
-          <img className={sliderImg_3} src="https://www.w3schools.com/w3images/sound.jpg" />
+        <div className="animation-page-load-medium">
+          <div className="main-slider">
+            <img className={sliderImg_1} src="https://www.w3schools.com/w3images/workbench.jpg" />
+            <img className={sliderImg_2} src="https://www.w3schools.com/w3images/coffee.jpg" />
+            <img className={sliderImg_3} src="https://www.w3schools.com/w3images/sound.jpg" />
 
+          </div>
         </div>
       </div>
     );

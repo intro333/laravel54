@@ -140,3 +140,18 @@ export function scrollToElement(toSelector, duration = 500) {
   scrollTo(element.getBoundingClientRect().top, duration);
 }
 /*SCROLL TO ELEMENT ----------------------------------------------------------*/
+
+/* Заполнить массив секундами */
+export function setSecondsArray(length, interval) {
+  let array = [];
+
+  for (var i=1;i<=length;i++) {
+    array.push(i * interval * 1000);
+  }
+
+  return array;
+}
+/* Задать значение интервалу */
+export function setIntervalValue(length, interval) {
+  return length * interval * 1000;
+}
