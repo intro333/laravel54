@@ -111,7 +111,7 @@ class Navigation extends Component {
                 </li>
                 <li><Link to={'/personal-account'}>
                   <span className="glyphicon glyphicon-user"></span>
-                  <span className="mob-nav-text">&nbsp;Акаунт</span>
+                  <span className="mob-nav-text">&nbsp;Личный кабинет</span>
                 </Link>
                 </li>
                 <li><Link to={cartUrl}>

@@ -95,7 +95,7 @@ var Footer = function (_Component) {
                       className: 'menu__item__link_footer',
                       onClick: this.closeMobNavElem.bind(this), to: '/personal-account'
                     },
-                    '\u0410\u043A\u0430\u0443\u043D\u0442'
+                    '\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442'
                   )
                 )
               )

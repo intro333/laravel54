@@ -13,7 +13,7 @@
         width: 95%;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 410px) {
     .container {
         width: 98%;
         padding-left: 5px;
@@ -385,6 +385,9 @@
     .modal-title {
         font-size: 15px;
     }
+    .contacts-main div:nth-child(2) {
+        display: none;
+    }
 }
 /* Таблица с продуктами */
 @media (max-width: 1050px) {
@@ -436,7 +439,7 @@
         width: 89%;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 410px) {
     .for-mob-nav-elem {
         width: 96%;
     }
@@ -576,3 +579,24 @@
     }
 }
 /***** END! ADAPTIVE for footer END!******/
+@media (max-width: 540px) {
+    .contacts-item span {
+        font-size: 12px;
+    }
+    .contacts-item {
+        margin-right: 20px;
+    }
+    .popup_mob-nav-elem {
+        top: 105px;
+    }
+}
+@media (max-width: 460px) {
+    .contacts-item {
+        margin-right: 10px;
+    }
+}
+@media (max-width: 425px) {
+    .contacts-item {
+        margin-right: 5px;
+    }
+}

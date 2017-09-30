@@ -35,7 +35,7 @@ class Footer extends Component {
                   <Link
                     className="menu__item__link_footer"
                     onClick={this.closeMobNavElem.bind(this)} to={'/personal-account'}
-                  >Акаунт</Link></li>
+                  >Личный кабинет</Link></li>
               </nav>
             </div>
             <div className="b-footer__bottom">
