@@ -7,5 +7,9 @@ export function changeSuccessModalDisplay(successModalDisplay) {
 }
 
 export function setScrollTop(scrollTop) {
-  return { type: 'SET_SCROLL_TOP', scrollTop };
+  return {type: 'SET_SCROLL_TOP', scrollTop};
+}
+
+export function setResize(resize) {
+  return { type: 'SET_RESIZE', resize };
 }

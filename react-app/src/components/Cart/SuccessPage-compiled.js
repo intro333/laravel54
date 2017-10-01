@@ -36,6 +36,10 @@ var _actions = require('../../actions');
 
 var modelActions = _interopRequireWildcard(_actions);
 
+var _Footer = require('../Navigation/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -153,15 +157,20 @@ var SuccessPage = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
+        null,
         _react2.default.createElement(
-          'section',
-          { className: 'success-page animation-page-load-medium' },
-          _react2.default.createElement(_ModalLoaderCartSent2.default, null),
-          status
-        )
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
+          _react2.default.createElement(
+            'section',
+            { className: 'success-page animation-page-load-medium' },
+            _react2.default.createElement(_ModalLoaderCartSent2.default, null),
+            status
+          )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);

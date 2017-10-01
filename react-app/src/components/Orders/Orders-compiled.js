@@ -172,6 +172,46 @@ var Orders = function (_Component) {
             '\u0423 \u0432\u0430\u0441 \u043D\u0435\u0442 \u043E\u0431\u0440\u0430\u0431\u0430\u0442\u044B\u0432\u0430\u0435\u043C\u044B\u0445 \u0437\u0430\u043A\u0430\u0437\u043E\u0432.'
           )
         );
+      } else if (this.state.orderStatus === 2 && tables && tables.length === 0) {
+        tables = _react2.default.createElement(
+          'p',
+          { style: { fontSize: '16px' } },
+          '\u0417\u0430\u043A\u0430\u0437\u043E\u0432 \u0441\u043E \u0441\u0442\u0430\u0442\u0443\u0441\u043E\u043C ',
+          _react2.default.createElement(
+            'b',
+            null,
+            '\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D'
+          ),
+          ' \u0437\u0430 ',
+          _react2.default.createElement(
+            'span',
+            { style: { color: '#4CAF50', fontWeight: 'bold' } },
+            monthOptions[this.state.orderMonth - 1].label,
+            ' ',
+            this.state.orderYear
+          ),
+          ' \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.'
+        );
+      } else if (this.state.orderStatus === 3 && tables && tables.length === 0) {
+        tables = _react2.default.createElement(
+          'p',
+          { style: { fontSize: '16px' } },
+          '\u0417\u0430\u043A\u0430\u0437\u043E\u0432 \u0441\u043E \u0441\u0442\u0430\u0442\u0443\u0441\u043E\u043C ',
+          _react2.default.createElement(
+            'b',
+            null,
+            '\u0423\u0434\u0430\u043B\u0435\u043D'
+          ),
+          ' \u0437\u0430 ',
+          _react2.default.createElement(
+            'span',
+            { style: { color: '#4CAF50', fontWeight: 'bold' } },
+            monthOptions[this.state.orderMonth - 1].label,
+            ' ',
+            this.state.orderYear
+          ),
+          ' \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.'
+        );
       }
 
       return _react2.default.createElement(

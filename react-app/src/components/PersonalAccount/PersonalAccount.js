@@ -17,7 +17,6 @@ import Footer from '../Navigation/Footer';
 import {
   setUserInfo,
   updatePersonalData,
-  changePhotoPersonalData
 } from '../../api';
 
 class PersonalAccount extends Component {
@@ -170,7 +169,6 @@ class PersonalAccount extends Component {
 
     const { session, api, products } = this.props;
     const userInfo = session.get('userInfo');
-    const userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
     const genderOptions = [
       { value: 0, label: 'Не выбран' },
       { value: 1, label: 'Мужской' },
@@ -194,9 +192,6 @@ class PersonalAccount extends Component {
         <div className="container">
           <Navigation />
           <MenuMobile />
-          {/*<Avatar*/}
-            {/*avatar={this.state.avatar}*/}
-          {/*/>*/}
           <SuccessSaveModal
             handlerCloseModal={this.handlerCloseModal.bind(this)}
             successModalDisplay={products.get('successModalDisplay')}
@@ -209,19 +204,23 @@ class PersonalAccount extends Component {
                 <div className="customer-data-container">
                   <div className="personal-filds-label-input">
                     <label className="personal-filds-label" htmlFor="fname">Имя*</label>
-                    <input id="fname" name="fname" type="text" value={this.state.name} onChange={this.handlerChangeName.bind(this)} onFocus={this.handlerInputOnFocus.bind(this)} />
+                    <input id="fname" name="fname" type="text"
+                           value={this.state.name} onChange={this.handlerChangeName.bind(this)}
+                           onFocus={this.handlerInputOnFocus.bind(this)} />
                   </div>
                   <div className="personal-filds-label-input">
                     <label className="personal-filds-label" htmlFor="sname">Фамилия*</label>
-                    <input id="sname" name="sname" type="text" value={this.state.sname} onChange={this.handlerChangeSName.bind(this)} onFocus={this.handlerInputOnFocus.bind(this)} />
+                    <input id="sname" name="sname" type="text" value={this.state.sname}
+                           onChange={this.handlerChangeSName.bind(this)} onFocus={this.handlerInputOnFocus.bind(this)} />
                   </div>
                   <div className="personal-filds-label-input">
                     <label className="personal-filds-label" htmlFor="mname">Отчество</label>
-                    <input id="mname" name="mname" type="text" value={this.state.mname ? this.state.mname : ''} onChange={this.handlerChangeMName.bind(this)}  />
+                    <input id="mname" name="mname" type="text" value={this.state.mname ? this.state.mname : ''}
+                           onChange={this.handlerChangeMName.bind(this)}  />
                   </div>
                 </div>
                 <div className="customer-data-container">
-                  <input type="hidden" name="birthdate" value={this.state.birthdate} />
+                  <input readOnly type="hidden" name="birthdate" value={this.state.birthdate} />
                   <label className="personal-filds-label" htmlFor="birthdate">Дата рождения</label>
                   <div className="personal-filds-label-input">
                     <div className="personal-select-birdthdate-group">
@@ -277,7 +276,7 @@ class PersonalAccount extends Component {
                   </div>
                   <div className="personal-filds-label-input">
                     <label className="personal-filds-label" htmlFor="phone">Телефон</label>
-                    <InputMask /*{...this.props}*/
+                    <InputMask
                       id="phone"
                       value={this.state.phone ? this.state.phone : ''}
                       mask="+7\(999\) 999 99 99" maskChar=" "
@@ -290,7 +289,10 @@ class PersonalAccount extends Component {
               <hr />
               <div className="person-success-button-div">
                 <p className={errorMessageForCreate}>Заполните все поля помеченные звёздочкой.</p>
-                <input id="personal-submit" className="register-button" style={{width: '30%'}} value="Сохранить данные" onClick={this.handlerUpdatePersonalData.bind(this)} />
+                <input readOnly id="personal-submit"
+                       className="register-button"
+                       style={{width: '30%'}} value="Сохранить данные"
+                       onClick={this.handlerUpdatePersonalData.bind(this)} />
               </div>
             </div>
           </div>

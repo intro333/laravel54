@@ -248,7 +248,6 @@ var PersonalAccount = function (_Component) {
           products = _props2.products;
 
       var userInfo = session.get('userInfo');
-      var userImage = api.get('imagePath') ? api.get('imagePath') : "/images/no-image.png";
       var genderOptions = [{ value: 0, label: 'Не выбран' }, { value: 1, label: 'Мужской' }, { value: 2, label: 'Женский' }];
       var monthOptions = [{ value: 0, label: '' }, { value: 1, label: 'Январь' }, { value: 2, label: 'Февраль' }, { value: 3, label: 'Март' }, { value: 4, label: 'Апрель' }, { value: 5, label: 'Май' }, { value: 6, label: 'Июнь' }, { value: 7, label: 'Июль' }, { value: 8, label: 'Август' }, { value: 9, label: 'Сентябрь' }, { value: 10, label: 'Октябрь' }, { value: 11, label: 'Ноябрь' }, { value: 12, label: 'Декабрь' }];
       var dayOptions = helpers.getNumberSelectOptions(1, 31);
@@ -302,7 +301,9 @@ var PersonalAccount = function (_Component) {
                       { className: 'personal-filds-label', htmlFor: 'fname' },
                       '\u0418\u043C\u044F*'
                     ),
-                    _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text', value: this.state.name, onChange: this.handlerChangeName.bind(this), onFocus: this.handlerInputOnFocus.bind(this) })
+                    _react2.default.createElement('input', { id: 'fname', name: 'fname', type: 'text',
+                      value: this.state.name, onChange: this.handlerChangeName.bind(this),
+                      onFocus: this.handlerInputOnFocus.bind(this) })
                   ),
                   _react2.default.createElement(
                     'div',
@@ -312,7 +313,8 @@ var PersonalAccount = function (_Component) {
                       { className: 'personal-filds-label', htmlFor: 'sname' },
                       '\u0424\u0430\u043C\u0438\u043B\u0438\u044F*'
                     ),
-                    _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname, onChange: this.handlerChangeSName.bind(this), onFocus: this.handlerInputOnFocus.bind(this) })
+                    _react2.default.createElement('input', { id: 'sname', name: 'sname', type: 'text', value: this.state.sname,
+                      onChange: this.handlerChangeSName.bind(this), onFocus: this.handlerInputOnFocus.bind(this) })
                   ),
                   _react2.default.createElement(
                     'div',
@@ -322,13 +324,14 @@ var PersonalAccount = function (_Component) {
                       { className: 'personal-filds-label', htmlFor: 'mname' },
                       '\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E'
                     ),
-                    _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '', onChange: this.handlerChangeMName.bind(this) })
+                    _react2.default.createElement('input', { id: 'mname', name: 'mname', type: 'text', value: this.state.mname ? this.state.mname : '',
+                      onChange: this.handlerChangeMName.bind(this) })
                   )
                 ),
                 _react2.default.createElement(
                   'div',
                   { className: 'customer-data-container' },
-                  _react2.default.createElement('input', { type: 'hidden', name: 'birthdate', value: this.state.birthdate }),
+                  _react2.default.createElement('input', { readOnly: true, type: 'hidden', name: 'birthdate', value: this.state.birthdate }),
                   _react2.default.createElement(
                     'label',
                     { className: 'personal-filds-label', htmlFor: 'birthdate' },
@@ -410,8 +413,8 @@ var PersonalAccount = function (_Component) {
                       { className: 'personal-filds-label', htmlFor: 'phone' },
                       '\u0422\u0435\u043B\u0435\u0444\u043E\u043D'
                     ),
-                    _react2.default.createElement(_reactInputMask2.default /*{...this.props}*/
-                    , { id: 'phone',
+                    _react2.default.createElement(_reactInputMask2.default, {
+                      id: 'phone',
                       value: this.state.phone ? this.state.phone : '',
                       mask: '+7\\(999\\) 999 99 99', maskChar: ' ',
                       onChange: this.handlerChangePhone.bind(this),
@@ -429,7 +432,10 @@ var PersonalAccount = function (_Component) {
                   { className: errorMessageForCreate },
                   '\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u0441\u0435 \u043F\u043E\u043B\u044F \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 \u0437\u0432\u0451\u0437\u0434\u043E\u0447\u043A\u043E\u0439.'
                 ),
-                _react2.default.createElement('input', { id: 'personal-submit', className: 'register-button', style: { width: '30%' }, value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435', onClick: this.handlerUpdatePersonalData.bind(this) })
+                _react2.default.createElement('input', { readOnly: true, id: 'personal-submit',
+                  className: 'register-button',
+                  style: { width: '30%' }, value: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435',
+                  onClick: this.handlerUpdatePersonalData.bind(this) })
               )
             )
           )

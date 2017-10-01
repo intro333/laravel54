@@ -186,22 +186,23 @@ class OrderItem extends Component {
     var total = itemsForTotal.reduce((total, item) => total + item.cost, 0);
     var orderConfigCancel = '';
 
-    if (this.props.orderStatus !== 5) {
-      switch (this.props.stateOrderStatus) {
-        case 1:  // Если заказ обрабатывается
+
+    switch (this.props.stateOrderStatus) {
+      case 1:  // Если заказ обрабатывается
+        if (this.props.orderStatus !== 5) {
           orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Отменить заказ</span>;
-          break;
+        } else {
+            orderConfigCancel = <span></span>;
+          }
+        break;
 
-        case 2:  // Если заказ выполнен
-          orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Удалить</span>;
-          break;
+      case 2:  // Если заказ выполнен
+        orderConfigCancel = <span onClick={this.handlerCancelOrder.bind(this)}>Удалить</span>;
+        break;
 
-        case 3:  // Если заказ удален
-          orderConfigCancel = <span onClick={this.handlerDeleteOrder.bind(this)}>Удалить</span>;
-          break;
-      }
-    } else {
-      orderConfigCancel = <span></span>;
+      case 3:  // Если заказ удален
+        orderConfigCancel = <span onClick={this.handlerDeleteOrder.bind(this)}>Удалить</span>;
+        break;
     }
 
     var orderInfo =

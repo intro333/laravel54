@@ -76,10 +76,21 @@ var SuccessModal = function (_Component) {
         return total + (item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10);
       }, 0);
 
+      // var screenWidth  = screen.width;//Размер экрана
+      var windowWidth = window.innerWidth;
       var unit = this.dec("товаров", "товар", "товара", session.get("productCounts")); // склоняем по падежам
-      var scrollTopStyle = {
-        top: products.get('scrollTop') < 98 ? 98 - products.get('scrollTop') + 'px' : '1px'
-      };
+      var scrollTopStyle = '1px';
+      var resize = products.get('resize');
+
+      if ((resize ? resize : windowWidth) > 540) {
+        scrollTopStyle = {
+          top: products.get('scrollTop') < 133 ? 133 - products.get('scrollTop') + 'px' : '1px'
+        };
+      } else {
+        scrollTopStyle = {
+          top: products.get('scrollTop') < 126 ? 126 - products.get('scrollTop') + 'px' : '1px'
+        };
+      }
 
       var modalDialog = (0, _classnames2.default)({
         'modal-dialog-success': true,

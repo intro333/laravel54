@@ -47,13 +47,21 @@ var SuccessSaveModal = function (_Component) {
   _createClass(SuccessSaveModal, [{
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          products = _props.products,
-          dispatch = _props.dispatch;
+      var products = this.props.products;
 
-      var scrollTopStyle = {
-        top: products.get('scrollTop') < 98 ? 98 - products.get('scrollTop') + 'px' : '1px'
-      };
+      var windowWidth = window.innerWidth;
+      var scrollTopStyle = '1px';
+      var resize = products.get('resize');
+
+      if ((resize ? resize : windowWidth) > 540) {
+        scrollTopStyle = {
+          top: products.get('scrollTop') < 133 ? 133 - products.get('scrollTop') + 'px' : '1px'
+        };
+      } else {
+        scrollTopStyle = {
+          top: products.get('scrollTop') < 126 ? 126 - products.get('scrollTop') + 'px' : '1px'
+        };
+      }
 
       var modalDialog = (0, _classnames2.default)({
         'modal-dialog-success': true,

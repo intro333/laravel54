@@ -8,7 +8,7 @@ import {
   addProductToCart,
   showProductsInCart
 } from '../../api';
-import { changeSuccessModalDisplay, setScrollTop } from './actions';
+import { changeSuccessModalDisplay, setScrollTop, setResize } from './actions';
 import { isEmptyMap, isEmptyArray } from '../../helpers';
 
 class ProductItem extends Component {
@@ -46,6 +46,13 @@ class ProductItem extends Component {
       var target = event.target || event.srcElement;
       let scrollTop = target.body.scrollTop;
       dispatch(setScrollTop(scrollTop));
+    });
+    window.addEventListener('resize', (event) => {
+      const { dispatch } = this.props;
+      var target = event.target || event.srcElement;
+      let resize = target.innerWidth;
+      console.log(2, resize)
+      dispatch(setResize(resize));
     });
   }
 

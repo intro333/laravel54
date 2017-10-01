@@ -44,6 +44,10 @@ var mainActions = _interopRequireWildcard(_actions2);
 
 var _immutable = require('immutable');
 
+var _Footer = require('../Navigation/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 var _api = require('../../api');
 
 var _helpers = require('../../helpers');
@@ -127,43 +131,48 @@ var Products = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'main-container' },
-          _react2.default.createElement(_SuccessModal2.default, {
-            handlerCloseModal: this.handlerCloseModal.bind(this),
-            successModalDisplay: products.get('successModalDisplay'),
-            history: history
-          }),
+          { className: 'container' },
+          _react2.default.createElement(_Navigation2.default, null),
+          _react2.default.createElement(_MenuMobile2.default, null),
           _react2.default.createElement(
             'div',
-            { className: 'category-head' },
+            { className: 'main-container' },
+            _react2.default.createElement(_SuccessModal2.default, {
+              handlerCloseModal: this.handlerCloseModal.bind(this),
+              successModalDisplay: products.get('successModalDisplay'),
+              history: history
+            }),
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/categories' },
+              'div',
+              { className: 'category-head' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/categories' },
+                _react2.default.createElement(
+                  'h3',
+                  { className: 'bread-crumbs-link' },
+                  '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+                )
+              ),
+              _react2.default.createElement('div', { className: 'bread-crumbs-circle' }),
               _react2.default.createElement(
                 'h3',
-                { className: 'bread-crumbs-link' },
-                '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+                { className: 'bread-crumbs-on-page' },
+                session.get('categoryName')
               )
             ),
-            _react2.default.createElement('div', { className: 'bread-crumbs-circle' }),
+            deliveryStatus === 0 && deliveryMessage,
             _react2.default.createElement(
-              'h3',
-              { className: 'bread-crumbs-on-page' },
-              session.get('categoryName')
+              'div',
+              { className: 'category-all' },
+              productItem
             )
-          ),
-          deliveryStatus === 0 && deliveryMessage,
-          _react2.default.createElement(
-            'div',
-            { className: 'category-all' },
-            productItem
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);

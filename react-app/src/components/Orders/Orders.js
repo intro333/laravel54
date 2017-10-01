@@ -104,6 +104,14 @@ class Orders extends Component {
 
     if((this.state.orderStatus === 1 || this.state.orderStatus === 5) && tables && tables.length === 0) {
       tables = <p style={{fontSize: '16px'}}><b>У вас нет обрабатываемых заказов.</b></p>;
+    } else if(this.state.orderStatus === 2 && tables && tables.length === 0) {
+      tables = <p style={{fontSize: '16px'}}>
+        Заказов со статусом <b>Выполнен</b> за <span style={{color: '#4CAF50', fontWeight: 'bold'}}>{monthOptions[this.state.orderMonth - 1].label} {this.state.orderYear}</span> не найдено.
+      </p>
+    } else if(this.state.orderStatus === 3 && tables && tables.length === 0) {
+      tables = <p style={{fontSize: '16px'}}>
+        Заказов со статусом <b>Удален</b> за <span style={{color: '#4CAF50', fontWeight: 'bold'}}>{monthOptions[this.state.orderMonth - 1].label} {this.state.orderYear}</span> не найдено.
+      </p>
     }
 
     return (

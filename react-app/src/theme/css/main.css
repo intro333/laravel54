@@ -1400,11 +1400,15 @@ button.close {
     width: 100% !important;
     border: none !important;
 }
+.Select-menu-outer {
+    z-index: 1000;
+}
 
 /*GO for footer ------------------------------------*/
 #footer {
     position: relative;
-    z-index: 100;
+    margin-top: 40px;
+    /*z-index: 100;*/
     background: #eff0f1;
     background: -moz-linear-gradient(top, #eff0f1 0%, #ffffff 100%);
     background: -webkit-linear-gradient(top, #eff0f1 0%, #ffffff 100%);

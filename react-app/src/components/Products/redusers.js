@@ -8,6 +8,7 @@ const defaultState = map({
   orderNumberInp: 1,
   successModalDisplay: false,
   scrollTop: 0,
+  resize: null,
 });
 
 export default (state = defaultState, action) => {
@@ -20,6 +21,9 @@ export default (state = defaultState, action) => {
 
     case 'SET_SCROLL_TOP':
       return state.set('scrollTop', action.scrollTop);
+
+    case 'SET_RESIZE':
+      return state.set('resize', action.resize);
 
     default:
       return state;

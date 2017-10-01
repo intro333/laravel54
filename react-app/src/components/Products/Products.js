@@ -11,6 +11,7 @@ import SuccessModal  from '../Popups/SuccessModal';
 import { changeSuccessModalDisplay } from './actions';
 import * as mainActions from '../../actions';
 import { Map } from 'immutable';
+import Footer from '../Navigation/Footer';
 
 import {
   setProducts,
@@ -62,25 +63,28 @@ class Products extends Component {
                               style={{color: 'red', fontSize: '14px', marginTop: '5px'}}>Дата доставки закрыта.Подробности здесь.</p>;
 
     return (
-      <div className="container">
-        <Navigation />
-        <MenuMobile />
-        <div className="main-container">
-          <SuccessModal
-            handlerCloseModal={this.handlerCloseModal.bind(this)}
-            successModalDisplay={products.get('successModalDisplay')}
-            history={history}
-          />
-          <div className="category-head">
-            <Link to="/categories"><h3 className="bread-crumbs-link">Продукты</h3></Link>
-            <div className="bread-crumbs-circle"></div>
-            <h3 className="bread-crumbs-on-page">{ session.get('categoryName') }</h3>
-          </div>
-          {deliveryStatus === 0 && deliveryMessage}
-          <div className="category-all">
-            { productItem }
+      <div>
+        <div className="container">
+          <Navigation />
+          <MenuMobile />
+          <div className="main-container">
+            <SuccessModal
+              handlerCloseModal={this.handlerCloseModal.bind(this)}
+              successModalDisplay={products.get('successModalDisplay')}
+              history={history}
+            />
+            <div className="category-head">
+              <Link to="/categories"><h3 className="bread-crumbs-link">Продукты</h3></Link>
+              <div className="bread-crumbs-circle"></div>
+              <h3 className="bread-crumbs-on-page">{ session.get('categoryName') }</h3>
+            </div>
+            {deliveryStatus === 0 && deliveryMessage}
+            <div className="category-all">
+              { productItem }
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

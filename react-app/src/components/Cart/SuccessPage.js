@@ -8,6 +8,7 @@ import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import ModalLoaderCartSent  from '../Popups/ModalLoaderCartSent';
 import * as modelActions from '../../actions';
+import Footer from '../Navigation/Footer';
 
 class SuccessPage extends Component {
   constructor(props) {
@@ -52,13 +53,16 @@ class SuccessPage extends Component {
     }
 
     return (
-      <div className="container">
-        <Navigation />
-        <MenuMobile />
-        <section className="success-page animation-page-load-medium">
-          <ModalLoaderCartSent />
-          {status}
-        </section>
+      <div>
+        <div className="container">
+          <Navigation />
+          <MenuMobile />
+          <section className="success-page animation-page-load-medium">
+            <ModalLoaderCartSent />
+            {status}
+          </section>
+        </div>
+        <Footer />
       </div>
     );
   }

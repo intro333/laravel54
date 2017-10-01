@@ -123,7 +123,7 @@ class Navigation extends Component {
                 <li onClick={this.logOut.bind(this)}>
                   <a>
                     <span className="glyphicon glyphicon-log-out"></span>
-                    <span className="mob-nav-text">Выход</span>
+                    <span className="mob-nav-text">&nbsp;Выход</span>
                   </a>
                 </li>
               </ul>

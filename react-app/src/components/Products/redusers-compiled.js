@@ -13,7 +13,8 @@ var list = _immutable.List;
 var defaultState = map({
   orderNumberInp: 1,
   successModalDisplay: false,
-  scrollTop: 0
+  scrollTop: 0,
+  resize: null
 });
 
 exports.default = function () {
@@ -29,6 +30,9 @@ exports.default = function () {
 
     case 'SET_SCROLL_TOP':
       return state.set('scrollTop', action.scrollTop);
+
+    case 'SET_RESIZE':
+      return state.set('resize', action.resize);
 
     default:
       return state;

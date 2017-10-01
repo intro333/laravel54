@@ -308,37 +308,37 @@ var OrderItem = function (_Component) {
       }, 0);
       var orderConfigCancel = '';
 
-      if (this.props.orderStatus !== 5) {
-        switch (this.props.stateOrderStatus) {
-          case 1:
-            // Если заказ обрабатывается
+      switch (this.props.stateOrderStatus) {
+        case 1:
+          // Если заказ обрабатывается
+          if (this.props.orderStatus !== 5) {
             orderConfigCancel = _react2.default.createElement(
               'span',
               { onClick: this.handlerCancelOrder.bind(this) },
               '\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
             );
-            break;
+          } else {
+            orderConfigCancel = _react2.default.createElement('span', null);
+          }
+          break;
 
-          case 2:
-            // Если заказ выполнен
-            orderConfigCancel = _react2.default.createElement(
-              'span',
-              { onClick: this.handlerCancelOrder.bind(this) },
-              '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
-            );
-            break;
+        case 2:
+          // Если заказ выполнен
+          orderConfigCancel = _react2.default.createElement(
+            'span',
+            { onClick: this.handlerCancelOrder.bind(this) },
+            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+          );
+          break;
 
-          case 3:
-            // Если заказ удален
-            orderConfigCancel = _react2.default.createElement(
-              'span',
-              { onClick: this.handlerDeleteOrder.bind(this) },
-              '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
-            );
-            break;
-        }
-      } else {
-        orderConfigCancel = _react2.default.createElement('span', null);
+        case 3:
+          // Если заказ удален
+          orderConfigCancel = _react2.default.createElement(
+            'span',
+            { onClick: this.handlerDeleteOrder.bind(this) },
+            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+          );
+          break;
       }
 
       var orderInfo = _react2.default.createElement(

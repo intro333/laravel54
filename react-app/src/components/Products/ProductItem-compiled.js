@@ -87,6 +87,14 @@ var ProductItem = function (_Component) {
         var scrollTop = target.body.scrollTop;
         dispatch((0, _actions.setScrollTop)(scrollTop));
       });
+      window.addEventListener('resize', function (event) {
+        var dispatch = _this2.props.dispatch;
+
+        var target = event.target || event.srcElement;
+        var resize = target.innerWidth;
+        console.log(2, resize);
+        dispatch((0, _actions.setResize)(resize));
+      });
     }
   }, {
     key: 'getCountProductCart',

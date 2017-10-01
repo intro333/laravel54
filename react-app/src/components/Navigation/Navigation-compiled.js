@@ -281,7 +281,7 @@ var Navigation = function (_Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\u0412\u044B\u0445\u043E\u0434'
+                      '\xA0\u0412\u044B\u0445\u043E\u0434'
                     )
                   )
                 )

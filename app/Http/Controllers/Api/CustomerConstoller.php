@@ -64,10 +64,13 @@ class CustomerConstoller extends Controller
         $emailHash = substr($emailHash, 0, 7);
         $orders = Order::with('timeQuota')
             ->where('user_order_id', $userId)
-            ->status($request->input('status'))
-            ->year($request->input('year'))
-            ->month($request->input('month'))
-            ->get();
+            ->status($request->input('status'));
+
+        if ($request->input('status') !== 1 && $request->input('status') !== 5) {
+            $orders = $orders->year($request->input('year'))
+                ->month($request->input('month'))
+                ->get();
+        } else $orders = $orders->get();
 
         foreach ($orders as $key => $order) {
             $result[$order->order_id][] = [
