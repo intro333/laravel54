@@ -92,7 +92,6 @@ var ProductItem = function (_Component) {
 
         var target = event.target || event.srcElement;
         var resize = target.innerWidth;
-        console.log(2, resize);
         dispatch((0, _actions.setResize)(resize));
       });
     }

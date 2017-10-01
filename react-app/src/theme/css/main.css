@@ -19,6 +19,15 @@ hr {
     /*background-color: steelblue; !* Цвет линии для браузера Firefox и Opera *!*/
     /*height: 1px; !* Толщина линии *!*/
 }
+.container-fluid {
+    padding-left: 0px;
+}
+.navigation-li {
+    background-color: #4CAF50;
+}
+.navigation-a {
+    color: #fff;
+}
 .error_message_for_create.fade {
     display: none
 }
@@ -801,7 +810,7 @@ th {
     box-shadow: none;
 }
 .navbar-nav > li:hover {
-    background: #2e6da4;
+    background: #4CAF50;
 }
 .navbar-default .navbar-nav > li > a:hover {
     color: #fff;

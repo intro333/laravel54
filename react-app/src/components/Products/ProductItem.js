@@ -51,7 +51,6 @@ class ProductItem extends Component {
       const { dispatch } = this.props;
       var target = event.target || event.srcElement;
       let resize = target.innerWidth;
-      console.log(2, resize)
       dispatch(setResize(resize));
     });
   }

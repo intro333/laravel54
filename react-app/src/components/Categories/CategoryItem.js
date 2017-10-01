@@ -5,9 +5,6 @@ import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import * as modelActions from '../../actions';
-import {
-  setCategories,
-} from '../../api';
 
 class CategoryItem extends Component {
 

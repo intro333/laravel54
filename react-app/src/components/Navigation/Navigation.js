@@ -38,6 +38,7 @@ class Navigation extends Component {
 
     const productsCounts = session.get('productCounts');
     var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
+    console.log(2, window.location.href)
 
     return (
       <div>

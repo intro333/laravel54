@@ -84,11 +84,11 @@ var SuccessModal = function (_Component) {
 
       if ((resize ? resize : windowWidth) > 540) {
         scrollTopStyle = {
-          top: products.get('scrollTop') < 133 ? 133 - products.get('scrollTop') + 'px' : '1px'
+          top: products.get('scrollTop') < 113 ? 113 - products.get('scrollTop') + 'px' : '1px'
         };
       } else {
         scrollTopStyle = {
-          top: products.get('scrollTop') < 126 ? 126 - products.get('scrollTop') + 'px' : '1px'
+          top: products.get('scrollTop') < 105 ? 105 - products.get('scrollTop') + 'px' : '1px'
         };
       }
 
