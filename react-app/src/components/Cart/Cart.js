@@ -201,7 +201,7 @@ class Cart extends Component {
 
     var ordersQoutaDiv = <div className="quota-style" style={quotaStyle}>
       <label className="order-filds-label" htmlFor="time_quota">Я смогу забрать свой заказ в период с</label>
-      <div style={{width: '120px', marginLeft: '10px'}}>
+      <div style={{width: '130px', marginLeft: '10px'}}>
         <Select
           name="time_quota"
           value={this.state.time_quota}

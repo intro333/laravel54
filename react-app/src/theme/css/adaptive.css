@@ -32,25 +32,30 @@
         display: none;
     }
 }
-@media (max-width: 1023px) {
+@media (max-width: 1030px) {
     .category-item {
         width: calc(100% / 3 - 10px);
     }
 }
-@media (max-width: 780px) {
+@media (max-width: 815px) {
     .category-item {
         width: calc(100% / 2 - 10px);
     }
 }
-@media (max-width: 520px) {
+@media (max-width: 615px) {
     .category-item {
-        width: calc(100% / 1 - 10px);
+        width: calc(100% / 1 - 25%);
     }
     .order-number {
         width: 100px;
     }
     .category-item__price-measure span {
         font-size: 16px;
+    }
+}
+@media (max-width: 475px) {
+    .category-item {
+        width: calc(100% / 1 - 10px);
     }
 }
 @media (max-width: 390px) {
@@ -325,25 +330,28 @@
     background-color: #808080;
 }
 /*КОНЕЦ сроллбара--------------------------------------*/
-@media (max-width: 520px) {
+@media (max-width: 570px) {
     .orders-item {
         overflow-x: scroll;
     }
     .cart-products-table__order {
-        width: 429px !important;
+        width: 456px !important;
     }
     .order-instruments {
         white-space: nowrap;
-        width: 429px !important;
+        width: 456px !important;
     }
     .order_total {
         margin: 0 !important;
         white-space: nowrap;
-        width: 429px !important;
+        width: 456px !important;
     }
-    .for-mob-nav-elem {
-        width: 90%;
-    }
+}
+
+@media (max-width: 520px) {
+.for-mob-nav-elem {
+    width: 90%;
+}
 }
 @media (max-width: 500px) {
     /*.h1 {*/
@@ -384,9 +392,6 @@
     }
     .modal-title {
         font-size: 15px;
-    }
-    .contacts-main div:nth-child(2) {
-        display: none;
     }
 }
 /* Таблица с продуктами */
@@ -553,7 +558,7 @@
 
     .menu__item__link_footer {
         line-height: 1.2;
-        font-family: ToyotaText-Reg;
+        font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
         text-decoration: underline;
         font-size: 14px;
         padding: 5px 0;
@@ -579,9 +584,9 @@
     }
 }
 /***** END! ADAPTIVE for footer END!******/
-@media (max-width: 540px) {
+@media (max-width: 565px) {
     .contacts-item span {
-        font-size: 12px;
+        font-size: 13px;
     }
     .contacts-item {
         margin-right: 20px;
@@ -590,13 +595,23 @@
         top: 105px;
     }
 }
-@media (max-width: 460px) {
+@media (max-width: 500px) {
+    .contacts-item span {
+        font-size: 12px;
+    }
+}
+@media (max-width: 470px) {
     .contacts-item {
         margin-right: 10px;
     }
 }
-@media (max-width: 425px) {
+@media (max-width: 435px) {
     .contacts-item {
         margin-right: 5px;
+    }
+}
+@media (max-width: 420px) {
+    .contacts-main div:nth-child(2) {
+        display: none;
     }
 }

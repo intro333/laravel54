@@ -128,9 +128,9 @@ class ProductItem extends Component {
           inputPlaceHolder: '?'
         });
       }
-    } {
+    } else {
       this.setState({
-        addButtonText: 'Дата доставки закрыта'
+        addButtonText: 'Доставка закрыта'
       });
     }
 

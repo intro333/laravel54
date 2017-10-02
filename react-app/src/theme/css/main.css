@@ -1,6 +1,12 @@
+/*@font-face {*/
+    /*font-family: CirceRegular; !* Имя шрифта *!*/
+    /*src: url(../fonts/Circe-Regular.ttf); !* Путь к файлу со шрифтом *!*/
+/*}*/
+
 html, body {
     background: #fff;
     width: 100%;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
     /*adaptive*/
     /*min-width: 320px;*/
     height: 100%;
@@ -224,7 +230,7 @@ a {
     width: 120px;
     padding-right: 10px;
     text-align: right;
-    letter-spacing: 1px;
+    /*letter-spacing: 1px;*/
 }
 .register-filds-elements div {
     width: 100%;
@@ -288,7 +294,7 @@ a {
     color: white;
     text-align: center;
     padding: 4px 0 4px 0;
-    letter-spacing: 1px;
+    /*letter-spacing: 1px;*/
 }
 .register-button:hover {
     cursor: pointer;
@@ -304,7 +310,7 @@ a {
 }
 .register-button p {
     margin: 0;
-    letter-spacing: 1px;
+    /*letter-spacing: 1px;*/
 }
 .recover-password {
     vertical-align: sub;
@@ -670,7 +676,7 @@ input[type="checkbox"]:checked + label span {
     height: 100%;
     color: #3c763d;
     font-size: 13px;
-    font-family: Arial Bold, 'sans-serif';
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
     text-align: center;
     -moz-appearance: textfield;
     /*background: #fff;*/
@@ -788,7 +794,7 @@ th {
 .cart-order__total {
     color: #999;
     font-size: 24px;
-    font-family: Arial-Bold, 'sans-serif';
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
     line-height: 36px;
     letter-spacing: 6.24px;
     text-transform: uppercase;
@@ -937,7 +943,7 @@ th {
 /*Крестик для мобильного меню -------------------------------------------------------------------------------------*/
 .close-mobile-elem {
     position: absolute;
-    left: 30px;
+    left: 15px;
     top: 12px;
     width: 32px;
     height: 32px;
@@ -1242,7 +1248,7 @@ button.close {
 }
 .modal-header .h4, h4 {
     font-size: 18px;
-    font-family: inherit;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
     font-weight: 500;
 }
 .close {
@@ -1306,7 +1312,7 @@ button.close {
     border-radius: 4px;
 }
 .modal-footer button, input, select, textarea, .modal-header-success button {
-    font-family: inherit;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
     font-size: inherit;
     line-height: inherit;
 }
@@ -1401,7 +1407,7 @@ button.close {
 }
 .modal-header-success .h4, h4 {
     font-size: 18px;
-    font-family: inherit;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
     font-weight: 500;
 }
 /*КОНЕЦ MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/
@@ -1442,7 +1448,7 @@ button.close {
     float: left;
     color: #6c7073;
     font-size: 13px;
-    font-family: ToyotaDisplay-Reg, 'sans-serif';
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
     margin-left: 64px; }
 
 .footer__social {
@@ -1488,11 +1494,13 @@ button.close {
     line-height: 70px;
     color: #6c7073;
     font-size: 15px;
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
     font-weight: bold;
     text-align: center; }
-.menu__item_footer:hover {
-    text-decoration: underline; }
+.menu__item_footer:hover a {
+    text-decoration: none;
+    color: #4CAF50;
+}
 /*END for footer ------------------------------------*/
 
 /* Контакты */

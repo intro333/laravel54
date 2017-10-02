@@ -53,7 +53,7 @@ class Navigation extends Component {
           </div>
           <div className="contacts-item">
             <span>Электронная почта</span>
-            <span>shop-travel17@yandex.ru</span>
+            <span>shop-travel@ya.ru</span>
           </div>
         </div>
         <div className="mobile-nav-bar-1">
