@@ -26,6 +26,10 @@ var modelActions = _interopRequireWildcard(_actions);
 
 var _api = require('../../api');
 
+var _fileText = require('react-icons/lib/fa/file-text');
+
+var _fileText2 = _interopRequireDefault(_fileText);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -122,12 +126,12 @@ var Navigation = function (_Component) {
             _react2.default.createElement(
               'span',
               null,
-              '\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u0430\u044F \u043F\u043E\u0447\u0442\u0430'
+              'Email'
             ),
             _react2.default.createElement(
               'span',
               null,
-              'shop-travel17@yandex.ru'
+              'shop-travel@ya.ru'
             )
           )
         ),
@@ -181,7 +185,11 @@ var Navigation = function (_Component) {
                     onClick: this.closeMobNavElem.bind(this),
                     to: '/orders'
                   },
-                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-list-alt mob-menu-right' })
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'mob-menu-right' },
+                    _react2.default.createElement(_fileText2.default, { size: '16' })
+                  )
                 )
               )
             )
@@ -231,11 +239,11 @@ var Navigation = function (_Component) {
                   _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: '/orders' },
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-list-alt' }),
+                    _react2.default.createElement(_fileText2.default, { size: '16' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\xA0\u041C\u043E\u0438 \u0437\u0430\u043A\u0430\u0437\u044B'
+                      '\u0417\u0430\u043A\u0430\u0437\u044B'
                     )
                   )
                 ),
@@ -249,7 +257,7 @@ var Navigation = function (_Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\xA0\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442'
+                      '\u041C\u043E\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442'
                     )
                   )
                 ),
@@ -263,7 +271,7 @@ var Navigation = function (_Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\xA0\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
+                      '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
                     ),
                     _react2.default.createElement(
                       'div',
@@ -282,7 +290,7 @@ var Navigation = function (_Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
-                      '\xA0\u0412\u044B\u0445\u043E\u0434'
+                      '\u0412\u044B\u0445\u043E\u0434'
                     )
                   )
                 )

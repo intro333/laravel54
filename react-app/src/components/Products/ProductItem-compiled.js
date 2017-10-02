@@ -185,9 +185,9 @@ var ProductItem = function (_Component) {
             inputPlaceHolder: '?'
           });
         }
-      }{
+      } else {
         this.setState({
-          addButtonText: 'Дата доставки закрыта'
+          addButtonText: 'Доставка закрыта'
         });
       }
     }

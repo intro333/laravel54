@@ -294,7 +294,7 @@ var Cart = function (_Component) {
         ),
         _react2.default.createElement(
           'div',
-          { style: { width: '120px', marginLeft: '10px' } },
+          { style: { width: '130px', marginLeft: '10px' } },
           _react2.default.createElement(_reactSelect2.default, {
             name: 'time_quota',
             value: this.state.time_quota,

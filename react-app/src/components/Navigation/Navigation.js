@@ -9,6 +9,7 @@ import {
   logOut,
   getProductCounts,
 } from '../../api';
+import FaFileText from 'react-icons/lib/fa/file-text';
 
 class Navigation extends Component {
 
@@ -52,7 +53,7 @@ class Navigation extends Component {
             <span>8(929)622-98-15</span>
           </div>
           <div className="contacts-item">
-            <span>Электронная почта</span>
+            <span>Email</span>
             <span>shop-travel@ya.ru</span>
           </div>
         </div>
@@ -87,7 +88,9 @@ class Navigation extends Component {
                 <Link
                   onClick={this.closeMobNavElem.bind(this)}
                   to={'/orders'}
-                ><span className="glyphicon glyphicon-list-alt mob-menu-right"></span>
+                >
+                  {/*<span className="glyphicon glyphicon-list-alt mob-menu-right"></span>*/}
+                  <span className="mob-menu-right"><FaFileText size="16"/></span>
                 </Link>
               </div>
             </div>
@@ -106,25 +109,27 @@ class Navigation extends Component {
               </ul>
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to="/orders">
-                  <span className="glyphicon glyphicon-list-alt"></span>
-                  <span className="mob-nav-text">&nbsp;Мои заказы</span>
+                  {/*<span className="glyphicon glyphicon-list-alt"></span>*/}
+                  <FaFileText size="16"/>
+                  <span className="mob-nav-text">Заказы</span>
                 </Link>
                 </li>
                 <li><Link to={'/personal-account'}>
                   <span className="glyphicon glyphicon-user"></span>
-                  <span className="mob-nav-text">&nbsp;Личный кабинет</span>
+                  {/*<FaUser size="16" />*/}
+                  <span className="mob-nav-text">Мой кабинет</span>
                 </Link>
                 </li>
                 <li><Link to={cartUrl}>
                   <span className="glyphicon glyphicon-shopping-cart"></span>
-                  <span className="mob-nav-text">&nbsp;Корзина</span>
+                  <span className="mob-nav-text">Корзина</span>
                   <div className="menu__item--basket__amount">{productsCounts && productsCounts}</div>
                 </Link>
                 </li>
                 <li onClick={this.logOut.bind(this)}>
                   <a>
                     <span className="glyphicon glyphicon-log-out"></span>
-                    <span className="mob-nav-text">&nbsp;Выход</span>
+                    <span className="mob-nav-text">Выход</span>
                   </a>
                 </li>
               </ul>
