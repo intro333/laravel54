@@ -333,21 +333,23 @@
     background-color: #808080;
 }
 /*КОНЕЦ сроллбара--------------------------------------*/
-@media (max-width: 555px) {
+@media (max-width: 561px) {
     .orders-item {
         overflow-x: scroll;
     }
     .cart-products-table__order {
-        width: 456px !important;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        width: 462px !important;
     }
     .order-instruments {
         white-space: nowrap;
-        width: 456px !important;
+        width: 462px !important;
     }
     .order_total {
         margin: 0 !important;
         white-space: nowrap;
-        width: 456px !important;
+        width: 462px !important;
     }
 }
 

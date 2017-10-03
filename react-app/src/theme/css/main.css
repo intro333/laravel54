@@ -1028,6 +1028,10 @@ th {
 .order-tr-head {
     background: #4CAF50;
 }
+.cart-products-table__order {
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+}
 .order-tr-head:after {
     position: relative;
     top: 21px;

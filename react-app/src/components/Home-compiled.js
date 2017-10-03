@@ -135,7 +135,7 @@ var Home = function (_Component) {
           _react2.default.createElement(_MenuMobile2.default, null),
           _react2.default.createElement(
             'div',
-            { className: 'animation-page-load-medium' },
+            { className: 'home-page animation-page-load-medium' },
             _react2.default.createElement(
               'div',
               { className: 'main-slider' },
