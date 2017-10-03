@@ -607,6 +607,12 @@
     .contacts-item {
         margin-right: 10px;
     }
+    .success-page__content {
+        padding: 0;
+    }
+    .success-page {
+        padding: 5px;
+    }
 }
 @media (max-width: 435px) {
     .contacts-item {
@@ -616,5 +622,11 @@
 @media (max-width: 420px) {
     .contacts-main div:nth-child(2) {
         display: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .success-page__title {
+        font-size: 19px !important;
     }
 }
