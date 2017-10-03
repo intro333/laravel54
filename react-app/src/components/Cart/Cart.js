@@ -231,53 +231,55 @@ class Cart extends Component {
             textHeader={this.state.textHeader}
             textBody={this.state.textBody}
           />
-          <div className="main-container animation-page-load-medium cart-scroll-adaptive">
-            <div className="flex-box-between">
-              <h3>Корзина</h3>
-              <div style={{display: 'flex'}}>
-                <div onClick={this.handlerClearCart.bind(this)} className="cart-button-clear">Очистить корзину</div>
-                <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
+          <div className="main-container">
+            <div className="animation-page-load-medium cart-scroll-adaptive">
+              <div className="flex-box-between">
+                <h3>Корзина</h3>
+                <div style={{display: 'flex'}}>
+                  <div onClick={this.handlerClearCart.bind(this)} className="cart-button-clear">Очистить корзину</div>
+                  <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
+                </div>
               </div>
+              {isEmptyArray(currentOrder) && isEmptyArray(currentOrder['four']) &&
+              <p className="personal-explain-text">Изменение заказа № ST-{userInfo.emailHash}-{currentOrder['four'].order_id}</p>}
+              {isEmptyArray(currentOrder) && isEmptyArray(currentOrder['one']) &&
+              <p className="personal-explain-text cart-error-mobile" style={{color: 'red'}}>У Вас уже есть заказ в обработке.</p>}
+              <table className="cart-products-table cart-products-table__cart">
+                <thead>
+                <tr className="cart-tr-head">
+                  <th className="table-30-procent">Продукт</th>
+                  <th className="table-25-procent">Цена</th>
+                  <th className="table-25-procent">Количество</th>
+                  <th className="table-10-procent">Стоимость</th>
+                  <th className="table-10-procent"></th>
+                </tr>
+                </thead>
+                <tbody>
+                { productsTd }
+                </tbody>
+              </table>
+              <div className="cart-order__total cart_total">Сумма:&nbsp;<span>{ total } ₽</span></div>
+              <p className="order-filds-label" style={{color: 'red', fontSize: '14px', margin: '0'}}>
+                {this.state.comment_count_error !== '' && this.state.comment_count_error}
+              </p>
+              <textarea
+                name="comment"
+                className="cart-comment"
+                value={this.state.comment === '' ? comment : this.state.comment}
+                onChange={this.handleChangeComment.bind(this)}
+                placeholder="Оставьте комментарий к заказу..."
+              />
+              <p className="order-filds-label" style={{fontWeight: '700'}}>Дата
+                доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</p>
+              {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
+              <p className="order-filds-label scroll-to-error"
+                     style={{color: 'red', fontSize: '14px', marginTop: '5px'}}>
+                {
+                  this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
+                }
+              </p>
+              <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
             </div>
-            {isEmptyArray(currentOrder) && isEmptyArray(currentOrder['four']) &&
-            <p className="personal-explain-text">Изменение заказа № ST-{userInfo.emailHash}-{currentOrder['four'].order_id}</p>}
-            {isEmptyArray(currentOrder) && isEmptyArray(currentOrder['one']) &&
-            <p className="personal-explain-text" style={{color: 'red'}}>У Вас уже есть заказ в обработке.</p>}
-            <table className="cart-products-table cart-products-table__cart">
-              <thead>
-              <tr className="cart-tr-head">
-                <th className="table-30-procent">Продукт</th>
-                <th className="table-25-procent">Цена</th>
-                <th className="table-25-procent">Количество</th>
-                <th className="table-10-procent">Стоимость</th>
-                <th className="table-10-procent"></th>
-              </tr>
-              </thead>
-              <tbody>
-              { productsTd }
-              </tbody>
-            </table>
-            <div className="cart-order__total cart_total">Сумма:&nbsp;<span>{ total } ₽</span></div>
-            <p className="order-filds-label" style={{color: 'red', fontSize: '14px', margin: '0'}}>
-              {this.state.comment_count_error !== '' && this.state.comment_count_error}
-            </p>
-            <textarea
-              name="comment"
-              className="cart-comment"
-              value={this.state.comment === '' ? comment : this.state.comment}
-              onChange={this.handleChangeComment.bind(this)}
-              placeholder="Оставьте комментарий к заказу..."
-            />
-            <p className="order-filds-label" style={{fontWeight: '700'}}>Дата
-              доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</p>
-            {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
-            <p className="order-filds-label scroll-to-error"
-                   style={{color: 'red', fontSize: '14px', marginTop: '5px'}}>
-              {
-                this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
-              }
-            </p>
-            <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
           </div>
         </div>
         <Footer />

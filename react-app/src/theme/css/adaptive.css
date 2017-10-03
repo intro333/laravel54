@@ -196,6 +196,9 @@
         padding: 40px 0;
     }
     /*Корзина*/
+    .cart-error-mobile {
+        margin-top: 10px;
+    }
     .cart-scroll-adaptive::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -330,7 +333,7 @@
     background-color: #808080;
 }
 /*КОНЕЦ сроллбара--------------------------------------*/
-@media (max-width: 570px) {
+@media (max-width: 555px) {
     .orders-item {
         overflow-x: scroll;
     }

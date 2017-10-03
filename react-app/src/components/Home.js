@@ -85,7 +85,7 @@ class Home extends Component {
         <div className="container">
           <Navigation />
           <MenuMobile />
-          <div className="animation-page-load-medium">
+          <div className="home-page animation-page-load-medium">
             <div className="main-slider">
               <img className={sliderImg_1} src="https://www.w3schools.com/w3images/workbench.jpg" />
               <img className={sliderImg_2} src="https://www.w3schools.com/w3images/coffee.jpg" />

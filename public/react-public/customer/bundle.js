@@ -786,9 +786,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(301);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createProvider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
@@ -1731,23 +1731,23 @@ module.exports = { debugTool: debugTool };
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MemoryRouter__ = __webpack_require__(320);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MemoryRouter__ = __webpack_require__(321);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_0__MemoryRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Prompt__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Prompt__ = __webpack_require__(322);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_1__Prompt__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Redirect__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Redirect__ = __webpack_require__(323);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__Redirect__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(131);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_3__Route__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(82);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__Router__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__StaticRouter__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__StaticRouter__ = __webpack_require__(324);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_5__StaticRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Switch__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Switch__ = __webpack_require__(325);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_6__Switch__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__matchPath__ = __webpack_require__(83);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_7__matchPath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__withRouter__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__withRouter__ = __webpack_require__(326);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_8__withRouter__["a"]; });
 
 
@@ -3260,31 +3260,31 @@ module.exports = DOMProperty;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(309);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(310);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HashRouter", function() { return __WEBPACK_IMPORTED_MODULE_1__HashRouter__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(130);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(311);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(312);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NavLink", function() { return __WEBPACK_IMPORTED_MODULE_4__NavLink__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(313);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_5__Prompt__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(314);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_6__Redirect__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(315);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(316);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(316);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(317);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(318);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__matchPath__ = __webpack_require__(318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__matchPath__ = __webpack_require__(319);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_11__matchPath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__withRouter__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__withRouter__ = __webpack_require__(320);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_12__withRouter__["a"]; });
 
 
@@ -3479,7 +3479,7 @@ var modelActions = _interopRequireWildcard(_actions);
 
 var _api = __webpack_require__(18);
 
-var _fileText = __webpack_require__(359);
+var _fileText = __webpack_require__(290);
 
 var _fileText2 = _interopRequireDefault(_fileText);
 
@@ -4028,7 +4028,7 @@ var _assign = __webpack_require__(5);
 var ReactCurrentOwner = __webpack_require__(20);
 
 var warning = __webpack_require__(3);
-var canDefineProperty = __webpack_require__(57);
+var canDefineProperty = __webpack_require__(58);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 var REACT_ELEMENT_TYPE = __webpack_require__(136);
@@ -4475,10 +4475,10 @@ module.exports = factory(
 
 
 
-var DOMNamespaces = __webpack_require__(66);
+var DOMNamespaces = __webpack_require__(67);
 var setInnerHTML = __webpack_require__(56);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(73);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(74);
 var setTextContent = __webpack_require__(123);
 
 var ELEMENT_NODE_TYPE = 1;
@@ -4794,7 +4794,7 @@ var _reactDom = __webpack_require__(85);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactInputAutosize = __webpack_require__(292);
+var _reactInputAutosize = __webpack_require__(293);
 
 var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
@@ -4802,7 +4802,7 @@ var _classnames = __webpack_require__(12);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _utilsDefaultArrowRenderer = __webpack_require__(331);
+var _utilsDefaultArrowRenderer = __webpack_require__(332);
 
 var _utilsDefaultArrowRenderer2 = _interopRequireDefault(_utilsDefaultArrowRenderer);
 
@@ -4814,27 +4814,27 @@ var _utilsDefaultMenuRenderer = __webpack_require__(133);
 
 var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
-var _utilsDefaultClearRenderer = __webpack_require__(332);
+var _utilsDefaultClearRenderer = __webpack_require__(333);
 
 var _utilsDefaultClearRenderer2 = _interopRequireDefault(_utilsDefaultClearRenderer);
 
-var _Async = __webpack_require__(326);
+var _Async = __webpack_require__(327);
 
 var _Async2 = _interopRequireDefault(_Async);
 
-var _AsyncCreatable = __webpack_require__(327);
+var _AsyncCreatable = __webpack_require__(328);
 
 var _AsyncCreatable2 = _interopRequireDefault(_AsyncCreatable);
 
-var _Creatable = __webpack_require__(328);
+var _Creatable = __webpack_require__(329);
 
 var _Creatable2 = _interopRequireDefault(_Creatable);
 
-var _Option = __webpack_require__(329);
+var _Option = __webpack_require__(330);
 
 var _Option2 = _interopRequireDefault(_Option);
 
-var _Value = __webpack_require__(330);
+var _Value = __webpack_require__(331);
 
 var _Value2 = _interopRequireDefault(_Value);
 
@@ -6021,14 +6021,14 @@ module.exports = exports['default'];
 var _assign = __webpack_require__(5);
 
 var ReactBaseClasses = __webpack_require__(135);
-var ReactChildren = __webpack_require__(335);
-var ReactDOMFactories = __webpack_require__(336);
+var ReactChildren = __webpack_require__(336);
+var ReactDOMFactories = __webpack_require__(337);
 var ReactElement = __webpack_require__(30);
-var ReactPropTypes = __webpack_require__(338);
-var ReactVersion = __webpack_require__(340);
+var ReactPropTypes = __webpack_require__(339);
+var ReactVersion = __webpack_require__(341);
 
-var createReactClass = __webpack_require__(342);
-var onlyChild = __webpack_require__(344);
+var createReactClass = __webpack_require__(343);
+var onlyChild = __webpack_require__(345);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
@@ -6036,7 +6036,7 @@ var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
   var lowPriorityWarning = __webpack_require__(84);
-  var canDefineProperty = __webpack_require__(57);
+  var canDefineProperty = __webpack_require__(58);
   var ReactElementValidator = __webpack_require__(137);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
@@ -6503,8 +6503,8 @@ module.exports = invariant;
 var _prodInvariant = __webpack_require__(4);
 
 var EventPluginRegistry = __webpack_require__(51);
-var EventPluginUtils = __webpack_require__(67);
-var ReactErrorUtils = __webpack_require__(71);
+var EventPluginUtils = __webpack_require__(68);
+var ReactErrorUtils = __webpack_require__(72);
 
 var accumulateInto = __webpack_require__(116);
 var forEachAccumulated = __webpack_require__(117);
@@ -6781,7 +6781,7 @@ module.exports = EventPluginHub;
 
 
 var EventPluginHub = __webpack_require__(44);
-var EventPluginUtils = __webpack_require__(67);
+var EventPluginUtils = __webpack_require__(68);
 
 var accumulateInto = __webpack_require__(116);
 var forEachAccumulated = __webpack_require__(117);
@@ -6973,7 +6973,7 @@ module.exports = ReactInstanceMap;
 
 var SyntheticEvent = __webpack_require__(22);
 
-var getEventTarget = __webpack_require__(76);
+var getEventTarget = __webpack_require__(77);
 
 /**
  * @interface UIEvent
@@ -7065,7 +7065,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(351);
+var	fixUrls = __webpack_require__(352);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -12670,7 +12670,7 @@ var ReactEventEmitterMixin = __webpack_require__(247);
 var ViewportMetrics = __webpack_require__(115);
 
 var getVendorPrefixedEventName = __webpack_require__(282);
-var isEventSupported = __webpack_require__(77);
+var isEventSupported = __webpack_require__(78);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -12995,7 +12995,7 @@ module.exports = ReactBrowserEventEmitter;
 var SyntheticUIEvent = __webpack_require__(47);
 var ViewportMetrics = __webpack_require__(115);
 
-var getEventModifierState = __webpack_require__(75);
+var getEventModifierState = __webpack_require__(76);
 
 /**
  * @interface MouseEvent
@@ -13431,12 +13431,12 @@ module.exports = escapeTextContentForBrowser;
 
 
 var ExecutionEnvironment = __webpack_require__(9);
-var DOMNamespaces = __webpack_require__(66);
+var DOMNamespaces = __webpack_require__(67);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(73);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(74);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -13521,6 +13521,70 @@ module.exports = setInnerHTML;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(288);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var IconBase = function IconBase(_ref, _ref2) {
+  var children = _ref.children;
+  var color = _ref.color;
+  var size = _ref.size;
+  var style = _ref.style;
+
+  var props = _objectWithoutProperties(_ref, ['children', 'color', 'size', 'style']);
+
+  var _ref2$reactIconBase = _ref2.reactIconBase;
+  var reactIconBase = _ref2$reactIconBase === undefined ? {} : _ref2$reactIconBase;
+
+  var computedSize = size || reactIconBase.size || '1em';
+  return _react2.default.createElement('svg', _extends({
+    children: children,
+    fill: 'currentColor',
+    preserveAspectRatio: 'xMidYMid meet',
+    height: computedSize,
+    width: computedSize
+  }, reactIconBase, props, {
+    style: _extends({
+      verticalAlign: 'middle',
+      color: color || reactIconBase.color
+    }, reactIconBase.style || {}, style)
+  }));
+};
+
+IconBase.propTypes = {
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  style: _propTypes2.default.object
+};
+
+IconBase.contextTypes = {
+  reactIconBase: _propTypes2.default.shape(IconBase.propTypes)
+};
+
+exports.default = IconBase;
+module.exports = exports['default'];
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -13549,15 +13613,15 @@ module.exports = canDefineProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(347);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(142);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["a"]; });
@@ -13586,7 +13650,7 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13686,7 +13750,7 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13759,7 +13823,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13770,11 +13834,11 @@ exports.locationsAreEqual = exports.createLocation = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _resolvePathname = __webpack_require__(349);
+var _resolvePathname = __webpack_require__(350);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var _valueEqual = __webpack_require__(355);
+var _valueEqual = __webpack_require__(356);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
@@ -13843,7 +13907,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13934,7 +13998,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14006,7 +14070,7 @@ function isPlainObject(value) {
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14027,7 +14091,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14048,7 +14112,7 @@ var Danger = __webpack_require__(220);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactInstrumentation = __webpack_require__(16);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(73);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(74);
 var setInnerHTML = __webpack_require__(56);
 var setTextContent = __webpack_require__(123);
 
@@ -14259,7 +14323,7 @@ module.exports = DOMChildrenOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14284,7 +14348,7 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14302,7 +14366,7 @@ module.exports = DOMNamespaces;
 
 var _prodInvariant = __webpack_require__(4);
 
-var ReactErrorUtils = __webpack_require__(71);
+var ReactErrorUtils = __webpack_require__(72);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -14516,7 +14580,7 @@ module.exports = EventPluginUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14580,7 +14644,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14724,7 +14788,7 @@ module.exports = LinkedValueUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14774,7 +14838,7 @@ module.exports = ReactComponentEnvironment;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14856,7 +14920,7 @@ module.exports = ReactErrorUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15096,7 +15160,7 @@ module.exports = ReactUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15133,7 +15197,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15188,7 +15252,7 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15236,7 +15300,7 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15276,7 +15340,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15341,7 +15405,7 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15388,7 +15452,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15763,70 +15827,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = validateDOMNesting;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(288);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var IconBase = function IconBase(_ref, _ref2) {
-  var children = _ref.children;
-  var color = _ref.color;
-  var size = _ref.size;
-  var style = _ref.style;
-
-  var props = _objectWithoutProperties(_ref, ['children', 'color', 'size', 'style']);
-
-  var _ref2$reactIconBase = _ref2.reactIconBase;
-  var reactIconBase = _ref2$reactIconBase === undefined ? {} : _ref2$reactIconBase;
-
-  var computedSize = size || reactIconBase.size || '1em';
-  return _react2.default.createElement('svg', _extends({
-    children: children,
-    fill: 'currentColor',
-    preserveAspectRatio: 'xMidYMid meet',
-    height: computedSize,
-    width: computedSize
-  }, reactIconBase, props, {
-    style: _extends({
-      verticalAlign: 'middle',
-      color: color || reactIconBase.color
-    }, reactIconBase.style || {}, style)
-  }));
-};
-
-IconBase.propTypes = {
-  color: _propTypes2.default.string,
-  size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
-  style: _propTypes2.default.object
-};
-
-IconBase.contextTypes = {
-  reactIconBase: _propTypes2.default.shape(IconBase.propTypes)
-};
-
-exports.default = IconBase;
-module.exports = exports['default'];
 
 /***/ }),
 /* 81 */
@@ -17663,11 +17663,11 @@ var _invariant = __webpack_require__(43);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(61);
+var _LocationUtils = __webpack_require__(62);
 
 var _PathUtils = __webpack_require__(42);
 
-var _createTransitionManager = __webpack_require__(62);
+var _createTransitionManager = __webpack_require__(63);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -18074,7 +18074,7 @@ var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
-var ReactPropTypesSecret = __webpack_require__(64);
+var ReactPropTypesSecret = __webpack_require__(65);
 var checkPropTypes = __webpack_require__(213);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
@@ -19141,7 +19141,7 @@ module.exports = ReactDOMComponentFlags;
 
 var _assign = __webpack_require__(5);
 
-var LinkedValueUtils = __webpack_require__(69);
+var LinkedValueUtils = __webpack_require__(70);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(19);
 
@@ -19624,14 +19624,14 @@ var ReactInstanceMap = __webpack_require__(46);
 var ReactInstrumentation = __webpack_require__(16);
 var ReactMarkupChecksum = __webpack_require__(252);
 var ReactReconciler = __webpack_require__(34);
-var ReactUpdateQueue = __webpack_require__(72);
+var ReactUpdateQueue = __webpack_require__(73);
 var ReactUpdates = __webpack_require__(19);
 
 var emptyObject = __webpack_require__(49);
 var instantiateReactComponent = __webpack_require__(121);
 var invariant = __webpack_require__(2);
 var setInnerHTML = __webpack_require__(56);
-var shouldUpdateReactComponent = __webpack_require__(78);
+var shouldUpdateReactComponent = __webpack_require__(79);
 var warning = __webpack_require__(3);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -20559,7 +20559,7 @@ var ReactCompositeComponent = __webpack_require__(227);
 var ReactEmptyComponent = __webpack_require__(108);
 var ReactHostComponent = __webpack_require__(110);
 
-var getNextDebugID = __webpack_require__(343);
+var getNextDebugID = __webpack_require__(344);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -20807,7 +20807,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(246);
 
 var getIteratorFn = __webpack_require__(280);
 var invariant = __webpack_require__(2);
-var KeyEscapeUtils = __webpack_require__(68);
+var KeyEscapeUtils = __webpack_require__(69);
 var warning = __webpack_require__(3);
 
 var SEPARATOR = '.';
@@ -20998,7 +20998,7 @@ module.exports = ReactPropTypesSecret;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__ = __webpack_require__(307);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__ = __webpack_require__(128);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -21382,7 +21382,7 @@ var storeShape = __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.shape({
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = verifyPlainObject;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(81);
 
 
@@ -21793,7 +21793,7 @@ var _prodInvariant = __webpack_require__(37),
 
 var ReactNoopUpdateQueue = __webpack_require__(138);
 
-var canDefineProperty = __webpack_require__(57);
+var canDefineProperty = __webpack_require__(58);
 var emptyObject = __webpack_require__(49);
 var invariant = __webpack_require__(2);
 var lowPriorityWarning = __webpack_require__(84);
@@ -21973,9 +21973,9 @@ var ReactCurrentOwner = __webpack_require__(20);
 var ReactComponentTreeHook = __webpack_require__(14);
 var ReactElement = __webpack_require__(30);
 
-var checkReactTypeSpec = __webpack_require__(341);
+var checkReactTypeSpec = __webpack_require__(342);
 
-var canDefineProperty = __webpack_require__(57);
+var canDefineProperty = __webpack_require__(58);
 var getIteratorFn = __webpack_require__(139);
 var warning = __webpack_require__(3);
 var lowPriorityWarning = __webpack_require__(84);
@@ -22399,8 +22399,8 @@ function compose() {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["a"] = createStore;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
 
 
@@ -22814,7 +22814,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.api = undefined;
 
-var _redux = __webpack_require__(58);
+var _redux = __webpack_require__(59);
 
 var _immutable = __webpack_require__(50);
 
@@ -22952,7 +22952,7 @@ module.exports = __webpack_require__(147);
 var utils = __webpack_require__(15);
 var bind = __webpack_require__(90);
 var Axios = __webpack_require__(149);
-var defaults = __webpack_require__(59);
+var defaults = __webpack_require__(60);
 
 /**
  * Create an instance of Axios
@@ -23072,7 +23072,7 @@ module.exports = CancelToken;
 "use strict";
 
 
-var defaults = __webpack_require__(59);
+var defaults = __webpack_require__(60);
 var utils = __webpack_require__(15);
 var InterceptorManager = __webpack_require__(150);
 var dispatchRequest = __webpack_require__(151);
@@ -23227,7 +23227,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(15);
 var transformData = __webpack_require__(154);
 var isCancel = __webpack_require__(88);
-var defaults = __webpack_require__(59);
+var defaults = __webpack_require__(60);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -24121,121 +24121,125 @@ var Cart = function (_Component) {
           }),
           _react2.default.createElement(
             'div',
-            { className: 'main-container animation-page-load-medium cart-scroll-adaptive' },
+            { className: 'main-container' },
             _react2.default.createElement(
               'div',
-              { className: 'flex-box-between' },
-              _react2.default.createElement(
-                'h3',
-                null,
-                '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
-              ),
+              { className: 'animation-page-load-medium cart-scroll-adaptive' },
               _react2.default.createElement(
                 'div',
-                { style: { display: 'flex' } },
+                { className: 'flex-box-between' },
                 _react2.default.createElement(
-                  'div',
-                  { onClick: this.handlerClearCart.bind(this), className: 'cart-button-clear' },
-                  '\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+                  'h3',
+                  null,
+                  '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
                 ),
                 _react2.default.createElement(
                   'div',
-                  { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
-                  '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+                  { style: { display: 'flex' } },
+                  _react2.default.createElement(
+                    'div',
+                    { onClick: this.handlerClearCart.bind(this), className: 'cart-button-clear' },
+                    '\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u043A\u043E\u0440\u0437\u0438\u043D\u0443'
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
+                    '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
+                  )
                 )
-              )
-            ),
-            (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && _react2.default.createElement(
-              'p',
-              { className: 'personal-explain-text' },
-              '\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430 \u2116 ST-',
-              userInfo.emailHash,
-              '-',
-              currentOrder['four'].order_id
-            ),
-            (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one']) && _react2.default.createElement(
-              'p',
-              { className: 'personal-explain-text', style: { color: 'red' } },
-              '\u0423 \u0412\u0430\u0441 \u0443\u0436\u0435 \u0435\u0441\u0442\u044C \u0437\u0430\u043A\u0430\u0437 \u0432 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0435.'
-            ),
-            _react2.default.createElement(
-              'table',
-              { className: 'cart-products-table cart-products-table__cart' },
+              ),
+              (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && _react2.default.createElement(
+                'p',
+                { className: 'personal-explain-text' },
+                '\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430 \u2116 ST-',
+                userInfo.emailHash,
+                '-',
+                currentOrder['four'].order_id
+              ),
+              (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one']) && _react2.default.createElement(
+                'p',
+                { className: 'personal-explain-text cart-error-mobile', style: { color: 'red' } },
+                '\u0423 \u0412\u0430\u0441 \u0443\u0436\u0435 \u0435\u0441\u0442\u044C \u0437\u0430\u043A\u0430\u0437 \u0432 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0435.'
+              ),
               _react2.default.createElement(
-                'thead',
-                null,
+                'table',
+                { className: 'cart-products-table cart-products-table__cart' },
                 _react2.default.createElement(
-                  'tr',
-                  { className: 'cart-tr-head' },
+                  'thead',
+                  null,
                   _react2.default.createElement(
-                    'th',
-                    { className: 'table-30-procent' },
-                    '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
-                  ),
-                  _react2.default.createElement(
-                    'th',
-                    { className: 'table-25-procent' },
-                    '\u0426\u0435\u043D\u0430'
-                  ),
-                  _react2.default.createElement(
-                    'th',
-                    { className: 'table-25-procent' },
-                    '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
-                  ),
-                  _react2.default.createElement(
-                    'th',
-                    { className: 'table-10-procent' },
-                    '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
-                  ),
-                  _react2.default.createElement('th', { className: 'table-10-procent' })
+                    'tr',
+                    { className: 'cart-tr-head' },
+                    _react2.default.createElement(
+                      'th',
+                      { className: 'table-30-procent' },
+                      '\u041F\u0440\u043E\u0434\u0443\u043A\u0442'
+                    ),
+                    _react2.default.createElement(
+                      'th',
+                      { className: 'table-25-procent' },
+                      '\u0426\u0435\u043D\u0430'
+                    ),
+                    _react2.default.createElement(
+                      'th',
+                      { className: 'table-25-procent' },
+                      '\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E'
+                    ),
+                    _react2.default.createElement(
+                      'th',
+                      { className: 'table-10-procent' },
+                      '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+                    ),
+                    _react2.default.createElement('th', { className: 'table-10-procent' })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tbody',
+                  null,
+                  productsTd
                 )
               ),
               _react2.default.createElement(
-                'tbody',
-                null,
-                productsTd
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'cart-order__total cart_total' },
-              '\u0421\u0443\u043C\u043C\u0430:\xA0',
+                'div',
+                { className: 'cart-order__total cart_total' },
+                '\u0421\u0443\u043C\u043C\u0430:\xA0',
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  total,
+                  ' \u20BD'
+                )
+              ),
               _react2.default.createElement(
-                'span',
-                null,
-                total,
-                ' \u20BD'
+                'p',
+                { className: 'order-filds-label', style: { color: 'red', fontSize: '14px', margin: '0' } },
+                this.state.comment_count_error !== '' && this.state.comment_count_error
+              ),
+              _react2.default.createElement('textarea', {
+                name: 'comment',
+                className: 'cart-comment',
+                value: this.state.comment === '' ? comment : this.state.comment,
+                onChange: this.handleChangeComment.bind(this),
+                placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
+              }),
+              _react2.default.createElement(
+                'p',
+                { className: 'order-filds-label', style: { fontWeight: '700' } },
+                '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
+                ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
+              ),
+              ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
+              _react2.default.createElement(
+                'p',
+                { className: 'order-filds-label scroll-to-error',
+                  style: { color: 'red', fontSize: '14px', marginTop: '5px' } },
+                this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
+              ),
+              _react2.default.createElement(
+                'div',
+                { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
+                '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
               )
-            ),
-            _react2.default.createElement(
-              'p',
-              { className: 'order-filds-label', style: { color: 'red', fontSize: '14px', margin: '0' } },
-              this.state.comment_count_error !== '' && this.state.comment_count_error
-            ),
-            _react2.default.createElement('textarea', {
-              name: 'comment',
-              className: 'cart-comment',
-              value: this.state.comment === '' ? comment : this.state.comment,
-              onChange: this.handleChangeComment.bind(this),
-              placeholder: '\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043A\u0430\u0437\u0443...'
-            }),
-            _react2.default.createElement(
-              'p',
-              { className: 'order-filds-label', style: { fontWeight: '700' } },
-              '\u0414\u0430\u0442\u0430 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438 ',
-              ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''
-            ),
-            ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota,
-            _react2.default.createElement(
-              'p',
-              { className: 'order-filds-label scroll-to-error',
-                style: { color: 'red', fontSize: '14px', marginTop: '5px' } },
-              this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
-            ),
-            _react2.default.createElement(
-              'div',
-              { onClick: this.handlerSendOrder.bind(this), className: 'cart-button' },
-              '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437'
             )
           )
         ),
@@ -25096,7 +25100,7 @@ var Home = function (_Component) {
           _react2.default.createElement(_MenuMobile2.default, null),
           _react2.default.createElement(
             'div',
-            { className: 'animation-page-load-medium' },
+            { className: 'home-page animation-page-load-medium' },
             _react2.default.createElement(
               'div',
               { className: 'main-slider' },
@@ -25988,7 +25992,7 @@ var _reactSelect = __webpack_require__(35);
 
 var _reactSelect2 = _interopRequireDefault(_reactSelect);
 
-__webpack_require__(350);
+__webpack_require__(351);
 
 __webpack_require__(39);
 
@@ -26004,7 +26008,7 @@ var _MenuMobile = __webpack_require__(28);
 
 var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
-var _reactInputMask = __webpack_require__(294);
+var _reactInputMask = __webpack_require__(295);
 
 var _reactInputMask2 = _interopRequireDefault(_reactInputMask);
 
@@ -26460,11 +26464,11 @@ var _fileTextO = __webpack_require__(289);
 
 var _fileTextO2 = _interopRequireDefault(_fileTextO);
 
-var _mobile = __webpack_require__(290);
+var _mobile = __webpack_require__(291);
 
 var _mobile2 = _interopRequireDefault(_mobile);
 
-var _computer = __webpack_require__(291);
+var _computer = __webpack_require__(292);
 
 var _computer2 = _interopRequireDefault(_computer);
 
@@ -27420,7 +27424,7 @@ var _reactDom = __webpack_require__(85);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _redux = __webpack_require__(58);
+var _redux = __webpack_require__(59);
 
 var _reactRedux = __webpack_require__(8);
 
@@ -27468,7 +27472,7 @@ exports = module.exports = __webpack_require__(41)(undefined);
 
 
 // module
-exports.push([module.i, "@media (max-width: 1980px) {\n    .container {\n        width: 70%;\n    }\n}\n@media (max-width: 1650px) {\n    .container {\n        width: 80%;\n    }\n}\n@media (max-width: 1300px) {\n    .container {\n        width: 95%;\n    }\n}\n@media (max-width: 410px) {\n    .container {\n        width: 98%;\n        padding-left: 5px;\n        padding-right: 5px;\n    }\n}\n@media (max-width: 767px) {\n    .personal-container form {\n        flex-direction: column;\n        justify-content: flex-start;\n    }\n}\n/*адаптив для меню,навигации*/\n@media (max-width: 767px) {\n    .mob-nav-text {\n        display: none;\n    }\n}\n@media (max-width: 1030px) {\n    .category-item {\n        width: calc(100% / 3 - 10px);\n    }\n}\n@media (max-width: 815px) {\n    .category-item {\n        width: calc(100% / 2 - 10px);\n    }\n}\n@media (max-width: 615px) {\n    .category-item {\n        width: calc(100% / 1 - 25%);\n    }\n    .order-number {\n        width: 100px;\n    }\n    .category-item__price-measure span {\n        font-size: 16px;\n    }\n}\n@media (max-width: 475px) {\n    .category-item {\n        width: calc(100% / 1 - 10px);\n    }\n}\n@media (max-width: 390px) {\n    .bread-crumbs-link {\n        font-size: 18px;\n    }\n    .bread-crumbs-on-page {\n        font-size: 18px;\n    }\n    .bread-crumbs-circle {\n        width: 8px;\n        height: 8px;\n    }\n    .order-number {\n        width: 100px;\n    }\n    .category-item__price-measure span {\n        font-size: 16px;\n    }\n}\n@media (max-width: 645px) {\n    .register-button {\n        width: 100% !important;\n    }\n    .person-success-button-div {\n        text-align: center;\n    }\n    .for-mob-nav-elem {\n        width: 90%;\n    }\n}\n@media (min-width: 768px) {\n    .popup_mob-nav-elem {\n        display: none;\n    }\n}\n@media (max-width: 767px) {\n    .customer-data-container {\n        width: 100%;\n    }\n    .menu__item--basket__amount {\n        top: 4px;\n        right: 62px;\n    }\n    .navbar-header {\n    display: none;\n    }\n    .mob-nav-text {\n        display: inline;\n    }\n    #mob-www-logo {\n        display: inline;\n    }\n    .mobile-nav-bar-1 {\n        display: block;\n     }\n\n    .mobile-nav-bar-2 {\n        display: none;\n    }\n    .navbar-default {\n        /*background: #DCDCDC;*/\n        border-radius: 0;\n    }\n    .mobile-nav-head {\n        height: 30px;\n        margin-top: 11px;\n        padding: 3px;\n    }\n    .mob-right {\n        float: right;\n    }\n    .mob-nav-elem {\n        display: inline-block;\n        padding: 3px;\n        transition: all .3s ease-in;\n    }\n    .mob-nav-elem:hover {\n        cursor: pointer;\n    }\n    .mob-nav-elem-active {\n        transform: rotate(180deg);\n    }\n    .mob-rectangle {\n        width: 20px;\n        height: 3px;\n        background: #696969;\n        margin-bottom: 3px;\n    }\n    .mob-menu-right {\n        margin-top: 1px;\n        font-size: 17px;\n        float: right;\n        margin-right: 20px;\n        color: #696969;\n    }\n    .mob-menu-right:hover {\n        cursor: pointer;\n        color: #333;\n    }\n    h2 {\n        font-size: 24px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 320px);\n        }\n    }\n    .modal-animation__item span:nth-child(3) {\n        right: 0;\n    }\n}\n\n@media (max-width: 600px) {\n    .lesson-theme {\n        max-width: 60%;\n    }\n    .modal-animation__item span:nth-child(2) svg {\n        height: 45px;\n        width: 45px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 100px;\n        width: 100px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 270px);\n        }\n    }\n    .modal-animation__item {\n        padding: 40px 0;\n    }\n    /*Корзина*/\n    .cart-scroll-adaptive::-webkit-scrollbar {\n        width: 6px;\n        height: 6px;\n        background: #f0f0f0;\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-track {\n        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.2);\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-thumb {\n        background-color: #D3D3D3;\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-thumb:hover {\n        background-color: #808080;\n    }\n    .cart-scroll-adaptive {\n        overflow-x: scroll;\n        /*white-space: nowrap;*/\n    }\n    .flex-box-between {\n        flex-direction: column;\n    }\n    .flex-box-between div {\n        flex-direction: column !important;\n    }\n    .flex-box-between div {\n        margin-top: 10px;\n    }\n    .cart-products-table__cart {\n        width: 533px;\n    }\n    .cart-comment {\n        width: 520px;\n    }\n    .cart_total {\n        margin: 0 !important;\n        font-size: 18px;\n        width: 533px !important;\n    }\n    .quota-style {\n        width: 533px !important;\n        flex-direction: column !important;\n        align-items: left !important;\n    }\n    .quota-style div {\n        margin-left: 0 !important;\n    }\n    .scroll-to-error {\n        white-space: nowrap !important;\n    }\n}\n\n/*@media (max-width: 520px) {*/\n    /*.cart-products-table__cart {*/\n        /*width: 533px !important;*/\n    /*}*/\n/*}*/\n@media (max-width: 500px) {\n    .modal-animation__item span:nth-child(2) svg {\n        height: 35px;\n        width: 35px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 80px;\n        width: 80px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 225px);\n        }\n    }\n}\n@media (max-width: 440px) {\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 190px);\n        }\n    }\n    .modal-animation__item span:nth-child(2) svg {\n        height: 30px;\n        width: 30px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 70px;\n        width: 70px;\n    }\n}\n/*Блок с заданиями*/\n@media (max-width: 900px) {\n    .block-lesson {\n        width: 47%;\n    }\n}\n@media (max-width: 571px) {\n    .order-filter-main {\n        flex-direction: column;\n    }\n    .order-filds-label-input {\n        width: 100%;\n    }\n    .order-filds-label-input:nth-child(2) {\n        width: 100%;\n    }\n    .order-instruments {\n        flex-direction: column;\n    }\n    .Select.margin-right-10 {\n        margin: 0;\n    }\n    .order-filds-label-input:nth-child(3) {\n        width: 100%;\n    }\n}\n/* скроллбар блока orders-item-----------------*/\n.orders-item::-webkit-scrollbar {\n    width: 6px;\n    height: 6px;\n    background: #f0f0f0;\n}\n.orders-item::-webkit-scrollbar-track {\n    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.2);\n}\n.orders-item::-webkit-scrollbar-thumb {\n    background-color: #D3D3D3;\n}\n.orders-item::-webkit-scrollbar-thumb:hover {\n    background-color: #808080;\n}\n/*КОНЕЦ сроллбара--------------------------------------*/\n@media (max-width: 570px) {\n    .orders-item {\n        overflow-x: scroll;\n    }\n    .cart-products-table__order {\n        width: 456px !important;\n    }\n    .order-instruments {\n        white-space: nowrap;\n        width: 456px !important;\n    }\n    .order_total {\n        margin: 0 !important;\n        white-space: nowrap;\n        width: 456px !important;\n    }\n}\n\n@media (max-width: 520px) {\n.for-mob-nav-elem {\n    width: 90%;\n}\n}\n@media (max-width: 500px) {\n    /*.h1 {*/\n        /*font-size: 14px !important;*/\n    /*}*/\n}\n@media (min-width: 767px) {\n    .modal-dialog-success {\n        right: 5%;\n    }\n}\n@media (min-width: 1300px) {\n    .modal-dialog-success {\n        right: 11%;\n    }\n}\n@media (min-width: 1650px) {\n    .modal-dialog-success {\n        right: 16%;\n    }\n}\n@media (max-width: 767px) {\n    .modal-dialog-success {\n        right: 6%;\n    }\n}\n@media (max-width: 500px) {\n    .modal-dialog-success {\n        right: 7%;\n    }\n}\n@media (max-width: 400px) {\n    .modal-dialog-success {\n        width: 240px;\n    }\n    .modal-header-success {\n        padding: 9px;\n    }\n    .modal-title {\n        font-size: 15px;\n    }\n}\n/* Таблица с продуктами */\n@media (max-width: 1050px) {\n    .table-30-procent {\n        width: 50%;\n    }\n    .table-40-procent-td {\n        font-size: 16px;\n    }\n}\n@media (max-width: 870px) {\n    .cart-product-image {\n        display: none;\n    }\n    td {\n        font-weight: normal;\n        font-size: 15px;\n    }\n    .table-40-procent-td {\n        font-weight: normal;\n        font-size: 15px;\n        text-align: center;\n    }\n    .order_total {\n        font-size: 20px;\n    }\n}\n@media (max-width: 690px) {\n    th {\n        font-size: 14px;\n        font-weight: normal;\n    }\n    .table-25-procent {\n        width: 21%;\n    }\n    td {\n        font-weight: normal;\n        font-size: 14px;\n    }\n    .table-40-procent-td {\n        font-size: 14px;\n    }\n}\n@media (max-width: 530px) {\n    .order_total {\n        font-size: 18px;\n    }\n    .for-mob-nav-elem {\n        width: 89%;\n    }\n}\n@media (max-width: 410px) {\n    .for-mob-nav-elem {\n        width: 96%;\n    }\n}\n/* Главная */\n@media (max-width: 980px) {\n    .xf-you-love__list {\n        margin: 30px 0;\n    }\n}\n@media (max-width: 900px) {\n    .xf-you-love__list {\n        justify-content: space-between;\n    }\n}\n@media (max-width: 820px) {\n    .xf-you-love__list>div {\n        flex-basis: 47% !important;\n    }\n}\n@media (max-width: 700px) {\n    .xf-wrapper {\n        padding-top: 30px;\n    }\n    .xf-you-love__item {\n        font-size: 15px;\n        margin-bottom: 13px;\n    }\n    .xf-you-love__list>div {\n        flex-basis: 45% !important;\n    }\n    .xf-you-love__header {\n        font-size: 35px;\n    }\n}\n@media (max-width: 490px) {\n    .xf-wrapper {\n        padding-top: 20px;\n    }\n    .xf-you-love__list {\n        display: block;\n    }\n    .xf-you-love__header {\n        font-size: 30px;\n    }\n    .xf-you-love__subheader {\n        font-size: 18px;\n    }\n}\n@media (max-width: 380px) {\n    .xf-wrapper {\n        padding-top: 15px;\n    }\n    .xf-you-love__header {\n        font-size: 25px;\n    }\n    .xf-you-love__subheader {\n        font-size: 17px;\n    }\n}\n/*****ADAPTIVE for footer******/\n@media (min-width: 1025px) {\n    .footer__social__item:hover {\n        opacity: 0.8; } }\n\n@media (max-width: 1023px) {\n    .menu--footer {\n        bottom: 70px;\n        padding: 45px 0 0 0; }\n    .b-footer .b-search {\n        bottom: 0; }\n    /*.footer__copy {*/\n        /*margin-left: 35px; }*/\n    .footer__social {\n        margin-right: 35px; } }\n\n@media (max-width: 767px) {\n    .for-main-desc-block {\n        width: 140px;\n    }\n    #blok_one {\n        padding-top: 3px;\n        padding-bottom: 3px;\n    }\n    #blok_one div {\n        font-size: 14px;\n    }\n    .b-menu {\n        height: auto;\n    }\n\n    .menu_footer {\n        flex-wrap: wrap;\n        padding: 15px 0 15px 15px;\n    }\n\n    .footer__copy {\n        padding-left: 15px;\n        margin-left: 10px !important;\n        float: none;\n    }\n\n    .footer__social {\n        float: none;\n        padding: 10px 0 10px 25px;\n    }\n\n    .menu__item_footer {\n        height: auto;\n    }\n\n    .menu__item__link_footer {\n        line-height: 1.2;\n        font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n        text-decoration: underline;\n        font-size: 14px;\n        padding: 5px 0;\n\n    }\n    .b-footer__bottom {\n        line-height: 1 !important;\n        height: 40px\n    }\n    #blok1 {\n        font-size: 13px;\n    }\n    #blok2 {\n        font-size: 13px;\n        padding: 7px;\n    }\n    #blok3 {\n        padding-top: 4px;\n        padding-bottom: 4px;\n    }\n    .close-button {\n        font-size: 11px;\n    }\n}\n/***** END! ADAPTIVE for footer END!******/\n@media (max-width: 565px) {\n    .contacts-item span {\n        font-size: 13px;\n    }\n    .contacts-item {\n        margin-right: 20px;\n    }\n    .popup_mob-nav-elem {\n        top: 105px;\n    }\n}\n@media (max-width: 500px) {\n    .contacts-item span {\n        font-size: 12px;\n    }\n}\n@media (max-width: 470px) {\n    .contacts-item {\n        margin-right: 10px;\n    }\n}\n@media (max-width: 435px) {\n    .contacts-item {\n        margin-right: 5px;\n    }\n}\n@media (max-width: 420px) {\n    .contacts-main div:nth-child(2) {\n        display: none;\n    }\n}", ""]);
+exports.push([module.i, "@media (max-width: 1980px) {\n    .container {\n        width: 70%;\n    }\n}\n@media (max-width: 1650px) {\n    .container {\n        width: 80%;\n    }\n}\n@media (max-width: 1300px) {\n    .container {\n        width: 95%;\n    }\n}\n@media (max-width: 410px) {\n    .container {\n        width: 98%;\n        padding-left: 5px;\n        padding-right: 5px;\n    }\n}\n@media (max-width: 767px) {\n    .personal-container form {\n        flex-direction: column;\n        justify-content: flex-start;\n    }\n}\n/*адаптив для меню,навигации*/\n@media (max-width: 767px) {\n    .mob-nav-text {\n        display: none;\n    }\n}\n@media (max-width: 1030px) {\n    .category-item {\n        width: calc(100% / 3 - 10px);\n    }\n}\n@media (max-width: 815px) {\n    .category-item {\n        width: calc(100% / 2 - 10px);\n    }\n}\n@media (max-width: 615px) {\n    .category-item {\n        width: calc(100% / 1 - 25%);\n    }\n    .order-number {\n        width: 100px;\n    }\n    .category-item__price-measure span {\n        font-size: 16px;\n    }\n}\n@media (max-width: 475px) {\n    .category-item {\n        width: calc(100% / 1 - 10px);\n    }\n}\n@media (max-width: 390px) {\n    .bread-crumbs-link {\n        font-size: 18px;\n    }\n    .bread-crumbs-on-page {\n        font-size: 18px;\n    }\n    .bread-crumbs-circle {\n        width: 8px;\n        height: 8px;\n    }\n    .order-number {\n        width: 100px;\n    }\n    .category-item__price-measure span {\n        font-size: 16px;\n    }\n}\n@media (max-width: 645px) {\n    .register-button {\n        width: 100% !important;\n    }\n    .person-success-button-div {\n        text-align: center;\n    }\n    .for-mob-nav-elem {\n        width: 90%;\n    }\n}\n@media (min-width: 768px) {\n    .popup_mob-nav-elem {\n        display: none;\n    }\n}\n@media (max-width: 767px) {\n    .customer-data-container {\n        width: 100%;\n    }\n    .menu__item--basket__amount {\n        top: 4px;\n        right: 62px;\n    }\n    .navbar-header {\n    display: none;\n    }\n    .mob-nav-text {\n        display: inline;\n    }\n    #mob-www-logo {\n        display: inline;\n    }\n    .mobile-nav-bar-1 {\n        display: block;\n     }\n\n    .mobile-nav-bar-2 {\n        display: none;\n    }\n    .navbar-default {\n        /*background: #DCDCDC;*/\n        border-radius: 0;\n    }\n    .mobile-nav-head {\n        height: 30px;\n        margin-top: 11px;\n        padding: 3px;\n    }\n    .mob-right {\n        float: right;\n    }\n    .mob-nav-elem {\n        display: inline-block;\n        padding: 3px;\n        transition: all .3s ease-in;\n    }\n    .mob-nav-elem:hover {\n        cursor: pointer;\n    }\n    .mob-nav-elem-active {\n        transform: rotate(180deg);\n    }\n    .mob-rectangle {\n        width: 20px;\n        height: 3px;\n        background: #696969;\n        margin-bottom: 3px;\n    }\n    .mob-menu-right {\n        margin-top: 1px;\n        font-size: 17px;\n        float: right;\n        margin-right: 20px;\n        color: #696969;\n    }\n    .mob-menu-right:hover {\n        cursor: pointer;\n        color: #333;\n    }\n    h2 {\n        font-size: 24px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 320px);\n        }\n    }\n    .modal-animation__item span:nth-child(3) {\n        right: 0;\n    }\n}\n\n@media (max-width: 600px) {\n    .lesson-theme {\n        max-width: 60%;\n    }\n    .modal-animation__item span:nth-child(2) svg {\n        height: 45px;\n        width: 45px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 100px;\n        width: 100px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 270px);\n        }\n    }\n    .modal-animation__item {\n        padding: 40px 0;\n    }\n    /*Корзина*/\n    .cart-error-mobile {\n        margin-top: 10px;\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar {\n        width: 6px;\n        height: 6px;\n        background: #f0f0f0;\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-track {\n        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.2);\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-thumb {\n        background-color: #D3D3D3;\n    }\n    .cart-scroll-adaptive::-webkit-scrollbar-thumb:hover {\n        background-color: #808080;\n    }\n    .cart-scroll-adaptive {\n        overflow-x: scroll;\n        /*white-space: nowrap;*/\n    }\n    .flex-box-between {\n        flex-direction: column;\n    }\n    .flex-box-between div {\n        flex-direction: column !important;\n    }\n    .flex-box-between div {\n        margin-top: 10px;\n    }\n    .cart-products-table__cart {\n        width: 533px;\n    }\n    .cart-comment {\n        width: 520px;\n    }\n    .cart_total {\n        margin: 0 !important;\n        font-size: 18px;\n        width: 533px !important;\n    }\n    .quota-style {\n        width: 533px !important;\n        flex-direction: column !important;\n        align-items: left !important;\n    }\n    .quota-style div {\n        margin-left: 0 !important;\n    }\n    .scroll-to-error {\n        white-space: nowrap !important;\n    }\n}\n\n/*@media (max-width: 520px) {*/\n    /*.cart-products-table__cart {*/\n        /*width: 533px !important;*/\n    /*}*/\n/*}*/\n@media (max-width: 500px) {\n    .modal-animation__item span:nth-child(2) svg {\n        height: 35px;\n        width: 35px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 80px;\n        width: 80px;\n    }\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 225px);\n        }\n    }\n}\n@media (max-width: 440px) {\n    @keyframes transitionTiming {\n        0% {\n            left:0;\n        }\n        100% {\n            left:calc(100% - 190px);\n        }\n    }\n    .modal-animation__item span:nth-child(2) svg {\n        height: 30px;\n        width: 30px;\n    }\n    .modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n        height: 70px;\n        width: 70px;\n    }\n}\n/*Блок с заданиями*/\n@media (max-width: 900px) {\n    .block-lesson {\n        width: 47%;\n    }\n}\n@media (max-width: 571px) {\n    .order-filter-main {\n        flex-direction: column;\n    }\n    .order-filds-label-input {\n        width: 100%;\n    }\n    .order-filds-label-input:nth-child(2) {\n        width: 100%;\n    }\n    .order-instruments {\n        flex-direction: column;\n    }\n    .Select.margin-right-10 {\n        margin: 0;\n    }\n    .order-filds-label-input:nth-child(3) {\n        width: 100%;\n    }\n}\n/* скроллбар блока orders-item-----------------*/\n.orders-item::-webkit-scrollbar {\n    width: 6px;\n    height: 6px;\n    background: #f0f0f0;\n}\n.orders-item::-webkit-scrollbar-track {\n    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.2);\n}\n.orders-item::-webkit-scrollbar-thumb {\n    background-color: #D3D3D3;\n}\n.orders-item::-webkit-scrollbar-thumb:hover {\n    background-color: #808080;\n}\n/*КОНЕЦ сроллбара--------------------------------------*/\n@media (max-width: 555px) {\n    .orders-item {\n        overflow-x: scroll;\n    }\n    .cart-products-table__order {\n        width: 456px !important;\n    }\n    .order-instruments {\n        white-space: nowrap;\n        width: 456px !important;\n    }\n    .order_total {\n        margin: 0 !important;\n        white-space: nowrap;\n        width: 456px !important;\n    }\n}\n\n@media (max-width: 520px) {\n.for-mob-nav-elem {\n    width: 90%;\n}\n}\n@media (max-width: 500px) {\n    /*.h1 {*/\n        /*font-size: 14px !important;*/\n    /*}*/\n}\n@media (min-width: 767px) {\n    .modal-dialog-success {\n        right: 5%;\n    }\n}\n@media (min-width: 1300px) {\n    .modal-dialog-success {\n        right: 11%;\n    }\n}\n@media (min-width: 1650px) {\n    .modal-dialog-success {\n        right: 16%;\n    }\n}\n@media (max-width: 767px) {\n    .modal-dialog-success {\n        right: 6%;\n    }\n}\n@media (max-width: 500px) {\n    .modal-dialog-success {\n        right: 7%;\n    }\n}\n@media (max-width: 400px) {\n    .modal-dialog-success {\n        width: 240px;\n    }\n    .modal-header-success {\n        padding: 9px;\n    }\n    .modal-title {\n        font-size: 15px;\n    }\n}\n/* Таблица с продуктами */\n@media (max-width: 1050px) {\n    .table-30-procent {\n        width: 50%;\n    }\n    .table-40-procent-td {\n        font-size: 16px;\n    }\n}\n@media (max-width: 870px) {\n    .cart-product-image {\n        display: none;\n    }\n    td {\n        font-weight: normal;\n        font-size: 15px;\n    }\n    .table-40-procent-td {\n        font-weight: normal;\n        font-size: 15px;\n        text-align: center;\n    }\n    .order_total {\n        font-size: 20px;\n    }\n}\n@media (max-width: 690px) {\n    th {\n        font-size: 14px;\n        font-weight: normal;\n    }\n    .table-25-procent {\n        width: 21%;\n    }\n    td {\n        font-weight: normal;\n        font-size: 14px;\n    }\n    .table-40-procent-td {\n        font-size: 14px;\n    }\n}\n@media (max-width: 530px) {\n    .order_total {\n        font-size: 18px;\n    }\n    .for-mob-nav-elem {\n        width: 89%;\n    }\n}\n@media (max-width: 410px) {\n    .for-mob-nav-elem {\n        width: 96%;\n    }\n}\n/* Главная */\n@media (max-width: 980px) {\n    .xf-you-love__list {\n        margin: 30px 0;\n    }\n}\n@media (max-width: 900px) {\n    .xf-you-love__list {\n        justify-content: space-between;\n    }\n}\n@media (max-width: 820px) {\n    .xf-you-love__list>div {\n        flex-basis: 47% !important;\n    }\n}\n@media (max-width: 700px) {\n    .xf-wrapper {\n        padding-top: 30px;\n    }\n    .xf-you-love__item {\n        font-size: 15px;\n        margin-bottom: 13px;\n    }\n    .xf-you-love__list>div {\n        flex-basis: 45% !important;\n    }\n    .xf-you-love__header {\n        font-size: 35px;\n    }\n}\n@media (max-width: 490px) {\n    .xf-wrapper {\n        padding-top: 20px;\n    }\n    .xf-you-love__list {\n        display: block;\n    }\n    .xf-you-love__header {\n        font-size: 30px;\n    }\n    .xf-you-love__subheader {\n        font-size: 18px;\n    }\n}\n@media (max-width: 380px) {\n    .xf-wrapper {\n        padding-top: 15px;\n    }\n    .xf-you-love__header {\n        font-size: 25px;\n    }\n    .xf-you-love__subheader {\n        font-size: 17px;\n    }\n}\n/*****ADAPTIVE for footer******/\n@media (min-width: 1025px) {\n    .footer__social__item:hover {\n        opacity: 0.8; } }\n\n@media (max-width: 1023px) {\n    .menu--footer {\n        bottom: 70px;\n        padding: 45px 0 0 0; }\n    .b-footer .b-search {\n        bottom: 0; }\n    /*.footer__copy {*/\n        /*margin-left: 35px; }*/\n    .footer__social {\n        margin-right: 35px; } }\n\n@media (max-width: 767px) {\n    .for-main-desc-block {\n        width: 140px;\n    }\n    #blok_one {\n        padding-top: 3px;\n        padding-bottom: 3px;\n    }\n    #blok_one div {\n        font-size: 14px;\n    }\n    .b-menu {\n        height: auto;\n    }\n\n    .menu_footer {\n        flex-wrap: wrap;\n        padding: 15px 0 15px 15px;\n    }\n\n    .footer__copy {\n        padding-left: 15px;\n        margin-left: 10px !important;\n        float: none;\n    }\n\n    .footer__social {\n        float: none;\n        padding: 10px 0 10px 25px;\n    }\n\n    .menu__item_footer {\n        height: auto;\n    }\n\n    .menu__item__link_footer {\n        line-height: 1.2;\n        font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n        text-decoration: underline;\n        font-size: 14px;\n        padding: 5px 0;\n\n    }\n    .b-footer__bottom {\n        line-height: 1 !important;\n        height: 40px\n    }\n    #blok1 {\n        font-size: 13px;\n    }\n    #blok2 {\n        font-size: 13px;\n        padding: 7px;\n    }\n    #blok3 {\n        padding-top: 4px;\n        padding-bottom: 4px;\n    }\n    .close-button {\n        font-size: 11px;\n    }\n}\n/***** END! ADAPTIVE for footer END!******/\n@media (max-width: 565px) {\n    .contacts-item span {\n        font-size: 13px;\n    }\n    .contacts-item {\n        margin-right: 20px;\n    }\n    .popup_mob-nav-elem {\n        top: 105px;\n    }\n}\n@media (max-width: 500px) {\n    .contacts-item span {\n        font-size: 12px;\n    }\n}\n@media (max-width: 470px) {\n    .contacts-item {\n        margin-right: 10px;\n    }\n}\n@media (max-width: 435px) {\n    .contacts-item {\n        margin-right: 5px;\n    }\n}\n@media (max-width: 420px) {\n    .contacts-main div:nth-child(2) {\n        display: none;\n    }\n}", ""]);
 
 // exports
 
@@ -27510,7 +27514,7 @@ exports = module.exports = __webpack_require__(41)(undefined);
 
 
 // module
-exports.push([module.i, "/*@font-face {*/\n    /*font-family: CirceRegular; !* Имя шрифта *!*/\n    /*src: url(../fonts/Circe-Regular.ttf); !* Путь к файлу со шрифтом *!*/\n/*}*/\n\nhtml, body {\n    background: #fff;\n    width: 100%;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    /*adaptive*/\n    /*min-width: 320px;*/\n    height: 100%;\n    /*adaptive*/ }\n.container {\n    margin-top: 10px;\n    min-height: 100%;\n}\nh1, h2, h3 {\n    color: steelblue !important;\n    margin: 0 !important;\n}\nhr {\n    border-top: 1px solid #a2a2a2;\n    /*color: steelblue;*/\n    /*background-color: steelblue; !* Цвет линии для браузера Firefox и Opera *!*/\n    /*height: 1px; !* Толщина линии *!*/\n}\n.container-fluid {\n    padding-left: 0px;\n}\n.navigation-li {\n    background-color: #4CAF50;\n}\n.navigation-a {\n    color: #fff;\n}\n.error_message_for_create.fade {\n    display: none\n}\n.error_message_for_create.in {\n    display: block;\n    color: red;\n}\n.show-hide {\n    display: none;\n}\n.show-hide-flex {\n    display: flex;\n}\n.error-border-red {\n    border: 2px solid indianred !important;\n}\n.error-border-red:focus {\n    border: none !important;\n}\n.margin-right-10 {\n    margin-right: 10px !important;\n}\n.flex-box-between {\n    display: flex;\n    justify-content: space-between;\n}\n.margin-off {\n    margin: 0 !important;\n}\n.align-center {\n    text-align: center !important;\n}\n.error-border-red::-webkit-input-placeholder {color: indianred !important;}\n.error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */\n.error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */\n.error-border-red:-ms-input-placeholder      {color: indianred !important;}\n/*Главный контейнер*/\n.main-container {\n    min-height: 100vh;\n    background: #fff;\n    padding: 0 20px;\n    margin-bottom: 20px;\n    /*border: 1px solid #c9c9c9;*/\n    box-shadow: none;\n    /*border-radius: 4px;*/\n    /*box-shadow: 0px 0px 9px -2px rgba(135,135,135,1);*/\n\n}\na {\n    text-decoration: none !important;\n}\n/* ГЛАВНАЯ НАЧАЛО ------------------------------------------------------------------*/\n/* Слайдер */\n.main-slider {\n    display: block;\n    width: 100%;\n}\n@keyframes runSlider {\n    0% {\n        /*transform: scale(0);*/\n        opacity: 0.01;\n    }\n    100% {\n        /*transform: scale(1);*/\n        opacity: 1;\n    }\n}\n.slider-img {\n    width: 100%;\n    animation-name:runSlider;\n    animation-duration: 1.7s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease;\n}\n/*.slider-img:not(:nth-child(1)) {*/\n    /*display: none;*/\n/*}*/\n/* Перечень преимуществ */\n.xf-wrapper {\n    padding-top: 40px;\n    padding-bottom: 20px;\n    position: relative;\n    text-align: center;\n    border-bottom: 1px solid #f7f7f7;\n    display: block;\n}\n.xf-you-love__header {\n    font-size: 42px;\n    margin: 0;\n    line-height: 1.25;\n    font-family: Rotonda,sans-serif;\n    font-weight: 700;\n    color: #333;\n    margin-bottom: 10px;\n}\n.xf-you-love__subheader {\n    font-size: 20px;\n    font-weight: 700;\n    margin: 0;\n}\n.xf-you-love__list {\n    margin: 30px 40px 0;\n    display: flex;\n    list-style: none;\n    padding: 0;\n    text-align: left;\n    -webkit-box-pack: justify;\n    -ms-flex-pack: justify;\n    justify-content: space-around;\n}\n.xf-you-love__list>div:first-child {\n    flex-basis: 45%;\n    box-sizing: border-box;\n}\n.xf-you-love__item {\n    font-size: 16px;\n    font-family: GothicBook,sans-serif;\n    margin-bottom: 16px;\n    display: flex;\n    box-sizing: border-box;\n    text-align: -webkit-match-parent;\n}\n.xf-you-love__item:before {\n    content: '';\n    background: url(/images/list-bullet.svg) 0 no-repeat;\n    width: 10px;\n    height: 8px;\n    margin-right: 10px;\n    margin-top: 5px;\n    -ms-flex-negative: 0;\n    flex-shrink: 0;\n}\n/* ГЛАВНАЯ КОНЕЦ ------------------------------------------------------------------*/\n\n/*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/\n/*Главный див для форм входа и регистрации*/\n.register-container-main {\n    display: flex;\n    justify-content: center;\n}\n.register-container {\n    display: flex;\n    width: 50%;\n    flex-direction: column;\n}\n/*Голова формы(верхняя часть формы с загруглёнными краями и синим фоном)*/\n.register-header {\n    border: 1px solid #808080;\n    background: steelblue;\n    color: white;\n    border-radius: 8px 8px 0 0;\n    padding: 10px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n/*Для тега <p>, который находится в голове формы, убираем внешние отступы*/\n.register-header p {\n    margin: 0;\n}\n.main-text {\n    font-size: 18px;\n}\n.explain-text {\n    font-size: 13px;\n}\n/*Тело формы, где поля ввода*/\n.register-filds {\n    padding: 30px 15px 0 15px;\n    display: flex;\n    flex-direction: column;\n    border: 1px solid #808080;\n    border-top: 0;\n    justify-content: flex-start;\n    background: #fff;\n}\n/*Див для меток(label) и их инпутов*/\n.register-filds-label-input {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n/*Див для чекбокса и кнопки*/\n.register-filds-elements {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: flex-start;\n    margin-bottom: 10px;\n}\n.register-filds-label {\n    width: 120px;\n    padding-right: 10px;\n    text-align: right;\n    /*letter-spacing: 1px;*/\n}\n.register-filds-elements div {\n    width: 100%;\n}\n.customer-data-container input,.register-filds input {\n    width: 100%;\n    height: 30px;\n    padding-left: 5px;\n    border-radius: 4px;\n    border: 1px solid #a2a2a2;\n    /*font-style: italic;*/\n}\n.customer-data-container input:focus, .register-filds input:focus {\n    outline: none;\n    border: 1px solid #696969;\n}\n/*Кнопки*/\n.middle-button {\n    border-radius: 2px;\n    border: 0;\n    background: #fff;\n    color: #000;\n    text-align: center;\n    padding: 2px 15px 2px 15px;\n    margin-right: 15px;\n}\n.middle-button:hover {\n    cursor: pointer;\n    background-color: #f3f3f3;\n}\n.middle-button:active {\n    padding: 1px 14px 1px 14px;\n}\n.login-button {\n    margin-right: 15px;\n    border-radius: 2px;\n    /*border: 1px solid #a2a2a2;*/\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    width: 120px !important;float: left;\n}\n.login-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.login-button:active {\n    background: #1b3447;\n}\n.login-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.register-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    /*letter-spacing: 1px;*/\n}\n.register-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.register-button:active {\n    background: #1b3447;\n}\n.register-button:focus {\n    color: transparent;\n    text-shadow: 0 0 0 white;\n    outline: none;\n}\n.register-button p {\n    margin: 0;\n    /*letter-spacing: 1px;*/\n}\n.recover-password {\n    vertical-align: sub;\n}\n/*Кнопка отправить заказ*/\n.cart-button {\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid #4CAF50;\n    background: #4CAF50;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    font-weight: bold;\n}\n.cart-button:hover {\n    cursor: pointer;\n    background: #fff;\n    color: #4CAF50;\n}\n.cart-button:active {\n    background: #368e39;\n    color: #fff\n}\n/*Кнопка очистить корзину*/\n.cart-button-clear {\n    width: 165px;\n    border-radius: 2px;\n    border: 1px solid indianred;\n    background: indianred;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    margin-right: 15px;\n    font-weight: bold;\n}\n.cart-button-clear:hover {\n    cursor: pointer;\n    background: #fff;\n    color: indianred;\n}\n.cart-button-clear:active {\n    background: #a92525;\n    color: #fff\n}\n.success-button {\n    margin-top: 40px;\n    display: inline-block;\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid #4CAF50;\n    background: #4CAF50;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    font-weight: bold;\n}\n.success-button p {\n    margin: 0;\n}\n.success-button:hover {\n    cursor: pointer;\n    background: #fff;\n    color: #4CAF50;\n}\n.success-button:active {\n    background: #368e39;\n    color: #fff\n}\n.cart-comment {\n    width: 100%;\n    margin-bottom: 20px;\n    padding: 10px;\n    border: 1px solid #c1c1c1;\n    border-radius: 3px;\n}\n.cart-comment:hover {\n    border: 1px solid #a1a1a1;\n}\n/*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/\n\n/*CHECKBOX НАЧАЛО------------------------------------------------------------------*/\ninput[type=checkbox] + label {\n    float: left;\n}\ninput[type=\"checkbox\"] {\n    display:none;\n}\ninput[type=\"checkbox\"] + label span {\n    display:inline-block;\n    width:19px;\n    height:19px;\n    margin:-1px 4px 0 0;\n    vertical-align:middle;\n    background:url(" + __webpack_require__(96) + ") left top no-repeat;\n    cursor:pointer;\n}\ninput[type=\"checkbox\"]:checked + label span {\n    background:url(" + __webpack_require__(96) + ") -19px top no-repeat;\n}\n/*CHECKBOX КОНЕЦ------------------------------------------------------------------*/\n\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/\n.personal-container form {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    width: 100%;\n}\n.image-container {\n    width: 20%;\n    margin-top: 4px;\n}\n.customer-data-container {\n    width: 48%;\n    /*padding: 0 20px 0 20px;*/\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*background: #fff;*/\n}\n.customer-image {\n    margin-bottom: 15px;\n    width: 99%;\n    /*height: 250px;*/\n    border: 1px solid #808080;\n    background: #ffffff;\n}\n.customer-image img {\n    max-width:100%;\n    max-height:100%;\n}\n/*Див для меток(label) и их инпутов*/\n.personal-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.personal-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.personal-explain-text {\n    font-size: 14px;\n    color: steelblue;\n}\n/*Инпут для вставки фото*/\n.customer-image-button {\n    position: relative;\n}\n.customer-image-button #personal-photo {\n    cursor: pointer;\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    height: 100%;\n    -moz-opacity: 0;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    z-index:1;\n}\n.personal-select-birdthdate-group {\n    display: flex;\n    justify-content: flex-start;\n}\n.personal-select-birdthdate-group .Select:nth-child(1) {\n    width: 20%;\n}\n.personal-select-birdthdate-group .Select:nth-child(2) {\n    width: 50%;\n}\n.personal-select-birdthdate-group .Select:nth-child(3) {\n    width: 30%;\n}\n.person-success-button-div {\n    text-align: right;\n}\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. НАЧАЛО---------------------------------------------------*/\n.category-head {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.bread-crumbs-circle {\n    width: 10px;\n    height: 10px;\n    background: #555;\n    -moz-border-radius: 50px;\n    -webkit-border-radius: 50px;\n    border-radius: 50px;\n    margin: 0 10px;\n}\n.bread-crumbs-link {\n    color: #555 !important;\n}\n.bread-crumbs-link:hover {\n    color: #222 !important;\n    text-decoration: underline !important;\n}\n.bread-crumbs-on-page {\n\n}\n@keyframes pageLoadOpacity {\n    0% {\n        opacity: 0.01;\n    }\n    100% {\n        opacity: 1;\n    }\n}\n@keyframes popupLoadScale {\n    0% {\n        transform: scale(0);\n        opacity: 0.01;\n    }\n    100% {\n        transform: scale(1);\n        opacity: 1;\n    }\n}\n.animation-popup-load-fast {\n    animation-name:popupLoadScale;\n    animation-duration: .3s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease;\n}\n.animation-page-load-medium {\n    animation-name:pageLoadOpacity;\n    animation-duration: .5s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease-in;\n}\n.animation-page-load-long {\n    animation-name:pageLoadOpacity;\n    animation-duration: 1s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease-in;\n    /*animation-direction: alternate;*/\n}\n.category-all {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n    flex-wrap: wrap;\n    margin: 5px -5px; }\n.category-item {\n    transition: box-shadow .4s;\n    background: white;\n    border: 1px solid #d8d8d8;\n    width: calc(100% / 4 - 10px);\n    min-width: 0;\n    margin: 10px 5px 10px; }\n.category-item:hover {\n    -webkit-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    -moz-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n}\n.category-item:hover .category-item__name {\n    color: #000;\n}\n.category-item__img {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 20px;\n}\n/*.category-item__img img {*/\n    /*transition: 1.3s;*/\n/*}*/\n/*.category-item__img img:hover {*/\n    /*transform: scale(1.1);*/\n/*}*/\n.category-item__name {\n    padding: 10px;\n    display: table-cell;\n    margin-bottom: 14px;\n    line-height: 20px;\n    vertical-align: inherit;\n    color: #444;\n    font-size: 18px;\n}\n.add-to-cart-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 10px 4px 10px;\n    font-weight: 700;\n    margin-bottom: 20px;\n}\n.add-to-cart-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.add-to-cart-button:active {\n    background: #1b3447;\n}\n.add-to-cart-button p {\n    margin: 0;\n}\n.category-item__price-measure {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 100%;\n    padding: 5px 0 15px 0;\n}\n.category-item__price-measure span {\n    font-size: 15px;\n    font-weight: bold;\n    color: #3c763d;\n}\n.category-item__price-measure select {\n    outline: none;\n    color: #fff;\n    background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);\n    background-color: #3c763d;\n    -moz-border-radius: 20px;\n    border-radius: 20px;\n    padding-left: 8px;\n    -webkit-appearance: button;\n    -webkit-user-select: none;\n    background-position: 80% center;\n    background-repeat: no-repeat;\n    border: none;\n    font-size: inherit;\n    margin-right: 4px;\n    width: 50px;\n}\n.category-item__price-measure:hover select {\n    cursor: pointer;\n}\n\n/*.Количество продуктов */\n.order-number {\n    position: relative;\n    width: 85px;\n    height: 32px;\n    margin: 0 auto;\n    border: 2px solid #3c763d;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field {\n    height: 100%;\n    padding: 0 26px;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field input {\n    font-weight: 900;\n    display: block;\n    width: 100%;\n    height: 100%;\n    color: #3c763d;\n    font-size: 13px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    text-align: center;\n    -moz-appearance: textfield;\n    /*background: #fff;*/\n    background-color: transparent;\n    outline: none;\n    border: 0;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box; }\n.order-number__field input::-webkit-inner-spin-button, .order-number__field input::-webkit-outer-spin-button {\n    margin: 0;\n    /* в каких-то браузерах присутствует отступ */\n    -webkit-appearance: none; }\n.order-number__spin.minus {\n    left: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.minus:after {\n    background-position: 0 0;\n}\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n.order-number__spin.plus {\n    right: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.plus:after {\n    background-position: 0 -10px;\n}\n\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/\n\n/*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/\n.cart-products-table {\n    margin-top: 20px;\n    border-collapse: collapse;\n    width: 100%;\n}\n.cart-tr-head {\n    background-color: #4CAF50;\n}\n.table-100-procent {\n    width: 100%;\n}\n.table-30-procent {\n    width: 30%;\n}\n.table-25-procent {\n    width: 25%;\n}\n.table-10-procent {\n    width: 10%;\n}\n\ntd {\n    text-align: center;\n    padding: 9px;\n    color: #555;\n    font-weight: 600;\n}\n\ntr:nth-child(even){background-color: #f2f2f2}\n\nth {\n    text-align: center;\n    padding: 18px;\n    color: white;\n}\n.table-40-procent-td {\n    text-align: left;\n}\n.remove-product {\n    color: indianred;\n}\n.remove-product:hover {\n    cursor: pointer;\n    color: firebrick;\n}\n.remove-product:active {\n    color: darkred;\n}\n.cart-product-image {\n    border: 1px solid #999;\n    margin-right: 30px;\n    height: 70px;\n}\n.cart-order__total {\n    color: #999;\n    font-size: 24px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    line-height: 36px;\n    letter-spacing: 6.24px;\n    text-transform: uppercase;\n    text-align: right;\n    margin: 35px 20px; }\n.cart-order__total span {\n    color: #444; }\n/*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/\n/*\n* Меню,навигация\n*/\n.navbar-default {\n    background: #fff !important;\n    border-left: none;\n    border-right: none;\n    -webkit-border-radius: 0;\n    -moz-border-radius: 0;\n    border-radius: 0;\n    box-shadow: none;\n}\n.navbar-nav > li:hover {\n    background: #4CAF50;\n}\n.navbar-default .navbar-nav > li > a {\n    color: #595959;\n}\n.navbar-default .navbar-nav > li > a:hover {\n    color: #fff;\n}\n.mob-nav-text {\n    margin-left: 2px;\n}\n.mobile-nav-bar-1 {\n    display: none;\n}\n.mobile-nav-bar-2 .navbar-nav li {\n    cursor: pointer;\n}\n.navbar-nav li svg {\n    vertical-align: sub !important;\n}\n/*mob-nav-elem---------------------------------------------------------------------------------------------------*/\n.popup_mob-nav-elem {\n    position: absolute;\n    width: 100%;\n    z-index: 200000;\n    top: 111px;\n    left: 0;\n}\n.popup_mob-nav-elem_bg {\n    /*background: transparent;*/\n    background: white;\n    opacity: .5;\n    filter: blur(20px);\n    position:fixed;\n    z-index:1;\n    top:75px;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n.for-mob-nav-elem {\n    position: relative;\n    margin: 0 auto;\n    width: 91%;\n}\n#blok_mob-nav-elem {\n    position: relative;\n    z-index:2;\n    width: 100%;\n    padding-top:5px;\n    padding-bottom:5px;\n    background:#fff;\n    background-color:#fff;\n    /*border:1px solid #f5f5f5;*/\n    border-bottom:1px solid #f5f5f5;\n    -webkit-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    -moz-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n}\n#blok_mob-nav-elem a div {\n    padding-left: 10px;\n    margin: 5px;\n}\n#blok_mob-nav-elem a div p {\n    margin: 0;\n    padding: 5px;\n}\n#blok_mob-nav-elem a {\n    color: #696969;\n    text-decoration: none;\n}\n#blok_mob-nav-elem a:hover {\n    color: #fff;\n}\n#blok_mob-nav-elem div:hover {\n    background: #2e6da4;\n    /*height:100%;*/\n    cursor: pointer;\n}\n.menu__item--basket__amount {\n    position: absolute;\n    top: 9px;\n    right: 2px;\n    width: 16px;\n    height: 15px;\n    color: #fff;\n    font-size: 11px;\n    text-align: center;\n    line-height: 15px;\n    background: #777;\n    -webkit-border-radius: 50%;\n    border-radius: 50%;\n    -webkit-transition: 0.3s ease;\n    transition: 0.3s ease;\n}\n\n/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/\n/*avatar-elem---------------------------------------------------------------------------------------------------*/\n.popup_avatar-elem {\n    position: absolute;\n    width:100%;\n    min-height: 80%;\n    left: 0;\n    top: 26px;\n}\n.popup_avatar-elem_bg {\n    background:rgba(0,0,0,0.5);\n    position:fixed;\n    z-index:1;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n#blok-avatar-elem {\n    position: relative;\n    z-index:2;\n    width: 80%;\n    min-height: 100%;\n    margin: 0 auto;\n    padding: 15px;\n    background:#fff;\n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    border-radius: 5px;\n}\n/*END avatar-elem---------------------------------------------------------------------------------------------------*/\n/*Крестик для мобильного меню -------------------------------------------------------------------------------------*/\n.close-mobile-elem {\n    position: absolute;\n    left: 15px;\n    top: 12px;\n    width: 32px;\n    height: 32px;\n    opacity: 1;\n}\n.close-mobile-elem:hover {\n    opacity: 1;\n}\n.close-mobile-elem:before, .close-mobile-elem:after {\n    position: absolute;\n    content: ' ';\n    height: 25px;\n    width: 3px;\n    background-color: #696969;;\n}\n.close-mobile-elem:before {\n    transform: rotate(45deg);\n}\n.close-mobile-elem:after {\n    transform: rotate(-45deg);\n}\n/*END Крестик для мобильного меню ----------------------------------------------------------------------------------------*/\n\n/*Success Page -------------------------------------------------------------------------------------------------------------*/\n.success-page {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    min-height: calc(100vh - 210px);\n    min-height: -webkit-calc(100vh - 210px);\n    min-height: 270px;\n    max-width: 1280px;\n    padding: 15px;\n    margin: auto;\n    box-sizing: border-box;\n    background: #fff /*url(../images/success-page-bg.jpg) no-repeat center top*/;\n    background-size: auto auto;\n    background-size: cover;\n}\n.success-page__content {\n    max-width: 515px;\n    width: 100%;\n    background: #fff;\n    padding: 25px 15px;\n    text-align: center;\n    box-sizing: border-box;\n}\n.success-page__title {\n    font: 400 22px \"Times New Roman\", Times, serif;\n    letter-spacing: 0.285em;\n    text-indent: 5px;\n    color: #838383;\n    text-transform: uppercase;\n    padding: 48px 0 38px;\n    max-width: 400px;\n    margin: auto;\n}\n.success-page__text {\n    font: 400 17px \"Times New Roman\", Times, serif;\n    color: #383838;\n    max-width: 400px;\n    margin: auto;\n}\n/*END Success Page -------------------------------------------------------------------------------------------------------------*/\n\n/* Мои заказы -------------------------------------------------------------------------------------------------------------*/\n.order-tr-head {\n    background: #4CAF50;\n}\n.order-tr-head:after {\n    position: relative;\n    top: 21px;\n    right: 23px;\n    display: block;\n    width: 14px;\n    height: 9px;\n    content: '';\n    opacity: .3;\n    /*fill: #fff !important;*/\n    background: no-repeat url(/images/12.svg);\n    background-size: contain;\n    transition: 200ms;\n    transition-timing-function: ease-in-out;\n    -webkit-transition: 200ms;\n    -webkit-transition-timing-function: ease-in-out;\n}\n.order-tr-head.tr_opened:after\n{\n    transform: rotate(180deg);\n    /*opacity: 1;*/\n}\n.order-tr-head:hover {\n    cursor: pointer;\n    background: #3A923E;\n}\n.orders-all {\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*flex-wrap: wrap;*/\n    margin: 15px 0;\n}\n.orders-item {\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    border: 1px solid #ddd;\n    margin-bottom: 10px;\n}\n.orders-item__head {\n    padding: 10px;\n    background-color: #4CAF50;\n    color: white;\n    font-weight: bold;\n    border-radius: 2px;\n}\n.orders-item__head:hover {\n    cursor: pointer;\n    background-color: #3A923E;\n}\n.orders-item__head:active {\n    background-color: #4CAF50;\n}\n.orders-item__body {\n    background-color: #f9f9f9;\n    padding: 10px;\n    color: #999;\n}\n.order-filter-main {\n    display: flex;\n    padding: 10px 0;\n}\n.order-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n    width: 150px;\n    margin-right: 10px;\n}\n.order-filds-label-input:nth-child(3) {\n    width: 90px;\n}\n.order-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.order-th-head {\n    text-align: left;\n    width: 100%;\n    font-weight: normal !important;\n}\n.order-td-first {\n    font-weight: normal !important;\n    color: #757575;\n}\n.order-td-first:hover {\n    color: #000;\n}\n.order-instruments {\n    display: flex;\n    justify-content: space-between;\n    background: beige;\n    padding: 10px;\n}\n.order-instruments .order-info {\n    display: flex;\n    flex-direction: column;\n    color: #111;\n}\n.order-info:not(:first-child) {\n    margin-top: 5px;\n}\n.order-config {\n    display: flex;\n    flex-direction: column;\n    color: steelblue;\n}\n.order-config span:hover {\n    color: #1f5b8e;\n    cursor: pointer;\n}\n.order-config span:active {\n    color: steelblue;\n}\n/* END Мои заказы -------------------------------------------------------------------------------------------------------------*/\n\n/*НАЧАЛО MODAL DIALOG----------------------------------------------------------------------------------------------------------*/\n.modal-open .modal {\n    overflow-x: hidden;\n    overflow-y: auto;\n}\n.modal-display {\n    display: block;\n    padding-left: 15px;\n}\n.fade.in {\n    opacity: 1;\n}\n.modal {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1050;\n    display: none;\n    overflow: hidden;\n    -webkit-overflow-scrolling: touch;\n    outline: 0;\n    background: transparent;\n}\n.modal.in .modal-dialog {\n    -webkit-transform: translate(0,0);\n    -ms-transform: translate(0,0);\n    -o-transform: translate(0,0);\n    transform: translate(0,0);\n}\n.modal.fade .modal-dialog {\n    -webkit-transition: -webkit-transform .3s ease-out;\n    -o-transition: -o-transform .3s ease-out;\n    transition: transform .3s ease-out;\n    -webkit-transform: translate(0,-25%);\n    -ms-transform: translate(0,-25%);\n    -o-transform: translate(0,-25%);\n    transform: translate(0,-25%);\n}\n.modal-dialog {\n    position: relative;\n    width: auto;\n    margin: 10px;\n}\n.modal-content {\n    position: relative;\n    margin-top: 40%;\n    background-color: #fff;\n    -webkit-background-clip: padding-box;\n    background-clip: padding-box;\n    border: 1px solid #999;\n    border: 1px solid rgba(0,0,0,.2);\n    border-radius: 6px;\n    outline: 0;\n    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);\n    box-shadow: 0 3px 9px rgba(0,0,0,.5);\n}\n.modal-animation {\n    /*height: 300px;*/\n    padding: 15px;\n    text-align: left !important;\n}\n\n.modal-animation__item {\n    padding: 20px;\n}\n.modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n    height: 120px;\n    width: 120px;\n}\n.modal-animation__item span:nth-child(2) svg {\n    height: 50px;\n    width: 50px;\n}\n.modal-animation__item span:nth-child(3) {\n    position: relative;\n    right: 30px;\n    float: right;\n}\n@keyframes transitionTiming {\n    0% {\n        left:0;\n    }\n    100% {\n        left:calc(600px - 420px);\n    }\n}\n.transition-timing-linear {\n    position: relative;\n    animation-name:transitionTiming;\n    animation-duration: 2s;\n    animation-iteration-count: 3;\n    animation-timing-function: ease;\n}\n.modal-header {\n    padding: 15px;\n    border-bottom: 1px solid #e5e5e5;\n    text-align: center;\n}\n.modal-header .close {\n    margin-top: -2px;\n}\nbutton.close {\n    -webkit-appearance: none;\n    padding: 0;\n    cursor: pointer;\n    background: 0 0;\n    border: 0;\n}\n.modal-title {\n    margin: 0;\n    line-height: 1.42857143;\n}\n.modal-header .h4, h4 {\n    font-size: 18px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    font-weight: 500;\n}\n.close {\n    float: right;\n    font-size: 21px;\n    font-weight: 700;\n    line-height: 1;\n    color: #000;\n    text-shadow: 0 1px 0 #fff;\n    filter: alpha(opacity=20);\n    opacity: .2;\n}\n\n.modal-body {\n    position: relative;\n    padding: 15px;\n}\n.modal-body p {\n    margin: 0 0 10px;\n}\n.modal-footer {\n    display: flex;\n    padding: 15px;\n    justify-content: space-between;\n    /*border-top: 1px solid #e5e5e5;*/\n}\n.modal-footer .btn-default, .modal-header-success .btn-default {\n    color: #fff;\n    background-color: #4CAF50;\n    border-color: #4CAF50;\n}\n.modal-footer .btn-default:hover, .modal-header-success .btn-default:hover {\n    font-weight: bold;\n    color: #4CAF50;\n    background-color: #fff;\n    border-color: #4CAF50;\n}\n.modal-footer .btn-default:active, .modal-header-success .btn-default:active {\n    background-color: #1b8a20;\n    border-color: #8c8c8c;\n}\n.modal-footer .btn, .modal-header-success .btn {\n    display: inline-block;\n    padding: 6px 12px;\n    margin-bottom: 0;\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 1.42857143;\n    text-align: center;\n    white-space: nowrap;\n    vertical-align: middle;\n    -ms-touch-action: manipulation;\n    touch-action: manipulation;\n    cursor: pointer;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    background-image: none;\n    border: 1px solid transparent;\n    border-radius: 4px;\n}\n.modal-footer button, input, select, textarea, .modal-header-success button {\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    font-size: inherit;\n    line-height: inherit;\n}\n.modal-backdrop.in {\n    opacity: .5;\n    filter: alpha(opacity=50);\n}\n.modal-backdrop {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1040;\n    background-color: #000;\n}\n.modal-backdrop-white.in {\n    opacity: .6;\n    filter: alpha(opacity=60);\n}\n.modal-backdrop-white {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1040;\n    background-color: #fff;\n}\n\n@media (min-width: 768px) {\n    .modal-sm {\n        width: 300px;\n    }\n    .modal-dialog {\n        width: 600px;\n        margin: 30px auto;\n    }\n    .modal-content {\n        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);\n        box-shadow: 0 5px 15px rgba(0,0,0,.5);\n    }\n}\n/*КОНЕЦ MODAL DIALOG----------------------------------------------------------------------------------------------------------*/\n\n/*НАЧАЛО MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/\n.modal-dialog-success {\n    width: 300px;\n    position: fixed;\n    right: 8%;\n    opacity: 0;\n    transform: scale(0);\n    transition: 0.3s;\n    z-index: 2 !important;\n    /*top: 98px;*/\n}\n.modal-dialog-success-save {\n    width: 220px !important;\n}\n.modal-content-success-save {\n    background: #4CAF50 !important;\n}\n.modal-header-success-save {\n    color: #fff !important;\n}\n.transition-scale {\n    transform: scale(1);\n    opacity: 1;\n    transition: .4s;\n}\n.scroll-top {\n    top: 1px !important;\n}\n.modal-content-success {\n    position: relative;\n    /*margin-top: 10%;*/\n    background-color: #fff;\n    -webkit-background-clip: padding-box;\n    background-clip: padding-box;\n    border: 1px solid #c9c9c9;\n    border-radius: 5px;\n    outline: 0;\n    -webkit-box-shadow: 0 3px 9px rgba(125, 125, 125, 0.5);\n    box-shadow: 0 3px 9px rgba(125, 125, 125, 0.5);\n}\n.modal-header-success {\n    padding: 15px;\n    text-align: center;\n}\n.modal-header-success .close {\n    margin-top: -2px;\n}\n.modal-header-success .h4, h4 {\n    font-size: 18px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    font-weight: 500;\n}\n/*КОНЕЦ MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/\n.Select-input > input {\n    width: 100% !important;\n    border: none !important;\n}\n.Select-menu-outer {\n    z-index: 1000;\n}\n\n/*GO for footer ------------------------------------*/\n#footer {\n    position: relative;\n    margin-top: 40px;\n    /*z-index: 100;*/\n    background: #eff0f1;\n    background: -moz-linear-gradient(top, #eff0f1 0%, #ffffff 100%);\n    background: -webkit-linear-gradient(top, #eff0f1 0%, #ffffff 100%);\n    background: linear-gradient(to bottom, #eff0f1 0%, #ffffff 100%);\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eff0f1', endColorstr='#ffffff',GradientType=0 ); }\n#footer > .layout {\n    padding: 0; }\n\n/*style for only footer*/\n.menu--footer {\n    padding-left: 30px; }\n\n.b-footer .b-search {\n    bottom: 70px; }\n\n.b-footer__bottom {\n    height: 40px;\n    line-height: 30px;\n    overflow: hidden; }\n\n.footer__copy {\n    float: left;\n    color: #6c7073;\n    font-size: 13px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    margin-left: 64px; }\n\n.footer__social {\n    float: right;\n    overflow: hidden;\n    margin: 0 5.2% 0 0; }\n.footer__social__item {\n    display: block;\n    float: left;\n    width: 31px;\n    height: 31px;\n    margin-left: 6px;\n    background: url(" + __webpack_require__(199) + ") no-repeat; }\n.footer__social__item:first-child {\n    margin-left: 0; }\n.footer__social__item--fb {\n    background-position: 0 center; }\n.footer__social__item--vk {\n    background-position: -31px center; }\n.footer__social__item--yt {\n    background-position: -62px center; }\n.footer__social__item--ig {\n    background-position: -93px center; }\n\n#footer .b-order {\n    bottom: 140px; }\n\n/*additions*/\n.menu_footer {\n    display: -ms-flexbox;\n    display: flex;\n    height: inherit; }\n.menu_footer--footer {\n    padding-left: 55px; }\n.menu__item_footer {\n    text-decoration: none;\n    list-style: none;\n    width: auto;\n    padding: 0 10px 0 10px;\n}\n.menu__item__link_footer {\n    display: block;\n    line-height: 70px;\n    color: #6c7073;\n    font-size: 15px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    font-weight: bold;\n    text-align: center; }\n.menu__item_footer:hover a {\n    text-decoration: none;\n    color: #4CAF50;\n}\n/*END for footer ------------------------------------*/\n\n/* Контакты */\n.contacts-main {\n    display: flex;\n    flex-direction: row;\n}\n.contacts-item {\n    display: flex;\n    flex-direction: column;\n    margin-bottom: 10px;\n    margin-right: 30px;\n}\n.contacts-item span {\n    font-size: 14px;\n}\n.contacts-item span:nth-child(1) {\n    color: #3c3c3c;\n}\n.contacts-item span:nth-child(2) {\n    color: #4CAF50;\n    font-weight: bold;\n}\n/* Контакты */\n", ""]);
+exports.push([module.i, "/*@font-face {*/\n    /*font-family: CirceRegular; !* Имя шрифта *!*/\n    /*src: url(../fonts/Circe-Regular.ttf); !* Путь к файлу со шрифтом *!*/\n/*}*/\n\nhtml, body {\n    background: #fff;\n    width: 100%;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    /*adaptive*/\n    /*min-width: 320px;*/\n    height: 100%;\n    /*adaptive*/ }\n.container {\n    margin-top: 10px;\n    min-height: 100%;\n}\nh1, h2, h3 {\n    color: steelblue !important;\n    margin: 0 !important;\n}\nhr {\n    border-top: 1px solid #a2a2a2;\n    /*color: steelblue;*/\n    /*background-color: steelblue; !* Цвет линии для браузера Firefox и Opera *!*/\n    /*height: 1px; !* Толщина линии *!*/\n}\n.container-fluid {\n    padding-left: 0px;\n}\n.navigation-li {\n    background-color: #4CAF50;\n}\n.navigation-a {\n    color: #fff;\n}\n.error_message_for_create.fade {\n    display: none\n}\n.error_message_for_create.in {\n    display: block;\n    color: red;\n}\n.show-hide {\n    display: none;\n}\n.show-hide-flex {\n    display: flex;\n}\n.error-border-red {\n    border: 2px solid indianred !important;\n}\n.error-border-red:focus {\n    border: none !important;\n}\n.margin-right-10 {\n    margin-right: 10px !important;\n}\n.flex-box-between {\n    display: flex;\n    justify-content: space-between;\n}\n.margin-off {\n    margin: 0 !important;\n}\n.align-center {\n    text-align: center !important;\n}\n.error-border-red::-webkit-input-placeholder {color: indianred !important;}\n.error-border-red::-moz-placeholder          {color: indianred !important;}/* Firefox 19+ */\n.error-border-red:-moz-placeholder           {color: indianred !important;}/* Firefox 18- */\n.error-border-red:-ms-input-placeholder      {color: indianred !important;}\n/*Главный контейнер*/\n.main-container {\n    min-height: 75vh;\n    background: #fff;\n    padding: 0 20px;\n    margin-bottom: 20px;\n    /*border: 1px solid #c9c9c9;*/\n    box-shadow: none;\n    /*border-radius: 4px;*/\n    /*box-shadow: 0px 0px 9px -2px rgba(135,135,135,1);*/\n\n}\n.cart-scroll-adaptive {\n    padding-bottom: 100px;\n}\n.success-page__content {\n    min-height: 75vh;\n}\na {\n    text-decoration: none !important;\n}\n/* ГЛАВНАЯ НАЧАЛО ------------------------------------------------------------------*/\n.home-page {\n    min-height: 100vh;\n}\n/* Слайдер */\n.main-slider {\n    display: block;\n    width: 100%;\n}\n@keyframes runSlider {\n    0% {\n        /*transform: scale(0);*/\n        opacity: 0.01;\n    }\n    100% {\n        /*transform: scale(1);*/\n        opacity: 1;\n    }\n}\n.slider-img {\n    width: 100%;\n    animation-name:runSlider;\n    animation-duration: 1.7s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease;\n}\n/*.slider-img:not(:nth-child(1)) {*/\n    /*display: none;*/\n/*}*/\n/* Перечень преимуществ */\n.xf-wrapper {\n    padding-top: 40px;\n    padding-bottom: 20px;\n    position: relative;\n    text-align: center;\n    border-bottom: 1px solid #f7f7f7;\n    display: block;\n}\n.xf-you-love__header {\n    font-size: 42px;\n    margin: 0;\n    line-height: 1.25;\n    font-family: Rotonda,sans-serif;\n    font-weight: 700;\n    color: #333;\n    margin-bottom: 10px;\n}\n.xf-you-love__subheader {\n    font-size: 20px;\n    font-weight: 700;\n    margin: 0;\n}\n.xf-you-love__list {\n    margin: 30px 40px 0;\n    display: flex;\n    list-style: none;\n    padding: 0;\n    text-align: left;\n    -webkit-box-pack: justify;\n    -ms-flex-pack: justify;\n    justify-content: space-around;\n}\n.xf-you-love__list>div:first-child {\n    flex-basis: 45%;\n    box-sizing: border-box;\n}\n.xf-you-love__item {\n    font-size: 16px;\n    font-family: GothicBook,sans-serif;\n    margin-bottom: 16px;\n    display: flex;\n    box-sizing: border-box;\n    text-align: -webkit-match-parent;\n}\n.xf-you-love__item:before {\n    content: '';\n    background: url(/images/list-bullet.svg) 0 no-repeat;\n    width: 10px;\n    height: 8px;\n    margin-right: 10px;\n    margin-top: 5px;\n    -ms-flex-negative: 0;\n    flex-shrink: 0;\n}\n/* ГЛАВНАЯ КОНЕЦ ------------------------------------------------------------------*/\n\n/*ФОРМА РЕГИСТРАЦИИ НАЧАЛО------------------------------------------------------------------*/\n/*Главный див для форм входа и регистрации*/\n.register-container-main {\n    display: flex;\n    justify-content: center;\n}\n.register-container {\n    display: flex;\n    width: 50%;\n    flex-direction: column;\n}\n/*Голова формы(верхняя часть формы с загруглёнными краями и синим фоном)*/\n.register-header {\n    border: 1px solid #808080;\n    background: steelblue;\n    color: white;\n    border-radius: 8px 8px 0 0;\n    padding: 10px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n/*Для тега <p>, который находится в голове формы, убираем внешние отступы*/\n.register-header p {\n    margin: 0;\n}\n.main-text {\n    font-size: 18px;\n}\n.explain-text {\n    font-size: 13px;\n}\n/*Тело формы, где поля ввода*/\n.register-filds {\n    padding: 30px 15px 0 15px;\n    display: flex;\n    flex-direction: column;\n    border: 1px solid #808080;\n    border-top: 0;\n    justify-content: flex-start;\n    background: #fff;\n}\n/*Див для меток(label) и их инпутов*/\n.register-filds-label-input {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n/*Див для чекбокса и кнопки*/\n.register-filds-elements {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: flex-start;\n    margin-bottom: 10px;\n}\n.register-filds-label {\n    width: 120px;\n    padding-right: 10px;\n    text-align: right;\n    /*letter-spacing: 1px;*/\n}\n.register-filds-elements div {\n    width: 100%;\n}\n.customer-data-container input,.register-filds input {\n    width: 100%;\n    height: 30px;\n    padding-left: 5px;\n    border-radius: 4px;\n    border: 1px solid #a2a2a2;\n    /*font-style: italic;*/\n}\n.customer-data-container input:focus, .register-filds input:focus {\n    outline: none;\n    border: 1px solid #696969;\n}\n/*Кнопки*/\n.middle-button {\n    border-radius: 2px;\n    border: 0;\n    background: #fff;\n    color: #000;\n    text-align: center;\n    padding: 2px 15px 2px 15px;\n    margin-right: 15px;\n}\n.middle-button:hover {\n    cursor: pointer;\n    background-color: #f3f3f3;\n}\n.middle-button:active {\n    padding: 1px 14px 1px 14px;\n}\n.login-button {\n    margin-right: 15px;\n    border-radius: 2px;\n    /*border: 1px solid #a2a2a2;*/\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    width: 120px !important;float: left;\n}\n.login-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.login-button:active {\n    background: #1b3447;\n}\n.login-button p {\n    margin: 0;\n    letter-spacing: 1px;\n}\n.register-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 0 4px 0;\n    /*letter-spacing: 1px;*/\n}\n.register-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.register-button:active {\n    background: #1b3447;\n}\n.register-button:focus {\n    color: transparent;\n    text-shadow: 0 0 0 white;\n    outline: none;\n}\n.register-button p {\n    margin: 0;\n    /*letter-spacing: 1px;*/\n}\n.recover-password {\n    vertical-align: sub;\n}\n/*Кнопка отправить заказ*/\n.cart-button {\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid #4CAF50;\n    background: #4CAF50;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    font-weight: bold;\n}\n.cart-button:hover {\n    cursor: pointer;\n    background: #fff;\n    color: #4CAF50;\n}\n.cart-button:active {\n    background: #368e39;\n    color: #fff\n}\n/*Кнопка очистить корзину*/\n.cart-button-clear {\n    width: 165px;\n    border-radius: 2px;\n    border: 1px solid indianred;\n    background: indianred;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    margin-right: 15px;\n    font-weight: bold;\n}\n.cart-button-clear:hover {\n    cursor: pointer;\n    background: #fff;\n    color: indianred;\n}\n.cart-button-clear:active {\n    background: #a92525;\n    color: #fff\n}\n.success-button {\n    margin-top: 40px;\n    display: inline-block;\n    width: 150px;\n    border-radius: 2px;\n    border: 1px solid #4CAF50;\n    background: #4CAF50;\n    color: #fff;\n    text-align: center;\n    padding: 5px;\n    font-weight: bold;\n}\n.success-button p {\n    margin: 0;\n}\n.success-button:hover {\n    cursor: pointer;\n    background: #fff;\n    color: #4CAF50;\n}\n.success-button:active {\n    background: #368e39;\n    color: #fff\n}\n.cart-comment {\n    width: 100%;\n    margin-bottom: 20px;\n    padding: 10px;\n    border: 1px solid #c1c1c1;\n    border-radius: 3px;\n}\n.cart-comment:hover {\n    border: 1px solid #a1a1a1;\n}\n/*ФОРМА РЕГИСТРАЦИИ КОНЕЦ------------------------------------------------------------------*/\n\n/*CHECKBOX НАЧАЛО------------------------------------------------------------------*/\ninput[type=checkbox] + label {\n    float: left;\n}\ninput[type=\"checkbox\"] {\n    display:none;\n}\ninput[type=\"checkbox\"] + label span {\n    display:inline-block;\n    width:19px;\n    height:19px;\n    margin:-1px 4px 0 0;\n    vertical-align:middle;\n    background:url(" + __webpack_require__(96) + ") left top no-repeat;\n    cursor:pointer;\n}\ninput[type=\"checkbox\"]:checked + label span {\n    background:url(" + __webpack_require__(96) + ") -19px top no-repeat;\n}\n/*CHECKBOX КОНЕЦ------------------------------------------------------------------*/\n\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. НАЧАЛО---------------------------------------------------*/\n.personal-container form {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    width: 100%;\n}\n.image-container {\n    width: 20%;\n    margin-top: 4px;\n}\n.customer-data-container {\n    width: 48%;\n    /*padding: 0 20px 0 20px;*/\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*background: #fff;*/\n}\n.customer-image {\n    margin-bottom: 15px;\n    width: 99%;\n    /*height: 250px;*/\n    border: 1px solid #808080;\n    background: #ffffff;\n}\n.customer-image img {\n    max-width:100%;\n    max-height:100%;\n}\n/*Див для меток(label) и их инпутов*/\n.personal-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.personal-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.personal-explain-text {\n    font-size: 14px;\n    color: steelblue;\n}\n/*Инпут для вставки фото*/\n.customer-image-button {\n    position: relative;\n}\n.customer-image-button #personal-photo {\n    cursor: pointer;\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    height: 100%;\n    -moz-opacity: 0;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    z-index:1;\n}\n.personal-select-birdthdate-group {\n    display: flex;\n    justify-content: flex-start;\n}\n.personal-select-birdthdate-group .Select:nth-child(1) {\n    width: 20%;\n}\n.personal-select-birdthdate-group .Select:nth-child(2) {\n    width: 50%;\n}\n.personal-select-birdthdate-group .Select:nth-child(3) {\n    width: 30%;\n}\n.person-success-button-div {\n    text-align: right;\n}\n/*ЛИЧНЫЙ КАБИНЕТ.РЕДАКТИРОВАНИЕ ДАННЫХ. КОНЕЦ---------------------------------------------------*/\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. НАЧАЛО---------------------------------------------------*/\n.category-head {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.bread-crumbs-circle {\n    width: 10px;\n    height: 10px;\n    background: #555;\n    -moz-border-radius: 50px;\n    -webkit-border-radius: 50px;\n    border-radius: 50px;\n    margin: 0 10px;\n}\n.bread-crumbs-link {\n    color: #555 !important;\n}\n.bread-crumbs-link:hover {\n    color: #222 !important;\n    text-decoration: underline !important;\n}\n.bread-crumbs-on-page {\n\n}\n@keyframes pageLoadOpacity {\n    0% {\n        opacity: 0.01;\n    }\n    100% {\n        opacity: 1;\n    }\n}\n@keyframes popupLoadScale {\n    0% {\n        transform: scale(0);\n        opacity: 0.01;\n    }\n    100% {\n        transform: scale(1);\n        opacity: 1;\n    }\n}\n.animation-popup-load-fast {\n    animation-name:popupLoadScale;\n    animation-duration: .3s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease;\n}\n.animation-page-load-medium {\n    animation-name:pageLoadOpacity;\n    animation-duration: .5s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease-in;\n}\n.animation-page-load-long {\n    animation-name:pageLoadOpacity;\n    animation-duration: 1s;\n    animation-iteration-count: 1;\n    animation-timing-function: ease-in;\n    /*animation-direction: alternate;*/\n}\n.category-all {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n    flex-wrap: wrap;\n    margin: 5px -5px; }\n.category-item {\n    transition: box-shadow .4s;\n    background: white;\n    border: 1px solid #d8d8d8;\n    width: calc(100% / 4 - 10px);\n    min-width: 0;\n    margin: 10px 5px 10px; }\n.category-item:hover {\n    -webkit-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    -moz-box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n    box-shadow: 1px 2px 9px 2px rgba(158,158,158,0.54);\n}\n.category-item:hover .category-item__name {\n    color: #000;\n}\n.category-item__img {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 20px;\n}\n/*.category-item__img img {*/\n    /*transition: 1.3s;*/\n/*}*/\n/*.category-item__img img:hover {*/\n    /*transform: scale(1.1);*/\n/*}*/\n.category-item__name {\n    padding: 10px;\n    display: table-cell;\n    margin-bottom: 14px;\n    line-height: 20px;\n    vertical-align: inherit;\n    color: #444;\n    font-size: 18px;\n}\n.add-to-cart-button {\n    width: 100%;\n    position: relative;\n    border-radius: 2px;\n    border: none !important;\n    background: steelblue;\n    color: white;\n    text-align: center;\n    padding: 4px 10px 4px 10px;\n    font-weight: 700;\n    margin-bottom: 20px;\n}\n.add-to-cart-button:hover {\n    cursor: pointer;\n    background: #2b5372;\n}\n.add-to-cart-button:active {\n    background: #1b3447;\n}\n.add-to-cart-button p {\n    margin: 0;\n}\n.category-item__price-measure {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 100%;\n    padding: 5px 0 15px 0;\n}\n.category-item__price-measure span {\n    font-size: 15px;\n    font-weight: bold;\n    color: #3c763d;\n}\n.category-item__price-measure select {\n    outline: none;\n    color: #fff;\n    background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);\n    background-color: #3c763d;\n    -moz-border-radius: 20px;\n    border-radius: 20px;\n    padding-left: 8px;\n    -webkit-appearance: button;\n    -webkit-user-select: none;\n    background-position: 80% center;\n    background-repeat: no-repeat;\n    border: none;\n    font-size: inherit;\n    margin-right: 4px;\n    width: 50px;\n}\n.category-item__price-measure:hover select {\n    cursor: pointer;\n}\n\n/*.Количество продуктов */\n.order-number {\n    position: relative;\n    width: 85px;\n    height: 32px;\n    margin: 0 auto;\n    border: 2px solid #3c763d;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field {\n    height: 100%;\n    padding: 0 26px;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n}\n.order-number__field input {\n    font-weight: 900;\n    display: block;\n    width: 100%;\n    height: 100%;\n    color: #3c763d;\n    font-size: 13px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    text-align: center;\n    -moz-appearance: textfield;\n    /*background: #fff;*/\n    background-color: transparent;\n    outline: none;\n    border: 0;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box; }\n.order-number__field input::-webkit-inner-spin-button, .order-number__field input::-webkit-outer-spin-button {\n    margin: 0;\n    /* в каких-то браузерах присутствует отступ */\n    -webkit-appearance: none; }\n.order-number__spin.minus {\n    left: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.minus:after {\n    background-position: 0 0;\n}\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n.order-number__spin.plus {\n    right: 8px;\n}\n.order-number__spin {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    margin: auto 0;\n    width: 10px;\n    height: 10px;\n    cursor: pointer;\n}\n.order-number__spin.plus:after {\n    background-position: 0 -10px;\n}\n\n.order-number__spin:after {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    content: '';\n    background: url(/images/meatorchicken/product-count.png) no-repeat;\n}\n\n/*СТРАНИЦА КАТЕГОРИЙ И ПРОДУКТОВ. КОНЕЦ---------------------------------------------------*/\n\n/*КОРЗИНА НАЧАЛО----------------------------------------------------------------------------------------------------*/\n.cart-products-table {\n    margin-top: 20px;\n    border-collapse: collapse;\n    width: 100%;\n}\n.cart-tr-head {\n    background-color: #4CAF50;\n}\n.table-100-procent {\n    width: 100%;\n}\n.table-30-procent {\n    width: 30%;\n}\n.table-25-procent {\n    width: 25%;\n}\n.table-10-procent {\n    width: 10%;\n}\n\ntd {\n    text-align: center;\n    padding: 9px;\n    color: #555;\n    font-weight: 600;\n}\n\ntr:nth-child(even){background-color: #f2f2f2}\n\nth {\n    text-align: center;\n    padding: 18px;\n    color: white;\n}\n.table-40-procent-td {\n    text-align: left;\n}\n.remove-product {\n    color: indianred;\n}\n.remove-product:hover {\n    cursor: pointer;\n    color: firebrick;\n}\n.remove-product:active {\n    color: darkred;\n}\n.cart-product-image {\n    border: 1px solid #999;\n    margin-right: 30px;\n    height: 70px;\n}\n.cart-order__total {\n    color: #999;\n    font-size: 24px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    line-height: 36px;\n    letter-spacing: 6.24px;\n    text-transform: uppercase;\n    text-align: right;\n    margin: 35px 20px; }\n.cart-order__total span {\n    color: #444; }\n/*КОРЗИНА КОНЕЦ----------------------------------------------------------------------------------------------------*/\n/*\n* Меню,навигация\n*/\n.navbar-default {\n    background: #fff !important;\n    border-left: none;\n    border-right: none;\n    -webkit-border-radius: 0;\n    -moz-border-radius: 0;\n    border-radius: 0;\n    box-shadow: none;\n}\n.navbar-nav > li:hover {\n    background: #4CAF50;\n}\n.navbar-default .navbar-nav > li > a {\n    color: #595959;\n}\n.navbar-default .navbar-nav > li > a:hover {\n    color: #fff;\n}\n.mob-nav-text {\n    margin-left: 2px;\n}\n.mobile-nav-bar-1 {\n    display: none;\n}\n.mobile-nav-bar-2 .navbar-nav li {\n    cursor: pointer;\n}\n.navbar-nav li svg {\n    vertical-align: sub !important;\n}\n/*mob-nav-elem---------------------------------------------------------------------------------------------------*/\n.popup_mob-nav-elem {\n    position: absolute;\n    width: 100%;\n    z-index: 200000;\n    top: 111px;\n    left: 0;\n}\n.popup_mob-nav-elem_bg {\n    /*background: transparent;*/\n    background: white;\n    opacity: .5;\n    filter: blur(20px);\n    position:fixed;\n    z-index:1;\n    top:75px;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n.for-mob-nav-elem {\n    position: relative;\n    margin: 0 auto;\n    width: 91%;\n}\n#blok_mob-nav-elem {\n    position: relative;\n    z-index:2;\n    width: 100%;\n    padding-top:5px;\n    padding-bottom:5px;\n    background:#fff;\n    background-color:#fff;\n    /*border:1px solid #f5f5f5;*/\n    border-bottom:1px solid #f5f5f5;\n    -webkit-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    -moz-box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n    box-shadow: 0px 10px 12px -3px rgba(69,69,69,0.41);\n}\n#blok_mob-nav-elem a div {\n    padding-left: 10px;\n    margin: 5px;\n}\n#blok_mob-nav-elem a div p {\n    margin: 0;\n    padding: 5px;\n}\n#blok_mob-nav-elem a {\n    color: #696969;\n    text-decoration: none;\n}\n#blok_mob-nav-elem a:hover {\n    color: #fff;\n}\n#blok_mob-nav-elem div:hover {\n    background: #2e6da4;\n    /*height:100%;*/\n    cursor: pointer;\n}\n.menu__item--basket__amount {\n    position: absolute;\n    top: 9px;\n    right: 2px;\n    width: 16px;\n    height: 15px;\n    color: #fff;\n    font-size: 11px;\n    text-align: center;\n    line-height: 15px;\n    background: #777;\n    -webkit-border-radius: 50%;\n    border-radius: 50%;\n    -webkit-transition: 0.3s ease;\n    transition: 0.3s ease;\n}\n\n/*END mob-nav-elem---------------------------------------------------------------------------------------------------*/\n/*avatar-elem---------------------------------------------------------------------------------------------------*/\n.popup_avatar-elem {\n    position: absolute;\n    width:100%;\n    min-height: 80%;\n    left: 0;\n    top: 26px;\n}\n.popup_avatar-elem_bg {\n    background:rgba(0,0,0,0.5);\n    position:fixed;\n    z-index:1;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    padding: 0;\n}\n#blok-avatar-elem {\n    position: relative;\n    z-index:2;\n    width: 80%;\n    min-height: 100%;\n    margin: 0 auto;\n    padding: 15px;\n    background:#fff;\n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    border-radius: 5px;\n}\n/*END avatar-elem---------------------------------------------------------------------------------------------------*/\n/*Крестик для мобильного меню -------------------------------------------------------------------------------------*/\n.close-mobile-elem {\n    position: absolute;\n    left: 15px;\n    top: 12px;\n    width: 32px;\n    height: 32px;\n    opacity: 1;\n}\n.close-mobile-elem:hover {\n    opacity: 1;\n}\n.close-mobile-elem:before, .close-mobile-elem:after {\n    position: absolute;\n    content: ' ';\n    height: 25px;\n    width: 3px;\n    background-color: #696969;;\n}\n.close-mobile-elem:before {\n    transform: rotate(45deg);\n}\n.close-mobile-elem:after {\n    transform: rotate(-45deg);\n}\n/*END Крестик для мобильного меню ----------------------------------------------------------------------------------------*/\n\n/*Success Page -------------------------------------------------------------------------------------------------------------*/\n.success-page {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    min-height: calc(100vh - 210px);\n    min-height: -webkit-calc(100vh - 210px);\n    min-height: 270px;\n    max-width: 1280px;\n    padding: 15px;\n    margin: auto;\n    box-sizing: border-box;\n    background: #fff /*url(../images/success-page-bg.jpg) no-repeat center top*/;\n    background-size: auto auto;\n    background-size: cover;\n}\n.success-page__content {\n    max-width: 515px;\n    width: 100%;\n    background: #fff;\n    padding: 25px 15px;\n    text-align: center;\n    box-sizing: border-box;\n}\n.success-page__title {\n    font: 400 22px \"Times New Roman\", Times, serif;\n    letter-spacing: 0.285em;\n    text-indent: 5px;\n    color: #838383;\n    text-transform: uppercase;\n    padding: 48px 0 38px;\n    max-width: 400px;\n    margin: auto;\n}\n.success-page__text {\n    font: 400 17px \"Times New Roman\", Times, serif;\n    color: #383838;\n    max-width: 400px;\n    margin: auto;\n}\n/*END Success Page -------------------------------------------------------------------------------------------------------------*/\n\n/* Мои заказы -------------------------------------------------------------------------------------------------------------*/\n.order-tr-head {\n    background: #4CAF50;\n}\n.order-tr-head:after {\n    position: relative;\n    top: 21px;\n    right: 23px;\n    display: block;\n    width: 14px;\n    height: 9px;\n    content: '';\n    opacity: .3;\n    /*fill: #fff !important;*/\n    background: no-repeat url(/images/12.svg);\n    background-size: contain;\n    transition: 200ms;\n    transition-timing-function: ease-in-out;\n    -webkit-transition: 200ms;\n    -webkit-transition-timing-function: ease-in-out;\n}\n.order-tr-head.tr_opened:after\n{\n    transform: rotate(180deg);\n    /*opacity: 1;*/\n}\n.order-tr-head:hover {\n    cursor: pointer;\n    background: #3A923E;\n}\n.orders-all {\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    /*flex-wrap: wrap;*/\n    margin: 15px 0;\n}\n.orders-item {\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    border: 1px solid #ddd;\n    margin-bottom: 10px;\n}\n.orders-item__head {\n    padding: 10px;\n    background-color: #4CAF50;\n    color: white;\n    font-weight: bold;\n    border-radius: 2px;\n}\n.orders-item__head:hover {\n    cursor: pointer;\n    background-color: #3A923E;\n}\n.orders-item__head:active {\n    background-color: #4CAF50;\n}\n.orders-item__body {\n    background-color: #f9f9f9;\n    padding: 10px;\n    color: #999;\n}\n.order-filter-main {\n    display: flex;\n    padding: 10px 0;\n}\n.order-filds-label-input {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-bottom: 10px;\n    width: 150px;\n    margin-right: 10px;\n}\n.order-filds-label-input:nth-child(3) {\n    width: 90px;\n}\n.order-filds-label {\n    vertical-align: top;\n    letter-spacing: 1px;\n}\n.order-th-head {\n    text-align: left;\n    width: 100%;\n    font-weight: normal !important;\n}\n.order-td-first {\n    font-weight: normal !important;\n    color: #757575;\n}\n.order-td-first:hover {\n    color: #000;\n}\n.order-instruments {\n    display: flex;\n    justify-content: space-between;\n    background: beige;\n    padding: 10px;\n}\n.order-instruments .order-info {\n    display: flex;\n    flex-direction: column;\n    color: #111;\n}\n.order-info:not(:first-child) {\n    margin-top: 5px;\n}\n.order-config {\n    display: flex;\n    flex-direction: column;\n    color: steelblue;\n}\n.order-config span:hover {\n    color: #1f5b8e;\n    cursor: pointer;\n}\n.order-config span:active {\n    color: steelblue;\n}\n/* END Мои заказы -------------------------------------------------------------------------------------------------------------*/\n\n/*НАЧАЛО MODAL DIALOG----------------------------------------------------------------------------------------------------------*/\n.modal-open .modal {\n    overflow-x: hidden;\n    overflow-y: auto;\n}\n.modal-display {\n    display: block;\n    padding-left: 15px;\n}\n.fade.in {\n    opacity: 1;\n}\n.modal {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1050;\n    display: none;\n    overflow: hidden;\n    -webkit-overflow-scrolling: touch;\n    outline: 0;\n    background: transparent;\n}\n.modal.in .modal-dialog {\n    -webkit-transform: translate(0,0);\n    -ms-transform: translate(0,0);\n    -o-transform: translate(0,0);\n    transform: translate(0,0);\n}\n.modal.fade .modal-dialog {\n    -webkit-transition: -webkit-transform .3s ease-out;\n    -o-transition: -o-transform .3s ease-out;\n    transition: transform .3s ease-out;\n    -webkit-transform: translate(0,-25%);\n    -ms-transform: translate(0,-25%);\n    -o-transform: translate(0,-25%);\n    transform: translate(0,-25%);\n}\n.modal-dialog {\n    position: relative;\n    width: auto;\n    margin: 10px;\n}\n.modal-content {\n    position: relative;\n    margin-top: 40%;\n    background-color: #fff;\n    -webkit-background-clip: padding-box;\n    background-clip: padding-box;\n    border: 1px solid #999;\n    border: 1px solid rgba(0,0,0,.2);\n    border-radius: 6px;\n    outline: 0;\n    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);\n    box-shadow: 0 3px 9px rgba(0,0,0,.5);\n}\n.modal-animation {\n    /*height: 300px;*/\n    padding: 15px;\n    text-align: left !important;\n}\n\n.modal-animation__item {\n    padding: 20px;\n}\n.modal-animation__item span:nth-child(3) svg, .modal-animation__item span:nth-child(1) svg {\n    height: 120px;\n    width: 120px;\n}\n.modal-animation__item span:nth-child(2) svg {\n    height: 50px;\n    width: 50px;\n}\n.modal-animation__item span:nth-child(3) {\n    position: relative;\n    right: 30px;\n    float: right;\n}\n@keyframes transitionTiming {\n    0% {\n        left:0;\n    }\n    100% {\n        left:calc(600px - 420px);\n    }\n}\n.transition-timing-linear {\n    position: relative;\n    animation-name:transitionTiming;\n    animation-duration: 2s;\n    animation-iteration-count: 3;\n    animation-timing-function: ease;\n}\n.modal-header {\n    padding: 15px;\n    border-bottom: 1px solid #e5e5e5;\n    text-align: center;\n}\n.modal-header .close {\n    margin-top: -2px;\n}\nbutton.close {\n    -webkit-appearance: none;\n    padding: 0;\n    cursor: pointer;\n    background: 0 0;\n    border: 0;\n}\n.modal-title {\n    margin: 0;\n    line-height: 1.42857143;\n}\n.modal-header .h4, h4 {\n    font-size: 18px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    font-weight: 500;\n}\n.close {\n    float: right;\n    font-size: 21px;\n    font-weight: 700;\n    line-height: 1;\n    color: #000;\n    text-shadow: 0 1px 0 #fff;\n    filter: alpha(opacity=20);\n    opacity: .2;\n}\n\n.modal-body {\n    position: relative;\n    padding: 15px;\n}\n.modal-body p {\n    margin: 0 0 10px;\n}\n.modal-footer {\n    display: flex;\n    padding: 15px;\n    justify-content: space-between;\n    /*border-top: 1px solid #e5e5e5;*/\n}\n.modal-footer .btn-default, .modal-header-success .btn-default {\n    color: #fff;\n    background-color: #4CAF50;\n    border-color: #4CAF50;\n    text-shadow: none;\n    letter-spacing: 0.7px;\n}\n.modal-footer .btn-default:hover, .modal-header-success .btn-default:hover {\n    font-weight: bold;\n    color: #4CAF50;\n    background-color: #fff;\n    border-color: #4CAF50;\n}\n.modal-footer .btn-default:active, .modal-header-success .btn-default:active {\n    background-color: #1b8a20;\n    border-color: #8c8c8c;\n}\n.modal-footer .btn, .modal-header-success .btn {\n    display: inline-block;\n    padding: 6px 12px;\n    margin-bottom: 0;\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 1.42857143;\n    text-align: center;\n    white-space: nowrap;\n    vertical-align: middle;\n    -ms-touch-action: manipulation;\n    touch-action: manipulation;\n    cursor: pointer;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    background-image: none;\n    border: 1px solid transparent;\n    border-radius: 4px;\n}\n.modal-footer button, input, select, textarea, .modal-header-success button {\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    font-size: inherit;\n    line-height: inherit;\n}\n.modal-backdrop.in {\n    opacity: .5;\n    filter: alpha(opacity=50);\n}\n.modal-backdrop {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1040;\n    background-color: #000;\n}\n.modal-backdrop-white.in {\n    opacity: .6;\n    filter: alpha(opacity=60);\n}\n.modal-backdrop-white {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1040;\n    background-color: #fff;\n}\n\n@media (min-width: 768px) {\n    .modal-sm {\n        width: 300px;\n    }\n    .modal-dialog {\n        width: 600px;\n        margin: 30px auto;\n    }\n    .modal-content {\n        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);\n        box-shadow: 0 5px 15px rgba(0,0,0,.5);\n    }\n}\n/*КОНЕЦ MODAL DIALOG----------------------------------------------------------------------------------------------------------*/\n\n/*НАЧАЛО MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/\n.modal-dialog-success {\n    width: 300px;\n    position: fixed;\n    right: 8%;\n    opacity: 0;\n    transform: scale(0);\n    transition: 0.3s;\n    z-index: 2 !important;\n    /*top: 98px;*/\n}\n.modal-dialog-success-save {\n    width: 220px !important;\n}\n.modal-content-success-save {\n    background: #4CAF50 !important;\n}\n.modal-header-success-save {\n    color: #fff !important;\n}\n.transition-scale {\n    transform: scale(1);\n    opacity: 1;\n    transition: .4s;\n}\n.scroll-top {\n    top: 1px !important;\n}\n.modal-content-success {\n    position: relative;\n    /*margin-top: 10%;*/\n    background-color: #fff;\n    -webkit-background-clip: padding-box;\n    background-clip: padding-box;\n    border: 1px solid #c9c9c9;\n    border-radius: 5px;\n    outline: 0;\n    -webkit-box-shadow: 0 3px 9px rgba(125, 125, 125, 0.5);\n    box-shadow: 0 3px 9px rgba(125, 125, 125, 0.5);\n}\n.modal-header-success {\n    padding: 15px;\n    text-align: center;\n}\n.modal-header-success .close {\n    margin-top: -2px;\n}\n.modal-header-success .h4, h4 {\n    font-size: 18px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    font-weight: 500;\n}\n/*КОНЕЦ MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/\n.Select-input > input {\n    width: 100% !important;\n    border: none !important;\n}\n.Select-menu-outer {\n    z-index: 1000;\n}\n\n/*GO for footer ------------------------------------*/\n#footer {\n    position: relative;\n    margin-top: 40px;\n    /*z-index: 100;*/\n    background: #eff0f1;\n    background: -moz-linear-gradient(top, #eff0f1 0%, #ffffff 100%);\n    background: -webkit-linear-gradient(top, #eff0f1 0%, #ffffff 100%);\n    background: linear-gradient(to bottom, #eff0f1 0%, #ffffff 100%);\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eff0f1', endColorstr='#ffffff',GradientType=0 ); }\n#footer > .layout {\n    padding: 0; }\n\n/*style for only footer*/\n.menu--footer {\n    padding-left: 30px; }\n\n.b-footer .b-search {\n    bottom: 70px; }\n\n.b-footer__bottom {\n    height: 40px;\n    line-height: 30px;\n    overflow: hidden; }\n\n.footer__copy {\n    float: left;\n    color: #6c7073;\n    font-size: 13px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    margin-left: 64px; }\n\n.footer__social {\n    float: right;\n    overflow: hidden;\n    margin: 0 5.2% 0 0; }\n.footer__social__item {\n    display: block;\n    float: left;\n    width: 31px;\n    height: 31px;\n    margin-left: 6px;\n    background: url(" + __webpack_require__(199) + ") no-repeat; }\n.footer__social__item:first-child {\n    margin-left: 0; }\n.footer__social__item--fb {\n    background-position: 0 center; }\n.footer__social__item--vk {\n    background-position: -31px center; }\n.footer__social__item--yt {\n    background-position: -62px center; }\n.footer__social__item--ig {\n    background-position: -93px center; }\n\n#footer .b-order {\n    bottom: 140px; }\n\n/*additions*/\n.menu_footer {\n    display: -ms-flexbox;\n    display: flex;\n    height: inherit; }\n.menu_footer--footer {\n    padding-left: 55px; }\n.menu__item_footer {\n    text-decoration: none;\n    list-style: none;\n    width: auto;\n    padding: 0 10px 0 10px;\n}\n.menu__item__link_footer {\n    display: block;\n    line-height: 70px;\n    color: #6c7073;\n    font-size: 15px;\n    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;\n    font-weight: bold;\n    text-align: center; }\n.menu__item_footer:hover a {\n    text-decoration: none;\n    color: #4CAF50;\n}\n/*END for footer ------------------------------------*/\n\n/* Контакты */\n.contacts-main {\n    display: flex;\n    flex-direction: row;\n}\n.contacts-item {\n    display: flex;\n    flex-direction: column;\n    margin-bottom: 10px;\n    margin-right: 30px;\n}\n.contacts-item span {\n    font-size: 14px;\n}\n.contacts-item span:nth-child(1) {\n    color: #3c3c3c;\n}\n.contacts-item span:nth-child(2) {\n    color: #4CAF50;\n    font-weight: bold;\n}\n/* Контакты */\n", ""]);
 
 // exports
 
@@ -28279,11 +28283,11 @@ var _invariant = __webpack_require__(43);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(61);
+var _LocationUtils = __webpack_require__(62);
 
 var _PathUtils = __webpack_require__(42);
 
-var _createTransitionManager = __webpack_require__(62);
+var _createTransitionManager = __webpack_require__(63);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -28609,9 +28613,9 @@ var _warning2 = _interopRequireDefault(_warning);
 
 var _PathUtils = __webpack_require__(42);
 
-var _LocationUtils = __webpack_require__(61);
+var _LocationUtils = __webpack_require__(62);
 
-var _createTransitionManager = __webpack_require__(62);
+var _createTransitionManager = __webpack_require__(63);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -29475,7 +29479,7 @@ function pathToRegexp (path, keys, options) {
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(2);
   var warning = __webpack_require__(3);
-  var ReactPropTypesSecret = __webpack_require__(64);
+  var ReactPropTypesSecret = __webpack_require__(65);
   var loggedTypeFailures = {};
 }
 
@@ -29543,7 +29547,7 @@ module.exports = checkPropTypes;
 
 var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(2);
-var ReactPropTypesSecret = __webpack_require__(64);
+var ReactPropTypesSecret = __webpack_require__(65);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -30334,8 +30338,8 @@ var ReactUpdates = __webpack_require__(19);
 var SyntheticEvent = __webpack_require__(22);
 
 var inputValueTracking = __webpack_require__(120);
-var getEventTarget = __webpack_require__(76);
-var isEventSupported = __webpack_require__(77);
+var getEventTarget = __webpack_require__(77);
+var isEventSupported = __webpack_require__(78);
 var isTextInputElement = __webpack_require__(122);
 
 var eventTypes = {
@@ -31173,8 +31177,8 @@ module.exports = HTMLDOMPropertyConfig;
 var ReactReconciler = __webpack_require__(34);
 
 var instantiateReactComponent = __webpack_require__(121);
-var KeyEscapeUtils = __webpack_require__(68);
-var shouldUpdateReactComponent = __webpack_require__(78);
+var KeyEscapeUtils = __webpack_require__(69);
+var shouldUpdateReactComponent = __webpack_require__(79);
 var traverseAllChildren = __webpack_require__(124);
 var warning = __webpack_require__(3);
 
@@ -31329,7 +31333,7 @@ module.exports = ReactChildReconciler;
 
 
 
-var DOMChildrenOperations = __webpack_require__(65);
+var DOMChildrenOperations = __webpack_require__(66);
 var ReactDOMIDOperations = __webpack_require__(233);
 
 /**
@@ -31366,9 +31370,9 @@ var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
 var React = __webpack_require__(36);
-var ReactComponentEnvironment = __webpack_require__(70);
+var ReactComponentEnvironment = __webpack_require__(71);
 var ReactCurrentOwner = __webpack_require__(20);
-var ReactErrorUtils = __webpack_require__(71);
+var ReactErrorUtils = __webpack_require__(72);
 var ReactInstanceMap = __webpack_require__(46);
 var ReactInstrumentation = __webpack_require__(16);
 var ReactNodeTypes = __webpack_require__(113);
@@ -31380,8 +31384,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 var emptyObject = __webpack_require__(49);
 var invariant = __webpack_require__(2);
-var shallowEqual = __webpack_require__(60);
-var shouldUpdateReactComponent = __webpack_require__(78);
+var shallowEqual = __webpack_require__(61);
+var shouldUpdateReactComponent = __webpack_require__(79);
 var warning = __webpack_require__(3);
 
 var CompositeTypes = {
@@ -32393,7 +32397,7 @@ var _prodInvariant = __webpack_require__(4),
 var AutoFocusUtils = __webpack_require__(216);
 var CSSPropertyOperations = __webpack_require__(218);
 var DOMLazyTree = __webpack_require__(33);
-var DOMNamespaces = __webpack_require__(66);
+var DOMNamespaces = __webpack_require__(67);
 var DOMProperty = __webpack_require__(24);
 var DOMPropertyOperations = __webpack_require__(105);
 var EventPluginHub = __webpack_require__(44);
@@ -32412,10 +32416,10 @@ var ReactServerRenderingTransaction = __webpack_require__(258);
 var emptyFunction = __webpack_require__(13);
 var escapeTextContentForBrowser = __webpack_require__(55);
 var invariant = __webpack_require__(2);
-var isEventSupported = __webpack_require__(77);
-var shallowEqual = __webpack_require__(60);
+var isEventSupported = __webpack_require__(78);
+var shallowEqual = __webpack_require__(61);
 var inputValueTracking = __webpack_require__(120);
-var validateDOMNesting = __webpack_require__(79);
+var validateDOMNesting = __webpack_require__(80);
 var warning = __webpack_require__(3);
 
 var Flags = ReactDOMComponentFlags;
@@ -33401,7 +33405,7 @@ module.exports = ReactDOMComponent;
 
 
 
-var validateDOMNesting = __webpack_require__(79);
+var validateDOMNesting = __webpack_require__(80);
 
 var DOC_NODE_TYPE = 9;
 
@@ -33529,7 +33533,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var DOMChildrenOperations = __webpack_require__(65);
+var DOMChildrenOperations = __webpack_require__(66);
 var ReactDOMComponentTree = __webpack_require__(6);
 
 /**
@@ -33571,7 +33575,7 @@ var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
 var DOMPropertyOperations = __webpack_require__(105);
-var LinkedValueUtils = __webpack_require__(69);
+var LinkedValueUtils = __webpack_require__(70);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(19);
 
@@ -34356,13 +34360,13 @@ module.exports = ReactDOMSelection;
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
-var DOMChildrenOperations = __webpack_require__(65);
+var DOMChildrenOperations = __webpack_require__(66);
 var DOMLazyTree = __webpack_require__(33);
 var ReactDOMComponentTree = __webpack_require__(6);
 
 var escapeTextContentForBrowser = __webpack_require__(55);
 var invariant = __webpack_require__(2);
-var validateDOMNesting = __webpack_require__(79);
+var validateDOMNesting = __webpack_require__(80);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -34524,7 +34528,7 @@ module.exports = ReactDOMTextComponent;
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
-var LinkedValueUtils = __webpack_require__(69);
+var LinkedValueUtils = __webpack_require__(70);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(19);
 
@@ -35548,7 +35552,7 @@ var PooledClass = __webpack_require__(29);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(19);
 
-var getEventTarget = __webpack_require__(76);
+var getEventTarget = __webpack_require__(77);
 var getUnboundedScrollPosition = __webpack_require__(191);
 
 /**
@@ -35741,8 +35745,8 @@ module.exports = ReactHostOperationHistoryHook;
 
 var DOMProperty = __webpack_require__(24);
 var EventPluginHub = __webpack_require__(44);
-var EventPluginUtils = __webpack_require__(67);
-var ReactComponentEnvironment = __webpack_require__(70);
+var EventPluginUtils = __webpack_require__(68);
+var ReactComponentEnvironment = __webpack_require__(71);
 var ReactEmptyComponent = __webpack_require__(108);
 var ReactBrowserEventEmitter = __webpack_require__(52);
 var ReactHostComponent = __webpack_require__(110);
@@ -35878,7 +35882,7 @@ module.exports = ReactMarkupChecksum;
 
 var _prodInvariant = __webpack_require__(4);
 
-var ReactComponentEnvironment = __webpack_require__(70);
+var ReactComponentEnvironment = __webpack_require__(71);
 var ReactInstanceMap = __webpack_require__(46);
 var ReactInstrumentation = __webpack_require__(16);
 
@@ -36466,7 +36470,7 @@ var ReactBrowserEventEmitter = __webpack_require__(52);
 var ReactInputSelection = __webpack_require__(111);
 var ReactInstrumentation = __webpack_require__(16);
 var Transaction = __webpack_require__(54);
-var ReactUpdateQueue = __webpack_require__(72);
+var ReactUpdateQueue = __webpack_require__(73);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -36835,7 +36839,7 @@ module.exports = ReactServerRenderingTransaction;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = __webpack_require__(72);
+var ReactUpdateQueue = __webpack_require__(73);
 
 var warning = __webpack_require__(3);
 
@@ -37311,7 +37315,7 @@ var SyntheticEvent = __webpack_require__(22);
 
 var getActiveElement = __webpack_require__(95);
 var isTextInputElement = __webpack_require__(122);
-var shallowEqual = __webpack_require__(60);
+var shallowEqual = __webpack_require__(61);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -37515,7 +37519,7 @@ var SyntheticUIEvent = __webpack_require__(47);
 var SyntheticWheelEvent = __webpack_require__(273);
 
 var emptyFunction = __webpack_require__(13);
-var getEventCharCode = __webpack_require__(74);
+var getEventCharCode = __webpack_require__(75);
 var invariant = __webpack_require__(2);
 
 /**
@@ -37982,9 +37986,9 @@ module.exports = SyntheticInputEvent;
 
 var SyntheticUIEvent = __webpack_require__(47);
 
-var getEventCharCode = __webpack_require__(74);
+var getEventCharCode = __webpack_require__(75);
 var getEventKey = __webpack_require__(279);
-var getEventModifierState = __webpack_require__(75);
+var getEventModifierState = __webpack_require__(76);
 
 /**
  * @interface KeyboardEvent
@@ -38071,7 +38075,7 @@ module.exports = SyntheticKeyboardEvent;
 
 var SyntheticUIEvent = __webpack_require__(47);
 
-var getEventModifierState = __webpack_require__(75);
+var getEventModifierState = __webpack_require__(76);
 
 /**
  * @interface TouchEvent
@@ -38513,7 +38517,7 @@ module.exports = findDOMNode;
 
 
 
-var KeyEscapeUtils = __webpack_require__(68);
+var KeyEscapeUtils = __webpack_require__(69);
 var traverseAllChildren = __webpack_require__(124);
 var warning = __webpack_require__(3);
 
@@ -38594,7 +38598,7 @@ module.exports = flattenChildren;
 
 
 
-var getEventCharCode = __webpack_require__(74);
+var getEventCharCode = __webpack_require__(75);
 
 /**
  * Normalization of deprecated HTML5 `key` values
@@ -39647,7 +39651,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactIconBase = __webpack_require__(80);
+var _reactIconBase = __webpack_require__(57);
 
 var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
 
@@ -39685,7 +39689,45 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactIconBase = __webpack_require__(80);
+var _reactIconBase = __webpack_require__(57);
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaFileText = function FaFileText(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm35.8 10.6q0.3 0.3 0.6 0.8h-10.5v-10.5q0.4 0.3 0.8 0.6z m-10.7 3.7h12.2v23.6q0 0.9-0.6 1.5t-1.6 0.6h-30q-0.8 0-1.5-0.6t-0.6-1.5v-35.8q0-0.8 0.6-1.5t1.5-0.6h17.9v12.1q0 0.9 0.6 1.6t1.5 0.6z m3.6 16.4v-1.4q0-0.3-0.2-0.5t-0.5-0.2h-15.7q-0.3 0-0.5 0.2t-0.2 0.5v1.4q0 0.3 0.2 0.5t0.5 0.2h15.7q0.3 0 0.5-0.2t0.2-0.5z m0-5.7v-1.4q0-0.3-0.2-0.5t-0.5-0.2h-15.7q-0.3 0-0.5 0.2t-0.2 0.5v1.4q0 0.3 0.2 0.5t0.5 0.2h15.7q0.3 0 0.5-0.2t0.2-0.5z m0-5.7v-1.4q0-0.4-0.2-0.6t-0.5-0.2h-15.7q-0.3 0-0.5 0.2t-0.2 0.6v1.4q0 0.3 0.2 0.5t0.5 0.2h15.7q0.3 0 0.5-0.2t0.2-0.5z' })
+        )
+    );
+};
+
+exports.default = FaFileText;
+module.exports = exports['default'];
+
+/***/ }),
+/* 291 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = __webpack_require__(57);
 
 var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
 
@@ -39707,7 +39749,7 @@ exports.default = FaMobile;
 module.exports = exports['default'];
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39723,7 +39765,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactIconBase = __webpack_require__(80);
+var _reactIconBase = __webpack_require__(57);
 
 var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
 
@@ -39745,7 +39787,7 @@ exports.default = MdComputer;
 module.exports = exports['default'];
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39916,7 +39958,7 @@ var AutosizeInput = createClass({
 module.exports = AutosizeInput;
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39931,17 +39973,17 @@ var defaultCharsRules = {
 var defaultMaskChar = '_';
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_parseMask__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_environment__ = __webpack_require__(296);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_string__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_defer__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_parseMask__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_environment__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_string__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_defer__ = __webpack_require__(296);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -40468,7 +40510,7 @@ var _initialiseProps = function _initialiseProps() {
 /* harmony default export */ __webpack_exports__["default"] = (InputElement);
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40481,7 +40523,7 @@ var _initialiseProps = function _initialiseProps() {
 });
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40520,11 +40562,11 @@ function isIOS() {
 }
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants__ = __webpack_require__(294);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function (mask, maskChar, charsRules) {
@@ -40579,7 +40621,7 @@ function isIOS() {
 });
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40807,7 +40849,7 @@ function getInsertStringLength(maskOptions, value, insertStr, insertPos) {
 }
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40894,17 +40936,17 @@ function createProvider() {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export createConnect */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_connectAdvanced__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_shallowEqual__ = __webpack_require__(307);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapDispatchToProps__ = __webpack_require__(301);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapStateToProps__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mergeProps__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__selectorFactory__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_shallowEqual__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapDispatchToProps__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapStateToProps__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mergeProps__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__selectorFactory__ = __webpack_require__(305);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -41010,14 +41052,14 @@ function createConnect() {
 /* harmony default export */ __webpack_exports__["a"] = (createConnect());
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export whenMapDispatchToPropsIsFunction */
 /* unused harmony export whenMapDispatchToPropsIsMissing */
 /* unused harmony export whenMapDispatchToPropsIsObject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__ = __webpack_require__(127);
 
 
@@ -41041,7 +41083,7 @@ function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
 /* harmony default export */ __webpack_exports__["a"] = ([whenMapDispatchToPropsIsFunction, whenMapDispatchToPropsIsMissing, whenMapDispatchToPropsIsObject]);
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41063,7 +41105,7 @@ function whenMapStateToPropsIsMissing(mapStateToProps) {
 /* harmony default export */ __webpack_exports__["a"] = ([whenMapStateToPropsIsFunction, whenMapStateToPropsIsMissing]);
 
 /***/ }),
-/* 303 */
+/* 304 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41120,14 +41162,14 @@ function whenMergePropsIsOmitted(mergeProps) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 304 */
+/* 305 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* unused harmony export impureFinalPropsSelectorFactory */
 /* unused harmony export pureFinalPropsSelectorFactory */
 /* harmony export (immutable) */ __webpack_exports__["a"] = finalPropsSelectorFactory;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__verifySubselectors__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__verifySubselectors__ = __webpack_require__(306);
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 
@@ -41233,7 +41275,7 @@ function finalPropsSelectorFactory(dispatch, _ref2) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 305 */
+/* 306 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41258,7 +41300,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 }
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41354,7 +41396,7 @@ var Subscription = function () {
 
 
 /***/ }),
-/* 307 */
+/* 308 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41391,7 +41433,7 @@ function shallowEqual(objA, objB) {
 }
 
 /***/ }),
-/* 308 */
+/* 309 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41451,7 +41493,7 @@ BrowserRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (BrowserRouter);
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41510,7 +41552,7 @@ HashRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (HashRouter);
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41519,7 +41561,7 @@ HashRouter.propTypes = {
 
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41596,7 +41638,7 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (NavLink);
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41605,7 +41647,7 @@ NavLink.defaultProps = {
 
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41614,7 +41656,7 @@ NavLink.defaultProps = {
 
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41623,7 +41665,7 @@ NavLink.defaultProps = {
 
 
 /***/ }),
-/* 315 */
+/* 316 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41632,7 +41674,7 @@ NavLink.defaultProps = {
 
 
 /***/ }),
-/* 316 */
+/* 317 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41641,7 +41683,7 @@ NavLink.defaultProps = {
 
 
 /***/ }),
-/* 317 */
+/* 318 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41650,7 +41692,7 @@ NavLink.defaultProps = {
 
 
 /***/ }),
-/* 318 */
+/* 319 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41659,7 +41701,7 @@ NavLink.defaultProps = {
 
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41668,7 +41710,7 @@ NavLink.defaultProps = {
 
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41728,7 +41770,7 @@ MemoryRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (MemoryRouter);
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41814,7 +41856,7 @@ Prompt.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Prompt);
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41900,7 +41942,7 @@ Redirect.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Redirect);
 
 /***/ }),
-/* 323 */
+/* 324 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42076,7 +42118,7 @@ StaticRouter.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (StaticRouter);
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42162,7 +42204,7 @@ Switch.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Switch);
 
 /***/ }),
-/* 325 */
+/* 326 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42207,7 +42249,7 @@ var withRouter = function withRouter(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRouter);
 
 /***/ }),
-/* 326 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42483,7 +42525,7 @@ function defaultChildren(props) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42554,7 +42596,7 @@ var AsyncCreatable = (0, _createReactClass2['default'])({
 module.exports = AsyncCreatable;
 
 /***/ }),
-/* 328 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42888,7 +42930,7 @@ function shouldKeyDownEventCreateNewOption(_ref6) {
 module.exports = Creatable;
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43011,7 +43053,7 @@ var Option = (0, _createReactClass2['default'])({
 module.exports = Option;
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43131,7 +43173,7 @@ var Value = (0, _createReactClass2['default'])({
 module.exports = Value;
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43161,7 +43203,7 @@ function arrowRenderer(_ref) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43189,7 +43231,7 @@ function clearRenderer() {
 module.exports = exports['default'];
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43253,7 +43295,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43371,7 +43413,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43387,11 +43429,11 @@ module.exports = PooledClass;
 
 
 
-var PooledClass = __webpack_require__(334);
+var PooledClass = __webpack_require__(335);
 var ReactElement = __webpack_require__(30);
 
 var emptyFunction = __webpack_require__(13);
-var traverseAllChildren = __webpack_require__(345);
+var traverseAllChildren = __webpack_require__(346);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -43567,7 +43609,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 336 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43742,7 +43784,7 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 337 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43773,7 +43815,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 338 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43797,7 +43839,7 @@ var factory = __webpack_require__(101);
 module.exports = factory(isValidElement);
 
 /***/ }),
-/* 339 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43819,7 +43861,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 340 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43838,7 +43880,7 @@ module.exports = ReactPropTypesSecret;
 module.exports = '15.6.1';
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43856,8 +43898,8 @@ module.exports = '15.6.1';
 
 var _prodInvariant = __webpack_require__(37);
 
-var ReactPropTypeLocationNames = __webpack_require__(337);
-var ReactPropTypesSecret = __webpack_require__(339);
+var ReactPropTypeLocationNames = __webpack_require__(338);
+var ReactPropTypesSecret = __webpack_require__(340);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -43931,7 +43973,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 342 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43959,7 +44001,7 @@ var factory = __webpack_require__(92);
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
 /***/ }),
-/* 343 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43985,7 +44027,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 344 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44029,7 +44071,7 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 345 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44052,7 +44094,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(136);
 
 var getIteratorFn = __webpack_require__(139);
 var invariant = __webpack_require__(2);
-var KeyEscapeUtils = __webpack_require__(333);
+var KeyEscapeUtils = __webpack_require__(334);
 var warning = __webpack_require__(3);
 
 var SEPARATOR = '.';
@@ -44211,7 +44253,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 346 */
+/* 347 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44267,7 +44309,7 @@ function applyMiddleware() {
 }
 
 /***/ }),
-/* 347 */
+/* 348 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44321,13 +44363,13 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ }),
-/* 348 */
+/* 349 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = combineReducers;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(142);
 
 
@@ -44462,7 +44504,7 @@ function combineReducers(reducers) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44538,7 +44580,7 @@ var resolvePathname = function resolvePathname(to) {
 module.exports = resolvePathname;
 
 /***/ }),
-/* 350 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -44569,7 +44611,7 @@ if(false) {
 }
 
 /***/ }),
-/* 351 */
+/* 352 */
 /***/ (function(module, exports) {
 
 
@@ -44664,14 +44706,14 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(353);
+module.exports = __webpack_require__(354);
 
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44681,7 +44723,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ponyfill = __webpack_require__(354);
+var _ponyfill = __webpack_require__(355);
 
 var _ponyfill2 = _interopRequireDefault(_ponyfill);
 
@@ -44704,10 +44746,10 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(143), __webpack_require__(356)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(143), __webpack_require__(357)(module)))
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44736,7 +44778,7 @@ function symbolObservablePonyfill(root) {
 };
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44782,7 +44824,7 @@ var valueEqual = function valueEqual(a, b) {
 exports.default = valueEqual;
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -44808,46 +44850,6 @@ module.exports = function(module) {
 	return module;
 };
 
-
-/***/ }),
-/* 357 */,
-/* 358 */,
-/* 359 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactIconBase = __webpack_require__(80);
-
-var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var FaFileText = function FaFileText(props) {
-    return _react2.default.createElement(
-        _reactIconBase2.default,
-        _extends({ viewBox: '0 0 40 40' }, props),
-        _react2.default.createElement(
-            'g',
-            null,
-            _react2.default.createElement('path', { d: 'm35.8 10.6q0.3 0.3 0.6 0.8h-10.5v-10.5q0.4 0.3 0.8 0.6z m-10.7 3.7h12.2v23.6q0 0.9-0.6 1.5t-1.6 0.6h-30q-0.8 0-1.5-0.6t-0.6-1.5v-35.8q0-0.8 0.6-1.5t1.5-0.6h17.9v12.1q0 0.9 0.6 1.6t1.5 0.6z m3.6 16.4v-1.4q0-0.3-0.2-0.5t-0.5-0.2h-15.7q-0.3 0-0.5 0.2t-0.2 0.5v1.4q0 0.3 0.2 0.5t0.5 0.2h15.7q0.3 0 0.5-0.2t0.2-0.5z m0-5.7v-1.4q0-0.3-0.2-0.5t-0.5-0.2h-15.7q-0.3 0-0.5 0.2t-0.2 0.5v1.4q0 0.3 0.2 0.5t0.5 0.2h15.7q0.3 0 0.5-0.2t0.2-0.5z m0-5.7v-1.4q0-0.4-0.2-0.6t-0.5-0.2h-15.7q-0.3 0-0.5 0.2t-0.2 0.6v1.4q0 0.3 0.2 0.5t0.5 0.2h15.7q0.3 0 0.5-0.2t0.2-0.5z' })
-        )
-    );
-};
-
-exports.default = FaFileText;
-module.exports = exports['default'];
 
 /***/ })
 /******/ ]);
