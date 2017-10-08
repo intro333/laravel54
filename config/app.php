@@ -177,7 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-        Jenssegers\Mongodb\MongodbServiceProvider::class,
+//        Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],
 
