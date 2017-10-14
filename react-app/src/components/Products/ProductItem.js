@@ -159,7 +159,7 @@ class ProductItem extends Component {
           <img src={'/storage/images/products/' + this.props.imgSrc} width="190" />
           <div className="category-item__name"> {this.props.itemName}</div>
           <div className="category-item__price-measure">
-            <span>{this.props.price} &#8381; / {this.props.unit}</span>
+            <span>{this.props.price} Р / {this.props.unit}</span>
             <div className="order-table__cell">
               <div className="b-number">
                 <div className="order-number">

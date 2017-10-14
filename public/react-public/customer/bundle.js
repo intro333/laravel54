@@ -24207,7 +24207,7 @@ var Cart = function (_Component) {
                   'span',
                   null,
                   total,
-                  ' \u20BD'
+                  ' \u0420'
                 )
               ),
               _react2.default.createElement(
@@ -25397,7 +25397,7 @@ var OrderItem = function (_Component) {
               'td',
               null,
               item.price,
-              ' \u20BD / ',
+              ' \u0420 / ',
               item.unit
             ),
             _react2.default.createElement(
@@ -25432,7 +25432,7 @@ var OrderItem = function (_Component) {
               'td',
               null,
               item.cost,
-              ' \u20BD'
+              ' \u0420'
             ),
             _react2.default.createElement(
               'td',
@@ -25621,7 +25621,7 @@ var OrderItem = function (_Component) {
             'span',
             null,
             total,
-            ' \u20BD'
+            ' \u0420'
           )
         )
       );
@@ -26715,7 +26715,7 @@ var SuccessModal = function (_Component) {
                 null,
                 total
               ),
-              ' \u20BD'
+              ' \u0420'
             ),
             _react2.default.createElement(
               'button',
@@ -27098,7 +27098,7 @@ var ProductItem = function (_Component) {
               'span',
               null,
               this.props.price,
-              ' \u20BD / ',
+              ' \u0420 / ',
               this.props.unit
             ),
             _react2.default.createElement(

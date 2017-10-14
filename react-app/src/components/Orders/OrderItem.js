@@ -131,7 +131,7 @@ class OrderItem extends Component {
               <img className="cart-product-image" src={'/storage/images/products/' + item.image_path}/>
               <span>{item.name}</span>
             </td>
-            <td>{item.price} &#8381; / {item.unit}</td>
+            <td>{item.price} Р / {item.unit}</td>
             <td style={{textAlign: 'start'}}>
               <div className="order-table__cell">
                 <div className="b-number">
@@ -150,7 +150,7 @@ class OrderItem extends Component {
                 </div>
               </div>
             </td>
-            <td>{item.cost} &#8381;</td>
+            <td>{item.cost} Р</td>
             <td style={{color: 'firebrick'}}>
             <span
               className="remove-product"
@@ -246,7 +246,7 @@ class OrderItem extends Component {
         </table>
         {
           this.state.tdBotyVisible &&
-          <div className="cart-order__total order_total" style={totalStyle}>Сумма:&nbsp;<span>{ total } &#8381;</span></div>
+          <div className="cart-order__total order_total" style={totalStyle}>Сумма:&nbsp;<span>{ total } Р</span></div>
         }
       </div>
     );

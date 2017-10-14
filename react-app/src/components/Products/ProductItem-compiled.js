@@ -235,7 +235,7 @@ var ProductItem = function (_Component) {
               'span',
               null,
               this.props.price,
-              ' \u20BD / ',
+              ' \u0420 / ',
               this.props.unit
             ),
             _react2.default.createElement(

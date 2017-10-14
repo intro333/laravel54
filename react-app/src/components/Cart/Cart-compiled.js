@@ -417,7 +417,7 @@ var Cart = function (_Component) {
                   'span',
                   null,
                   total,
-                  ' \u20BD'
+                  ' \u0420'
                 )
               ),
               _react2.default.createElement(

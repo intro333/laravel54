@@ -51,9 +51,9 @@
                                     <img class="cart-product-image" src='/storage/images/products/{{ $products['image_path'] }}' />
                                     <span>{{ $products['name'] }}</span>
                                 </td>
-                                <td>{{ $products['price'] }} &#8381; / {{$products['unit'] }}</td>
+                                <td>{{ $products['price'] }} Р / {{$products['unit'] }}</td>
                                 <td>{{ $products['counts'] }}</td>
-                                <td>{{ $products['cost'] }} &#8381;</td>
+                                <td>{{ $products['cost'] }} Р</td>
                                 <td style="color: firebrick">
                                 </td>
                             </tr>
@@ -61,7 +61,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="cart-order__total not-active" style="margin: 10px;">Сумма:&nbsp;<span>{{ $item[0]['total'] }} &#8381;</span></div>
+                <div class="cart-order__total not-active" style="margin: 10px;">Сумма:&nbsp;<span>{{ $item[0]['total'] }} Р</span></div>
                 <div class="order-comment-admin not-active" style="margin-left: 10px;">
                     <label style="font-weight: bold">Комментарий к заказу</label>
                     <p>{{ $item[0]['comment'] }}</p>

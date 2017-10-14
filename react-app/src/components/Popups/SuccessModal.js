@@ -64,7 +64,7 @@ class SuccessModal extends Component {
       <div className="modal-content-success">
         <div className="modal-header-success">
           <button type="button" className="close" onClick={this.props.handlerCloseModal}>&times;</button>
-          <h4 className="modal-title" style={{marginBottom: '5px'}}><span style={{textDecoration: 'underline'}}>Корзина</span>: {session.get("productCounts")} {unit} <b>{total}</b> &#8381;</h4>
+          <h4 className="modal-title" style={{marginBottom: '5px'}}><span style={{textDecoration: 'underline'}}>Корзина</span>: {session.get("productCounts")} {unit} <b>{total}</b> Р</h4>
           <button type="button" className="btn btn-default" style={{width: '100%'}} onClick={this.handlerGoToCart.bind(this)}>Оформить</button>
         </div>
       </div>
