@@ -173,7 +173,7 @@ var CartItem = function (_Component) {
           'td',
           null,
           this.props.item.price,
-          ' \u20BD / ',
+          ' \u0420 / ',
           this.props.item.unit
         ),
         _react2.default.createElement(
@@ -217,7 +217,7 @@ var CartItem = function (_Component) {
           'td',
           null,
           cost,
-          ' \u20BD'
+          ' \u0420'
         ),
         _react2.default.createElement(
           'td',

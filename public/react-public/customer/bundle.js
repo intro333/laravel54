@@ -1809,9 +1809,6 @@ var makeRequest = exports.makeRequest = function makeRequest(dispatcher, params,
 };
 
 //Пример с параметрами
-
-// import {polyfill} from 'es6-promise';
-// polyfill();
 var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
   makeRequest(dispatcher, options, function (r) {
     if (then) then(r.data);
@@ -24446,7 +24443,7 @@ var CartItem = function (_Component) {
           'td',
           null,
           this.props.item.price,
-          ' \u20BD / ',
+          ' \u0420 / ',
           this.props.item.unit
         ),
         _react2.default.createElement(
@@ -24490,7 +24487,7 @@ var CartItem = function (_Component) {
           'td',
           null,
           cost,
-          ' \u20BD'
+          ' \u0420'
         ),
         _react2.default.createElement(
           'td',
