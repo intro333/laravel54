@@ -258,7 +258,7 @@ class Cart extends Component {
                 { productsTd }
                 </tbody>
               </table>
-              <div className="cart-order__total cart_total">Сумма:&nbsp;<span>{ total } ₽</span></div>
+              <div className="cart-order__total cart_total">Сумма:&nbsp;<span>{ total } &#8381;</span></div>
               <p className="order-filds-label" style={{color: 'red', fontSize: '14px', margin: '0'}}>
                 {this.state.comment_count_error !== '' && this.state.comment_count_error}
               </p>

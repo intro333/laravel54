@@ -123,7 +123,7 @@ class CartItem extends Component {
           <img className="cart-product-image" src={'/storage/images/products/' + this.props.item.imagePath} />
           <span>{this.props.item.name}</span>
         </td>
-        <td>{this.props.item.price} ₽ / {this.props.item.unit}</td>
+        <td>{this.props.item.price} &#8381; / {this.props.item.unit}</td>
         <td style={{textAlign: 'start'}}>
           <div className="order-table__cell">
             <div className="b-number">
@@ -151,7 +151,7 @@ class CartItem extends Component {
             </div>
           </div>
         </td>
-        <td>{cost} ₽</td>
+        <td>{cost} &#8381;</td>
         <td style={{color: 'firebrick'}}>
           <span
             className="remove-product glyphicon glyphicon-trash"
