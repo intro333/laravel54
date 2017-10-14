@@ -1809,6 +1809,9 @@ var makeRequest = exports.makeRequest = function makeRequest(dispatcher, params,
 };
 
 //Пример с параметрами
+
+// import {polyfill} from 'es6-promise';
+// polyfill();
 var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
   makeRequest(dispatcher, options, function (r) {
     if (then) then(r.data);

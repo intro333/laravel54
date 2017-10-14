@@ -1,4 +1,5 @@
 var path = require('path');
+require('es6-promise').polyfill();
 
 module.exports = {
   devtool: 'source-map',
