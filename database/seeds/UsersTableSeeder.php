@@ -14,10 +14,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_details')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        DB::table('users')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+//        DB::table('user_details')->truncate();
+//        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+//        DB::table('users')->truncate();
+//        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         foreach ($this->getUserData() as $item) {
             User::create($item);
@@ -30,14 +30,14 @@ class UsersTableSeeder extends Seeder
     public function getUserData()
     {
         $data = [
-            [
-                "id"        => 1,
-                "email"     => "qwe@mail.ru",
-                "password"  => bcrypt('123456'),
-                "role"      => 'person',
-                "is_active" => 1,
-                "remember_token"   => "",
-            ],
+//            [
+//                "id"        => 1,
+//                "email"     => "qwe@mail.ru",
+//                "password"  => bcrypt('123456'),
+//                "role"      => 'person',
+//                "is_active" => 1,
+//                "remember_token"   => "",
+//            ],
             [
                 "id"        => 2,
                 "email"     => "admin@mail.ru",
@@ -54,14 +54,14 @@ class UsersTableSeeder extends Seeder
     public function getUserDetailsData()
     {
         $data = [
-            [
-                "user_details_user_id"  => 1,
-                "name"   => 'Дмитрий',
-                "sname"  => 'Держаев',
-                "mname"  => '',
-                "phone"  => '+7 (926) 851 20 86',
-                "gender"    => 1,
-            ],
+//            [
+//                "user_details_user_id"  => 1,
+//                "name"   => 'Дмитрий',
+//                "sname"  => 'Держаев',
+//                "mname"  => '',
+//                "phone"  => '+7 (926) 851 20 86',
+//                "gender"    => 1,
+//            ],
             [
                 "user_details_user_id"  => 2,
                 "name"   => 'Сергей',
