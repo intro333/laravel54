@@ -13,6 +13,8 @@ var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _es6Promise = require('es6-promise');
+
 var _actions = require('./actions');
 
 var modelActions = _interopRequireWildcard(_actions);
@@ -25,6 +27,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(0, _es6Promise.polyfill)();require('es6-promise').polyfill();
 var makeRequest = exports.makeRequest = function makeRequest(dispatcher, params, then, error) {
   (0, _axios2.default)(params).then(function (result) {
     if (then) then(result);
@@ -34,9 +37,6 @@ var makeRequest = exports.makeRequest = function makeRequest(dispatcher, params,
 };
 
 //Пример с параметрами
-
-// import {polyfill} from 'es6-promise';
-// polyfill();
 var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
   makeRequest(dispatcher, options, function (r) {
     if (then) then(r.data);

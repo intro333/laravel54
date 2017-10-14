@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-// import {polyfill} from 'es6-promise';
-// polyfill();
+import {polyfill} from 'es6-promise';
+polyfill();
 import * as modelActions from './actions';
 import { changeSuccessModalDisplay } from './components/Products/actions';
 import { isEmptyMap } from './helpers';
