@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import * as modelActions from './actions';
-import { changeSuccessModalDisplay } from './components/Products/actions';
-import { isEmptyMap } from './helpers';
+import { changeSuccessModalDisplay, errorModalDisplay } from './components/Products/actions';
 
 export const makeRequest = (dispatcher, params, then, error) => {
   axios(params).then((result) => {
@@ -10,18 +9,6 @@ export const makeRequest = (dispatcher, params, then, error) => {
   }).catch(r => {
     if (error) error(r);
   });
-};
-
-//Пример с параметрами
-export const fetch = (dispatcher, options, then, error) => {
-  makeRequest(
-    dispatcher,
-    options,
-    r => {
-      if (then) then(r.data);
-    },
-    error
-  );
 };
 
 //Выход, разлогиниться.
@@ -51,10 +38,16 @@ export const setCategories = dispatcher => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setCategories(response.data))
+    if (response.status === 200) {
+      dispatcher(modelActions.setCategories(response.data));
+    } else {
+      dispatcher(errorModalDisplay(true));
+      console.log('Error status response: ' + response.status)
+    }
   };
 
   const error = (error) => {
+    dispatcher(errorModalDisplay(true))
     console.log(error);
   };
 
@@ -302,30 +295,6 @@ export const updatePersonalData = (dispatcher, data) => {
   makeRequest(dispatcher, params, then, error);
 };
 
-//Изменить фото в личном аккаунте
-export const changePhotoPersonalData = (dispatcher, data) => {
-  console.log("dataOfFile", data)
-  let form = new FormData();
-  form.append('image', data['image']);
-  // form.append('name', name);
-  const params = {
-    method:'post',
-    url:'/api/change-photo-in-personal-account',
-    data: form
-  };
-
-  const then = response => {
-    console.log('image data', response.data)
-    dispatcher(modelActions.setUserImage(response.data))
-  };
-
-  const error = (error) => {
-    console.log(error);
-  };
-
-  makeRequest(dispatcher, params, then, error);
-};
-
 //Получить все заказы пользователя
 export const ordersGetAll = (dispatcher, data) => {
   const params = {
@@ -381,6 +350,31 @@ export const repeatOrChangeOrder = (dispatcher, data, history) => {
       dispatcher(modelActions.setProductsForCart(response.data));
       history.push('/cart');
     }
+  };
+
+  const error = (error) => {
+    console.log(error);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+/* Неиспользованные методы */
+//Изменить фото в личном аккаунте
+export const changePhotoPersonalData = (dispatcher, data) => {
+  console.log("dataOfFile", data)
+  let form = new FormData();
+  form.append('image', data['image']);
+  // form.append('name', name);
+  const params = {
+    method:'post',
+    url:'/api/change-photo-in-personal-account',
+    data: form
+  };
+
+  const then = response => {
+    console.log('image data', response.data)
+    dispatcher(modelActions.setUserImage(response.data))
   };
 
   const error = (error) => {

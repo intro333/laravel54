@@ -11,6 +11,8 @@ import {
 } from '../../api';
 import {isEmptyMap} from '../../helpers';
 import Footer from '../Navigation/Footer';
+import SuccessSaveModal  from '../Popups/SuccessSaveModal';
+import { changeSuccessModalDisplay } from '../Products/actions';
 
 class Categories extends Component {
 
@@ -23,8 +25,13 @@ class Categories extends Component {
     setCategories(dispatch);
   }
 
+  handlerCloseModal() {
+    const { dispatch } = this.props;
+    dispatch(changeSuccessModalDisplay(false));
+  }
+
   render() {
-    const {api} = this.props;
+    const { api, products } = this.props;
     const categories = api.get('categories');
     const categoryItems = isEmptyMap(categories) && categories.map((item) =>
         <CategoryItem
@@ -35,24 +42,17 @@ class Categories extends Component {
         />
       );
 
-    var items = <div className="container">
-      <Navigation />
-      <MenuMobile />
-      <div className="main-container">
-        <div className="category-head">
-          <h3 className="bread-crumbs-on-page">Продукты</h3>
-        </div>
-        <div className="category-all">
-          {categoryItems}
-        </div>
-      </div>
-    </div>;
-
     return (
       <div>
         <div className="container">
           <Navigation />
           <MenuMobile />
+          <SuccessSaveModal
+            handlerCloseModal={this.handlerCloseModal.bind(this)}
+            successModalDisplay={products.get('errorModalDisplay')}
+            modalTitle="Нет соединения."
+            colorBack="#af4c4c"
+          />
           <div className="main-container">
             <div className="category-head">
               <h3 className="bread-crumbs-on-page">Продукты</h3>
@@ -72,5 +72,6 @@ export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
   api: store.api,
+  products: store.products,
 }))(Categories);
 

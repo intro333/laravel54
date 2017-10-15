@@ -1395,9 +1395,9 @@ button.close {
 .modal-dialog-success-save {
     width: 220px !important;
 }
-.modal-content-success-save {
-    background: #4CAF50 !important;
-}
+/*.modal-content-success-save {*/
+    /*background: #4CAF50 !important;*/
+/*}*/
 .modal-header-success-save {
     color: #fff !important;
 }

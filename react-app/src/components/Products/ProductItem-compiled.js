@@ -111,7 +111,7 @@ var ProductItem = function (_Component) {
     key: 'setPlusNumber',
     value: function setPlusNumber() {
       var inputVal = this.getCountProductCart();
-      console.log(1, inputVal);
+      // console.log(1, inputVal)
       if (Number.isInteger(inputVal) && inputVal < 99) {
         this.setState({
           orderNumberInp: parseInt(inputVal) + 1,

@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.changeOrderNumberInp = changeOrderNumberInp;
 exports.changeSuccessModalDisplay = changeSuccessModalDisplay;
+exports.errorModalDisplay = errorModalDisplay;
 exports.setScrollTop = setScrollTop;
 exports.setResize = setResize;
 function changeOrderNumberInp(orderNumberInp) {
@@ -13,6 +14,10 @@ function changeOrderNumberInp(orderNumberInp) {
 
 function changeSuccessModalDisplay(successModalDisplay) {
   return { type: 'CHANGE_SUCCESS_MODAL_DISPLAY', successModalDisplay: successModalDisplay };
+}
+
+function errorModalDisplay(errorModalDisplay) {
+  return { type: 'SET_ERROR_MODAL_DISPLAY', errorModalDisplay: errorModalDisplay };
 }
 
 function setScrollTop(scrollTop) {

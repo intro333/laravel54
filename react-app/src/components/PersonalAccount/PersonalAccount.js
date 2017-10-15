@@ -195,6 +195,8 @@ class PersonalAccount extends Component {
           <SuccessSaveModal
             handlerCloseModal={this.handlerCloseModal.bind(this)}
             successModalDisplay={products.get('successModalDisplay')}
+            modalTitle="Данные обновлены."
+            colorBack="#4CAF50"
           />
           <div className="main-container">
             <h2>Личный кабинет</h2>

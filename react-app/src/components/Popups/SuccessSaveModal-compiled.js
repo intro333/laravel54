@@ -69,6 +69,7 @@ var SuccessSaveModal = function (_Component) {
         'transition-scale': this.props.successModalDisplay
       });
 
+      var colorBack = { background: this.props.colorBack };
       // setTimeout(dispatch(changeSuccessModalDisplay(false)), 2000);
 
 
@@ -77,7 +78,7 @@ var SuccessSaveModal = function (_Component) {
         { className: modalDialog, style: scrollTopStyle },
         _react2.default.createElement(
           'div',
-          { className: 'modal-content-success modal-content-success-save' },
+          { className: 'modal-content-success modal-content-success-save', style: colorBack },
           _react2.default.createElement(
             'div',
             { className: 'modal-header-success modal-header-success-save', style: { padding: '7px' } },
@@ -89,7 +90,7 @@ var SuccessSaveModal = function (_Component) {
             _react2.default.createElement(
               'h4',
               { className: 'modal-title' },
-              '\u0414\u0430\u043D\u043D\u044B\u0435 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u044B.'
+              this.props.modalTitle
             )
           )
         )

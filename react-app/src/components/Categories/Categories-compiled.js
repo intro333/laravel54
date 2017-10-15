@@ -38,6 +38,12 @@ var _Footer = require('../Navigation/Footer');
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
+var _SuccessSaveModal = require('../Popups/SuccessSaveModal');
+
+var _SuccessSaveModal2 = _interopRequireDefault(_SuccessSaveModal);
+
+var _actions = require('../Products/actions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63,9 +69,18 @@ var Categories = function (_Component) {
       (0, _api.setCategories)(dispatch);
     }
   }, {
+    key: 'handlerCloseModal',
+    value: function handlerCloseModal() {
+      var dispatch = this.props.dispatch;
+
+      dispatch((0, _actions.changeSuccessModalDisplay)(false));
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var api = this.props.api;
+      var _props = this.props,
+          api = _props.api,
+          products = _props.products;
 
       var categories = api.get('categories');
       var categoryItems = (0, _helpers.isEmptyMap)(categories) && categories.map(function (item) {
@@ -77,31 +92,6 @@ var Categories = function (_Component) {
         });
       });
 
-      var items = _react2.default.createElement(
-        'div',
-        { className: 'container' },
-        _react2.default.createElement(_Navigation2.default, null),
-        _react2.default.createElement(_MenuMobile2.default, null),
-        _react2.default.createElement(
-          'div',
-          { className: 'main-container' },
-          _react2.default.createElement(
-            'div',
-            { className: 'category-head' },
-            _react2.default.createElement(
-              'h3',
-              { className: 'bread-crumbs-on-page' },
-              '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'category-all' },
-            categoryItems
-          )
-        )
-      );
-
       return _react2.default.createElement(
         'div',
         null,
@@ -110,6 +100,12 @@ var Categories = function (_Component) {
           { className: 'container' },
           _react2.default.createElement(_Navigation2.default, null),
           _react2.default.createElement(_MenuMobile2.default, null),
+          _react2.default.createElement(_SuccessSaveModal2.default, {
+            handlerCloseModal: this.handlerCloseModal.bind(this),
+            successModalDisplay: products.get('errorModalDisplay'),
+            modalTitle: '\u041D\u0435\u0442 \u0441\u043E\u0435\u0434\u0438\u043D\u0435\u043D\u0438\u044F.',
+            colorBack: '#af4c4c'
+          }),
           _react2.default.createElement(
             'div',
             { className: 'main-container' },
@@ -141,7 +137,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
     session: store.session,
-    api: store.api
+    api: store.api,
+    products: store.products
   };
 })(Categories);
 

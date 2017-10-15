@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.repeatOrChangeOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.changePhotoPersonalData = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showCurrentOrder = exports.showOrdersQuotaInCart = exports.clearCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.fetch = exports.makeRequest = undefined;
+exports.changePhotoPersonalData = exports.repeatOrChangeOrder = exports.cancelOrDeleteOrder = exports.ordersGetAll = exports.updatePersonalData = exports.setUserInfo = exports.checkTimeQuota = exports.showCurrentOrder = exports.showOrdersQuotaInCart = exports.clearCart = exports.sendOrder = exports.deleteProductFromCart = exports.showProductsInCart = exports.addProductToCart = exports.getProductCounts = exports.setProducts = exports.setCategories = exports.logOut = exports.makeRequest = undefined;
 
 var _react = require('react');
 
@@ -19,8 +19,6 @@ var modelActions = _interopRequireWildcard(_actions);
 
 var _actions2 = require('./components/Products/actions');
 
-var _helpers = require('./helpers');
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -31,13 +29,6 @@ var makeRequest = exports.makeRequest = function makeRequest(dispatcher, params,
   }).catch(function (r) {
     if (error) error(r);
   });
-};
-
-//Пример с параметрами
-var fetch = exports.fetch = function fetch(dispatcher, options, then, error) {
-  makeRequest(dispatcher, options, function (r) {
-    if (then) then(r.data);
-  }, error);
 };
 
 //Выход, разлогиниться.
@@ -67,10 +58,16 @@ var setCategories = exports.setCategories = function setCategories(dispatcher) {
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setCategories(response.data));
+    if (response.status === 200) {
+      dispatcher(modelActions.setCategories(response.data));
+    } else {
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+      console.log('Error status response: ' + response.status);
+    }
   };
 
   var error = function error(_error2) {
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error2);
   };
 
@@ -334,30 +331,6 @@ var updatePersonalData = exports.updatePersonalData = function updatePersonalDat
   makeRequest(dispatcher, params, then, error);
 };
 
-//Изменить фото в личном аккаунте
-var changePhotoPersonalData = exports.changePhotoPersonalData = function changePhotoPersonalData(dispatcher, data) {
-  console.log("dataOfFile", data);
-  var form = new FormData();
-  form.append('image', data['image']);
-  // form.append('name', name);
-  var params = {
-    method: 'post',
-    url: '/api/change-photo-in-personal-account',
-    data: form
-  };
-
-  var then = function then(response) {
-    console.log('image data', response.data);
-    dispatcher(modelActions.setUserImage(response.data));
-  };
-
-  var error = function error(_error15) {
-    console.log(_error15);
-  };
-
-  makeRequest(dispatcher, params, then, error);
-};
-
 //Получить все заказы пользователя
 var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data) {
   var params = {
@@ -371,8 +344,8 @@ var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data
     // console.log('ordersGetAll response.data', response.data);
   };
 
-  var error = function error(_error16) {
-    console.log(_error16);
+  var error = function error(_error15) {
+    console.log(_error15);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -392,8 +365,8 @@ var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteO
     // console.log('ordersGetAll response.data', response.data);
   };
 
-  var error = function error(_error17) {
-    console.log(_error17);
+  var error = function error(_error16) {
+    console.log(_error16);
   };
 
   makeRequest(dispatcher, params, then, error);
@@ -412,6 +385,31 @@ var repeatOrChangeOrder = exports.repeatOrChangeOrder = function repeatOrChangeO
       dispatcher(modelActions.setProductsForCart(response.data));
       history.push('/cart');
     }
+  };
+
+  var error = function error(_error17) {
+    console.log(_error17);
+  };
+
+  makeRequest(dispatcher, params, then, error);
+};
+
+/* Неиспользованные методы */
+//Изменить фото в личном аккаунте
+var changePhotoPersonalData = exports.changePhotoPersonalData = function changePhotoPersonalData(dispatcher, data) {
+  console.log("dataOfFile", data);
+  var form = new FormData();
+  form.append('image', data['image']);
+  // form.append('name', name);
+  var params = {
+    method: 'post',
+    url: '/api/change-photo-in-personal-account',
+    data: form
+  };
+
+  var then = function then(response) {
+    console.log('image data', response.data);
+    dispatcher(modelActions.setUserImage(response.data));
   };
 
   var error = function error(_error18) {

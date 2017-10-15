@@ -35,15 +35,16 @@ class SuccessSaveModal extends Component {
       'transition-scale': this.props.successModalDisplay,
     });
 
+    const colorBack = { background: this.props.colorBack }
     // setTimeout(dispatch(changeSuccessModalDisplay(false)), 2000);
 
 
   return(
     <div className={modalDialog} style={scrollTopStyle}>
-      <div className="modal-content-success modal-content-success-save">
+      <div className="modal-content-success modal-content-success-save" style={colorBack}>
         <div className="modal-header-success modal-header-success-save" style={{padding: '7px'}}>
           <button type="button" className="close" style={{color: '#fff'}} onClick={this.props.handlerCloseModal}>&times;</button>
-          <h4 className="modal-title">Данные обновлены.</h4>
+          <h4 className="modal-title">{this.props.modalTitle}</h4>
         </div>
       </div>
     </div>
