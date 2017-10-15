@@ -51,6 +51,16 @@ var CartItem = function (_Component) {
   }
 
   _createClass(CartItem, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      if (this.props.item.count === "") {
+        this.setState({
+          errorBorderRed: true,
+          inputPlaceHolder: '?'
+        });
+      }
+    }
+  }, {
     key: 'addProductToCart',
     value: function addProductToCart(productCounts) {
       var dispatch = this.props.dispatch;
@@ -135,9 +145,7 @@ var CartItem = function (_Component) {
   }, {
     key: 'deleteProductFromCart',
     value: function deleteProductFromCart() {
-      var _props = this.props,
-          dispatch = _props.dispatch,
-          session = _props.session;
+      var dispatch = this.props.dispatch;
 
       var data = {
         barCode: this.props.item.barCode,

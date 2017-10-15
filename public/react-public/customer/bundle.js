@@ -3537,7 +3537,7 @@ var Navigation = function (_Component) {
 
       var productsCounts = session.get('productCounts');
       var cartUrl = productsCounts && productsCounts !== 0 ? '/cart' : '/';
-      console.log(2, window.location.href);
+      // console.log(2, window.location.href)
 
       return _react2.default.createElement(
         'div',
@@ -24321,6 +24321,16 @@ var CartItem = function (_Component) {
   }
 
   _createClass(CartItem, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      if (this.props.item.count === "") {
+        this.setState({
+          errorBorderRed: true,
+          inputPlaceHolder: '?'
+        });
+      }
+    }
+  }, {
     key: 'addProductToCart',
     value: function addProductToCart(productCounts) {
       var dispatch = this.props.dispatch;
@@ -24405,9 +24415,7 @@ var CartItem = function (_Component) {
   }, {
     key: 'deleteProductFromCart',
     value: function deleteProductFromCart() {
-      var _props = this.props,
-          dispatch = _props.dispatch,
-          session = _props.session;
+      var dispatch = this.props.dispatch;
 
       var data = {
         barCode: this.props.item.barCode,
@@ -26909,7 +26917,7 @@ var ProductItem = function (_Component) {
 
     _this.state = {
       scrollTop: 0,
-      orderNumberInp: 0,
+      orderNumberInp: 1,
       errorBorderRed: false,
       inputPlaceHolder: '',
       addButtonText: 'Добавить в корзину',
@@ -26973,13 +26981,13 @@ var ProductItem = function (_Component) {
   }, {
     key: 'setPlusNumber',
     value: function setPlusNumber() {
-
       var inputVal = this.getCountProductCart();
-      if (inputVal < 99) {
+      if (Number.isInteger(inputVal) && inputVal < 99) {
         this.setState({
-          orderNumberInp: parseInt(inputVal) + 1
+          orderNumberInp: parseInt(inputVal) + 1,
+          errorBorderRed: false
         });
-      } else if (isNaN(inputVal)) {
+      } else {
         this.setState({
           orderNumberInp: 1,
           errorBorderRed: false
@@ -26997,11 +27005,12 @@ var ProductItem = function (_Component) {
         return item.name === _this4.props.itemName;
       });
       var inputVal = this.getCountProductCart();
-      if (inputVal > 1) {
+      if (Number.isInteger(inputVal) && inputVal > 1) {
         this.setState({
-          orderNumberInp: parseInt(inputVal) - 1
+          orderNumberInp: parseInt(inputVal) - 1,
+          errorBorderRed: false
         });
-      } else if (isNaN(inputVal)) {
+      } else {
         this.setState({
           orderNumberInp: 1,
           errorBorderRed: false
@@ -27012,11 +27021,17 @@ var ProductItem = function (_Component) {
     key: 'setChangeNumber',
     value: function setChangeNumber(e) {
       var targetValue = e.target.value;
-      if (targetValue <= 99 && targetValue > 0 || targetValue === '') {
+      if (targetValue <= 99 && targetValue > 0) {
         this.setState({
           orderNumberInp: parseInt(targetValue),
           errorBorderRed: false,
           inputPlaceHolder: ''
+        });
+      } else if (targetValue === '') {
+        this.setState({
+          orderNumberInp: '',
+          errorBorderRed: true,
+          inputPlaceHolder: '?'
         });
       }
     }
@@ -27073,7 +27088,9 @@ var ProductItem = function (_Component) {
       var product = (0, _helpers.isEmptyMap)(productsForCart) && productsForCart.filter(function (item) {
         return item.name === _this5.props.itemName;
       });
-      var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : 1;
+      // var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: 1);
+      // var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: 1);
+      var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : this.state.orderNumberInp;
       var inputPlaceHolder = this.state.inputPlaceHolder;
       var addToCartButtonText = (0, _helpers.isEmptyArray)(product) ? 'Товар в корзине' : this.state.addButtonText;
       var addToCartButtonStyle = this.props.ordersQuota && this.props.ordersQuota.status ? (0, _helpers.isEmptyArray)(product) ? { background: '#3c763d' } : this.state.addToCartButtonStyle : { background: '#aab5bf' };

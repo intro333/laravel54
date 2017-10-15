@@ -62,7 +62,7 @@ class SessionController extends Controller
             foreach ($session as $item) {
                 $products[] = [
                     'productId' => $item['productId'],
-                    'count'     => $item['productCounts'],
+                    'count'     => $item['productCounts'] === "" ? 1 : $item['productCounts'],
                     'barCode'   => $item['barCode'],
                 ];
             }

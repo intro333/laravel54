@@ -22,6 +22,14 @@ class CartItem extends Component {
     }
   }
 
+  componentWillMount() {
+    if(this.props.item.count === "") {
+      this.setState({
+        errorBorderRed: true,
+        inputPlaceHolder: '?'
+      });
+    }
+  }
   addProductToCart(productCounts) {
     const { dispatch } = this.props;
 
@@ -100,7 +108,7 @@ class CartItem extends Component {
   }
 
   deleteProductFromCart() {
-    const { dispatch, session } = this.props;
+    const { dispatch } = this.props;
     const data = {
       barCode: this.props.item.barCode,
       productId: this.props.item.productId
