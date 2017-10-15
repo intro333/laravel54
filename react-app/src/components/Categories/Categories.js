@@ -12,7 +12,7 @@ import {
 import {isEmptyMap} from '../../helpers';
 import Footer from '../Navigation/Footer';
 import SuccessSaveModal  from '../Popups/SuccessSaveModal';
-import { changeSuccessModalDisplay } from '../Products/actions';
+import { changeSuccessModalDisplay, errorModalDisplay } from '../Products/actions';
 
 class Categories extends Component {
 
@@ -25,9 +25,14 @@ class Categories extends Component {
     setCategories(dispatch);
   }
 
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(errorModalDisplay(false));
+  }
+
   handlerCloseModal() {
     const { dispatch } = this.props;
-    dispatch(changeSuccessModalDisplay(false));
+    dispatch(errorModalDisplay(false));
   }
 
   render() {

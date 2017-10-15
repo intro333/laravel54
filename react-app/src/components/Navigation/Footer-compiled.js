@@ -106,7 +106,7 @@ var Footer = function (_Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'footer__copy' },
-                '\xA9 \xAB\u041C\u0430\u0433\u0430\u0437\u0438\u043D \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u043E\u0432\xBB, 2017'
+                '\xA9 \xAB\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B \u0438\u0437 \u041E\u0440\u043B\u0430\xBB, 2017'
               )
             )
           )

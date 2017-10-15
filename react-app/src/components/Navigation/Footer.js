@@ -39,7 +39,7 @@ class Footer extends Component {
               </nav>
             </div>
             <div className="b-footer__bottom">
-              <div className="footer__copy">&copy; «Магазин продуктов», 2017</div>
+              <div className="footer__copy">&copy; «Продукты из Орла», 2017</div>
               {/*<nav className="footer__social"><a href="#" target="_blank" className="footer__social__item footer__social__item--fb"></a><a href="#" target="_blank" className="footer__social__item footer__social__item--vk"></a><a href="#" target="_blank" className="footer__social__item footer__social__item--yt"></a><a href="#" target="_blank" className="footer__social__item footer__social__item--ig"></a></nav>*/}
             </div>
           </div>

@@ -69,11 +69,18 @@ var Categories = function (_Component) {
       (0, _api.setCategories)(dispatch);
     }
   }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      var dispatch = this.props.dispatch;
+
+      dispatch((0, _actions.errorModalDisplay)(false));
+    }
+  }, {
     key: 'handlerCloseModal',
     value: function handlerCloseModal() {
       var dispatch = this.props.dispatch;
 
-      dispatch((0, _actions.changeSuccessModalDisplay)(false));
+      dispatch((0, _actions.errorModalDisplay)(false));
     }
   }, {
     key: 'render',

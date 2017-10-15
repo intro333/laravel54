@@ -91,19 +91,18 @@ class Home extends Component {
               <img className={sliderImg_2} src="https://www.w3schools.com/w3images/coffee.jpg" />
               <img className={sliderImg_3} src="https://www.w3schools.com/w3images/sound.jpg" />
               <div className="xf-wrapper">
-                <header className="xf-you-love__header">Онлайн-магазин</header>
-                <p className="xf-you-love__subheader">shop-travel.ru это:</p>
+                <header className="xf-you-love__header">Онлайн-заказ</header>
+                <p className="xf-you-love__subheader">продуктов из Орла:</p>
                 <ul className="xf-you-love__list">
                   <div>
                     <li className="xf-you-love__item">Легкий заказ на сайте</li>
                     <li className="xf-you-love__item">Значительная экономия времени</li>
-                    <li className="xf-you-love__item">Полный ассортимент товаров супермаркета</li>
-                    <li className="xf-you-love__item">Специальные акции и привлекательные цены</li>
+                    <li className="xf-you-love__item">Сразу известна сумма заказа</li>
                   </div>
                   <div>
-                    <li className="xf-you-love__item">Бережная доставка ежедневно в удобное время</li>
-                    <li className="xf-you-love__item">Оплата картой или наличными</li>
-                    <li className="xf-you-love__item">Привилегии участникам Клуба Перекресток</li>
+                    <li className="xf-you-love__item">Получение заказа в удобное время</li>
+                    <li className="xf-you-love__item">Оплата наличными</li>
+                    <li className="xf-you-love__item">Ваш заказ всегда под рукой</li>
                   </div>
                 </ul>
               </div>
