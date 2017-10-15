@@ -26976,12 +26976,13 @@ var ProductItem = function (_Component) {
       var product = (0, _helpers.isEmptyArray)(productsForCart) && productsForCart.filter(function (item) {
         return item.name === _this3.props.itemName;
       });
-      return parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : 1;
+      return parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : this.state.orderNumberInp;
     }
   }, {
     key: 'setPlusNumber',
     value: function setPlusNumber() {
       var inputVal = this.getCountProductCart();
+      console.log(1, inputVal);
       if (Number.isInteger(inputVal) && inputVal < 99) {
         this.setState({
           orderNumberInp: parseInt(inputVal) + 1,
@@ -27088,8 +27089,6 @@ var ProductItem = function (_Component) {
       var product = (0, _helpers.isEmptyMap)(productsForCart) && productsForCart.filter(function (item) {
         return item.name === _this5.props.itemName;
       });
-      // var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: 1);
-      // var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: 1);
       var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (0, _helpers.isEmptyArray)(product) ? product[0]['count'] : this.state.orderNumberInp;
       var inputPlaceHolder = this.state.inputPlaceHolder;
       var addToCartButtonText = (0, _helpers.isEmptyArray)(product) ? 'Товар в корзине' : this.state.addButtonText;

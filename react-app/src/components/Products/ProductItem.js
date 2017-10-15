@@ -58,11 +58,12 @@ class ProductItem extends Component {
   getCountProductCart() {
     const { productsForCart } = this.props;
     const product = isEmptyArray(productsForCart) && productsForCart.filter((item) => item.name === this.props.itemName);
-    return parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (isEmptyArray(product) ? product[0]['count'] : 1);
+    return parseInt(this.state.orderNumberInp) ? parseInt(this.state.orderNumberInp) : (isEmptyArray(product) ? product[0]['count'] : this.state.orderNumberInp);
   }
 
   setPlusNumber() {
     var inputVal = this.getCountProductCart();
+    console.log(1, inputVal)
     if (Number.isInteger(inputVal) && inputVal < 99) {
       this.setState({
         orderNumberInp: (parseInt(inputVal) + 1),
@@ -154,8 +155,6 @@ class ProductItem extends Component {
     });
 
     const product = isEmptyMap(productsForCart) && productsForCart.filter((item) => item.name === this.props.itemName);
-    // var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: 1);
-    // var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: 1);
     var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: this.state.orderNumberInp);
     var inputPlaceHolder = this.state.inputPlaceHolder;
     var addToCartButtonText = isEmptyArray(product) ? 'Товар в корзине' : this.state.addButtonText;
