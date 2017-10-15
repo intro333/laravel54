@@ -278,8 +278,7 @@ var Cart = function (_Component) {
 
       var quotaStyle = {
         width: '100%',
-        display: 'flex',
-        alignItems: 'center'
+        display: 'flex'
       };
 
       var comment = (0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['four']) && currentOrder['four'].comment ? currentOrder['four'].comment : '';

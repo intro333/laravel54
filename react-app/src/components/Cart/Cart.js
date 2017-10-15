@@ -194,7 +194,7 @@ class Cart extends Component {
     const quotaStyle = {
       width: '100%',
       display: 'flex',
-      alignItems: 'center'
+      // alignItems: 'center'
     };
 
     const comment = isEmptyArray(currentOrder) && isEmptyArray(currentOrder['four']) && currentOrder['four'].comment ? currentOrder['four'].comment : '';

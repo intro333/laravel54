@@ -240,7 +240,7 @@
     .quota-style {
         width: 533px !important;
         flex-direction: column !important;
-        align-items: left !important;
+        /*align-items: left !important;*/
     }
     .quota-style div {
         margin-left: 0 !important;
