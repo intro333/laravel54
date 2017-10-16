@@ -138,8 +138,10 @@ class SessionController extends Controller
     //Показать текущий заказ(со статусом 1 или 4).
     public function showOrderCurrent()
     {
-        $orderOne = Order::status(1)->get();
-        $orderFour = Order::status(4)->get();
+        $user = \Auth::user();
+        $orderOne = Order::status(1)->where('user_order_id', $user->id)->get();
+        $orderFour = Order::status(4)->where('user_order_id', $user->id)->get();
+
         if(!$orderOne->isEmpty() || !$orderFour->isEmpty()) {
             return [
                 'one' => $orderOne->first(),
