@@ -10,6 +10,7 @@ import {
   getProductCounts,
 } from '../../api';
 import FaFileText from 'react-icons/lib/fa/file-text';
+import Loader  from '../Popups/Loader';
 
 class Navigation extends Component {
 
@@ -43,6 +44,7 @@ class Navigation extends Component {
 
     return (
       <div>
+        <Loader />
         <div className="contacts-main">
           <div className="contacts-item">
             <span>Сергей</span>

@@ -99,11 +99,17 @@ export const addProductToCart = (dispatcher, data) => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setProductsForCart(response.data))
+    if (response.status === 200) {
+      dispatcher(modelActions.setProductsForCart(response.data));
+      setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 300);
+    } else {
+      setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 300);
+    }
   };
 
   const error = (error) => {
     console.log(error);
+    setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 300);
   };
 
   makeRequest(dispatcher, params, then, error);

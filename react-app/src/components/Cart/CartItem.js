@@ -9,7 +9,7 @@ import {
   deleteProductFromCart,
   getProductCounts,
 } from '../../api';
-// import * as modelActions from './actions';
+import * as modelActions from '../../actions';
 
 class CartItem extends Component {
 
@@ -32,6 +32,8 @@ class CartItem extends Component {
   }
   addProductToCart(productCounts) {
     const { dispatch } = this.props;
+
+    dispatch(modelActions.setModalLoaderCartSentStatus(true));
 
     if (Number.isInteger(productCounts)) {
       const data = {

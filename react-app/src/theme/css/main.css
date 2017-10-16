@@ -1374,6 +1374,10 @@ button.close {
         width: 600px;
         margin: 30px auto;
     }
+    .modal-dialog-loader {
+        width: 600px;
+        margin: 30px auto;
+    }
     .modal-content {
         -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
         box-shadow: 0 5px 15px rgba(0,0,0,.5);
@@ -1434,6 +1438,34 @@ button.close {
     font-weight: 500;
 }
 /*КОНЕЦ MODAL SUCCESS----------------------------------------------------------------------------------------------------------*/
+/*НАЧАЛО MODAL LOADER----------------------------------------------------------------------------------------------------------*/
+.modal-content-loader {
+    position: relative;
+    margin-top: 40%;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: none;
+    border-radius: 6px;
+    outline: 0;
+    box-shadow: none;
+    background: transparent;
+}
+.modal-loader-animation__item {
+    display: flex;
+    justify-content: center;
+}
+.modal.in .modal-dialog-loader {
+    opacity: 0;
+}
+.modal.fade .modal-dialog-loader {
+    opacity: 1;
+}
+.modal-dialog-loader {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+/*КОНЕЦ MODAL LOADER----------------------------------------------------------------------------------------------------------*/
 .Select-input > input {
     width: 100% !important;
     border: none !important;
