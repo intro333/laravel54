@@ -119,11 +119,25 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setProductsForCart(response.data));
+    if (response.status === 200) {
+      dispatcher(modelActions.setProductsForCart(response.data));
+      setTimeout(function () {
+        dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+      }, 300);
+    } else {
+      setTimeout(function () {
+        dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+      }, 300);
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }
   };
 
   var error = function error(_error5) {
     console.log(_error5);
+    setTimeout(function () {
+      dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+    }, 300);
+    dispatcher((0, _actions2.errorModalDisplay)(true));
   };
 
   makeRequest(dispatcher, params, then, error);

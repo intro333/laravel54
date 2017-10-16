@@ -1376,7 +1376,7 @@ button.close {
     }
     .modal-dialog-loader {
         width: 600px;
-        margin: 30px auto;
+        margin: 0 auto;
     }
     .modal-content {
         -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
@@ -1462,8 +1462,8 @@ button.close {
 }
 .modal-dialog-loader {
     position: relative;
-    width: auto;
-    margin: 10px;
+    /*width: auto;*/
+    /*margin: 10px;*/
 }
 /*КОНЕЦ MODAL LOADER----------------------------------------------------------------------------------------------------------*/
 .Select-input > input {

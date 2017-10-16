@@ -11,11 +11,18 @@ import {
 } from '../../api';
 import FaFileText from 'react-icons/lib/fa/file-text';
 import Loader  from '../Popups/Loader';
+import SuccessSaveModal  from '../Popups/SuccessSaveModal';
+import { changeSuccessModalDisplay, errorModalDisplay } from '../Products/actions';
 
 class Navigation extends Component {
 
   constructor(props) {
     super(props);
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(errorModalDisplay(false));
   }
 
   mobileMenuClick() {
@@ -33,8 +40,13 @@ class Navigation extends Component {
     dispatch(modelActions.setMobNavElement(true));
   }
 
+  handlerCloseModal() {
+    const { dispatch } = this.props;
+    dispatch(errorModalDisplay(false));
+  }
+
   render() {
-    const { dispatch, session } = this.props;
+    const { dispatch, session, products } = this.props;
     //Заполнить количество продуктов в корзине в меню
     getProductCounts(dispatch);
 
@@ -45,6 +57,12 @@ class Navigation extends Component {
     return (
       <div>
         <Loader />
+        <SuccessSaveModal
+          handlerCloseModal={this.handlerCloseModal.bind(this)}
+          successModalDisplay={products.get('errorModalDisplay')}
+          modalTitle="Нет соединения."
+          colorBack="#af4c4c"
+        />
         <div className="contacts-main">
           <div className="contacts-item">
             <span>Сергей</span>
@@ -148,4 +166,5 @@ export default connect(store => ({
   session: store.session,
   token: store.api.get('userToken'),
   api: store.api,
+  products: store.products,
 }))(Navigation);

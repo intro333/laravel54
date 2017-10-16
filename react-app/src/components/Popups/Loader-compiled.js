@@ -10,33 +10,27 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = require('react-redux');
+var _classnames = require('classnames');
 
-require('../../theme/css/bootstrap-datepicker3.min.css');
+var _classnames2 = _interopRequireDefault(_classnames);
 
 require('../../theme/css/main.css');
 
 require('../../theme/css/adaptive.css');
 
-var _Navigation = require('../Navigation/Navigation');
+var _reactRedux = require('react-redux');
 
-var _Navigation2 = _interopRequireDefault(_Navigation);
+var _fileTextO = require('react-icons/lib/fa/file-text-o');
 
-var _MenuMobile = require('../Popups/MenuMobile');
+var _fileTextO2 = _interopRequireDefault(_fileTextO);
 
-var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
+var _mobile = require('react-icons/lib/fa/mobile');
 
-var _CategoryItem = require('./CategoryItem');
+var _mobile2 = _interopRequireDefault(_mobile);
 
-var _CategoryItem2 = _interopRequireDefault(_CategoryItem);
+var _computer = require('react-icons/lib/md/computer');
 
-var _api = require('../../api');
-
-var _helpers = require('../../helpers');
-
-var _Footer = require('../Navigation/Footer');
-
-var _Footer2 = _interopRequireDefault(_Footer);
+var _computer2 = _interopRequireDefault(_computer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46,72 +40,77 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Categories = function (_Component) {
-  _inherits(Categories, _Component);
+var Loader = function (_Component) {
+  _inherits(Loader, _Component);
 
-  function Categories(props) {
-    _classCallCheck(this, Categories);
+  function Loader(props) {
+    _classCallCheck(this, Loader);
 
-    return _possibleConstructorReturn(this, (Categories.__proto__ || Object.getPrototypeOf(Categories)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Loader.__proto__ || Object.getPrototypeOf(Loader)).call(this, props));
+
+    _this.state = {
+      fadeIn: false
+    };
+    return _this;
   }
 
-  _createClass(Categories, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      var dispatch = this.props.dispatch;
-
-      (0, _api.setCategories)(dispatch);
-    }
-  }, {
+  _createClass(Loader, [{
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          api = _props.api,
-          products = _props.products;
+      var api = this.props.api;
 
-      var categories = api.get('categories');
-      var categoryItems = (0, _helpers.isEmptyMap)(categories) && categories.map(function (item) {
-        return _react2.default.createElement(_CategoryItem2.default, {
-          key: item.category_id,
-          categoryId: item.category_id,
-          imgSrc: item.image_path,
-          itemName: item.name
-        });
+
+      var onOff = api.get('modalLoaderCartSentStatus');
+      // var onOff = true;
+      var modalFadeIn = (0, _classnames2.default)({
+        'animation-popup-load-fast': true,
+        'modal': true,
+        'fade': true,
+        'in': onOff
       });
+
+      var transitionTiming = (0, _classnames2.default)({
+        'transition-timing-linear': true
+      });
+
+      var modalStyleOn = {
+        display: 'block', paddingLeft: '15px'
+      };
+
+      var modalStyleOff = {
+        display: 'none'
+      };
 
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement('div', { className: 'modal-backdrop-white fade in', style: onOff ? modalStyleOn : modalStyleOff }),
         _react2.default.createElement(
           'div',
-          { className: 'container' },
-          _react2.default.createElement(_Navigation2.default, null),
-          _react2.default.createElement(_MenuMobile2.default, null),
+          { className: modalFadeIn, role: 'dialog', style: onOff ? modalStyleOn : modalStyleOff },
           _react2.default.createElement(
             'div',
-            { className: 'main-container' },
+            { className: 'modal-dialog-loader modal-sm' },
             _react2.default.createElement(
               'div',
-              { className: 'category-head' },
+              { className: 'modal-content-loader' },
               _react2.default.createElement(
-                'h3',
-                { className: 'bread-crumbs-on-page' },
-                '\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B'
+                'div',
+                { className: 'modal-animation' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'modal-loader-animation__item' },
+                  _react2.default.createElement('img', { src: '/images/loader.gif' })
+                )
               )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'category-all' },
-              categoryItems
             )
           )
-        ),
-        _react2.default.createElement(_Footer2.default, null)
+        )
       );
     }
   }]);
 
-  return Categories;
+  return Loader;
 }(_react.Component);
 
 exports.default = (0, _reactRedux.connect)(function (store) {
@@ -120,6 +119,6 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     session: store.session,
     api: store.api
   };
-})(Categories);
+})(Loader);
 
-//# sourceMappingURL=Categories-compiled.js.map
+//# sourceMappingURL=Loader-compiled.js.map

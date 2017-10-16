@@ -30,6 +30,16 @@ var _fileText = require('react-icons/lib/fa/file-text');
 
 var _fileText2 = _interopRequireDefault(_fileText);
 
+var _Loader = require('../Popups/Loader');
+
+var _Loader2 = _interopRequireDefault(_Loader);
+
+var _SuccessSaveModal = require('../Popups/SuccessSaveModal');
+
+var _SuccessSaveModal2 = _interopRequireDefault(_SuccessSaveModal);
+
+var _actions2 = require('../Products/actions');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -50,6 +60,13 @@ var Navigation = function (_Component) {
   }
 
   _createClass(Navigation, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      var dispatch = this.props.dispatch;
+
+      dispatch((0, _actions2.errorModalDisplay)(false));
+    }
+  }, {
     key: 'mobileMenuClick',
     value: function mobileMenuClick() {
       var _props = this.props,
@@ -73,11 +90,19 @@ var Navigation = function (_Component) {
       dispatch(modelActions.setMobNavElement(true));
     }
   }, {
+    key: 'handlerCloseModal',
+    value: function handlerCloseModal() {
+      var dispatch = this.props.dispatch;
+
+      dispatch((0, _actions2.errorModalDisplay)(false));
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props2 = this.props,
           dispatch = _props2.dispatch,
-          session = _props2.session;
+          session = _props2.session,
+          products = _props2.products;
       //Заполнить количество продуктов в корзине в меню
 
       (0, _api.getProductCounts)(dispatch);
@@ -89,6 +114,13 @@ var Navigation = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(_Loader2.default, null),
+        _react2.default.createElement(_SuccessSaveModal2.default, {
+          handlerCloseModal: this.handlerCloseModal.bind(this),
+          successModalDisplay: products.get('errorModalDisplay'),
+          modalTitle: '\u041D\u0435\u0442 \u0441\u043E\u0435\u0434\u0438\u043D\u0435\u043D\u0438\u044F.',
+          colorBack: '#af4c4c'
+        }),
         _react2.default.createElement(
           'div',
           { className: 'contacts-main' },
@@ -310,7 +342,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
     dispatch: store.dispatch,
     session: store.session,
     token: store.api.get('userToken'),
-    api: store.api
+    api: store.api,
+    products: store.products
   };
 })(Navigation);
 

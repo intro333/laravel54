@@ -104,12 +104,14 @@ export const addProductToCart = (dispatcher, data) => {
       setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 300);
     } else {
       setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 300);
+      dispatcher(errorModalDisplay(true))
     }
   };
 
   const error = (error) => {
     console.log(error);
     setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 300);
+    dispatcher(errorModalDisplay(true))
   };
 
   makeRequest(dispatcher, params, then, error);
