@@ -197,6 +197,7 @@ class PersonalAccount extends Component {
             successModalDisplay={products.get('successModalDisplay')}
             modalTitle="Данные обновлены."
             colorBack="#4CAF50"
+            colorText="#fff"
           />
           <div className="main-container">
             <h2>Личный кабинет</h2>

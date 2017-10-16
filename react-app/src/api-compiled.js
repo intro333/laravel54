@@ -119,6 +119,7 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
   };
 
   var then = function then(response) {
+    console.log("status: " + response.status);
     if (response.status === 200) {
       dispatcher(modelActions.setProductsForCart(response.data));
       setTimeout(function () {

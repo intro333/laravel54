@@ -1402,9 +1402,9 @@ button.close {
 /*.modal-content-success-save {*/
     /*background: #4CAF50 !important;*/
 /*}*/
-.modal-header-success-save {
-    color: #fff !important;
-}
+/*.modal-header-success-save {*/
+    /*color: #fff !important;*/
+/*}*/
 .transition-scale {
     transform: scale(1);
     opacity: 1;

@@ -119,7 +119,8 @@ var Navigation = function (_Component) {
           handlerCloseModal: this.handlerCloseModal.bind(this),
           successModalDisplay: products.get('errorModalDisplay'),
           modalTitle: '\u041D\u0435\u0442 \u0441\u043E\u0435\u0434\u0438\u043D\u0435\u043D\u0438\u044F.',
-          colorBack: '#af4c4c'
+          colorBack: '#ffe500',
+          colorText: '#000'
         }),
         _react2.default.createElement(
           'div',

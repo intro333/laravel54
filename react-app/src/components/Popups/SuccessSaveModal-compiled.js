@@ -70,6 +70,10 @@ var SuccessSaveModal = function (_Component) {
       });
 
       var colorBack = { background: this.props.colorBack };
+      var modalHeaderSuccess = {
+        padding: '7px',
+        color: this.props.colorText
+      };
       // setTimeout(dispatch(changeSuccessModalDisplay(false)), 2000);
 
 
@@ -81,7 +85,7 @@ var SuccessSaveModal = function (_Component) {
           { className: 'modal-content-success modal-content-success-save', style: colorBack },
           _react2.default.createElement(
             'div',
-            { className: 'modal-header-success modal-header-success-save', style: { padding: '7px' } },
+            { className: 'modal-header-success modal-header-success-save', style: modalHeaderSuccess },
             _react2.default.createElement(
               'button',
               { type: 'button', className: 'close', style: { color: '#fff' }, onClick: this.props.handlerCloseModal },

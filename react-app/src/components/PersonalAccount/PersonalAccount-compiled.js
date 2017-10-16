@@ -271,7 +271,8 @@ var PersonalAccount = function (_Component) {
             handlerCloseModal: this.handlerCloseModal.bind(this),
             successModalDisplay: products.get('successModalDisplay'),
             modalTitle: '\u0414\u0430\u043D\u043D\u044B\u0435 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u044B.',
-            colorBack: '#4CAF50'
+            colorBack: '#4CAF50',
+            colorText: '#fff'
           }),
           _react2.default.createElement(
             'div',
