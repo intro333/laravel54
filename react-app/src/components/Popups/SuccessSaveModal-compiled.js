@@ -88,13 +88,18 @@ var SuccessSaveModal = function (_Component) {
             { className: 'modal-header-success modal-header-success-save', style: modalHeaderSuccess },
             _react2.default.createElement(
               'button',
-              { type: 'button', className: 'close', style: { color: '#fff' }, onClick: this.props.handlerCloseModal },
+              { type: 'button', className: 'close', onClick: this.props.handlerCloseModal },
               '\xD7'
             ),
             _react2.default.createElement(
               'h4',
               { className: 'modal-title' },
               this.props.modalTitle
+            ),
+            _react2.default.createElement(
+              'h6',
+              { className: 'modal-title' },
+              this.props.modalSubTitle && this.props.modalSubTitle
             )
           )
         )

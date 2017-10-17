@@ -23,6 +23,7 @@ class Navigation extends Component {
   componentWillUnmount() {
     const { dispatch } = this.props;
     dispatch(errorModalDisplay(false));
+    dispatch(changeSuccessModalDisplay(false));
   }
 
   mobileMenuClick() {

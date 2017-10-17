@@ -19,6 +19,7 @@ exports.setProductCounts = setProductCounts;
 exports.setOrders = setOrders;
 exports.componentWillReceivePropsChange = componentWillReceivePropsChange;
 exports.setModalLoaderCartSentStatus = setModalLoaderCartSentStatus;
+exports.setLoaderStatus = setLoaderStatus;
 exports.setSuccessPageStatus = setSuccessPageStatus;
 exports.setTotalSum = setTotalSum;
 function setUserInfo(userInfo) {
@@ -83,6 +84,10 @@ function componentWillReceivePropsChange(componentWillReceivePropsChange) {
 
 function setModalLoaderCartSentStatus(modalLoaderCartSentStatus) {
   return { type: 'SET_MODAL_LOADER_CART_SENT_STATUS', modalLoaderCartSentStatus: modalLoaderCartSentStatus };
+}
+
+function setLoaderStatus(loaderStatus) {
+  return { type: 'SET_LOADER_STATUS', loaderStatus: loaderStatus };
 }
 
 function setSuccessPageStatus(successPageStatus) {

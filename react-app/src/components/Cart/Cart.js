@@ -150,6 +150,7 @@ class Cart extends Component {
       textBody: 'Удалить все товары из корзины?',
       function: () => {
         const {dispatch, history} = this.props;
+        dispatch(modelActions.setLoaderStatus(true));
         clearCart(dispatch, history);
       }
     });

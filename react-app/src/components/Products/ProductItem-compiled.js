@@ -28,6 +28,12 @@ var _actions = require('./actions');
 
 var _helpers = require('../../helpers');
 
+var _actions2 = require('../../actions');
+
+var mainActions = _interopRequireWildcard(_actions2);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -71,8 +77,6 @@ var ProductItem = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       var dispatch = this.props.dispatch;
-
-      dispatch((0, _actions.changeSuccessModalDisplay)(false));
       // window.removeEventListener('scroll', this.handleScroll);
     }
   }, {
@@ -174,6 +178,7 @@ var ProductItem = function (_Component) {
         if (productCounts) {
           var dispatch = this.props.dispatch;
 
+          dispatch(mainActions.setLoaderStatus(true));
           var data = {
             barCode: this.props.barCode,
             productId: this.props.productId,
@@ -186,7 +191,7 @@ var ProductItem = function (_Component) {
               background: '#3c763d'
             }
           });
-          dispatch((0, _actions.changeSuccessModalDisplay)(true));
+          // dispatch(changeSuccessModalDisplay(true));
         } else {
           this.setState({
             errorBorderRed: true,

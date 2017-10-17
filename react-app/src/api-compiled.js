@@ -60,14 +60,17 @@ var setCategories = exports.setCategories = function setCategories(dispatcher) {
   var then = function then(response) {
     if (response.status === 200) {
       dispatcher(modelActions.setCategories(response.data));
+      dispatcher(modelActions.setLoaderStatus(false));
     } else {
       dispatcher((0, _actions2.errorModalDisplay)(true));
+      dispatcher(modelActions.setLoaderStatus(false));
       console.log('Error status response: ' + response.status);
     }
   };
 
   var error = function error(_error2) {
     dispatcher((0, _actions2.errorModalDisplay)(true));
+    dispatcher(modelActions.setLoaderStatus(false));
     console.log(_error2);
   };
 
@@ -82,10 +85,18 @@ var setProducts = exports.setProducts = function setProducts(dispatcher, product
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setProducts(response.data));
+    if (response.status === 200) {
+      dispatcher(modelActions.setLoaderStatus(false));
+      dispatcher(modelActions.setProducts(response.data));
+    } else {
+      dispatcher(modelActions.setLoaderStatus(false));
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }
   };
 
   var error = function error(_error3) {
+    dispatcher(modelActions.setLoaderStatus(false));
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error3);
   };
 
@@ -119,15 +130,17 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
   };
 
   var then = function then(response) {
-    console.log("status: " + response.status);
     if (response.status === 200) {
       dispatcher(modelActions.setProductsForCart(response.data));
       setTimeout(function () {
-        dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      setTimeout(function () {
+        dispatcher((0, _actions2.changeSuccessModalDisplay)(true));
       }, 300);
     } else {
       setTimeout(function () {
-        dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+        dispatcher(modelActions.setLoaderStatus(false));
       }, 300);
       dispatcher((0, _actions2.errorModalDisplay)(true));
     }
@@ -136,7 +149,7 @@ var addProductToCart = exports.addProductToCart = function addProductToCart(disp
   var error = function error(_error5) {
     console.log(_error5);
     setTimeout(function () {
-      dispatcher(modelActions.setModalLoaderCartSentStatus(false));
+      dispatcher(modelActions.setLoaderStatus(false));
     }, 300);
     dispatcher((0, _actions2.errorModalDisplay)(true));
   };
@@ -174,10 +187,24 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setProductsForCart(response.data));
+    if (response.status === 200) {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      dispatcher(modelActions.setProductsForCart(response.data));
+    } else {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }
   };
 
   var error = function error(_error7) {
+    setTimeout(function () {
+      dispatcher(modelActions.setLoaderStatus(false));
+    }, 300);
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error7);
   };
 
@@ -235,11 +262,23 @@ var clearCart = exports.clearCart = function clearCart(dispatcher, history) {
 
   var then = function then(response) {
     if (response.status === 200) {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
       history.push('/');
+    } else {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      dispatcher((0, _actions2.errorModalDisplay)(true));
     }
   };
 
   var error = function error(_error9) {
+    setTimeout(function () {
+      dispatcher(modelActions.setLoaderStatus(false));
+    }, 300);
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error9);
   };
 
@@ -334,12 +373,21 @@ var updatePersonalData = exports.updatePersonalData = function updatePersonalDat
       dispatcher((0, _actions2.changeSuccessModalDisplay)(true));
       dispatcher(modelActions.setUserInfo(response.data));
       setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      setTimeout(function () {
         dispatcher((0, _actions2.changeSuccessModalDisplay)(false));
       }, 2000);
+    } else {
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+      dispatcher(modelActions.setLoaderStatus(false));
+      console.log('Error status response: ' + response.status);
     }
   };
 
   var error = function error(_error14) {
+    dispatcher((0, _actions2.errorModalDisplay)(true));
+    dispatcher(modelActions.setLoaderStatus(false));
     console.log(_error14);
   };
 

@@ -65,6 +65,7 @@ var Navigation = function (_Component) {
       var dispatch = this.props.dispatch;
 
       dispatch((0, _actions2.errorModalDisplay)(false));
+      dispatch((0, _actions2.changeSuccessModalDisplay)(false));
     }
   }, {
     key: 'mobileMenuClick',
@@ -119,6 +120,7 @@ var Navigation = function (_Component) {
           handlerCloseModal: this.handlerCloseModal.bind(this),
           successModalDisplay: products.get('errorModalDisplay'),
           modalTitle: '\u041D\u0435\u0442 \u0441\u043E\u0435\u0434\u0438\u043D\u0435\u043D\u0438\u044F.',
+          modalSubTitle: '\u041F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443.',
           colorBack: '#ffe500',
           colorText: '#000'
         }),

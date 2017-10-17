@@ -226,6 +226,7 @@ var Cart = function (_Component) {
               dispatch = _props3.dispatch,
               history = _props3.history;
 
+          dispatch(modelActions.setLoaderStatus(true));
           (0, _api.clearCart)(dispatch, history);
         }
       });

@@ -78,6 +78,7 @@ var Products = function (_Component) {
           dispatch = _props.dispatch,
           session = _props.session;
 
+      dispatch(mainActions.setLoaderStatus(true));
       (0, _api.setProducts)(dispatch, session.get('categoryId'));
       (0, _api.showOrdersQuotaInCart)(dispatch);
     }

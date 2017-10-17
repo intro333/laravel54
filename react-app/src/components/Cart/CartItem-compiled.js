@@ -70,7 +70,7 @@ var CartItem = function (_Component) {
       var dispatch = this.props.dispatch;
 
 
-      dispatch(modelActions.setModalLoaderCartSentStatus(true));
+      dispatch(modelActions.setLoaderStatus(true));
 
       if (Number.isInteger(productCounts)) {
         var data = {
@@ -153,6 +153,7 @@ var CartItem = function (_Component) {
     value: function deleteProductFromCart() {
       var dispatch = this.props.dispatch;
 
+      dispatch(modelActions.setLoaderStatus(true));
       var data = {
         barCode: this.props.item.barCode,
         productId: this.props.item.productId

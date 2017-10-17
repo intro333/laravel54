@@ -13,6 +13,7 @@ import SuccessSaveModal  from '../Popups/SuccessSaveModal';
 import { changeSuccessModalDisplay, setScrollTop } from '../Products/actions';
 import classNames from 'classnames';
 import Footer from '../Navigation/Footer';
+import * as modelActions from '../../actions';
 
 import {
   setUserInfo,
@@ -145,6 +146,7 @@ class PersonalAccount extends Component {
       this.setState({
         errorMessageForCreate: true
       });
+      dispatch(modelActions.setLoaderStatus(true));
       updatePersonalData(dispatch, data);
     } else {
       this.setState({

@@ -37,7 +37,6 @@ class ProductItem extends Component {
 
   componentWillUnmount() {
     const { dispatch } = this.props;
-    dispatch(changeSuccessModalDisplay(false));
     // window.removeEventListener('scroll', this.handleScroll);
   }
 

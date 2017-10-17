@@ -157,10 +157,18 @@ export const deleteProductFromCart = (dispatcher, data) => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setProductsForCart(response.data))
+    if (response.status === 200) {
+      setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+      dispatcher(modelActions.setProductsForCart(response.data))
+    } else {
+      setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+      dispatcher(errorModalDisplay(true))
+    }
   };
 
   const error = (error) => {
+    setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+    dispatcher(errorModalDisplay(true));
     console.log(error);
   };
 
@@ -206,11 +214,17 @@ export const clearCart = (dispatcher, history) => {
 
   const then = response => {
     if (response.status === 200) {
+      setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
       history.push('/');
+    } else {
+      setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+      dispatcher(errorModalDisplay(true))
     }
   };
 
   const error = (error) => {
+    setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+    dispatcher(errorModalDisplay(true))
     console.log(error);
   };
 
@@ -304,11 +318,18 @@ export const updatePersonalData = (dispatcher, data) => {
     if(response.status === 200) {
       dispatcher(changeSuccessModalDisplay(true));
       dispatcher(modelActions.setUserInfo(response.data));
+      setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
       setTimeout(function(){ dispatcher(changeSuccessModalDisplay(false)); }, 2000);
+    } else {
+      dispatcher(errorModalDisplay(true));
+      dispatcher(modelActions.setLoaderStatus(false));
+      console.log('Error status response: ' + response.status)
     }
   };
 
   const error = (error) => {
+    dispatcher(errorModalDisplay(true));
+    dispatcher(modelActions.setLoaderStatus(false));
     console.log(error);
   };
 
