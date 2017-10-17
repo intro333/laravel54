@@ -49,6 +49,7 @@ class SuccessSaveModal extends Component {
         <div className="modal-header-success modal-header-success-save" style={modalHeaderSuccess}>
           <button type="button" className="close" style={{color: '#fff'}} onClick={this.props.handlerCloseModal}>&times;</button>
           <h4 className="modal-title">{this.props.modalTitle}</h4>
+          <h6 className="modal-title">{this.props.modalSubTitle && this.props.modalSubTitle}</h6>
         </div>
       </div>
     </div>

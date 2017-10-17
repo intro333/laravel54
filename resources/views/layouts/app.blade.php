@@ -22,7 +22,7 @@
 
     <link media="all" type="text/css" rel="stylesheet" href="/css/libs/bootstrap/bootstrap-datepicker3.min.css">
     <meta charset="UTF-8">
-    <title>Shop-Travel</title>
+    <title>Food4People</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>

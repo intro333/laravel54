@@ -1441,7 +1441,8 @@ button.close {
 /*НАЧАЛО MODAL LOADER----------------------------------------------------------------------------------------------------------*/
 .modal-content-loader {
     position: relative;
-    margin-top: 40%;
+    /*margin-top: 40%;*/
+    margin-top: calc(100vh / 4);
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: none;

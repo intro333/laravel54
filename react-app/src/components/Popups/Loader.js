@@ -19,7 +19,7 @@ class Loader extends Component {
   render() {
     const { api } = this.props;
 
-    var onOff = api.get('modalLoaderCartSentStatus');
+    var onOff = api.get('loaderStatus');
     // var onOff = true;
     const modalFadeIn = classNames({
       'animation-popup-load-fast': true,

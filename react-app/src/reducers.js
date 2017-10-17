@@ -18,6 +18,7 @@ export const api = (state = map({
   imagePath: false,
   componentWillReceivePropsChange: false,
   modalLoaderCartSentStatus: false,
+  loaderStatus: false,
   successPageStatus: null,
   orders: map(),
 
@@ -57,6 +58,9 @@ export const api = (state = map({
 
     case 'SET_MODAL_LOADER_CART_SENT_STATUS':
       return state.set('modalLoaderCartSentStatus', action.modalLoaderCartSentStatus);
+
+    case 'SET_LOADER_STATUS':
+      return state.set('loaderStatus', action.loaderStatus);
 
     case 'SET_SUCCESS_PAGE_STATUS':
       return state.set('successPageStatus', action.successPageStatus);

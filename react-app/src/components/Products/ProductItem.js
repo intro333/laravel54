@@ -10,6 +10,7 @@ import {
 } from '../../api';
 import { changeSuccessModalDisplay, setScrollTop, setResize } from './actions';
 import { isEmptyMap, isEmptyArray } from '../../helpers';
+import * as mainActions from '../../actions';
 
 class ProductItem extends Component {
   constructor(props) {
@@ -117,6 +118,7 @@ class ProductItem extends Component {
 
       if (productCounts) {
         const { dispatch } = this.props;
+        dispatch(mainActions.setLoaderStatus(true));
         const data = {
           barCode: this.props.barCode,
           productId: this.props.productId,
@@ -129,7 +131,7 @@ class ProductItem extends Component {
             background: '#3c763d'
           },
         });
-        dispatch(changeSuccessModalDisplay(true));
+        // dispatch(changeSuccessModalDisplay(true));
       } else {
         this.setState({
           errorBorderRed: true,

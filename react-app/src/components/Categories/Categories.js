@@ -11,6 +11,7 @@ import {
 } from '../../api';
 import {isEmptyMap} from '../../helpers';
 import Footer from '../Navigation/Footer';
+import * as modelActions from '../../actions';
 
 class Categories extends Component {
 
@@ -20,6 +21,7 @@ class Categories extends Component {
 
   componentWillMount() {
     const {dispatch} = this.props;
+    dispatch(modelActions.setLoaderStatus(true));
     setCategories(dispatch);
   }
 

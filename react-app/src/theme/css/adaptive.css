@@ -632,3 +632,8 @@
         font-size: 19px !important;
     }
 }
+/*@media (max-height: 500px) {*/
+    /*.modal-content-loader {*/
+        /*margin-top: calc(100vh / 4) !important;*/
+    /*}*/
+/*}*/

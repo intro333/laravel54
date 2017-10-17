@@ -39,18 +39,20 @@ class SuccessModal extends Component {
     );
 
     // var screenWidth  = screen.width;//Размер экрана
+    const counts = session.get("productCounts");
     var windowWidth  = window.innerWidth;
-    const unit = this.dec("товаров", "товар", "товара", session.get("productCounts")); // склоняем по падежам
+    const unit = this.dec("товаров", "товар", "товара", counts); // склоняем по падежам
     var scrollTopStyle = '1px';
     var resize = products.get('resize');
+    const productsScrollTop = products.get('scrollTop');
 
     if ((resize ? resize : windowWidth) > 540) {
       scrollTopStyle = {
-        top: (products.get('scrollTop') < 113) ? ((113 - products.get('scrollTop')) + 'px') : '1px'
+        top: (productsScrollTop < 113) ? ((113 - productsScrollTop) + 'px') : '1px'
       };
     } else {
       scrollTopStyle = {
-        top: (products.get('scrollTop') < 105) ? ((105 - products.get('scrollTop')) + 'px') : '1px'
+        top: (productsScrollTop < 105) ? ((105 - productsScrollTop) + 'px') : '1px'
       };
     }
 
@@ -64,7 +66,7 @@ class SuccessModal extends Component {
       <div className="modal-content-success">
         <div className="modal-header-success">
           <button type="button" className="close" onClick={this.props.handlerCloseModal}>&times;</button>
-          <h4 className="modal-title" style={{marginBottom: '5px'}}><span style={{textDecoration: 'underline'}}>Корзина</span>: {session.get("productCounts")} {unit} <b>{total}</b> Р</h4>
+          <h4 className="modal-title" style={{marginBottom: '5px'}}><span style={{textDecoration: 'underline'}}>Корзина</span>: {counts} {unit} <b>{total}</b> Р</h4>
           <button type="button" className="btn btn-default" style={{width: '100%'}} onClick={this.handlerGoToCart.bind(this)}>Оформить</button>
         </div>
       </div>

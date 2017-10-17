@@ -40,14 +40,17 @@ export const setCategories = dispatcher => {
   const then = response => {
     if (response.status === 200) {
       dispatcher(modelActions.setCategories(response.data));
+      dispatcher(modelActions.setLoaderStatus(false));
     } else {
       dispatcher(errorModalDisplay(true));
+      dispatcher(modelActions.setLoaderStatus(false));
       console.log('Error status response: ' + response.status)
     }
   };
 
   const error = (error) => {
-    dispatcher(errorModalDisplay(true))
+    dispatcher(errorModalDisplay(true));
+    dispatcher(modelActions.setLoaderStatus(false));
     console.log(error);
   };
 
@@ -62,10 +65,18 @@ export const setProducts = (dispatcher, productId) => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setProducts(response.data))
+    if (response.status === 200) {
+      dispatcher(modelActions.setLoaderStatus(false));
+      dispatcher(modelActions.setProducts(response.data))
+    } else {
+      dispatcher(modelActions.setLoaderStatus(false));
+      dispatcher(errorModalDisplay(true));
+    }
   };
 
   const error = (error) => {
+    dispatcher(modelActions.setLoaderStatus(false));
+    dispatcher(errorModalDisplay(true));
     console.log(error);
   };
 
@@ -99,19 +110,19 @@ export const addProductToCart = (dispatcher, data) => {
   };
 
   const then = response => {
-    console.log("status: " + response.status)
     if (response.status === 200) {
       dispatcher(modelActions.setProductsForCart(response.data));
-      setTimeout(function() { dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 300);
+      setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+      setTimeout(function() { dispatcher(changeSuccessModalDisplay(true)); }, 300);
     } else {
-      setTimeout(function() { dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 300);
+      setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
       dispatcher(errorModalDisplay(true))
     }
   };
 
   const error = (error) => {
     console.log(error);
-    setTimeout(function(){ dispatcher(modelActions.setModalLoaderCartSentStatus(false)); }, 300);
+    setTimeout(function(){ dispatcher(modelActions.setLoaderStatus(false)); }, 300);
     dispatcher(errorModalDisplay(true))
   };
 

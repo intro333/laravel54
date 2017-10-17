@@ -62,6 +62,10 @@ export function setModalLoaderCartSentStatus(modalLoaderCartSentStatus) {
   return { type: 'SET_MODAL_LOADER_CART_SENT_STATUS', modalLoaderCartSentStatus };
 }
 
+export function setLoaderStatus(loaderStatus) {
+  return { type: 'SET_LOADER_STATUS', loaderStatus };
+}
+
 export function setSuccessPageStatus(successPageStatus) {
   return { type: 'SET_SUCCESS_PAGE_STATUS', successPageStatus };
 }

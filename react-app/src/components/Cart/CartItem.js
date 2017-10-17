@@ -33,7 +33,7 @@ class CartItem extends Component {
   addProductToCart(productCounts) {
     const { dispatch } = this.props;
 
-    dispatch(modelActions.setModalLoaderCartSentStatus(true));
+    dispatch(modelActions.setLoaderStatus(true));
 
     if (Number.isInteger(productCounts)) {
       const data = {

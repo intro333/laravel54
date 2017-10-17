@@ -61,6 +61,7 @@ class Navigation extends Component {
           handlerCloseModal={this.handlerCloseModal.bind(this)}
           successModalDisplay={products.get('errorModalDisplay')}
           modalTitle="Нет соединения."
+          modalSubTitle="Перезагрузите страницу."
           colorBack="#ffe500"
           colorText="#000"
         />

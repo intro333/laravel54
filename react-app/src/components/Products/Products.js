@@ -26,6 +26,7 @@ class Products extends Component {
 
   componentWillMount() {
     const { dispatch, session } = this.props;
+    dispatch(mainActions.setLoaderStatus(true));
     setProducts(dispatch, session.get('categoryId'));
     showOrdersQuotaInCart(dispatch);
   }
