@@ -30,6 +30,7 @@ var api = exports.api = function api() {
     imagePath: false,
     componentWillReceivePropsChange: false,
     modalLoaderCartSentStatus: false,
+    loaderStatus: false,
     successPageStatus: null,
     orders: map()
 
@@ -71,6 +72,9 @@ var api = exports.api = function api() {
     case 'SET_MODAL_LOADER_CART_SENT_STATUS':
       return state.set('modalLoaderCartSentStatus', action.modalLoaderCartSentStatus);
 
+    case 'SET_LOADER_STATUS':
+      return state.set('loaderStatus', action.loaderStatus);
+
     case 'SET_SUCCESS_PAGE_STATUS':
       return state.set('successPageStatus', action.successPageStatus);
 
@@ -83,6 +87,12 @@ var defaultSessionState = map({
   userInfo: map(),
   errors: '',
   mobNavElement: true,
+  openCloseModal: {
+    show: false,
+    textHeader: '',
+    textAlign: '',
+    function: null
+  },
   categoryId: null,
   categoryName: null,
   productCounts: 0,
@@ -103,6 +113,9 @@ var session = function session() {
 
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);
+
+    case 'SET_OPEN_CLOSE_MODAL':
+      return state.set('openCloseModal', action.openCloseModal);
 
     case 'SET_CATEGORY_ID':
       return state.set('categoryId', action.categoryId);

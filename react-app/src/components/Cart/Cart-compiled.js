@@ -38,10 +38,6 @@ var _actions = require('../../actions');
 
 var modelActions = _interopRequireWildcard(_actions);
 
-var _Modal = require('../Popups/Modal');
-
-var _Modal2 = _interopRequireDefault(_Modal);
-
 var _immutable = require('immutable');
 
 var _api = require('../../api');
@@ -77,12 +73,7 @@ var Cart = function (_Component) {
       comment_count_error: '',
       selectError: {
         borderColor: ''
-      },
-      fadeIn: false,
-      modalDisplay: false,
-      textHeader: '',
-      textBody: '',
-      function: null
+      }
     };
 
     return _this;
@@ -93,6 +84,7 @@ var Cart = function (_Component) {
     value: function componentWillMount() {
       var dispatch = this.props.dispatch;
 
+      dispatch(modelActions.setLoaderStatus(true));
       (0, _api.showProductsInCart)(dispatch);
       (0, _api.showOrdersQuotaInCart)(dispatch);
       (0, _api.showCurrentOrder)(dispatch);
@@ -169,16 +161,16 @@ var Cart = function (_Component) {
           time_quota: this.state.time_quota
         };
         if ((0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one'])) {
-          this.setState({
-            fadeIn: true,
-            modalDisplay: true,
+          dispatch(modelActions.setOpenCloseModal({
+            show: true,
             textHeader: 'У Вас уже есть один заказ в обработке.Перейти к заказу?',
+            textAlign: true,
             function: function _function() {
               var history = _this2.props.history;
 
               history.push('/orders');
             }
-          });
+          }));
         } else {
           if (this.state.time_quota !== 0) {
             (0, _api.sendOrder)(dispatch, data, history);
@@ -199,16 +191,16 @@ var Cart = function (_Component) {
           }
         }
       } else {
-        this.setState({
-          fadeIn: true,
-          modalDisplay: true,
+        dispatch(modelActions.setOpenCloseModal({
+          show: true,
           textHeader: 'Дата доставки закрыта. Узнать подробнее?',
+          textAlign: true,
           function: function _function() {
             var history = _this2.props.history;
 
-            history.push('/orders'); //TODO сделать редирект на нужную страницу
+            history.push('/orders');
           }
-        });
+        }));
       }
     }
   }, {
@@ -216,11 +208,12 @@ var Cart = function (_Component) {
     value: function handlerClearCart() {
       var _this3 = this;
 
-      this.setState({
-        fadeIn: true,
-        modalDisplay: true,
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setOpenCloseModal({
+        show: true,
         textHeader: 'Удалить все товары из корзины?',
-        textBody: 'Удалить все товары из корзины?',
+        textAlign: true,
         function: function _function() {
           var _props3 = _this3.props,
               dispatch = _props3.dispatch,
@@ -229,20 +222,7 @@ var Cart = function (_Component) {
           dispatch(modelActions.setLoaderStatus(true));
           (0, _api.clearCart)(dispatch, history);
         }
-      });
-    }
-  }, {
-    key: 'handlerCloseModal',
-    value: function handlerCloseModal() {
-      this.setState({
-        fadeIn: false,
-        modalDisplay: false
-      });
-    }
-  }, {
-    key: 'handlerSuccessModal',
-    value: function handlerSuccessModal() {
-      this.state.function();
+      }));
     }
   }, {
     key: 'render',
@@ -321,14 +301,6 @@ var Cart = function (_Component) {
           { className: 'container' },
           _react2.default.createElement(_Navigation2.default, null),
           _react2.default.createElement(_MenuMobile2.default, null),
-          _react2.default.createElement(_Modal2.default, {
-            fadeIn: this.state.fadeIn,
-            modalDisplay: this.state.modalDisplay,
-            handlerCloseModal: this.handlerCloseModal.bind(this),
-            handlerSuccessModal: this.handlerSuccessModal.bind(this),
-            textHeader: this.state.textHeader,
-            textBody: this.state.textBody
-          }),
           _react2.default.createElement(
             'div',
             { className: 'main-container' },

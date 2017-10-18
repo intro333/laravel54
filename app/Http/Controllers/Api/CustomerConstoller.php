@@ -129,7 +129,8 @@ class CustomerConstoller extends Controller
         session()->forget('productFromCart');
         session()->save();
 
-        foreach ($order->features as $item) {
+        $session = [];
+        foreach ($order->features as $key => $item) {
             $sessionName = 'productFromCart.' . $item['barCode'];
             $productCartInfo = [
                 'productId'     => $item['productId'],
@@ -137,19 +138,18 @@ class CustomerConstoller extends Controller
                 'productCounts' => $item['count'] ? $item['count'] : "",
             ];
 
+            $session[$item['barCode']] = $productCartInfo;
             session()->put($sessionName, $productCartInfo);
         }
 
         $request->input('orderChange') && session()->put('orderChangeId', $order->order_id);
         session()->save();
-
-        return $this->localShowProductsInCart(session()->get('productFromCart'));
+        return $this->localShowProductsInCart($session);
     }
 
     //Локальная функция формирования заказа в корзине
     private function localShowProductsInCart($session)
     {
-        $session = $session ? $session : session()->get('productFromCart');
         $products = [];
         foreach ($session as $item) {
             $product = Products::where('product_id', $item['productId'])->get()->first();

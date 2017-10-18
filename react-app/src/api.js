@@ -138,10 +138,18 @@ export const showProductsInCart = (dispatcher, data=[]) => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setProductsForCart(response.data))
+    if (response.status === 200) {
+      dispatcher(modelActions.setProductsForCart(response.data));
+      dispatcher(modelActions.setLoaderStatus(false));
+    } else {
+      dispatcher(modelActions.setLoaderStatus(false));
+      dispatcher(errorModalDisplay(true));
+    }
   };
 
   const error = (error) => {
+    dispatcher(modelActions.setLoaderStatus(false));
+    dispatcher(errorModalDisplay(true));
     console.log(error);
   };
 
@@ -176,7 +184,7 @@ export const deleteProductFromCart = (dispatcher, data) => {
 };
 
 //Отправить заказ.
-export const sendOrder = (dispatcher, data, history) => {
+export const sendOrder = (dispatcher, data) => {
   const params = {
     method:'post',
     url:'/api/send-order',
@@ -218,13 +226,14 @@ export const clearCart = (dispatcher, history) => {
       history.push('/');
     } else {
       setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-      dispatcher(errorModalDisplay(true))
+
+      dispatcher(errorModalDisplay(true));
     }
   };
 
   const error = (error) => {
     setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-    dispatcher(errorModalDisplay(true))
+    dispatcher(errorModalDisplay(true));
     console.log(error);
   };
 
@@ -357,7 +366,7 @@ export const ordersGetAll = (dispatcher, data) => {
 };
 
 //Отменить или удалить заказ
-export const cancelOrDeleteOrder = (dispatcher, data, history) => {
+export const cancelOrDeleteOrder = (dispatcher, data) => {
   const params = {
     method:'post',
     url:'/api/order-cancel-or-delete',
@@ -365,13 +374,18 @@ export const cancelOrDeleteOrder = (dispatcher, data, history) => {
   };
 
   const then = response => {
-    // history.push('/orders');
-    if(response.data === 1)
+    if(response.status === 200 && response.data === 1) {
+      setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
       dispatcher(modelActions.componentWillReceivePropsChange(true));
-    // console.log('ordersGetAll response.data', response.data);
+    } else {
+      setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+      dispatcher(errorModalDisplay(true));
+    }
   };
 
   const error = (error) => {
+    setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+    dispatcher(errorModalDisplay(true));
     console.log(error);
   };
 
@@ -387,13 +401,19 @@ export const repeatOrChangeOrder = (dispatcher, data, history) => {
   };
 
   const then = response => {
-    if (response.status === 200) {
-      dispatcher(modelActions.setProductsForCart(response.data));
-      history.push('/cart');
+    if (response.status === 200) {console.log(3, response)
+      setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 700);
+      setTimeout(function () { dispatcher(modelActions.setProductsForCart(response.data)); }, 700);
+      setTimeout(function () { history.push('/cart'); }, 700);
+    } else {
+      setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+      dispatcher(errorModalDisplay(true));
     }
   };
 
   const error = (error) => {
+    setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+    dispatcher(errorModalDisplay(true));
     console.log(error);
   };
 

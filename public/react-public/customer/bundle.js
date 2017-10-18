@@ -345,7 +345,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -964,6 +964,116 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setUserInfo = setUserInfo;
+exports.setErrors = setErrors;
+exports.setMobNavElement = setMobNavElement;
+exports.setOpenCloseModal = setOpenCloseModal;
+exports.setCategories = setCategories;
+exports.setProducts = setProducts;
+exports.setCategoryId = setCategoryId;
+exports.setCategoryName = setCategoryName;
+exports.setProductsForCart = setProductsForCart;
+exports.setOrdersQuotaForCart = setOrdersQuotaForCart;
+exports.setCurrentOrder = setCurrentOrder;
+exports.setCheckTimeQuotaForCart = setCheckTimeQuotaForCart;
+exports.setUserImage = setUserImage;
+exports.setProductCounts = setProductCounts;
+exports.setOrders = setOrders;
+exports.componentWillReceivePropsChange = componentWillReceivePropsChange;
+exports.setModalLoaderCartSentStatus = setModalLoaderCartSentStatus;
+exports.setLoaderStatus = setLoaderStatus;
+exports.setSuccessPageStatus = setSuccessPageStatus;
+exports.setTotalSum = setTotalSum;
+function setUserInfo(userInfo) {
+  return { type: 'SET_USER_INFO', userInfo: userInfo };
+}
+
+function setErrors(errors) {
+  return { type: 'SET_ERRORS', errors: errors };
+}
+
+function setMobNavElement(mobNavElement) {
+  return { type: 'SET_MOB_NAV_ELEMENT', mobNavElement: mobNavElement };
+}
+
+function setOpenCloseModal(openCloseModal) {
+  return { type: 'SET_OPEN_CLOSE_MODAL', openCloseModal: openCloseModal };
+}
+
+function setCategories(categories) {
+  return { type: 'SET_CATEGORIES', categories: categories };
+}
+
+function setProducts(products) {
+  return { type: 'SET_PRODUCTS', products: products };
+}
+
+function setCategoryId(categoryId) {
+  return { type: 'SET_CATEGORY_ID', categoryId: categoryId };
+}
+
+function setCategoryName(categoryName) {
+  return { type: 'SET_CATEGORY_NAME', categoryName: categoryName };
+}
+
+function setProductsForCart(productsForCart) {
+  return { type: 'SET_PRODUCTS_FOR_CART', productsForCart: productsForCart };
+}
+
+function setOrdersQuotaForCart(ordersQuota) {
+  return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota: ordersQuota };
+}
+
+function setCurrentOrder(currentOrder) {
+  return { type: 'SET_CURRENT_ORDER', currentOrder: currentOrder };
+}
+
+function setCheckTimeQuotaForCart(checkTimeQuota) {
+  return { type: 'SET_CHECK_TIME_QUOTA_FOR_CART', checkTimeQuota: checkTimeQuota };
+}
+
+function setUserImage(imagePath) {
+  return { type: 'SET_USER_IMAGE', imagePath: imagePath };
+}
+
+function setProductCounts(productCounts) {
+  return { type: 'SET_PRODUCT_COUNTS', productCounts: productCounts };
+}
+
+function setOrders(orders) {
+  return { type: 'SET_ORDERS', orders: orders };
+}
+
+function componentWillReceivePropsChange(componentWillReceivePropsChange) {
+  return { type: 'SET_COMPONENT_WILL_RECEIVE_PROPS', componentWillReceivePropsChange: componentWillReceivePropsChange };
+}
+
+function setModalLoaderCartSentStatus(modalLoaderCartSentStatus) {
+  return { type: 'SET_MODAL_LOADER_CART_SENT_STATUS', modalLoaderCartSentStatus: modalLoaderCartSentStatus };
+}
+
+function setLoaderStatus(loaderStatus) {
+  return { type: 'SET_LOADER_STATUS', loaderStatus: loaderStatus };
+}
+
+function setSuccessPageStatus(successPageStatus) {
+  return { type: 'SET_SUCCESS_PAGE_STATUS', successPageStatus: successPageStatus };
+}
+
+function setTotalSum(totalSum) {
+  return { type: 'SET_TOTAL_SUM', totalSum: totalSum };
+}
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -1002,7 +1112,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1387,7 +1497,7 @@ module.exports = ReactComponentTreeHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1697,111 +1807,6 @@ module.exports = {
 
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setUserInfo = setUserInfo;
-exports.setErrors = setErrors;
-exports.setMobNavElement = setMobNavElement;
-exports.setCategories = setCategories;
-exports.setProducts = setProducts;
-exports.setCategoryId = setCategoryId;
-exports.setCategoryName = setCategoryName;
-exports.setProductsForCart = setProductsForCart;
-exports.setOrdersQuotaForCart = setOrdersQuotaForCart;
-exports.setCurrentOrder = setCurrentOrder;
-exports.setCheckTimeQuotaForCart = setCheckTimeQuotaForCart;
-exports.setUserImage = setUserImage;
-exports.setProductCounts = setProductCounts;
-exports.setOrders = setOrders;
-exports.componentWillReceivePropsChange = componentWillReceivePropsChange;
-exports.setModalLoaderCartSentStatus = setModalLoaderCartSentStatus;
-exports.setLoaderStatus = setLoaderStatus;
-exports.setSuccessPageStatus = setSuccessPageStatus;
-exports.setTotalSum = setTotalSum;
-function setUserInfo(userInfo) {
-  return { type: 'SET_USER_INFO', userInfo: userInfo };
-}
-
-function setErrors(errors) {
-  return { type: 'SET_ERRORS', errors: errors };
-}
-
-function setMobNavElement(mobNavElement) {
-  return { type: 'SET_MOB_NAV_ELEMENT', mobNavElement: mobNavElement };
-}
-
-function setCategories(categories) {
-  return { type: 'SET_CATEGORIES', categories: categories };
-}
-
-function setProducts(products) {
-  return { type: 'SET_PRODUCTS', products: products };
-}
-
-function setCategoryId(categoryId) {
-  return { type: 'SET_CATEGORY_ID', categoryId: categoryId };
-}
-
-function setCategoryName(categoryName) {
-  return { type: 'SET_CATEGORY_NAME', categoryName: categoryName };
-}
-
-function setProductsForCart(productsForCart) {
-  return { type: 'SET_PRODUCTS_FOR_CART', productsForCart: productsForCart };
-}
-
-function setOrdersQuotaForCart(ordersQuota) {
-  return { type: 'SET_ORDERS_QUOTA_FOR_CART', ordersQuota: ordersQuota };
-}
-
-function setCurrentOrder(currentOrder) {
-  return { type: 'SET_CURRENT_ORDER', currentOrder: currentOrder };
-}
-
-function setCheckTimeQuotaForCart(checkTimeQuota) {
-  return { type: 'SET_CHECK_TIME_QUOTA_FOR_CART', checkTimeQuota: checkTimeQuota };
-}
-
-function setUserImage(imagePath) {
-  return { type: 'SET_USER_IMAGE', imagePath: imagePath };
-}
-
-function setProductCounts(productCounts) {
-  return { type: 'SET_PRODUCT_COUNTS', productCounts: productCounts };
-}
-
-function setOrders(orders) {
-  return { type: 'SET_ORDERS', orders: orders };
-}
-
-function componentWillReceivePropsChange(componentWillReceivePropsChange) {
-  return { type: 'SET_COMPONENT_WILL_RECEIVE_PROPS', componentWillReceivePropsChange: componentWillReceivePropsChange };
-}
-
-function setModalLoaderCartSentStatus(modalLoaderCartSentStatus) {
-  return { type: 'SET_MODAL_LOADER_CART_SENT_STATUS', modalLoaderCartSentStatus: modalLoaderCartSentStatus };
-}
-
-function setLoaderStatus(loaderStatus) {
-  return { type: 'SET_LOADER_STATUS', loaderStatus: loaderStatus };
-}
-
-function setSuccessPageStatus(successPageStatus) {
-  return { type: 'SET_SUCCESS_PAGE_STATUS', successPageStatus: successPageStatus };
-}
-
-function setTotalSum(totalSum) {
-  return { type: 'SET_TOTAL_SUM', totalSum: totalSum };
-}
-
-/***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1893,7 +1898,7 @@ var _axios = __webpack_require__(150);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -2048,10 +2053,18 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setProductsForCart(response.data));
+    if (response.status === 200) {
+      dispatcher(modelActions.setProductsForCart(response.data));
+      dispatcher(modelActions.setLoaderStatus(false));
+    } else {
+      dispatcher(modelActions.setLoaderStatus(false));
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }
   };
 
   var error = function error(_error6) {
+    dispatcher(modelActions.setLoaderStatus(false));
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error6);
   };
 
@@ -2092,7 +2105,7 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
 };
 
 //Отправить заказ.
-var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history) {
+var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data) {
   var params = {
     method: 'post',
     url: '/api/send-order',
@@ -2150,6 +2163,7 @@ var clearCart = exports.clearCart = function clearCart(dispatcher, history) {
       setTimeout(function () {
         dispatcher(modelActions.setLoaderStatus(false));
       }, 300);
+
       dispatcher((0, _actions2.errorModalDisplay)(true));
     }
   };
@@ -2295,7 +2309,7 @@ var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data
 };
 
 //Отменить или удалить заказ
-var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteOrder(dispatcher, data, history) {
+var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteOrder(dispatcher, data) {
   var params = {
     method: 'post',
     url: '/api/order-cancel-or-delete',
@@ -2303,12 +2317,24 @@ var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteO
   };
 
   var then = function then(response) {
-    // history.push('/orders');
-    if (response.data === 1) dispatcher(modelActions.componentWillReceivePropsChange(true));
-    // console.log('ordersGetAll response.data', response.data);
+    if (response.status === 200 && response.data === 1) {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      dispatcher(modelActions.componentWillReceivePropsChange(true));
+    } else {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }
   };
 
   var error = function error(_error16) {
+    setTimeout(function () {
+      dispatcher(modelActions.setLoaderStatus(false));
+    }, 300);
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error16);
   };
 
@@ -2325,12 +2351,29 @@ var repeatOrChangeOrder = exports.repeatOrChangeOrder = function repeatOrChangeO
 
   var then = function then(response) {
     if (response.status === 200) {
-      dispatcher(modelActions.setProductsForCart(response.data));
-      history.push('/cart');
+      console.log(3, response);
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 700);
+      setTimeout(function () {
+        dispatcher(modelActions.setProductsForCart(response.data));
+      }, 700);
+      setTimeout(function () {
+        history.push('/cart');
+      }, 700);
+    } else {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      dispatcher((0, _actions2.errorModalDisplay)(true));
     }
   };
 
   var error = function error(_error17) {
+    setTimeout(function () {
+      dispatcher(modelActions.setLoaderStatus(false));
+    }, 300);
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error17);
   };
 
@@ -2674,7 +2717,7 @@ var _assign = __webpack_require__(5);
 
 var PooledClass = __webpack_require__(29);
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var warning = __webpack_require__(3);
 
 var didWarnForAddedNewProperty = false;
@@ -3220,7 +3263,7 @@ var _reactRedux = __webpack_require__(7);
 
 var _reactRouterDom = __webpack_require__(24);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -3359,7 +3402,7 @@ __webpack_require__(39);
 
 var _reactRouterDom = __webpack_require__(24);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -3376,6 +3419,10 @@ var _Loader2 = _interopRequireDefault(_Loader);
 var _SuccessSaveModal = __webpack_require__(92);
 
 var _SuccessSaveModal2 = _interopRequireDefault(_SuccessSaveModal);
+
+var _Modal = __webpack_require__(91);
+
+var _Modal2 = _interopRequireDefault(_Modal);
 
 var _actions2 = __webpack_require__(32);
 
@@ -3405,6 +3452,12 @@ var Navigation = function (_Component) {
 
       dispatch((0, _actions2.errorModalDisplay)(false));
       dispatch((0, _actions2.changeSuccessModalDisplay)(false));
+      dispatch(modelActions.setOpenCloseModal({
+        show: false,
+        textHeader: '',
+        textAlign: 'center',
+        function: null
+      }));
     }
   }, {
     key: 'mobileMenuClick',
@@ -3463,6 +3516,7 @@ var Navigation = function (_Component) {
           colorBack: '#ffe500',
           colorText: '#000'
         }),
+        _react2.default.createElement(_Modal2.default, null),
         _react2.default.createElement(
           'div',
           { className: 'contacts-main' },
@@ -3718,7 +3772,7 @@ var _reactRouterDom = __webpack_require__(24);
 
 var _reactRedux = __webpack_require__(7);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -13763,7 +13817,7 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 var normalizeHeaderName = __webpack_require__(165);
 
 var DEFAULT_CONTENT_TYPE = {
@@ -15577,7 +15631,7 @@ module.exports = shouldUpdateReactComponent;
 
 var _assign = __webpack_require__(5);
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var warning = __webpack_require__(3);
 
 var validateDOMNesting = emptyFunction;
@@ -16245,7 +16299,7 @@ module.exports = __webpack_require__(232);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 var settle = __webpack_require__(157);
 var buildURL = __webpack_require__(160);
 var parseHeaders = __webpack_require__(166);
@@ -16534,6 +16588,12 @@ __webpack_require__(10);
 
 var _reactRedux = __webpack_require__(7);
 
+var _actions = __webpack_require__(13);
+
+var modelActions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16548,22 +16608,39 @@ var Modal = function (_Component) {
   function Modal(props) {
     _classCallCheck(this, Modal);
 
-    var _this = _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
-
-    _this.state = {
-      fadeIn: false
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
   }
 
   _createClass(Modal, [{
+    key: 'handlerCloseModal',
+    value: function handlerCloseModal() {
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setOpenCloseModal({
+        show: false,
+        textHeader: '',
+        textAlign: true,
+        function: null
+      }));
+    }
+  }, {
+    key: 'handlerYesModal',
+    value: function handlerYesModal() {
+      var openCloseModal = this.props.openCloseModal;
+
+      openCloseModal.function();
+      this.handlerCloseModal();
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var openCloseModal = this.props.openCloseModal;
+
       var modalFadeIn = (0, _classnames2.default)({
         'animation-popup-load-fast': true,
         'modal': true,
         'fade': true,
-        'in': this.props.fadeIn
+        'in': openCloseModal.show
       });
 
       var modalStyleOn = {
@@ -16575,16 +16652,16 @@ var Modal = function (_Component) {
 
       var modalHeader = (0, _classnames2.default)({
         'modal-header': true,
-        'align-center': this.props.textAlign
+        'align-center': openCloseModal.textAlign
       });
 
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement('div', { className: 'modal-backdrop fade in', style: this.props.modalDisplay ? modalStyleOn : modalStyleOff }),
+        _react2.default.createElement('div', { className: 'modal-backdrop fade in', style: openCloseModal.show ? modalStyleOn : modalStyleOff }),
         _react2.default.createElement(
           'div',
-          { className: modalFadeIn, role: 'dialog', style: this.props.modalDisplay ? modalStyleOn : modalStyleOff },
+          { className: modalFadeIn, role: 'dialog', style: openCloseModal.show ? modalStyleOn : modalStyleOff },
           _react2.default.createElement(
             'div',
             { className: 'modal-dialog modal-sm' },
@@ -16596,13 +16673,13 @@ var Modal = function (_Component) {
                 { className: modalHeader },
                 _react2.default.createElement(
                   'button',
-                  { type: 'button', className: 'close', onClick: this.props.handlerCloseModal },
+                  { type: 'button', className: 'close', onClick: this.handlerCloseModal.bind(this) },
                   '\xD7'
                 ),
                 _react2.default.createElement(
                   'h4',
                   { className: 'modal-title' },
-                  this.props.textHeader && this.props.textHeader
+                  openCloseModal.textHeader && openCloseModal.textHeader
                 )
               ),
               _react2.default.createElement(
@@ -16610,12 +16687,12 @@ var Modal = function (_Component) {
                 { className: 'modal-footer' },
                 _react2.default.createElement(
                   'button',
-                  { type: 'button', className: 'btn btn-default', onClick: this.props.handlerCloseModal },
+                  { type: 'button', className: 'btn btn-default', onClick: this.handlerCloseModal.bind(this) },
                   '\u041D\u0435\u0442'
                 ),
                 _react2.default.createElement(
                   'button',
-                  { type: 'button', className: 'btn btn-default', onClick: this.props.handlerSuccessModal },
+                  { type: 'button', className: 'btn btn-default', onClick: this.handlerYesModal.bind(this) },
                   '\u0414\u0430'
                 )
               )
@@ -16632,7 +16709,8 @@ var Modal = function (_Component) {
 exports.default = (0, _reactRedux.connect)(function (store) {
   return {
     dispatch: store.dispatch,
-    session: store.session
+    session: store.session,
+    openCloseModal: store.session.get('openCloseModal')
   };
 })(Modal);
 
@@ -17666,7 +17744,7 @@ module.exports = factory;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -18302,7 +18380,7 @@ module.exports = function(isValidElement) {
 
 
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -22316,7 +22394,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 var ReactCurrentOwner = __webpack_require__(21);
-var ReactComponentTreeHook = __webpack_require__(14);
+var ReactComponentTreeHook = __webpack_require__(15);
 var ReactElement = __webpack_require__(30);
 
 var checkReactTypeSpec = __webpack_require__(343);
@@ -23242,6 +23320,12 @@ var defaultSessionState = map({
   userInfo: map(),
   errors: '',
   mobNavElement: true,
+  openCloseModal: {
+    show: false,
+    textHeader: '',
+    textAlign: '',
+    function: null
+  },
   categoryId: null,
   categoryName: null,
   productCounts: 0,
@@ -23262,6 +23346,9 @@ var session = function session() {
 
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);
+
+    case 'SET_OPEN_CLOSE_MODAL':
+      return state.set('openCloseModal', action.openCloseModal);
 
     case 'SET_CATEGORY_ID':
       return state.set('categoryId', action.categoryId);
@@ -23299,7 +23386,7 @@ module.exports = __webpack_require__(151);
 "use strict";
 
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 var bind = __webpack_require__(90);
 var Axios = __webpack_require__(153);
 var defaults = __webpack_require__(60);
@@ -23423,7 +23510,7 @@ module.exports = CancelToken;
 
 
 var defaults = __webpack_require__(60);
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 var InterceptorManager = __webpack_require__(154);
 var dispatchRequest = __webpack_require__(155);
 var isAbsoluteURL = __webpack_require__(163);
@@ -23515,7 +23602,7 @@ module.exports = Axios;
 "use strict";
 
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -23574,7 +23661,7 @@ module.exports = InterceptorManager;
 "use strict";
 
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 var transformData = __webpack_require__(158);
 var isCancel = __webpack_require__(88);
 var defaults = __webpack_require__(60);
@@ -23721,7 +23808,7 @@ module.exports = function settle(resolve, reject, response) {
 "use strict";
 
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 
 /**
  * Transform the data for a request or a response
@@ -23791,7 +23878,7 @@ module.exports = btoa;
 "use strict";
 
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -23887,7 +23974,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -23968,7 +24055,7 @@ module.exports = function isAbsoluteURL(url) {
 "use strict";
 
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -24043,7 +24130,7 @@ module.exports = (
 "use strict";
 
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -24062,7 +24149,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 
 /**
  * Parse headers into an object
@@ -24174,13 +24261,9 @@ var _CartItem = __webpack_require__(169);
 
 var _CartItem2 = _interopRequireDefault(_CartItem);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
-
-var _Modal = __webpack_require__(91);
-
-var _Modal2 = _interopRequireDefault(_Modal);
 
 var _immutable = __webpack_require__(50);
 
@@ -24217,12 +24300,7 @@ var Cart = function (_Component) {
       comment_count_error: '',
       selectError: {
         borderColor: ''
-      },
-      fadeIn: false,
-      modalDisplay: false,
-      textHeader: '',
-      textBody: '',
-      function: null
+      }
     };
 
     return _this;
@@ -24233,6 +24311,7 @@ var Cart = function (_Component) {
     value: function componentWillMount() {
       var dispatch = this.props.dispatch;
 
+      dispatch(modelActions.setLoaderStatus(true));
       (0, _api.showProductsInCart)(dispatch);
       (0, _api.showOrdersQuotaInCart)(dispatch);
       (0, _api.showCurrentOrder)(dispatch);
@@ -24309,16 +24388,16 @@ var Cart = function (_Component) {
           time_quota: this.state.time_quota
         };
         if ((0, _helpers.isEmptyArray)(currentOrder) && (0, _helpers.isEmptyArray)(currentOrder['one'])) {
-          this.setState({
-            fadeIn: true,
-            modalDisplay: true,
+          dispatch(modelActions.setOpenCloseModal({
+            show: true,
             textHeader: 'У Вас уже есть один заказ в обработке.Перейти к заказу?',
+            textAlign: true,
             function: function _function() {
               var history = _this2.props.history;
 
               history.push('/orders');
             }
-          });
+          }));
         } else {
           if (this.state.time_quota !== 0) {
             (0, _api.sendOrder)(dispatch, data, history);
@@ -24339,16 +24418,16 @@ var Cart = function (_Component) {
           }
         }
       } else {
-        this.setState({
-          fadeIn: true,
-          modalDisplay: true,
+        dispatch(modelActions.setOpenCloseModal({
+          show: true,
           textHeader: 'Дата доставки закрыта. Узнать подробнее?',
+          textAlign: true,
           function: function _function() {
             var history = _this2.props.history;
 
-            history.push('/orders'); //TODO сделать редирект на нужную страницу
+            history.push('/orders');
           }
-        });
+        }));
       }
     }
   }, {
@@ -24356,11 +24435,12 @@ var Cart = function (_Component) {
     value: function handlerClearCart() {
       var _this3 = this;
 
-      this.setState({
-        fadeIn: true,
-        modalDisplay: true,
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setOpenCloseModal({
+        show: true,
         textHeader: 'Удалить все товары из корзины?',
-        textBody: 'Удалить все товары из корзины?',
+        textAlign: true,
         function: function _function() {
           var _props3 = _this3.props,
               dispatch = _props3.dispatch,
@@ -24369,20 +24449,7 @@ var Cart = function (_Component) {
           dispatch(modelActions.setLoaderStatus(true));
           (0, _api.clearCart)(dispatch, history);
         }
-      });
-    }
-  }, {
-    key: 'handlerCloseModal',
-    value: function handlerCloseModal() {
-      this.setState({
-        fadeIn: false,
-        modalDisplay: false
-      });
-    }
-  }, {
-    key: 'handlerSuccessModal',
-    value: function handlerSuccessModal() {
-      this.state.function();
+      }));
     }
   }, {
     key: 'render',
@@ -24462,14 +24529,6 @@ var Cart = function (_Component) {
           { className: 'container' },
           _react2.default.createElement(_Navigation2.default, null),
           _react2.default.createElement(_MenuMobile2.default, null),
-          _react2.default.createElement(_Modal2.default, {
-            fadeIn: this.state.fadeIn,
-            modalDisplay: this.state.modalDisplay,
-            handlerCloseModal: this.handlerCloseModal.bind(this),
-            handlerSuccessModal: this.handlerSuccessModal.bind(this),
-            textHeader: this.state.textHeader,
-            textBody: this.state.textBody
-          }),
           _react2.default.createElement(
             'div',
             { className: 'main-container' },
@@ -24645,7 +24704,7 @@ __webpack_require__(10);
 
 var _api = __webpack_require__(19);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -24919,7 +24978,7 @@ var _ModalLoaderCartSent = __webpack_require__(178);
 
 var _ModalLoaderCartSent2 = _interopRequireDefault(_ModalLoaderCartSent);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -25118,7 +25177,7 @@ var _Footer = __webpack_require__(25);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -25236,7 +25295,7 @@ __webpack_require__(11);
 
 __webpack_require__(10);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -25569,6 +25628,12 @@ var _Modal2 = _interopRequireDefault(_Modal);
 
 var _api = __webpack_require__(19);
 
+var _actions = __webpack_require__(13);
+
+var modelActions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25576,8 +25641,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// import * as modelActions from './actions';
 
 var OrderItem = function (_Component) {
   _inherits(OrderItem, _Component);
@@ -25590,8 +25653,6 @@ var OrderItem = function (_Component) {
     _this.state = {
       orderNum: false,
       tdBotyVisible: false,
-      fadeIn: false,
-      modalDisplay: false,
       textHeader: '',
       function: null,
       textAlign: false
@@ -25618,10 +25679,11 @@ var OrderItem = function (_Component) {
     value: function handlerCancelOrder(e) {
       var _this2 = this;
 
+      var dispatch = this.props.dispatch;
+
       var text = e.target.innerText;
-      this.setState({
-        fadeIn: true,
-        modalDisplay: true,
+      dispatch(modelActions.setOpenCloseModal({
+        show: true,
         textHeader: 'Вы уверены, что хотите ' + text.toLowerCase() + '?',
         textAlign: true,
         function: function _function() {
@@ -25633,9 +25695,10 @@ var OrderItem = function (_Component) {
             orderId: _this2.props.orderId,
             orderRemove: false
           };
+          dispatch(modelActions.setLoaderStatus(true));
           (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
         }
-      });
+      }));
     }
   }, {
     key: 'handlerDeleteOrder',
@@ -25648,6 +25711,7 @@ var OrderItem = function (_Component) {
         orderId: this.props.orderId,
         orderRemove: true
       };
+      dispatch(modelActions.setLoaderStatus(true));
       (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
     }
   }, {
@@ -25655,9 +25719,10 @@ var OrderItem = function (_Component) {
     value: function handlerRepeatOrder() {
       var _this3 = this;
 
-      this.setState({
-        fadeIn: true,
-        modalDisplay: true,
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setOpenCloseModal({
+        show: true,
         textHeader: 'Если в корзине есть товары, то они будут удалены. Продолжить?',
         textAlign: false,
         function: function _function() {
@@ -25669,18 +25734,20 @@ var OrderItem = function (_Component) {
             orderId: _this3.props.orderId,
             orderChange: false
           };
+          dispatch(modelActions.setLoaderStatus(true));
           (0, _api.repeatOrChangeOrder)(dispatch, data, history);
         }
-      });
+      }));
     }
   }, {
     key: 'handlerChangeOrder',
     value: function handlerChangeOrder() {
       var _this4 = this;
 
-      this.setState({
-        fadeIn: true,
-        modalDisplay: true,
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setOpenCloseModal({
+        show: true,
         textHeader: 'Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно. Продолжить?',
         textAlign: false,
         function: function _function() {
@@ -25692,17 +25759,22 @@ var OrderItem = function (_Component) {
             orderId: _this4.props.orderId,
             orderChange: true
           };
+          dispatch(modelActions.setLoaderStatus(true));
           (0, _api.repeatOrChangeOrder)(dispatch, data, history);
         }
-      });
+      }));
     }
   }, {
     key: 'handlerCloseModal',
     value: function handlerCloseModal() {
-      this.setState({
-        fadeIn: false,
-        modalDisplay: false
-      });
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setOpenCloseModal({
+        show: false,
+        textHeader: '',
+        textAlign: true,
+        function: null
+      }));
     }
   }, {
     key: 'handlerSuccessModal',
@@ -25934,15 +26006,6 @@ var OrderItem = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'orders-item' },
-        _react2.default.createElement(_Modal2.default, {
-          fadeIn: this.state.fadeIn,
-          modalDisplay: this.state.modalDisplay,
-          handlerCloseModal: this.handlerCloseModal.bind(this),
-          handlerSuccessModal: this.handlerSuccessModal.bind(this),
-          textHeader: this.state.textHeader,
-          textAlign: this.state.textAlign,
-          textBody: this.state.textBody
-        }),
         this.state.tdBotyVisible && orderInfo,
         _react2.default.createElement(
           'table',
@@ -26032,7 +26095,7 @@ var _OrderItem2 = _interopRequireDefault(_OrderItem);
 
 var _api = __webpack_require__(19);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -26375,7 +26438,7 @@ var _Footer = __webpack_require__(25);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _actions2 = __webpack_require__(16);
+var _actions2 = __webpack_require__(13);
 
 var modelActions = _interopRequireWildcard(_actions2);
 
@@ -27258,7 +27321,7 @@ var _actions = __webpack_require__(32);
 
 var _helpers = __webpack_require__(28);
 
-var _actions2 = __webpack_require__(16);
+var _actions2 = __webpack_require__(13);
 
 var mainActions = _interopRequireWildcard(_actions2);
 
@@ -27591,7 +27654,7 @@ var _SuccessModal2 = _interopRequireDefault(_SuccessModal);
 
 var _actions = __webpack_require__(32);
 
-var _actions2 = __webpack_require__(16);
+var _actions2 = __webpack_require__(13);
 
 var mainActions = _interopRequireWildcard(_actions2);
 
@@ -29930,7 +29993,7 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var invariant = __webpack_require__(2);
 var ReactPropTypesSecret = __webpack_require__(65);
 
@@ -31038,7 +31101,7 @@ var DOMLazyTree = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(9);
 
 var createNodesFromMarkup = __webpack_require__(193);
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var invariant = __webpack_require__(2);
 
 var Danger = {
@@ -31575,7 +31638,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(14);
+  ReactComponentTreeHook = __webpack_require__(15);
 }
 
 function instantiateChild(childInstances, child, name, selfDebugID) {
@@ -31583,7 +31646,7 @@ function instantiateChild(childInstances, child, name, selfDebugID) {
   var keyUnique = childInstances[name] === undefined;
   if (process.env.NODE_ENV !== 'production') {
     if (!ReactComponentTreeHook) {
-      ReactComponentTreeHook = __webpack_require__(14);
+      ReactComponentTreeHook = __webpack_require__(15);
     }
     if (!keyUnique) {
       process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -32798,7 +32861,7 @@ var ReactInstrumentation = __webpack_require__(17);
 var ReactMultiChild = __webpack_require__(257);
 var ReactServerRenderingTransaction = __webpack_require__(262);
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var escapeTextContentForBrowser = __webpack_require__(55);
 var invariant = __webpack_require__(2);
 var isEventSupported = __webpack_require__(78);
@@ -34250,7 +34313,7 @@ module.exports = ReactDOMInput;
 
 
 var DOMProperty = __webpack_require__(23);
-var ReactComponentTreeHook = __webpack_require__(14);
+var ReactComponentTreeHook = __webpack_require__(15);
 
 var warning = __webpack_require__(3);
 
@@ -34348,7 +34411,7 @@ module.exports = ReactDOMInvalidARIAHook;
 
 
 
-var ReactComponentTreeHook = __webpack_require__(14);
+var ReactComponentTreeHook = __webpack_require__(15);
 
 var warning = __webpack_require__(3);
 
@@ -35220,7 +35283,7 @@ module.exports = {
 
 var DOMProperty = __webpack_require__(23);
 var EventPluginRegistry = __webpack_require__(51);
-var ReactComponentTreeHook = __webpack_require__(14);
+var ReactComponentTreeHook = __webpack_require__(15);
 
 var warning = __webpack_require__(3);
 
@@ -35339,7 +35402,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 var ReactInvalidSetStateWarningHook = __webpack_require__(255);
 var ReactHostOperationHistoryHook = __webpack_require__(253);
-var ReactComponentTreeHook = __webpack_require__(14);
+var ReactComponentTreeHook = __webpack_require__(15);
 var ExecutionEnvironment = __webpack_require__(9);
 
 var performanceNow = __webpack_require__(202);
@@ -35708,7 +35771,7 @@ var _assign = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(20);
 var Transaction = __webpack_require__(54);
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -36275,7 +36338,7 @@ var ReactCurrentOwner = __webpack_require__(21);
 var ReactReconciler = __webpack_require__(35);
 var ReactChildReconciler = __webpack_require__(229);
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var flattenChildren = __webpack_require__(282);
 var invariant = __webpack_require__(2);
 
@@ -37903,7 +37966,7 @@ var SyntheticTransitionEvent = __webpack_require__(276);
 var SyntheticUIEvent = __webpack_require__(47);
 var SyntheticWheelEvent = __webpack_require__(277);
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var getEventCharCode = __webpack_require__(75);
 var invariant = __webpack_require__(2);
 
@@ -38673,7 +38736,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(14);
+  ReactComponentTreeHook = __webpack_require__(15);
 }
 
 var loggedTypeFailures = {};
@@ -38715,7 +38778,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(14);
+            ReactComponentTreeHook = __webpack_require__(15);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -38914,7 +38977,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(14);
+  ReactComponentTreeHook = __webpack_require__(15);
 }
 
 /**
@@ -38930,7 +38993,7 @@ function flattenSingleChildIntoContext(traverseContext, child, name, selfDebugID
     var keyUnique = result[name] === undefined;
     if (process.env.NODE_ENV !== 'production') {
       if (!ReactComponentTreeHook) {
-        ReactComponentTreeHook = __webpack_require__(14);
+        ReactComponentTreeHook = __webpack_require__(15);
       }
       if (!keyUnique) {
         process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -39451,7 +39514,7 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var invariant = __webpack_require__(2);
 
 module.exports = function() {
@@ -39512,7 +39575,7 @@ module.exports = function() {
 
 
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -43703,7 +43766,7 @@ module.exports = PooledClass;
 var PooledClass = __webpack_require__(336);
 var ReactElement = __webpack_require__(30);
 
-var emptyFunction = __webpack_require__(13);
+var emptyFunction = __webpack_require__(14);
 var traverseAllChildren = __webpack_require__(347);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
@@ -44183,7 +44246,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(14);
+  ReactComponentTreeHook = __webpack_require__(15);
 }
 
 var loggedTypeFailures = {};
@@ -44225,7 +44288,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(14);
+            ReactComponentTreeHook = __webpack_require__(15);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);

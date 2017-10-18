@@ -30,6 +30,12 @@ var _Modal2 = _interopRequireDefault(_Modal);
 
 var _api = require('../../api');
 
+var _actions = require('../../actions');
+
+var modelActions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37,8 +43,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// import * as modelActions from './actions';
 
 var OrderItem = function (_Component) {
   _inherits(OrderItem, _Component);
@@ -51,8 +55,6 @@ var OrderItem = function (_Component) {
     _this.state = {
       orderNum: false,
       tdBotyVisible: false,
-      fadeIn: false,
-      modalDisplay: false,
       textHeader: '',
       function: null,
       textAlign: false
@@ -79,10 +81,11 @@ var OrderItem = function (_Component) {
     value: function handlerCancelOrder(e) {
       var _this2 = this;
 
+      var dispatch = this.props.dispatch;
+
       var text = e.target.innerText;
-      this.setState({
-        fadeIn: true,
-        modalDisplay: true,
+      dispatch(modelActions.setOpenCloseModal({
+        show: true,
         textHeader: 'Вы уверены, что хотите ' + text.toLowerCase() + '?',
         textAlign: true,
         function: function _function() {
@@ -94,9 +97,10 @@ var OrderItem = function (_Component) {
             orderId: _this2.props.orderId,
             orderRemove: false
           };
+          dispatch(modelActions.setLoaderStatus(true));
           (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
         }
-      });
+      }));
     }
   }, {
     key: 'handlerDeleteOrder',
@@ -109,6 +113,7 @@ var OrderItem = function (_Component) {
         orderId: this.props.orderId,
         orderRemove: true
       };
+      dispatch(modelActions.setLoaderStatus(true));
       (0, _api.cancelOrDeleteOrder)(dispatch, data, history);
     }
   }, {
@@ -116,9 +121,10 @@ var OrderItem = function (_Component) {
     value: function handlerRepeatOrder() {
       var _this3 = this;
 
-      this.setState({
-        fadeIn: true,
-        modalDisplay: true,
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setOpenCloseModal({
+        show: true,
         textHeader: 'Если в корзине есть товары, то они будут удалены. Продолжить?',
         textAlign: false,
         function: function _function() {
@@ -130,18 +136,20 @@ var OrderItem = function (_Component) {
             orderId: _this3.props.orderId,
             orderChange: false
           };
+          dispatch(modelActions.setLoaderStatus(true));
           (0, _api.repeatOrChangeOrder)(dispatch, data, history);
         }
-      });
+      }));
     }
   }, {
     key: 'handlerChangeOrder',
     value: function handlerChangeOrder() {
       var _this4 = this;
 
-      this.setState({
-        fadeIn: true,
-        modalDisplay: true,
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setOpenCloseModal({
+        show: true,
         textHeader: 'Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно. Продолжить?',
         textAlign: false,
         function: function _function() {
@@ -153,17 +161,22 @@ var OrderItem = function (_Component) {
             orderId: _this4.props.orderId,
             orderChange: true
           };
+          dispatch(modelActions.setLoaderStatus(true));
           (0, _api.repeatOrChangeOrder)(dispatch, data, history);
         }
-      });
+      }));
     }
   }, {
     key: 'handlerCloseModal',
     value: function handlerCloseModal() {
-      this.setState({
-        fadeIn: false,
-        modalDisplay: false
-      });
+      var dispatch = this.props.dispatch;
+
+      dispatch(modelActions.setOpenCloseModal({
+        show: false,
+        textHeader: '',
+        textAlign: true,
+        function: null
+      }));
     }
   }, {
     key: 'handlerSuccessModal',
@@ -395,15 +408,6 @@ var OrderItem = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'orders-item' },
-        _react2.default.createElement(_Modal2.default, {
-          fadeIn: this.state.fadeIn,
-          modalDisplay: this.state.modalDisplay,
-          handlerCloseModal: this.handlerCloseModal.bind(this),
-          handlerSuccessModal: this.handlerSuccessModal.bind(this),
-          textHeader: this.state.textHeader,
-          textAlign: this.state.textAlign,
-          textBody: this.state.textBody
-        }),
         this.state.tdBotyVisible && orderInfo,
         _react2.default.createElement(
           'table',

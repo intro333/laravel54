@@ -74,6 +74,12 @@ let defaultSessionState = map({
   userInfo: map(),
   errors: '',
   mobNavElement: true,
+  openCloseModal: {
+    show: false,
+    textHeader: '',
+    textAlign: '',
+    function: null,
+  },
   categoryId: null,
   categoryName: null,
   productCounts: 0,
@@ -91,6 +97,9 @@ const session = (state = defaultSessionState, action) => {
 
     case 'SET_MOB_NAV_ELEMENT':
       return state.set('mobNavElement', action.mobNavElement);
+
+    case 'SET_OPEN_CLOSE_MODAL':
+      return state.set('openCloseModal', action.openCloseModal);
 
     case 'SET_CATEGORY_ID':
       return state.set('categoryId', action.categoryId);

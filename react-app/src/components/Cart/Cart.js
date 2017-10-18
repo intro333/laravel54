@@ -8,7 +8,6 @@ import Navigation from '../Navigation/Navigation';
 import MenuMobile from '../Popups/MenuMobile';
 import CartItem from '../Cart/CartItem';
 import * as modelActions from '../../actions';
-import Modal  from '../Popups/Modal';
 import { Map } from 'immutable';
 import {
   showProductsInCart,
@@ -32,17 +31,13 @@ class Cart extends Component {
       selectError: {
         borderColor: ''
       },
-      fadeIn: false,
-      modalDisplay: false,
-      textHeader: '',
-      textBody: '',
-      function: null,
     };
 
   }
 
   componentWillMount() {
     const { dispatch } = this.props;
+    dispatch(modelActions.setLoaderStatus(true));
     showProductsInCart(dispatch);
     showOrdersQuotaInCart(dispatch);
     showCurrentOrder(dispatch);
@@ -101,15 +96,15 @@ class Cart extends Component {
         time_quota: this.state.time_quota
       };
       if(isEmptyArray(currentOrder) && isEmptyArray(currentOrder['one'])) {
-        this.setState({
-          fadeIn: true,
-          modalDisplay: true,
+        dispatch(modelActions.setOpenCloseModal({
+          show: true,
           textHeader: 'У Вас уже есть один заказ в обработке.Перейти к заказу?',
+          textAlign: true,
           function: () => {
             const { history } = this.props;
             history.push('/orders');
           }
-        });
+        }));
       } else {
         if (this.state.time_quota !== 0) {
           sendOrder(dispatch, data, history);
@@ -130,41 +125,30 @@ class Cart extends Component {
         }
       }
     } else {
-      this.setState({
-        fadeIn: true,
-        modalDisplay: true,
+      dispatch(modelActions.setOpenCloseModal({
+        show: true,
         textHeader: 'Дата доставки закрыта. Узнать подробнее?',
+        textAlign: true,
         function: () => {
           const { history } = this.props;
-          history.push('/orders');//TODO сделать редирект на нужную страницу
+          history.push('/orders');
         }
-      });
+      }));
     }
   }
 
   handlerClearCart() {
-    this.setState({
-      fadeIn: true,
-      modalDisplay: true,
+    const { dispatch } = this.props;
+    dispatch(modelActions.setOpenCloseModal({
+      show: true,
       textHeader: 'Удалить все товары из корзины?',
-      textBody: 'Удалить все товары из корзины?',
+      textAlign: true,
       function: () => {
         const {dispatch, history} = this.props;
         dispatch(modelActions.setLoaderStatus(true));
         clearCart(dispatch, history);
       }
-    });
-  }
-
-  handlerCloseModal() {
-    this.setState({
-      fadeIn: false,
-      modalDisplay: false,
-    });
-  }
-
-  handlerSuccessModal() {
-    this.state.function();
+    }));
   }
 
   render() {
@@ -224,14 +208,6 @@ class Cart extends Component {
         <div className="container">
           <Navigation />
           <MenuMobile />
-          <Modal
-            fadeIn={this.state.fadeIn}
-            modalDisplay={this.state.modalDisplay}
-            handlerCloseModal={this.handlerCloseModal.bind(this)}
-            handlerSuccessModal={this.handlerSuccessModal.bind(this)}
-            textHeader={this.state.textHeader}
-            textBody={this.state.textBody}
-          />
           <div className="main-container">
             <div className="animation-page-load-medium cart-scroll-adaptive">
               <div className="flex-box-between">

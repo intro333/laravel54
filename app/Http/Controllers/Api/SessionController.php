@@ -16,7 +16,7 @@ class SessionController extends Controller
 {
     public function addProductToCart(Request $request)
     {
-        $sessionName = 'productFromCart.'.$request->input('barCode');
+        $sessionName = 'productFromCart.' . $request->input('barCode');
         $productCartInfo = [
             'productId'     => $request->input('productId'),
             'barCode'       => $request->input('barCode'),

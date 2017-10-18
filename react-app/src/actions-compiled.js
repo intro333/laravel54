@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.setUserInfo = setUserInfo;
 exports.setErrors = setErrors;
 exports.setMobNavElement = setMobNavElement;
+exports.setOpenCloseModal = setOpenCloseModal;
 exports.setCategories = setCategories;
 exports.setProducts = setProducts;
 exports.setCategoryId = setCategoryId;
@@ -32,6 +33,10 @@ function setErrors(errors) {
 
 function setMobNavElement(mobNavElement) {
   return { type: 'SET_MOB_NAV_ELEMENT', mobNavElement: mobNavElement };
+}
+
+function setOpenCloseModal(openCloseModal) {
+  return { type: 'SET_OPEN_CLOSE_MODAL', openCloseModal: openCloseModal };
 }
 
 function setCategories(categories) {

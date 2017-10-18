@@ -38,6 +38,10 @@ var _SuccessSaveModal = require('../Popups/SuccessSaveModal');
 
 var _SuccessSaveModal2 = _interopRequireDefault(_SuccessSaveModal);
 
+var _Modal = require('../Popups/Modal');
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
 var _actions2 = require('../Products/actions');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -66,6 +70,12 @@ var Navigation = function (_Component) {
 
       dispatch((0, _actions2.errorModalDisplay)(false));
       dispatch((0, _actions2.changeSuccessModalDisplay)(false));
+      dispatch(modelActions.setOpenCloseModal({
+        show: false,
+        textHeader: '',
+        textAlign: 'center',
+        function: null
+      }));
     }
   }, {
     key: 'mobileMenuClick',
@@ -124,6 +134,7 @@ var Navigation = function (_Component) {
           colorBack: '#ffe500',
           colorText: '#000'
         }),
+        _react2.default.createElement(_Modal2.default, null),
         _react2.default.createElement(
           'div',
           { className: 'contacts-main' },

@@ -77,18 +77,20 @@ var SuccessModal = function (_Component) {
       }, 0);
 
       // var screenWidth  = screen.width;//Размер экрана
+      var counts = session.get("productCounts");
       var windowWidth = window.innerWidth;
-      var unit = this.dec("товаров", "товар", "товара", session.get("productCounts")); // склоняем по падежам
+      var unit = this.dec("товаров", "товар", "товара", counts); // склоняем по падежам
       var scrollTopStyle = '1px';
       var resize = products.get('resize');
+      var productsScrollTop = products.get('scrollTop');
 
       if ((resize ? resize : windowWidth) > 540) {
         scrollTopStyle = {
-          top: products.get('scrollTop') < 113 ? 113 - products.get('scrollTop') + 'px' : '1px'
+          top: productsScrollTop < 113 ? 113 - productsScrollTop + 'px' : '1px'
         };
       } else {
         scrollTopStyle = {
-          top: products.get('scrollTop') < 105 ? 105 - products.get('scrollTop') + 'px' : '1px'
+          top: productsScrollTop < 105 ? 105 - productsScrollTop + 'px' : '1px'
         };
       }
 
@@ -119,7 +121,7 @@ var SuccessModal = function (_Component) {
                 '\u041A\u043E\u0440\u0437\u0438\u043D\u0430'
               ),
               ': ',
-              session.get("productCounts"),
+              counts,
               ' ',
               unit,
               ' ',

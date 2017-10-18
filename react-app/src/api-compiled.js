@@ -168,10 +168,18 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setProductsForCart(response.data));
+    if (response.status === 200) {
+      dispatcher(modelActions.setProductsForCart(response.data));
+      dispatcher(modelActions.setLoaderStatus(false));
+    } else {
+      dispatcher(modelActions.setLoaderStatus(false));
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }
   };
 
   var error = function error(_error6) {
+    dispatcher(modelActions.setLoaderStatus(false));
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error6);
   };
 
@@ -212,7 +220,7 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
 };
 
 //Отправить заказ.
-var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data, history) {
+var sendOrder = exports.sendOrder = function sendOrder(dispatcher, data) {
   var params = {
     method: 'post',
     url: '/api/send-order',
@@ -270,6 +278,7 @@ var clearCart = exports.clearCart = function clearCart(dispatcher, history) {
       setTimeout(function () {
         dispatcher(modelActions.setLoaderStatus(false));
       }, 300);
+
       dispatcher((0, _actions2.errorModalDisplay)(true));
     }
   };
@@ -415,7 +424,7 @@ var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data
 };
 
 //Отменить или удалить заказ
-var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteOrder(dispatcher, data, history) {
+var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteOrder(dispatcher, data) {
   var params = {
     method: 'post',
     url: '/api/order-cancel-or-delete',
@@ -423,12 +432,24 @@ var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteO
   };
 
   var then = function then(response) {
-    // history.push('/orders');
-    if (response.data === 1) dispatcher(modelActions.componentWillReceivePropsChange(true));
-    // console.log('ordersGetAll response.data', response.data);
+    if (response.status === 200 && response.data === 1) {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      dispatcher(modelActions.componentWillReceivePropsChange(true));
+    } else {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }
   };
 
   var error = function error(_error16) {
+    setTimeout(function () {
+      dispatcher(modelActions.setLoaderStatus(false));
+    }, 300);
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error16);
   };
 
@@ -445,12 +466,29 @@ var repeatOrChangeOrder = exports.repeatOrChangeOrder = function repeatOrChangeO
 
   var then = function then(response) {
     if (response.status === 200) {
-      dispatcher(modelActions.setProductsForCart(response.data));
-      history.push('/cart');
+      console.log(3, response);
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 700);
+      setTimeout(function () {
+        dispatcher(modelActions.setProductsForCart(response.data));
+      }, 700);
+      setTimeout(function () {
+        history.push('/cart');
+      }, 700);
+    } else {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      dispatcher((0, _actions2.errorModalDisplay)(true));
     }
   };
 
   var error = function error(_error17) {
+    setTimeout(function () {
+      dispatcher(modelActions.setLoaderStatus(false));
+    }, 300);
+    dispatcher((0, _actions2.errorModalDisplay)(true));
     console.log(_error17);
   };
 

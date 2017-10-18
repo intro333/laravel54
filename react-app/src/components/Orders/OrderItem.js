@@ -10,7 +10,7 @@ import {
   cancelOrDeleteOrder,
   repeatOrChangeOrder,
 } from '../../api';
-// import * as modelActions from './actions';
+import * as modelActions from '../../actions';
 
 class OrderItem extends Component {
 
@@ -19,8 +19,6 @@ class OrderItem extends Component {
     this.state = {
       orderNum: false,
       tdBotyVisible: false,
-      fadeIn: false,
-      modalDisplay: false,
       textHeader: '',
       function: null,
       textAlign: false
@@ -42,10 +40,10 @@ class OrderItem extends Component {
   }
 
   handlerCancelOrder(e) {
+    const { dispatch } = this.props;
     var text = e.target.innerText;
-    this.setState({
-      fadeIn: true,
-      modalDisplay: true,
+    dispatch(modelActions.setOpenCloseModal({
+      show: true,
       textHeader: 'Вы уверены, что хотите ' + text.toLowerCase() + '?',
       textAlign: true,
       function: () => {
@@ -54,9 +52,10 @@ class OrderItem extends Component {
           orderId: this.props.orderId,
           orderRemove: false,
         };
-        cancelOrDeleteOrder(dispatch, data, history)
+        dispatch(modelActions.setLoaderStatus(true));
+        cancelOrDeleteOrder(dispatch, data, history);
       }
-    });
+    }));
   }
 
   handlerDeleteOrder() {
@@ -65,13 +64,14 @@ class OrderItem extends Component {
       orderId: this.props.orderId,
       orderRemove: true,
     };
-    cancelOrDeleteOrder(dispatch, data, history)
+    dispatch(modelActions.setLoaderStatus(true));
+    cancelOrDeleteOrder(dispatch, data, history);
   }
 
   handlerRepeatOrder() {
-    this.setState({
-      fadeIn: true,
-      modalDisplay: true,
+    const { dispatch } = this.props;
+    dispatch(modelActions.setOpenCloseModal({
+      show: true,
       textHeader: 'Если в корзине есть товары, то они будут удалены. Продолжить?',
       textAlign: false,
       function: () => {
@@ -80,15 +80,16 @@ class OrderItem extends Component {
           orderId: this.props.orderId,
           orderChange: false
         };
-        repeatOrChangeOrder(dispatch, data, history)
+        dispatch(modelActions.setLoaderStatus(true));
+        repeatOrChangeOrder(dispatch, data, history);
       }
-    });
+    }));
   }
 
   handlerChangeOrder() {
-    this.setState({
-      fadeIn: true,
-      modalDisplay: true,
+    const { dispatch } = this.props;
+    dispatch(modelActions.setOpenCloseModal({
+      show: true,
       textHeader: 'Вы будете перемещены в корзину, где сможете отредактировать свой заказ повторно. Продолжить?',
       textAlign: false,
       function: () => {
@@ -97,16 +98,20 @@ class OrderItem extends Component {
           orderId: this.props.orderId,
           orderChange: true
         };
-        repeatOrChangeOrder(dispatch, data, history)
+        dispatch(modelActions.setLoaderStatus(true));
+        repeatOrChangeOrder(dispatch, data, history);
       }
-    });
+    }));
   }
 
   handlerCloseModal() {
-    this.setState({
-      fadeIn: false,
-      modalDisplay: false,
-    });
+    const { dispatch } = this.props;
+    dispatch(modelActions.setOpenCloseModal({
+      show: false,
+      textHeader: '',
+      textAlign: true,
+      function: null
+    }));
   }
 
   handlerSuccessModal() {
@@ -226,15 +231,6 @@ class OrderItem extends Component {
 
     return (
       <div className="orders-item">
-        <Modal
-          fadeIn={this.state.fadeIn}
-          modalDisplay={this.state.modalDisplay}
-          handlerCloseModal={this.handlerCloseModal.bind(this)}
-          handlerSuccessModal={this.handlerSuccessModal.bind(this)}
-          textHeader={this.state.textHeader}
-          textAlign={this.state.textAlign}
-          textBody={this.state.textBody}
-        />
         { this.state.tdBotyVisible &&  orderInfo }
         <table className="cart-products-table cart-products-table__order margin-off animation-page-load-medium">
           <thead>

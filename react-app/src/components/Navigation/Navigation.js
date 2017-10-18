@@ -12,6 +12,7 @@ import {
 import FaFileText from 'react-icons/lib/fa/file-text';
 import Loader  from '../Popups/Loader';
 import SuccessSaveModal  from '../Popups/SuccessSaveModal';
+import Modal  from '../Popups/Modal';
 import { changeSuccessModalDisplay, errorModalDisplay } from '../Products/actions';
 
 class Navigation extends Component {
@@ -24,6 +25,12 @@ class Navigation extends Component {
     const { dispatch } = this.props;
     dispatch(errorModalDisplay(false));
     dispatch(changeSuccessModalDisplay(false));
+    dispatch(modelActions.setOpenCloseModal({
+      show: false,
+      textHeader: '',
+      textAlign: 'center',
+      function: null
+    }));
   }
 
   mobileMenuClick() {
@@ -66,6 +73,7 @@ class Navigation extends Component {
           colorBack="#ffe500"
           colorText="#000"
         />
+        <Modal />
         <div className="contacts-main">
           <div className="contacts-item">
             <span>Сергей</span>

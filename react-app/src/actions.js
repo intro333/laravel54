@@ -10,6 +10,10 @@ export function setMobNavElement(mobNavElement) {
   return { type: 'SET_MOB_NAV_ELEMENT', mobNavElement };
 }
 
+export function setOpenCloseModal(openCloseModal) {
+    return { type: 'SET_OPEN_CLOSE_MODAL', openCloseModal };
+}
+
 export function setCategories(categories) {
   return { type: 'SET_CATEGORIES', categories };
 }
