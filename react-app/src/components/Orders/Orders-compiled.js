@@ -84,7 +84,7 @@ var Orders = function (_Component) {
         year: year,
         month: month
       };
-
+      dispatch(modelActions.setLoaderStatus(true));
       (0, _api.ordersGetAll)(dispatch, data);
     }
   }, {

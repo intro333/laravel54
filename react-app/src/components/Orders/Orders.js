@@ -32,7 +32,7 @@ class Orders extends Component {
       year: year,
       month: month,
     };
-
+    dispatch(modelActions.setLoaderStatus(true));
     ordersGetAll(dispatch, data);
   }
 

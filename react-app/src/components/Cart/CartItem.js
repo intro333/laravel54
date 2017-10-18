@@ -111,11 +111,11 @@ class CartItem extends Component {
 
   deleteProductFromCart() {
     const { dispatch } = this.props;
-    dispatch(modelActions.setLoaderStatus(true));
     const data = {
       barCode: this.props.item.barCode,
       productId: this.props.item.productId
     };
+    dispatch(modelActions.setLoaderStatus(true));
     deleteProductFromCart(dispatch, data);
   }
 

@@ -167,16 +167,16 @@ export const deleteProductFromCart = (dispatcher, data) => {
   const then = response => {
     if (response.status === 200) {
       setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-      dispatcher(modelActions.setProductsForCart(response.data))
+      setTimeout(function () { dispatcher(modelActions.setProductsForCart(response.data)); }, 300);
     } else {
       setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-      dispatcher(errorModalDisplay(true))
+      setTimeout(function () { dispatcher(errorModalDisplay(true)); }, 300);
     }
   };
 
   const error = (error) => {
     setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-    dispatcher(errorModalDisplay(true));
+    setTimeout(function () { dispatcher(errorModalDisplay(true)); }, 300);
     console.log(error);
   };
 
@@ -223,17 +223,16 @@ export const clearCart = (dispatcher, history) => {
   const then = response => {
     if (response.status === 200) {
       setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-      history.push('/');
+      setTimeout(function () { history.push('/'); }, 300);
     } else {
       setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-
-      dispatcher(errorModalDisplay(true));
+      setTimeout(function() { dispatcher(errorModalDisplay(true)); }, 300);
     }
   };
 
   const error = (error) => {
     setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-    dispatcher(errorModalDisplay(true));
+    setTimeout(function() { dispatcher(errorModalDisplay(true)); }, 300);
     console.log(error);
   };
 
@@ -354,11 +353,18 @@ export const ordersGetAll = (dispatcher, data) => {
   };
 
   const then = response => {
-    dispatcher(modelActions.setOrders(response.data));
-    // console.log('ordersGetAll response.data', response.data);
-  };
+    if(response.status === 200) {
+      setTimeout(function () {dispatcher(modelActions.setLoaderStatus(false));}, 300);
+      setTimeout(function () {dispatcher(modelActions.setOrders(response.data)); }, 300);
+    } else {
+      setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+      setTimeout(function () { dispatcher(errorModalDisplay(true)); }, 300);
+    }
+  }
 
   const error = (error) => {
+    setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
+    setTimeout(function () { dispatcher(errorModalDisplay(true)); }, 300);
     console.log(error);
   };
 
@@ -376,10 +382,10 @@ export const cancelOrDeleteOrder = (dispatcher, data) => {
   const then = response => {
     if(response.status === 200 && response.data === 1) {
       setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-      dispatcher(modelActions.componentWillReceivePropsChange(true));
+      setTimeout(function () { dispatcher(modelActions.componentWillReceivePropsChange(true)); }, 300);
     } else {
       setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
-      dispatcher(errorModalDisplay(true));
+      setTimeout(function () { dispatcher(errorModalDisplay(true)); }, 300);
     }
   };
 

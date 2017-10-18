@@ -906,61 +906,6 @@ if(false) {
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2016 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				classes.push(classNames.apply(null, arg));
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-			return classNames;
-		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-		window.classNames = classNames;
-	}
-}());
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
@@ -1066,6 +1011,61 @@ function setSuccessPageStatus(successPageStatus) {
 function setTotalSum(totalSum) {
   return { type: 'SET_TOTAL_SUM', totalSum: totalSum };
 }
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2016 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+			return classNames;
+		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
 
 /***/ }),
 /* 14 */
@@ -1898,7 +1898,7 @@ var _axios = __webpack_require__(150);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -2084,12 +2084,16 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
       setTimeout(function () {
         dispatcher(modelActions.setLoaderStatus(false));
       }, 300);
-      dispatcher(modelActions.setProductsForCart(response.data));
+      setTimeout(function () {
+        dispatcher(modelActions.setProductsForCart(response.data));
+      }, 300);
     } else {
       setTimeout(function () {
         dispatcher(modelActions.setLoaderStatus(false));
       }, 300);
-      dispatcher((0, _actions2.errorModalDisplay)(true));
+      setTimeout(function () {
+        dispatcher((0, _actions2.errorModalDisplay)(true));
+      }, 300);
     }
   };
 
@@ -2097,7 +2101,9 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
     setTimeout(function () {
       dispatcher(modelActions.setLoaderStatus(false));
     }, 300);
-    dispatcher((0, _actions2.errorModalDisplay)(true));
+    setTimeout(function () {
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }, 300);
     console.log(_error7);
   };
 
@@ -2158,13 +2164,16 @@ var clearCart = exports.clearCart = function clearCart(dispatcher, history) {
       setTimeout(function () {
         dispatcher(modelActions.setLoaderStatus(false));
       }, 300);
-      history.push('/');
+      setTimeout(function () {
+        history.push('/');
+      }, 300);
     } else {
       setTimeout(function () {
         dispatcher(modelActions.setLoaderStatus(false));
       }, 300);
-
-      dispatcher((0, _actions2.errorModalDisplay)(true));
+      setTimeout(function () {
+        dispatcher((0, _actions2.errorModalDisplay)(true));
+      }, 300);
     }
   };
 
@@ -2172,7 +2181,9 @@ var clearCart = exports.clearCart = function clearCart(dispatcher, history) {
     setTimeout(function () {
       dispatcher(modelActions.setLoaderStatus(false));
     }, 300);
-    dispatcher((0, _actions2.errorModalDisplay)(true));
+    setTimeout(function () {
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }, 300);
     console.log(_error9);
   };
 
@@ -2297,11 +2308,30 @@ var ordersGetAll = exports.ordersGetAll = function ordersGetAll(dispatcher, data
   };
 
   var then = function then(response) {
-    dispatcher(modelActions.setOrders(response.data));
-    // console.log('ordersGetAll response.data', response.data);
+    if (response.status === 200) {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      setTimeout(function () {
+        dispatcher(modelActions.setOrders(response.data));
+      }, 300);
+    } else {
+      setTimeout(function () {
+        dispatcher(modelActions.setLoaderStatus(false));
+      }, 300);
+      setTimeout(function () {
+        dispatcher((0, _actions2.errorModalDisplay)(true));
+      }, 300);
+    }
   };
 
   var error = function error(_error15) {
+    setTimeout(function () {
+      dispatcher(modelActions.setLoaderStatus(false));
+    }, 300);
+    setTimeout(function () {
+      dispatcher((0, _actions2.errorModalDisplay)(true));
+    }, 300);
     console.log(_error15);
   };
 
@@ -2321,12 +2351,16 @@ var cancelOrDeleteOrder = exports.cancelOrDeleteOrder = function cancelOrDeleteO
       setTimeout(function () {
         dispatcher(modelActions.setLoaderStatus(false));
       }, 300);
-      dispatcher(modelActions.componentWillReceivePropsChange(true));
+      setTimeout(function () {
+        dispatcher(modelActions.componentWillReceivePropsChange(true));
+      }, 300);
     } else {
       setTimeout(function () {
         dispatcher(modelActions.setLoaderStatus(false));
       }, 300);
-      dispatcher((0, _actions2.errorModalDisplay)(true));
+      setTimeout(function () {
+        dispatcher((0, _actions2.errorModalDisplay)(true));
+      }, 300);
     }
   };
 
@@ -3263,7 +3297,7 @@ var _reactRedux = __webpack_require__(7);
 
 var _reactRouterDom = __webpack_require__(24);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -3402,7 +3436,7 @@ __webpack_require__(39);
 
 var _reactRouterDom = __webpack_require__(24);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -3760,7 +3794,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -3772,7 +3806,7 @@ var _reactRouterDom = __webpack_require__(24);
 
 var _reactRedux = __webpack_require__(7);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -4989,7 +5023,7 @@ var _reactInputAutosize = __webpack_require__(294);
 
 var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -16578,7 +16612,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -16588,7 +16622,7 @@ __webpack_require__(10);
 
 var _reactRedux = __webpack_require__(7);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -16731,7 +16765,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -22121,7 +22155,7 @@ module.exports = filterOptions;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -24261,7 +24295,7 @@ var _CartItem = __webpack_require__(169);
 
 var _CartItem2 = _interopRequireDefault(_CartItem);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -24692,7 +24726,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(7);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -24704,7 +24738,7 @@ __webpack_require__(10);
 
 var _api = __webpack_require__(19);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -24833,11 +24867,11 @@ var CartItem = function (_Component) {
     value: function deleteProductFromCart() {
       var dispatch = this.props.dispatch;
 
-      dispatch(modelActions.setLoaderStatus(true));
       var data = {
         barCode: this.props.item.barCode,
         productId: this.props.item.productId
       };
+      dispatch(modelActions.setLoaderStatus(true));
       (0, _api.deleteProductFromCart)(dispatch, data);
     }
   }, {
@@ -24978,7 +25012,7 @@ var _ModalLoaderCartSent = __webpack_require__(178);
 
 var _ModalLoaderCartSent2 = _interopRequireDefault(_ModalLoaderCartSent);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -25177,7 +25211,7 @@ var _Footer = __webpack_require__(25);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -25295,7 +25329,7 @@ __webpack_require__(11);
 
 __webpack_require__(10);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -25400,7 +25434,7 @@ var _MenuMobile2 = _interopRequireDefault(_MenuMobile);
 
 var _api = __webpack_require__(19);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -25612,7 +25646,7 @@ var _reactRouterDom = __webpack_require__(24);
 
 var _reactRedux = __webpack_require__(7);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -25628,7 +25662,7 @@ var _Modal2 = _interopRequireDefault(_Modal);
 
 var _api = __webpack_require__(19);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -26095,7 +26129,7 @@ var _OrderItem2 = _interopRequireDefault(_OrderItem);
 
 var _api = __webpack_require__(19);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions);
 
@@ -26139,7 +26173,7 @@ var Orders = function (_Component) {
         year: year,
         month: month
       };
-
+      dispatch(modelActions.setLoaderStatus(true));
       (0, _api.ordersGetAll)(dispatch, data);
     }
   }, {
@@ -26430,7 +26464,7 @@ var _SuccessSaveModal2 = _interopRequireDefault(_SuccessSaveModal);
 
 var _actions = __webpack_require__(32);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -26438,7 +26472,7 @@ var _Footer = __webpack_require__(25);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _actions2 = __webpack_require__(13);
+var _actions2 = __webpack_require__(12);
 
 var modelActions = _interopRequireWildcard(_actions2);
 
@@ -26866,7 +26900,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -26994,7 +27028,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -27141,7 +27175,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -27305,7 +27339,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(7);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -27321,7 +27355,7 @@ var _actions = __webpack_require__(32);
 
 var _helpers = __webpack_require__(28);
 
-var _actions2 = __webpack_require__(13);
+var _actions2 = __webpack_require__(12);
 
 var mainActions = _interopRequireWildcard(_actions2);
 
@@ -27654,7 +27688,7 @@ var _SuccessModal2 = _interopRequireDefault(_SuccessModal);
 
 var _actions = __webpack_require__(32);
 
-var _actions2 = __webpack_require__(13);
+var _actions2 = __webpack_require__(12);
 
 var mainActions = _interopRequireWildcard(_actions2);
 
@@ -43284,7 +43318,7 @@ var _propTypes = __webpack_require__(8);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -43407,7 +43441,7 @@ var _propTypes = __webpack_require__(8);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _classnames = __webpack_require__(12);
+var _classnames = __webpack_require__(13);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 

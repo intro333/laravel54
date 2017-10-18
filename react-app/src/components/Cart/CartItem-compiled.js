@@ -153,11 +153,11 @@ var CartItem = function (_Component) {
     value: function deleteProductFromCart() {
       var dispatch = this.props.dispatch;
 
-      dispatch(modelActions.setLoaderStatus(true));
       var data = {
         barCode: this.props.item.barCode,
         productId: this.props.item.productId
       };
+      dispatch(modelActions.setLoaderStatus(true));
       (0, _api.deleteProductFromCart)(dispatch, data);
     }
   }, {
