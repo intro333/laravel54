@@ -24353,7 +24353,9 @@ var Cart = function (_Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(next) {
+      console.log("prodCount_1: ", next.session.get('productCounts'));
       if (next.session.get('productCounts') === 0) {
+        console.log("prodCount_2: ", next.session.get('productCounts'));
         var _props = this.props,
             dispatch = _props.dispatch,
             history = _props.history;
@@ -25796,18 +25798,6 @@ var OrderItem = function (_Component) {
           dispatch(modelActions.setLoaderStatus(true));
           (0, _api.repeatOrChangeOrder)(dispatch, data, history);
         }
-      }));
-    }
-  }, {
-    key: 'handlerCloseModal',
-    value: function handlerCloseModal() {
-      var dispatch = this.props.dispatch;
-
-      dispatch(modelActions.setOpenCloseModal({
-        show: false,
-        textHeader: '',
-        textAlign: true,
-        function: null
       }));
     }
   }, {

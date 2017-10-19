@@ -104,16 +104,6 @@ class OrderItem extends Component {
     }));
   }
 
-  handlerCloseModal() {
-    const { dispatch } = this.props;
-    dispatch(modelActions.setOpenCloseModal({
-      show: false,
-      textHeader: '',
-      textAlign: true,
-      function: null
-    }));
-  }
-
   handlerSuccessModal() {
     this.state.function();
   }

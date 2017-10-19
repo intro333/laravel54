@@ -44,7 +44,9 @@ class Cart extends Component {
   }
 
   componentWillReceiveProps(next) {
+    console.log("prodCount_1: ", next.session.get('productCounts'));
     if (next.session.get('productCounts') === 0) {
+      console.log("prodCount_2: ", next.session.get('productCounts'));
       const {dispatch, history} = this.props;
       clearCart(dispatch, history);
       next.history.push('/');

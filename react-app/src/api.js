@@ -360,7 +360,7 @@ export const ordersGetAll = (dispatcher, data) => {
       setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
       setTimeout(function () { dispatcher(errorModalDisplay(true)); }, 300);
     }
-  }
+  };
 
   const error = (error) => {
     setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
