@@ -43,15 +43,15 @@ class Cart extends Component {
     showCurrentOrder(dispatch);
   }
 
-  componentWillReceiveProps(next) {
-    console.log("prodCount_1: ", next.session.get('productCounts'));
-    if (next.session.get('productCounts') === 0) {
-      console.log("prodCount_2: ", next.session.get('productCounts'));
-      const {dispatch, history} = this.props;
-      clearCart(dispatch, history);
-      next.history.push('/');
-    }
-  }
+  // componentWillReceiveProps(next) {
+  //   console.log("prodCount_1: ", next.session.get('productCounts'));
+  //   if (next.session.get('productCounts') === 0) {
+  //     console.log("prodCount_2: ", next.session.get('productCounts'));
+  //     const {dispatch, history} = this.props;
+  //     clearCart(dispatch, history);
+  //     next.history.push('/');
+  //   }
+  // }
 
   componentWillUnmount() {
     const { dispatch } = this.props;
@@ -164,6 +164,7 @@ class Cart extends Component {
           keyProductId={item.productId}
           key={item.productId}
           item={item}
+          history={this.props.history}
         />
       );
 

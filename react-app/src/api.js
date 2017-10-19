@@ -157,7 +157,7 @@ export const showProductsInCart = (dispatcher, data=[]) => {
 };
 
 //Удалить товар из корзины.
-export const deleteProductFromCart = (dispatcher, data) => {
+export const deleteProductFromCart = (dispatcher, data, history) => {
   const params = {
     method:'post',
     url:'/api/delete-product-from-cart',
@@ -168,6 +168,10 @@ export const deleteProductFromCart = (dispatcher, data) => {
     if (response.status === 200) {
       setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
       setTimeout(function () { dispatcher(modelActions.setProductsForCart(response.data)); }, 300);
+      setTimeout(function () { if (response.data.length === 0) {
+        clearCart(dispatcher, history);
+        history.push('/');
+      } }, 300);
     } else {
       setTimeout(function() { dispatcher(modelActions.setLoaderStatus(false)); }, 300);
       setTimeout(function () { dispatcher(errorModalDisplay(true)); }, 300);
@@ -407,7 +411,7 @@ export const repeatOrChangeOrder = (dispatcher, data, history) => {
   };
 
   const then = response => {
-    if (response.status === 200) {console.log(3, response)
+    if (response.status === 200) {
       setTimeout(function () { dispatcher(modelActions.setLoaderStatus(false)); }, 700);
       setTimeout(function () { dispatcher(modelActions.setProductsForCart(response.data)); }, 700);
       setTimeout(function () { history.push('/cart'); }, 700);
