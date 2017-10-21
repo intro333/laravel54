@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import {
   addProductToCart,
   deleteProductFromCart,
-  getProductCounts,
 } from '../../api';
 import * as modelActions from '../../actions';
 

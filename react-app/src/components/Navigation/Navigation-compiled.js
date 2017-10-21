@@ -16,8 +16,6 @@ require('../../theme/css/main.css');
 
 require('../../theme/css/adaptive.css');
 
-require('../../theme/css/bootstrap-datepicker3.min.css');
-
 var _reactRouterDom = require('react-router-dom');
 
 var _actions = require('../../actions');
@@ -29,6 +27,18 @@ var _api = require('../../api');
 var _fileText = require('react-icons/lib/fa/file-text');
 
 var _fileText2 = _interopRequireDefault(_fileText);
+
+var _user = require('react-icons/lib/fa/user');
+
+var _user2 = _interopRequireDefault(_user);
+
+var _shoppingCart = require('react-icons/lib/fa/shopping-cart');
+
+var _shoppingCart2 = _interopRequireDefault(_shoppingCart);
+
+var _signOut = require('react-icons/lib/fa/sign-out');
+
+var _signOut2 = _interopRequireDefault(_signOut);
 
 var _Loader = require('../Popups/Loader');
 
@@ -205,14 +215,22 @@ var Navigation = function (_Component) {
                   { className: 'mob-nav-elem', onClick: this.mobileMenuClick.bind(this) },
                   _react2.default.createElement('div', { className: 'close-mobile-elem' })
                 ),
-                _react2.default.createElement('span', {
-                  onClick: this.logOut.bind(this),
-                  className: 'glyphicon glyphicon-log-out mob-menu-right'
-                }),
+                _react2.default.createElement(
+                  'span',
+                  {
+                    onClick: this.logOut.bind(this),
+                    className: ' mob-menu-right'
+                  },
+                  _react2.default.createElement(_signOut2.default, { size: '17' })
+                ),
                 _react2.default.createElement(
                   _reactRouterDom.Link,
                   { onClick: this.closeMobNavElem.bind(this), to: '/cart' },
-                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart mob-menu-right' }),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'mob-menu-right' },
+                    _react2.default.createElement(_shoppingCart2.default, { size: '17' })
+                  ),
                   _react2.default.createElement(
                     'div',
                     { className: 'menu__item--basket__amount' },
@@ -223,7 +241,11 @@ var Navigation = function (_Component) {
                   _reactRouterDom.Link,
                   { onClick: this.closeMobNavElem.bind(this),
                     to: '/personal-account' },
-                  _react2.default.createElement('span', { className: 'glyphicon glyphicon-user  mob-menu-right' })
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'mob-menu-right' },
+                    _react2.default.createElement(_user2.default, { size: '17' })
+                  )
                 ),
                 _react2.default.createElement(
                   _reactRouterDom.Link,
@@ -285,7 +307,7 @@ var Navigation = function (_Component) {
                   _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: '/orders' },
-                    _react2.default.createElement(_fileText2.default, { size: '16' }),
+                    _react2.default.createElement(_fileText2.default, { size: '15' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
@@ -299,7 +321,7 @@ var Navigation = function (_Component) {
                   _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: '/personal-account' },
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-user' }),
+                    _react2.default.createElement(_user2.default, { size: '16' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
@@ -313,7 +335,7 @@ var Navigation = function (_Component) {
                   _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: cartUrl },
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-shopping-cart' }),
+                    _react2.default.createElement(_shoppingCart2.default, { size: '16' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },
@@ -332,7 +354,7 @@ var Navigation = function (_Component) {
                   _react2.default.createElement(
                     'a',
                     null,
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-log-out' }),
+                    _react2.default.createElement(_signOut2.default, { size: '16' }),
                     _react2.default.createElement(
                       'span',
                       { className: 'mob-nav-text' },

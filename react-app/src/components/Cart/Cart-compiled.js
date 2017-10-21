@@ -89,18 +89,17 @@ var Cart = function (_Component) {
       (0, _api.showOrdersQuotaInCart)(dispatch);
       (0, _api.showCurrentOrder)(dispatch);
     }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(next) {
-      if (next.session.get('productCounts') === 0) {
-        var _props = this.props,
-            dispatch = _props.dispatch,
-            history = _props.history;
 
-        (0, _api.clearCart)(dispatch, history);
-        next.history.push('/');
-      }
-    }
+    // componentWillReceiveProps(next) {
+    //   console.log("prodCount_1: ", next.session.get('productCounts'));
+    //   if (next.session.get('productCounts') === 0) {
+    //     console.log("prodCount_2: ", next.session.get('productCounts'));
+    //     const {dispatch, history} = this.props;
+    //     clearCart(dispatch, history);
+    //     next.history.push('/');
+    //   }
+    // }
+
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
@@ -149,11 +148,11 @@ var Cart = function (_Component) {
     value: function handlerSendOrder() {
       var _this2 = this;
 
-      var _props2 = this.props,
-          dispatch = _props2.dispatch,
-          history = _props2.history,
-          ordersQuota = _props2.ordersQuota,
-          currentOrder = _props2.currentOrder;
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          history = _props.history,
+          ordersQuota = _props.ordersQuota,
+          currentOrder = _props.currentOrder;
 
       if (ordersQuota.delivery && ordersQuota.delivery.status) {
         var data = {
@@ -215,9 +214,9 @@ var Cart = function (_Component) {
         textHeader: 'Удалить все товары из корзины?',
         textAlign: true,
         function: function _function() {
-          var _props3 = _this3.props,
-              dispatch = _props3.dispatch,
-              history = _props3.history;
+          var _props2 = _this3.props,
+              dispatch = _props2.dispatch,
+              history = _props2.history;
 
           dispatch(modelActions.setLoaderStatus(true));
           (0, _api.clearCart)(dispatch, history);
@@ -227,12 +226,14 @@ var Cart = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props4 = this.props,
-          ordersQuota = _props4.ordersQuota,
-          productsForCart = _props4.productsForCart,
-          errorMessageCountQuota = _props4.errorMessageCountQuota,
-          currentOrder = _props4.currentOrder,
-          session = _props4.session;
+      var _this4 = this;
+
+      var _props3 = this.props,
+          ordersQuota = _props3.ordersQuota,
+          productsForCart = _props3.productsForCart,
+          errorMessageCountQuota = _props3.errorMessageCountQuota,
+          currentOrder = _props3.currentOrder,
+          session = _props3.session;
       // checkTimeQuota(dispatch, {time_quota: this.state.time_quota}); //TODO чекаем кол-во квот
       // const check = api.get('checkTimeQuota');                       //TODO чекаем кол-во квот
 
@@ -242,7 +243,8 @@ var Cart = function (_Component) {
         return _react2.default.createElement(_CartItem2.default, {
           keyProductId: item.productId,
           key: item.productId,
-          item: item
+          item: item,
+          history: _this4.props.history
         });
       });
 

@@ -16,8 +16,6 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-require('../../theme/css/bootstrap-datepicker3.min.css');
-
 require('../../theme/css/main.css');
 
 require('../../theme/css/adaptive.css');
@@ -151,14 +149,16 @@ var CartItem = function (_Component) {
   }, {
     key: 'deleteProductFromCart',
     value: function deleteProductFromCart() {
-      var dispatch = this.props.dispatch;
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          history = _props.history;
 
       var data = {
         barCode: this.props.item.barCode,
         productId: this.props.item.productId
       };
       dispatch(modelActions.setLoaderStatus(true));
-      (0, _api.deleteProductFromCart)(dispatch, data);
+      (0, _api.deleteProductFromCart)(dispatch, data, history);
     }
   }, {
     key: 'render',

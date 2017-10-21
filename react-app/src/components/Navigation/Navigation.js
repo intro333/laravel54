@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
-import '../../theme/css/bootstrap-datepicker3.min.css';
 import {Link} from 'react-router-dom';
 import * as modelActions from '../../actions';
 import {
@@ -10,6 +9,9 @@ import {
   getProductCounts,
 } from '../../api';
 import FaFileText from 'react-icons/lib/fa/file-text';
+import FaUser from 'react-icons/lib/fa/user';
+import FaShoppingCart from 'react-icons/lib/fa/shopping-cart';
+import FaSignOut from 'react-icons/lib/fa/sign-out';
 import Loader  from '../Popups/Loader';
 import SuccessSaveModal  from '../Popups/SuccessSaveModal';
 import Modal  from '../Popups/Modal';
@@ -106,15 +108,16 @@ class Navigation extends Component {
                 }
                 <span
                   onClick={this.logOut.bind(this)}
-                  className="glyphicon glyphicon-log-out mob-menu-right"
-                ></span>
+                  className=" mob-menu-right"
+                ><FaSignOut size="17"/></span>
                 <Link onClick={this.closeMobNavElem.bind(this)} to={'/cart'}>
-                  <span className="glyphicon glyphicon-shopping-cart mob-menu-right"></span>
+                  <span className="mob-menu-right"><FaShoppingCart size="17"/></span>
                   <div className="menu__item--basket__amount">{productsCounts && productsCounts}</div>
                 </Link>
                 <Link onClick={this.closeMobNavElem.bind(this)}
                       to={'/personal-account'}>
-                  <span className="glyphicon glyphicon-user  mob-menu-right"></span>
+                  <span className="mob-menu-right"><FaUser size="17"/></span>
+                  {/*<span className="glyphicon glyphicon-user  mob-menu-right"></span>*/}
                 </Link>
                 <Link
                   onClick={this.closeMobNavElem.bind(this)}
@@ -141,25 +144,25 @@ class Navigation extends Component {
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to="/orders">
                   {/*<span className="glyphicon glyphicon-list-alt"></span>*/}
-                  <FaFileText size="16"/>
+                  <FaFileText size="15"/>
                   <span className="mob-nav-text">Заказы</span>
                 </Link>
                 </li>
                 <li><Link to={'/personal-account'}>
-                  <span className="glyphicon glyphicon-user"></span>
-                  {/*<FaUser size="16" />*/}
+                  {/*<span className="glyphicon glyphicon-user"></span>*/}
+                  <FaUser size="16" />
                   <span className="mob-nav-text">Мой кабинет</span>
                 </Link>
                 </li>
                 <li><Link to={cartUrl}>
-                  <span className="glyphicon glyphicon-shopping-cart"></span>
+                  <FaShoppingCart size="16"/>
                   <span className="mob-nav-text">Корзина</span>
                   <div className="menu__item--basket__amount">{productsCounts && productsCounts}</div>
                 </Link>
                 </li>
                 <li onClick={this.logOut.bind(this)}>
                   <a>
-                    <span className="glyphicon glyphicon-log-out"></span>
+                    <FaSignOut size="16"/>
                     <span className="mob-nav-text">Выход</span>
                   </a>
                 </li>

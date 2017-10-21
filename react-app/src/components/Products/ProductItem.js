@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
 import {
   addProductToCart,
   showProductsInCart
 } from '../../api';
-import { changeSuccessModalDisplay, setScrollTop, setResize } from './actions';
+import { setScrollTop, setResize } from './actions';
 import { isEmptyMap, isEmptyArray } from '../../helpers';
 import * as mainActions from '../../actions';
 

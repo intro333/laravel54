@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import '../../theme/css/bootstrap-datepicker3.min.css';
 import '../../theme/css/main.css';
 import '../../theme/css/adaptive.css';
-import Modal  from '../Popups/Modal';
 import {
   cancelOrDeleteOrder,
   repeatOrChangeOrder,

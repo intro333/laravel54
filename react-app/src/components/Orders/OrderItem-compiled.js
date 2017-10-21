@@ -10,23 +10,15 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = require('react-router-dom');
-
 var _reactRedux = require('react-redux');
 
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-require('../../theme/css/bootstrap-datepicker3.min.css');
-
 require('../../theme/css/main.css');
 
 require('../../theme/css/adaptive.css');
-
-var _Modal = require('../Popups/Modal');
-
-var _Modal2 = _interopRequireDefault(_Modal);
 
 var _api = require('../../api');
 
@@ -164,18 +156,6 @@ var OrderItem = function (_Component) {
           dispatch(modelActions.setLoaderStatus(true));
           (0, _api.repeatOrChangeOrder)(dispatch, data, history);
         }
-      }));
-    }
-  }, {
-    key: 'handlerCloseModal',
-    value: function handlerCloseModal() {
-      var dispatch = this.props.dispatch;
-
-      dispatch(modelActions.setOpenCloseModal({
-        show: false,
-        textHeader: '',
-        textAlign: true,
-        function: null
       }));
     }
   }, {
