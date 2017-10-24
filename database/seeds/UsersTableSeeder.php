@@ -40,8 +40,8 @@ class UsersTableSeeder extends Seeder
 //            ],
             [
                 "id"        => 2,
-                "email"     => "admin@mail.ru",
-                "password"  => bcrypt('123456'),
+                "email"     => "intro333@ya.ru",
+                "password"  => bcrypt('BGlom}FY0E8t'),
                 "role"      => 'admin',
                 "is_active" => 1,
                 "remember_token"   => "",
