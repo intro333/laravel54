@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
         ],
 
         'admin' => [
+            'throttle:10,60',
             'isAdmin'
         ],
     ];

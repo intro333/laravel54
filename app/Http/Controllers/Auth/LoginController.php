@@ -37,7 +37,7 @@ class LoginController extends Controller
         //Проверяем, что через юзерскую страничку аутентификации не набрали логин админа
         $adminUser = User::where('role', 'admin')->get()->first();
 
-        if ($adminUser->email !== $request->input('email') && $this->attemptLogin($request)) {
+        if ($adminUser && $adminUser->email !== $request->input('email') && $this->attemptLogin($request)) {
             session()->put('sessionUserName', $request->input('email'));
             return $this->sendLoginResponse($request);
         }
