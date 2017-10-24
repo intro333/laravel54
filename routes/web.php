@@ -14,7 +14,7 @@
 Auth::routes();
 
 //Admin auth routes
-Route::prefix('admin')->group(function () {
+Route::prefix('fp-admin')->group(function () {
     Route::get('/login', 'Admin\LoginController@showLoginForm')->name('viewAdminLogin');
     Route::post('/login', 'Admin\LoginController@login')->name('adminLogin');
     Route::get('/logout', 'Admin\LoginController@logout')->name('adminLogout');

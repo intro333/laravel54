@@ -92,7 +92,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/admin/login');
+        return redirect(route('viewAdminLogin'));
     }
 
     /**
@@ -100,7 +100,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/fp-admin';
 
     /**
      * Create a new controller instance.
