@@ -187,7 +187,7 @@ var showProductsInCart = exports.showProductsInCart = function showProductsInCar
 };
 
 //Удалить товар из корзины.
-var deleteProductFromCart = exports.deleteProductFromCart = function deleteProductFromCart(dispatcher, data) {
+var deleteProductFromCart = exports.deleteProductFromCart = function deleteProductFromCart(dispatcher, data, history) {
   var params = {
     method: 'post',
     url: '/api/delete-product-from-cart',
@@ -201,6 +201,12 @@ var deleteProductFromCart = exports.deleteProductFromCart = function deleteProdu
       }, 300);
       setTimeout(function () {
         dispatcher(modelActions.setProductsForCart(response.data));
+      }, 300);
+      setTimeout(function () {
+        if (response.data.length === 0) {
+          clearCart(dispatcher, history);
+          history.push('/');
+        }
       }, 300);
     } else {
       setTimeout(function () {
@@ -500,7 +506,6 @@ var repeatOrChangeOrder = exports.repeatOrChangeOrder = function repeatOrChangeO
 
   var then = function then(response) {
     if (response.status === 200) {
-      console.log(3, response);
       setTimeout(function () {
         dispatcher(modelActions.setLoaderStatus(false));
       }, 700);

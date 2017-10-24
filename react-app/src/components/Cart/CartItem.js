@@ -8,6 +8,7 @@ import {
   deleteProductFromCart,
 } from '../../api';
 import * as modelActions from '../../actions';
+import FaClose from 'react-icons/lib/fa/close';
 
 class CartItem extends Component {
 
@@ -163,10 +164,9 @@ class CartItem extends Component {
         <td>{cost} Р</td>
         <td style={{color: 'firebrick'}}>
           <span
-            className="remove-product glyphicon glyphicon-trash"
-            aria-hidden="true"
+            className="remove-product"
             onClick={this.deleteProductFromCart.bind(this)}
-          >
+          ><FaClose size="25" />
           </span>
         </td>
       </tr>

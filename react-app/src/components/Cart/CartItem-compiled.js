@@ -26,6 +26,10 @@ var _actions = require('../../actions');
 
 var modelActions = _interopRequireWildcard(_actions);
 
+var _close = require('react-icons/lib/fa/close');
+
+var _close2 = _interopRequireDefault(_close);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -237,11 +241,14 @@ var CartItem = function (_Component) {
         _react2.default.createElement(
           'td',
           { style: { color: 'firebrick' } },
-          _react2.default.createElement('span', {
-            className: 'remove-product glyphicon glyphicon-trash',
-            'aria-hidden': 'true',
-            onClick: this.deleteProductFromCart.bind(this)
-          })
+          _react2.default.createElement(
+            'span',
+            {
+              className: 'remove-product',
+              onClick: this.deleteProductFromCart.bind(this)
+            },
+            _react2.default.createElement(_close2.default, { size: '25' })
+          )
         )
       );
     }

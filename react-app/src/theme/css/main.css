@@ -767,16 +767,13 @@ input[type="checkbox"]:checked + label span {
 .table-10-procent {
     width: 10%;
 }
-
 td {
     text-align: center;
     padding: 9px;
     color: #555;
     font-weight: 600;
 }
-
 tr:nth-child(even){background-color: #f2f2f2}
-
 th {
     text-align: center;
     padding: 18px;
@@ -788,9 +785,17 @@ th {
 .remove-product {
     color: indianred;
 }
+.remove-product svg {
+    -webkit-transition: -webkit-transform .5s ease-in-out;
+    transition:         transform .5s ease-in-out;
+}
 .remove-product:hover {
     cursor: pointer;
     color: firebrick;
+}
+.remove-product:hover svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 .remove-product:active {
     color: darkred;
