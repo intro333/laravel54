@@ -15,7 +15,7 @@ class ConfidentialsTableSeeder extends Seeder
         DB::table('confidentials')->truncate();
 
         Confidential::create([
-            'electronic_key' => 'VZx9MX37d?nl'
+            'electronic_key' => ''
         ]);
     }
 }
