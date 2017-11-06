@@ -21,6 +21,12 @@ Route::prefix('fp-admin')->group(function () {
 });
 
 //customer (REACT JS APP)
+//Route::group(['middleware' => ['isAdmin:person', 'throttle:5,60']], function () {
 Route::group(['middleware' => 'isAdmin:person'], function () {
     Route::get('/', 'CustomerController@index')->name('customer');
+});
+
+// 10 попыток залогиниться и бан на час
+Route::group(['middleware' =>  'throttle:10, 60'], function () {
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 });
