@@ -159,7 +159,7 @@ var Navigation = function (_Component) {
             _react2.default.createElement(
               'span',
               null,
-              '8(985)851-20-86'
+              '8(960)647-53-15'
             )
           ),
           _react2.default.createElement(
@@ -173,7 +173,7 @@ var Navigation = function (_Component) {
             _react2.default.createElement(
               'span',
               null,
-              '8(929)622-98-15'
+              '8(980)362-40-28'
             )
           ),
           _react2.default.createElement(
@@ -187,7 +187,7 @@ var Navigation = function (_Component) {
             _react2.default.createElement(
               'span',
               null,
-              'shop-travel@ya.ru'
+              'food4people@ya.ru'
             )
           )
         ),

@@ -79,15 +79,15 @@ class Navigation extends Component {
         <div className="contacts-main">
           <div className="contacts-item">
             <span>Сергей</span>
-            <span>8(985)851-20-86</span>
+            <span>8(960)647-53-15</span>
           </div>
           <div className="contacts-item">
             <span>Елена</span>
-            <span>8(929)622-98-15</span>
+            <span>8(980)362-40-28</span>
           </div>
           <div className="contacts-item">
             <span>Email</span>
-            <span>shop-travel@ya.ru</span>
+            <span>food4people@ya.ru</span>
           </div>
         </div>
         <div className="mobile-nav-bar-1">

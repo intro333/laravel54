@@ -192,7 +192,7 @@ var Cart = function (_Component) {
       } else {
         dispatch(modelActions.setOpenCloseModal({
           show: true,
-          textHeader: 'Дата доставки закрыта. Узнать подробнее?',
+          textHeader: 'Дата доставки закрыта. Перейти в заказы?',
           textAlign: true,
           function: function _function() {
             var history = _this2.props.history;

@@ -94,7 +94,7 @@ var Home = function (_Component) {
     value: function sliderGo(seconds) {
       var _this3 = this;
 
-      var _loop = function _loop() {
+      var _loop = function _loop(i) {
         var img_1 = i + 1;
         var img_2 = i + 1 === seconds.length ? 1 : i + 2;
         var clickTimeout = i + 1;
@@ -106,7 +106,7 @@ var Home = function (_Component) {
       };
 
       for (var i = 0; i < seconds.length; i++) {
-        _loop();
+        _loop(i);
       }
     }
   }, {
@@ -188,7 +188,7 @@ var Home = function (_Component) {
                     _react2.default.createElement(
                       'li',
                       { className: 'xf-you-love__item' },
-                      '\u041E\u043F\u043B\u0430\u0442\u0430 \u043D\u0430\u043B\u0438\u0447\u043D\u044B\u043C\u0438'
+                      '\u041E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435 \u0436\u0438\u0432\u043E\u0439 \u043E\u0447\u0435\u0440\u0435\u0434\u0438\u0438'
                     ),
                     _react2.default.createElement(
                       'li',

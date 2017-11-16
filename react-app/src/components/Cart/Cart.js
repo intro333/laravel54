@@ -129,7 +129,7 @@ class Cart extends Component {
     } else {
       dispatch(modelActions.setOpenCloseModal({
         show: true,
-        textHeader: 'Дата доставки закрыта. Узнать подробнее?',
+        textHeader: 'Дата доставки закрыта. Перейти в заказы?',
         textAlign: true,
         function: () => {
           const { history } = this.props;

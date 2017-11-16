@@ -33,7 +33,7 @@ class Home extends Component {
     const seconds = setSecondsArray(3, 4);
     const interval = setIntervalValue(3, 4);
     this.sliderGo(seconds);
-    var timerId = setInterval(() => {
+    let timerId = setInterval(() => {
       this.sliderGo(seconds);
     }, interval);
     this.setState({
@@ -43,7 +43,7 @@ class Home extends Component {
 
   componentWillUnmount() {
     clearInterval(this.state.timerId);
-    for (var i=1;i<=3;i++) {
+    for (let i=1;i<=3;i++) {
       let clickTimeout = 'clickTimeout_' + i;
       clearTimeout(this.state[clickTimeout]);
     }
@@ -51,7 +51,7 @@ class Home extends Component {
   }
 
   sliderGo(seconds) {
-    for (var i=0;i<seconds.length;i++) {
+    for (let i=0;i<seconds.length;i++) {
       let img_1 = i + 1;
       let img_2 = (i + 1) === seconds.length ? 1 : i + 2;
       let clickTimeout = i + 1;
@@ -67,15 +67,15 @@ class Home extends Component {
   }
 
   render() {
-    var sliderImg_1 = classNames({
+    let sliderImg_1 = classNames({
       'slider-img': true,
       'show-hide': this.state.displayImg_1
     });
-    var sliderImg_2 = classNames({
+    let sliderImg_2 = classNames({
       'slider-img': true,
       'show-hide': this.state.displayImg_2
     });
-    var sliderImg_3 = classNames({
+    let sliderImg_3 = classNames({
       'slider-img': true,
       'show-hide': this.state.displayImg_3
     });
@@ -101,7 +101,7 @@ class Home extends Component {
                   </div>
                   <div>
                     <li className="xf-you-love__item">Получение заказа в удобное время</li>
-                    <li className="xf-you-love__item">Оплата наличными</li>
+                    <li className="xf-you-love__item">Отсутствие живой очередии</li>
                     <li className="xf-you-love__item">Ваш заказ всегда под рукой</li>
                   </div>
                 </ul>

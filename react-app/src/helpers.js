@@ -63,7 +63,7 @@ export function getNumberSelectOptions(start, end, filter=true) {
   if (filter)
     arrayOptions.push({ value: 0, label: '' });
 
-  for (var i = start; i <= end; i++) {
+  for (let i = start; i <= end; i++) {
     nums.push(i)
   }
 
@@ -145,7 +145,7 @@ export function scrollToElement(toSelector, duration = 500) {
 export function setSecondsArray(length, interval) {
   let array = [];
 
-  for (var i=1;i<=length;i++) {
+  for (let i=1;i<=length;i++) {
     array.push(i * interval * 1000);
   }
 

@@ -36,7 +36,7 @@ class SuccessPage extends Component {
     const statusError = <div className="success-page__content">
       <div className="success-page__title">Заказ не отправлен</div>
       <div className="success-page__text">
-        Проверьте интернет соединение или обратитесь к администратору сайта по электронной почте.<br/>Приносим свои извинения.
+        Проверьте интернет соединение или обратитесь к администратору сайта по электронной почте food4people@ya.ru.<br/>Приносим свои извинения.
       </div>
       <Link to={"/"}><div className="success-button"><p>НА ГЛАВНУЮ</p></div></Link>
     </div>;
