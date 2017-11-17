@@ -101,7 +101,7 @@ class Home extends Component {
                   </div>
                   <div>
                     <li className="xf-you-love__item">Получение заказа в удобное время</li>
-                    <li className="xf-you-love__item">Отсутствие живой очередии</li>
+                    <li className="xf-you-love__item">Отсутствие большой очередии</li>
                     <li className="xf-you-love__item">Ваш заказ всегда под рукой</li>
                   </div>
                 </ul>

@@ -188,7 +188,7 @@ var Home = function (_Component) {
                     _react2.default.createElement(
                       'li',
                       { className: 'xf-you-love__item' },
-                      '\u041E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435 \u0436\u0438\u0432\u043E\u0439 \u043E\u0447\u0435\u0440\u0435\u0434\u0438\u0438'
+                      '\u041E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435 \u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u043E\u0447\u0435\u0440\u0435\u0434\u0438\u0438'
                     ),
                     _react2.default.createElement(
                       'li',
