@@ -85,7 +85,9 @@ class RegisterController extends Controller
                 ?: redirect($this->redirectPath());
         } else {
             flash("Не верный электронный ключ")->error();
-            return redirect('register');
+            return redirect('register')->withInput(
+                $request->except(['password', 'password_confirmation'])
+            );
         }
     }
 

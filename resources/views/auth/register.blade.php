@@ -17,15 +17,15 @@
                         {{ csrf_field() }}
                         <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="name">Имя*</label>
-                            <input id="fname" name="name" type="text" placeholder="Введите имя">
+                            <input id="fname" name="name" type="text" placeholder="Введите имя" value="{{ old('name') }}">
                         </div>
                         <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="sname">Фамилия*</label>
-                            <input id="sname" name="sname" type="text" placeholder="Введите фамилию">
+                            <input id="sname" name="sname" type="text" placeholder="Введите фамилию" value="{{ old('sname') }}">
                         </div>
                         <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="email">Email*</label>
-                            <input id="email" name="email" type="email" placeholder="Введите электронную почту">
+                            <input id="email" name="email" type="email" placeholder="Введите электронную почту" value="{{ old('email') }}">
                         </div>
                         <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="password">Пароль*</label>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="register-filds-label-input register-flex-direction-column">
                             <label class="register-filds-label" for="phone">Телефон</label>
-                            <input id="phone" name="phone" type="text" placeholder="+7(___) ___ __ __">
+                            <input id="phone" name="phone" type="text" placeholder="+7(___) ___ __ __" value="{{ old('phone') }}">
                         </div>
                         <div class="register-filds-elements">
                             <label class="register-filds-label"></label>
