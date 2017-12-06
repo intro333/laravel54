@@ -15,6 +15,7 @@ class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      unit: 'kg',
       scrollTop: 0,
       orderNumberInp: 1,
       errorBorderRed: false,
@@ -27,6 +28,12 @@ class ProductItem extends Component {
   }
 
   componentWillMount() {
+    this.setState({
+      price: {
+        kg: this.props.price,
+        pieces: this.props.price_p
+      }
+    });
     const {dispatch} = this.props;
     const data = {
       emptyArray: true
@@ -42,13 +49,13 @@ class ProductItem extends Component {
   componentDidMount() {
     window.addEventListener('scroll', (event) => {
       const { dispatch } = this.props;
-      var target = event.target || event.srcElement;
+      let target = event.target || event.srcElement;
       let scrollTop = target.body.scrollTop;
       dispatch(setScrollTop(scrollTop));
     });
     window.addEventListener('resize', (event) => {
       const { dispatch } = this.props;
-      var target = event.target || event.srcElement;
+      let target = event.target || event.srcElement;
       let resize = target.innerWidth;
       dispatch(setResize(resize));
     });
@@ -61,7 +68,7 @@ class ProductItem extends Component {
   }
 
   setPlusNumber() {
-    var inputVal = this.getCountProductCart();
+    let inputVal = this.getCountProductCart();
     // console.log(1, inputVal)
     if (Number.isInteger(inputVal) && inputVal < 99) {
       this.setState({
@@ -79,7 +86,7 @@ class ProductItem extends Component {
   setMinusNumber() {
     const { productsForCart } = this.props;
     const product = isEmptyArray(productsForCart) && productsForCart.filter((item) => item.name === this.props.itemName);
-    var inputVal = this.getCountProductCart();
+    let inputVal = this.getCountProductCart();
     if (Number.isInteger(inputVal) && inputVal > 1) {
       this.setState({
         orderNumberInp: (parseInt(inputVal) - 1),
@@ -94,7 +101,7 @@ class ProductItem extends Component {
   }
 
   setChangeNumber(e) {
-    var targetValue = e.target.value;
+    let targetValue = e.target.value;
     if(targetValue <= 99 && targetValue > 0) {
       this.setState({
         orderNumberInp: parseInt(targetValue),
@@ -143,6 +150,13 @@ class ProductItem extends Component {
     }
   }
 
+  changePrice(e) {
+    let targetValue = e.target.value;
+    this.setState({
+      unit: targetValue
+    });
+  }
+
   render() {
     const { productsForCart } = this.props;
     const categoryItemImg = {
@@ -166,7 +180,11 @@ class ProductItem extends Component {
           <img src={'/storage/images/products/' + this.props.imgSrc} width="190" />
           <div className="category-item__name"> {this.props.itemName}</div>
           <div className="category-item__price-measure">
-            <span>{this.props.price} Р / {this.props.unit}</span>
+            <span>{this.state.price[this.state.unit]} Р</span>
+            <select onChange={this.changePrice.bind(this)} value={this.state.unit}>
+              <option value="kg">кг.</option>
+              <option value="pieces">шт.</option>
+            </select>
             <div className="order-table__cell">
               <div className="b-number">
                 <div className="order-number">

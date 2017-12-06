@@ -51,17 +51,23 @@
         </div>
     </div>
     <div class="form-group">
-        {!! Form::label('price', 'Цена', ['class'=>'col-sm-2 control-label']) !!}
+        {!! Form::label('price', 'Цена кг', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
             {!! Form::number('price', old('price', $product->price), ['class'=>'form-control', 'placeholder'=> '1500', 'required' => 'required']) !!}
         </div>
     </div>
     <div class="form-group">
-        {!! Form::label('unit', 'Мера', ['class'=>'col-sm-2 control-label']) !!}
+        {!! Form::label('price_p', 'Цена шт', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::text('unit', old('unit', $product->unit), ['class'=>'form-control', 'placeholder'=> 'кг. или шт.', 'required' => 'required']) !!}
+            {!! Form::number('price_p', old('price_p', $product->price_p), ['class'=>'form-control', 'placeholder'=> '1500', 'required' => 'required']) !!}
         </div>
     </div>
+    {{--<div class="form-group">--}}
+        {{--{!! Form::label('unit', 'Мера', ['class'=>'col-sm-2 control-label']) !!}--}}
+        {{--<div class="col-sm-10">--}}
+            {{--{!! Form::text('unit', old('unit', $product->unit), ['class'=>'form-control', 'placeholder'=> 'кг. или шт.', 'required' => 'required']) !!}--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <div class="form-group">
         {!! Form::label('image_path', 'Изображение', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">

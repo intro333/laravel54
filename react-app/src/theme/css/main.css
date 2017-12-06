@@ -645,19 +645,20 @@ input[type="checkbox"]:checked + label span {
 .category-item__price-measure select {
     outline: none;
     color: #fff;
-    background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);
+    /*background-image: url(/images/meatorchicken/select-mark.png), -webkit-linear-gradient(#3c763d, #3c763d 40%, #3c763d);*/
+    background-image: url(/images/meatorchicken/select-mark.png);
     background-color: #3c763d;
     -moz-border-radius: 20px;
-    border-radius: 20px;
-    padding-left: 8px;
+    border-radius: 3px;
+    padding-left: 4px;
     -webkit-appearance: button;
     -webkit-user-select: none;
-    background-position: 80% center;
+    background-position: 100%;
     background-repeat: no-repeat;
     border: none;
     font-size: inherit;
     margin-right: 4px;
-    width: 50px;
+    width: 36px;
 }
 .category-item__price-measure:hover select {
     cursor: pointer;

@@ -55,6 +55,7 @@ class Products extends Component {
         imgSrc={ item.image_path }
         itemName={ item.name }
         price={ item.price }
+        price_p={ item.price_p }
         unit={ item.unit }
         ordersQuota={ordersQuota.delivery ? ordersQuota.delivery : ''}
       />

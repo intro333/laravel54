@@ -30,7 +30,6 @@
     "redux": "^3.7.1",
     "redux-connect-decorator": "^0.1.0",
     "style-loader": "^0.18.2",
-    "webpack": "^2.6.1",
     "webpack-dev-server": "^2.5.1"
   },
   "devDependencies": {
@@ -72,7 +71,7 @@
     "react-transition-group": "^1.2.0",
     "redux": "^3.7.1",
     "style-loader": "^0.18.2",
-    "webpack": "^2.6.1",
+    "webpack": "^2.7.0",
     "webpack-dev-server": "^2.5.1",
     "webpack-provide-global-plugin": "0.0.1"
   },
