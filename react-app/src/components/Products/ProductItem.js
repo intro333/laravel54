@@ -159,9 +159,6 @@ class ProductItem extends Component {
 
   render() {
     const { productsForCart } = this.props;
-    const categoryItemImg = {
-      padding: '0 20px 0 20px'
-    };
 
     const orderNumberInp = classNames({
       'order-number-inp': true,
@@ -176,7 +173,7 @@ class ProductItem extends Component {
 
     return (
       <div className="category-item animation-page-load-medium">
-        <div className="category-item__img" style={categoryItemImg}>
+        <div className="category-item__img">
           <img src={'/storage/images/products/' + this.props.imgSrc} width="190" />
           <div className="category-item__name"> {this.props.itemName}</div>
           <div className="category-item__price-measure">

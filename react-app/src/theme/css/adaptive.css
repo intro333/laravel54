@@ -46,6 +46,9 @@
     .category-item {
         width: calc(100% / 1 - 25%);
     }
+    .category-item__img {
+        padding: 0 25px;
+    }
     .order-number {
         width: 100px;
     }
@@ -508,6 +511,9 @@
     }
     .xf-you-love__subheader {
         font-size: 17px;
+    }
+    .category-item__img {
+        padding: 0 20px;
     }
 }
 /*****ADAPTIVE for footer******/

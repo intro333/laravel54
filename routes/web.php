@@ -27,6 +27,6 @@ Route::group(['middleware' => 'isAdmin:person'], function () {
 });
 
 // 10 попыток залогиниться и бан на час
-Route::group(['middleware' =>  'throttle:10, 60'], function () {
+//Route::group(['middleware' =>  'throttle:20, 60'], function () {
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-});
+//});

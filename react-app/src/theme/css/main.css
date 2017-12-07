@@ -591,7 +591,8 @@ input[type="checkbox"]:checked + label span {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
+    padding: 0 15px;
 }
 /*.category-item__img img {*/
     /*transition: 1.3s;*/
@@ -658,7 +659,7 @@ input[type="checkbox"]:checked + label span {
     border: none;
     font-size: inherit;
     margin-right: 4px;
-    width: 36px;
+    width: 23%;
 }
 .category-item__price-measure:hover select {
     cursor: pointer;

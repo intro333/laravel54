@@ -9,6 +9,7 @@ import Cart from './components/Cart/Cart';
 import SussessPage from './components/Cart/SuccessPage';
 import PersonalAccount from './components/PersonalAccount/PersonalAccount';
 import Orders from './components/Orders/Orders';
+import { polyfill } from 'es6-promise'; polyfill();
 
 class App extends Component {
   render() {
