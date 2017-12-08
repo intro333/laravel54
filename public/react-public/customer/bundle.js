@@ -24358,7 +24358,7 @@ var Cart = function (_Component) {
 
       var userInfo = session.get('userInfo');
       total = productsForCart.reduce(function (total, item) {
-        return total + (item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10);
+        return total + (item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.unit === 'kg' ? item.price : item.price_p, 10);
       }, 0);
 
       var timeQuotaOptions = [{ value: 0, label: '' }];
@@ -24734,9 +24734,10 @@ var CartItem = function (_Component) {
         'order-number-inp': true,
         'error-border-red': this.state.errorBorderRed
       });
+
       var inputVal = this.props.item.count === '' ? '' : parseInt(this.props.item.count);
       var inputPlaceHolder = this.state.inputPlaceHolder;
-      var cost = this.props.item.price * (inputVal === '' ? 1 : parseInt(this.props.item.count));
+      var cost = (this.props.item.unit === 'kg' ? this.props.item.price : this.props.item.price_p) * (inputVal === '' ? 1 : parseInt(this.props.item.count));
 
       return _react2.default.createElement(
         'tr',
@@ -24754,9 +24755,9 @@ var CartItem = function (_Component) {
         _react2.default.createElement(
           'td',
           null,
-          this.props.item.price,
+          this.props.item.unit === 'kg' ? this.props.item.price : this.props.item.price_p,
           ' \u0420 / ',
-          this.props.item.unit
+          this.props.item.unit === 'kg' ? 'кг' : 'шт'
         ),
         _react2.default.createElement(
           'td',
@@ -27223,7 +27224,7 @@ var SuccessModal = function (_Component) {
 
 
       total = productsForCart.reduce(function (total, item) {
-        return total + (item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10);
+        return total + (item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.unit === 'kg' ? item.price : item.price_p, 10);
       }, 0);
 
       // var screenWidth  = screen.width;//Размер экрана
@@ -27406,7 +27407,6 @@ var ProductItem = function (_Component) {
 
         var target = event.target || event.srcElement;
         var scrollTop = target.body.scrollTop;
-        console.log(22, scrollTop);
         dispatch((0, _actions.setScrollTop)(scrollTop));
       });
       window.addEventListener('resize', function (event) {

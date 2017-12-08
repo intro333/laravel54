@@ -51,7 +51,6 @@ class ProductItem extends Component {
       const { dispatch } = this.props;
       let target = event.target || event.srcElement;
       let scrollTop = target.body.scrollTop;
-      console.log(22, scrollTop)
       dispatch(setScrollTop(scrollTop));
     });
     window.addEventListener('resize', (event) => {

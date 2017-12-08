@@ -170,7 +170,7 @@ class Cart extends Component {
 
     const userInfo = session.get('userInfo');
     total = productsForCart.reduce((total, item) => {
-        return total + ((item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.price, 10));
+        return total + ((item.count === '' ? 1 : parseInt(item.count, 10)) * parseInt(item.unit === 'kg' ? item.price : item.price_p, 10));
       }, 0
     );
 

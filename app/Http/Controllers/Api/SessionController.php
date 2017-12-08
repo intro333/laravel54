@@ -180,9 +180,9 @@ class SessionController extends Controller
                     'productId' => $product->product_id,
                     'imagePath' => $product->image_path,
                     'name'      => $product->name,
-                    'price'     => $product->price,
-                    'price_p'   => $product->price_p,
-                    'unit'      => $item['unit'],
+                    'price'     => (int) $product->price,
+                    'price_p'   => (int) $product->price_p,
+                    'unit'      => isset($item['unit']) ? $item['unit'] : '',
                     'barCode'   => $product->bar_code,
                     'count'     => $item['productCounts'] ? $item['productCounts'] : ""
 //                'count'     => $item['productCounts']

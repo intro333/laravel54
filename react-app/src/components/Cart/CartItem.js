@@ -123,9 +123,10 @@ class CartItem extends Component {
       'order-number-inp': true,
       'error-border-red': this.state.errorBorderRed
     });
+
     var inputVal = (this.props.item.count === '' ? '' : parseInt(this.props.item.count));
     var inputPlaceHolder = this.state.inputPlaceHolder;
-    var cost = this.props.item.price * (inputVal === '' ? 1 : parseInt(this.props.item.count));
+    var cost = (this.props.item.unit === 'kg' ? this.props.item.price : this.props.item.price_p) * (inputVal === '' ? 1 : parseInt(this.props.item.count));
 
     return (
       <tr key={this.props.keyProductId}>
@@ -133,7 +134,9 @@ class CartItem extends Component {
           <img className="cart-product-image" src={'/storage/images/products/' + this.props.item.imagePath} />
           <span>{this.props.item.name}</span>
         </td>
-        <td>{this.props.item.price} Р / {this.props.item.unit}</td>
+        <td>{
+          this.props.item.unit === 'kg' ? this.props.item.price : this.props.item.price_p
+        } Р / { this.props.item.unit === 'kg' ? 'кг' : 'шт'}</td>
         <td style={{textAlign: 'start'}}>
           <div className="order-table__cell">
             <div className="b-number">
