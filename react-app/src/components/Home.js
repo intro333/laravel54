@@ -87,9 +87,9 @@ class Home extends Component {
           <MenuMobile />
           <div className="home-page animation-page-load-medium">
             <div className="main-slider">
-              <img className={sliderImg_1} src="https://www.w3schools.com/w3images/workbench.jpg" />
-              <img className={sliderImg_2} src="https://www.w3schools.com/w3images/coffee.jpg" />
-              <img className={sliderImg_3} src="https://www.w3schools.com/w3images/sound.jpg" />
+              <img className={sliderImg_1} src="/images/main_page/1.jpg" />
+              <img className={sliderImg_2} src="/images/main_page/2.jpg" />
+              <img className={sliderImg_3} src="/images/main_page/3.jpg" />
               <div className="xf-wrapper">
                 <header className="xf-you-love__header">Онлайн-заказ</header>
                 <p className="xf-you-love__subheader">продуктов из Орла:</p>

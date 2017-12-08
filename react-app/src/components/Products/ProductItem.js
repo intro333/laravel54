@@ -51,6 +51,7 @@ class ProductItem extends Component {
       const { dispatch } = this.props;
       let target = event.target || event.srcElement;
       let scrollTop = target.body.scrollTop;
+      console.log(22, scrollTop)
       dispatch(setScrollTop(scrollTop));
     });
     window.addEventListener('resize', (event) => {
@@ -125,6 +126,7 @@ class ProductItem extends Component {
         const { dispatch } = this.props;
         dispatch(mainActions.setLoaderStatus(true));
         const data = {
+          unit: this.state.unit,
           barCode: this.props.barCode,
           productId: this.props.productId,
           productCounts: productCounts,

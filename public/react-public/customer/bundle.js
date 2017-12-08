@@ -25399,9 +25399,9 @@ var Home = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'main-slider' },
-              _react2.default.createElement('img', { className: sliderImg_1, src: 'https://www.w3schools.com/w3images/workbench.jpg' }),
-              _react2.default.createElement('img', { className: sliderImg_2, src: 'https://www.w3schools.com/w3images/coffee.jpg' }),
-              _react2.default.createElement('img', { className: sliderImg_3, src: 'https://www.w3schools.com/w3images/sound.jpg' }),
+              _react2.default.createElement('img', { className: sliderImg_1, src: '/images/main_page/1.jpg' }),
+              _react2.default.createElement('img', { className: sliderImg_2, src: '/images/main_page/2.jpg' }),
+              _react2.default.createElement('img', { className: sliderImg_3, src: '/images/main_page/3.jpg' }),
               _react2.default.createElement(
                 'div',
                 { className: 'xf-wrapper' },
@@ -27406,6 +27406,7 @@ var ProductItem = function (_Component) {
 
         var target = event.target || event.srcElement;
         var scrollTop = target.body.scrollTop;
+        console.log(22, scrollTop);
         dispatch((0, _actions.setScrollTop)(scrollTop));
       });
       window.addEventListener('resize', function (event) {
@@ -27497,6 +27498,7 @@ var ProductItem = function (_Component) {
 
           dispatch(mainActions.setLoaderStatus(true));
           var data = {
+            unit: this.state.unit,
             barCode: this.props.barCode,
             productId: this.props.productId,
             productCounts: productCounts

@@ -18,6 +18,7 @@ class SessionController extends Controller
     {
         $sessionName = 'productFromCart.' . $request->input('barCode');
         $productCartInfo = [
+            'unit'     => $request->input('unit'),
             'productId'     => $request->input('productId'),
             'barCode'       => $request->input('barCode'),
             'productCounts' => $request->input('productCounts') ? $request->input('productCounts') : "",
@@ -180,7 +181,8 @@ class SessionController extends Controller
                     'imagePath' => $product->image_path,
                     'name'      => $product->name,
                     'price'     => $product->price,
-                    'unit'      => $product->unit,
+                    'price_p'   => $product->price_p,
+                    'unit'      => $item['unit'],
                     'barCode'   => $product->bar_code,
                     'count'     => $item['productCounts'] ? $item['productCounts'] : ""
 //                'count'     => $item['productCounts']
