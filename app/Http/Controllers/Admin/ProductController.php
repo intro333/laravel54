@@ -56,7 +56,7 @@ class ProductController extends Controller
                     'image_path'  => $this->fileName,
                     'price'  => $request->input('price'),
                     'price_p'  => $request->input('price_p'),
-                    'unit'  => '',
+                    'unit'  => $request->input('unit'),
                     'is_active'   => 1,
                 ]);
                 flash('Продукт добавлен.')->success();
@@ -118,7 +118,7 @@ class ProductController extends Controller
                 'image_path' => $this->fileName ? $this->fileName : $product->image_path,
                 'price'  => $request->input('price'),
                 'price_p'  => $request->input('price_p'),
-                'unit'  => '',
+                'unit'  => $request->input('unit'),
             ]);
             if ($updateStatus) {
                 flash('Продукт обновлен.')->success();

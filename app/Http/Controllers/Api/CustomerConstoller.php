@@ -83,13 +83,15 @@ class CustomerConstoller extends Controller
             ];
             foreach ($order->features as $feature) {
                 $product = Products::find($feature['productId']);
+                $cost = $feature['unit'] === 'kg' ? ($product->price * $feature['count']) : ($product->price_p * $feature['count']);
                 $result[$order->order_id][] = [
                     'name'       => $product->name,
                     'image_path' => $product->image_path,
                     'price'      => $product->price,
-                    'unit'       => $product->unit,
+                    'price_p'    => $product->price_p,
+                    'unit'       => $feature['unit'],
                     'counts'     => $feature['count'],
-                    'cost'       => ($product->price * $feature['count']),
+                    'cost'       => $cost,
                 ];
             }
         }
@@ -133,6 +135,7 @@ class CustomerConstoller extends Controller
         foreach ($order->features as $key => $item) {
             $sessionName = 'productFromCart.' . $item['barCode'];
             $productCartInfo = [
+                'unit'      => $item['unit'],
                 'productId'     => $item['productId'],
                 'barCode'       => $item['barCode'],
                 'productCounts' => $item['count'] ? $item['count'] : "",
@@ -158,7 +161,7 @@ class CustomerConstoller extends Controller
                 'imagePath' => $product->image_path,
                 'name'      => $product->name,
                 'price'     => $product->price,
-                'unit'      => $product->unit,
+                'unit'      => isset($item['unit']) ? $item['unit'] : '',
                 'barCode'   => $product->bar_code,
                 'count'     => $item['productCounts'] ? $item['productCounts'] : ""
 //                'count'     => $item['productCounts']

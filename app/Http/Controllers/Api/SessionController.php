@@ -18,7 +18,7 @@ class SessionController extends Controller
     {
         $sessionName = 'productFromCart.' . $request->input('barCode');
         $productCartInfo = [
-            'unit'     => $request->input('unit'),
+            'unit'          => $request->input('unit'),
             'productId'     => $request->input('productId'),
             'barCode'       => $request->input('barCode'),
             'productCounts' => $request->input('productCounts') ? $request->input('productCounts') : "",
@@ -65,6 +65,7 @@ class SessionController extends Controller
                     'productId' => $item['productId'],
                     'count'     => $item['productCounts'] === "" ? 1 : $item['productCounts'],
                     'barCode'   => $item['barCode'],
+                    'unit'      => $item['unit'],
                 ];
             }
             if(session()->get('orderChangeId')) {

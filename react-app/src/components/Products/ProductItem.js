@@ -32,7 +32,8 @@ class ProductItem extends Component {
       price: {
         kg: this.props.price,
         pieces: this.props.price_p
-      }
+      },
+      unit: this.props.unit
     });
     const {dispatch} = this.props;
     const data = {
@@ -160,12 +161,10 @@ class ProductItem extends Component {
 
   render() {
     const { productsForCart } = this.props;
-
     const orderNumberInp = classNames({
       'order-number-inp': true,
       'error-border-red': this.state.errorBorderRed
     });
-
     const product = isEmptyMap(productsForCart) && productsForCart.filter((item) => item.name === this.props.itemName);
     var inputVal = this.state.orderNumberInp ? this.state.orderNumberInp : (isEmptyArray(product) ? product[0]['count']: this.state.orderNumberInp);
     var inputPlaceHolder = this.state.inputPlaceHolder;

@@ -108,7 +108,6 @@ class OrderItem extends Component {
   render() {
     const { ordersQuota } = this.props;
     var items = this.props.item;
-
     const orderNumberInp = classNames({
       'order-number-inp': true,
     });
@@ -123,7 +122,9 @@ class OrderItem extends Component {
               <img className="cart-product-image" src={'/storage/images/products/' + item.image_path}/>
               <span>{item.name}</span>
             </td>
-            <td>{item.price} Р / {item.unit}</td>
+            <td>{
+              item.unit === 'kg' ? item.price : item.price_p
+              } Р / {item.unit === 'kg' ? 'кг' : 'шт'}</td>
             <td style={{textAlign: 'start'}}>
               <div className="order-table__cell">
                 <div className="b-number">

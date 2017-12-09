@@ -15,6 +15,7 @@ class CartItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      unit: 'kg',
       orderNumberInp: props.count,
       errorBorderRed: false,
       inputPlaceHolder: ''
@@ -28,6 +29,9 @@ class CartItem extends Component {
         inputPlaceHolder: '?'
       });
     }
+    this.setState({
+      unit: this.props.item.unit === 'kg' ? 'kg' : 'pieces',
+    });
   }
   addProductToCart(productCounts) {
     const { dispatch } = this.props;
@@ -36,6 +40,7 @@ class CartItem extends Component {
 
     if (Number.isInteger(productCounts)) {
       const data = {
+        unit: this.state.unit,
         barCode: this.props.item.barCode,
         productId: this.props.item.productId,
         productCounts: productCounts,
@@ -43,6 +48,7 @@ class CartItem extends Component {
       addProductToCart(dispatch, data);
     } else if (typeof productCounts === 'string' && productCounts !== '') {
       const data = {
+        unit: this.state.unit,
         barCode: this.props.item.barCode,
         productId: this.props.item.productId,
         productCounts: parseInt(productCounts),
@@ -50,6 +56,7 @@ class CartItem extends Component {
       addProductToCart(dispatch, data);
     } else {
       const data = {
+        unit: this.state.unit,
         barCode: this.props.item.barCode,
         productId: this.props.item.productId,
         productCounts: '',
