@@ -13,6 +13,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <script src="/react-public/customer/bundle.js"></script>
+    <script src="/react-public/customer/bundle.js?v2"></script>
 </body>
 </html>
