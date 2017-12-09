@@ -35,15 +35,18 @@ class OrderController extends Controller
             ];
             foreach ($order->features as $feature) {
                 $product = Products::find($feature['productId']);
+                $cost = $feature['unit'] === 'kg' ? ($product->price * $feature['count']) : ($product->price_p * $feature['count']);
+
                 $result[$order->order_id][] = [
                     'name'       => $product->name,
                     'image_path' => $product->image_path,
                     'price'      => $product->price,
-                    'unit'       => $product->unit,
+                    'price_p'    => $product->price_p,
+                    'unit'       => $feature['unit'],
                     'counts'     => $feature['count'],
-                    'cost'       => ($product->price * $feature['count']),
+                    'cost'       => $cost,
                 ];
-                $total = $total + $product->price * $feature['count'];
+                $total = $total + $cost;
             }
             $result[$order->order_id][0]['total'] = $total;
         }

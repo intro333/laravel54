@@ -6,6 +6,7 @@
         <!-- Панель для фильтрации и поиска -->
         @include('admin.partials.filter-search')
         <!-- Все заказы-->
+        {{--{{ dd($result) }}--}}
         @foreach($result as $item)
             <div class="orders-item"
                  order-number="{{ $item[0]['emailHash'] }}-{{ $item[0]['orderId'] }}"
@@ -51,7 +52,7 @@
                                     <img class="cart-product-image" src='/storage/images/products/{{ $products['image_path'] }}' />
                                     <span>{{ $products['name'] }}</span>
                                 </td>
-                                <td>{{ $products['price'] }} Р / {{$products['unit'] }}</td>
+                                <td>{{ $products['unit'] === 'kg' ? $products['price'] : $products['price_p'] }} Р / {{$products['unit'] === 'kg' ? 'кг' : 'шт' }}</td>
                                 <td>{{ $products['counts'] }}</td>
                                 <td>{{ $products['cost'] }} Р</td>
                                 <td style="color: firebrick">
