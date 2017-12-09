@@ -97,7 +97,7 @@ class Home extends Component {
                   <div>
                     <li className="xf-you-love__item">Легкий заказ на сайте</li>
                     <li className="xf-you-love__item">Значительная экономия времени</li>
-                    <li className="xf-you-love__item">Сразу известна сумма заказа</li>
+                    <li className="xf-you-love__item">Заказ в несколько кликов</li>
                   </div>
                   <div>
                     <li className="xf-you-love__item">Получение заказа в удобное время</li>

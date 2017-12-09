@@ -247,7 +247,7 @@ class Cart extends Component {
                 className="cart-comment"
                 value={this.state.comment === '' ? comment : this.state.comment}
                 onChange={this.handleChangeComment.bind(this)}
-                placeholder="В комментарии к заказу Вы можете конкретизировать информацию о продукте.Например: капуста - небольшой качан, курица - побольше/поменьше."
+                placeholder="Оставьте комментарий к заказу."
               />
               <p className="order-filds-label" style={{fontWeight: '700'}}>Дата
                 доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</p>
