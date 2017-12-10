@@ -200,7 +200,7 @@
     }
     /*Корзина*/
     .cart-error-mobile {
-        margin-top: 10px;
+        margin: 10px 0 0;
     }
     .cart-scroll-adaptive::-webkit-scrollbar {
         width: 6px;
@@ -233,11 +233,16 @@
         width: 533px;
     }
     .cart-comment {
-        width: 520px;
+        width: 533px;
     }
     .cart_total {
         margin: 0 !important;
         font-size: 18px;
+        width: 533px !important;
+    }
+    .cart-order__info {
+        margin: 0 0 10px !important;
+        font-size: 13px;
         width: 533px !important;
     }
     .quota-style {
@@ -249,7 +254,7 @@
         margin-left: 0 !important;
     }
     .scroll-to-error {
-        white-space: nowrap !important;
+        /*white-space: nowrap !important;*/
     }
 }
 
@@ -596,7 +601,7 @@
 }
 /***** END! ADAPTIVE for footer END!******/
 @media (max-width: 565px) {
-    .contacts-item span {
+    .contacts-item span, .contacts-item a {
         font-size: 13px;
     }
     .contacts-item {

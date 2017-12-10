@@ -79,11 +79,11 @@ class Navigation extends Component {
         <div className="contacts-main">
           <div className="contacts-item">
             <span>Сергей</span>
-            <span>8(960)647-53-15</span>
+            <a href="tel:89606475315">8(960)647-53-15</a>
           </div>
           <div className="contacts-item">
             <span>Елена</span>
-            <span>8(980)362-40-28</span>
+            <a href="tel:89803624028">8(980)362-40-28</a>
           </div>
           <div className="contacts-item">
             <span>Email</span>

@@ -140,7 +140,7 @@ class Orders extends Component {
               <div className="order-filds-label-input">
                 <label className="order-filds-label" htmlFor="status">Месяц</label>
                 <Select
-                  className="margin-right-10"
+                  //className="margin-right-10"
                   name="birthdate"
                   value={this.state.orderMonth}
                   options={monthOptions}

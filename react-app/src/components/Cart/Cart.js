@@ -215,8 +215,8 @@ class Cart extends Component {
             <div className="animation-page-load-medium cart-scroll-adaptive">
               <div className="flex-box-between">
                 <h3>Корзина</h3>
-                <div style={{display: 'flex'}}>
-                  <div onClick={this.handlerClearCart.bind(this)} className="cart-button-clear">Очистить корзину</div>
+                <div style={{display: 'flex',margin: '0'}}>
+                  <div onClick={this.handlerClearCart.bind(this)} className="cart-button-clear">Очистить</div>
                   <div onClick={this.handlerSendOrder.bind(this)} className="cart-button">Отправить заказ</div>
                 </div>
               </div>
@@ -239,7 +239,8 @@ class Cart extends Component {
                 </tbody>
               </table>
               <div className="cart-order__total cart_total">Сумма:&nbsp;<span>{ total } Р</span></div>
-              <p className="order-filds-label" style={{color: 'red', fontSize: '14px', margin: '0'}}>
+              <p className="cart-order__info">Точная сумма будет известна после взвешивания товара</p>
+              <p className="order-filds-label" style={{color: 'red', fontSize: '14px', margin: '0', whiteSpace: 'nowrap'}}>
                 {this.state.comment_count_error !== '' && this.state.comment_count_error}
               </p>
               <textarea
@@ -249,11 +250,11 @@ class Cart extends Component {
                 onChange={this.handleChangeComment.bind(this)}
                 placeholder="Оставьте комментарий к заказу."
               />
-              <p className="order-filds-label" style={{fontWeight: '700'}}>Дата
+              <p className="order-filds-label" style={{fontWeight: '700', margin: '0'}}>Дата
                 доставки {ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</p>
               {ordersQuota.ordersQuota && ordersQuota.ordersQuota.length !== 0 ? ordersQoutaDiv : OrderNonQuota}
               <p className="order-filds-label scroll-to-error"
-                     style={{color: 'red', fontSize: '14px', marginTop: '5px'}}>
+                     style={{color: 'red', fontSize: '14px', margin: '10px 0'}}>
                 {
                   this.state.cart_error !== '' ? this.state.cart_error : errorMessageCountQuota
                 }
