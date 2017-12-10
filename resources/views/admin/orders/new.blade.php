@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('content')
-    <h2>Новые заказы (со статусом "<b>обрабатывается</b>").</h2>
+    <h2>Заказы по покупателям(со статусом "<b>обрабатывается</b>").</h2>
     <div class="orders-all">
         <!-- Панель для фильтрации и поиска -->
         @include('admin.partials.filter-search')

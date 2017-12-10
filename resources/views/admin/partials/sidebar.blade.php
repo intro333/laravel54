@@ -24,7 +24,15 @@
                         <a href="/fp-admin/orders/new">
                             <i class="fa fa-newspaper-o"></i>
                             <span class="title">
-                                Новые заказы
+                                По покупателям
+                            </span>
+                        </a>
+                    </li>
+                    <li @if(Request::path() == 'fp-admin/orders/products') class="active active-sub" @endif>
+                        <a href="/fp-admin/orders/products">
+                            <i class="fa fa-newspaper-o"></i>
+                            <span class="title">
+                                По продуктам
                             </span>
                         </a>
                     </li>
@@ -38,7 +46,7 @@
                     </li>
                     <li @if(Request::path() == 'fp-admin/orders/control/status') class="active active-sub" @endif>
                         <a href="{{ route('orders.view.control.status') }}">
-                            <i class="fa fa-calendar"></i>
+                            <i class="fa fa-briefcase"></i>
                             <span class="title">
                                 Управление статусами
                             </span>
@@ -46,7 +54,7 @@
                     </li>
                     <li @if(Request::path() == 'fp-admin/orders/quotes') class="active active-sub" @endif>
                         <a href="{{ route('orders.view.quotes') }}">
-                            <i class="fa fa-calendar"></i>
+                            <i class="fa fa-circle-o-notch"></i>
                             <span class="title">
                                 Квоты
                             </span>
@@ -56,7 +64,7 @@
             </li>
             <li @if(Request::path() == 'fp-admin/users') class="active" @endif>
                 <a href="/fp-admin/users">
-                    <i class="fa fa-shopping-cart"></i>
+                    <i class="fa fa-user"></i>
                     <span class="title">Пользователи</span>
                     <span class="fa arrow"></span>
                 </a>

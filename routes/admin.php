@@ -29,6 +29,7 @@ Route::group(['middleware' => 'isAdmin:admin'], function () {
     Route::post('/products/del/{id}', 'Admin\ProductController@productDelete')->name('product.del');
 
     Route::get('/orders/new', 'Admin\OrderController@ordersNewView')->name('orders.view.new');
+    Route::get('/orders/products', 'Admin\OrderController@ordersProductsView')->name('orders.view.products');
     Route::get('/orders/delivery', 'Admin\OrderController@ordersDeliveryView')->name('orders.view.delivery');
     Route::post('/orders/delivery', 'Admin\OrderController@ordersDelivery')->name('orders.delivery');
     Route::get('/orders/control/status', 'Admin\OrderController@ordersControlStatusView')->name('orders.view.control.status');

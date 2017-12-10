@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
-    //вьюха список заказов
+    //вьюха список заказов по покупателям
     public function ordersNewView()
     {
         $result = [];
@@ -54,6 +54,42 @@ class OrderController extends Controller
 
 //        dd($result);
         return view('admin.orders.new',
+            compact('result'));
+    }
+
+    //вьюха список заказов по продуктам
+    public function ordersProductsView()
+    {
+        $result = [];
+        $orders = Order::status(1)
+            ->get();
+
+        foreach ($orders as $key => $order) {
+            foreach ($order->features as $k => $feature) {
+                $product = Products::find($feature['productId']);
+
+                if (!array_key_exists($product->product_id, $result)) {
+                    $result[$product->product_id][] = [
+                        'name'       => $product->name,
+                        'image_path' => $product->image_path,
+                        'kg'         => $feature['unit'] === 'kg' ? $feature['count'] : 0,
+                        'pieces'     => $feature['unit'] === 'pieces' ? $feature['count'] : 0
+                    ];
+                } else {
+                    $result[$product->product_id][0] = [
+                        'name'       => $product->name,
+                        'image_path' => $product->image_path,
+                        'kg'         => $feature['unit'] === 'kg' ? ($result[$product->product_id][0]['kg'] + $feature['count']) : ($result[$product->product_id][0]['kg'] + 0),
+                        'pieces'     => $feature['unit'] === 'pieces' ? ($result[$product->product_id][0]['pieces'] + $feature['count']) : ($result[$product->product_id][0]['pieces'] + 0),
+                    ];
+                }
+
+
+            }
+        }
+
+//        dd($result);
+        return view('admin.orders.products',
             compact('result'));
     }
 
