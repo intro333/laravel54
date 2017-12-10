@@ -33,6 +33,7 @@ Route::group(['middleware' => 'isAdmin:admin'], function () {
     Route::post('/orders/delivery', 'Admin\OrderController@ordersDelivery')->name('orders.delivery');
     Route::get('/orders/control/status', 'Admin\OrderController@ordersControlStatusView')->name('orders.view.control.status');
     Route::post('/orders/control/status', 'Admin\OrderController@ordersControlStatus')->name('orders.control.status');
+    Route::get('/orders/quotes', 'Admin\OrderController@quotes')->name('orders.view.quotes');
 
     Route::get('/users/all', 'Admin\UserController@getAll')->name('users.view.all');
 });

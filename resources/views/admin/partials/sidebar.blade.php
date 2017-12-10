@@ -24,7 +24,7 @@
                         <a href="/fp-admin/orders/new">
                             <i class="fa fa-newspaper-o"></i>
                             <span class="title">
-                                Новые
+                                Новые заказы
                             </span>
                         </a>
                     </li>
@@ -41,6 +41,14 @@
                             <i class="fa fa-calendar"></i>
                             <span class="title">
                                 Управление статусами
+                            </span>
+                        </a>
+                    </li>
+                    <li @if(Request::path() == 'fp-admin/orders/quotes') class="active active-sub" @endif>
+                        <a href="{{ route('orders.view.quotes') }}">
+                            <i class="fa fa-calendar"></i>
+                            <span class="title">
+                                Квоты
                             </span>
                         </a>
                     </li>

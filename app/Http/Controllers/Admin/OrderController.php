@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Delivery;
 use App\Models\Order;
+use App\Models\OrdersQuota;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -152,5 +153,14 @@ class OrderController extends Controller
             flash('Глобальный статус не обновлен. Ошибка: ' . $e)->error();
             return redirect(route('orders.view.control.status'));
         }
+    }
+
+    /* вьюха дата доставки */
+    public function quotes()
+    {
+        $quotes = OrdersQuota::all();
+
+        return view('admin.orders.quotes',
+            compact('quotes'));
     }
 }
