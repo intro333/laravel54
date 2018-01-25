@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Traits;
 
+//use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
