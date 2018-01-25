@@ -5,6 +5,7 @@ import Footer from './Navigation/Footer';
 import MenuMobile from './Popups/MenuMobile';
 import {
   setUserInfo,
+  showOrdersQuotaInCart,
 } from '../api';
 import classNames from 'classnames';
 import {
@@ -27,6 +28,7 @@ class Home extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
     setUserInfo(dispatch);
+    showOrdersQuotaInCart(dispatch);
   }
 
   componentDidMount() {
@@ -67,6 +69,10 @@ class Home extends Component {
   }
 
   render() {
+    const { ordersQuota } = this.props;
+
+    console.log(1, ordersQuota)
+
     let sliderImg_1 = classNames({
       'slider-img': true,
       'show-hide': this.state.displayImg_1
@@ -90,6 +96,13 @@ class Home extends Component {
               <img className={sliderImg_1} src="/images/main_page/1.jpg" />
               <img className={sliderImg_2} src="/images/main_page/2.jpg" />
               <img className={sliderImg_3} src="/images/main_page/3.jpg" />
+
+              <div className="xf-wrapper">
+                <header className="xf-you-love__header">Будем в Москве</header>
+                <p className="xf-you-love__subheader">{ordersQuota.delivery ? ordersQuota.delivery.delivery_date : ''}</p>
+                <p className="xf-you-love__subheader" style={{color: 'red'}}>Принимаем заказы!</p>
+              </div>
+
               <div className="xf-wrapper">
                 <header className="xf-you-love__header">Онлайн-заказ</header>
                 <p className="xf-you-love__subheader">продуктов из Орла:</p>
@@ -119,4 +132,5 @@ export default connect(store => ({
   dispatch: store.dispatch,
   session: store.session,
   api: store.api,
+  ordersQuota: store.api.get('ordersQuota'),
 }))(Home);
