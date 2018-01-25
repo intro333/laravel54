@@ -20,7 +20,8 @@
                         <span>Заказ № ST-{{ $item[0]['emailHash'] }}-{{ $item[0]['orderId'] }} от {{ $item[0]['orderDate'] }}</span>
                         <span>Покупатель:&nbsp;{{ $item[0]['details']['sname'] . ' ' . $item[0]['details']['name'] . ' ' . $item[0]['details']['mname'] }}</span>
                         <span>Телефон:&nbsp;{{ $item[0]['details']['phone'] }}</span>
-                        <span>Дата доставки {{ $item[0]['orderDate'] }}</span>
+                        <span>Дата создания заказа {{ $item[0]['orderDate'] }}</span>
+                        <span>Дата доставки {{ $item[0]['deliveryDate'] }}</span>
                         <span>Период получения заказа {{ $item[0]['timeQuota'] }}</span>
                     </div>
                 </div>

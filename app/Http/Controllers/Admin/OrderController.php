@@ -19,6 +19,8 @@ class OrderController extends Controller
             ->status(1)
             ->get();
 
+        $delivery = Delivery::all()->first();
+
         foreach ($orders as $key => $order) {
 //            dd($order->user->details->first());
             $emailHash = hash('md5', $order->user->email);
@@ -30,6 +32,7 @@ class OrderController extends Controller
                 'orderId'     => $order->order_id,
                 'emailHash'   => $emailHash,
                 'orderDate'   => $order->created_at->format('d-m-Y'),
+                'deliveryDate' => $delivery->delivery_date->format('d-m-Y'),
                 'timeQuota'   => $order->timeQuota->time_quota,
                 'details'     => $order->user->details->first(),
                 'comment'     => $order->comment,
