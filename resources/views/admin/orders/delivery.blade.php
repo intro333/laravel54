@@ -35,7 +35,11 @@
     <div class="form-group">
         {!! Form::label('status', 'Статус', ['class'=>'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::select('status', ['0' => 'Не активен', '1' => 'Активен'], $delivery->status, ['placeholder' => 'Выберите статус', 'class'=>'form-control', 'required' => 'required'])!!}
+            @if($delivery->status === 0)
+            {!! Form::select('status', ['0' => 'Не активен', '1' => 'Активен'], null, ['placeholder' => 'Выберите статус', 'class'=>'form-control', 'required' => 'required'])!!}
+            @else
+                {!! Form::select('status', ['0' => 'Не активен', '1' => 'Активен'], $delivery->status, ['placeholder' => 'Выберите статус', 'class'=>'form-control', 'required' => 'required'])!!}
+            @endif
         </div>
     </div>
 
@@ -46,6 +50,21 @@
     </div>
     {!! Form::close() !!}
 
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-2">
+            <h3>Когда и как правильно изменять дату доставки.</h3>
+            <ul style="font-size: 16px;">
+                <li>Если статус доставки "Активен", то покупатели могут добавлять продукты в корзину и делать заказы.</li>
+                <li>Статус "Не активен" выставляется автоматически после того, как вы в разделе "Управления статусами" выбрали
+                статус заказов "Выполнен". В этом случае покупатели не могут совершать заказы.</li>
+                <li>Выставляйте дату доставки и статус "Активен", если вы готовы принять заказы</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
 @endsection
 
 

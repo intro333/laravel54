@@ -106,6 +106,9 @@ class CustomerConstoller extends Controller
         try {
             $order = Order::find($request->input('orderId'));
             $order->update(['status' => 3]);
+            $order->timeQuota->update([
+                'counts_quota' => ($order->timeQuota->counts_quota + 1)
+            ]);
             $request->input('orderRemove') && $order->delete();
         } catch (\Exception $e) {
             $result = 'Error: ' . $e;

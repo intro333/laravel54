@@ -109,6 +109,7 @@ class OrderController extends Controller
     public function ordersDelivery(Request $request)
     {
         $delivery = Delivery::find($request->input('delivery_date_id'));
+
         try {
             $updateStatus = $delivery->update([
                 'delivery_date' => $request->input('delivery_date'),
@@ -123,6 +124,9 @@ class OrderController extends Controller
             }
 
             if ($updateStatus) {
+                \Artisan::call('db:seed', [
+                    '--class' => 'OrderQuotaTableSeeder'
+                ]);
                 flash('Данные доставки обновлены!')->success();
                 return redirect(route('orders.view.delivery'));
             } else {
